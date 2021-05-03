@@ -62,7 +62,7 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
     
     func continueButtonTappedDelegate(tapped: Int) {
         
-        self.appointmentBarCustomView.collectionView(appointmentBarCustomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
+    self.appointmentBarCustomView.collectionView(appointmentBarCustomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
         
         
         self.footerView.counter = tapped
