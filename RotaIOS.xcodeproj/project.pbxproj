@@ -1,0 +1,598 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C87A263FF80000238035 /* AppDelegate.swift */; };
+		BF44C87D263FF80000238035 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C87C263FF80000238035 /* SceneDelegate.swift */; };
+		BF44C87F263FF80000238035 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C87E263FF80000238035 /* ViewController.swift */; };
+		BF44C882263FF80000238035 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF44C880263FF80000238035 /* Main.storyboard */; };
+		BF44C884263FF80100238035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF44C883263FF80100238035 /* Assets.xcassets */; };
+		BF44C887263FF80100238035 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF44C885263FF80100238035 /* LaunchScreen.storyboard */; };
+		BF44C892263FF80200238035 /* RotaIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C891263FF80200238035 /* RotaIOSTests.swift */; };
+		BF44C89D263FF80200238035 /* RotaIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C89C263FF80200238035 /* RotaIOSUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF44C88E263FF80200238035 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF44C86F263FF80000238035 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF44C876263FF80000238035;
+			remoteInfo = RotaIOS;
+		};
+		BF44C899263FF80200238035 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF44C86F263FF80000238035 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF44C876263FF80000238035;
+			remoteInfo = RotaIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BF44C877263FF80000238035 /* RotaIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotaIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF44C87A263FF80000238035 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BF44C87C263FF80000238035 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		BF44C87E263FF80000238035 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BF44C881263FF80000238035 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF44C883263FF80100238035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF44C886263FF80100238035 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BF44C888263FF80100238035 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF44C88D263FF80200238035 /* RotaIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RotaIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF44C891263FF80200238035 /* RotaIOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaIOSTests.swift; sourceTree = "<group>"; };
+		BF44C893263FF80200238035 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF44C898263FF80200238035 /* RotaIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RotaIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF44C89C263FF80200238035 /* RotaIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaIOSUITests.swift; sourceTree = "<group>"; };
+		BF44C89E263FF80200238035 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF44C874263FF80000238035 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF44C88A263FF80200238035 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF44C895263FF80200238035 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BF44C86E263FF80000238035 = {
+			isa = PBXGroup;
+			children = (
+				BF44C879263FF80000238035 /* RotaIOS */,
+				BF44C890263FF80200238035 /* RotaIOSTests */,
+				BF44C89B263FF80200238035 /* RotaIOSUITests */,
+				BF44C878263FF80000238035 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BF44C878263FF80000238035 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C877263FF80000238035 /* RotaIOS.app */,
+				BF44C88D263FF80200238035 /* RotaIOSTests.xctest */,
+				BF44C898263FF80200238035 /* RotaIOSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF44C879263FF80000238035 /* RotaIOS */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C87A263FF80000238035 /* AppDelegate.swift */,
+				BF44C87C263FF80000238035 /* SceneDelegate.swift */,
+				BF44C87E263FF80000238035 /* ViewController.swift */,
+				BF44C880263FF80000238035 /* Main.storyboard */,
+				BF44C883263FF80100238035 /* Assets.xcassets */,
+				BF44C885263FF80100238035 /* LaunchScreen.storyboard */,
+				BF44C888263FF80100238035 /* Info.plist */,
+			);
+			path = RotaIOS;
+			sourceTree = "<group>";
+		};
+		BF44C890263FF80200238035 /* RotaIOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C891263FF80200238035 /* RotaIOSTests.swift */,
+				BF44C893263FF80200238035 /* Info.plist */,
+			);
+			path = RotaIOSTests;
+			sourceTree = "<group>";
+		};
+		BF44C89B263FF80200238035 /* RotaIOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C89C263FF80200238035 /* RotaIOSUITests.swift */,
+				BF44C89E263FF80200238035 /* Info.plist */,
+			);
+			path = RotaIOSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF44C876263FF80000238035 /* RotaIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF44C8A1263FF80200238035 /* Build configuration list for PBXNativeTarget "RotaIOS" */;
+			buildPhases = (
+				BF44C873263FF80000238035 /* Sources */,
+				BF44C874263FF80000238035 /* Frameworks */,
+				BF44C875263FF80000238035 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RotaIOS;
+			productName = RotaIOS;
+			productReference = BF44C877263FF80000238035 /* RotaIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF44C88C263FF80200238035 /* RotaIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF44C8A4263FF80200238035 /* Build configuration list for PBXNativeTarget "RotaIOSTests" */;
+			buildPhases = (
+				BF44C889263FF80200238035 /* Sources */,
+				BF44C88A263FF80200238035 /* Frameworks */,
+				BF44C88B263FF80200238035 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF44C88F263FF80200238035 /* PBXTargetDependency */,
+			);
+			name = RotaIOSTests;
+			productName = RotaIOSTests;
+			productReference = BF44C88D263FF80200238035 /* RotaIOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BF44C897263FF80200238035 /* RotaIOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF44C8A7263FF80200238035 /* Build configuration list for PBXNativeTarget "RotaIOSUITests" */;
+			buildPhases = (
+				BF44C894263FF80200238035 /* Sources */,
+				BF44C895263FF80200238035 /* Frameworks */,
+				BF44C896263FF80200238035 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF44C89A263FF80200238035 /* PBXTargetDependency */,
+			);
+			name = RotaIOSUITests;
+			productName = RotaIOSUITests;
+			productReference = BF44C898263FF80200238035 /* RotaIOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF44C86F263FF80000238035 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					BF44C876263FF80000238035 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					BF44C88C263FF80200238035 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = BF44C876263FF80000238035;
+					};
+					BF44C897263FF80200238035 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = BF44C876263FF80000238035;
+					};
+				};
+			};
+			buildConfigurationList = BF44C872263FF80000238035 /* Build configuration list for PBXProject "RotaIOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF44C86E263FF80000238035;
+			productRefGroup = BF44C878263FF80000238035 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF44C876263FF80000238035 /* RotaIOS */,
+				BF44C88C263FF80200238035 /* RotaIOSTests */,
+				BF44C897263FF80200238035 /* RotaIOSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF44C875263FF80000238035 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF44C887263FF80100238035 /* LaunchScreen.storyboard in Resources */,
+				BF44C884263FF80100238035 /* Assets.xcassets in Resources */,
+				BF44C882263FF80000238035 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF44C88B263FF80200238035 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF44C896263FF80200238035 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF44C873263FF80000238035 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
+				BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */,
+				BF44C87D263FF80000238035 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF44C889263FF80200238035 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF44C892263FF80200238035 /* RotaIOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF44C894263FF80200238035 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF44C89D263FF80200238035 /* RotaIOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF44C88F263FF80200238035 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF44C876263FF80000238035 /* RotaIOS */;
+			targetProxy = BF44C88E263FF80200238035 /* PBXContainerItemProxy */;
+		};
+		BF44C89A263FF80200238035 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF44C876263FF80000238035 /* RotaIOS */;
+			targetProxy = BF44C899263FF80200238035 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BF44C880263FF80000238035 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF44C881263FF80000238035 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BF44C885263FF80100238035 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF44C886263FF80100238035 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BF44C89F263FF80200238035 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BF44C8A0263FF80200238035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF44C8A2263FF80200238035 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M7JA36V72Y;
+				INFOPLIST_FILE = RotaIOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oti.rotaIos.RotaIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF44C8A3263FF80200238035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M7JA36V72Y;
+				INFOPLIST_FILE = RotaIOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oti.rotaIos.RotaIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BF44C8A5263FF80200238035 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M7JA36V72Y;
+				INFOPLIST_FILE = RotaIOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oti.rotaIos.RotaIOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RotaIOS.app/RotaIOS";
+			};
+			name = Debug;
+		};
+		BF44C8A6263FF80200238035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M7JA36V72Y;
+				INFOPLIST_FILE = RotaIOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oti.rotaIos.RotaIOSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RotaIOS.app/RotaIOS";
+			};
+			name = Release;
+		};
+		BF44C8A8263FF80200238035 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M7JA36V72Y;
+				INFOPLIST_FILE = RotaIOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oti.rotaIos.RotaIOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RotaIOS;
+			};
+			name = Debug;
+		};
+		BF44C8A9263FF80200238035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = M7JA36V72Y;
+				INFOPLIST_FILE = RotaIOSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.oti.rotaIos.RotaIOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RotaIOS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF44C872263FF80000238035 /* Build configuration list for PBXProject "RotaIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF44C89F263FF80200238035 /* Debug */,
+				BF44C8A0263FF80200238035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF44C8A1263FF80200238035 /* Build configuration list for PBXNativeTarget "RotaIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF44C8A2263FF80200238035 /* Debug */,
+				BF44C8A3263FF80200238035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF44C8A4263FF80200238035 /* Build configuration list for PBXNativeTarget "RotaIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF44C8A5263FF80200238035 /* Debug */,
+				BF44C8A6263FF80200238035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF44C8A7263FF80200238035 /* Build configuration list for PBXNativeTarget "RotaIOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF44C8A8263FF80200238035 /* Debug */,
+				BF44C8A9263FF80200238035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF44C86F263FF80000238035 /* Project object */;
+}
