@@ -3,18 +3,99 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		128E9E1B2D339F9FC22925D9 /* Pods_RotaIOS_RotaIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3789029EF1E7A0F02957FE77 /* Pods_RotaIOS_RotaIOSUITests.framework */; };
 		BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C87A263FF80000238035 /* AppDelegate.swift */; };
-		BF44C87D263FF80000238035 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C87C263FF80000238035 /* SceneDelegate.swift */; };
 		BF44C87F263FF80000238035 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C87E263FF80000238035 /* ViewController.swift */; };
-		BF44C882263FF80000238035 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF44C880263FF80000238035 /* Main.storyboard */; };
 		BF44C884263FF80100238035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF44C883263FF80100238035 /* Assets.xcassets */; };
 		BF44C887263FF80100238035 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF44C885263FF80100238035 /* LaunchScreen.storyboard */; };
 		BF44C892263FF80200238035 /* RotaIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C891263FF80200238035 /* RotaIOSTests.swift */; };
 		BF44C89D263FF80200238035 /* RotaIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C89C263FF80200238035 /* RotaIOSUITests.swift */; };
+		BF44C8DB264000C700238035 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF44C8DA264000C700238035 /* Main.storyboard */; };
+		BF44C8E5264000E200238035 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8E0264000E100238035 /* ExtensionUIView.swift */; };
+		BF44C8E6264000E200238035 /* ExtensionUIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8E1264000E100238035 /* ExtensionUIApplication.swift */; };
+		BF44C8E7264000E200238035 /* ExtensionUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8E2264000E100238035 /* ExtensionUIColor.swift */; };
+		BF44C8E8264000E200238035 /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8E3264000E100238035 /* ExtensionUIViewController.swift */; };
+		BF44C8E9264000E200238035 /* ExtensionUIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8E4264000E200238035 /* ExtensionUIDevice.swift */; };
+		BF44C8F1264000E900238035 /* GetUserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8ED264000E900238035 /* GetUserResponseModel.swift */; };
+		BF44C8F2264000E900238035 /* GetTokenResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8EE264000E900238035 /* GetTokenResponseModel.swift */; };
+		BF44C8F3264000E900238035 /* GetMyInfoResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8EF264000E900238035 /* GetMyInfoResponseModel.swift */; };
+		BF44C8F4264000E900238035 /* GetHotelPageResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8F0264000E900238035 /* GetHotelPageResponseModel.swift */; };
+		BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8F8264000F000238035 /* GetUserRequestModel.swift */; };
+		BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8F9264000F000238035 /* CreateTokenRequestModel.swift */; };
+		BF44C905264000FA00238035 /* BaseApiRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8FF264000FA00238035 /* BaseApiRequestBody.swift */; };
+		BF44C906264000FA00238035 /* ServiceEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C900264000FA00238035 /* ServiceEndPoint.swift */; };
+		BF44C907264000FA00238035 /* BaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C901264000FA00238035 /* BaseData.swift */; };
+		BF44C908264000FA00238035 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C902264000FA00238035 /* BaseResponse.swift */; };
+		BF44C909264000FA00238035 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C903264000FA00238035 /* NetworkManager.swift */; };
+		BF44C90A264000FA00238035 /* BaseMessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C904264000FA00238035 /* BaseMessageItem.swift */; };
+		BF44C90F2640010200238035 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C90E2640010200238035 /* Defaults.swift */; };
+		BF44C9152640011800238035 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9142640011800238035 /* BaseTableViewCell.swift */; };
+		BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9192640013A00238035 /* LoginViewController.swift */; };
+		BF44C91C2640013B00238035 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C91A2640013B00238035 /* LoginView.swift */; };
+		BF44C9232640014800238035 /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9202640014800238035 /* MainPageView.swift */; };
+		BF44C9242640014800238035 /* MainPAgeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9212640014800238035 /* MainPAgeViewController.xib */; };
+		BF44C9252640014800238035 /* MainPAgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9222640014800238035 /* MainPAgeViewController.swift */; };
+		BF44C92B2640015400238035 /* MainPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9292640015400238035 /* MainPageCustomView.xib */; };
+		BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C92A2640015400238035 /* MainPageCustomView.swift */; };
+		BF44C9322640015A00238035 /* MainPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9302640015A00238035 /* MainPageTableViewCell.xib */; };
+		BF44C9332640015A00238035 /* MainPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9312640015A00238035 /* MainPageTableViewCell.swift */; };
+		BF44C93A2640016500238035 /* ShopAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9372640016400238035 /* ShopAppointmentViewController.swift */; };
+		BF44C93B2640016500238035 /* ShopAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9382640016400238035 /* ShopAppointmentView.swift */; };
+		BF44C93C2640016500238035 /* ShopAppointmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9392640016500238035 /* ShopAppointmentViewController.xib */; };
+		BF44C9422640017600238035 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9402640017600238035 /* TasksViewController.swift */; };
+		BF44C9432640017600238035 /* TasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9412640017600238035 /* TasksViewController.xib */; };
+		BF44C9492640017E00238035 /* ExcursionSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9472640017E00238035 /* ExcursionSaleViewController.swift */; };
+		BF44C94A2640017E00238035 /* ExcursionSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9482640017E00238035 /* ExcursionSaleViewController.xib */; };
+		BF44C9502640018400238035 /* VoucherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C94E2640018400238035 /* VoucherViewController.swift */; };
+		BF44C9512640018400238035 /* VoucherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C94F2640018400238035 /* VoucherViewController.xib */; };
+		BF44C9592640018B00238035 /* OfflineSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9552640018A00238035 /* OfflineSalesViewController.swift */; };
+		BF44C95A2640018B00238035 /* MyTourSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9562640018B00238035 /* MyTourSaleViewController.swift */; };
+		BF44C95B2640018B00238035 /* MyTourSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9572640018B00238035 /* MyTourSaleViewController.xib */; };
+		BF44C95C2640018B00238035 /* OfflineSalesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9582640018B00238035 /* OfflineSalesViewController.xib */; };
+		BF44C9622640019200238035 /* HeaderCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9602640019100238035 /* HeaderCustomView.xib */; };
+		BF44C9632640019200238035 /* HeaderCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9612640019200238035 /* HeaderCustomView.swift */; };
+		BF44C9692640019900238035 /* ApponintmentBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9672640019900238035 /* ApponintmentBarCollectionViewCell.xib */; };
+		BF44C96A2640019900238035 /* ApponintmentBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9682640019900238035 /* ApponintmentBarCollectionViewCell.swift */; };
+		BF44C9702640019F00238035 /* AppointmentBarCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C96E2640019F00238035 /* AppointmentBarCustomView.xib */; };
+		BF44C9712640019F00238035 /* AppointmentBarCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C96F2640019F00238035 /* AppointmentBarCustomView.swift */; };
+		BF44C976264001A400238035 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C975264001A300238035 /* BaseCollectionViewCell.swift */; };
+		BF44C97C264001AA00238035 /* FooterCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C97A264001AA00238035 /* FooterCustomView.xib */; };
+		BF44C97D264001AA00238035 /* FooterCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C97B264001AA00238035 /* FooterCustomView.swift */; };
+		BF44C983264001B000238035 /* MainTextCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C981264001B000238035 /* MainTextCustomView.swift */; };
+		BF44C984264001B000238035 /* MainTextCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C982264001B000238035 /* MainTextCustomView.xib */; };
+		BF44C98A264001B900238035 /* HotelPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C988264001B900238035 /* HotelPageCustomView.swift */; };
+		BF44C98B264001B900238035 /* HotelPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C989264001B900238035 /* HotelPageCustomView.xib */; };
+		BF44C991264001BF00238035 /* HotelListCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C98F264001BF00238035 /* HotelListCustomView.swift */; };
+		BF44C992264001BF00238035 /* HotelListCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C990264001BF00238035 /* HotelListCustomView.xib */; };
+		BF44C998264001C400238035 /* PaxPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C996264001C400238035 /* PaxPageCustomView.xib */; };
+		BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C997264001C400238035 /* PaxPageCustomView.swift */; };
+		BF44C99F264001C900238035 /* PaxPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C99D264001C900238035 /* PaxPageTableViewCell.xib */; };
+		BF44C9A0264001C900238035 /* PaxPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C99E264001C900238035 /* PaxPageTableViewCell.swift */; };
+		BF44C9A6264001CE00238035 /* CheckBoxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9A4264001CE00238035 /* CheckBoxView.xib */; };
+		BF44C9A7264001CE00238035 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9A5264001CE00238035 /* CheckBoxView.swift */; };
+		BF44C9AD264001D400238035 /* HeaderDetailCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9AB264001D400238035 /* HeaderDetailCustomView.xib */; };
+		BF44C9AE264001D400238035 /* HeaderDetailCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9AC264001D400238035 /* HeaderDetailCustomView.swift */; };
+		BF44C9B4264001D900238035 /* TouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9B2264001D900238035 /* TouristAddCustomView.swift */; };
+		BF44C9B5264001D900238035 /* TouristAddCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9B3264001D900238035 /* TouristAddCustomView.xib */; };
+		BF44C9BB264001DE00238035 /* TouristAddTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9B9264001DE00238035 /* TouristAddTableViewCell.swift */; };
+		BF44C9BC264001DE00238035 /* TouristAddTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9BA264001DE00238035 /* TouristAddTableViewCell.xib */; };
+		BF44C9C1264001F800238035 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9C0264001F800238035 /* PresentationController.swift */; };
+		BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9C52640022000238035 /* StepsPageCustomView.xib */; };
+		BF44C9C82640022000238035 /* StepsPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9C62640022000238035 /* StepsPageCustomView.swift */; };
+		BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9CC2640022600238035 /* StepsPageTableViewCell.swift */; };
+		BF44C9CF2640022600238035 /* StepsPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9CD2640022600238035 /* StepsPageTableViewCell.xib */; };
+		BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9D32640022F00238035 /* AddStepCustomView.swift */; };
+		BF44C9D62640022F00238035 /* AddStepCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9D42640022F00238035 /* AddStepCustomView.xib */; };
+		BF44C9DC2640023400238035 /* AddStepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9DA2640023400238035 /* AddStepTableViewCell.swift */; };
+		BF44C9DD2640023400238035 /* AddStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9DB2640023400238035 /* AddStepTableViewCell.xib */; };
+		BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9E12640023800238035 /* ProceedPageCustomView.swift */; };
+		BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9E22640023800238035 /* ProceedPageCustomView.xib */; };
+		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
+		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +116,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A7A383036B05487127CA936 /* Pods-RotaIOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOSTests.debug.xcconfig"; path = "Target Support Files/Pods-RotaIOSTests/Pods-RotaIOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D8B6C3CD5C7B1D7A0605A5F /* Pods-RotaIOS-RotaIOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS-RotaIOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-RotaIOS-RotaIOSUITests/Pods-RotaIOS-RotaIOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3789029EF1E7A0F02957FE77 /* Pods_RotaIOS_RotaIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RotaIOS_RotaIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43C18E4CD65C45303319D0CD /* Pods-RotaIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOSTests.release.xcconfig"; path = "Target Support Files/Pods-RotaIOSTests/Pods-RotaIOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RotaIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		802DB5F719C97EB160BF892F /* Pods-RotaIOS-RotaIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS-RotaIOSUITests.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS-RotaIOSUITests/Pods-RotaIOS-RotaIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RotaIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B181CA2CAC533C3A2B3D9858 /* Pods-RotaIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.debug.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BF44C877263FF80000238035 /* RotaIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotaIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF44C87A263FF80000238035 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BF44C87C263FF80000238035 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BF44C87E263FF80000238035 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BF44C881263FF80000238035 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF44C883263FF80100238035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF44C886263FF80100238035 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF44C888263FF80100238035 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +136,87 @@
 		BF44C898263FF80200238035 /* RotaIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RotaIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF44C89C263FF80200238035 /* RotaIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotaIOSUITests.swift; sourceTree = "<group>"; };
 		BF44C89E263FF80200238035 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF44C8DA264000C700238035 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		BF44C8E0264000E100238035 /* ExtensionUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
+		BF44C8E1264000E100238035 /* ExtensionUIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIApplication.swift; sourceTree = "<group>"; };
+		BF44C8E2264000E100238035 /* ExtensionUIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIColor.swift; sourceTree = "<group>"; };
+		BF44C8E3264000E100238035 /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
+		BF44C8E4264000E200238035 /* ExtensionUIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIDevice.swift; sourceTree = "<group>"; };
+		BF44C8ED264000E900238035 /* GetUserResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserResponseModel.swift; sourceTree = "<group>"; };
+		BF44C8EE264000E900238035 /* GetTokenResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTokenResponseModel.swift; sourceTree = "<group>"; };
+		BF44C8EF264000E900238035 /* GetMyInfoResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMyInfoResponseModel.swift; sourceTree = "<group>"; };
+		BF44C8F0264000E900238035 /* GetHotelPageResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetHotelPageResponseModel.swift; sourceTree = "<group>"; };
+		BF44C8F8264000F000238035 /* GetUserRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserRequestModel.swift; sourceTree = "<group>"; };
+		BF44C8F9264000F000238035 /* CreateTokenRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTokenRequestModel.swift; sourceTree = "<group>"; };
+		BF44C8FF264000FA00238035 /* BaseApiRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseApiRequestBody.swift; sourceTree = "<group>"; };
+		BF44C900264000FA00238035 /* ServiceEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceEndPoint.swift; sourceTree = "<group>"; };
+		BF44C901264000FA00238035 /* BaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseData.swift; sourceTree = "<group>"; };
+		BF44C902264000FA00238035 /* BaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		BF44C903264000FA00238035 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BF44C904264000FA00238035 /* BaseMessageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessageItem.swift; sourceTree = "<group>"; };
+		BF44C90E2640010200238035 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		BF44C9142640011800238035 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		BF44C9192640013A00238035 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BF44C91A2640013B00238035 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		BF44C9202640014800238035 /* MainPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
+		BF44C9212640014800238035 /* MainPAgeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPAgeViewController.xib; sourceTree = "<group>"; };
+		BF44C9222640014800238035 /* MainPAgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPAgeViewController.swift; sourceTree = "<group>"; };
+		BF44C9292640015400238035 /* MainPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageCustomView.xib; sourceTree = "<group>"; };
+		BF44C92A2640015400238035 /* MainPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageCustomView.swift; sourceTree = "<group>"; };
+		BF44C9302640015A00238035 /* MainPageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageTableViewCell.xib; sourceTree = "<group>"; };
+		BF44C9312640015A00238035 /* MainPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTableViewCell.swift; sourceTree = "<group>"; };
+		BF44C9372640016400238035 /* ShopAppointmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAppointmentViewController.swift; sourceTree = "<group>"; };
+		BF44C9382640016400238035 /* ShopAppointmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopAppointmentView.swift; sourceTree = "<group>"; };
+		BF44C9392640016500238035 /* ShopAppointmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopAppointmentViewController.xib; sourceTree = "<group>"; };
+		BF44C9402640017600238035 /* TasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
+		BF44C9412640017600238035 /* TasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TasksViewController.xib; sourceTree = "<group>"; };
+		BF44C9472640017E00238035 /* ExcursionSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExcursionSaleViewController.swift; sourceTree = "<group>"; };
+		BF44C9482640017E00238035 /* ExcursionSaleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExcursionSaleViewController.xib; sourceTree = "<group>"; };
+		BF44C94E2640018400238035 /* VoucherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherViewController.swift; sourceTree = "<group>"; };
+		BF44C94F2640018400238035 /* VoucherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherViewController.xib; sourceTree = "<group>"; };
+		BF44C9552640018A00238035 /* OfflineSalesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineSalesViewController.swift; sourceTree = "<group>"; };
+		BF44C9562640018B00238035 /* MyTourSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTourSaleViewController.swift; sourceTree = "<group>"; };
+		BF44C9572640018B00238035 /* MyTourSaleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTourSaleViewController.xib; sourceTree = "<group>"; };
+		BF44C9582640018B00238035 /* OfflineSalesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineSalesViewController.xib; sourceTree = "<group>"; };
+		BF44C9602640019100238035 /* HeaderCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderCustomView.xib; sourceTree = "<group>"; };
+		BF44C9612640019200238035 /* HeaderCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCustomView.swift; sourceTree = "<group>"; };
+		BF44C9672640019900238035 /* ApponintmentBarCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApponintmentBarCollectionViewCell.xib; sourceTree = "<group>"; };
+		BF44C9682640019900238035 /* ApponintmentBarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApponintmentBarCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF44C96E2640019F00238035 /* AppointmentBarCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentBarCustomView.xib; sourceTree = "<group>"; };
+		BF44C96F2640019F00238035 /* AppointmentBarCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentBarCustomView.swift; sourceTree = "<group>"; };
+		BF44C975264001A300238035 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF44C97A264001AA00238035 /* FooterCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterCustomView.xib; sourceTree = "<group>"; };
+		BF44C97B264001AA00238035 /* FooterCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCustomView.swift; sourceTree = "<group>"; };
+		BF44C981264001B000238035 /* MainTextCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTextCustomView.swift; sourceTree = "<group>"; };
+		BF44C982264001B000238035 /* MainTextCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTextCustomView.xib; sourceTree = "<group>"; };
+		BF44C988264001B900238035 /* HotelPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelPageCustomView.swift; sourceTree = "<group>"; };
+		BF44C989264001B900238035 /* HotelPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelPageCustomView.xib; sourceTree = "<group>"; };
+		BF44C98F264001BF00238035 /* HotelListCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelListCustomView.swift; sourceTree = "<group>"; };
+		BF44C990264001BF00238035 /* HotelListCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelListCustomView.xib; sourceTree = "<group>"; };
+		BF44C996264001C400238035 /* PaxPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaxPageCustomView.xib; sourceTree = "<group>"; };
+		BF44C997264001C400238035 /* PaxPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaxPageCustomView.swift; sourceTree = "<group>"; };
+		BF44C99D264001C900238035 /* PaxPageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaxPageTableViewCell.xib; sourceTree = "<group>"; };
+		BF44C99E264001C900238035 /* PaxPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaxPageTableViewCell.swift; sourceTree = "<group>"; };
+		BF44C9A4264001CE00238035 /* CheckBoxView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckBoxView.xib; sourceTree = "<group>"; };
+		BF44C9A5264001CE00238035 /* CheckBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
+		BF44C9AB264001D400238035 /* HeaderDetailCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderDetailCustomView.xib; sourceTree = "<group>"; };
+		BF44C9AC264001D400238035 /* HeaderDetailCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderDetailCustomView.swift; sourceTree = "<group>"; };
+		BF44C9B2264001D900238035 /* TouristAddCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristAddCustomView.swift; sourceTree = "<group>"; };
+		BF44C9B3264001D900238035 /* TouristAddCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouristAddCustomView.xib; sourceTree = "<group>"; };
+		BF44C9B9264001DE00238035 /* TouristAddTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristAddTableViewCell.swift; sourceTree = "<group>"; };
+		BF44C9BA264001DE00238035 /* TouristAddTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouristAddTableViewCell.xib; sourceTree = "<group>"; };
+		BF44C9C0264001F800238035 /* PresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		BF44C9C52640022000238035 /* StepsPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsPageCustomView.xib; sourceTree = "<group>"; };
+		BF44C9C62640022000238035 /* StepsPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsPageCustomView.swift; sourceTree = "<group>"; };
+		BF44C9CC2640022600238035 /* StepsPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsPageTableViewCell.swift; sourceTree = "<group>"; };
+		BF44C9CD2640022600238035 /* StepsPageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsPageTableViewCell.xib; sourceTree = "<group>"; };
+		BF44C9D32640022F00238035 /* AddStepCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepCustomView.swift; sourceTree = "<group>"; };
+		BF44C9D42640022F00238035 /* AddStepCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddStepCustomView.xib; sourceTree = "<group>"; };
+		BF44C9DA2640023400238035 /* AddStepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepTableViewCell.swift; sourceTree = "<group>"; };
+		BF44C9DB2640023400238035 /* AddStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddStepTableViewCell.xib; sourceTree = "<group>"; };
+		BF44C9E12640023800238035 /* ProceedPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProceedPageCustomView.swift; sourceTree = "<group>"; };
+		BF44C9E22640023800238035 /* ProceedPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProceedPageCustomView.xib; sourceTree = "<group>"; };
+		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +224,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +240,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				128E9E1B2D339F9FC22925D9 /* Pods_RotaIOS_RotaIOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		77AB53A08E23A5DC40C3C969 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */,
+				3789029EF1E7A0F02957FE77 /* Pods_RotaIOS_RotaIOSUITests.framework */,
+				594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BF44C86E263FF80000238035 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +264,8 @@
 				BF44C890263FF80200238035 /* RotaIOSTests */,
 				BF44C89B263FF80200238035 /* RotaIOSUITests */,
 				BF44C878263FF80000238035 /* Products */,
+				D0865CFF1BE0D1E5A877836C /* Pods */,
+				77AB53A08E23A5DC40C3C969 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,10 +282,17 @@
 		BF44C879263FF80000238035 /* RotaIOS */ = {
 			isa = PBXGroup;
 			children = (
+				BF44C9132640011100238035 /* Cell */,
+				BF44C8DF264000D900238035 /* View */,
+				BF44C8D62640009500238035 /* Networking */,
+				BF44C8D52640008700238035 /* Extension */,
+				BF44C8D42640008300238035 /* Util */,
+				BF44C8D32640007D00238035 /* ResponseModel */,
+				BF44C8D22640007500238035 /* RequestModel */,
+				BF44C8D12640006C00238035 /* Controller */,
 				BF44C87A263FF80000238035 /* AppDelegate.swift */,
-				BF44C87C263FF80000238035 /* SceneDelegate.swift */,
 				BF44C87E263FF80000238035 /* ViewController.swift */,
-				BF44C880263FF80000238035 /* Main.storyboard */,
+				BF44C8DA264000C700238035 /* Main.storyboard */,
 				BF44C883263FF80100238035 /* Assets.xcassets */,
 				BF44C885263FF80100238035 /* LaunchScreen.storyboard */,
 				BF44C888263FF80100238035 /* Info.plist */,
@@ -128,6 +318,154 @@
 			path = RotaIOSUITests;
 			sourceTree = "<group>";
 		};
+		BF44C8D12640006C00238035 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C9562640018B00238035 /* MyTourSaleViewController.swift */,
+				BF44C9572640018B00238035 /* MyTourSaleViewController.xib */,
+				BF44C9552640018A00238035 /* OfflineSalesViewController.swift */,
+				BF44C9582640018B00238035 /* OfflineSalesViewController.xib */,
+				BF44C94E2640018400238035 /* VoucherViewController.swift */,
+				BF44C94F2640018400238035 /* VoucherViewController.xib */,
+				BF44C9472640017E00238035 /* ExcursionSaleViewController.swift */,
+				BF44C9482640017E00238035 /* ExcursionSaleViewController.xib */,
+				BF44C9402640017600238035 /* TasksViewController.swift */,
+				BF44C9412640017600238035 /* TasksViewController.xib */,
+				BF44C9382640016400238035 /* ShopAppointmentView.swift */,
+				BF44C9372640016400238035 /* ShopAppointmentViewController.swift */,
+				BF44C9392640016500238035 /* ShopAppointmentViewController.xib */,
+				BF44C9202640014800238035 /* MainPageView.swift */,
+				BF44C9222640014800238035 /* MainPAgeViewController.swift */,
+				BF44C9212640014800238035 /* MainPAgeViewController.xib */,
+				BF44C91A2640013B00238035 /* LoginView.swift */,
+				BF44C9192640013A00238035 /* LoginViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BF44C8D22640007500238035 /* RequestModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C8F9264000F000238035 /* CreateTokenRequestModel.swift */,
+				BF44C8F8264000F000238035 /* GetUserRequestModel.swift */,
+			);
+			path = RequestModel;
+			sourceTree = "<group>";
+		};
+		BF44C8D32640007D00238035 /* ResponseModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C8F0264000E900238035 /* GetHotelPageResponseModel.swift */,
+				BF44C8EF264000E900238035 /* GetMyInfoResponseModel.swift */,
+				BF44C8EE264000E900238035 /* GetTokenResponseModel.swift */,
+				BF44C8ED264000E900238035 /* GetUserResponseModel.swift */,
+			);
+			path = ResponseModel;
+			sourceTree = "<group>";
+		};
+		BF44C8D42640008300238035 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C9C0264001F800238035 /* PresentationController.swift */,
+				BF44C90E2640010200238035 /* Defaults.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		BF44C8D52640008700238035 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C8E1264000E100238035 /* ExtensionUIApplication.swift */,
+				BF44C8E2264000E100238035 /* ExtensionUIColor.swift */,
+				BF44C8E4264000E200238035 /* ExtensionUIDevice.swift */,
+				BF44C8E0264000E100238035 /* ExtensionUIView.swift */,
+				BF44C8E3264000E100238035 /* ExtensionUIViewController.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BF44C8D62640009500238035 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C8FF264000FA00238035 /* BaseApiRequestBody.swift */,
+				BF44C901264000FA00238035 /* BaseData.swift */,
+				BF44C904264000FA00238035 /* BaseMessageItem.swift */,
+				BF44C902264000FA00238035 /* BaseResponse.swift */,
+				BF44C903264000FA00238035 /* NetworkManager.swift */,
+				BF44C900264000FA00238035 /* ServiceEndPoint.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BF44C8DF264000D900238035 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C9E12640023800238035 /* ProceedPageCustomView.swift */,
+				BF44C9E22640023800238035 /* ProceedPageCustomView.xib */,
+				BF44C9D32640022F00238035 /* AddStepCustomView.swift */,
+				BF44C9D42640022F00238035 /* AddStepCustomView.xib */,
+				BF44C9C62640022000238035 /* StepsPageCustomView.swift */,
+				BF44C9C52640022000238035 /* StepsPageCustomView.xib */,
+				BF44C9B2264001D900238035 /* TouristAddCustomView.swift */,
+				BF44C9B3264001D900238035 /* TouristAddCustomView.xib */,
+				BF44C9AC264001D400238035 /* HeaderDetailCustomView.swift */,
+				BF44C9AB264001D400238035 /* HeaderDetailCustomView.xib */,
+				BF44C9A5264001CE00238035 /* CheckBoxView.swift */,
+				BF44C9A4264001CE00238035 /* CheckBoxView.xib */,
+				BF44C997264001C400238035 /* PaxPageCustomView.swift */,
+				BF44C996264001C400238035 /* PaxPageCustomView.xib */,
+				BF44C98F264001BF00238035 /* HotelListCustomView.swift */,
+				BF44C990264001BF00238035 /* HotelListCustomView.xib */,
+				BF44C988264001B900238035 /* HotelPageCustomView.swift */,
+				BF44C989264001B900238035 /* HotelPageCustomView.xib */,
+				BF44C981264001B000238035 /* MainTextCustomView.swift */,
+				BF44C982264001B000238035 /* MainTextCustomView.xib */,
+				BF44C97B264001AA00238035 /* FooterCustomView.swift */,
+				BF44C97A264001AA00238035 /* FooterCustomView.xib */,
+				BF44C96F2640019F00238035 /* AppointmentBarCustomView.swift */,
+				BF44C96E2640019F00238035 /* AppointmentBarCustomView.xib */,
+				BF44C9612640019200238035 /* HeaderCustomView.swift */,
+				BF44C9602640019100238035 /* HeaderCustomView.xib */,
+				BF44C92A2640015400238035 /* MainPageCustomView.swift */,
+				BF44C9292640015400238035 /* MainPageCustomView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BF44C9132640011100238035 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BF44C9DA2640023400238035 /* AddStepTableViewCell.swift */,
+				BF44C9DB2640023400238035 /* AddStepTableViewCell.xib */,
+				BF44C9CC2640022600238035 /* StepsPageTableViewCell.swift */,
+				BF44C9CD2640022600238035 /* StepsPageTableViewCell.xib */,
+				BF44C9B9264001DE00238035 /* TouristAddTableViewCell.swift */,
+				BF44C9BA264001DE00238035 /* TouristAddTableViewCell.xib */,
+				BF44C99E264001C900238035 /* PaxPageTableViewCell.swift */,
+				BF44C99D264001C900238035 /* PaxPageTableViewCell.xib */,
+				BF44C975264001A300238035 /* BaseCollectionViewCell.swift */,
+				BF44C9682640019900238035 /* ApponintmentBarCollectionViewCell.swift */,
+				BF44C9672640019900238035 /* ApponintmentBarCollectionViewCell.xib */,
+				BF44C9142640011800238035 /* BaseTableViewCell.swift */,
+				BF44C9312640015A00238035 /* MainPageTableViewCell.swift */,
+				BF44C9302640015A00238035 /* MainPageTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		D0865CFF1BE0D1E5A877836C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B181CA2CAC533C3A2B3D9858 /* Pods-RotaIOS.debug.xcconfig */,
+				CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */,
+				2D8B6C3CD5C7B1D7A0605A5F /* Pods-RotaIOS-RotaIOSUITests.debug.xcconfig */,
+				802DB5F719C97EB160BF892F /* Pods-RotaIOS-RotaIOSUITests.release.xcconfig */,
+				2A7A383036B05487127CA936 /* Pods-RotaIOSTests.debug.xcconfig */,
+				43C18E4CD65C45303319D0CD /* Pods-RotaIOSTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +473,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF44C8A1263FF80200238035 /* Build configuration list for PBXNativeTarget "RotaIOS" */;
 			buildPhases = (
+				053DB7C12AFCBA761F58231B /* [CP] Check Pods Manifest.lock */,
 				BF44C873263FF80000238035 /* Sources */,
 				BF44C874263FF80000238035 /* Frameworks */,
 				BF44C875263FF80000238035 /* Resources */,
+				7DA98474BB28F804440F6199 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +492,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF44C8A4263FF80200238035 /* Build configuration list for PBXNativeTarget "RotaIOSTests" */;
 			buildPhases = (
+				BEF99051E8178623E8D3730E /* [CP] Check Pods Manifest.lock */,
 				BF44C889263FF80200238035 /* Sources */,
 				BF44C88A263FF80200238035 /* Frameworks */,
 				BF44C88B263FF80200238035 /* Resources */,
@@ -170,9 +511,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF44C8A7263FF80200238035 /* Build configuration list for PBXNativeTarget "RotaIOSUITests" */;
 			buildPhases = (
+				277FED68575C39C9B727F46B /* [CP] Check Pods Manifest.lock */,
 				BF44C894263FF80200238035 /* Sources */,
 				BF44C895263FF80200238035 /* Frameworks */,
 				BF44C896263FF80200238035 /* Resources */,
+				6E9E2B0C010E7FB86D772F36 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -231,9 +574,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF44C9242640014800238035 /* MainPAgeViewController.xib in Resources */,
+				BF44C992264001BF00238035 /* HotelListCustomView.xib in Resources */,
+				BF44C9DD2640023400238035 /* AddStepTableViewCell.xib in Resources */,
+				BF44C9692640019900238035 /* ApponintmentBarCollectionViewCell.xib in Resources */,
+				BF44C99F264001C900238035 /* PaxPageTableViewCell.xib in Resources */,
+				BF44C8DB264000C700238035 /* Main.storyboard in Resources */,
+				BF44C9D62640022F00238035 /* AddStepCustomView.xib in Resources */,
+				BF44C93C2640016500238035 /* ShopAppointmentViewController.xib in Resources */,
 				BF44C887263FF80100238035 /* LaunchScreen.storyboard in Resources */,
+				BF44C95B2640018B00238035 /* MyTourSaleViewController.xib in Resources */,
+				BF44C95C2640018B00238035 /* OfflineSalesViewController.xib in Resources */,
 				BF44C884263FF80100238035 /* Assets.xcassets in Resources */,
-				BF44C882263FF80000238035 /* Main.storyboard in Resources */,
+				BF44C984264001B000238035 /* MainTextCustomView.xib in Resources */,
+				BF44C9A6264001CE00238035 /* CheckBoxView.xib in Resources */,
+				BF44C9BC264001DE00238035 /* TouristAddTableViewCell.xib in Resources */,
+				BF44C9512640018400238035 /* VoucherViewController.xib in Resources */,
+				BF44C9432640017600238035 /* TasksViewController.xib in Resources */,
+				BF44C97C264001AA00238035 /* FooterCustomView.xib in Resources */,
+				BF44C92B2640015400238035 /* MainPageCustomView.xib in Resources */,
+				BF44C998264001C400238035 /* PaxPageCustomView.xib in Resources */,
+				BF44C9702640019F00238035 /* AppointmentBarCustomView.xib in Resources */,
+				BF44C9B5264001D900238035 /* TouristAddCustomView.xib in Resources */,
+				BF44C9AD264001D400238035 /* HeaderDetailCustomView.xib in Resources */,
+				BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */,
+				BF44C9CF2640022600238035 /* StepsPageTableViewCell.xib in Resources */,
+				BF44C94A2640017E00238035 /* ExcursionSaleViewController.xib in Resources */,
+				BF44C98B264001B900238035 /* HotelPageCustomView.xib in Resources */,
+				BF44C9322640015A00238035 /* MainPageTableViewCell.xib in Resources */,
+				BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */,
+				BF44C9622640019200238035 /* HeaderCustomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,14 +623,168 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		053DB7C12AFCBA761F58231B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RotaIOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		277FED68575C39C9B727F46B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RotaIOS-RotaIOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E9E2B0C010E7FB86D772F36 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RotaIOS-RotaIOSUITests/Pods-RotaIOS-RotaIOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RotaIOS-RotaIOSUITests/Pods-RotaIOS-RotaIOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RotaIOS-RotaIOSUITests/Pods-RotaIOS-RotaIOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DA98474BB28F804440F6199 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RotaIOS/Pods-RotaIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RotaIOS/Pods-RotaIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RotaIOS/Pods-RotaIOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEF99051E8178623E8D3730E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RotaIOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BF44C873263FF80000238035 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF44C909264000FA00238035 /* NetworkManager.swift in Sources */,
+				BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */,
+				BF44C8F4264000E900238035 /* GetHotelPageResponseModel.swift in Sources */,
+				BF44C9332640015A00238035 /* MainPageTableViewCell.swift in Sources */,
+				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
+				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
+				BF44C97D264001AA00238035 /* FooterCustomView.swift in Sources */,
+				BF44C906264000FA00238035 /* ServiceEndPoint.swift in Sources */,
+				BF44C9A0264001C900238035 /* PaxPageTableViewCell.swift in Sources */,
+				BF44C991264001BF00238035 /* HotelListCustomView.swift in Sources */,
+				BF44C8E8264000E200238035 /* ExtensionUIViewController.swift in Sources */,
+				BF44C9C1264001F800238035 /* PresentationController.swift in Sources */,
+				BF44C9712640019F00238035 /* AppointmentBarCustomView.swift in Sources */,
+				BF44C91C2640013B00238035 /* LoginView.swift in Sources */,
+				BF44C9152640011800238035 /* BaseTableViewCell.swift in Sources */,
+				BF44C90A264000FA00238035 /* BaseMessageItem.swift in Sources */,
+				BF44C9252640014800238035 /* MainPAgeViewController.swift in Sources */,
+				BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */,
+				BF44C8E5264000E200238035 /* ExtensionUIView.swift in Sources */,
+				BF44C9B4264001D900238035 /* TouristAddCustomView.swift in Sources */,
+				BF44C8F2264000E900238035 /* GetTokenResponseModel.swift in Sources */,
+				BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */,
+				BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */,
+				BF44C9492640017E00238035 /* ExcursionSaleViewController.swift in Sources */,
 				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
+				BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */,
+				BF44C9DC2640023400238035 /* AddStepTableViewCell.swift in Sources */,
+				BF44C98A264001B900238035 /* HotelPageCustomView.swift in Sources */,
+				BF44C9592640018B00238035 /* OfflineSalesViewController.swift in Sources */,
+				BF44C9AE264001D400238035 /* HeaderDetailCustomView.swift in Sources */,
+				BF44C9502640018400238035 /* VoucherViewController.swift in Sources */,
+				BF44C9632640019200238035 /* HeaderCustomView.swift in Sources */,
+				BF44C9C82640022000238035 /* StepsPageCustomView.swift in Sources */,
+				BF44C8E9264000E200238035 /* ExtensionUIDevice.swift in Sources */,
+				BF44C9422640017600238035 /* TasksViewController.swift in Sources */,
+				BF44C908264000FA00238035 /* BaseResponse.swift in Sources */,
+				BF44C9BB264001DE00238035 /* TouristAddTableViewCell.swift in Sources */,
+				BF44C96A2640019900238035 /* ApponintmentBarCollectionViewCell.swift in Sources */,
+				BF44C93A2640016500238035 /* ShopAppointmentViewController.swift in Sources */,
+				BF44C8F1264000E900238035 /* GetUserResponseModel.swift in Sources */,
+				BF44C9A7264001CE00238035 /* CheckBoxView.swift in Sources */,
+				BF44C93B2640016500238035 /* ShopAppointmentView.swift in Sources */,
+				BF44C8E6264000E200238035 /* ExtensionUIApplication.swift in Sources */,
+				BF44C976264001A400238035 /* BaseCollectionViewCell.swift in Sources */,
+				BF44C905264000FA00238035 /* BaseApiRequestBody.swift in Sources */,
+				BF44C8F3264000E900238035 /* GetMyInfoResponseModel.swift in Sources */,
+				BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */,
+				BF44C8E7264000E200238035 /* ExtensionUIColor.swift in Sources */,
+				BF44C983264001B000238035 /* MainTextCustomView.swift in Sources */,
+				BF44C90F2640010200238035 /* Defaults.swift in Sources */,
+				BF44C95A2640018B00238035 /* MyTourSaleViewController.swift in Sources */,
+				BF44C907264000FA00238035 /* BaseData.swift in Sources */,
+				BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */,
 				BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */,
-				BF44C87D263FF80000238035 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +820,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BF44C880263FF80000238035 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BF44C881263FF80000238035 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BF44C885263FF80100238035 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -433,12 +949,14 @@
 		};
 		BF44C8A2263FF80200238035 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B181CA2CAC533C3A2B3D9858 /* Pods-RotaIOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M7JA36V72Y;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,12 +970,14 @@
 		};
 		BF44C8A3263FF80200238035 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M7JA36V72Y;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,6 +991,7 @@
 		};
 		BF44C8A5263FF80200238035 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A7A383036B05487127CA936 /* Pods-RotaIOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -493,6 +1014,7 @@
 		};
 		BF44C8A6263FF80200238035 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43C18E4CD65C45303319D0CD /* Pods-RotaIOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +1037,7 @@
 		};
 		BF44C8A8263FF80200238035 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D8B6C3CD5C7B1D7A0605A5F /* Pods-RotaIOS-RotaIOSUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -535,6 +1058,7 @@
 		};
 		BF44C8A9263FF80200238035 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 802DB5F719C97EB160BF892F /* Pods-RotaIOS-RotaIOSUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

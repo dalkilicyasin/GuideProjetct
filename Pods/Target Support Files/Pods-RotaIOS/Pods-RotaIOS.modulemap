@@ -1,0 +1,6 @@
+framework module Pods_RotaIOS {
+  umbrella header "Pods-RotaIOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_RotaIOSTests {
+  umbrella header "Pods-RotaIOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

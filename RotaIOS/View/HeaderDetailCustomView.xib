@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderDetailCustomView" customModule="Rota" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="hxL-d7-ZkI" id="EIX-y0-KVp"/>
+                <outlet property="headerView" destination="iN0-l3-epB" id="oxg-wo-0QA"/>
+                <outlet property="labelHeader" destination="zPR-oK-lMf" id="kMd-kq-Alm"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="465" height="118"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxL-d7-ZkI">
+                    <rect key="frame" x="0.0" y="0.0" width="465" height="118"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PqR-Eb-TXq">
+                            <rect key="frame" x="30" y="50" width="30" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="8jc-2r-V2i"/>
+                                <constraint firstAttribute="width" constant="30" id="p1q-Zf-2HH"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="chevron.left" catalog="system"/>
+                            <connections>
+                                <action selector="buttonClicked:" destination="-1" eventType="touchUpInside" id="cFU-BL-r7N"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPR-oK-lMf">
+                            <rect key="frame" x="76" y="30" width="339" height="58"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="zPR-oK-lMf" secondAttribute="trailing" priority="252" constant="50" id="8Nh-Es-cBn"/>
+                        <constraint firstItem="PqR-Eb-TXq" firstAttribute="leading" secondItem="hxL-d7-ZkI" secondAttribute="leading" constant="30" id="PIP-Fm-EWm"/>
+                        <constraint firstAttribute="bottom" secondItem="zPR-oK-lMf" secondAttribute="bottom" priority="252" constant="30" id="dt4-Pa-dVN"/>
+                        <constraint firstItem="zPR-oK-lMf" firstAttribute="leading" secondItem="PqR-Eb-TXq" secondAttribute="trailing" constant="16" id="q48-L1-E9h"/>
+                        <constraint firstItem="zPR-oK-lMf" firstAttribute="top" secondItem="hxL-d7-ZkI" secondAttribute="top" constant="30" id="sFa-d5-HSq"/>
+                        <constraint firstItem="PqR-Eb-TXq" firstAttribute="top" secondItem="hxL-d7-ZkI" secondAttribute="top" constant="50" id="wNU-Pr-7Hn"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="hxL-d7-ZkI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Yoh-CF-7q1"/>
+                <constraint firstAttribute="bottom" secondItem="hxL-d7-ZkI" secondAttribute="bottom" id="lEE-o3-7vy"/>
+                <constraint firstAttribute="trailing" secondItem="hxL-d7-ZkI" secondAttribute="trailing" id="rcv-Tt-p1v"/>
+                <constraint firstItem="hxL-d7-ZkI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yIp-q2-mDn"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-160.1449275362319" y="-160.71428571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+    </resources>
+</document>
