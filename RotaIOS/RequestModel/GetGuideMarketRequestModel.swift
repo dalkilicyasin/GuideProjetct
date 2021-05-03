@@ -24,6 +24,7 @@ public class  GetGuideMarketRequestModel : Mappable{
     }
     
     public func requestPathString()->String{
+        // 2. parametre eklemek için & işareti koy
         return "?guideId=\(self.guideId ?? 0)"
     }
     

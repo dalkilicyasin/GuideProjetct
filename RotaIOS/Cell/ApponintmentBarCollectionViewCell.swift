@@ -20,8 +20,8 @@ class ApponintmentBarCollectionViewCell : BaseCollectionViewCell{
         // Initialization code
         self.topView.layer.cornerRadius = 10
 
-       self.barBackgrounView.backgroundColor = UIColor.greenColor
-        selectedBackgroundView = barBackgrounView
+      /* self.barBackgrounView.backgroundColor = UIColor.greenColor
+        selectedBackgroundView = barBackgrounView */
     }
 
 }

@@ -41,7 +41,7 @@ class HotelPageCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         self.headerView.backgroundColor = UIColor.mainViewColor
         
-        let getMarketRequestModel = GetGuideMarketRequestModel.init(userId: 228)
+        let getMarketRequestModel = GetGuideMarketRequestModel.init(userId: userDefaultsData.getGuideId())
         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .HotelPage, method: .get, parameters: getMarketRequestModel.requestPathString()) { (response : [GetGuideMarketResponseModel] ) in
             
             if response.count > 0 {
@@ -55,6 +55,7 @@ class HotelPageCustomView : UIView {
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.white
+        self.searchBar.delegate = self
         
         //searchBar.searchBarStyle = .minimal
 
@@ -119,6 +120,8 @@ extension HotelPageCustomView : UISearchBarDelegate {
             for data in hotelList{
                 if data.description.lowercased().contains(searchText.lowercased()){
                     self.filteredData.append(data)
+                    self.secondMenu.dataSource = filteredData
+                    
                 }
             }
         }

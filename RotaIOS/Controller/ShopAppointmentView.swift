@@ -62,6 +62,9 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
     
     func continueButtonTappedDelegate(tapped: Int) {
         
+        self.appointmentBarCustomView.collectionView(appointmentBarCustomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
+        
+        
         self.footerView.counter = tapped
         if tapped == 0 {
             self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
@@ -94,7 +97,11 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
     
     func homePageTapped(ischosen: Int) {
         
+        if self.footerView.counter == ischosen {
+            return
+        }
         self.footerView.counter = ischosen
+        
         if ischosen == 0 {
             
             self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)

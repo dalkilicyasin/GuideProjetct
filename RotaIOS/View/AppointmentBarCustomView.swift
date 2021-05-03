@@ -15,7 +15,7 @@ protocol HomePageTappedDelegate {
 class  AppointmentBarCustomView : UIView {
   
     var homePageTappedDelegate : HomePageTappedDelegate?
-    var selectedIndex = IndexPath(row: -1, section: 0)
+    var selectedIndex = IndexPath(row: 0, section: 0)
     
     @IBOutlet var viewHeader: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -44,7 +44,7 @@ class  AppointmentBarCustomView : UIView {
        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionInset = UIEdgeInsets(top: 0, left:0 , bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
-        layout.itemSize = CGSize(width: 105, height: 130)
+        layout.itemSize = CGSize(width: UIScreen.main.bounds.size.width/4, height: 130)
         layout.minimumLineSpacing = 1
         
         self.collectionView.delegate = self
@@ -62,32 +62,32 @@ extension AppointmentBarCustomView : UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ApponintmentBarCollectionViewCell.identifier, for: indexPath) as! ApponintmentBarCollectionViewCell
         cell.labelText.text = collectionList[indexPath.row]
         
-        if selectedIndex == indexPath { cell.backgroundColor = UIColor.green}
+        if selectedIndex == indexPath {
+            cell.backgroundColor = UIColor.green
+            
+        }else{
+            cell.backgroundColor = UIColor.mainTextColor
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected")
-     
+        self.selectedIndex = indexPath
         switch(indexPath.row) {
         case 0 :
             self.homePageTappedDelegate?.homePageTapped(ischosen: 0)
-         
         case 1 :
-         
             self.homePageTappedDelegate?.homePageTapped(ischosen: 1)
         case 2 :
-         
             self.homePageTappedDelegate?.homePageTapped(ischosen: 2)
-            
         case 3 :
-         
             self.homePageTappedDelegate?.homePageTapped(ischosen: 3)
         
         default :
             print("selected")
             
         }
-        
+        self.collectionView.reloadData()
     }
     
 }
