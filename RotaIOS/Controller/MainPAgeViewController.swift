@@ -17,7 +17,7 @@ class MainPAgeViewController: ViewController {
        
         
        // mainPageView.backgroundColor = UIColor.mainColor
-        NetworkManager.sendGetRequest(url:NetworkManager.BASEURL, endPoint: .GetUser, method: .get, parameters: ["":""]) { (response : GetMyInfoResponseModel) in
+        NetworkManager.sendGetRequest(url:NetworkManager.BASEURL, endPoint: .GetUser, method: .get, parameters: "") { (response : GetMyInfoResponseModel) in
             
             if response.id != nil {
                 print("info recived - \(response.id ?? "")")

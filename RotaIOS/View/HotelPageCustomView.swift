@@ -41,13 +41,11 @@ class HotelPageCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         self.headerView.backgroundColor = UIColor.mainViewColor
         
-        
-        NetworkManager.sendGetRequest(url:NetworkManager.BASEURL, endPoint: .HotelPage, method: .get, parameters: ["guideId" : 228]) { (response : GetGuideMarketResponseModel ) in
+        let getMarketRequestModel = GetGuideMarketRequestModel.init(userId: 228)
+        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .HotelPage, method: .get, parameters: getMarketRequestModel.requestPathString()) { (response : [GetGuideMarketResponseModel] ) in
             
-            if response.id != nil {
-                print("info recived - \(response.id ?? "")")
-                
-                print(response.value)
+            if response.count > 0 {
+                print(response)
             
             }else{
                 print("data has not recived")

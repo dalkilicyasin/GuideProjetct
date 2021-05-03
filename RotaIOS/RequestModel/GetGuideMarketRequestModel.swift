@@ -21,7 +21,10 @@ public class  GetGuideMarketRequestModel : Mappable{
     }
     
     public func mapping(map: Map) {
-        guideId <- map["GuideId"]
+    }
+    
+    public func requestPathString()->String{
+        return "?guideId=\(self.guideId ?? 0)"
     }
     
 }
