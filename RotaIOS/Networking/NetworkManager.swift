@@ -106,50 +106,49 @@ public class NetworkManager {
         return request
     }
     
-    public static func sendGetRequest<T: Mappable>(url:String,endPoint: ServiceEndPoint, method: HTTPMethod, parameters: [String], indicatorEnabled: Bool = true,
-                                            completion: @escaping(T) -> ()) {
-        
-        if !networkConnectionEnabled {
-            return
-        }
-        
-        var urlPath = url + endPoint.rawValue
-        
-        for i in 0...parameters.count - 1 {
-            urlPath = urlPath.replacingOccurrences(of: "%\(i)", with: parameters[i])
-        }
-        
-        urlPath = urlPath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        
-        var requestModel = URLRequest(url: URL(string: urlPath)!)
-        requestModel.timeoutInterval = TIMEOUT_INTERVAL
-        requestModel.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        requestModel.setValue("bearer \(baseData.getTokenResponse?.access_token ?? "")", forHTTPHeaderField: "Authorization")
-        requestModel.setValue("\(userDefaultsData.getGuideId())", forHTTPHeaderField: "guideId")
-        requestModel.httpMethod = method.rawValue
-        
-        let request = requestModel
-        let viewController = UIApplication.getTopViewController()
-        
-        
-        if indicatorEnabled {
-            viewController!.showIndicator(tag: String(describing: request.self))
-        }
-        
-        Alamofire.request(request).responseObject { (response: DataResponse<T>) in
-            if indicatorEnabled {
-                viewController!.hideIndicator(tag: String(describing: request.self))
+    public static func sendGetRequest<T: Mappable>(url:String,endPoint: ServiceEndPoint, method: HTTPMethod, parameters: [String : Any], indicatorEnabled: Bool = true,
+                                                completion: @escaping(T) -> ()) {
+            
+            if !networkConnectionEnabled {
+                return
             }
             
-            switch response.result {
-            case .success(let responseModel):
-                completion(responseModel)
+            var urlPath = url + endPoint.rawValue
+            
+            urlPath = urlPath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            
+            var requestModel = URLRequest(url: URL(string: urlPath)!)
+            requestModel.timeoutInterval = TIMEOUT_INTERVAL
+            requestModel.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            requestModel.setValue("bearer \(baseData.getTokenResponse?.access_token ?? "")", forHTTPHeaderField: "Authorization")
+            requestModel.httpMethod = method.rawValue
+            
+            for i in 0...parameters.count - 1 {
+                requestModel.setValue("\(Array(parameters)[i].value)", forHTTPHeaderField: "\(Array(parameters)[i].key)")
+            }
+            
+            let request = requestModel
+            let viewController = UIApplication.getTopViewController()
+            
+            
+            if indicatorEnabled {
+                viewController!.showIndicator(tag: String(describing: request.self))
+            }
+            
+            Alamofire.request(request).responseObject { (response: DataResponse<T>) in
+                if indicatorEnabled {
+                    viewController!.hideIndicator(tag: String(describing: request.self))
+                }
                 
-            case .failure(let error as NSError):
-                viewController!.errorPopup(title: "Warning", message: "An error occurred when requesting", cancelButtonTitle: "OK")
-                debugPrint(error.description)
+                switch response.result {
+                case .success(let responseModel):
+                    completion(responseModel)
+                    
+                case .failure(let error as NSError):
+                    viewController!.errorPopup(title: "Warning", message: "An error occurred when requesting", cancelButtonTitle: "OK")
+                    debugPrint(error.description)
+                }
             }
         }
-    }
     
 }

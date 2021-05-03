@@ -42,14 +42,13 @@ class HotelPageCustomView : UIView {
         self.headerView.backgroundColor = UIColor.mainViewColor
         
         
-        NetworkManager.sendGetRequest(url:NetworkManager.BASEURL, endPoint: .HotelPage, method: .get, parameters: [""]) { (response : GetHotelPageResponseModel) in
+        NetworkManager.sendGetRequest(url:NetworkManager.BASEURL, endPoint: .HotelPage, method: .get, parameters: ["guideId" : 228]) { (response : GetGuideMarketResponseModel ) in
             
             if response.id != nil {
                 print("info recived - \(response.id ?? "")")
                 
                 print(response.value)
-                userDefaultsData.saveUserId(languageId: response.id ?? "default")
-                //userDefaultsData.saveGuideId(languageId: response.guideId!)
+            
             }else{
                 print("data has not recived")
             }

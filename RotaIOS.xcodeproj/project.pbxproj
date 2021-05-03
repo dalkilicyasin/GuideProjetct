@@ -23,7 +23,7 @@
 		BF44C8F1264000E900238035 /* GetUserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8ED264000E900238035 /* GetUserResponseModel.swift */; };
 		BF44C8F2264000E900238035 /* GetTokenResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8EE264000E900238035 /* GetTokenResponseModel.swift */; };
 		BF44C8F3264000E900238035 /* GetMyInfoResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8EF264000E900238035 /* GetMyInfoResponseModel.swift */; };
-		BF44C8F4264000E900238035 /* GetHotelPageResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8F0264000E900238035 /* GetHotelPageResponseModel.swift */; };
+		BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8F0264000E900238035 /* GetGuideMarketResponseModel.swift */; };
 		BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8F8264000F000238035 /* GetUserRequestModel.swift */; };
 		BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8F9264000F000238035 /* CreateTokenRequestModel.swift */; };
 		BF44C905264000FA00238035 /* BaseApiRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C8FF264000FA00238035 /* BaseApiRequestBody.swift */; };
@@ -95,6 +95,7 @@
 		BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9E12640023800238035 /* ProceedPageCustomView.swift */; };
 		BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9E22640023800238035 /* ProceedPageCustomView.xib */; };
 		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
+		D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -145,7 +146,7 @@
 		BF44C8ED264000E900238035 /* GetUserResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserResponseModel.swift; sourceTree = "<group>"; };
 		BF44C8EE264000E900238035 /* GetTokenResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTokenResponseModel.swift; sourceTree = "<group>"; };
 		BF44C8EF264000E900238035 /* GetMyInfoResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMyInfoResponseModel.swift; sourceTree = "<group>"; };
-		BF44C8F0264000E900238035 /* GetHotelPageResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetHotelPageResponseModel.swift; sourceTree = "<group>"; };
+		BF44C8F0264000E900238035 /* GetGuideMarketResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGuideMarketResponseModel.swift; sourceTree = "<group>"; };
 		BF44C8F8264000F000238035 /* GetUserRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserRequestModel.swift; sourceTree = "<group>"; };
 		BF44C8F9264000F000238035 /* CreateTokenRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTokenRequestModel.swift; sourceTree = "<group>"; };
 		BF44C8FF264000FA00238035 /* BaseApiRequestBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseApiRequestBody.swift; sourceTree = "<group>"; };
@@ -217,6 +218,7 @@
 		BF44C9E12640023800238035 /* ProceedPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProceedPageCustomView.swift; sourceTree = "<group>"; };
 		BF44C9E22640023800238035 /* ProceedPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProceedPageCustomView.xib; sourceTree = "<group>"; };
 		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
+		D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideMarketRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +348,7 @@
 		BF44C8D22640007500238035 /* RequestModel */ = {
 			isa = PBXGroup;
 			children = (
+				D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */,
 				BF44C8F9264000F000238035 /* CreateTokenRequestModel.swift */,
 				BF44C8F8264000F000238035 /* GetUserRequestModel.swift */,
 			);
@@ -355,7 +358,7 @@
 		BF44C8D32640007D00238035 /* ResponseModel */ = {
 			isa = PBXGroup;
 			children = (
-				BF44C8F0264000E900238035 /* GetHotelPageResponseModel.swift */,
+				BF44C8F0264000E900238035 /* GetGuideMarketResponseModel.swift */,
 				BF44C8EF264000E900238035 /* GetMyInfoResponseModel.swift */,
 				BF44C8EE264000E900238035 /* GetTokenResponseModel.swift */,
 				BF44C8ED264000E900238035 /* GetUserResponseModel.swift */,
@@ -733,7 +736,7 @@
 			files = (
 				BF44C909264000FA00238035 /* NetworkManager.swift in Sources */,
 				BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */,
-				BF44C8F4264000E900238035 /* GetHotelPageResponseModel.swift in Sources */,
+				BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */,
 				BF44C9332640015A00238035 /* MainPageTableViewCell.swift in Sources */,
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
 				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
@@ -758,6 +761,7 @@
 				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
 				BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */,
 				BF44C9DC2640023400238035 /* AddStepTableViewCell.swift in Sources */,
+				D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */,
 				BF44C98A264001B900238035 /* HotelPageCustomView.swift in Sources */,
 				BF44C9592640018B00238035 /* OfflineSalesViewController.swift in Sources */,
 				BF44C9AE264001D400238035 /* HeaderDetailCustomView.swift in Sources */,
