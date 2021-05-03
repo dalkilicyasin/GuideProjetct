@@ -124,10 +124,7 @@ public class NetworkManager {
             requestModel.setValue("application/json", forHTTPHeaderField: "Content-Type")
             requestModel.setValue("bearer \(baseData.getTokenResponse?.access_token ?? "")", forHTTPHeaderField: "Authorization")
             requestModel.httpMethod = method.rawValue
-            
-//            for i in 0...parameters.count - 1 {
-//                requestModel.setValue("\(Array(parameters)[i].value)", forHTTPHeaderField: "\(Array(parameters)[i].key)")
-//            }
+
             
             let request = requestModel
             let viewController = UIApplication.getTopViewController()
@@ -194,7 +191,5 @@ public class NetworkManager {
                 debugPrint(error.description)
             }
         }
-
-        
-        }
+    }
 }
