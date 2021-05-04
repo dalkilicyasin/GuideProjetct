@@ -9,11 +9,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainTextCustomView" customModule="Rota" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="d0R-ja-l3R" id="AJe-nN-dkM"/>
                 <outlet property="headerLAbel" destination="Vrr-FC-bPF" id="TMc-qR-ZJq"/>
                 <outlet property="headerView" destination="iN0-l3-epB" id="Gv5-0N-K86"/>
+                <outlet property="imageMainText" destination="GXF-y6-r1L" id="mux-K1-KFs"/>
                 <outlet property="mainLabel" destination="JuH-VT-Rfg" id="FwX-eN-vmF"/>
                 <outlet property="mainText" destination="HUK-0q-wHc" id="VAy-vH-mJI"/>
                 <outlet property="mainTextCustomView" destination="d0R-ja-l3R" id="E4g-KV-VQr"/>
@@ -41,7 +42,7 @@
                                 <constraint firstAttribute="height" constant="20" id="hVY-vp-kbO"/>
                             </constraints>
                         </imageView>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HUK-0q-wHc">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HUK-0q-wHc">
                             <rect key="frame" x="6" y="11" width="266" height="34"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

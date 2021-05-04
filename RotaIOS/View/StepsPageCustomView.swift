@@ -36,11 +36,8 @@ class StepsPageCustomView : UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: StepsPageCustomView.self), owner: self, options: nil)
         headerView.addCustomContainerView(self)
-        self.headerView.backgroundColor = UIColor.grayColor
-        
-        
-       // self.tableView.backgroundColor = UIColor.grayColor
-        
+        self.headerView.backgroundColor = UIColor.mainViewColor
+      
         self.firstMainTextView.headerLAbel.text = "Add Steps"
         self.firstMainTextView.mainLabel.text = "Moda Show Antalya"
         self.secondMainTextView.headerLAbel.text = "Add from Favorite Steps"
@@ -77,11 +74,7 @@ class StepsPageCustomView : UIView {
             print("false")
             self.addStepCustomView!.removeFromSuperview()
         }
-        
-        //self.remember = !remember
-    }
-   
-    
+    } 
 }
 
 extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {

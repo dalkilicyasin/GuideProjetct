@@ -9,35 +9,49 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopAppointmentViewController" customModule="Rota" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopAppointmentViewController" customModule="RotaIOS" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="ShopAppointmentView" customModule="Rota" customModuleProvider="target">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="ShopAppointmentView" customModule="RotaIOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1IP-7H-zPn">
-                    <rect key="frame" x="0.0" y="140" width="414" height="626"/>
-                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nma-nJ-n9g" customClass="FooterCustomView" customModule="Rota" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="766" width="414" height="130"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bx-ay-jDg">
+                    <rect key="frame" x="0.0" y="140" width="414" height="810"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dda-fB-cMc">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="800" id="8oN-7A-bqq"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="dda-fB-cMc" firstAttribute="top" secondItem="1bx-ay-jDg" secondAttribute="top" id="0T6-M6-dZB"/>
+                        <constraint firstAttribute="trailing" secondItem="dda-fB-cMc" secondAttribute="trailing" id="NtI-gf-4rz"/>
+                        <constraint firstAttribute="bottom" secondItem="dda-fB-cMc" secondAttribute="bottom" id="hEH-4o-ac3"/>
+                        <constraint firstItem="dda-fB-cMc" firstAttribute="leading" secondItem="1bx-ay-jDg" secondAttribute="leading" id="xnl-2t-Ycb"/>
+                    </constraints>
+                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nma-nJ-n9g" customClass="FooterCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="776" width="414" height="120"/>
                     <color key="backgroundColor" systemColor="systemTealColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="130" id="JTE-0B-v31"/>
+                        <constraint firstAttribute="height" constant="120" id="JTE-0B-v31"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YI-kB-7KO" customClass="HeaderDetailCustomView" customModule="Rota" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YI-kB-7KO" customClass="HeaderDetailCustomView" customModule="RotaIOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="140" id="aC2-lF-tH6"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkf-GC-LRK" customClass="AppointmentBarCustomView" customModule="Rota" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkf-GC-LRK" customClass="AppointmentBarCustomView" customModule="RotaIOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="110" width="414" height="70"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -48,13 +62,14 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="dda-fB-cMc" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="35A-zh-1ox"/>
                 <constraint firstAttribute="trailing" secondItem="nma-nJ-n9g" secondAttribute="trailing" id="96E-qw-buM"/>
+                <constraint firstAttribute="trailing" secondItem="1bx-ay-jDg" secondAttribute="trailing" id="Hzq-Gz-aFW"/>
                 <constraint firstAttribute="trailing" secondItem="1YI-kB-7KO" secondAttribute="trailing" id="Jjp-qe-aUo"/>
-                <constraint firstItem="1IP-7H-zPn" firstAttribute="top" secondItem="1YI-kB-7KO" secondAttribute="bottom" id="Pu8-Hx-zcP"/>
-                <constraint firstItem="nma-nJ-n9g" firstAttribute="top" secondItem="1IP-7H-zPn" secondAttribute="bottom" id="Uag-96-agT"/>
-                <constraint firstItem="1IP-7H-zPn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jDC-pB-uaL"/>
+                <constraint firstItem="1bx-ay-jDg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="O6Z-ZP-een"/>
+                <constraint firstItem="1bx-ay-jDg" firstAttribute="top" secondItem="1YI-kB-7KO" secondAttribute="bottom" id="XZc-ae-rF2"/>
+                <constraint firstItem="nma-nJ-n9g" firstAttribute="top" secondItem="1bx-ay-jDg" secondAttribute="bottom" constant="-174" id="Yg1-Q4-d1T"/>
                 <constraint firstAttribute="trailing" secondItem="nkf-GC-LRK" secondAttribute="trailing" id="jnP-yF-zeQ"/>
-                <constraint firstAttribute="trailing" secondItem="1IP-7H-zPn" secondAttribute="trailing" id="kqU-8b-FO1"/>
                 <constraint firstItem="nkf-GC-LRK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="l3E-vb-N6X"/>
                 <constraint firstItem="1YI-kB-7KO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mBX-Wg-ahY"/>
                 <constraint firstItem="nma-nJ-n9g" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="p5a-VN-hSQ"/>
@@ -64,7 +79,7 @@
             </constraints>
             <connections>
                 <outlet property="appointmentBarCustomView" destination="nkf-GC-LRK" id="yuh-I2-WW2"/>
-                <outlet property="contentView" destination="1IP-7H-zPn" id="X6v-D6-PaG"/>
+                <outlet property="contentView" destination="dda-fB-cMc" id="NVF-fE-wsC"/>
                 <outlet property="footerView" destination="nma-nJ-n9g" id="HYE-WM-Kki"/>
                 <outlet property="headerDetailCustomView" destination="1YI-kB-7KO" id="CgR-ce-PMg"/>
             </connections>

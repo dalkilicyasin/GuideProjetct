@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepsPageCustomView" customModule="Rota" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepsPageCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
                 <outlet property="firstMainTextView" destination="5na-JR-0ft" id="C6Q-kG-TYE"/>
                 <outlet property="headerView" destination="iN0-l3-epB" id="kFZ-PQ-Hc5"/>
@@ -22,20 +22,18 @@
             <rect key="frame" x="0.0" y="0.0" width="387" height="777"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5na-JR-0ft" customClass="MainTextCustomView" customModule="Rota" customModuleProvider="target">
-                    <rect key="frame" x="50" y="50" width="300" height="90"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5na-JR-0ft" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="40" y="50" width="307" height="90"/>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="ao2-Vg-lSW"/>
-                        <constraint firstAttribute="height" constant="90" id="arN-8P-9HC"/>
+                        <constraint firstAttribute="height" constant="90" id="x3w-Al-3Nn"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjy-LK-sNk" customClass="MainTextCustomView" customModule="Rota" customModuleProvider="target">
-                    <rect key="frame" x="55" y="172" width="300" height="90"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjy-LK-sNk" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="40" y="170" width="307" height="90"/>
+                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="Sxy-Ov-UxK"/>
-                        <constraint firstAttribute="width" constant="300" id="jeZ-8d-E7M"/>
+                        <constraint firstAttribute="height" constant="90" id="Pd8-WT-wWd"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m8O-SR-MWu">
@@ -58,17 +56,19 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="5na-JR-0ft" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="2J8-CG-pU2"/>
-                <constraint firstItem="5na-JR-0ft" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="2Zh-z5-lMU"/>
+                <constraint firstAttribute="trailing" secondItem="5na-JR-0ft" secondAttribute="trailing" constant="40" id="28d-rl-1p0"/>
+                <constraint firstItem="5na-JR-0ft" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="2ct-TU-sFP"/>
                 <constraint firstAttribute="trailing" secondItem="XX3-Gm-Nuv" secondAttribute="trailing" id="Bw6-uj-z72"/>
-                <constraint firstItem="hjy-LK-sNk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="55" id="DKU-Gk-r81"/>
+                <constraint firstAttribute="trailing" secondItem="hjy-LK-sNk" secondAttribute="trailing" constant="40" id="C9C-rT-iqi"/>
+                <constraint firstItem="hjy-LK-sNk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="N3B-Dg-zOZ"/>
                 <constraint firstItem="XX3-Gm-Nuv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ahQ-Uo-xRf"/>
                 <constraint firstItem="m8O-SR-MWu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hBt-35-HWH"/>
                 <constraint firstAttribute="trailing" secondItem="m8O-SR-MWu" secondAttribute="trailing" id="hhx-KK-AcF"/>
+                <constraint firstItem="hjy-LK-sNk" firstAttribute="top" secondItem="5na-JR-0ft" secondAttribute="bottom" constant="30" id="iUO-oe-JAK"/>
                 <constraint firstAttribute="bottom" secondItem="m8O-SR-MWu" secondAttribute="bottom" id="jxW-vs-yfw"/>
+                <constraint firstItem="5na-JR-0ft" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="np6-Fz-K3N"/>
                 <constraint firstItem="m8O-SR-MWu" firstAttribute="top" secondItem="XX3-Gm-Nuv" secondAttribute="bottom" id="o6C-lc-Hfj"/>
                 <constraint firstItem="m8O-SR-MWu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="332" id="s4N-vd-Ced"/>
-                <constraint firstItem="hjy-LK-sNk" firstAttribute="top" secondItem="5na-JR-0ft" secondAttribute="bottom" constant="32" id="tGr-1K-5H3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="105.07246376811595" y="59.933035714285708"/>

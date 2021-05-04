@@ -33,7 +33,7 @@ class HotelListCustomView : UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: HotelListCustomView.self), owner: self, options: nil)
         self.headerView.addCustomContainerView(self)
-        self.headerView.backgroundColor = UIColor.clear
+        self.headerView.backgroundColor = UIColor.mainViewColor
 
         self.tableView.delegate = self
         self.tableView.dataSource = self

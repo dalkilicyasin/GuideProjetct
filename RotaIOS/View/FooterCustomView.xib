@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterCustomView" customModule="Rota" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
                 <outlet property="buttonView" destination="8lq-i2-d6K" id="tV6-cx-6GP"/>
                 <outlet property="printButton" destination="dtg-Wp-KL4" id="kxU-qo-j5S"/>
@@ -21,11 +21,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lq-i2-d6K">
-                    <rect key="frame" x="55" y="20" width="300" height="50"/>
+                    <rect key="frame" x="38.5" y="27.5" width="300" height="50"/>
                     <color key="backgroundColor" red="0.3529411764705882" green="0.64313725490196072" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="QXq-rb-jen"/>
-                        <constraint firstAttribute="height" constant="50" id="Wmn-4V-ody"/>
+                        <constraint firstAttribute="width" constant="300" id="JGA-xs-YBJ"/>
+                        <constraint firstAttribute="height" constant="50" id="gmO-Pa-rcs"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="                        CONTINUE                       &gt;">
@@ -36,11 +36,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtg-Wp-KL4">
-                    <rect key="frame" x="55" y="20" width="300" height="50"/>
+                    <rect key="frame" x="38.5" y="27.5" width="300" height="50"/>
                     <color key="backgroundColor" red="0.35294117650000001" green="0.64313725489999995" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="1Pg-EJ-Oc1"/>
-                        <constraint firstAttribute="height" constant="50" id="m4Y-nV-wN6"/>
+                        <constraint firstAttribute="height" constant="50" id="Tzz-3y-eg8"/>
+                        <constraint firstAttribute="width" constant="300" id="blu-hb-nXA"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <state key="normal" title="             PRINT VOUCHER                       &gt;">
@@ -51,10 +51,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="8lq-i2-d6K" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Iwc-Tn-u0k"/>
-                <constraint firstItem="8lq-i2-d6K" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="55" id="L64-sH-rdE"/>
-                <constraint firstItem="dtg-Wp-KL4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="QQz-sQ-Uci"/>
-                <constraint firstItem="dtg-Wp-KL4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="55" id="h9H-96-jmb"/>
+                <constraint firstItem="8lq-i2-d6K" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Lgs-e5-KqP"/>
+                <constraint firstItem="8lq-i2-d6K" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Rc1-0X-Vir"/>
+                <constraint firstItem="dtg-Wp-KL4" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gIX-6k-RRY"/>
+                <constraint firstItem="dtg-Wp-KL4" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="weo-DY-Nqt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-223.91304347826087" y="-176.45089285714286"/>

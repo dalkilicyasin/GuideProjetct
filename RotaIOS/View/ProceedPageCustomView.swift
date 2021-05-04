@@ -16,13 +16,14 @@ class ProceedPageCustomView : UIView {
 
     @IBOutlet var headerView: UIView!
 
-    @IBOutlet weak var firstMainTextCustomView: MainTextCustomView!
-    @IBOutlet weak var secondMainTextCustomView: MainTextCustomView!
-    @IBOutlet weak var thirdMainTextCustomView: MainTextCustomView!
-    @IBOutlet weak var fourthMaintextCustomView: MainTextCustomView!
+   
+    @IBOutlet weak var roomMainText: MainTextCustomView!
+    @IBOutlet weak var notesMainText: MainTextCustomView!
+    
     @IBOutlet weak var senfButton: UIButton!
    
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var timePicker: UIDatePicker!
     
     
     
@@ -39,7 +40,6 @@ class ProceedPageCustomView : UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: ProceedPageCustomView.self), owner: self, options: nil)
         headerView.addCustomContainerView(self)
-       // self.contentView.applyGradient(colours: [UIColor(hexString: "#BFD732"), UIColor(hexString: "#3DB54A")])
         
         self.headerView.backgroundColor = UIColor.mainViewColor
         
@@ -47,26 +47,39 @@ class ProceedPageCustomView : UIView {
         self.senfButton.layer.borderColor = UIColor.green.cgColor
         self.senfButton.layer.cornerRadius = 10
         
-        self.datePicker.backgroundColor = UIColor.black
-        self.firstMainTextCustomView.mainLabel.isHidden = true
-        self.firstMainTextCustomView.mainText.isHidden = false
+        self.datePicker.backgroundColor = UIColor.mainTextColor
+        self.timePicker.backgroundColor = UIColor.mainTextColor
         
+        self.roomMainText.headerLAbel.text = "Room"
+        self.notesMainText.headerLAbel.text = "Notes"
+        
+        self.roomMainText.mainLabel.isHidden = true
+        self.roomMainText.mainText.isHidden = false
+        self.roomMainText.imageMainText.isHidden = true
+        self.notesMainText.imageMainText.isHidden = true
+        
+        self.notesMainText.mainLabel.isHidden = true
+        self.notesMainText.mainText.isHidden = false
        
     }
     
     @IBAction func datepickerButton(_ sender: Any) {
         
         let dateFormatt = DateFormatter()
-        dateFormatt.dateFormat = "HH:mm:ss"
+        dateFormatt.dateFormat = "MMM dd, YYYY"
         let pick = dateFormatt.string(from: datePicker.date)
-        
-     
-        
        print(pick)
         
     }
     
-
+    @IBAction func timepickerButton(_ sender: Any) {
+        
+        let timeFormatt = DateFormatter()
+        timeFormatt.dateFormat = "HH:mm:ss"
+        let timepick = timeFormatt.string(from: timePicker.date)
+       print(timepick)
+    }
+    
 
     @IBAction func sendButtonClicked(_ sender: Any) {
             

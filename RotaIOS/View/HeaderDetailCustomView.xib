@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderDetailCustomView" customModule="Rota" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderDetailCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="hxL-d7-ZkI" id="EIX-y0-KVp"/>
                 <outlet property="headerView" destination="iN0-l3-epB" id="oxg-wo-0QA"/>
@@ -37,7 +37,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPR-oK-lMf">
-                            <rect key="frame" x="76" y="30" width="339" height="58"/>
+                            <rect key="frame" x="76" y="20" width="339" height="68"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                         <constraint firstItem="PqR-Eb-TXq" firstAttribute="leading" secondItem="hxL-d7-ZkI" secondAttribute="leading" constant="30" id="PIP-Fm-EWm"/>
                         <constraint firstAttribute="bottom" secondItem="zPR-oK-lMf" secondAttribute="bottom" priority="252" constant="30" id="dt4-Pa-dVN"/>
                         <constraint firstItem="zPR-oK-lMf" firstAttribute="leading" secondItem="PqR-Eb-TXq" secondAttribute="trailing" constant="16" id="q48-L1-E9h"/>
-                        <constraint firstItem="zPR-oK-lMf" firstAttribute="top" secondItem="hxL-d7-ZkI" secondAttribute="top" constant="30" id="sFa-d5-HSq"/>
+                        <constraint firstItem="zPR-oK-lMf" firstAttribute="top" secondItem="hxL-d7-ZkI" secondAttribute="top" constant="20" id="sFa-d5-HSq"/>
                         <constraint firstItem="PqR-Eb-TXq" firstAttribute="top" secondItem="hxL-d7-ZkI" secondAttribute="top" constant="50" id="wNU-Pr-7Hn"/>
                     </constraints>
                 </view>

@@ -12,8 +12,8 @@
         <!--Login View Controller-->
         <scene sceneID="q4V-OR-U9V">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="hrp-fu-4Ts" customClass="LoginViewController" customModule="Rota" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JOp-ck-d8O" customClass="LoginView" customModule="Rota" customModuleProvider="target">
+                <viewController storyboardIdentifier="LoginViewController" id="hrp-fu-4Ts" customClass="LoginViewController" customModule="RotaIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JOp-ck-d8O" customClass="LoginView" customModule="RotaIOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -21,19 +21,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="244"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="odeonicon" translatesAutoresizingMaskIntoConstraints="NO" id="ROn-TI-YAf">
-                                        <rect key="frame" x="161" y="69" width="92" height="117"/>
+                                        <rect key="frame" x="161" y="63.5" width="92" height="117"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="117" id="NG8-P0-YdE"/>
                                             <constraint firstAttribute="height" constant="117" id="bcz-6b-eGi"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="92" id="u72-Kt-C1O"/>
                                             <constraint firstAttribute="width" constant="92" id="w3h-zY-XUc"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.23921568630000001" green="0.70980392160000005" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="244" id="H5K-dj-ees"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="244" id="WfR-Za-K8v"/>
-                                    <constraint firstItem="ROn-TI-YAf" firstAttribute="leading" secondItem="qWJ-HU-x4K" secondAttribute="leading" constant="161" id="gol-GM-bkt"/>
-                                    <constraint firstItem="ROn-TI-YAf" firstAttribute="top" secondItem="qWJ-HU-x4K" secondAttribute="top" constant="69" id="oIb-iP-S9b"/>
+                                    <constraint firstAttribute="height" constant="244" id="CLl-WN-eb8"/>
+                                    <constraint firstItem="ROn-TI-YAf" firstAttribute="centerY" secondItem="qWJ-HU-x4K" secondAttribute="centerY" id="G6K-Lk-rVG"/>
+                                    <constraint firstItem="ROn-TI-YAf" firstAttribute="centerX" secondItem="qWJ-HU-x4K" secondAttribute="centerX" id="Gh4-fp-JLL"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
@@ -101,15 +102,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jnP-rX-67E" secondAttribute="trailing" id="0DH-UI-xct"/>
-                            <constraint firstItem="qWJ-HU-x4K" firstAttribute="leading" secondItem="JOp-ck-d8O" secondAttribute="leading" id="8PX-mq-ggY"/>
-                            <constraint firstItem="qWJ-HU-x4K" firstAttribute="top" secondItem="JOp-ck-d8O" secondAttribute="top" id="FSa-P7-cqc"/>
-                            <constraint firstAttribute="trailing" secondItem="qWJ-HU-x4K" secondAttribute="trailing" id="GoF-ho-HaC"/>
                             <constraint firstItem="jnP-rX-67E" firstAttribute="leading" secondItem="JOp-ck-d8O" secondAttribute="leading" id="JHl-YA-Ixu"/>
-                            <constraint firstAttribute="trailing" secondItem="qWJ-HU-x4K" secondAttribute="trailing" id="JKu-E1-rwS"/>
+                            <constraint firstItem="qWJ-HU-x4K" firstAttribute="leading" secondItem="JOp-ck-d8O" secondAttribute="leading" id="OeY-aO-mxw"/>
                             <constraint firstItem="jnP-rX-67E" firstAttribute="top" secondItem="JOp-ck-d8O" secondAttribute="top" constant="216" id="UUI-te-vz6"/>
+                            <constraint firstItem="qWJ-HU-x4K" firstAttribute="top" secondItem="JOp-ck-d8O" secondAttribute="top" id="V9H-cB-FED"/>
                             <constraint firstAttribute="bottom" secondItem="jnP-rX-67E" secondAttribute="bottom" id="aUe-VT-ghI"/>
-                            <constraint firstItem="qWJ-HU-x4K" firstAttribute="leading" secondItem="JOp-ck-d8O" secondAttribute="leading" id="i01-WL-Q8V"/>
-                            <constraint firstItem="qWJ-HU-x4K" firstAttribute="top" secondItem="JOp-ck-d8O" secondAttribute="top" id="r06-sR-Nw5"/>
+                            <constraint firstAttribute="trailing" secondItem="qWJ-HU-x4K" secondAttribute="trailing" id="ych-Oa-dRM"/>
                         </constraints>
                         <connections>
                             <outlet property="buttonLogin" destination="zMk-E7-avG" id="rgC-Ok-ZHT"/>

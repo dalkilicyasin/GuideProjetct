@@ -21,9 +21,9 @@ class HotelPageCustomView : UIView {
     
     
     var menu = DropDown()
-    var regionList = ["Russia", "Turkey","Ukrain","Polland"]
+    var hotelList = ["Xanadolu Resort", "Seven Seas Hotel","Belek","Cesme"]
     
-    var hotelList : [String] = []
+    var regionList : [String] = []
     let secondMenu = DropDown()
     
     override init(frame: CGRect) {
@@ -48,14 +48,14 @@ class HotelPageCustomView : UIView {
                 print(response)
                 
                 for listOfArray in response {
-                    self.hotelList.append(listOfArray.text ?? "default")
+                    self.regionList.append(listOfArray.text ?? "default")
                 }
-                self.menu.dataSource = self.hotelList
+                self.menu.dataSource = self.regionList
                 self.menu.backgroundColor = UIColor.grayColor
                 self.menu.separatorColor = UIColor.gray
                 self.menu.textColor = .white
                 self.menu.anchorView = self.mainTextCustomView
-            
+                
             }else{
                 print("data has not recived")
             }
@@ -67,15 +67,15 @@ class HotelPageCustomView : UIView {
         self.searchBar.delegate = self
         
         //searchBar.searchBarStyle = .minimal
-
-        self.secondMenu.dataSource = regionList
+        
+        self.secondMenu.dataSource = hotelList
         self.secondMenu.backgroundColor = UIColor.grayColor
         self.secondMenu.separatorColor = UIColor.gray
         self.secondMenu.textColor = .white
         self.secondMenu.anchorView = self.mainTextSecondCustomView
-
-  
- 
+        
+        
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTappedItem))
         gesture.numberOfTouchesRequired = 1
         gesture.numberOfTouchesRequired = 1
@@ -130,5 +130,5 @@ extension HotelPageCustomView : UISearchBarDelegate {
                 }
             }
         }
-}
+    }
 }

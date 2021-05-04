@@ -16,9 +16,10 @@ class MainTextCustomView : UIView {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var imageMainText: UIImageView!
     @IBOutlet weak var mainText: UITextField!
-    
     @IBOutlet weak var headerLAbel: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -34,7 +35,7 @@ class MainTextCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         self.contentView.backgroundColor = UIColor.mainTextColor
         self.contentView.layer.cornerRadius = 10
-        self.headerView.backgroundColor = UIColor.grayColor
+        self.headerView.backgroundColor = UIColor.mainViewColor
         self.mainText.isHidden = true
         self.mainLabel.isHidden = false
     }

@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TouristAddCustomView" customModule="Rota" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TouristAddCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
                 <outlet property="addManuelButton" destination="gG2-nV-gtA" id="F1z-7Z-Dxo"/>
                 <outlet property="contentView" destination="F6R-If-il3" id="WpM-jw-zMf"/>
@@ -22,10 +22,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6R-If-il3">
-                    <rect key="frame" x="0.0" y="340" width="414" height="556"/>
+                    <rect key="frame" x="0.0" y="200" width="414" height="696"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gG2-nV-gtA">
-                            <rect key="frame" x="32" y="450" width="350" height="50"/>
+                            <rect key="frame" x="32" y="400" width="350" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="v69-86-L8W"/>
@@ -39,10 +39,10 @@
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2nS-tH-QGd">
-                            <rect key="frame" x="0.0" y="50" width="414" height="350"/>
+                            <rect key="frame" x="0.0" y="50" width="414" height="300"/>
                             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.8533868852830091" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="350" id="S7z-vc-o3L"/>
+                                <constraint firstAttribute="height" constant="300" id="S7z-vc-o3L"/>
                             </constraints>
                             <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -64,7 +64,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="F6R-If-il3" secondAttribute="trailing" id="5wx-qm-G6g"/>
                 <constraint firstAttribute="bottom" secondItem="F6R-If-il3" secondAttribute="bottom" id="AV7-pF-z4x"/>
-                <constraint firstItem="F6R-If-il3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="340" id="SQ4-Ln-GEJ"/>
+                <constraint firstItem="F6R-If-il3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="SQ4-Ln-GEJ"/>
                 <constraint firstItem="F6R-If-il3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZaU-YH-XhP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

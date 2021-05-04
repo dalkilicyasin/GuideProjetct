@@ -20,7 +20,7 @@ class PaxPageCustomView : UIView {
     var isFilteredTextEmpty = true
     var filteredData : [String] = []
     
-    var nameList = ["Daria Sharapova","Yasin Dalkilic","Emin Yildirimtas","Akif Demirezen","Emre Kalem","Güliz Yildirimtas","Serdar Tural"]
+    var nameList = ["Daria Sharapova","Yasin Dalkilic","Doğan Dalkilic","Memati Baş","Abdüllhey Çoban","Polat Alemdar","Murat Alemdar"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,24 +58,13 @@ class PaxPageCustomView : UIView {
         
     }
     
- /*  override func layoutSublayers(of layer: CALayer) {
-        searchBar.clipsToBounds = true
-        searchBar.layer.cornerRadius = 10
-        if #available(iOS 11.0, *) {
-            searchBar.layer.maskedCorners = [ .layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner,.layerMaxXMaxYCorner]
-        } else {
-            // Fallback on earlier versions
-        }
-    }*/
-    
-    
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
         if self.remember == true{
             if let topVC = UIApplication.getTopViewController() {
                 UIView.animate(withDuration: 0, animations: {
                     self.touristAddView = TouristAddCustomView()
-                    self.touristAddView!.frame = CGRect(x: 0, y: 0, width: 414, height: 896)
+                    self.touristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
                     topVC.view.addSubview(self.touristAddView!)
                 }, completion: { (finished) in
                     if finished{
