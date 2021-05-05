@@ -40,7 +40,7 @@ class TouristAddCustomView : UIView {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.register(TouristAddTableViewCell.nib, forCellReuseIdentifier: TouristAddTableViewCell.identifier)
+        self.tableView.register(PaxPageTableViewCell.nib, forCellReuseIdentifier: PaxPageTableViewCell.identifier)
         
     }
    
@@ -56,8 +56,11 @@ extension TouristAddCustomView : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: TouristAddTableViewCell.identifier) as! TouristAddTableViewCell
-        cell.labelText.text = nameList[indexPath.row]
+        let cell =  tableView.dequeueReusableCell(withIdentifier: PaxPageTableViewCell.identifier) as! PaxPageTableViewCell
+        cell.imageUserName.isHidden = false
+        cell.checkBoxView.isHidden = true
+        cell.headerView.backgroundColor = .grayColor
+        cell.mainText.text = nameList[indexPath.row]
         return cell
     }
     
@@ -72,4 +75,5 @@ extension TouristAddCustomView : UITableViewDelegate, UITableViewDataSource {
     }
 
 }
+    
 

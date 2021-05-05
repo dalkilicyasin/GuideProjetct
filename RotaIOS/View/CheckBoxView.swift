@@ -46,10 +46,13 @@ class CheckBoxView: UIView{
         self.isCheckRemember = !isCheckRemember
         if self.isCheckRemember{
            imageCheck.isHidden = false
+            self.checkBoxViewDelegate?.checkBoxTapped(isremember: true)
         }else {
             imageCheck.isHidden = true
+            self.checkBoxViewDelegate?.checkBoxTapped(isremember: false)
         }
-        self.checkBoxViewDelegate?.checkBoxTapped(isremember: true)
+        
+       
     }
 }
 

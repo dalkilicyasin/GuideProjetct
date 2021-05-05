@@ -9,6 +9,10 @@ import Foundation
 
 import UIKit
 
+protocol PaxesListDelegate {
+    func paxesList(ischosen : Bool)
+}
+
 class PaxPageCustomView : UIView {
     
     @IBOutlet var headerView: UIView!
@@ -19,7 +23,12 @@ class PaxPageCustomView : UIView {
     var remember = true
     var isFilteredTextEmpty = true
     var filteredData : [String] = []
+    @IBOutlet weak var touristAddedText: UILabel!
     
+    var paxesListDelegate : PaxesListDelegate?
+    
+    var counter = 0
+
     var nameList = ["Daria Sharapova","Yasin Dalkilic","Doğan Dalkilic","Memati Baş","Abdüllhey Çoban","Polat Alemdar","Murat Alemdar"]
     
     override init(frame: CGRect) {
@@ -41,7 +50,6 @@ class PaxPageCustomView : UIView {
         self.topView.layer.borderColor = UIColor.green.cgColor
         self.topView.layer.cornerRadius = 10
         
-        
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
 
@@ -55,7 +63,7 @@ class PaxPageCustomView : UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         topView.addGestureRecognizer(tap)
         topView.isUserInteractionEnabled = true
-        
+
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -78,7 +86,6 @@ class PaxPageCustomView : UIView {
             print("false")
             self.touristAddView!.removeFromSuperview()
         }
-        
     }
 }
 
@@ -93,7 +100,7 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PaxPageTableViewCell.identifier) as! PaxPageTableViewCell
-        
+        cell.paxPageCounterDelegate = self
         if isFilteredTextEmpty == false {
             if self.filteredData.count > 0 {
                 cell.mainText.text = filteredData[indexPath.row]
@@ -109,9 +116,18 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-       
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch(indexPath.row) {
+        case 0 :
+            self.paxesListDelegate?.paxesList(ischosen: true)
+        case 1 :
+            self.paxesListDelegate?.paxesList(ischosen: true)
+        default :
+            print("selected")
+            
+        }
+    }
 }
 
 extension PaxPageCustomView : UISearchBarDelegate {
@@ -131,8 +147,24 @@ extension PaxPageCustomView : UISearchBarDelegate {
             }
         }
         self.tableView.reloadData()
-        
     }
 }
+
+extension PaxPageCustomView : PaxPageCounterDelegate {
+    func checkboxCounter(checkCounter: Bool) {
+        if checkCounter == true {
+            self.counter += 1
+            print(self.counter)
+            self.touristAddedText.text = "\(counter) Tourist Added"
+            
+        }else if checkCounter == false {
+            self.counter -= 1
+            print(self.counter)
+            self.touristAddedText.text = "\(counter) Tourist Added"
+        }
+    }
+    
+}
+
 
 

@@ -17,6 +17,7 @@ public class Defaults{
         case DeviceID
         case UserID
         case GuideID
+     
     }
     
    public init(){}
@@ -101,6 +102,7 @@ public class Defaults{
             return "DeviceID"
         case .GuideID:
             return "GuideID"
+        
         }
     }
 }

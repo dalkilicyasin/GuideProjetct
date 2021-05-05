@@ -9,12 +9,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaxPageCustomView" customModule="Rota" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaxPageCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
                 <outlet property="headerView" destination="iN0-l3-epB" id="uaK-rm-cWI"/>
                 <outlet property="searchBar" destination="bfk-4j-4rs" id="SoP-b0-2EG"/>
                 <outlet property="tableView" destination="wr5-2B-QIm" id="t2g-df-2NT"/>
                 <outlet property="topView" destination="Nyi-aa-4wR" id="CFX-L4-C3b"/>
+                <outlet property="touristAddedText" destination="8of-n1-1hM" id="oqp-yb-u2E"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -50,7 +51,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nyi-aa-4wR">
                     <rect key="frame" x="50" y="50" width="290" height="50"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 Tourist Added" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8of-n1-1hM">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Tourist Added" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8of-n1-1hM">
                             <rect key="frame" x="10" y="15" width="109" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
