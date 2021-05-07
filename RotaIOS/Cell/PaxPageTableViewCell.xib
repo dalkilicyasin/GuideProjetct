@@ -17,59 +17,48 @@
                 <rect key="frame" x="0.0" y="0.0" width="307" height="71"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3p-ez-E23">
-                        <rect key="frame" x="0.0" y="0.0" width="307" height="71"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jqd-lH-LjH">
-                                <rect key="frame" x="61" y="20" width="236" height="31"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYC-Ze-XFv" customClass="CheckBoxView" customModule="RotaIOS" customModuleProvider="target">
-                                <rect key="frame" x="16" y="20" width="25" height="25"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="FWA-8h-aE7"/>
-                                    <constraint firstAttribute="width" constant="25" id="jFG-ry-cMx"/>
-                                </constraints>
-                            </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="GYl-yE-Umm">
-                                <rect key="frame" x="16" y="20" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="p7y-mv-te4"/>
-                                    <constraint firstAttribute="width" constant="25" id="thf-cT-uOm"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMP-w9-rwT" customClass="CheckBoxView" customModule="RotaIOS" customModuleProvider="target">
+                        <rect key="frame" x="16" y="20" width="25" height="25"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="GYl-yE-Umm" firstAttribute="leading" secondItem="r3p-ez-E23" secondAttribute="leading" constant="16" id="2yw-9l-k8p"/>
-                            <constraint firstItem="Jqd-lH-LjH" firstAttribute="leading" secondItem="WYC-Ze-XFv" secondAttribute="trailing" constant="20" id="33w-rs-EHu"/>
-                            <constraint firstAttribute="bottom" secondItem="Jqd-lH-LjH" secondAttribute="bottom" priority="252" constant="20" id="8KE-va-0OJ"/>
-                            <constraint firstItem="Jqd-lH-LjH" firstAttribute="top" secondItem="r3p-ez-E23" secondAttribute="top" constant="20" id="P5b-0d-bQE"/>
-                            <constraint firstItem="WYC-Ze-XFv" firstAttribute="top" secondItem="r3p-ez-E23" secondAttribute="top" constant="20" id="ZnZ-Kn-1Vn"/>
-                            <constraint firstItem="GYl-yE-Umm" firstAttribute="top" secondItem="r3p-ez-E23" secondAttribute="top" constant="20" id="jv5-4J-ILS"/>
-                            <constraint firstAttribute="trailing" secondItem="Jqd-lH-LjH" secondAttribute="trailing" priority="252" constant="10" id="wq0-M3-CFG"/>
-                            <constraint firstItem="WYC-Ze-XFv" firstAttribute="leading" secondItem="r3p-ez-E23" secondAttribute="leading" constant="16" id="y48-gk-fTj"/>
+                            <constraint firstAttribute="height" constant="25" id="DH9-T1-Lk3"/>
+                            <constraint firstAttribute="width" constant="25" id="Roo-BP-hKn"/>
                         </constraints>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="username" translatesAutoresizingMaskIntoConstraints="NO" id="Bvq-cx-Bj1">
+                        <rect key="frame" x="16" y="20" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="dhy-kx-7uK"/>
+                            <constraint firstAttribute="width" constant="25" id="taT-Fs-eR3"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcZ-2y-fx9">
+                        <rect key="frame" x="51" y="20" width="236" height="31"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="r3p-ez-E23" secondAttribute="bottom" id="Bbj-2y-EPH"/>
-                    <constraint firstItem="r3p-ez-E23" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="FJ8-br-b6L"/>
-                    <constraint firstAttribute="trailing" secondItem="r3p-ez-E23" secondAttribute="trailing" id="Ist-BF-hCE"/>
-                    <constraint firstItem="r3p-ez-E23" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="V2n-aM-YKX"/>
+                    <constraint firstItem="VcZ-2y-fx9" firstAttribute="leading" secondItem="SMP-w9-rwT" secondAttribute="trailing" constant="10" id="0vX-wD-5Sh"/>
+                    <constraint firstItem="Bvq-cx-Bj1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="193-su-1Zo"/>
+                    <constraint firstItem="SMP-w9-rwT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Ggr-So-P7M"/>
+                    <constraint firstAttribute="trailing" secondItem="VcZ-2y-fx9" secondAttribute="trailing" priority="252" constant="20" id="cJx-lE-Had"/>
+                    <constraint firstAttribute="bottom" secondItem="VcZ-2y-fx9" secondAttribute="bottom" priority="252" constant="20" id="gEe-Bl-J9O"/>
+                    <constraint firstItem="VcZ-2y-fx9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="gmk-KS-hYZ"/>
+                    <constraint firstItem="SMP-w9-rwT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="kjH-WX-3Dr"/>
+                    <constraint firstItem="Bvq-cx-Bj1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="usw-CQ-CcD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="checkBoxView" destination="WYC-Ze-XFv" id="aO1-GJ-VTr"/>
-                <outlet property="headerView" destination="r3p-ez-E23" id="qPL-fR-QiB"/>
-                <outlet property="imageUserName" destination="GYl-yE-Umm" id="0Cx-wk-iOg"/>
-                <outlet property="mainText" destination="Jqd-lH-LjH" id="3Bb-0U-KyV"/>
+                <outlet property="checkBoxView" destination="SMP-w9-rwT" id="EGz-Yu-Vwk"/>
+                <outlet property="imageUserName" destination="Bvq-cx-Bj1" id="YbO-9h-hGQ"/>
+                <outlet property="labelPaxNameListCell" destination="VcZ-2y-fx9" id="tSz-Af-ZTT"/>
+                <outlet property="viewContent" destination="H2p-sc-9uM" id="AKV-Hn-hN0"/>
             </connections>
-            <point key="canvasLocation" x="-212.31884057971016" y="107.47767857142857"/>
+            <point key="canvasLocation" x="-266" y="87"/>
         </tableViewCell>
     </objects>
     <resources>

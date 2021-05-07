@@ -22,10 +22,8 @@ class ProceedPageCustomView : UIView {
     
     @IBOutlet weak var senfButton: UIButton!
    
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var timePicker: UIDatePicker!
-    
-    
+    let datePicker = UIDatePicker()
+    let toolBar = UIToolbar()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,10 +44,7 @@ class ProceedPageCustomView : UIView {
         self.senfButton.layer.borderWidth = 1
         self.senfButton.layer.borderColor = UIColor.green.cgColor
         self.senfButton.layer.cornerRadius = 10
-        
-        self.datePicker.backgroundColor = UIColor.mainTextColor
-        self.timePicker.backgroundColor = UIColor.mainTextColor
-        
+    
         self.roomMainText.headerLAbel.text = "Room"
         self.notesMainText.headerLAbel.text = "Notes"
         
@@ -61,23 +56,7 @@ class ProceedPageCustomView : UIView {
         self.notesMainText.mainLabel.isHidden = true
         self.notesMainText.mainText.isHidden = false
        
-    }
-    
-    @IBAction func datepickerButton(_ sender: Any) {
-        
-        let dateFormatt = DateFormatter()
-        dateFormatt.dateFormat = "MMM dd, YYYY"
-        let pick = dateFormatt.string(from: datePicker.date)
-       print(pick)
-        
-    }
-    
-    @IBAction func timepickerButton(_ sender: Any) {
-        
-        let timeFormatt = DateFormatter()
-        timeFormatt.dateFormat = "HH:mm:ss"
-        let timepick = timeFormatt.string(from: timePicker.date)
-       print(timepick)
+        self.createDatePicker()
     }
     
 
@@ -85,6 +64,36 @@ class ProceedPageCustomView : UIView {
             
       
 }
+    
+    func createDatePicker() {
+        
+        self.roomMainText.mainText.textAlignment = .center
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        self.toolBar.setItems([doneButton], animated: true)
+        
+        self.toolBar.sizeToFit()
+        self.roomMainText.mainText.inputAccessoryView = toolBar
+        self.roomMainText.mainText.inputView = datePicker
+        self.datePicker.datePickerMode = .date
+    
+        
+    }
+    
+    
+    @objc func donePressed() {
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.dateFormat = "MM-dd-yyyy"
+        
+        self.roomMainText.mainText.text = formatter.string(from: datePicker.date)
+        self.headerView.endEditing(true)
+        
+        print(formatter.string(from: datePicker.date))
+    }
+
 
     
 }

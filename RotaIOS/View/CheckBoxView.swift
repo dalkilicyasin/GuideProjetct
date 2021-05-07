@@ -32,23 +32,24 @@ class CheckBoxView: UIView{
     
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: CheckBoxView.self), owner: self, options: nil)
-        viewCheckBox.addCustomContainerView(self)
-        imageCheck.isHidden = true
-        viewCheckBox.layer.borderWidth = 0.5
-        viewCheckBox.layer.borderColor = UIColor.lightGray.cgColor
-        viewCheckBox.layer.cornerRadius = 4
-        imageCheck.layer.cornerRadius = 5
+        self.viewCheckBox.addCustomContainerView(self)
+        self.imageCheck.isHidden = true
+        self.viewCheckBox.layer.borderWidth = 0.5
+        self.viewCheckBox.layer.borderColor = UIColor.lightGray.cgColor
+        self.viewCheckBox.layer.cornerRadius = 4
+        self.imageCheck.layer.cornerRadius = 5
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTabCheckbox))
-        viewCheckBox.addGestureRecognizer(gesture)
+        self.viewCheckBox.addGestureRecognizer(gesture)
+        self.imageCheck.image = UIImage(named: "check")
     }
     
     @objc func didTabCheckbox() {
         self.isCheckRemember = !isCheckRemember
         if self.isCheckRemember{
-           imageCheck.isHidden = false
+            self.imageCheck.isHidden = false
             self.checkBoxViewDelegate?.checkBoxTapped(isremember: true)
         }else {
-            imageCheck.isHidden = true
+            self.imageCheck.isHidden = true
             self.checkBoxViewDelegate?.checkBoxTapped(isremember: false)
         }
         

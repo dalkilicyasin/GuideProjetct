@@ -11,6 +11,7 @@ target 'RotaIOS' do
     pod 'AlamofireObjectMapper'
     pod 'MBProgressHUD', '~> 1.1.0'
     pod  'DropDown'
+    pod 'IQKeyboardManagerSwift'
 
   target 'RotaIOSTests' do
     inherit! :search_paths

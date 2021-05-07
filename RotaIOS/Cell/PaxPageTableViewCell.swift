@@ -8,13 +8,15 @@
 import UIKit
 
 protocol PaxPageCounterDelegate {
-    func checkboxCounter(checkCounter : Bool)
+    func checkboxCounter(checkCounter : Bool, touristName : String)
 }
 
 class PaxPageTableViewCell: BaseTableViewCell{
 
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var mainText: UILabel!
+    
+ 
+    @IBOutlet weak var viewContent: UIView!
+    @IBOutlet weak var labelPaxNameListCell: UILabel!
     @IBOutlet weak var checkBoxView: CheckBoxView!
     var counter = 0
     var paxPageCustomView : PaxPageCustomView?
@@ -27,6 +29,9 @@ class PaxPageTableViewCell: BaseTableViewCell{
         
         self.checkBoxView.checkBoxViewDelegate = self
         self.imageUserName.isHidden = true
+        self.viewContent.backgroundColor = UIColor.grayColor
+        self.labelPaxNameListCell.textColor = UIColor.white
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -41,10 +46,9 @@ extension PaxPageTableViewCell : CheckBoxViewDelegate {
     func checkBoxTapped(isremember: Bool) {
         print(isremember)
         if isremember == true {
-            
-            self.paxPageCounterDelegate?.checkboxCounter(checkCounter: isremember)
+            self.paxPageCounterDelegate?.checkboxCounter(checkCounter: isremember, touristName: self.labelPaxNameListCell.text ?? "")
         }else if isremember == false {
-            self.paxPageCounterDelegate?.checkboxCounter(checkCounter: isremember)
+            self.paxPageCounterDelegate?.checkboxCounter(checkCounter: isremember, touristName: self.labelPaxNameListCell.text ?? "")
         }
     }
     

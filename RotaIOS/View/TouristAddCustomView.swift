@@ -15,7 +15,7 @@ class TouristAddCustomView : UIView {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var addManuelButton: UIButton!
-    var nameList = ["Daira Porsion","DariaPorsion","DariaPorsion"]
+    var nameList : [String] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,8 +59,7 @@ extension TouristAddCustomView : UITableViewDelegate, UITableViewDataSource {
         let cell =  tableView.dequeueReusableCell(withIdentifier: PaxPageTableViewCell.identifier) as! PaxPageTableViewCell
         cell.imageUserName.isHidden = false
         cell.checkBoxView.isHidden = true
-        cell.headerView.backgroundColor = .grayColor
-        cell.mainText.text = nameList[indexPath.row]
+        cell.labelPaxNameListCell.text = nameList[indexPath.row]
         return cell
     }
     

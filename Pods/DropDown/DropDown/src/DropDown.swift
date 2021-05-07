@@ -564,9 +564,9 @@ extension DropDown {
 			return
 		}
 
-		xConstraint.constant = layout.x
+		xConstraint.constant = 30
 		yConstraint.constant = layout.y
-		widthConstraint.constant = layout.width
+        widthConstraint.constant = UIScreen.main.bounds.width - 50
 		heightConstraint.constant = layout.visibleHeight
 
 		tableView.isScrollEnabled = layout.offscreenHeight > 0

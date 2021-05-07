@@ -9,11 +9,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelPageCustomView" customModule="Rota" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelPageCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
+                <outlet property="checkBoxView" destination="HAR-Ii-wyL" id="Uoo-q8-MdD"/>
                 <outlet property="headerView" destination="iN0-l3-epB" id="7fP-gG-mVg"/>
-                <outlet property="mainTextCustomView" destination="aZY-B3-kOA" id="HRe-jV-s82"/>
-                <outlet property="mainTextSecondCustomView" destination="mfw-eI-be8" id="R2g-qA-9H4"/>
+                <outlet property="hotelMainTextSecondCustomView" destination="mfw-eI-be8" id="rrX-h9-bWH"/>
+                <outlet property="marketMainTextCustomView" destination="aZY-B3-kOA" id="Cab-u2-0ai"/>
                 <outlet property="searchBar" destination="Btp-Ng-Vbq" id="mb1-ct-T2C"/>
             </connections>
         </placeholder>
@@ -22,14 +23,14 @@
             <rect key="frame" x="0.0" y="0.0" width="440" height="538"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZY-B3-kOA" customClass="MainTextCustomView" customModule="Rota" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZY-B3-kOA" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
                     <rect key="frame" x="30" y="80" width="380" height="90"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="e3s-Qk-q7Q"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfw-eI-be8" customClass="MainTextCustomView" customModule="Rota" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfw-eI-be8" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
                     <rect key="frame" x="30" y="200" width="380" height="90"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -45,7 +46,7 @@
                     <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAR-Ii-wyL" customClass="CheckBoxView" customModule="Rota" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAR-Ii-wyL" customClass="CheckBoxView" customModule="RotaIOS" customModuleProvider="target">
                     <rect key="frame" x="40" y="390" width="25" height="25"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

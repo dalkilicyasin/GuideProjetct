@@ -17,6 +17,7 @@ public class Defaults{
         case DeviceID
         case UserID
         case GuideID
+        case SaleDate
      
     }
     
@@ -91,6 +92,25 @@ public class Defaults{
         }
     }
     
+    // SaleDAte
+    
+    public func saveSaleDate(saleDate:String){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .SaleDate)
+        preferences.set(saleDate, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getSaleDate() -> String! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .SaleDate)) == nil {
+            return nil
+        }
+        let data:String = preferences.value(forKey: getIdentifier(type: .SaleDate)) as! String
+        return data
+    }
+    
+    
     
     private  func  getIdentifier(type:DefaultsType)->String {
         switch type {
@@ -103,6 +123,8 @@ public class Defaults{
         case .GuideID:
             return "GuideID"
         
+        case .SaleDate:
+            return "SaleDate"
         }
     }
 }

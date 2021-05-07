@@ -29,7 +29,8 @@ class PaxPageCustomView : UIView {
     
     var counter = 0
 
-    var nameList = ["Daria Sharapova","Yasin Dalkilic","Doğan Dalkilic","Memati Baş","Abdüllhey Çoban","Polat Alemdar","Murat Alemdar"]
+    var nameList = ["Daria Sharapova","Yasin Dalkilic","Doğan Dalkilic","Serkan Dalkılıç","Murat Alemdar"]
+    var tempNameList : [String] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,12 +51,16 @@ class PaxPageCustomView : UIView {
         self.topView.layer.borderColor = UIColor.green.cgColor
         self.topView.layer.cornerRadius = 10
         
-        self.searchBar.setImage(UIImage(), for: .search, state: .normal)
-        self.searchBar.layer.cornerRadius = 10
-
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(PaxPageTableViewCell.nib, forCellReuseIdentifier: PaxPageTableViewCell.identifier)
+        
+        self.searchBar.setImage(UIImage(), for: .search, state: .normal)
+        self.searchBar.layer.cornerRadius = 10
+       
+    
+        self.searchBar.compatibleSearchTextField.textColor = UIColor.white
+        self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
         
         self.searchBar.delegate = self
         self.filteredData = nameList
@@ -72,6 +77,7 @@ class PaxPageCustomView : UIView {
             if let topVC = UIApplication.getTopViewController() {
                 UIView.animate(withDuration: 0, animations: {
                     self.touristAddView = TouristAddCustomView()
+                    self.touristAddView?.nameList = self.tempNameList
                     self.touristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
                     topVC.view.addSubview(self.touristAddView!)
                 }, completion: { (finished) in
@@ -103,13 +109,13 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
         cell.paxPageCounterDelegate = self
         if isFilteredTextEmpty == false {
             if self.filteredData.count > 0 {
-                cell.mainText.text = filteredData[indexPath.row]
+                cell.labelPaxNameListCell.text = filteredData[indexPath.row]
             }else{
                 self.tableView.reloadData()
             }
         }else{
             if self.nameList.count > 0 {
-                cell.mainText.text = nameList[indexPath.row]
+                cell.labelPaxNameListCell.text = nameList[indexPath.row]
             }else{
                 self.tableView.reloadData()
             }
@@ -151,20 +157,31 @@ extension PaxPageCustomView : UISearchBarDelegate {
 }
 
 extension PaxPageCustomView : PaxPageCounterDelegate {
-    func checkboxCounter(checkCounter: Bool) {
+    func checkboxCounter(checkCounter: Bool, touristName: String) {
         if checkCounter == true {
             self.counter += 1
             print(self.counter)
             self.touristAddedText.text = "\(counter) Tourist Added"
+            self.tempNameList.append(touristName)
             
         }else if checkCounter == false {
             self.counter -= 1
             print(self.counter)
             self.touristAddedText.text = "\(counter) Tourist Added"
+            var tempIndex = 0
+            for item in self.tempNameList {
+                if item.elementsEqual(touristName) {
+                    self.tempNameList.remove(at: tempIndex)
+                    break
+                }
+                
+                tempIndex += 1
+            }
         }
     }
     
 }
+
 
 
 

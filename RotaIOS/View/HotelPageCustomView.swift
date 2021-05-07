@@ -13,18 +13,18 @@ import DropDown
 class HotelPageCustomView : UIView {
     
     @IBOutlet var headerView: UIView!
-    @IBOutlet weak var mainTextCustomView: MainTextCustomView!
-    @IBOutlet weak var mainTextSecondCustomView: MainTextCustomView!
+    @IBOutlet weak var marketMainTextCustomView: MainTextCustomView!
+    @IBOutlet weak var hotelMainTextSecondCustomView: MainTextCustomView!
     @IBOutlet weak var searchBar: UISearchBar!
     var isFilteredTextEmpty = true
     var filteredData : [String] = []
-    
-    
-    var menu = DropDown()
-    var hotelList = ["Xanadolu Resort", "Seven Seas Hotel","Belek","Cesme"]
-    
+    var marketMenu = DropDown()
+    var hotelList : [String] = []
     var regionList : [String] = []
-    let secondMenu = DropDown()
+    let hotelMenu = DropDown()
+    
+   
+    @IBOutlet weak var checkBoxView: CheckBoxView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,32 +50,28 @@ class HotelPageCustomView : UIView {
                 for listOfArray in response {
                     self.regionList.append(listOfArray.text ?? "default")
                 }
-                self.menu.dataSource = self.regionList
-                self.menu.backgroundColor = UIColor.grayColor
-                self.menu.separatorColor = UIColor.gray
-                self.menu.textColor = .white
-                self.menu.anchorView = self.mainTextCustomView
+                self.marketMenu.dataSource = self.regionList
+                self.marketMenu.backgroundColor = UIColor.grayColor
+                self.marketMenu.separatorColor = UIColor.gray
+                self.marketMenu.textColor = .white
+                self.marketMenu.anchorView = self.marketMainTextCustomView.mainLabel
+                
+                
                 
             }else{
                 print("data has not recived")
             }
         }
         
+        
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.white
+        
+        self.searchBar.compatibleSearchTextField.textColor = UIColor.white
+        self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
+        
         self.searchBar.delegate = self
-        
-        //searchBar.searchBarStyle = .minimal
-        
-        self.secondMenu.dataSource = hotelList
-        self.secondMenu.backgroundColor = UIColor.grayColor
-        self.secondMenu.separatorColor = UIColor.gray
-        self.secondMenu.textColor = .white
-        self.secondMenu.anchorView = self.mainTextSecondCustomView
-        
-        
-        
+
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTappedItem))
         gesture.numberOfTouchesRequired = 1
         gesture.numberOfTouchesRequired = 1
@@ -84,30 +80,34 @@ class HotelPageCustomView : UIView {
         secondGesture.numberOfTouchesRequired = 1
         secondGesture.numberOfTouchesRequired = 1
         
-        self.mainTextCustomView.addGestureRecognizer(gesture)
-        self.mainTextSecondCustomView.addGestureRecognizer(secondGesture)
+        self.marketMainTextCustomView.addGestureRecognizer(gesture)
+        self.hotelMainTextSecondCustomView.addGestureRecognizer(secondGesture)
         
-        self.menu.selectionAction = { index, title in
-            self.mainTextCustomView.mainLabel.text = title
+        self.marketMenu.selectionAction = { index, title in
+            self.marketMainTextCustomView.mainLabel.text = title
+            print(title)
             
         }
-        self.secondMenu.selectionAction = { index, title in
-            self.mainTextSecondCustomView.mainLabel.text = title
+        self.hotelMenu.selectionAction = { index, title in
+            self.hotelMainTextSecondCustomView.mainLabel.text = title
             
         }
         
-        self.mainTextCustomView.headerLAbel.text = "Market"
-        self.mainTextSecondCustomView.headerLAbel.text = "Hotel"
+        self.marketMainTextCustomView.headerLAbel.text = "Market"
+        self.hotelMainTextSecondCustomView.headerLAbel.text = "Hotel"
         
+        self.checkBoxView.checkBoxViewDelegate = self
+        
+        print("tarih=\(userDefaultsData.getSaleDate() ?? "")")
     }
     
     @objc func didTappedItem() {
-        menu.show()
+        marketMenu.show()
         
     }
     
     @objc func didSecondItemTapped() {
-        secondMenu.show()
+        hotelMenu.show()
     }
 }
 
@@ -125,10 +125,48 @@ extension HotelPageCustomView : UISearchBarDelegate {
             for data in hotelList{
                 if data.description.lowercased().contains(searchText.lowercased()){
                     self.filteredData.append(data)
-                    self.secondMenu.dataSource = filteredData
+                    self.hotelMenu.dataSource = filteredData
                     
                 }
             }
         }
     }
 }
+
+extension HotelPageCustomView : CheckBoxViewDelegate {
+    func checkBoxTapped(isremember: Bool) {
+        if isremember == true {
+            let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
+                
+                if response.count > 0 {
+                    print(response)
+                    
+                    for listOfArray in response {
+                        self.hotelList.append(listOfArray.text ?? "default")
+                    }
+                    
+                    self.hotelMenu.dataSource = self.hotelList
+                    self.hotelMenu.backgroundColor = UIColor.grayColor
+                    self.hotelMenu.separatorColor = UIColor.gray
+                    self.hotelMenu.textColor = .white
+                    self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView.mainLabel
+                }else{
+                    print("data has not recived")
+                }
+            }
+        }else {
+            
+            self.hotelMenu.dataSource = ["Hotel1"]
+            self.hotelMenu.backgroundColor = UIColor.grayColor
+            self.hotelMenu.separatorColor = UIColor.gray
+            self.hotelMenu.textColor = .white
+            self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView
+        
+        }
+    }
+    
+    
+}
+
+

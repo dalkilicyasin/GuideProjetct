@@ -95,6 +95,8 @@
 		BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9E12640023800238035 /* ProceedPageCustomView.swift */; };
 		BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9E22640023800238035 /* ProceedPageCustomView.xib */; };
 		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
+		D93F885326445D2A00397283 /* GetHotelsMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885226445D2A00397283 /* GetHotelsMobileRequestModel.swift */; };
+		D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */; };
 		D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -218,6 +220,8 @@
 		BF44C9E12640023800238035 /* ProceedPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProceedPageCustomView.swift; sourceTree = "<group>"; };
 		BF44C9E22640023800238035 /* ProceedPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProceedPageCustomView.xib; sourceTree = "<group>"; };
 		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
+		D93F885226445D2A00397283 /* GetHotelsMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileRequestModel.swift; sourceTree = "<group>"; };
+		D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileResponseModel.swift; sourceTree = "<group>"; };
 		D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideMarketRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -351,6 +355,7 @@
 				D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */,
 				BF44C8F9264000F000238035 /* CreateTokenRequestModel.swift */,
 				BF44C8F8264000F000238035 /* GetUserRequestModel.swift */,
+				D93F885226445D2A00397283 /* GetHotelsMobileRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				BF44C8EF264000E900238035 /* GetMyInfoResponseModel.swift */,
 				BF44C8EE264000E900238035 /* GetTokenResponseModel.swift */,
 				BF44C8ED264000E900238035 /* GetUserResponseModel.swift */,
+				D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -781,12 +787,14 @@
 				BF44C976264001A400238035 /* BaseCollectionViewCell.swift in Sources */,
 				BF44C905264000FA00238035 /* BaseApiRequestBody.swift in Sources */,
 				BF44C8F3264000E900238035 /* GetMyInfoResponseModel.swift in Sources */,
+				D93F885326445D2A00397283 /* GetHotelsMobileRequestModel.swift in Sources */,
 				BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */,
 				BF44C8E7264000E200238035 /* ExtensionUIColor.swift in Sources */,
 				BF44C983264001B000238035 /* MainTextCustomView.swift in Sources */,
 				BF44C90F2640010200238035 /* Defaults.swift in Sources */,
 				BF44C95A2640018B00238035 /* MyTourSaleViewController.swift in Sources */,
 				BF44C907264000FA00238035 /* BaseData.swift in Sources */,
+				D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */,
 				BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */,
 				BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */,
 			);
