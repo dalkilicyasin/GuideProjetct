@@ -11,12 +11,14 @@ import Foundation
 
 import UIKit
 
-class StepsPageCustomView : UIView {
+class StepsPageCustomView : UIView, UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var firstMainTextView: MainTextCustomView!
     @IBOutlet weak var secondMainTextView: MainTextCustomView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var headerView: UIView!
+    
+   
     
     var remember = true
     var addStepCustomView : AddStepCustomView?
@@ -47,16 +49,16 @@ class StepsPageCustomView : UIView {
         self.tableView.dataSource = self
         self.tableView.register(StepsPageTableViewCell.nib, forCellReuseIdentifier: StepsPageTableViewCell.identifier)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+      let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.firstMainTextView.addGestureRecognizer(tap)
         self.firstMainTextView.isUserInteractionEnabled = true
         
         
     }
-    
+  
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
-        if self.remember == true{
+       if self.remember == true{
             if let topVC = UIApplication.getTopViewController() {
                 UIView.animate(withDuration: 0, animations: {
                     self.addStepCustomView = AddStepCustomView()
@@ -74,6 +76,8 @@ class StepsPageCustomView : UIView {
             print("false")
             self.addStepCustomView!.removeFromSuperview()
         }
+        
+        
     } 
 }
 
@@ -99,5 +103,7 @@ extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
     }
 
 }
+
+
 
 

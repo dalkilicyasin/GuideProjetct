@@ -18,6 +18,8 @@ public class Defaults{
         case UserID
         case GuideID
         case SaleDate
+        case MarketId
+        case HotelId
      
     }
     
@@ -110,7 +112,41 @@ public class Defaults{
         return data
     }
     
+    // MarketID
     
+    public func saveMarketId(marketId:String){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .MarketId)
+        preferences.set(marketId, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getMarketId() -> String! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .MarketId)) == nil {
+            return nil
+        }
+        let data:String = preferences.value(forKey: getIdentifier(type: .MarketId)) as! String
+        return data
+    }
+    
+    // HotelID
+    
+    public func saveHotelId(hotelId:String){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .HotelId)
+        preferences.set(hotelId, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getHotelId() -> String! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .HotelId)) == nil {
+            return nil
+        }
+        let data:String = preferences.value(forKey: getIdentifier(type: .HotelId)) as! String
+        return data
+    }
     
     private  func  getIdentifier(type:DefaultsType)->String {
         switch type {
@@ -125,6 +161,10 @@ public class Defaults{
         
         case .SaleDate:
             return "SaleDate"
+        case .MarketId:
+            return "MarketId"
+        case .HotelId:
+            return "HotelId"
         }
     }
 }

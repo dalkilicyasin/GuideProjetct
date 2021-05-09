@@ -9,7 +9,8 @@ import UIKit
 
 class ShopAppointmentViewController: ViewController {
      
-
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -18,13 +19,23 @@ class ShopAppointmentViewController: ViewController {
        let userId = userDefaultsData.getUserId()
         print(userId)
         
+
     }
- 
+    
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        
+   
+    }
+    
+
 
     @IBAction func backButton(_ sender: Any) {
         self.otiPushViewController(viewController: MainPAgeViewController())
     }
     
 }
+
+
 
 

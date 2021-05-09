@@ -21,9 +21,10 @@ class HotelPageCustomView : UIView {
     var marketMenu = DropDown()
     var hotelList : [String] = []
     var regionList : [String] = []
+    var marketIdList : [String] = []
+    var hotelIdList : [String] = []
     let hotelMenu = DropDown()
-    
-   
+  
     @IBOutlet weak var checkBoxView: CheckBoxView!
     
     override init(frame: CGRect) {
@@ -49,14 +50,17 @@ class HotelPageCustomView : UIView {
                 
                 for listOfArray in response {
                     self.regionList.append(listOfArray.text ?? "default")
+                    self.hotelIdList.append(listOfArray.id ?? "")
+                    
                 }
+                
+                print(self.hotelIdList)
+                
                 self.marketMenu.dataSource = self.regionList
                 self.marketMenu.backgroundColor = UIColor.grayColor
                 self.marketMenu.separatorColor = UIColor.gray
                 self.marketMenu.textColor = .white
                 self.marketMenu.anchorView = self.marketMainTextCustomView.mainLabel
-                
-                
                 
             }else{
                 print("data has not recived")
@@ -86,11 +90,18 @@ class HotelPageCustomView : UIView {
         self.marketMenu.selectionAction = { index, title in
             self.marketMainTextCustomView.mainLabel.text = title
             print(title)
-            
+            let tempIndex : Int
+            tempIndex = index+1
+            print(tempIndex)
+            userDefaultsData.saveMarketId(marketId: String(tempIndex))
         }
+        
         self.hotelMenu.selectionAction = { index, title in
             self.hotelMainTextSecondCustomView.mainLabel.text = title
-            
+            let tempIndex : Int
+            tempIndex = index+1
+            print(tempIndex)
+            userDefaultsData.saveHotelId(hotelId: String(tempIndex))
         }
         
         self.marketMainTextCustomView.headerLAbel.text = "Market"

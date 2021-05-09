@@ -18,17 +18,15 @@ class PaxPageCustomView : UIView {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var viewTouristAdded: UIView!
+    @IBOutlet weak var labelTouristAdded: UILabel!
     var touristAddView : TouristAddCustomView?
+    var tempTouristAddView : TempTouristAddCustomView?
     var remember = true
     var isFilteredTextEmpty = true
     var filteredData : [String] = []
-    @IBOutlet weak var touristAddedText: UILabel!
-    
     var paxesListDelegate : PaxesListDelegate?
-    
     var counter = 0
-
     var nameList = ["Daria Sharapova","Yasin Dalkilic","Doğan Dalkilic","Serkan Dalkılıç","Murat Alemdar"]
     var tempNameList : [String] = []
     
@@ -47,9 +45,9 @@ class PaxPageCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         self.headerView.backgroundColor = UIColor.mainViewColor
         
-        self.topView.layer.borderWidth = 1
-        self.topView.layer.borderColor = UIColor.green.cgColor
-        self.topView.layer.cornerRadius = 10
+        self.viewTouristAdded.layer.borderWidth = 1
+        self.viewTouristAdded.layer.borderColor = UIColor.green.cgColor
+        self.viewTouristAdded.layer.cornerRadius = 10
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -65,11 +63,31 @@ class PaxPageCustomView : UIView {
         self.searchBar.delegate = self
         self.filteredData = nameList
         
+       
+        
+        //silinecek
+      /*
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         topView.addGestureRecognizer(tap)
-        topView.isUserInteractionEnabled = true
+        topView.isUserInteractionEnabled = true */
+        let tap = UITapGestureRecognizer(target: self, action: #selector(showMiracle))
+        self.viewTouristAdded.addGestureRecognizer(tap)
+        self.viewTouristAdded.isUserInteractionEnabled = true
 
     }
+    
+    @objc func showMiracle() {
+        if let topVC = UIApplication.getTopViewController() {
+            self.tempTouristAddView = TempTouristAddCustomView()
+            self.tempTouristAddView?.modalPresentationStyle = .custom
+            self.tempTouristAddView?.transitioningDelegate = self
+            topVC.present(tempTouristAddView!, animated: true, completion: nil)
+            self.tempTouristAddView?.nameListed = self.tempNameList
+        }
+  
+      }
+ 
+    // silinecek
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
@@ -161,13 +179,13 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
         if checkCounter == true {
             self.counter += 1
             print(self.counter)
-            self.touristAddedText.text = "\(counter) Tourist Added"
+            self.labelTouristAdded.text = "\(counter) Tourist Added"
             self.tempNameList.append(touristName)
             
         }else if checkCounter == false {
             self.counter -= 1
             print(self.counter)
-            self.touristAddedText.text = "\(counter) Tourist Added"
+            self.labelTouristAdded.text = "\(counter) Tourist Added"
             var tempIndex = 0
             for item in self.tempNameList {
                 if item.elementsEqual(touristName) {
@@ -180,6 +198,12 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
         }
     }
     
+}
+
+extension PaxPageCustomView : UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        PresentationController(presentedViewController: presented, presenting: presenting)
+    }
 }
 
 
