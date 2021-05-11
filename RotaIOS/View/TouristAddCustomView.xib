@@ -18,17 +18,26 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="976"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6R-If-il3">
-                    <rect key="frame" x="0.0" y="200" width="414" height="696"/>
+                    <rect key="frame" x="0.0" y="200" width="414" height="692"/>
                     <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2nS-tH-QGd">
+                            <rect key="frame" x="0.0" y="50" width="414" height="152"/>
+                            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.8533868852830091" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="152" id="Hat-vF-ZDP"/>
+                            </constraints>
+                            <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gG2-nV-gtA">
-                            <rect key="frame" x="32" y="400" width="350" height="50"/>
+                            <rect key="frame" x="32" y="239" width="350" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="v69-86-L8W"/>
+                                <constraint firstAttribute="height" constant="50" id="eGe-m9-wEa"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="ADD MANUEL">
@@ -38,37 +47,28 @@
                                 <action selector="addManuelButtonClicked:" destination="-1" eventType="touchUpInside" id="yJi-TQ-xHa"/>
                             </connections>
                         </button>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2nS-tH-QGd">
-                            <rect key="frame" x="0.0" y="50" width="414" height="300"/>
-                            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.8533868852830091" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="300" id="S7z-vc-o3L"/>
-                            </constraints>
-                            <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </tableView>
                     </subviews>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.51274634354951365" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="gG2-nV-gtA" firstAttribute="top" secondItem="2nS-tH-QGd" secondAttribute="bottom" constant="50" id="Ivn-CD-OKC"/>
-                        <constraint firstAttribute="trailing" secondItem="2nS-tH-QGd" secondAttribute="trailing" id="S5A-rM-qv1"/>
-                        <constraint firstItem="2nS-tH-QGd" firstAttribute="leading" secondItem="F6R-If-il3" secondAttribute="leading" id="Wv4-in-CID"/>
-                        <constraint firstItem="gG2-nV-gtA" firstAttribute="leading" secondItem="F6R-If-il3" secondAttribute="leading" constant="32" id="XKl-hy-hlf"/>
-                        <constraint firstItem="2nS-tH-QGd" firstAttribute="top" secondItem="F6R-If-il3" secondAttribute="top" constant="50" id="YDS-p0-3Kw"/>
-                        <constraint firstAttribute="trailing" secondItem="gG2-nV-gtA" secondAttribute="trailing" constant="32" id="wxE-Ja-1xp"/>
+                        <constraint firstItem="gG2-nV-gtA" firstAttribute="leading" secondItem="F6R-If-il3" secondAttribute="leading" constant="32" id="8MA-6z-jGe"/>
+                        <constraint firstAttribute="trailing" secondItem="gG2-nV-gtA" secondAttribute="trailing" constant="32" id="9wK-w7-lAJ"/>
+                        <constraint firstItem="gG2-nV-gtA" firstAttribute="top" secondItem="2nS-tH-QGd" secondAttribute="bottom" constant="37" id="X8q-nI-rN0"/>
+                        <constraint firstAttribute="trailing" secondItem="2nS-tH-QGd" secondAttribute="trailing" id="aRa-By-aFo"/>
+                        <constraint firstItem="2nS-tH-QGd" firstAttribute="leading" secondItem="F6R-If-il3" secondAttribute="leading" id="vib-Tu-W45"/>
+                        <constraint firstItem="2nS-tH-QGd" firstAttribute="top" secondItem="F6R-If-il3" secondAttribute="top" constant="50" id="wtJ-LI-Vqg"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="F6R-If-il3" secondAttribute="trailing" id="5wx-qm-G6g"/>
-                <constraint firstAttribute="bottom" secondItem="F6R-If-il3" secondAttribute="bottom" id="AV7-pF-z4x"/>
-                <constraint firstItem="F6R-If-il3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="SQ4-Ln-GEJ"/>
-                <constraint firstItem="F6R-If-il3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZaU-YH-XhP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="F6R-If-il3" secondAttribute="bottom" constant="50" id="ECS-1A-yg9"/>
+                <constraint firstItem="F6R-If-il3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="EEr-qw-x7z"/>
+                <constraint firstItem="F6R-If-il3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GXl-q2-ipQ"/>
+                <constraint firstAttribute="trailing" secondItem="F6R-If-il3" secondAttribute="trailing" id="mCm-uF-CFE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-271.01449275362319" y="-27.455357142857142"/>
+            <point key="canvasLocation" x="-271.01449275362319" y="-0.6696428571428571"/>
         </view>
     </objects>
 </document>

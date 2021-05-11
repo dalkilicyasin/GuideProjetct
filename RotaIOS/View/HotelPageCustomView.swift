@@ -19,12 +19,12 @@ class HotelPageCustomView : UIView {
     var isFilteredTextEmpty = true
     var filteredData : [String] = []
     var marketMenu = DropDown()
-    var hotelList : [String] = []
-    var regionList : [String] = []
-    var marketIdList : [String] = []
-    var hotelIdList : [String] = []
-    let hotelMenu = DropDown()
-  
+    var hotelMenu = DropDown()
+    var hotelList : [GetHotelsMobileResponseModel] = []
+    var marketList : [GetGuideMarketResponseModel] = []
+    var filteredMarketList : [GetGuideMarketResponseModel] = []
+    var filteredHotelList : [GetHotelsMobileResponseModel] = []
+
     @IBOutlet weak var checkBoxView: CheckBoxView!
     
     override init(frame: CGRect) {
@@ -48,15 +48,11 @@ class HotelPageCustomView : UIView {
             if response.count > 0 {
                 print(response)
                 
-                for listOfArray in response {
-                    self.regionList.append(listOfArray.text ?? "default")
-                    self.hotelIdList.append(listOfArray.id ?? "")
-                    
+                self.marketList = response
+                
+                for listOfArray in self.marketList {
+                    self.marketMenu.dataSource.append(listOfArray.text ?? "")
                 }
-                
-                print(self.hotelIdList)
-                
-                self.marketMenu.dataSource = self.regionList
                 self.marketMenu.backgroundColor = UIColor.grayColor
                 self.marketMenu.separatorColor = UIColor.gray
                 self.marketMenu.textColor = .white
@@ -66,8 +62,6 @@ class HotelPageCustomView : UIView {
                 print("data has not recived")
             }
         }
-        
-        
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
         
@@ -75,7 +69,7 @@ class HotelPageCustomView : UIView {
         self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
         
         self.searchBar.delegate = self
-
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTappedItem))
         gesture.numberOfTouchesRequired = 1
         gesture.numberOfTouchesRequired = 1
@@ -89,19 +83,25 @@ class HotelPageCustomView : UIView {
         
         self.marketMenu.selectionAction = { index, title in
             self.marketMainTextCustomView.mainLabel.text = title
-            print(title)
-            let tempIndex : Int
-            tempIndex = index+1
-            print(tempIndex)
-            userDefaultsData.saveMarketId(marketId: String(tempIndex))
+            let filtered = self.marketList.filter{($0.text?.contains(title) ?? false)}
+            self.filteredMarketList = filtered
+            for listofarray in self.filteredMarketList {
+                userDefaultsData.saveMarketId(marketId: String(listofarray.value ?? 0))
+            }
+            print(userDefaultsData.getMarketId()!)
         }
         
         self.hotelMenu.selectionAction = { index, title in
             self.hotelMainTextSecondCustomView.mainLabel.text = title
-            let tempIndex : Int
-            tempIndex = index+1
-            print(tempIndex)
-            userDefaultsData.saveHotelId(hotelId: String(tempIndex))
+            
+            let filtered = self.hotelList.filter{($0.text?.contains(title) ?? false)}
+            self.filteredHotelList = filtered
+            for listofArray in self.filteredHotelList {
+                userDefaultsData.saveHotelId(hotelId: String(listofArray.value ?? 0))
+            }
+            
+            print(userDefaultsData.getHotelId()!)
+
         }
         
         self.marketMainTextCustomView.headerLAbel.text = "Market"
@@ -129,11 +129,12 @@ extension HotelPageCustomView : UISearchBarDelegate {
         
         if searchText.elementsEqual(""){
             self.isFilteredTextEmpty = true
-            self.filteredData = hotelList
+            self.hotelMenu.dataSource = self.filteredData
+        
             
         }else {
             self.isFilteredTextEmpty = false
-            for data in hotelList{
+            for data in self.hotelMenu.dataSource{
                 if data.description.lowercased().contains(searchText.lowercased()){
                     self.filteredData.append(data)
                     self.hotelMenu.dataSource = filteredData
@@ -141,23 +142,28 @@ extension HotelPageCustomView : UISearchBarDelegate {
                 }
             }
         }
+        for listofhotel in self.hotelList {
+            self.hotelMenu.dataSource.append(listofhotel.text ?? "")
+        }
     }
+
 }
 
 extension HotelPageCustomView : CheckBoxViewDelegate {
     func checkBoxTapped(isremember: Bool) {
         if isremember == true {
+           
             let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
                 
                 if response.count > 0 {
                     print(response)
+                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                     
-                    for listOfArray in response {
-                        self.hotelList.append(listOfArray.text ?? "default")
+                    self.hotelList = response
+                    for listOfArray in self.hotelList {
+                        self.hotelMenu.dataSource.append(listOfArray.text ?? "")
                     }
-                    
-                    self.hotelMenu.dataSource = self.hotelList
                     self.hotelMenu.backgroundColor = UIColor.grayColor
                     self.hotelMenu.separatorColor = UIColor.gray
                     self.hotelMenu.textColor = .white
@@ -166,17 +172,35 @@ extension HotelPageCustomView : CheckBoxViewDelegate {
                     print("data has not recived")
                 }
             }
-        }else {
+       
+        }
+        else if isremember == false{
             
-            self.hotelMenu.dataSource = ["Hotel1"]
-            self.hotelMenu.backgroundColor = UIColor.grayColor
-            self.hotelMenu.separatorColor = UIColor.gray
-            self.hotelMenu.textColor = .white
-            self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView
-        
+            let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
+                
+                if response.count > 0 {
+                    
+                    self.hotelMenu.dataSource.removeAll()
+                    let filtered = response.filter({return ($0.guideHotel != 0)})
+                    print("\(filtered)")
+                    
+                    self.hotelList = filtered
+                    
+                    for listofArray in self.hotelList {
+                        self.hotelMenu.dataSource.append(listofArray.text ?? "")
+                    }
+                    self.hotelMenu.backgroundColor = UIColor.grayColor
+                    self.hotelMenu.separatorColor = UIColor.gray
+                    self.hotelMenu.textColor = .white
+                    self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView
+                    
+                }else{
+                    print("data has not recived")
+                }
+            }
         }
     }
-    
     
 }
 

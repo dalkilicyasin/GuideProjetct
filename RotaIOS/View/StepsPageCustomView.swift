@@ -62,7 +62,7 @@ class StepsPageCustomView : UIView, UIViewControllerTransitioningDelegate {
             if let topVC = UIApplication.getTopViewController() {
                 UIView.animate(withDuration: 0, animations: {
                     self.addStepCustomView = AddStepCustomView()
-                    self.addStepCustomView!.frame = CGRect(x: 0, y: 0, width: 414, height: 896)
+                    self.addStepCustomView!.frame = CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 896)
                     topVC.view.addSubview(self.addStepCustomView!)
                 }, completion: { (finished) in
                     if finished{

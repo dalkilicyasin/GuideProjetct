@@ -16,6 +16,7 @@ class TouristAddCustomView : UIView {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var addManuelButton: UIButton!
     var nameList : [String] = []
+    var addManuelTourist : AddManuelTouristCustomView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +30,7 @@ class TouristAddCustomView : UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: TouristAddCustomView.self), owner: self, options: nil)
-        headerView.addCustomContainerView(self)
+        self.headerView.addCustomContainerView(self)
         self.contentView.backgroundColor = UIColor.grayColor
         self.contentView.layer.cornerRadius = 10
         self.tableView.backgroundColor = UIColor.grayColor
@@ -45,7 +46,20 @@ class TouristAddCustomView : UIView {
     }
    
     @IBAction func addManuelButtonClicked(_ sender: Any) {
-        self.removeFromSuperview()
+        //self.removeFromSuperview()
+        if let topVC = UIApplication.getTopViewController() {
+            UIView.animate(withDuration: 0, animations: {
+                self.addManuelTourist = AddManuelTouristCustomView()
+            
+                self.addManuelTourist!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
+                topVC.view.addSubview(self.addManuelTourist!)
+            }, completion: { (finished) in
+                if finished{
+                    
+                }
+            })
+        }
+        
     }
     
 }

@@ -15,11 +15,6 @@ protocol PaxesListDelegate {
 
 class PaxPageCustomView : UIView {
     
-    @IBOutlet var headerView: UIView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var viewTouristAdded: UIView!
-    @IBOutlet weak var labelTouristAdded: UILabel!
     var touristAddView : TouristAddCustomView?
     var tempTouristAddView : TempTouristAddCustomView?
     var remember = true
@@ -27,8 +22,16 @@ class PaxPageCustomView : UIView {
     var filteredData : [String] = []
     var paxesListDelegate : PaxesListDelegate?
     var counter = 0
-    var nameList = ["Daria Sharapova","Yasin Dalkilic","Doğan Dalkilic","Serkan Dalkılıç","Murat Alemdar"]
+    var nameList : [String] = []
+    var paxesNameList :[GetInHoseListResponseModel] = []
+    var filteredPaxesList : [GetInHoseListResponseModel] = []
     var tempNameList : [String] = []
+    @IBOutlet var headerView: UIView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var viewTouristAdded: UIView!
+    @IBOutlet weak var labelTouristAdded: UILabel!
+  
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,31 +48,52 @@ class PaxPageCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         self.headerView.backgroundColor = UIColor.mainViewColor
         
+        let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: userDefaultsData.getHotelId(), marketId: userDefaultsData.getMarketId())
+        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseList, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+            
+            if response.count > 0 {
+                print(response)
+                //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                
+                self.paxesNameList = response
+                
+                for listofArray in self.paxesNameList {
+                    self.nameList.append(listofArray.text ?? "")
+                }
+                self.filteredData = self.nameList 
+                print(self.nameList)
+                
+                self.tableView.delegate = self
+                self.tableView.dataSource = self
+                self.tableView.reloadData()
+              
+    
+             
+            }else{
+                print("data has not recived")
+            }
+        }
+        
         self.viewTouristAdded.layer.borderWidth = 1
         self.viewTouristAdded.layer.borderColor = UIColor.green.cgColor
         self.viewTouristAdded.layer.cornerRadius = 10
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(PaxPageTableViewCell.nib, forCellReuseIdentifier: PaxPageTableViewCell.identifier)
-        
+     
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
-       
     
         self.searchBar.compatibleSearchTextField.textColor = UIColor.white
         self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
         
         self.searchBar.delegate = self
-        self.filteredData = nameList
         
+        self.tableView.register(PaxPageTableViewCell.nib, forCellReuseIdentifier: PaxPageTableViewCell.identifier)
        
-        
+
         //silinecek
-      /*
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        topView.addGestureRecognizer(tap)
-        topView.isUserInteractionEnabled = true */
+      
+      /*  let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        self.viewTouristAdded.addGestureRecognizer(tap)
+        self.viewTouristAdded.isUserInteractionEnabled = true*/
         let tap = UITapGestureRecognizer(target: self, action: #selector(showMiracle))
         self.viewTouristAdded.addGestureRecognizer(tap)
         self.viewTouristAdded.isUserInteractionEnabled = true
@@ -84,11 +108,11 @@ class PaxPageCustomView : UIView {
             topVC.present(tempTouristAddView!, animated: true, completion: nil)
             self.tempTouristAddView?.nameListed = self.tempNameList
         }
-  
+
       }
  
     // silinecek
-    
+  /*
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
         if self.remember == true{
@@ -110,16 +134,20 @@ class PaxPageCustomView : UIView {
             print("false")
             self.touristAddView!.removeFromSuperview()
         }
-    }
+    } */
 }
 
 extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFilteredTextEmpty == false {
-            return self.filteredData.count
-        }else{
-            return nameList.count
-        }
+        
+            if isFilteredTextEmpty == false {
+              
+                 return self.filteredData.count
+             }else{
+               
+                return self.nameList.count
+             }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -181,7 +209,9 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             print(self.counter)
             self.labelTouristAdded.text = "\(counter) Tourist Added"
             self.tempNameList.append(touristName)
-            
+            let filter = paxesNameList.filter{($0.text?.contains(touristName) ?? false)}
+            self.filteredPaxesList = filter
+            print(filteredPaxesList)
         }else if checkCounter == false {
             self.counter -= 1
             print(self.counter)

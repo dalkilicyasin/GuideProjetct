@@ -93,11 +93,15 @@
 		BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9E12640023800238035 /* ProceedPageCustomView.swift */; };
 		BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9E22640023800238035 /* ProceedPageCustomView.xib */; };
 		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
-		D93F885326445D2A00397283 /* GetHotelsMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885226445D2A00397283 /* GetHotelsMobileRequestModel.swift */; };
 		D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */; };
 		D93F886626471A7300397283 /* SlideUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886526471A7300397283 /* SlideUpViewController.swift */; };
 		D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */; };
 		D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93F887226471C1100397283 /* TempTouristAddCustomView.xib */; };
+		D93F887B264AAA4B00397283 /* GetInHoseListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F887A264AAA4B00397283 /* GetInHoseListResponseModel.swift */; };
+		D93F8883264AAAE500397283 /* GetInHouseListRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F8882264AAAE500397283 /* GetInHouseListRequestModel.swift */; };
+		D93F888B264AB14900397283 /* GetHotelsMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F888A264AB14900397283 /* GetHotelsMobileRequestModel.swift */; };
+		D93F8890264B069000397283 /* AddManuelTouristCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F888F264B069000397283 /* AddManuelTouristCustomView.swift */; };
+		D93F8895264B072200397283 /* AddManuelTouristCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93F8894264B072200397283 /* AddManuelTouristCustomView.xib */; };
 		D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -219,11 +223,15 @@
 		BF44C9E12640023800238035 /* ProceedPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProceedPageCustomView.swift; sourceTree = "<group>"; };
 		BF44C9E22640023800238035 /* ProceedPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProceedPageCustomView.xib; sourceTree = "<group>"; };
 		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
-		D93F885226445D2A00397283 /* GetHotelsMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileRequestModel.swift; sourceTree = "<group>"; };
 		D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileResponseModel.swift; sourceTree = "<group>"; };
 		D93F886526471A7300397283 /* SlideUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideUpViewController.swift; sourceTree = "<group>"; };
 		D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTouristAddCustomView.swift; sourceTree = "<group>"; };
 		D93F887226471C1100397283 /* TempTouristAddCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempTouristAddCustomView.xib; sourceTree = "<group>"; };
+		D93F887A264AAA4B00397283 /* GetInHoseListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInHoseListResponseModel.swift; sourceTree = "<group>"; };
+		D93F8882264AAAE500397283 /* GetInHouseListRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInHouseListRequestModel.swift; sourceTree = "<group>"; };
+		D93F888A264AB14900397283 /* GetHotelsMobileRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileRequestModel.swift; sourceTree = "<group>"; };
+		D93F888F264B069000397283 /* AddManuelTouristCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddManuelTouristCustomView.swift; sourceTree = "<group>"; };
+		D93F8894264B072200397283 /* AddManuelTouristCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddManuelTouristCustomView.xib; sourceTree = "<group>"; };
 		D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideMarketRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -355,10 +363,11 @@
 		BF44C8D22640007500238035 /* RequestModel */ = {
 			isa = PBXGroup;
 			children = (
+				D93F888A264AB14900397283 /* GetHotelsMobileRequestModel.swift */,
 				D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */,
 				BF44C8F9264000F000238035 /* CreateTokenRequestModel.swift */,
 				BF44C8F8264000F000238035 /* GetUserRequestModel.swift */,
-				D93F885226445D2A00397283 /* GetHotelsMobileRequestModel.swift */,
+				D93F8882264AAAE500397283 /* GetInHouseListRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -371,6 +380,7 @@
 				BF44C8EE264000E900238035 /* GetTokenResponseModel.swift */,
 				BF44C8ED264000E900238035 /* GetUserResponseModel.swift */,
 				D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */,
+				D93F887A264AAA4B00397283 /* GetInHoseListResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -442,6 +452,8 @@
 				BF44C9292640015400238035 /* MainPageCustomView.xib */,
 				D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */,
 				D93F887226471C1100397283 /* TempTouristAddCustomView.xib */,
+				D93F888F264B069000397283 /* AddManuelTouristCustomView.swift */,
+				D93F8894264B072200397283 /* AddManuelTouristCustomView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -612,6 +624,7 @@
 				BF44C9CF2640022600238035 /* StepsPageTableViewCell.xib in Resources */,
 				D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */,
 				BF44C94A2640017E00238035 /* ExcursionSaleViewController.xib in Resources */,
+				D93F8895264B072200397283 /* AddManuelTouristCustomView.xib in Resources */,
 				BF44C98B264001B900238035 /* HotelPageCustomView.xib in Resources */,
 				BF44C9322640015A00238035 /* MainPageTableViewCell.xib in Resources */,
 				BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */,
@@ -743,10 +756,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D93F8890264B069000397283 /* AddManuelTouristCustomView.swift in Sources */,
 				BF44C909264000FA00238035 /* NetworkManager.swift in Sources */,
 				BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */,
 				BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */,
 				BF44C9332640015A00238035 /* MainPageTableViewCell.swift in Sources */,
+				D93F8883264AAAE500397283 /* GetInHouseListRequestModel.swift in Sources */,
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
 				D93F886626471A7300397283 /* SlideUpViewController.swift in Sources */,
 				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
@@ -785,12 +800,13 @@
 				BF44C93A2640016500238035 /* ShopAppointmentViewController.swift in Sources */,
 				BF44C8F1264000E900238035 /* GetUserResponseModel.swift in Sources */,
 				BF44C9A7264001CE00238035 /* CheckBoxView.swift in Sources */,
+				D93F888B264AB14900397283 /* GetHotelsMobileRequestModel.swift in Sources */,
 				BF44C93B2640016500238035 /* ShopAppointmentView.swift in Sources */,
 				BF44C8E6264000E200238035 /* ExtensionUIApplication.swift in Sources */,
 				BF44C976264001A400238035 /* BaseCollectionViewCell.swift in Sources */,
 				BF44C905264000FA00238035 /* BaseApiRequestBody.swift in Sources */,
+				D93F887B264AAA4B00397283 /* GetInHoseListResponseModel.swift in Sources */,
 				BF44C8F3264000E900238035 /* GetMyInfoResponseModel.swift in Sources */,
-				D93F885326445D2A00397283 /* GetHotelsMobileRequestModel.swift in Sources */,
 				D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */,
 				BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */,
 				BF44C8E7264000E200238035 /* ExtensionUIColor.swift in Sources */,
