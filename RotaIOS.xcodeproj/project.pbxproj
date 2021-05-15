@@ -102,6 +102,8 @@
 		D93F888B264AB14900397283 /* GetHotelsMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F888A264AB14900397283 /* GetHotelsMobileRequestModel.swift */; };
 		D93F8890264B069000397283 /* AddManuelTouristCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F888F264B069000397283 /* AddManuelTouristCustomView.swift */; };
 		D93F8895264B072200397283 /* AddManuelTouristCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93F8894264B072200397283 /* AddManuelTouristCustomView.xib */; };
+		D93F889A264BC9A300397283 /* GetSelectListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F8899264BC9A300397283 /* GetSelectListResponseModel.swift */; };
+		D93F889F264EFF7800397283 /* GetSaveForMobileRequestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F889E264EFF7800397283 /* GetSaveForMobileRequestList.swift */; };
 		D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -232,6 +234,8 @@
 		D93F888A264AB14900397283 /* GetHotelsMobileRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileRequestModel.swift; sourceTree = "<group>"; };
 		D93F888F264B069000397283 /* AddManuelTouristCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddManuelTouristCustomView.swift; sourceTree = "<group>"; };
 		D93F8894264B072200397283 /* AddManuelTouristCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddManuelTouristCustomView.xib; sourceTree = "<group>"; };
+		D93F8899264BC9A300397283 /* GetSelectListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSelectListResponseModel.swift; sourceTree = "<group>"; };
+		D93F889E264EFF7800397283 /* GetSaveForMobileRequestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSaveForMobileRequestList.swift; sourceTree = "<group>"; };
 		D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideMarketRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -368,6 +372,7 @@
 				BF44C8F9264000F000238035 /* CreateTokenRequestModel.swift */,
 				BF44C8F8264000F000238035 /* GetUserRequestModel.swift */,
 				D93F8882264AAAE500397283 /* GetInHouseListRequestModel.swift */,
+				D93F889E264EFF7800397283 /* GetSaveForMobileRequestList.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				BF44C8ED264000E900238035 /* GetUserResponseModel.swift */,
 				D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */,
 				D93F887A264AAA4B00397283 /* GetInHoseListResponseModel.swift */,
+				D93F8899264BC9A300397283 /* GetSelectListResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -760,10 +766,12 @@
 				BF44C909264000FA00238035 /* NetworkManager.swift in Sources */,
 				BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */,
 				BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */,
+				D93F889F264EFF7800397283 /* GetSaveForMobileRequestList.swift in Sources */,
 				BF44C9332640015A00238035 /* MainPageTableViewCell.swift in Sources */,
 				D93F8883264AAAE500397283 /* GetInHouseListRequestModel.swift in Sources */,
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
 				D93F886626471A7300397283 /* SlideUpViewController.swift in Sources */,
+				D93F889A264BC9A300397283 /* GetSelectListResponseModel.swift in Sources */,
 				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
 				BF44C97D264001AA00238035 /* FooterCustomView.swift in Sources */,
 				BF44C906264000FA00238035 /* ServiceEndPoint.swift in Sources */,

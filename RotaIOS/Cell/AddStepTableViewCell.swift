@@ -7,63 +7,39 @@
 
 import UIKit
 
-protocol FavoriteViewDelegate {
-    func favoriteBoxTapped(isremember : Bool)
+protocol TouchDelegate {
+    func touchTapped( touch : [String])
 }
 
 class AddStepTableViewCell: BaseTableViewCell {
-    
-    var favoriteViewDelegate : FavoriteViewDelegate?
 
-    
-    @IBOutlet weak var cornerImage: UIImageView!
+    @IBOutlet weak var checkBoxView: CheckBoxView!
     @IBOutlet weak var labelText: UILabel!
-   
-    @IBOutlet weak var imageFavorite: UIImageView!
+    var touchDelegate : TouchDelegate?
+    var nameList :[String] = []
     var isCheckRemember = false
+    var addStepCustomView : AddStepCustomView?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        self.cornerImage.addGestureRecognizer(tap)
-        self.cornerImage.isUserInteractionEnabled = true
-        
-        self.imageFavorite.isHidden = true
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        
-        // Configure the view for the selected state
-    
-        
+   
       
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
 
-
-/*  override func layoutSublayers(of layer: CALayer) {
-    searchBar.clipsToBounds = true
-    searchBar.layer.cornerRadius = 10
-    if #available(iOS 11.0, *) {
-        searchBar.layer.maskedCorners = [ .layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner,.layerMaxXMaxYCorner]
-    } else {
-        // Fallback on earlier versions
-    }
-}*/
-
-
-@objc func handleTap(_ sender: UITapGestureRecognizer) {
+        // Configure the view for the selected state
+       
+       
+       // self.touchDelegate?.touchTapped(touch: self.nameList)
         
-    self.isCheckRemember = !isCheckRemember
-    if self.isCheckRemember{
-       imageFavorite.isHidden = false
-    }else {
-       imageFavorite.isHidden = true
+       // self.addStepCustomView?.sendInfoDelegate = self
     }
-    self.favoriteViewDelegate?.favoriteBoxTapped(isremember: true)
-    }
- 
+    
+
+
 }
+
+

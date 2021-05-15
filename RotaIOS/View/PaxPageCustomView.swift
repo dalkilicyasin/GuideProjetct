@@ -17,6 +17,7 @@ class PaxPageCustomView : UIView {
     
     var touristAddView : TouristAddCustomView?
     var tempTouristAddView : TempTouristAddCustomView?
+    var addManuelListView : AddManuelTouristCustomView?
     var remember = true
     var isFilteredTextEmpty = true
     var filteredData : [String] = []
@@ -32,7 +33,6 @@ class PaxPageCustomView : UIView {
     @IBOutlet weak var viewTouristAdded: UIView!
     @IBOutlet weak var labelTouristAdded: UILabel!
   
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -66,9 +66,7 @@ class PaxPageCustomView : UIView {
                 self.tableView.delegate = self
                 self.tableView.dataSource = self
                 self.tableView.reloadData()
-              
-    
-             
+   
             }else{
                 print("data has not recived")
             }
@@ -91,53 +89,37 @@ class PaxPageCustomView : UIView {
 
         //silinecek
       
-      /*  let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        self.viewTouristAdded.addGestureRecognizer(tap)
-        self.viewTouristAdded.isUserInteractionEnabled = true*/
-        let tap = UITapGestureRecognizer(target: self, action: #selector(showMiracle))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.viewTouristAdded.addGestureRecognizer(tap)
         self.viewTouristAdded.isUserInteractionEnabled = true
 
     }
-    
-    @objc func showMiracle() {
-        if let topVC = UIApplication.getTopViewController() {
-            self.tempTouristAddView = TempTouristAddCustomView()
-            self.tempTouristAddView?.modalPresentationStyle = .custom
-            self.tempTouristAddView?.transitioningDelegate = self
-            topVC.present(tempTouristAddView!, animated: true, completion: nil)
-            self.tempTouristAddView?.nameListed = self.tempNameList
-        }
 
-      }
  
     // silinecek
-  /*
+  
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
-        if self.remember == true{
-            if let topVC = UIApplication.getTopViewController() {
-                UIView.animate(withDuration: 0, animations: {
-                    self.touristAddView = TouristAddCustomView()
-                    self.touristAddView?.nameList = self.tempNameList
-                    self.touristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
-                    topVC.view.addSubview(self.touristAddView!)
-                }, completion: { (finished) in
-                    if finished{
-                        
-                    }
-                })
-            }
-            
-            print("true")
-        }else{
-            print("false")
-            self.touristAddView!.removeFromSuperview()
-        }
-    } */
+ if let topVC = UIApplication.getTopViewController() {
+     
+     UIView.animate(withDuration: 0, animations: {
+         self.tempTouristAddView = TempTouristAddCustomView()
+         self.tempTouristAddView?.nameListed = self.tempNameList
+         self.tempTouristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 800)
+         topVC.view.addSubview(self.tempTouristAddView!)
+     }, completion: { (finished) in
+         if finished{
+             
+         }
+     })
+     self.tempTouristAddView?.nameListed = self.tempNameList
+    
+ }
+    }
 }
 
 extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
             if isFilteredTextEmpty == false {
@@ -149,6 +131,7 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
              }
         
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PaxPageTableViewCell.identifier) as! PaxPageTableViewCell
@@ -179,6 +162,7 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
             print("selected")
             
         }
+
     }
 }
 
@@ -200,19 +184,19 @@ extension PaxPageCustomView : UISearchBarDelegate {
         }
         self.tableView.reloadData()
     }
-}
 
+}
 extension PaxPageCustomView : PaxPageCounterDelegate {
+    
     func checkboxCounter(checkCounter: Bool, touristName: String) {
-        if checkCounter == true {
+        if checkCounter {
             self.counter += 1
             print(self.counter)
             self.labelTouristAdded.text = "\(counter) Tourist Added"
             self.tempNameList.append(touristName)
-            let filter = paxesNameList.filter{($0.text?.contains(touristName) ?? false)}
-            self.filteredPaxesList = filter
-            print(filteredPaxesList)
-        }else if checkCounter == false {
+      
+        }
+        else{
             self.counter -= 1
             print(self.counter)
             self.labelTouristAdded.text = "\(counter) Tourist Added"
@@ -226,15 +210,13 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                 tempIndex += 1
             }
         }
+        let filter = paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
+        self.filteredPaxesList.append(filter[0])
+        print(filteredPaxesList)
     }
+}
     
-}
 
-extension PaxPageCustomView : UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        PresentationController(presentedViewController: presented, presenting: presenting)
-    }
-}
 
 
 

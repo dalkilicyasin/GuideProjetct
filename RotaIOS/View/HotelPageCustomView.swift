@@ -24,7 +24,7 @@ class HotelPageCustomView : UIView {
     var marketList : [GetGuideMarketResponseModel] = []
     var filteredMarketList : [GetGuideMarketResponseModel] = []
     var filteredHotelList : [GetHotelsMobileResponseModel] = []
-
+    
     @IBOutlet weak var checkBoxView: CheckBoxView!
     
     override init(frame: CGRect) {
@@ -101,7 +101,7 @@ class HotelPageCustomView : UIView {
             }
             
             print(userDefaultsData.getHotelId()!)
-
+            
         }
         
         self.marketMainTextCustomView.headerLAbel.text = "Market"
@@ -130,7 +130,7 @@ extension HotelPageCustomView : UISearchBarDelegate {
         if searchText.elementsEqual(""){
             self.isFilteredTextEmpty = true
             self.hotelMenu.dataSource = self.filteredData
-        
+            
             
         }else {
             self.isFilteredTextEmpty = false
@@ -146,19 +146,19 @@ extension HotelPageCustomView : UISearchBarDelegate {
             self.hotelMenu.dataSource.append(listofhotel.text ?? "")
         }
     }
-
+    
 }
 
 extension HotelPageCustomView : CheckBoxViewDelegate {
     func checkBoxTapped(isremember: Bool) {
-        if isremember == true {
-           
-            let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
-                
-                if response.count > 0 {
-                    print(response)
-                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+        
+        let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
+            
+            if response.count > 0 {
+                print(response)
+                //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                if isremember {
                     
                     self.hotelList = response
                     for listOfArray in self.hotelList {
@@ -168,25 +168,13 @@ extension HotelPageCustomView : CheckBoxViewDelegate {
                     self.hotelMenu.separatorColor = UIColor.gray
                     self.hotelMenu.textColor = .white
                     self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView.mainLabel
+                    
                 }else{
-                    print("data has not recived")
-                }
-            }
-       
-        }
-        else if isremember == false{
-            
-            let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
-                
-                if response.count > 0 {
                     
                     self.hotelMenu.dataSource.removeAll()
                     let filtered = response.filter({return ($0.guideHotel != 0)})
                     print("\(filtered)")
-                    
                     self.hotelList = filtered
-                    
                     for listofArray in self.hotelList {
                         self.hotelMenu.dataSource.append(listofArray.text ?? "")
                     }
@@ -195,13 +183,16 @@ extension HotelPageCustomView : CheckBoxViewDelegate {
                     self.hotelMenu.textColor = .white
                     self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView
                     
-                }else{
-                    print("data has not recived")
                 }
+                
+            }else{
+                print("data has not recived")
             }
-        }
+        }     
+        
     }
-    
 }
+
+
 
 

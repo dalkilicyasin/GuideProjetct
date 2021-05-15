@@ -13,8 +13,6 @@ protocol PaxPageCounterDelegate {
 
 class PaxPageTableViewCell: BaseTableViewCell{
 
-    
- 
     @IBOutlet weak var viewContent: UIView!
     @IBOutlet weak var labelPaxNameListCell: UILabel!
     @IBOutlet weak var checkBoxView: CheckBoxView!
@@ -45,11 +43,8 @@ class PaxPageTableViewCell: BaseTableViewCell{
 extension PaxPageTableViewCell : CheckBoxViewDelegate {
     func checkBoxTapped(isremember: Bool) {
         print(isremember)
-        if isremember == true {
-            self.paxPageCounterDelegate?.checkboxCounter(checkCounter: isremember, touristName: self.labelPaxNameListCell.text ?? "")
-        }else if isremember == false {
-            self.paxPageCounterDelegate?.checkboxCounter(checkCounter: isremember, touristName: self.labelPaxNameListCell.text ?? "")
-        }
+        self.paxPageCounterDelegate?.checkboxCounter(checkCounter: isremember, touristName: self.labelPaxNameListCell.text ?? "")
+      
     }
     
     

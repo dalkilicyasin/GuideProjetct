@@ -9,22 +9,51 @@ import Foundation
 
 import UIKit
 
-class TempTouristAddCustomView: UIViewController {
-    
-    var hasSetPointOrigin = false
-    var pointOrigin: CGPoint?
+
+class TempTouristAddCustomView : UIView{
+
     var addManuelTouristAddCustomView : AddManuelTouristCustomView?
+    @IBOutlet var headerView: UIView!
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var slideIdicator: UIView!
     @IBOutlet weak var buttonManuelAdd: UIButton!
     @IBOutlet weak var tableView: UITableView!
     var nameListed : [String] = []
-
+    var paxesNameList : [GetInHoseListResponseModel] = []
+    var filteredPaxesList : [GetInHoseListResponseModel] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
-        view.addGestureRecognizer(panGesture)
+
+ 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    func commonInit() {
+        Bundle.main.loadNibNamed(String(describing: TempTouristAddCustomView.self), owner: self, options: nil)
+        self.headerView.addCustomContainerView(self)
+        
+        let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: userDefaultsData.getHotelId(), marketId: userDefaultsData.getMarketId())
+        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseList, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+            
+            if response.count > 0 {
+                print(response)
+                //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                
+                self.paxesNameList = response
+        
+        
+            }else{
+                print("data has not recived")
+            }
+        }
+        
+      //  self.nameListed.append(self.addManuelTouristAddCustomView?.tempSaveManuelList[0] ?? "")
         
         self.slideIdicator.roundCorners(.allCorners, radius: 10)
         self.buttonManuelAdd.layer.cornerRadius = 10
@@ -39,19 +68,35 @@ class TempTouristAddCustomView: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(PaxPageTableViewCell.nib, forCellReuseIdentifier: PaxPageTableViewCell.identifier)
+        
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(removeButton))
+        self.slideIdicator.addGestureRecognizer(tap)
+        self.slideIdicator.isUserInteractionEnabled = true
+        
     }
     
-    override func viewDidLayoutSubviews() {
-        if !hasSetPointOrigin {
-            hasSetPointOrigin = true
-            pointOrigin = self.view.frame.origin
+    @objc func removeButton(){
+        
+       
+        for updateList in self.nameListed {
+            let filter = self.paxesNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
+            
+            self.filteredPaxesList.append(filter[0])
+           // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
         }
+    
+        print("list:\(self.filteredPaxesList)")
+        self.removeFromSuperview()
     }
+
+
     @IBAction func addManuelButton(_ sender: Any) {
        
         if let topVC = UIApplication.getTopViewController() {
             UIView.animate(withDuration: 0, animations: {
+              
                 self.addManuelTouristAddCustomView = AddManuelTouristCustomView()
+                self.addManuelTouristAddCustomView?.tempSaveManuelList = self.nameListed
                 self.addManuelTouristAddCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
                 topVC.view.addSubview(self.addManuelTouristAddCustomView!)
             }, completion: { (finished) in
@@ -59,32 +104,13 @@ class TempTouristAddCustomView: UIViewController {
                     
                 }
             })
+        
         }
-
+      //  self.removeFromSuperview()
         
-    }
-    @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: view)
-        
-        // Not allowing the user to drag the view upward
-        guard translation.y >= 0 else { return }
-        
-        // setting x as 0 because we don't want users to move the frame side ways!! Only want straight up or down
-        view.frame.origin = CGPoint(x: 0, y: self.pointOrigin!.y + translation.y)
-        
-        if sender.state == .ended {
-            let dragVelocity = sender.velocity(in: view)
-            if dragVelocity.y >= 1300 {
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                // Set back to original position of the view controller
-                UIView.animate(withDuration: 0.3) {
-                    self.view.frame.origin = self.pointOrigin ?? CGPoint(x: 0, y: 400)
-                }
-            }
-        }
     }
 }
+
 
 extension TempTouristAddCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,10 +135,12 @@ extension TempTouristAddCustomView : UITableViewDelegate, UITableViewDataSource 
     }  
 }
 
-extension TempTouristAddCustomView : UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        PresentationController(presentedViewController: presented, presenting: presenting)
-    }
-}
+
+/*
+let filter = paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
+self.filteredPaxesList.append(filter[0])
+print(filteredPaxesList)
+
+*/
 
 
