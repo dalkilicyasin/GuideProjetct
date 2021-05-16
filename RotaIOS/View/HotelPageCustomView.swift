@@ -52,6 +52,8 @@ class HotelPageCustomView : UIView {
                 
                 for listOfArray in self.marketList {
                     self.marketMenu.dataSource.append(listOfArray.text ?? "")
+                   //
+                    
                 }
                 self.marketMenu.backgroundColor = UIColor.grayColor
                 self.marketMenu.separatorColor = UIColor.gray
@@ -87,8 +89,11 @@ class HotelPageCustomView : UIView {
             self.filteredMarketList = filtered
             for listofarray in self.filteredMarketList {
                 userDefaultsData.saveMarketId(marketId: String(listofarray.value ?? 0))
+                userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "")
+                
             }
             print(userDefaultsData.getMarketId()!)
+            print(userDefaultsData.getMarketGroupId()!)
         }
         
         self.hotelMenu.selectionAction = { index, title in
@@ -98,9 +103,11 @@ class HotelPageCustomView : UIView {
             self.filteredHotelList = filtered
             for listofArray in self.filteredHotelList {
                 userDefaultsData.saveHotelId(hotelId: String(listofArray.value ?? 0))
+                userDefaultsData.saveHotelArea(hotelId: String(listofArray.area ?? 0))
             }
             
             print(userDefaultsData.getHotelId()!)
+            print(userDefaultsData.getHotelArea()!)
             
         }
         

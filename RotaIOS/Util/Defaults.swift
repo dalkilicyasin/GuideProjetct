@@ -20,7 +20,8 @@ public class Defaults{
         case SaleDate
         case MarketId
         case HotelId
-     
+        case MarketGroupId
+        case HotelArea
     }
     
    public init(){}
@@ -112,7 +113,7 @@ public class Defaults{
         return data
     }
     
-    // MarketID
+    // Market  ID(Value değeri olan)
     
     public func saveMarketId(marketId:String){
         let preferences = UserDefaults.standard
@@ -130,7 +131,25 @@ public class Defaults{
         return data
     }
     
-    // HotelID
+    // Save Market ID(id değeri olan)
+    
+    public func saveMarketGroupId(marketId:String){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .MarketGroupId)
+        preferences.set(marketId, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getMarketGroupId() -> String! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .MarketGroupId)) == nil {
+            return nil
+        }
+        let data:String = preferences.value(forKey: getIdentifier(type: .MarketGroupId)) as! String
+        return data
+    }
+    
+    // HotelID(value değeri olan)
     
     public func saveHotelId(hotelId:String){
         let preferences = UserDefaults.standard
@@ -147,6 +166,25 @@ public class Defaults{
         let data:String = preferences.value(forKey: getIdentifier(type: .HotelId)) as! String
         return data
     }
+    
+    // HotelArea
+    
+    public func saveHotelArea(hotelId:String){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .HotelArea)
+        preferences.set(hotelId, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getHotelArea() -> String! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .HotelArea)) == nil {
+            return nil
+        }
+        let data:String = preferences.value(forKey: getIdentifier(type: .HotelArea)) as! String
+        return data
+    }
+    
     
     private  func  getIdentifier(type:DefaultsType)->String {
         switch type {
@@ -165,6 +203,10 @@ public class Defaults{
             return "MarketId"
         case .HotelId:
             return "HotelId"
+        case .MarketGroupId:
+            return "MarketGroupId"
+        case .HotelArea:
+            return "HotelArea"
         }
     }
 }

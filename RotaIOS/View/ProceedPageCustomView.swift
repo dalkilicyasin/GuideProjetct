@@ -20,7 +20,9 @@ class ProceedPageCustomView : UIView {
     @IBOutlet weak var notesMainText: MainTextCustomView!
     @IBOutlet weak var pickUpTimeMainText: MainTextCustomView!
     @IBOutlet weak var sendButton: UIButton!
-   
+    
+    var paxFilteredList : [String] = []
+    
     let datePicker = UIDatePicker()
    let timePicker = UIDatePicker()
     let dateToolBar = UIToolbar()
@@ -66,11 +68,30 @@ class ProceedPageCustomView : UIView {
         
         self.createDatePicker()
         self.createTimePicker()
+       
+        print(self.paxFilteredList)
+       
+   
+    
     }
     
 
+    
+
     @IBAction func sendButtonClicked(_ sender: Any) {
+        
+       
+     
+   /*
+        NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveFormMobile ) { (response: GetSaveForMobileRequestList) in
+            if response != nil {
+                print(response)
+            }else{
+                let alert = UIAlertController(title: "Errror", message: "Token has not recived", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             
+            }
+        } */
       
 }
     

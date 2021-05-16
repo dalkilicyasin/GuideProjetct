@@ -15,11 +15,11 @@ protocol SaveManuelListProtocol {
 }
 
 class AddManuelTouristCustomView : UIView {
- 
+    
     
     var genderMenu = DropDown()
     var genderList = ["MR.","MS."]
- 
+    
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var viewSlideUp: UIView!
@@ -34,7 +34,7 @@ class AddManuelTouristCustomView : UIView {
     var tempTouristAddCustomView : TempTouristAddCustomView?
     var tempSaveManuelList : [String] = []
     var saveMAnuelListDelegate : SaveManuelListProtocol?
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -77,7 +77,7 @@ class AddManuelTouristCustomView : UIView {
         self.viewRoom.headerLAbel.text = "Room"
         self.viewPhone.headerLAbel.text = "Phone"
         self.viewCheckOut.headerLAbel.text = "Check Out Date"
-     
+        
         
         self.viewName.mainLabel.isHidden = true
         self.viewName.mainText.isHidden = false
@@ -101,7 +101,7 @@ class AddManuelTouristCustomView : UIView {
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(slideUP))
         self.viewSlideUp.addGestureRecognizer(tap)
         self.viewSlideUp.isUserInteractionEnabled = true
- 
+        
         
     }
     @objc func didTappedItem() {
@@ -123,18 +123,18 @@ class AddManuelTouristCustomView : UIView {
         }
         self.removeFromSuperview()
     }
-       
-
-    @IBAction func addManuelButton(_ sender: Any) {
     
-        self.tempSaveManuelList.append(self.viewGender.mainLabel.text ?? "")
+    
+    @IBAction func addManuelButton(_ sender: Any) {
+        
+        //  self.tempSaveManuelList.append(self.viewGender.mainLabel.text ?? "")
         self.tempSaveManuelList.append(self.viewName.mainText.text ?? "")
-        self.tempSaveManuelList.append(self.viewBirthDay.mainText.text ?? "")
-        self.tempSaveManuelList.append(self.viewOperator.mainText.text ?? "")
-        self.tempSaveManuelList.append(self.viewRoom.mainText.text ?? "")
-        self.tempSaveManuelList.append(self.viewPhone.mainText.text ?? "")
-        self.tempSaveManuelList.append(self.viewCheckOut.mainText.text ?? "")
-       
+        // self.tempSaveManuelList.append(self.viewBirthDay.mainText.text ?? "")
+        // self.tempSaveManuelList.append(self.viewOperator.mainText.text ?? "")
+        // self.tempSaveManuelList.append(self.viewRoom.mainText.text ?? "")
+        // self.tempSaveManuelList.append(self.viewPhone.mainText.text ?? "")
+        // self.tempSaveManuelList.append(self.viewCheckOut.mainText.text ?? "")
+        
         print(self.tempSaveManuelList)
         
         if let topVC = UIApplication.getTopViewController() {
@@ -147,11 +147,14 @@ class AddManuelTouristCustomView : UIView {
                     
                 }
             })
-            self.tempTouristAddCustomView?.nameListed = self.tempSaveManuelList
+            for listarray in self.tempSaveManuelList {
+                self.tempTouristAddCustomView?.tempNameListed.append(listarray)
+            }
+            
         }
         self.removeFromSuperview()
     }
 }
 
 
-  
+

@@ -79,7 +79,6 @@ class StepsPageCustomView : UIView {
                 UIView.animate(withDuration: 0, animations: {
                     self.addStepCustomView = AddStepCustomView()
                     self.addStepCustomView?.sendInfoDelegate = self
-                    
                     self.addStepCustomView!.frame = CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 896)
                     topVC.view.addSubview(self.addStepCustomView!)
                 }, completion: { (finished) in

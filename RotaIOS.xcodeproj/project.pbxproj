@@ -104,6 +104,8 @@
 		D93F8895264B072200397283 /* AddManuelTouristCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93F8894264B072200397283 /* AddManuelTouristCustomView.xib */; };
 		D93F889A264BC9A300397283 /* GetSelectListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F8899264BC9A300397283 /* GetSelectListResponseModel.swift */; };
 		D93F889F264EFF7800397283 /* GetSaveForMobileRequestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F889E264EFF7800397283 /* GetSaveForMobileRequestList.swift */; };
+		D93F88A42651AAE300397283 /* GetTouristInfoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F88A32651AAE200397283 /* GetTouristInfoRequestModel.swift */; };
+		D93F88A92651AB1000397283 /* GetTouristInfoResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F88A82651AB1000397283 /* GetTouristInfoResponseModel.swift */; };
 		D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -236,6 +238,8 @@
 		D93F8894264B072200397283 /* AddManuelTouristCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddManuelTouristCustomView.xib; sourceTree = "<group>"; };
 		D93F8899264BC9A300397283 /* GetSelectListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSelectListResponseModel.swift; sourceTree = "<group>"; };
 		D93F889E264EFF7800397283 /* GetSaveForMobileRequestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSaveForMobileRequestList.swift; sourceTree = "<group>"; };
+		D93F88A32651AAE200397283 /* GetTouristInfoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTouristInfoRequestModel.swift; sourceTree = "<group>"; };
+		D93F88A82651AB1000397283 /* GetTouristInfoResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTouristInfoResponseModel.swift; sourceTree = "<group>"; };
 		D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideMarketRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -373,6 +377,7 @@
 				BF44C8F8264000F000238035 /* GetUserRequestModel.swift */,
 				D93F8882264AAAE500397283 /* GetInHouseListRequestModel.swift */,
 				D93F889E264EFF7800397283 /* GetSaveForMobileRequestList.swift */,
+				D93F88A32651AAE200397283 /* GetTouristInfoRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */,
 				D93F887A264AAA4B00397283 /* GetInHoseListResponseModel.swift */,
 				D93F8899264BC9A300397283 /* GetSelectListResponseModel.swift */,
+				D93F88A82651AB1000397283 /* GetTouristInfoResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -816,6 +822,7 @@
 				D93F887B264AAA4B00397283 /* GetInHoseListResponseModel.swift in Sources */,
 				BF44C8F3264000E900238035 /* GetMyInfoResponseModel.swift in Sources */,
 				D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */,
+				D93F88A42651AAE300397283 /* GetTouristInfoRequestModel.swift in Sources */,
 				BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */,
 				BF44C8E7264000E200238035 /* ExtensionUIColor.swift in Sources */,
 				BF44C983264001B000238035 /* MainTextCustomView.swift in Sources */,
@@ -825,6 +832,7 @@
 				D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */,
 				BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */,
 				BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */,
+				D93F88A92651AB1000397283 /* GetTouristInfoResponseModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
