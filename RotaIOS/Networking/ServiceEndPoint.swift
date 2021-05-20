@@ -16,9 +16,10 @@ public enum ServiceEndPoint: String {
     case HotelPage = "/api/api/IndShop/GetGuideMarkets"
     case GetHotelsMobie = "/api/api/TourSale/GetHotelsMobile"
     case GetInHouseList = "/api/api/IndShop/GetInHouseList"
-    case GetTouristInfo = "api/api/IndShop/GetTouristInfo"
+    case GetTouristInfo = "/api/api/IndShop/GetTouristInfo"
     case GetSelectList = "/api/api/Company/GetSelectList"
     case GetSaveForMobile = "/api/api/IndShop/Save"
+    case GetGuideInfo =  "/api/api/IndShop/GetGuideInfo"
 }
 
 

@@ -13,13 +13,13 @@ import ObjectMapper
 public class  GetTouristInfoRequestModel : Mappable{
     
     public var touristId : Int!
-    public var resNo : Int!
+    public var resNo : String!
     
     public required init?(map: Map) {
         
     }
     
-    public init(touristId: Int, resNo: Int) {
+    public init(touristId: Int, resNo: String) {
         self.touristId = touristId
         self.resNo = resNo
     }
@@ -29,7 +29,7 @@ public class  GetTouristInfoRequestModel : Mappable{
     
     public func requestPathString()->String{
         // 2. parametre eklemek için & işareti koy
-        return "?touristId=\(self.touristId ?? 0)&resNo=\(self.resNo ?? 0)"
+        return "?touristId=\(self.touristId ?? 0)&resNo=\(self.resNo ?? "")"
     }
     
 }

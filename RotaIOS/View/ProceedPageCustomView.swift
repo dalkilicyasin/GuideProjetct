@@ -20,13 +20,22 @@ class ProceedPageCustomView : UIView {
     @IBOutlet weak var notesMainText: MainTextCustomView!
     @IBOutlet weak var pickUpTimeMainText: MainTextCustomView!
     @IBOutlet weak var sendButton: UIButton!
+    var dateString = ""
+    var timeString = ""
     
     var paxFilteredList : [String] = []
     
     let datePicker = UIDatePicker()
-   let timePicker = UIDatePicker()
+    let timePicker = UIDatePicker()
     let dateToolBar = UIToolbar()
     let timeToolBar = UIToolbar()
+    
+    var paxListinProceedPage : [Paxes] = []
+    var stepsListinProceedPage : [Steps] = []
+    
+    var adultCountinProceedPage = 0
+    var childCountinProceedPage = 0
+    var infantCountinProceedPage = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,7 +78,7 @@ class ProceedPageCustomView : UIView {
         self.createDatePicker()
         self.createTimePicker()
        
-        print(self.paxFilteredList)
+       
        
    
     
@@ -80,9 +89,9 @@ class ProceedPageCustomView : UIView {
 
     @IBAction func sendButtonClicked(_ sender: Any) {
         
-       
-     
    /*
+        let saveForMobileRequestModel = GetSaveForMobileRequestList.init(iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId(), iND_MARKETGROUPREF: <#T##Int#>, iND_MARKETREF: <#T##Int#>, iND_AREAREF: <#T##Int#>, iND_HOTELREF: <#T##Int#>, iND_NOTE: self.notesMainText.mainText.text ?? "", iND_SHOPPICKUPTIME: self.timeString, strPaxes: self.paxListinProceedPage, strSteps: self.stepsListinProceedPage)
+            
         NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveFormMobile ) { (response: GetSaveForMobileRequestList) in
             if response != nil {
                 print(response)
@@ -91,8 +100,11 @@ class ProceedPageCustomView : UIView {
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             
             }
-        } */
-      
+        }*/
+        print("\(userDefaultsData.getMarketGruopId()),\(userDefaultsData.getMarketId() ?? ""),\(userDefaultsData.getHotelArea() ?? ""),\(userDefaultsData.getHotelId() ?? "")")
+        print(self.paxListinProceedPage)
+        print(self.stepsListinProceedPage)
+        print(self.adultCountinProceedPage)
 }
     
     func createDatePicker() {
@@ -118,6 +130,8 @@ class ProceedPageCustomView : UIView {
         self.headerView.endEditing(true)
         
         print(formatter.string(from: datePicker.date))
+        
+        self.dateString = formatter.string(from: datePicker.date)
     }
     
     
@@ -143,6 +157,7 @@ class ProceedPageCustomView : UIView {
         self.pickUpTimeMainText.mainText.text = formatter.string(for: timePicker.date)
         self.headerView.endEditing(true)
         print(formatter.string(from: timePicker.date))
+        self.timeString = formatter.string(from: datePicker.date)
     }
 }
 

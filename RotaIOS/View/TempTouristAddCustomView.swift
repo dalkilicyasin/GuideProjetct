@@ -9,10 +9,12 @@ import Foundation
 
 import UIKit
 
-
+protocol TempAddPaxesListDelegate {
+    func tempAddList( listofpaxes : [Paxes] )
+}
 
 class TempTouristAddCustomView : UIView{
-
+    
     var addManuelTouristAddCustomView : AddManuelTouristCustomView?
     @IBOutlet var headerView: UIView!
     @IBOutlet var contentView: UIView!
@@ -25,6 +27,22 @@ class TempTouristAddCustomView : UIView{
     var filteredPaxesList : [GetInHoseListResponseModel] = []
     var paxesList : [Paxes] = []
     var touristInfoList : [GetTouristInfoResponseModel] = []
+    
+    var paxID : [String] = [] 
+    var oprID : [Int] = []
+    var oprName : [String] = []
+    
+    var reservationNo : [String] = []
+    var hotelName : [String] = []
+    var ageGroup : [String] = []
+    var name : [String] = []
+    var birthDay : [String] = []
+    var passport : [String] = []
+    var touristIdRef : [Int] = []
+    var sendingListofPaxes : [Paxes] = []
+    
+    var getInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
+    var temppAddPaxesListDelegate : TempAddPaxesListDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,26 +64,26 @@ class TempTouristAddCustomView : UIView{
             if response.count > 0 {
                 print(response)
                 // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-     
+                
                 self.paxesNameList = response
-         
+                
             }else{
                 print("data has not recived")
             }
         }
         
-      //  self.nameListed.append(self.addManuelTouristAddCustomView?.tempSaveManuelList[0] ?? "")
+        //  self.nameListed.append(self.addManuelTouristAddCustomView?.tempSaveManuelList[0] ?? "")
         
         self.slideIdicator.roundCorners(.allCorners, radius: 10)
         self.buttonManuelAdd.layer.cornerRadius = 10
         self.buttonManuelAdd.layer.masksToBounds = true
         self.buttonManuelAdd.layer.borderWidth = 1
         self.buttonManuelAdd.layer.borderColor = UIColor.green.cgColor
-   
+        
         self.contentView.backgroundColor = UIColor.grayColor
         self.contentView.layer.cornerRadius = 10
         self.tableView.backgroundColor = UIColor.grayColor
-     
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(PaxPageTableViewCell.nib, forCellReuseIdentifier: PaxPageTableViewCell.identifier)
@@ -78,82 +96,89 @@ class TempTouristAddCustomView : UIView{
     
     @objc func removeButton(){
         
+        self.filteredPaxesList.removeAll()
         
-        for updateList in self.nameListed {
-           let filter = self.paxesNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
-    
-            self.filteredPaxesList.append(filter[0])
-           // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
-        }
-        print("list:\(self.filteredPaxesList)")
-        
-        var touristId : [Int] = []
-        var resNo : [Int] = []
-      
-        for listarray in filteredPaxesList {
-            touristId.append(listarray.value ?? 0)
-            resNo.append(listarray.value ?? 0)
-        }
-        
-        let getInTouristInfoRequestModel = GetTouristInfoRequestModel(touristId: touristId[0], resNo: resNo[0])
-        
-        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModel.requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
-            
-            if response.count > 0 {
-                print(response)
-                // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-     
-                self.touristInfoList = response
-         
-            }else{
-                print("data has not recived")
+        if nameListed.count != 0 {
+            for updateList in self.nameListed {
+                let filter = self.paxesNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
+                
+                self.filteredPaxesList.append(filter[0])
+                // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
             }
-        }
-        
-        var paxID : [String] = [] //kullanıp kullanılmayacağı belli değil 0 aldım
-        var oprID : [Int] = []
-        var oprName : [String] = []
-      //  var oprType : [Int] = [] // ne olduğu belli değil 1 aldım
-        var reservationNo : [String] = []
-        var hotelName : [String] = []
-        var ageGroup : [String] = []
-        var name : [String] = []
-        var birthDay : [String] = []
-        var passport : [String] = []
-        var touristIdRef : [Int] = []
-        
-        for listarray in touristInfoList {
-            paxID.append(listarray.id ?? "")
-            oprID.append(listarray.oprId ?? 0)
-            oprName.append(listarray.operator ?? "")
-            reservationNo.append(listarray.resNo ?? "")
-            hotelName.append(listarray.hotelName ?? "")
-            ageGroup.append(listarray.ageGroup ?? "")
-            name.append(listarray.name ?? "")
-            birthDay.append(listarray.birthDay ?? "")
-            passport.append(listarray.passport ?? "")
+            print("list:\(self.filteredPaxesList)")
             
+            var touristId : [Int] = []
+            var resNo : [String] = []
+            var tempGetInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
+            
+            touristId.removeAll()
+            resNo.removeAll()
+            
+            for listarray in self.filteredPaxesList {
+                touristId.append(listarray.value ?? 0)
+                resNo.append(listarray.resNo ?? "")
+            }
+            
+            tempGetInTouristInfoRequestModel.removeAll()
+            
+            for i in 0...filteredPaxesList.count - 1 {
+                tempGetInTouristInfoRequestModel.append(GetTouristInfoRequestModel(touristId: touristId[i], resNo: resNo[i]))
+            }
+            
+            self.getInTouristInfoRequestModel = tempGetInTouristInfoRequestModel
+            
+           
+            for i in 0...(self.getInTouristInfoRequestModel.count) - 1 {
+                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModel[i].requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                    
+                    if response.count > 0 {
+                        print(response)
+                        // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                        
+                        self.touristInfoList = response
+                        
+                        for listarray in self.touristInfoList {
+                           // self.paxID.append(listarray.id ?? "")
+                            self.oprID.append(listarray.oprId ?? 0)
+                            self.oprName.append(listarray.operator ?? "")
+                            self.reservationNo.append(listarray.resNo ?? "")
+                            self.hotelName.append(listarray.hotelName ?? "")
+                            self.ageGroup.append(listarray.ageGroup ?? "")
+                            self.name.append(listarray.name ?? "")
+                            self.birthDay.append(listarray.birthDay ?? "")
+                            self.passport.append(listarray.passport ?? "")
+                            self.touristIdRef.append(listarray.touristIdRef ?? 0)
+                        }
+                        
+                        for i in 0...(self.touristInfoList.count) - 1 {
+                            
+                            self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
+                            
+                            self.sendingListofPaxes.append(self.paxesList[i])
+                        }
+                        self.temppAddPaxesListDelegate?.tempAddList(listofpaxes: self.sendingListofPaxes)
+                        self.removeFromSuperview()
+                        
+                    }else{
+                        print("data has not recived")
+                    }
+                }
+            }
+                
+         
         }
         
-        
-        
-          for i in  0...(self.nameListed.count) - 1 {
-            self.paxesList.append(Paxes(action: 1, iD: 0, pAX_CHECKOUT_DATE: "", pAX_ID: 0, pAX_OPRID: oprID[i], pAX_OPRNAME: oprName[i], pAX_OPRTYPE: 1, pAX_ROWVERSION: 1, pAX_PHONE: "", hotelname: hotelName[i], pAX_GENDER: "MRS.", pAX_SOURCEREF: 0 , pAX_AGEGROUP: ageGroup[i], pAX_NAME: name[i], pAX_BIRTHDAY: birthDay[i], pAX_RESNO: reservationNo[i], pAX_PASSPORT: passport[i], pAX_ROOM: "1", pAX_TOURISTREF: touristIdRef[i] , pAX_STATUS: <#T##Int#>))
-          }
-          
-
-      
         self.removeFromSuperview()
     }
     
- 
-
-
+    
+    
+    
     @IBAction func addManuelButton(_ sender: Any) {
-       
+        
         if let topVC = UIApplication.getTopViewController() {
             UIView.animate(withDuration: 0, animations: {
-              
+                
                 self.addManuelTouristAddCustomView = AddManuelTouristCustomView()
                 self.addManuelTouristAddCustomView?.tempSaveManuelList = self.nameListed
                 self.addManuelTouristAddCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
@@ -163,10 +188,9 @@ class TempTouristAddCustomView : UIView{
                     
                 }
             })
-        
+            
         }
-      //  self.removeFromSuperview()
-    
+      
     }
 }
 
@@ -196,10 +220,10 @@ extension TempTouristAddCustomView : UITableViewDelegate, UITableViewDataSource 
 
 
 /*
-let filter = paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
-self.filteredPaxesList.append(filter[0])
-print(filteredPaxesList)
-
-*/
+ let filter = paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
+ self.filteredPaxesList.append(filter[0])
+ print(filteredPaxesList)
+ 
+ */
 
 

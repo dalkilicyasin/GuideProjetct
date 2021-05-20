@@ -12,6 +12,11 @@ import Foundation
 import UIKit
 import DropDown
 
+protocol StepsPageListDelegate {
+    func stepsPageList( listofsteps : [Steps] )
+}
+
+
 class StepsPageCustomView : UIView {
     
     @IBOutlet weak var firstMainTextView: MainTextCustomView!
@@ -25,6 +30,11 @@ class StepsPageCustomView : UIView {
     var addStepCustomView : AddStepCustomView?
    
     var nameList : [String] = []
+    var sendingListofSteps : [Steps] = []
+    var stepsPageListDelegate : StepsPageListDelegate?
+    var stepsList : [Steps] = []
+    var adlCount = 0
+    var chldCount = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -125,6 +135,30 @@ extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
            // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
         }
         print(self.filteredNameList)
+        
+        if self.filteredNameList.count > 0 {
+            
+            var companyValue : [Int] = []
+            var companyName  : [String] = []
+            var status : [Int] = []
+        
+            for listarray in self.filteredNameList {
+                companyValue.append(listarray.value ?? 0)
+                companyName.append(listarray.text ?? "")
+                status.append(listarray.sTATUS ?? 0)
+            }
+            
+            self.sendingListofSteps.removeAll()
+            for i in 0...(self.filteredNameList.count) - 1 {
+                
+                self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: 0, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: i+1 ))
+                
+                self.sendingListofSteps.append(self.stepsList[i])
+            }
+        }
+        
+     
+        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps)
     }
 
 }
@@ -143,6 +177,25 @@ extension StepsPageCustomView : SendInfoDelegate {
         }
         
         print(self.filteredNameList)
+        
+        var companyValue : [Int] = []
+        var companyName  : [String] = []
+        var status : [Int] = []
+    
+        for listarray in self.filteredNameList {
+            companyValue.append(listarray.value ?? 0)
+            companyName.append(listarray.text ?? "")
+            status.append(listarray.sTATUS ?? 0)
+        }
+        
+        self.sendingListofSteps.removeAll()
+        for i in 0...(self.filteredNameList.count) - 1 {
+            
+            self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: 0, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: i))
+            
+            self.sendingListofSteps.append(self.stepsList[i])
+        }
+        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps)
     }
 }
 

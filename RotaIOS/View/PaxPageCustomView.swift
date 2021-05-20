@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol PaxesListDelegate {
-    func paxesList(ischosen : Bool)
+    func paxesList(ischosen : Bool, sendingPaxesLis : [Paxes])
 }
 
 class PaxPageCustomView : UIView {
@@ -32,6 +32,23 @@ class PaxPageCustomView : UIView {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var viewTouristAdded: UIView!
     @IBOutlet weak var labelTouristAdded: UILabel!
+    var paxesListinPaxPage : [Paxes] = []
+    var touristInfoList : [GetTouristInfoResponseModel] = []
+    var getInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
+    var paxID : [String] = [] //kullanıp kullanılmayacağı belli değil 0 aldım
+    var oprID : [Int] = []
+    var oprName : [String] = []
+    //  var oprType : [Int] = [] // ne olduğu belli değil 1 aldım
+    var reservationNo : [String] = []
+    var hotelName : [String] = []
+    var ageGroup : [String] = []
+    var name : [String] = []
+    var birthDay : [String] = []
+    var passport : [String] = []
+    var touristIdRef : [Int] = []
+    var sendingListofPaxes : [Paxes] = []
+    var paxesList : [Paxes] = []
+    var equalableFilteredPaxList : [String] = []
   
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,9 +102,7 @@ class PaxPageCustomView : UIView {
         self.searchBar.delegate = self
         
         self.tableView.register(PaxPageTableViewCell.nib, forCellReuseIdentifier: PaxPageTableViewCell.identifier)
-       
-
-        //silinecek
+     
       
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.viewTouristAdded.addGestureRecognizer(tap)
@@ -95,8 +110,7 @@ class PaxPageCustomView : UIView {
 
     }
 
- 
-    // silinecek
+
   
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
@@ -105,6 +119,7 @@ class PaxPageCustomView : UIView {
      UIView.animate(withDuration: 0, animations: {
          self.tempTouristAddView = TempTouristAddCustomView()
          self.tempTouristAddView?.nameListed = self.tempNameList
+         self.tempTouristAddView?.temppAddPaxesListDelegate = self
          self.tempTouristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 800)
          topVC.view.addSubview(self.tempTouristAddView!)
      }, completion: { (finished) in
@@ -112,7 +127,7 @@ class PaxPageCustomView : UIView {
              
          }
      })
-     self.tempTouristAddView?.nameListed = self.tempNameList
+
     
  }
     }
@@ -155,9 +170,9 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch(indexPath.row) {
         case 0 :
-            self.paxesListDelegate?.paxesList(ischosen: true)
+            self.paxesListDelegate?.paxesList(ischosen: true, sendingPaxesLis: self.paxesListinPaxPage)
         case 1 :
-            self.paxesListDelegate?.paxesList(ischosen: true)
+            self.paxesListDelegate?.paxesList(ischosen: true, sendingPaxesLis: self.paxesListinPaxPage)
         default :
             print("selected")
             
@@ -189,12 +204,15 @@ extension PaxPageCustomView : UISearchBarDelegate {
 extension PaxPageCustomView : PaxPageCounterDelegate {
     
     func checkboxCounter(checkCounter: Bool, touristName: String) {
+      //  self.filteredPaxesList.removeAll()
+        let filter = self.paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
         if checkCounter {
+            
             self.counter += 1
             print(self.counter)
             self.labelTouristAdded.text = "\(counter) Tourist Added"
             self.tempNameList.append(touristName)
-      
+            self.filteredPaxesList.append(filter[0])
         }
         else{
             self.counter -= 1
@@ -204,16 +222,99 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             for item in self.tempNameList {
                 if item.elementsEqual(touristName) {
                     self.tempNameList.remove(at: tempIndex)
+
                     break
                 }
                 
-                tempIndex += 1
             }
+            
+            for item in self.filteredPaxesList {
+                if ((item.text?.elementsEqual(touristName)) != nil) {
+                    self.filteredPaxesList.remove(at: tempIndex)
+                    
+                    break
+                }
+            }
+            tempIndex += 1
         }
-        let filter = paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
-        self.filteredPaxesList.append(filter[0])
+       
+    /*    var touristId : [Int] = []
+        var resNo : [String] = []
+        var tempGetInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
+        
+        touristId.removeAll()
+        resNo.removeAll()
+        
+        if self.filteredPaxesList.count > 0 {
+            for listarray in self.filteredPaxesList {
+                touristId.append(listarray.value ?? 0)
+                resNo.append(listarray.resNo ?? "")
+            }
+            
+            tempGetInTouristInfoRequestModel.removeAll()
+            
+            for i in 0...filteredPaxesList.count - 1 {
+                tempGetInTouristInfoRequestModel.append(GetTouristInfoRequestModel(touristId: touristId[i], resNo: resNo[i]))
+            }
+            
+            self.getInTouristInfoRequestModel = tempGetInTouristInfoRequestModel
+            
+           
+            for i in 0...(self.getInTouristInfoRequestModel.count) - 1 {
+                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModel[i].requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                    
+                    if response.count > 0 {
+                        print(response)
+                        // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                        
+                        self.touristInfoList = response
+                        
+                        for listarray in self.touristInfoList {
+                           // self.paxID.append(listarray.id ?? "")
+                            self.oprID.append(listarray.oprId ?? 0)
+                            self.oprName.append(listarray.operator ?? "")
+                            self.reservationNo.append(listarray.resNo ?? "")
+                            self.hotelName.append(listarray.hotelName ?? "")
+                            self.ageGroup.append(listarray.ageGroup ?? "")
+                            self.name.append(listarray.name ?? "")
+                            self.birthDay.append(listarray.birthDay ?? "")
+                            self.passport.append(listarray.passport ?? "")
+                            self.touristIdRef.append(listarray.touristIdRef ?? 0)
+                        }
+                        
+                        for i in 0...(self.touristInfoList.count) - 1 {
+                            
+                            self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
+                            
+                            self.sendingListofPaxes.append(self.paxesList[i])
+                        }
+                        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
+                        self.removeFromSuperview()
+                        
+                    }else{
+                        print("data has not recived")
+                    }
+                }
+            }
+            
+        } */
         print(filteredPaxesList)
+        
+        
     }
+    
+}
+
+extension PaxPageCustomView : TempAddPaxesListDelegate {
+    func tempAddList(listofpaxes: [Paxes]) {
+        self.paxesListinPaxPage.removeAll()
+        for listofArray in listofpaxes {
+            self.paxesListinPaxPage.append(listofArray)
+        }
+        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.paxesListinPaxPage)
+    }
+    
+    
 }
     
 

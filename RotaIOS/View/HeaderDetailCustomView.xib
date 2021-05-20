@@ -31,7 +31,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" image="chevron.left" catalog="system"/>
+                            <state key="normal" title="&lt;"/>
                             <connections>
                                 <action selector="buttonClicked:" destination="-1" eventType="touchUpInside" id="cFU-BL-r7N"/>
                             </connections>
@@ -66,7 +66,4 @@
             <point key="canvasLocation" x="-160.1449275362319" y="-160.71428571428569"/>
         </view>
     </objects>
-    <resources>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
-    </resources>
 </document>

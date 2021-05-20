@@ -40,6 +40,8 @@ class FooterCustomView: UIView {
         
         self.printButton.layer.cornerRadius = 10
         self.printButton.isHidden = true
+        
+        self.printButton.isEnabled = false
        
     }
     

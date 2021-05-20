@@ -89,11 +89,11 @@ class HotelPageCustomView : UIView {
             self.filteredMarketList = filtered
             for listofarray in self.filteredMarketList {
                 userDefaultsData.saveMarketId(marketId: String(listofarray.value ?? 0))
-                userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "")
+             //   userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "") // silinecek
                 
             }
             print(userDefaultsData.getMarketId()!)
-            print(userDefaultsData.getMarketGroupId()!)
+          //  print(userDefaultsData.getMarketGroupId()!)
         }
         
         self.hotelMenu.selectionAction = { index, title in

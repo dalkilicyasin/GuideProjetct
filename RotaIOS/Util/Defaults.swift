@@ -20,8 +20,8 @@ public class Defaults{
         case SaleDate
         case MarketId
         case HotelId
-        case MarketGroupId
         case HotelArea
+        case MarketGruopId
     }
     
    public init(){}
@@ -95,6 +95,25 @@ public class Defaults{
         }
     }
     
+    // MarketGruopId
+    
+    public func saveMarketGruopId(languageId:Int){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .MarketGruopId)
+        preferences.set(languageId, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getMarketGruopId() -> Int{
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .MarketGruopId)
+        if preferences.object(forKey: currentLanguageKey) == nil {
+            return -1
+        } else {
+            return preferences.integer(forKey: currentLanguageKey)
+        }
+    }
+    
     // SaleDAte
     
     public func saveSaleDate(saleDate:String){
@@ -131,23 +150,7 @@ public class Defaults{
         return data
     }
     
-    // Save Market ID(id değeri olan)
-    
-    public func saveMarketGroupId(marketId:String){
-        let preferences = UserDefaults.standard
-        let currentLanguageKey = getIdentifier(type: .MarketGroupId)
-        preferences.set(marketId, forKey: currentLanguageKey)
-        preferences.synchronize()
-    }
-    
-    public func getMarketGroupId() -> String! {
-        let preferences = UserDefaults.standard
-        if preferences.object(forKey: getIdentifier(type: .MarketGroupId)) == nil {
-            return nil
-        }
-        let data:String = preferences.value(forKey: getIdentifier(type: .MarketGroupId)) as! String
-        return data
-    }
+
     
     // HotelID(value değeri olan)
     
@@ -203,10 +206,10 @@ public class Defaults{
             return "MarketId"
         case .HotelId:
             return "HotelId"
-        case .MarketGroupId:
-            return "MarketGroupId"
         case .HotelArea:
             return "HotelArea"
+        case .MarketGruopId:
+            return "MarketGruopId"
         }
     }
 }
