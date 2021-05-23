@@ -164,8 +164,8 @@ public class GetSaveForMobileRequestList : Mappable {
     public var iND_ROWVERSION = 0
     public var iND_VOUCHER = "" // bu şekilde gönderip response da message da numara dönüyor.Sonra kullanacağız.
     public var iND_STATUS = 1
-    public var strPaxes : [Paxes]!
-    public var strSteps : [Steps]!
+    public var strPaxes : String!
+    public var strSteps : String!
     public var iD = 0
     public var action = 1
     
@@ -175,7 +175,7 @@ public class GetSaveForMobileRequestList : Mappable {
     }
     
     
-    public init(  iND_SHOPDATE : String, iND_GUIDEREF : Int, iND_MARKETGROUPREF : Int, iND_MARKETREF : Int, iND_AREAREF : Int, iND_HOTELREF : Int, iND_NOTE : String, iND_SHOPPICKUPTIME : String, strPaxes : [Paxes], strSteps : [Steps] ) {
+    public init( iND_SHOPDATE : String, iND_GUIDEREF : Int, iND_MARKETGROUPREF : Int, iND_MARKETREF : Int, iND_AREAREF : Int, iND_HOTELREF : Int, iND_NOTE : String, iND_SHOPPICKUPTIME : String, strPaxes : String, strSteps : String ) {
         
         self.iND_SHOPDATE = iND_SHOPDATE
         self.iND_GUIDEREF = iND_GUIDEREF
@@ -187,6 +187,7 @@ public class GetSaveForMobileRequestList : Mappable {
         self.strPaxes = strPaxes
         self.strSteps = strSteps
         self.iND_SHOPPICKUPTIME = iND_SHOPPICKUPTIME
+     
        
     }
     

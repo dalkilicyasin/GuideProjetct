@@ -11,7 +11,7 @@ import UIKit
 import DropDown
 
 protocol SaveManuelListProtocol {
-    func saveManuelList(manuelList : [String] )
+    func saveManuelList(manuelList : Paxes )
 }
 
 class AddManuelTouristCustomView : UIView {
@@ -34,6 +34,7 @@ class AddManuelTouristCustomView : UIView {
     var tempTouristAddCustomView : TempTouristAddCustomView?
     var tempSaveManuelList : [String] = []
     var saveMAnuelListDelegate : SaveManuelListProtocol?
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,6 +60,8 @@ class AddManuelTouristCustomView : UIView {
         gesture.numberOfTouchesRequired = 1
         gesture.numberOfTouchesRequired = 1
         self.viewGender.addGestureRecognizer(gesture)
+        
+        self.contentView.backgroundColor = UIColor.mainViewColor
         
         self.genderMenu.selectionAction = { index, title in
             self.viewGender.mainLabel.text = title
@@ -97,11 +100,7 @@ class AddManuelTouristCustomView : UIView {
         self.viewCheckOut.imageMainText.isHidden = true
         self.viewCheckOut.mainLabel.isHidden = true
         self.viewCheckOut.mainText.isHidden = false
-        
-        let tap = UITapGestureRecognizer.init(target: self, action: #selector(slideUP))
-        self.viewSlideUp.addGestureRecognizer(tap)
-        self.viewSlideUp.isUserInteractionEnabled = true
-        
+   
         
     }
     @objc func didTappedItem() {
@@ -109,49 +108,24 @@ class AddManuelTouristCustomView : UIView {
         
     }
     
-    @objc func slideUP(){
-        if let topVC = UIApplication.getTopViewController() {
-            UIView.animate(withDuration: 0, animations: {
-                self.tempTouristAddCustomView = TempTouristAddCustomView()
-                self.tempTouristAddCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
-                topVC.view.addSubview(self.tempTouristAddCustomView!)
-            }, completion: { (finished) in
-                if finished{
-                    
-                }
-            })
-        }
-        self.removeFromSuperview()
-    }
     
     
     @IBAction func addManuelButton(_ sender: Any) {
         
         //  self.tempSaveManuelList.append(self.viewGender.mainLabel.text ?? "")
-        self.tempSaveManuelList.append(self.viewName.mainText.text ?? "")
+      //  self.tempSaveManuelList.append(self.viewName.mainText.text ?? "")
         // self.tempSaveManuelList.append(self.viewBirthDay.mainText.text ?? "")
         // self.tempSaveManuelList.append(self.viewOperator.mainText.text ?? "")
         // self.tempSaveManuelList.append(self.viewRoom.mainText.text ?? "")
         // self.tempSaveManuelList.append(self.viewPhone.mainText.text ?? "")
         // self.tempSaveManuelList.append(self.viewCheckOut.mainText.text ?? "")
         
-        print(self.tempSaveManuelList)
         
-        if let topVC = UIApplication.getTopViewController() {
-            UIView.animate(withDuration: 0, animations: {
-                self.tempTouristAddCustomView = TempTouristAddCustomView()
-                self.tempTouristAddCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
-                topVC.view.addSubview(self.tempTouristAddCustomView!)
-            }, completion: { (finished) in
-                if finished{
-                    
-                }
-            })
-            for listarray in self.tempSaveManuelList {
-                self.tempTouristAddCustomView?.tempNameListed.append(listarray)
-            }
-            
-        }
+        let manuelAddPaxName = Paxes.init(pAX_CHECKOUT_DATE: self.viewCheckOut.mainText.text ?? "", pAX_OPRID: 0, pAX_OPRNAME: "", pAX_PHONE: self.viewPhone.mainText.text ?? "", hotelname: "", pAX_GENDER: self.viewGender.mainLabel.text ?? "" , pAX_AGEGROUP: "", pAX_NAME: self.viewName.mainText.text ?? "", pAX_BIRTHDAY: self.viewBirthDay.mainText.text ?? "", pAX_RESNO: "", pAX_PASSPORT: "", pAX_ROOM: self.viewRoom.mainText.text ?? "", pAX_TOURISTREF: 0, pAX_STATUS: 1)
+        
+        self.saveMAnuelListDelegate?.saveManuelList(manuelList: manuelAddPaxName)
+        
+    
         self.removeFromSuperview()
     }
 }

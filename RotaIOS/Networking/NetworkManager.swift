@@ -27,6 +27,7 @@ public class NetworkManager {
             let viewController = UIApplication.getTopViewController()
             else { return }
         
+        
         if indicatorEnabled {
             viewController.showIndicator(tag: String(describing: request.self))
         }
@@ -84,6 +85,7 @@ public class NetworkManager {
         var request = URLRequest(url: URL(string: urlPath)!)
         request.timeoutInterval = TIMEOUT_INTERVAL
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("bearer \(baseData.getTokenResponse?.access_token ?? "")", forHTTPHeaderField: "Authorization")
         request.httpMethod = method.rawValue
         request.httpBody = try? JSONSerialization.data(withJSONObject: requestModel.toJSON())
         request.setValue(String(userDefaultsData.getLanguageId()), forHTTPHeaderField: "Language")

@@ -34,11 +34,14 @@ class TempTouristAddCustomView : UIView{
     
     var reservationNo : [String] = []
     var hotelName : [String] = []
+    var paxRoom  : [String] = []
     var ageGroup : [String] = []
     var name : [String] = []
     var birthDay : [String] = []
     var passport : [String] = []
     var touristIdRef : [Int] = []
+    var paxnameFromaddManuelList : [String] = []
+   
     var sendingListofPaxes : [Paxes] = []
     
     var getInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
@@ -98,10 +101,15 @@ class TempTouristAddCustomView : UIView{
         
         self.filteredPaxesList.removeAll()
         
+        for filtername in self.paxnameFromaddManuelList {
+            let filter = self.nameListed.filter{($0.elementsEqual(filtername) )}
+            self.nameListed.remove(object: filter[0])
+        }
+        
         if nameListed.count != 0 {
+          
             for updateList in self.nameListed {
                 let filter = self.paxesNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
-                
                 self.filteredPaxesList.append(filter[0])
                 // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
             }
@@ -143,16 +151,18 @@ class TempTouristAddCustomView : UIView{
                             self.oprName.append(listarray.operator ?? "")
                             self.reservationNo.append(listarray.resNo ?? "")
                             self.hotelName.append(listarray.hotelName ?? "")
+                            self.paxRoom.append(listarray.room ?? "")
                             self.ageGroup.append(listarray.ageGroup ?? "")
                             self.name.append(listarray.name ?? "")
                             self.birthDay.append(listarray.birthDay ?? "")
                             self.passport.append(listarray.passport ?? "")
                             self.touristIdRef.append(listarray.touristIdRef ?? 0)
+                            
                         }
                         
                         for i in 0...(self.touristInfoList.count) - 1 {
                             
-                            self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
+                            self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: self.paxRoom[i], pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
                             
                             self.sendingListofPaxes.append(self.paxesList[i])
                         }
@@ -166,6 +176,8 @@ class TempTouristAddCustomView : UIView{
             }
                 
          
+        }else if paxnameFromaddManuelList.count > 0{
+            self.temppAddPaxesListDelegate?.tempAddList(listofpaxes: self.sendingListofPaxes)
         }
         
         self.removeFromSuperview()
@@ -180,7 +192,7 @@ class TempTouristAddCustomView : UIView{
             UIView.animate(withDuration: 0, animations: {
                 
                 self.addManuelTouristAddCustomView = AddManuelTouristCustomView()
-                self.addManuelTouristAddCustomView?.tempSaveManuelList = self.nameListed
+                self.addManuelTouristAddCustomView?.saveMAnuelListDelegate = self
                 self.addManuelTouristAddCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
                 topVC.view.addSubview(self.addManuelTouristAddCustomView!)
             }, completion: { (finished) in
@@ -218,6 +230,15 @@ extension TempTouristAddCustomView : UITableViewDelegate, UITableViewDataSource 
     }  
 }
 
+extension TempTouristAddCustomView : SaveManuelListProtocol {
+    func saveManuelList(manuelList: Paxes) {
+        self.sendingListofPaxes.append( manuelList)
+        self.paxnameFromaddManuelList.append(manuelList.pAX_NAME)
+        self.nameListed.append(manuelList.pAX_NAME)
+        self.tableView.reloadData()
+    }
+}
+
 
 /*
  let filter = paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
@@ -226,4 +247,12 @@ extension TempTouristAddCustomView : UITableViewDelegate, UITableViewDataSource 
  
  */
 
+extension Array where Element: Equatable {
 
+ // Remove first collection element that is equal to the given `object`:
+ mutating func remove(object: Element) {
+     guard let index = firstIndex(of: object) else {return}
+     remove(at: index)
+ }
+
+}

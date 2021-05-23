@@ -175,6 +175,7 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.stepsPageCustomView = StepsPageCustomView()
                 self.stepsPageCustomView?.adlCount = self.adultCount
                 self.stepsPageCustomView?.chldCount = self.childCount
+                self.stepsPageCustomView?.infCount = self.infantCount
                 self.stepsPageCustomView?.stepsPageListDelegate = self
                 self.contentView.addSubview(stepsPageCustomView!)
                 stepsPageCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.contentView.frame.size.height)

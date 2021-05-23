@@ -108,6 +108,7 @@
 		D93F88A92651AB1000397283 /* GetTouristInfoResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F88A82651AB1000397283 /* GetTouristInfoResponseModel.swift */; };
 		D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C40612655D56E00EBC7CD /* GetGuideInfoRequestModel.swift */; };
 		D94C40672655D5FA00EBC7CD /* GetGuideInfoResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C40662655D5FA00EBC7CD /* GetGuideInfoResponseModel.swift */; };
+		D94C406C2659313000EBC7CD /* GetSaveForMobileResponseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C406B2659313000EBC7CD /* GetSaveForMobileResponseList.swift */; };
 		D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -244,6 +245,7 @@
 		D93F88A82651AB1000397283 /* GetTouristInfoResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTouristInfoResponseModel.swift; sourceTree = "<group>"; };
 		D94C40612655D56E00EBC7CD /* GetGuideInfoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideInfoRequestModel.swift; sourceTree = "<group>"; };
 		D94C40662655D5FA00EBC7CD /* GetGuideInfoResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideInfoResponseModel.swift; sourceTree = "<group>"; };
+		D94C406B2659313000EBC7CD /* GetSaveForMobileResponseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSaveForMobileResponseList.swift; sourceTree = "<group>"; };
 		D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideMarketRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -399,6 +401,7 @@
 				D93F8899264BC9A300397283 /* GetSelectListResponseModel.swift */,
 				D93F88A82651AB1000397283 /* GetTouristInfoResponseModel.swift */,
 				D94C40662655D5FA00EBC7CD /* GetGuideInfoResponseModel.swift */,
+				D94C406B2659313000EBC7CD /* GetSaveForMobileResponseList.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */,
 				BF44C8E5264000E200238035 /* ExtensionUIView.swift in Sources */,
 				BF44C9B4264001D900238035 /* TouristAddCustomView.swift in Sources */,
+				D94C406C2659313000EBC7CD /* GetSaveForMobileResponseList.swift in Sources */,
 				BF44C8F2264000E900238035 /* GetTokenResponseModel.swift in Sources */,
 				BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */,
 				BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */,

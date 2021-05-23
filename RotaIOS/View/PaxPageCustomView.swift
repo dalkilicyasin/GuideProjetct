@@ -107,7 +107,28 @@ class PaxPageCustomView : UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.viewTouristAdded.addGestureRecognizer(tap)
         self.viewTouristAdded.isUserInteractionEnabled = true
+        
+        self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl?.addTarget(self, action: #selector(refreshPaxses), for: .valueChanged)
 
+    }
+    
+    @objc func refreshPaxses() {
+        print("refresing")
+        
+        self.nameList.removeAll()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            for listofArray in self.paxesNameList {
+                self.nameList.append(listofArray.text ?? "")
+            }
+            self.filteredData = self.nameList
+            print(self.nameList)
+          
+            self.tableView.reloadData()
+            self.tableView.refreshControl?.endRefreshing()
+        }
+        
     }
 
 
@@ -160,6 +181,7 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
         }else{
             if self.nameList.count > 0 {
                 cell.labelPaxNameListCell.text = nameList[indexPath.row]
+               
             }else{
                 self.tableView.reloadData()
             }
@@ -168,16 +190,28 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch(indexPath.row) {
-        case 0 :
-            self.paxesListDelegate?.paxesList(ischosen: true, sendingPaxesLis: self.paxesListinPaxPage)
-        case 1 :
-            self.paxesListDelegate?.paxesList(ischosen: true, sendingPaxesLis: self.paxesListinPaxPage)
-        default :
-            print("selected")
+        
+        if self.nameList.count > 0 {
+            let selectedName = nameList[indexPath.row]
             
+           let filterSelectedName = self.paxesNameList.filter{($0.text?.elementsEqual(selectedName) ?? false)}
+            
+            let filterResNo = self.paxesNameList.filter{($0.resNo?.elementsEqual((filterSelectedName[0].resNo ?? "")) ?? false)}
+            
+            self.nameList.removeAll()
+            
+            for i in 0...(filterResNo.count) - 1 {
+                
+                self.nameList.append(filterResNo[i].text ?? "")
+            }
+            
+            self.tableView.reloadData()
+            
+          
+        }else{
+            print("selected")
         }
-
+      
     }
 }
 

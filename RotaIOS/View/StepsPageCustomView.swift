@@ -35,6 +35,8 @@ class StepsPageCustomView : UIView {
     var stepsList : [Steps] = []
     var adlCount = 0
     var chldCount = 0
+    var infCount = 0
+    var x = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -151,7 +153,7 @@ extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
             self.sendingListofSteps.removeAll()
             for i in 0...(self.filteredNameList.count) - 1 {
                 
-                self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: 0, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: i+1 ))
+                self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: self.infCount, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: (i+1) ))
                 
                 self.sendingListofSteps.append(self.stepsList[i])
             }
@@ -181,6 +183,7 @@ extension StepsPageCustomView : SendInfoDelegate {
         var companyValue : [Int] = []
         var companyName  : [String] = []
         var status : [Int] = []
+        
     
         for listarray in self.filteredNameList {
             companyValue.append(listarray.value ?? 0)
@@ -191,10 +194,12 @@ extension StepsPageCustomView : SendInfoDelegate {
         self.sendingListofSteps.removeAll()
         for i in 0...(self.filteredNameList.count) - 1 {
             
-            self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: 0, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: i))
+            self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: self.infCount, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: (self.x) ))
             
             self.sendingListofSteps.append(self.stepsList[i])
+            self.x += 1
         }
+        
         self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps)
     }
 }
