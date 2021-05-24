@@ -15,6 +15,7 @@ struct GetSaveForMobileResponseList : Mappable {
     var resultKey : String?
     var message : String?
     var detailMessage : String?
+    var exceptionMessage : String?
 
     init?(map: Map) {
 
@@ -28,6 +29,7 @@ struct GetSaveForMobileResponseList : Mappable {
         resultKey <- map["ResultKey"]
         message <- map["Message"]
         detailMessage <- map["DetailMessage"]
+        exceptionMessage <- map["ExceptionMessage"]
     }
 
 }

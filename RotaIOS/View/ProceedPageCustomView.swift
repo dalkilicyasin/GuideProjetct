@@ -23,6 +23,8 @@ class ProceedPageCustomView : UIView {
     var dateString = ""
     var timeString = ""
     
+    var temString : [String] = []
+    
     var paxFilteredList : [String] = []
     
     let datePicker = UIDatePicker()
@@ -80,6 +82,19 @@ class ProceedPageCustomView : UIView {
         
         self.createDatePicker()
         self.createTimePicker()
+        
+        print(temString)
+        
+        let tempnumber = ["2","3","4","5"]
+        
+        for i in 0...tempnumber.count - 1 {
+            self.temString.append(tempnumber[i])
+        }
+          
+        
+        userDefaultsData.saveFavorite(id: self.temString)
+        print(userDefaultsData.getFavorite() ?? "")
+    
     
     }
     
@@ -90,58 +105,23 @@ class ProceedPageCustomView : UIView {
         print(self.stepsListinProceedPage)
         print(self.adultCountinProceedPage)
         
-        var pax = [String : Any]()
-        for i in 0...self.paxListinProceedPage.count - 1 {
+ 
         
-        pax = [ "Action": self.paxListinProceedPage[i].action,"ID": 0,"PAX_AGEGROUP": self.paxListinProceedPage[i].pAX_AGEGROUP ?? "","PAX_BIRTHDAY":self.paxListinProceedPage[i].pAX_BIRTHDAY ?? "","PAX_CHECKOUT_DATE":self.paxListinProceedPage[i].pAX_CHECKOUT_DATE ?? "","PAX_GENDER":self.paxListinProceedPage[i].pAX_GENDER ?? "","PAX_ID":0,"PAX_NAME":self.paxListinProceedPage[i].pAX_NAME ?? "","PAX_OPRID":self.paxListinProceedPage[i].pAX_OPRID ?? 0 ,"PAX_OPRNAME":self.paxListinProceedPage[i].pAX_OPRNAME ?? "","PAX_OPRTYPE":1,"PAX_PASSPORT":self.paxListinProceedPage[i].pAX_PASSPORT ?? "","PAX_PHONE": "","PAX_RESNO":self.paxListinProceedPage[0].pAX_RESNO ?? "","PAX_ROOM":self.paxListinProceedPage[i].pAX_ROOM ?? "","PAX_ROWVERSION" :1,"PAX_SOURCEREF":0,"PAX_STATUS":1,"PAX_TOURISTREF":self.paxListinProceedPage[i].pAX_TOURISTREF ?? 0,"hotelname":self.paxListinProceedPage[i].hotelname ?? ""]
-        }
+        let saveForMobileRequestModel = GetSaveForMobileRequestList.init(iND_CHLMAXAGE: NSNull() , iND_NOTE: self.notesMainText.mainText.text ?? NSNull(), iND_VOUCHER: NSNull(), iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId() , iND_MARKETGROUPREF: userDefaultsData.getMarketGruopId() , iND_MARKETREF: Int(userDefaultsData.getMarketId()) ?? 0, iND_AREAREF: Int(userDefaultsData.getHotelArea()) ?? 0, iND_HOTELREF: Int(userDefaultsData.getHotelId()) ?? 0 , iND_SHOPPICKUPTIME: self.timeString,  strPaxes: self.paxListinProceedPage.toJSONString(prettyPrint: true) ?? "" , strSteps: self.stepsListinProceedPage.toJSONString(prettyPrint: true) ?? "")
         
-        print(pax)
-        
-     /*   if self.paxListinProceedPage.count > 0 && self.stepsListinProceedPage.count > 0{
-            self.paxListStringType.removeAll()
-            self.stepListStringType.removeAll()
-         for i in 0...self.paxListinProceedPage.count - 1 {
-                
-            var pax = [String : Any]()
-            pax = [ "Action": self.paxListinProceedPage[i].action,"ID": 0,"PAX_AGEGROUP": self.paxListinProceedPage[i].pAX_AGEGROUP ?? "","PAX_BIRTHDAY":self.paxListinProceedPage[i].pAX_BIRTHDAY ?? "","PAX_CHECKOUT_DATE":self.paxListinProceedPage[i].pAX_CHECKOUT_DATE ?? "","PAX_GENDER":self.paxListinProceedPage[i].pAX_GENDER ?? "","PAX_ID":0,"PAX_NAME":self.paxListinProceedPage[i].pAX_NAME ?? "","PAX_OPRID":self.paxListinProceedPage[i].pAX_OPRID ?? 0 ,"PAX_OPRNAME":self.paxListinProceedPage[i].pAX_OPRNAME ?? "","PAX_OPRTYPE":1,"PAX_PASSPORT":self.paxListinProceedPage[i].pAX_PASSPORT ?? "","PAX_PHONE": "","PAX_RESNO":self.paxListinProceedPage[0].pAX_RESNO ?? "","PAX_ROOM":self.paxListinProceedPage[i].pAX_ROOM ?? "","PAX_ROWVERSION" :1,"PAX_SOURCEREF":0,"PAX_STATUS":1,"PAX_TOURISTREF":self.paxListinProceedPage[i].pAX_TOURISTREF ?? 0,"hotelname":self.paxListinProceedPage[i].hotelname ?? ""]
+       
              
-               self.paxListStringType.append(pax)
-                
-            }
-            
-            for i in 0...self.stepsListinProceedPage.count - 1 {
-                
-                let step = "{\"STP_ADULTCOUNT\":\(self.adultCountinProceedPage),\"STP_CHILDCOUNT\":\(self.childCountinProceedPage),\"STP_COMPANY\":\(self.stepsListinProceedPage[i].sTP_COMPANY ?? 0),\"STP_ID\":\(0),\"PAX_ID\":\(0),\"STP_INFANTCOUNT\":\(self.infantCountinProceedPage),\"STP_NOTE\":\"\",\"STP_ORDER\":\(self.stepsListinProceedPage[i].sTP_ORDER ?? 0),\"STP_SHOPREF\":\(0),\"STP_STATE\":\(self.stepsListinProceedPage[i].sTP_STATE ?? 0),\"name\":\"\(self.stepsListinProceedPage[i].name ?? "")\"}"
-               
-                self.stepListStringType.append(step)
-            }
-            
-         
-           print(self.paxListStringType)
-           print(self.stepListStringType)
-           
-        } */
-        
-        
-   
-        let saveForMobileRequestModel = GetSaveForMobileRequestList.init( iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId(), iND_MARKETGROUPREF: userDefaultsData.getMarketGruopId(), iND_MARKETREF: Int(userDefaultsData.getMarketId()) ?? 0, iND_AREAREF: Int(userDefaultsData.getHotelArea()) ?? 0, iND_HOTELREF: Int(userDefaultsData.getHotelId()) ?? 0, iND_NOTE: self.notesMainText.mainText.text ?? "", iND_SHOPPICKUPTIME: self.timeString, strPaxes: "", strSteps: "")
-            
         NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveForMobileRequestModel ) { (response: GetSaveForMobileResponseList) in
-            if response != nil {
+            if response.isSuccesful ?? false{
                 print(response)
             }else{
-                let alert = UIAlertController(title: "Errror", message: "Token has not recived", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             
             }
         }
         
-  
-     
-        
-      //  for i in 0...self.paxListinProceedPage.count
-  
+ 
 }
     
     func createDatePicker() {

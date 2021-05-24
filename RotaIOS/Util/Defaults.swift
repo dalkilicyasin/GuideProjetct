@@ -22,6 +22,7 @@ public class Defaults{
         case HotelId
         case HotelArea
         case MarketGruopId
+        case Favorite
     }
     
    public init(){}
@@ -94,6 +95,29 @@ public class Defaults{
             return preferences.integer(forKey: currentLanguageKey)
         }
     }
+    
+    // FavoriDefaults
+    
+    public func saveFavorite(id:[String]){
+        let preferences = UserDefaults.standard
+        preferences.set( id , forKey:getIdentifier(type: .Favorite))
+        preferences.synchronize()
+    }
+    
+    public func getFavorite() -> [String]! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .Favorite)) == nil {
+            return nil
+        }
+        let data: [String] = preferences.value(forKey: getIdentifier(type: .Favorite)) as! [String]
+        return data
+    }
+ 
+    
+    
+    
+    
+    
     
     // MarketGruopId
     
@@ -210,6 +234,8 @@ public class Defaults{
             return "HotelArea"
         case .MarketGruopId:
             return "MarketGruopId"
+        case .Favorite:
+            return "Favorite"
         }
     }
 }

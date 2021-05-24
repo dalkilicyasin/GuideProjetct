@@ -152,17 +152,17 @@ public class GetSaveForMobileRequestList : Mappable {
     public var iND_MARKETREF : Int! // market value(id)
     public var iND_AREAREF : Int! // Gethotelsmobile servisindeki area yazan değer
     public var iND_HOTELREF : Int! // Gethotelsmobile servisindeki  value yazan yer
-    public var iND_NOTE : String!
+    public var iND_NOTE : Any!
     public var iND_ISREPEAT = false // check box işaretlenirse true yoksa false
     public var iND_INFMINAGE = 0.0
     public var iND_INFMAXAGE = 0.0
     public var iND_CHLMINAGE = 0.0
-  //  public var iND_CHLMAXAGE = 0.0 // cenker beyde yok
+    public var iND_CHLMAXAGE : Any! // cenker beyde yok
     public var iND_AGE_EE = true
     public var iND_SHOPPICKUPTIME : String!
    // public var iND_ISSENT =  true // belirsiz cenker beyde yok
     public var iND_ROWVERSION = 0
-    public var iND_VOUCHER = "" // bu şekilde gönderip response da message da numara dönüyor.Sonra kullanacağız.
+    public var iND_VOUCHER : Any! // bu şekilde gönderip response da message da numara dönüyor.Sonra kullanacağız.
     public var iND_STATUS = 1
     public var strPaxes : String!
     public var strSteps : String!
@@ -175,19 +175,20 @@ public class GetSaveForMobileRequestList : Mappable {
     }
     
     
-    public init( iND_SHOPDATE : String, iND_GUIDEREF : Int, iND_MARKETGROUPREF : Int, iND_MARKETREF : Int, iND_AREAREF : Int, iND_HOTELREF : Int, iND_NOTE : String, iND_SHOPPICKUPTIME : String, strPaxes : String, strSteps : String ) {
+    public init(iND_CHLMAXAGE : Any, iND_NOTE : Any, iND_VOUCHER : Any, iND_SHOPDATE : String, iND_GUIDEREF : Int, iND_MARKETGROUPREF : Int, iND_MARKETREF : Int, iND_AREAREF : Int, iND_HOTELREF : Int, iND_SHOPPICKUPTIME : String, strPaxes : String, strSteps : String ) {
         
         self.iND_SHOPDATE = iND_SHOPDATE
         self.iND_GUIDEREF = iND_GUIDEREF
         self.iND_MARKETGROUPREF = iND_MARKETGROUPREF
         self.iND_MARKETREF = iND_MARKETREF
         self.iND_AREAREF = iND_AREAREF
-        self.iND_NOTE = iND_NOTE
         self.iND_HOTELREF = iND_HOTELREF
         self.strPaxes = strPaxes
         self.strSteps = strSteps
         self.iND_SHOPPICKUPTIME = iND_SHOPPICKUPTIME
-     
+        self.iND_VOUCHER = iND_VOUCHER
+        self.iND_NOTE = iND_NOTE
+        self.iND_CHLMAXAGE = iND_CHLMAXAGE
        
     }
     

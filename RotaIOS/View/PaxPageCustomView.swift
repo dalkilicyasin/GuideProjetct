@@ -34,7 +34,7 @@ class PaxPageCustomView : UIView {
     @IBOutlet weak var labelTouristAdded: UILabel!
     var paxesListinPaxPage : [Paxes] = []
     var touristInfoList : [GetTouristInfoResponseModel] = []
-    var getInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
+    var getInTouristInfoRequestModelList : GetTouristInfoRequestModel?
     var paxID : [String] = [] //kullanıp kullanılmayacağı belli değil 0 aldım
     var oprID : [Int] = []
     var oprName : [String] = []
@@ -272,7 +272,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             tempIndex += 1
         }
        
-    /*    var touristId : [Int] = []
+        var touristId : [Int] = []
         var resNo : [String] = []
         var tempGetInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
         
@@ -291,11 +291,10 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                 tempGetInTouristInfoRequestModel.append(GetTouristInfoRequestModel(touristId: touristId[i], resNo: resNo[i]))
             }
             
-            self.getInTouristInfoRequestModel = tempGetInTouristInfoRequestModel
+            self.getInTouristInfoRequestModelList = tempGetInTouristInfoRequestModel[0]
             
            
-            for i in 0...(self.getInTouristInfoRequestModel.count) - 1 {
-                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModel[i].requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList?.requestPathString() ?? "") { (response : [GetTouristInfoResponseModel] ) in
                     
                     if response.count > 0 {
                         print(response)
@@ -323,15 +322,15 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                             self.sendingListofPaxes.append(self.paxesList[i])
                         }
                         self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
-                        self.removeFromSuperview()
+                      
                         
                     }else{
                         print("data has not recived")
                     }
                 }
-            }
             
-        } */
+            
+        }
         print(filteredPaxesList)
         
         
