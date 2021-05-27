@@ -109,13 +109,15 @@ class PaxPageCustomView : UIView {
         self.viewTouristAdded.isUserInteractionEnabled = true
         
         self.tableView.refreshControl = UIRefreshControl()
+        self.tableView.alwaysBounceVertical = true
         self.tableView.refreshControl?.addTarget(self, action: #selector(refreshPaxses), for: .valueChanged)
+       
 
     }
     
     @objc func refreshPaxses() {
         print("refresing")
-        
+       
         self.nameList.removeAll()
         
         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
@@ -141,7 +143,7 @@ class PaxPageCustomView : UIView {
          self.tempTouristAddView = TempTouristAddCustomView()
          self.tempTouristAddView?.nameListed = self.tempNameList
          self.tempTouristAddView?.temppAddPaxesListDelegate = self
-         self.tempTouristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 800)
+         self.tempTouristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
          topVC.view.addSubview(self.tempTouristAddView!)
      }, completion: { (finished) in
          if finished{
@@ -255,7 +257,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             var tempIndex = 0
             for item in self.tempNameList {
                 if item.elementsEqual(touristName) {
-                    self.tempNameList.remove(at: tempIndex)
+                    self.tempNameList.remove(object: touristName)
 
                     break
                 }
@@ -264,8 +266,9 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             
             for item in self.filteredPaxesList {
                 if ((item.text?.elementsEqual(touristName)) != nil) {
-                    self.filteredPaxesList.remove(at: tempIndex)
-                    
+                  self.filteredPaxesList.remove(at: tempIndex)
+                   // let filter = self.filteredPaxesList.filter{($0.text?.elementsEqual(touristName) ?? false)}
+        
                     break
                 }
             }
@@ -332,8 +335,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             
         }
         print(filteredPaxesList)
-        
-        
+    
     }
     
 }

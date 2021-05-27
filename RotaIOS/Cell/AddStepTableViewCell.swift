@@ -7,39 +7,45 @@
 
 import UIKit
 
-protocol TouchDelegate {
-    func touchTapped( touch : [String])
+protocol TouchFavoriteDelegate {
+    func touchfavoriteTapped( favoriteİsremember : Bool, touch : String)
 }
 
 class AddStepTableViewCell: BaseTableViewCell {
 
-    @IBOutlet weak var checkBoxView: CheckBoxView!
+  
+    @IBOutlet weak var viewFavorite: FavoriteCustomView!
     @IBOutlet weak var labelText: UILabel!
-    var touchDelegate : TouchDelegate?
-    var nameList :[String] = []
+    var touchDelegate : TouchFavoriteDelegate?
     var isCheckRemember = false
-    var addStepCustomView : AddStepCustomView?
+   
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-   
+        
+        self.viewFavorite.favoriteCustomViewDelegate = self
       
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-       
-       
-       // self.touchDelegate?.touchTapped(touch: self.nameList)
-        
-       // self.addStepCustomView?.sendInfoDelegate = self
     }
     
 
 
+}
+
+extension AddStepTableViewCell : FavoriteCustomViewDelegate {
+    func favoriteTapped(isremember: Bool) {
+        print(isremember)
+
+        self.touchDelegate?.touchfavoriteTapped(favoriteİsremember: isremember, touch: self.labelText.text ?? "")
+        
+      
+    }
 }
 
 

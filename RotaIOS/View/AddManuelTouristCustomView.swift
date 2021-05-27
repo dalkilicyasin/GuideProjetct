@@ -17,6 +17,7 @@ protocol SaveManuelListProtocol {
 class AddManuelTouristCustomView : UIView {
     
     
+    @IBOutlet weak var scrollView: UIScrollView!
     var genderMenu = DropDown()
     var genderList = ["MR.","MS."]
     
@@ -69,6 +70,8 @@ class AddManuelTouristCustomView : UIView {
         }
         
         self.contentView.backgroundColor = UIColor.mainViewColor
+        self.contentView.layer.cornerRadius = 10
+        self.scrollView.layer.cornerRadius = 10
         self.buttonAdd.layer.cornerRadius = 10
         self.buttonAdd.layer.masksToBounds = true
         self.buttonAdd.backgroundColor = UIColor.greenColor
@@ -94,33 +97,32 @@ class AddManuelTouristCustomView : UIView {
         self.viewRoom.mainLabel.isHidden = true
         self.viewRoom.mainText.isHidden = false
         self.viewRoom.imageMainText.isHidden = true
-        self.viewPhone.imageMainText.isHidden = true
+        self.viewPhone.mainText.isHidden = false
         self.viewPhone.mainLabel.isHidden = true
+        self.viewPhone.imageMainText.isHidden = true
         self.viewCheckOut.mainText.isHidden = false
         self.viewCheckOut.imageMainText.isHidden = true
         self.viewCheckOut.mainLabel.isHidden = true
         self.viewCheckOut.mainText.isHidden = false
-   
         
+       // self.viewSlideUp.roundCorners(.allCorners, radius: 10)
+        let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
+          self.viewSlideUp.addGestureRecognizer(tappedSlideUp)
+          self.viewSlideUp.isUserInteractionEnabled = true
     }
     @objc func didTappedItem() {
         self.genderMenu.show()
         
     }
     
+    @objc func slideUpTapped() {
+        self.removeFromSuperview()
+    }
+    
     
     
     @IBAction func addManuelButton(_ sender: Any) {
-        
-        //  self.tempSaveManuelList.append(self.viewGender.mainLabel.text ?? "")
-      //  self.tempSaveManuelList.append(self.viewName.mainText.text ?? "")
-        // self.tempSaveManuelList.append(self.viewBirthDay.mainText.text ?? "")
-        // self.tempSaveManuelList.append(self.viewOperator.mainText.text ?? "")
-        // self.tempSaveManuelList.append(self.viewRoom.mainText.text ?? "")
-        // self.tempSaveManuelList.append(self.viewPhone.mainText.text ?? "")
-        // self.tempSaveManuelList.append(self.viewCheckOut.mainText.text ?? "")
-        
-        
+      
         let manuelAddPaxName = Paxes.init(pAX_CHECKOUT_DATE: self.viewCheckOut.mainText.text ?? "", pAX_OPRID: 0, pAX_OPRNAME: "", pAX_PHONE: self.viewPhone.mainText.text ?? "", hotelname: "", pAX_GENDER: self.viewGender.mainLabel.text ?? "" , pAX_AGEGROUP: "", pAX_NAME: self.viewName.mainText.text ?? "", pAX_BIRTHDAY: self.viewBirthDay.mainText.text ?? "", pAX_RESNO: "", pAX_PASSPORT: "", pAX_ROOM: self.viewRoom.mainText.text ?? "", pAX_TOURISTREF: 0, pAX_STATUS: 1)
         
         self.saveMAnuelListDelegate?.saveManuelList(manuelList: manuelAddPaxName)

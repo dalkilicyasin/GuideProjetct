@@ -23,7 +23,6 @@ class ProceedPageCustomView : UIView {
     var dateString = ""
     var timeString = ""
     
-    var temString : [String] = []
     
     var paxFilteredList : [String] = []
     
@@ -58,6 +57,7 @@ class ProceedPageCustomView : UIView {
         
         self.headerView.backgroundColor = UIColor.mainViewColor
         
+        self.sendButton.backgroundColor = UIColor.greenColor
         self.sendButton.layer.borderWidth = 1
         self.sendButton.layer.borderColor = UIColor.green.cgColor
         self.sendButton.layer.cornerRadius = 10
@@ -83,29 +83,13 @@ class ProceedPageCustomView : UIView {
         self.createDatePicker()
         self.createTimePicker()
         
-        print(temString)
         
-        let tempnumber = ["2","3","4","5"]
-        
-        for i in 0...tempnumber.count - 1 {
-            self.temString.append(tempnumber[i])
-        }
-          
-        
-        userDefaultsData.saveFavorite(id: self.temString)
-        print(userDefaultsData.getFavorite() ?? "")
-    
-    
     }
     
     @IBAction func sendButtonClicked(_ sender: Any) {
         
         print("\(userDefaultsData.getMarketGruopId()),\(userDefaultsData.getMarketId() ?? ""),\(userDefaultsData.getHotelArea() ?? ""),\(userDefaultsData.getHotelId() ?? "")")
-        print(self.paxListinProceedPage)
-        print(self.stepsListinProceedPage)
-        print(self.adultCountinProceedPage)
-        
- 
+     
         
         let saveForMobileRequestModel = GetSaveForMobileRequestList.init(iND_CHLMAXAGE: NSNull() , iND_NOTE: self.notesMainText.mainText.text ?? NSNull(), iND_VOUCHER: NSNull(), iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId() , iND_MARKETGROUPREF: userDefaultsData.getMarketGruopId() , iND_MARKETREF: Int(userDefaultsData.getMarketId()) ?? 0, iND_AREAREF: Int(userDefaultsData.getHotelArea()) ?? 0, iND_HOTELREF: Int(userDefaultsData.getHotelId()) ?? 0 , iND_SHOPPICKUPTIME: self.timeString,  strPaxes: self.paxListinProceedPage.toJSONString(prettyPrint: true) ?? "" , strSteps: self.stepsListinProceedPage.toJSONString(prettyPrint: true) ?? "")
         
@@ -113,6 +97,11 @@ class ProceedPageCustomView : UIView {
              
         NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveForMobileRequestModel ) { (response: GetSaveForMobileResponseList) in
             if response.isSuccesful ?? false{
+                
+                self.sendButton.backgroundColor = UIColor.clear
+                self.sendButton.layer.borderWidth = 1
+                self.sendButton.layer.borderColor = UIColor.green.cgColor
+                self.sendButton.layer.cornerRadius = 10
                 print(response)
             }else{
                 let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)

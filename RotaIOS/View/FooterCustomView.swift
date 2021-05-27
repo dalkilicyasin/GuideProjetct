@@ -43,6 +43,11 @@ class FooterCustomView: UIView {
         
         self.printButton.isEnabled = false
        
+        self.printButton.layer.borderWidth = 1
+        self.printButton.layer.borderColor = UIColor.green.cgColor
+        self.printButton.layer.cornerRadius = 10
+        self.printButton.backgroundColor = UIColor.clear
+       
     }
     
     @IBAction func countinueButtonClicked(_ sender: Any) {

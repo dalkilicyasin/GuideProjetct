@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FavoriteListCustomView" customModule="RotaIOS" customModuleProvider="target">
+            <connections>
+                <outlet property="headerView" destination="iN0-l3-epB" id="466-0q-dsl"/>
+                <outlet property="tableView" destination="QtZ-EE-Fof" id="Cgg-2g-7dY"/>
+                <outlet property="topView" destination="sHa-23-5DM" id="gFR-LJ-uXm"/>
+                <outlet property="viewSlideUp" destination="J9z-qe-Ibp" id="7nK-dr-tXG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHa-23-5DM">
+                    <rect key="frame" x="0.0" y="80" width="414" height="816"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QtZ-EE-Fof">
+                            <rect key="frame" x="0.0" y="40" width="414" height="776"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9z-qe-Ibp">
+                            <rect key="frame" x="144" y="5" width="126" height="5"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="5" id="UrG-AC-YY4"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="QtZ-EE-Fof" firstAttribute="top" secondItem="sHa-23-5DM" secondAttribute="top" constant="40" id="CMO-XM-fAV"/>
+                        <constraint firstItem="J9z-qe-Ibp" firstAttribute="top" secondItem="sHa-23-5DM" secondAttribute="top" constant="5" id="CXr-Qx-XHt"/>
+                        <constraint firstAttribute="trailing" secondItem="QtZ-EE-Fof" secondAttribute="trailing" id="Sav-pV-G3a"/>
+                        <constraint firstAttribute="trailing" secondItem="J9z-qe-Ibp" secondAttribute="trailing" constant="144" id="Ukt-6T-bXD"/>
+                        <constraint firstItem="QtZ-EE-Fof" firstAttribute="leading" secondItem="sHa-23-5DM" secondAttribute="leading" id="We4-AO-dnL"/>
+                        <constraint firstItem="J9z-qe-Ibp" firstAttribute="leading" secondItem="sHa-23-5DM" secondAttribute="leading" constant="144" id="gai-mi-8f3"/>
+                        <constraint firstAttribute="bottom" secondItem="QtZ-EE-Fof" secondAttribute="bottom" id="u78-o2-Q8o"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="sHa-23-5DM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="77N-1M-tOD"/>
+                <constraint firstAttribute="trailing" secondItem="sHa-23-5DM" secondAttribute="trailing" id="Foa-Xj-uLs"/>
+                <constraint firstAttribute="bottom" secondItem="sHa-23-5DM" secondAttribute="bottom" id="knt-Hc-5x1"/>
+                <constraint firstItem="sHa-23-5DM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="pom-2p-ts7"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="115.94202898550725" y="104.46428571428571"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

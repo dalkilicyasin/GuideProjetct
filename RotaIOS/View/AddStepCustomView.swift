@@ -14,6 +14,7 @@ protocol SendInfoDelegate {
 
 class AddStepCustomView : UIView {
     
+    @IBOutlet weak var viewSlideUP: UIView!
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -26,6 +27,10 @@ class AddStepCustomView : UIView {
     var filteredData : [String] = []
     var addedNameList : [String] = []
     var infoList : [String] = []
+    
+    var addFavoriteList : [String] = []
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -61,6 +66,11 @@ class AddStepCustomView : UIView {
             }
         }
         
+        let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
+          self.viewSlideUP.addGestureRecognizer(tappedSlideUp)
+          self.viewSlideUP.isUserInteractionEnabled = true
+        
+        
         
         self.headerView.backgroundColor = UIColor.mainViewColor
         
@@ -77,7 +87,11 @@ class AddStepCustomView : UIView {
         
         self.searchBar.delegate = self
         
- 
+        print(userDefaultsData.getFavorite() ?? "")
+    }
+    
+    @objc func slideUpTapped() {
+        self.removeFromSuperview()
     }
 
 }
@@ -93,7 +107,7 @@ extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AddStepTableViewCell.identifier) as! AddStepTableViewCell
-        
+        cell.touchDelegate = self
         if isFilteredTextEmpty == false {
             if self.filteredData.count > 0 {
                 cell.labelText.text = filteredData[indexPath.row]
@@ -107,14 +121,14 @@ extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
                 self.tableView.reloadData()
             }
         }
-        cell.nameList = self.infoList
+       // cell.nameList = self.infoList
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
        self.infoList.append(addedNameList[indexPath.row])
-       self.sendInfoDelegate?.sendInfo(sendinfo: self.infoList[0])
+        self.sendInfoDelegate?.sendInfo(sendinfo: self.infoList[0])
 
         self.removeFromSuperview()
     }
@@ -142,4 +156,34 @@ extension AddStepCustomView : UISearchBarDelegate {
         self.tableView.reloadData()
         
     }
+}
+
+extension AddStepCustomView : TouchFavoriteDelegate {
+    func touchfavoriteTapped(favoriteİsremember: Bool, touch: String) {
+        if userDefaultsData.getFavorite()?.count ?? 0 > 0{
+            self.addFavoriteList = userDefaultsData.getFavorite()
+        }
+        
+        if favoriteİsremember == true {
+          
+            self.addFavoriteList.append(touch)
+            userDefaultsData.saveFavorite(id: self.addFavoriteList)
+        }else {
+
+            
+            for item in  self.addFavoriteList {
+                if item.elementsEqual(touch) {
+                    self.addFavoriteList.remove(object: touch)
+                    userDefaultsData.saveFavorite(id: self.addFavoriteList)
+                    break
+                }
+            }
+        }
+        
+       
+        print(self.addFavoriteList)
+        
+        
+    }
+     
 }
