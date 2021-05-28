@@ -117,6 +117,7 @@ class PaxPageCustomView : UIView {
     
     @objc func refreshPaxses() {
         print("refresing")
+      
        
         self.nameList.removeAll()
         
