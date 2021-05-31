@@ -65,30 +65,32 @@ class PaxPageCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         self.headerView.backgroundColor = UIColor.mainViewColor
         
-        let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: userDefaultsData.getHotelId(), marketId: userDefaultsData.getMarketId())
-        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseList, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
-            
-            if response.count > 0 {
-                print(response)
-                //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+        if userDefaultsData.getHotelId()?.count ?? 0 > 0 {
+            let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: userDefaultsData.getHotelId(), marketId: userDefaultsData.getMarketId())
+            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseList, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
                 
-                self.paxesNameList = response
-                
-                for listofArray in self.paxesNameList {
-                    self.nameList.append(listofArray.text ?? "")
+                if response.count > 0 {
+                    print(response)
+                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                    
+                    self.paxesNameList = response
+                    
+                    for listofArray in self.paxesNameList {
+                        self.nameList.append(listofArray.text ?? "")
+                    }
+                    self.filteredData = self.nameList
+                    print(self.nameList)
+                    
+                    self.tableView.delegate = self
+                    self.tableView.dataSource = self
+                    self.tableView.reloadData()
+       
+                }else{
+                    print("data has not recived")
                 }
-                self.filteredData = self.nameList 
-                print(self.nameList)
-                
-                self.tableView.delegate = self
-                self.tableView.dataSource = self
-                self.tableView.reloadData()
-   
-            }else{
-                print("data has not recived")
             }
         }
-        
+     
         self.viewTouristAdded.layer.borderWidth = 1
         self.viewTouristAdded.layer.borderColor = UIColor.green.cgColor
         self.viewTouristAdded.layer.cornerRadius = 10
