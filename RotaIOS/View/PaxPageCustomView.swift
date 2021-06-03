@@ -258,6 +258,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             print(self.counter)
             self.labelTouristAdded.text = "\(counter) Tourist Added"
             self.tempNameList.append(touristName)
+            self.filteredPaxesList.removeAll()
             self.filteredPaxesList.append(filter[0])
             
             
