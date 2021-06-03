@@ -14,6 +14,7 @@ public class NetworkManager {
     
     public static var networkConnectionEnabled = true
     private static let TIMEOUT_INTERVAL: TimeInterval = 300
+    //https://rota-uat-eg.odeontours.com  https://rota-uat.odeontours.com
     public static var BASEURL = "https://rota-uat.odeontours.com"
     
     public static func sendRequest<T: Mappable>(url: String,endPoint: ServiceEndPoint, method: HTTPMethod = .post, requestModel: Mappable, indicatorEnabled: Bool = true,

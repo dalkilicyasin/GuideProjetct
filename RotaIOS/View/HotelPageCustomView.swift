@@ -43,17 +43,15 @@ class HotelPageCustomView : UIView {
         self.headerView.backgroundColor = UIColor.mainViewColor
         
         let getMarketRequestModel = GetGuideMarketRequestModel.init(userId: userDefaultsData.getGuideId())
-        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .HotelPage, method: .get, parameters: getMarketRequestModel.requestPathString()) { (response : [GetGuideMarketResponseModel] ) in
+        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetGuideMarkets, method: .get, parameters: getMarketRequestModel.requestPathString()) { (response : [GetGuideMarketResponseModel] ) in
             
             if response.count > 0 {
-                print(response)
                 
                 self.marketList = response
                 
                 for listOfArray in self.marketList {
                     self.marketMenu.dataSource.append(listOfArray.text ?? "")
-                   //
-                    
+                   
                 }
                 self.marketMenu.backgroundColor = UIColor.grayColor
                 self.marketMenu.separatorColor = UIColor.gray
@@ -88,12 +86,9 @@ class HotelPageCustomView : UIView {
             let filtered = self.marketList.filter{($0.text?.contains(title) ?? false)}
             self.filteredMarketList = filtered
             for listofarray in self.filteredMarketList {
-                userDefaultsData.saveMarketId(marketId: String(listofarray.value ?? 0))
+                userDefaultsData.saveMarketId(marketId: listofarray.value ?? 0)
              //   userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "") // silinecek
-                
             }
-            print(userDefaultsData.getMarketId()!)
-          //  print(userDefaultsData.getMarketGroupId()!)
         }
         
         self.hotelMenu.selectionAction = { index, title in
@@ -102,12 +97,9 @@ class HotelPageCustomView : UIView {
             let filtered = self.hotelList.filter{($0.text?.contains(title) ?? false)}
             self.filteredHotelList = filtered
             for listofArray in self.filteredHotelList {
-                userDefaultsData.saveHotelId(hotelId: String(listofArray.value ?? 0))
-                userDefaultsData.saveHotelArea(hotelId: String(listofArray.area ?? 0))
+                userDefaultsData.saveHotelId(hotelId: listofArray.value ?? 0)
+                userDefaultsData.saveHotelArea(hotelAreaId: listofArray.area ?? 0)
             }
-            
-            print(userDefaultsData.getHotelId()!)
-            print(userDefaultsData.getHotelArea()!)
             
         }
         
@@ -163,7 +155,6 @@ extension HotelPageCustomView : CheckBoxViewDelegate {
         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
             
             if response.count > 0 {
-                print(response)
                 //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                 if isremember {
                     

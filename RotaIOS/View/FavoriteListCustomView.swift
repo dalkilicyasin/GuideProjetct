@@ -44,11 +44,7 @@ class FavoriteListCustomView : UIView {
         if userDefaultsData.getFavorite()?.count ?? 0 > 0 {
             self.addedNameList = userDefaultsData.getFavorite()
         }
-       
-            
-        
 
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
      

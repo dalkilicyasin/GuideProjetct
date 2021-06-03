@@ -21,14 +21,11 @@ class MainPAgeViewController: ViewController {
         
         print(dateString)
         
-        
-       // mainPageView.backgroundColor = UIColor.mainColor
         NetworkManager.sendGetRequest(url:NetworkManager.BASEURL, endPoint: .GetUser, method: .get, parameters: "") { (response : GetMyInfoResponseModel) in
             
             if response.id != nil {
                 print("info recived - \(response.id ?? "")")
-                print(response.guideId ?? "")
-                
+        
                 userDefaultsData.saveUserId(languageId: response.id ?? "default")
                 userDefaultsData.saveGuideId(languageId: response.guideId!)
                 userDefaultsData.saveSaleDate(saleDate: dateString)
@@ -44,9 +41,8 @@ class MainPAgeViewController: ViewController {
         NetworkManager.sendGetRequest(url:NetworkManager.BASEURL, endPoint: .GetGuideInfo, method: .get, parameters: getGuideInfRequestModel.requestPathString()) { (response : GetGuideInfoResponseModel) in
             
             if response.marketGroupId != nil {
-                
-                print(response.marketGroupId)
-                userDefaultsData.saveMarketGruopId(languageId: response.marketGroupId ?? 0)
+    
+                userDefaultsData.saveMarketGruopId(marketGroupId: response.marketGroupId ?? 0)
                 
             }else{
                 let alert = UIAlertController(title: "Errror", message: "Token has not recived", preferredStyle: UIAlertController.Style.alert)

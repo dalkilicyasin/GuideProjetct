@@ -105,6 +105,10 @@ class AddManuelTouristCustomView : UIView {
         self.viewCheckOut.mainLabel.isHidden = true
         self.viewCheckOut.mainText.isHidden = false
         
+       
+        
+      
+        
        // self.viewSlideUp.roundCorners(.allCorners, radius: 10)
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
           self.viewSlideUp.addGestureRecognizer(tappedSlideUp)
@@ -122,13 +126,29 @@ class AddManuelTouristCustomView : UIView {
     
     
     @IBAction func addManuelButton(_ sender: Any) {
-      
-        let manuelAddPaxName = Paxes.init(pAX_CHECKOUT_DATE: self.viewCheckOut.mainText.text ?? "", pAX_OPRID: 0, pAX_OPRNAME: "", pAX_PHONE: self.viewPhone.mainText.text ?? "", hotelname: "", pAX_GENDER: self.viewGender.mainLabel.text ?? "" , pAX_AGEGROUP: "", pAX_NAME: self.viewName.mainText.text ?? "", pAX_BIRTHDAY: self.viewBirthDay.mainText.text ?? "", pAX_RESNO: "", pAX_PASSPORT: "", pAX_ROOM: self.viewRoom.mainText.text ?? "", pAX_TOURISTREF: 0, pAX_STATUS: 1)
         
-        self.saveMAnuelListDelegate?.saveManuelList(manuelList: manuelAddPaxName)
+        if self.viewGender.mainLabel.text != "" && self.viewName.mainText.text != "" {
+            self.buttonAdd.isEnabled = true
+            
+            let manuelAddPaxName = Paxes.init(pAX_CHECKOUT_DATE: self.viewCheckOut.mainText.text ?? "", pAX_OPRID: 0, pAX_OPRNAME: "", pAX_PHONE: self.viewPhone.mainText.text ?? "", hotelname: "", pAX_GENDER: self.viewGender.mainLabel.text ?? "" , pAX_AGEGROUP: "", pAX_NAME: self.viewName.mainText.text ?? "", pAX_BIRTHDAY: self.viewBirthDay.mainText.text ?? "", pAX_RESNO: "", pAX_PASSPORT: "", pAX_ROOM: self.viewRoom.mainText.text ?? "", pAX_TOURISTREF: 0, pAX_STATUS: 1)
+            
+            self.saveMAnuelListDelegate?.saveManuelList(manuelList: manuelAddPaxName)
+            
         
-    
-        self.removeFromSuperview()
+            self.removeFromSuperview()
+        }else{
+          
+            
+            if let topVC = UIApplication.getTopViewController() {
+                
+                let alert = UIAlertController(title: "Errror", message: "Plese Select Title and fill Name section", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                
+                topVC.present(alert, animated: true, completion: nil)
+            }
+            
+        
+        }
     }
 }
 

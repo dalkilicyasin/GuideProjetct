@@ -56,12 +56,11 @@ class StepsPageCustomView : UIView {
         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetSelectList, method: .get, parameters: "") { (response : [GetSelectListResponseModel] ) in
             
             if response.count > 0 {
-                print(response)
+            
                 //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                 
                 self.stepsNameList = response
-                
-              
+ 
              
             }else{
                 print("data has not recived")

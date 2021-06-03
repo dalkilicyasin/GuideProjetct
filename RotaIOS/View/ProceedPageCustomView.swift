@@ -88,10 +88,10 @@ class ProceedPageCustomView : UIView {
     
     @IBAction func sendButtonClicked(_ sender: Any) {
         
-        print("\(userDefaultsData.getMarketGruopId()),\(userDefaultsData.getMarketId() ?? ""),\(userDefaultsData.getHotelArea() ?? ""),\(userDefaultsData.getHotelId() ?? "")")
-     
+      print(paxListinProceedPage)
+      print(stepsListinProceedPage)
         
-        let saveForMobileRequestModel = GetSaveForMobileRequestList.init(iND_CHLMAXAGE: NSNull() , iND_NOTE: self.notesMainText.mainText.text ?? NSNull(), iND_VOUCHER: NSNull(), iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId() , iND_MARKETGROUPREF: userDefaultsData.getMarketGruopId() , iND_MARKETREF: Int(userDefaultsData.getMarketId()) ?? 0, iND_AREAREF: Int(userDefaultsData.getHotelArea()) ?? 0, iND_HOTELREF: Int(userDefaultsData.getHotelId()) ?? 0 , iND_SHOPPICKUPTIME: self.timeString,  strPaxes: self.paxListinProceedPage.toJSONString(prettyPrint: true) ?? "" , strSteps: self.stepsListinProceedPage.toJSONString(prettyPrint: true) ?? "")
+        let saveForMobileRequestModel = GetSaveForMobileRequestList.init(iND_CHLMAXAGE: NSNull() , iND_NOTE: self.notesMainText.mainText.text ?? NSNull(), iND_VOUCHER: NSNull(), iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId() , iND_MARKETGROUPREF: userDefaultsData.getMarketGruopId() , iND_MARKETREF: userDefaultsData.getMarketId() , iND_AREAREF: userDefaultsData.getHotelArea() , iND_HOTELREF: userDefaultsData.getHotelId() , iND_SHOPPICKUPTIME: self.timeString,  strPaxes: self.paxListinProceedPage.toJSONString(prettyPrint: true) ?? "" , strSteps: self.stepsListinProceedPage.toJSONString(prettyPrint: true) ?? "")
         
        
              

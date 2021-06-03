@@ -15,9 +15,8 @@ protocol PaxesListDelegate {
 
 class PaxPageCustomView : UIView {
     
-    var touristAddView : TouristAddCustomView?
+  
     var tempTouristAddView : TempTouristAddCustomView?
-    var addManuelListView : AddManuelTouristCustomView?
     var remember = true
     var isFilteredTextEmpty = true
     var filteredData : [String] = []
@@ -34,7 +33,7 @@ class PaxPageCustomView : UIView {
     @IBOutlet weak var labelTouristAdded: UILabel!
     var paxesListinPaxPage : [Paxes] = []
     var touristInfoList : [GetTouristInfoResponseModel] = []
-    var getInTouristInfoRequestModelList : GetTouristInfoRequestModel?
+    var getInTouristInfoRequestModelList : [GetTouristInfoRequestModel] = []
     var paxID : [String] = [] //kullanıp kullanılmayacağı belli değil 0 aldım
     var oprID : [Int] = []
     var oprName : [String] = []
@@ -47,9 +46,12 @@ class PaxPageCustomView : UIView {
     var passport : [String] = []
     var touristIdRef : [Int] = []
     var sendingListofPaxes : [Paxes] = []
+    var tempSendingListofPaxes : [Paxes] = []
     var paxesList : [Paxes] = []
     var equalableFilteredPaxList : [String] = []
-  
+    
+    var addmanuelNameList : [String] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -65,12 +67,12 @@ class PaxPageCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         self.headerView.backgroundColor = UIColor.mainViewColor
         
-        if userDefaultsData.getHotelId()?.count ?? 0 > 0 {
-            let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: userDefaultsData.getHotelId(), marketId: userDefaultsData.getMarketId())
+        if userDefaultsData.getHotelId() > 0 {
+            let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: String(userDefaultsData.getHotelId()), marketId: String(userDefaultsData.getMarketId()))
             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseList, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
                 
                 if response.count > 0 {
-                    print(response)
+                    
                     //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                     
                     self.paxesNameList = response
@@ -79,33 +81,33 @@ class PaxPageCustomView : UIView {
                         self.nameList.append(listofArray.text ?? "")
                     }
                     self.filteredData = self.nameList
-                    print(self.nameList)
+                    
                     
                     self.tableView.delegate = self
                     self.tableView.dataSource = self
                     self.tableView.reloadData()
-       
+                    
                 }else{
                     print("data has not recived")
                 }
             }
         }
-     
+        
         self.viewTouristAdded.layer.borderWidth = 1
         self.viewTouristAdded.layer.borderColor = UIColor.green.cgColor
         self.viewTouristAdded.layer.cornerRadius = 10
-     
+        
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
-    
+        
         self.searchBar.compatibleSearchTextField.textColor = UIColor.white
         self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
         
         self.searchBar.delegate = self
         
         self.tableView.register(PaxPageTableViewCell.nib, forCellReuseIdentifier: PaxPageTableViewCell.identifier)
-     
-      
+        
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.viewTouristAdded.addGestureRecognizer(tap)
         self.viewTouristAdded.isUserInteractionEnabled = true
@@ -113,14 +115,12 @@ class PaxPageCustomView : UIView {
         self.tableView.refreshControl = UIRefreshControl()
         self.tableView.alwaysBounceVertical = true
         self.tableView.refreshControl?.addTarget(self, action: #selector(refreshPaxses), for: .valueChanged)
-       
-
+        
+        
     }
     
     @objc func refreshPaxses() {
-        print("refresing")
-      
-       
+        
         self.nameList.removeAll()
         
         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
@@ -128,34 +128,41 @@ class PaxPageCustomView : UIView {
                 self.nameList.append(listofArray.text ?? "")
             }
             self.filteredData = self.nameList
-            print(self.nameList)
-          
+
+            
             self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
         }
         
     }
-
-
-  
+    
+    
+    
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
- if let topVC = UIApplication.getTopViewController() {
-     
-     UIView.animate(withDuration: 0, animations: {
-         self.tempTouristAddView = TempTouristAddCustomView()
-         self.tempTouristAddView?.nameListed = self.tempNameList
-         self.tempTouristAddView?.temppAddPaxesListDelegate = self
-         self.tempTouristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
-         topVC.view.addSubview(self.tempTouristAddView!)
-     }, completion: { (finished) in
-         if finished{
-             
-         }
-     })
-
-    
- }
+        if let topVC = UIApplication.getTopViewController() {
+            
+            UIView.animate(withDuration: 0, animations: {
+                self.tempTouristAddView = TempTouristAddCustomView()
+                //  self.tempTouristAddView?.nameListed = self.tempNameList
+                self.tempTouristAddView?.tempPaxesList = self.sendingListofPaxes
+                //  self.tempTouristAddView?.paxnameFromaddManuelList = self.addmanuelNameList
+                if self.addmanuelNameList.count != 0{
+                    for i in 0...self.addmanuelNameList.count - 1 {
+                        self.tempTouristAddView?.nameListed.append(self.addmanuelNameList[i])
+                    }
+                }
+                self.tempTouristAddView?.temppAddPaxesListDelegate = self
+                self.tempTouristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
+                topVC.view.addSubview(self.tempTouristAddView!)
+            }, completion: { (finished) in
+                if finished{
+                    
+                }
+            })
+            
+            
+        }
     }
 }
 
@@ -163,16 +170,16 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-            if isFilteredTextEmpty == false {
-              
-                 return self.filteredData.count
-             }else{
-               
-                return self.nameList.count
-             }
+        if isFilteredTextEmpty == false {
+            
+            return self.filteredData.count
+        }else{
+            
+            return self.nameList.count
+        }
         
     }
-
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PaxPageTableViewCell.identifier) as! PaxPageTableViewCell
@@ -186,7 +193,7 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
         }else{
             if self.nameList.count > 0 {
                 cell.labelPaxNameListCell.text = nameList[indexPath.row]
-               
+                
             }else{
                 self.tableView.reloadData()
             }
@@ -199,7 +206,7 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
         if self.nameList.count > 0 {
             let selectedName = nameList[indexPath.row]
             
-           let filterSelectedName = self.paxesNameList.filter{($0.text?.elementsEqual(selectedName) ?? false)}
+            let filterSelectedName = self.paxesNameList.filter{($0.text?.elementsEqual(selectedName) ?? false)}
             
             let filterResNo = self.paxesNameList.filter{($0.resNo?.elementsEqual((filterSelectedName[0].resNo ?? "")) ?? false)}
             
@@ -212,17 +219,17 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
             
             self.tableView.reloadData()
             
-          
+            
         }else{
             print("selected")
         }
-      
+        
     }
 }
 
 extension PaxPageCustomView : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-  
+        
         self.filteredData = []
         
         if searchText.elementsEqual(""){
@@ -238,12 +245,12 @@ extension PaxPageCustomView : UISearchBarDelegate {
         }
         self.tableView.reloadData()
     }
-
+    
 }
 extension PaxPageCustomView : PaxPageCounterDelegate {
     
     func checkboxCounter(checkCounter: Bool, touristName: String) {
-      //  self.filteredPaxesList.removeAll()
+        
         let filter = self.paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
         if checkCounter {
             
@@ -252,109 +259,222 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             self.labelTouristAdded.text = "\(counter) Tourist Added"
             self.tempNameList.append(touristName)
             self.filteredPaxesList.append(filter[0])
+            
+            
+            var touristId : [Int] = []
+            var resNo : [String] = []
+            
+            touristId.removeAll()
+            resNo.removeAll()
+            
+            if self.filteredPaxesList.count > 0 {
+                for listarray in self.filteredPaxesList {
+                    touristId.append(listarray.value ?? 0)
+                    resNo.append(listarray.resNo ?? "")
+                }
+                
+                getInTouristInfoRequestModelList.removeAll()
+                
+                for i in 0...filteredPaxesList.count - 1 {
+                    self.getInTouristInfoRequestModelList.append(GetTouristInfoRequestModel(touristId: touristId[i], resNo: resNo[i]))
+                }
+                
+                self.paxesListinPaxPage.removeAll()
+                
+                for i in 0...getInTouristInfoRequestModelList.count - 1 {
+                    
+                    NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList[i].requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                        
+                        if response.count > 0 {
+                            print(response)
+                            // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                            
+                            self.touristInfoList = response
+                            
+                            self.oprID.removeAll()
+                            self.oprName.removeAll()
+                            self.reservationNo.removeAll()
+                            self.hotelName.removeAll()
+                            self.ageGroup.removeAll()
+                            self.name.removeAll()
+                            self.birthDay.removeAll()
+                            self.passport.removeAll()
+                            self.touristIdRef.removeAll()
+                            
+                            for listarray in self.touristInfoList {
+                                // self.paxID.append(listarray.id ?? "")
+                                self.oprID.append(listarray.oprId ?? 0)
+                                self.oprName.append(listarray.operator ?? "")
+                                self.reservationNo.append(listarray.resNo ?? "")
+                                self.hotelName.append(listarray.hotelName ?? "")
+                                self.ageGroup.append(listarray.ageGroup ?? "")
+                                self.name.append(listarray.name ?? "")
+                                self.birthDay.append(listarray.birthDay ?? "")
+                                self.passport.append(listarray.passport ?? "")
+                                self.touristIdRef.append(listarray.touristIdRef ?? 0)
+                            }
+                            
+                            self.paxesList.removeAll()
+                            
+                            for i in 0...(self.touristInfoList.count) - 1 {
+                                
+                                self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
+                                
+                                self.paxesListinPaxPage.append(self.paxesList[i])
+                            }
+                            
+                            if self.sendingListofPaxes.count != 0 {
+                                var tempArray : [Paxes] = []
+                                for listarray in self.paxesListinPaxPage {
+                                    tempArray.append(listarray)
+                                    for i in 0...self.sendingListofPaxes.count - 1 {
+                                        if let index = tempArray.firstIndex(where: { $0.pAX_NAME == self.sendingListofPaxes[i].pAX_NAME }) {
+                                            
+                                            // removing item
+                                            self.paxesListinPaxPage.remove(at: index)
+                                            
+                                        }
+                                    }
+                                    
+                                    tempArray.removeAll()
+                                }
+                                
+                                for remainlist in self.paxesListinPaxPage {
+                                    self.sendingListofPaxes.append(remainlist)
+                                }
+                                
+                                self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
+                            }else {
+                                for listarray in self.paxesListinPaxPage {
+                                    self.sendingListofPaxes.append(listarray)
+                                }
+                                
+                                self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
+                            }
+                            
+                        }else{
+                            print("data has not recived")
+                        }
+                    }
+                    
+                }
+                
+            }
+            
         }
         else{
             self.counter -= 1
             print(self.counter)
             self.labelTouristAdded.text = "\(counter) Tourist Added"
-            var tempIndex = 0
-            for item in self.tempNameList {
-                if item.elementsEqual(touristName) {
-                    self.tempNameList.remove(object: touristName)
-
-                    break
+          
+            self.filteredPaxesList.removeAll()
+            self.filteredPaxesList.append(filter[0])
+          
+            var touristId : [Int] = []
+            var resNo : [String] = []
+            
+            touristId.removeAll()
+            resNo.removeAll()
+            
+            if self.filteredPaxesList.count > 0 {
+                for listarray in self.filteredPaxesList {
+                    touristId.append(listarray.value ?? 0)
+                    resNo.append(listarray.resNo ?? "")
                 }
+                
+                getInTouristInfoRequestModelList.removeAll()
+                
+                for i in 0...filteredPaxesList.count - 1 {
+                    self.getInTouristInfoRequestModelList.append(GetTouristInfoRequestModel(touristId: touristId[i], resNo: resNo[i]))
+                }
+                
+                self.paxesListinPaxPage.removeAll()
+                
+                    NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList[0].requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                        
+                        if response.count > 0 {
+                
+                            // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                            
+                            self.touristInfoList = response
+                            
+                            self.oprID.removeAll()
+                            self.oprName.removeAll()
+                            self.reservationNo.removeAll()
+                            self.hotelName.removeAll()
+                            self.ageGroup.removeAll()
+                            self.name.removeAll()
+                            self.birthDay.removeAll()
+                            self.passport.removeAll()
+                            self.touristIdRef.removeAll()
+                            
+                            for listarray in self.touristInfoList {
+                                // self.paxID.append(listarray.id ?? "")
+                                self.oprID.append(listarray.oprId ?? 0)
+                                self.oprName.append(listarray.operator ?? "")
+                                self.reservationNo.append(listarray.resNo ?? "")
+                                self.hotelName.append(listarray.hotelName ?? "")
+                                self.ageGroup.append(listarray.ageGroup ?? "")
+                                self.name.append(listarray.name ?? "")
+                                self.birthDay.append(listarray.birthDay ?? "")
+                                self.passport.append(listarray.passport ?? "")
+                                self.touristIdRef.append(listarray.touristIdRef ?? 0)
+                            }
+                            
+                            self.paxesList.removeAll()
+                            
+                            for i in 0...(self.touristInfoList.count) - 1 {
+                                
+                                self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
+                                
+                                self.paxesListinPaxPage.append(self.paxesList[i])
+                            }
+                            
+                            
+                            self.tempSendingListofPaxes = self.sendingListofPaxes
+                            
+                            for i in 0...self.sendingListofPaxes.count - 1 {
+                                
+                                if self.paxesListinPaxPage[0].pAX_NAME == self.sendingListofPaxes[i].pAX_NAME {
+                                    self.tempSendingListofPaxes.remove(at: i)
+                                }
+                            }
+                            if self.tempSendingListofPaxes.count > 0 {
+                                
+                                self.sendingListofPaxes = self.tempSendingListofPaxes
+                            }else {
+                                self.sendingListofPaxes.removeAll()
+                            }
+                            
+                            
+                            self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
+                            
+                        }else{
+                            print("data has not recived")
+                        }
+                        
+                    }
+                    
+                
                 
             }
             
-            for item in self.filteredPaxesList {
-                if ((item.text?.elementsEqual(touristName)) != nil) {
-                  self.filteredPaxesList.remove(at: tempIndex)
-                   // let filter = self.filteredPaxesList.filter{($0.text?.elementsEqual(touristName) ?? false)}
-        
-                    break
-                }
-            }
-            tempIndex += 1
         }
-       
-        var touristId : [Int] = []
-        var resNo : [String] = []
-        var tempGetInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
         
-        touristId.removeAll()
-        resNo.removeAll()
         
-        if self.filteredPaxesList.count > 0 {
-            for listarray in self.filteredPaxesList {
-                touristId.append(listarray.value ?? 0)
-                resNo.append(listarray.resNo ?? "")
-            }
-            
-            tempGetInTouristInfoRequestModel.removeAll()
-            
-            for i in 0...filteredPaxesList.count - 1 {
-                tempGetInTouristInfoRequestModel.append(GetTouristInfoRequestModel(touristId: touristId[i], resNo: resNo[i]))
-            }
-            
-            self.getInTouristInfoRequestModelList = tempGetInTouristInfoRequestModel[0]
-            
-           
-            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList?.requestPathString() ?? "") { (response : [GetTouristInfoResponseModel] ) in
-                    
-                    if response.count > 0 {
-                        print(response)
-                        // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                        
-                        self.touristInfoList = response
-                        
-                        for listarray in self.touristInfoList {
-                           // self.paxID.append(listarray.id ?? "")
-                            self.oprID.append(listarray.oprId ?? 0)
-                            self.oprName.append(listarray.operator ?? "")
-                            self.reservationNo.append(listarray.resNo ?? "")
-                            self.hotelName.append(listarray.hotelName ?? "")
-                            self.ageGroup.append(listarray.ageGroup ?? "")
-                            self.name.append(listarray.name ?? "")
-                            self.birthDay.append(listarray.birthDay ?? "")
-                            self.passport.append(listarray.passport ?? "")
-                            self.touristIdRef.append(listarray.touristIdRef ?? 0)
-                        }
-                        
-                        for i in 0...(self.touristInfoList.count) - 1 {
-                            
-                            self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
-                            
-                            self.sendingListofPaxes.append(self.paxesList[i])
-                        }
-                        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
-                      
-                        
-                    }else{
-                        print("data has not recived")
-                    }
-                }
-            
-            
-        }
-        print(filteredPaxesList)
-    
     }
     
 }
 
 extension PaxPageCustomView : TempAddPaxesListDelegate {
-    func tempAddList(listofpaxes: [Paxes]) {
+    func tempAddList(listofpaxes: [Paxes], manuellist: [String]) {
+        // self.addmanuelNameList = manuellist
         self.paxesListinPaxPage.removeAll()
-        for listofArray in listofpaxes {
-            self.paxesListinPaxPage.append(listofArray)
-        }
-        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.paxesListinPaxPage)
+        self.sendingListofPaxes = listofpaxes
+        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
     }
     
-    
 }
-    
 
 
 

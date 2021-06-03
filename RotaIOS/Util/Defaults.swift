@@ -96,7 +96,7 @@ public class Defaults{
         }
     }
     
-    // FavoriDefaults
+    // SaveFavoriteDefaults
     
     public func saveFavorite(id:[String]){
         let preferences = UserDefaults.standard
@@ -114,17 +114,14 @@ public class Defaults{
     }
  
     
-    
-    
-    
-    
+
     
     // MarketGruopId
     
-    public func saveMarketGruopId(languageId:Int){
+    public func saveMarketGruopId(marketGroupId:Int){
         let preferences = UserDefaults.standard
         let currentLanguageKey = getIdentifier(type: .MarketGruopId)
-        preferences.set(languageId, forKey: currentLanguageKey)
+        preferences.set(marketGroupId, forKey: currentLanguageKey)
         preferences.synchronize()
     }
     
@@ -156,60 +153,63 @@ public class Defaults{
         return data
     }
     
-    // Market  ID(Value değeri olan)
+
+    // MarketID( value değeri olan)
     
-    public func saveMarketId(marketId:String){
+    public func saveMarketId(marketId:Int){
         let preferences = UserDefaults.standard
         let currentLanguageKey = getIdentifier(type: .MarketId)
         preferences.set(marketId, forKey: currentLanguageKey)
         preferences.synchronize()
     }
     
-    public func getMarketId() -> String! {
+    public func getMarketId() -> Int{
         let preferences = UserDefaults.standard
-        if preferences.object(forKey: getIdentifier(type: .MarketId)) == nil {
-            return nil
+        let currentLanguageKey = getIdentifier(type: .MarketId)
+        if preferences.object(forKey: currentLanguageKey) == nil {
+            return -1
+        } else {
+            return preferences.integer(forKey: currentLanguageKey)
         }
-        let data:String = preferences.value(forKey: getIdentifier(type: .MarketId)) as! String
-        return data
     }
-    
 
     
     // HotelID(value değeri olan)
     
-    public func saveHotelId(hotelId:String){
+    
+    public func saveHotelId(hotelId:Int){
         let preferences = UserDefaults.standard
         let currentLanguageKey = getIdentifier(type: .HotelId)
         preferences.set(hotelId, forKey: currentLanguageKey)
         preferences.synchronize()
     }
     
-    public func getHotelId() -> String! {
+    public func getHotelId() -> Int{
         let preferences = UserDefaults.standard
-        if preferences.object(forKey: getIdentifier(type: .HotelId)) == nil {
-            return nil
+        let currentLanguageKey = getIdentifier(type: .HotelId)
+        if preferences.object(forKey: currentLanguageKey) == nil {
+            return -1
+        } else {
+            return preferences.integer(forKey: currentLanguageKey)
         }
-        let data:String = preferences.value(forKey: getIdentifier(type: .HotelId)) as! String
-        return data
     }
+
     
-    // HotelArea
-    
-    public func saveHotelArea(hotelId:String){
+    public func saveHotelArea(hotelAreaId:Int){
         let preferences = UserDefaults.standard
         let currentLanguageKey = getIdentifier(type: .HotelArea)
-        preferences.set(hotelId, forKey: currentLanguageKey)
+        preferences.set(hotelAreaId, forKey: currentLanguageKey)
         preferences.synchronize()
     }
     
-    public func getHotelArea() -> String! {
+    public func getHotelArea() -> Int{
         let preferences = UserDefaults.standard
-        if preferences.object(forKey: getIdentifier(type: .HotelArea)) == nil {
-            return nil
+        let currentLanguageKey = getIdentifier(type: .HotelArea)
+        if preferences.object(forKey: currentLanguageKey) == nil {
+            return -1
+        } else {
+            return preferences.integer(forKey: currentLanguageKey)
         }
-        let data:String = preferences.value(forKey: getIdentifier(type: .HotelArea)) as! String
-        return data
     }
     
     
@@ -223,7 +223,6 @@ public class Defaults{
             return "DeviceID"
         case .GuideID:
             return "GuideID"
-        
         case .SaleDate:
             return "SaleDate"
         case .MarketId:

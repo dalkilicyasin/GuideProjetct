@@ -19,6 +19,7 @@ class PaxPageTableViewCell: BaseTableViewCell{
     var counter = 0
     var paxPageCustomView : PaxPageCustomView?
     var paxPageCounterDelegate : PaxPageCounterDelegate?
+   
     @IBOutlet weak var imageUserName: UIImageView!
     
     override func awakeFromNib() {

@@ -69,8 +69,6 @@
 		BF44C984264001B000238035 /* MainTextCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C982264001B000238035 /* MainTextCustomView.xib */; };
 		BF44C98A264001B900238035 /* HotelPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C988264001B900238035 /* HotelPageCustomView.swift */; };
 		BF44C98B264001B900238035 /* HotelPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C989264001B900238035 /* HotelPageCustomView.xib */; };
-		BF44C991264001BF00238035 /* HotelListCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C98F264001BF00238035 /* HotelListCustomView.swift */; };
-		BF44C992264001BF00238035 /* HotelListCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C990264001BF00238035 /* HotelListCustomView.xib */; };
 		BF44C998264001C400238035 /* PaxPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C996264001C400238035 /* PaxPageCustomView.xib */; };
 		BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C997264001C400238035 /* PaxPageCustomView.swift */; };
 		BF44C99F264001C900238035 /* PaxPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C99D264001C900238035 /* PaxPageTableViewCell.xib */; };
@@ -79,8 +77,6 @@
 		BF44C9A7264001CE00238035 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9A5264001CE00238035 /* CheckBoxView.swift */; };
 		BF44C9AD264001D400238035 /* HeaderDetailCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9AB264001D400238035 /* HeaderDetailCustomView.xib */; };
 		BF44C9AE264001D400238035 /* HeaderDetailCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9AC264001D400238035 /* HeaderDetailCustomView.swift */; };
-		BF44C9B4264001D900238035 /* TouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9B2264001D900238035 /* TouristAddCustomView.swift */; };
-		BF44C9B5264001D900238035 /* TouristAddCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9B3264001D900238035 /* TouristAddCustomView.xib */; };
 		BF44C9C1264001F800238035 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9C0264001F800238035 /* PresentationController.swift */; };
 		BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9C52640022000238035 /* StepsPageCustomView.xib */; };
 		BF44C9C82640022000238035 /* StepsPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9C62640022000238035 /* StepsPageCustomView.swift */; };
@@ -94,7 +90,6 @@
 		BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9E22640023800238035 /* ProceedPageCustomView.xib */; };
 		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
 		D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */; };
-		D93F886626471A7300397283 /* SlideUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886526471A7300397283 /* SlideUpViewController.swift */; };
 		D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */; };
 		D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93F887226471C1100397283 /* TempTouristAddCustomView.xib */; };
 		D93F887B264AAA4B00397283 /* GetInHoseListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F887A264AAA4B00397283 /* GetInHoseListResponseModel.swift */; };
@@ -210,8 +205,6 @@
 		BF44C982264001B000238035 /* MainTextCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTextCustomView.xib; sourceTree = "<group>"; };
 		BF44C988264001B900238035 /* HotelPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelPageCustomView.swift; sourceTree = "<group>"; };
 		BF44C989264001B900238035 /* HotelPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelPageCustomView.xib; sourceTree = "<group>"; };
-		BF44C98F264001BF00238035 /* HotelListCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelListCustomView.swift; sourceTree = "<group>"; };
-		BF44C990264001BF00238035 /* HotelListCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelListCustomView.xib; sourceTree = "<group>"; };
 		BF44C996264001C400238035 /* PaxPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaxPageCustomView.xib; sourceTree = "<group>"; };
 		BF44C997264001C400238035 /* PaxPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaxPageCustomView.swift; sourceTree = "<group>"; };
 		BF44C99D264001C900238035 /* PaxPageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaxPageTableViewCell.xib; sourceTree = "<group>"; };
@@ -220,8 +213,6 @@
 		BF44C9A5264001CE00238035 /* CheckBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		BF44C9AB264001D400238035 /* HeaderDetailCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderDetailCustomView.xib; sourceTree = "<group>"; };
 		BF44C9AC264001D400238035 /* HeaderDetailCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderDetailCustomView.swift; sourceTree = "<group>"; };
-		BF44C9B2264001D900238035 /* TouristAddCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouristAddCustomView.swift; sourceTree = "<group>"; };
-		BF44C9B3264001D900238035 /* TouristAddCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TouristAddCustomView.xib; sourceTree = "<group>"; };
 		BF44C9C0264001F800238035 /* PresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		BF44C9C52640022000238035 /* StepsPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StepsPageCustomView.xib; sourceTree = "<group>"; };
 		BF44C9C62640022000238035 /* StepsPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsPageCustomView.swift; sourceTree = "<group>"; };
@@ -235,7 +226,6 @@
 		BF44C9E22640023800238035 /* ProceedPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProceedPageCustomView.xib; sourceTree = "<group>"; };
 		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileResponseModel.swift; sourceTree = "<group>"; };
-		D93F886526471A7300397283 /* SlideUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideUpViewController.swift; sourceTree = "<group>"; };
 		D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTouristAddCustomView.swift; sourceTree = "<group>"; };
 		D93F887226471C1100397283 /* TempTouristAddCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempTouristAddCustomView.xib; sourceTree = "<group>"; };
 		D93F887A264AAA4B00397283 /* GetInHoseListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInHoseListResponseModel.swift; sourceTree = "<group>"; };
@@ -377,7 +367,6 @@
 				BF44C9212640014800238035 /* MainPAgeViewController.xib */,
 				BF44C91A2640013B00238035 /* LoginView.swift */,
 				BF44C9192640013A00238035 /* LoginViewController.swift */,
-				D93F886526471A7300397283 /* SlideUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -457,16 +446,12 @@
 				BF44C9D42640022F00238035 /* AddStepCustomView.xib */,
 				BF44C9C62640022000238035 /* StepsPageCustomView.swift */,
 				BF44C9C52640022000238035 /* StepsPageCustomView.xib */,
-				BF44C9B2264001D900238035 /* TouristAddCustomView.swift */,
-				BF44C9B3264001D900238035 /* TouristAddCustomView.xib */,
 				BF44C9AC264001D400238035 /* HeaderDetailCustomView.swift */,
 				BF44C9AB264001D400238035 /* HeaderDetailCustomView.xib */,
 				BF44C9A5264001CE00238035 /* CheckBoxView.swift */,
 				BF44C9A4264001CE00238035 /* CheckBoxView.xib */,
 				BF44C997264001C400238035 /* PaxPageCustomView.swift */,
 				BF44C996264001C400238035 /* PaxPageCustomView.xib */,
-				BF44C98F264001BF00238035 /* HotelListCustomView.swift */,
-				BF44C990264001BF00238035 /* HotelListCustomView.xib */,
 				BF44C988264001B900238035 /* HotelPageCustomView.swift */,
 				BF44C989264001B900238035 /* HotelPageCustomView.xib */,
 				BF44C981264001B000238035 /* MainTextCustomView.swift */,
@@ -632,7 +617,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF44C9242640014800238035 /* MainPAgeViewController.xib in Resources */,
-				BF44C992264001BF00238035 /* HotelListCustomView.xib in Resources */,
 				BF44C9DD2640023400238035 /* AddStepTableViewCell.xib in Resources */,
 				BF44C9692640019900238035 /* ApponintmentBarCollectionViewCell.xib in Resources */,
 				BF44C99F264001C900238035 /* PaxPageTableViewCell.xib in Resources */,
@@ -652,7 +636,6 @@
 				BF44C998264001C400238035 /* PaxPageCustomView.xib in Resources */,
 				D94C4084265D02AF00EBC7CD /* FavoriteListCustomView.xib in Resources */,
 				BF44C9702640019F00238035 /* AppointmentBarCustomView.xib in Resources */,
-				BF44C9B5264001D900238035 /* TouristAddCustomView.xib in Resources */,
 				BF44C9AD264001D400238035 /* HeaderDetailCustomView.xib in Resources */,
 				BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */,
 				BF44C9CF2640022600238035 /* StepsPageTableViewCell.xib in Resources */,
@@ -800,14 +783,12 @@
 				D94C4075265BE35100EBC7CD /* FavoriteCustomView.swift in Sources */,
 				D93F8883264AAAE500397283 /* GetInHouseListRequestModel.swift in Sources */,
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
-				D93F886626471A7300397283 /* SlideUpViewController.swift in Sources */,
 				D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */,
 				D93F889A264BC9A300397283 /* GetSelectListResponseModel.swift in Sources */,
 				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
 				BF44C97D264001AA00238035 /* FooterCustomView.swift in Sources */,
 				BF44C906264000FA00238035 /* ServiceEndPoint.swift in Sources */,
 				BF44C9A0264001C900238035 /* PaxPageTableViewCell.swift in Sources */,
-				BF44C991264001BF00238035 /* HotelListCustomView.swift in Sources */,
 				BF44C8E8264000E200238035 /* ExtensionUIViewController.swift in Sources */,
 				BF44C9C1264001F800238035 /* PresentationController.swift in Sources */,
 				BF44C9712640019F00238035 /* AppointmentBarCustomView.swift in Sources */,
@@ -817,7 +798,6 @@
 				BF44C9252640014800238035 /* MainPAgeViewController.swift in Sources */,
 				BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */,
 				BF44C8E5264000E200238035 /* ExtensionUIView.swift in Sources */,
-				BF44C9B4264001D900238035 /* TouristAddCustomView.swift in Sources */,
 				D94C406C2659313000EBC7CD /* GetSaveForMobileResponseList.swift in Sources */,
 				BF44C8F2264000E900238035 /* GetTokenResponseModel.swift in Sources */,
 				BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */,
