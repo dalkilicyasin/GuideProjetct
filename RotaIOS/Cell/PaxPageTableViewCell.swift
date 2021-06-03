@@ -25,7 +25,7 @@ class PaxPageTableViewCell: BaseTableViewCell{
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        self.selectionStyle = .none
         self.checkBoxView.checkBoxViewDelegate = self
         self.imageUserName.isHidden = true
         self.viewContent.backgroundColor = UIColor.grayColor
