@@ -15,7 +15,7 @@ protocol PaxesListDelegate {
 
 class PaxPageCustomView : UIView {
     
-  
+    
     var tempTouristAddView : TempTouristAddCustomView?
     var remember = true
     var isFilteredTextEmpty = true
@@ -128,7 +128,7 @@ class PaxPageCustomView : UIView {
                 self.nameList.append(listofArray.text ?? "")
             }
             self.filteredData = self.nameList
-
+            
             
             self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
@@ -282,84 +282,58 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                 
                 self.paxesListinPaxPage.removeAll()
                 
-                for i in 0...getInTouristInfoRequestModelList.count - 1 {
+                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList[0].requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
                     
-                    NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList[i].requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                    if response.count > 0 {
+                        print(response)
+                        // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                         
-                        if response.count > 0 {
-                            print(response)
-                            // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                            
-                            self.touristInfoList = response
-                            
-                            self.oprID.removeAll()
-                            self.oprName.removeAll()
-                            self.reservationNo.removeAll()
-                            self.hotelName.removeAll()
-                            self.ageGroup.removeAll()
-                            self.name.removeAll()
-                            self.birthDay.removeAll()
-                            self.passport.removeAll()
-                            self.touristIdRef.removeAll()
-                            
-                            for listarray in self.touristInfoList {
-                                // self.paxID.append(listarray.id ?? "")
-                                self.oprID.append(listarray.oprId ?? 0)
-                                self.oprName.append(listarray.operator ?? "")
-                                self.reservationNo.append(listarray.resNo ?? "")
-                                self.hotelName.append(listarray.hotelName ?? "")
-                                self.ageGroup.append(listarray.ageGroup ?? "")
-                                self.name.append(listarray.name ?? "")
-                                self.birthDay.append(listarray.birthDay ?? "")
-                                self.passport.append(listarray.passport ?? "")
-                                self.touristIdRef.append(listarray.touristIdRef ?? 0)
-                            }
-                            
-                            self.paxesList.removeAll()
-                            
-                            for i in 0...(self.touristInfoList.count) - 1 {
-                                
-                                self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
-                                
-                                self.paxesListinPaxPage.append(self.paxesList[i])
-                            }
-                            
-                            if self.sendingListofPaxes.count != 0 {
-                                var tempArray : [Paxes] = []
-                                for listarray in self.paxesListinPaxPage {
-                                    tempArray.append(listarray)
-                                    for i in 0...self.sendingListofPaxes.count - 1 {
-                                        if let index = tempArray.firstIndex(where: { $0.pAX_NAME == self.sendingListofPaxes[i].pAX_NAME }) {
-                                            
-                                            // removing item
-                                            self.paxesListinPaxPage.remove(at: index)
-                                            
-                                        }
-                                    }
-                                    
-                                    tempArray.removeAll()
-                                }
-                                
-                                for remainlist in self.paxesListinPaxPage {
-                                    self.sendingListofPaxes.append(remainlist)
-                                }
-                                
-                                self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
-                            }else {
-                                for listarray in self.paxesListinPaxPage {
-                                    self.sendingListofPaxes.append(listarray)
-                                }
-                                
-                                self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
-                            }
-                            
-                        }else{
-                            print("data has not recived")
+                        self.touristInfoList = response
+                        
+                        self.oprID.removeAll()
+                        self.oprName.removeAll()
+                        self.reservationNo.removeAll()
+                        self.hotelName.removeAll()
+                        self.ageGroup.removeAll()
+                        self.name.removeAll()
+                        self.birthDay.removeAll()
+                        self.passport.removeAll()
+                        self.touristIdRef.removeAll()
+                        
+                        for listarray in self.touristInfoList {
+                            // self.paxID.append(listarray.id ?? "")
+                            self.oprID.append(listarray.oprId ?? 0)
+                            self.oprName.append(listarray.operator ?? "")
+                            self.reservationNo.append(listarray.resNo ?? "")
+                            self.hotelName.append(listarray.hotelName ?? "")
+                            self.ageGroup.append(listarray.ageGroup ?? "")
+                            self.name.append(listarray.name ?? "")
+                            self.birthDay.append(listarray.birthDay ?? "")
+                            self.passport.append(listarray.passport ?? "")
+                            self.touristIdRef.append(listarray.touristIdRef ?? 0)
                         }
+                        
+                        self.paxesList.removeAll()
+                        
+                        for i in 0...(self.touristInfoList.count) - 1 {
+                            
+                            self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
+                            
+                            self.paxesListinPaxPage.append(self.paxesList[i])
+                        }
+                        
+                        
+                        for listarray in self.paxesListinPaxPage {
+                            self.sendingListofPaxes.append(listarray)
+                        }
+                        
+                        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
+                        
+                        
+                    }else{
+                        print("data has not recived")
                     }
-                    
                 }
-                
             }
             
         }
@@ -367,10 +341,10 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             self.counter -= 1
             print(self.counter)
             self.labelTouristAdded.text = "\(counter) Tourist Added"
-          
+            
             self.filteredPaxesList.removeAll()
             self.filteredPaxesList.append(filter[0])
-          
+            
             var touristId : [Int] = []
             var resNo : [String] = []
             
@@ -391,73 +365,70 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                 
                 self.paxesListinPaxPage.removeAll()
                 
-                    NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList[0].requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList[0].requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                    
+                    if response.count > 0 {
                         
-                        if response.count > 0 {
-                
-                            // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                            
-                            self.touristInfoList = response
-                            
-                            self.oprID.removeAll()
-                            self.oprName.removeAll()
-                            self.reservationNo.removeAll()
-                            self.hotelName.removeAll()
-                            self.ageGroup.removeAll()
-                            self.name.removeAll()
-                            self.birthDay.removeAll()
-                            self.passport.removeAll()
-                            self.touristIdRef.removeAll()
-                            
-                            for listarray in self.touristInfoList {
-                                // self.paxID.append(listarray.id ?? "")
-                                self.oprID.append(listarray.oprId ?? 0)
-                                self.oprName.append(listarray.operator ?? "")
-                                self.reservationNo.append(listarray.resNo ?? "")
-                                self.hotelName.append(listarray.hotelName ?? "")
-                                self.ageGroup.append(listarray.ageGroup ?? "")
-                                self.name.append(listarray.name ?? "")
-                                self.birthDay.append(listarray.birthDay ?? "")
-                                self.passport.append(listarray.passport ?? "")
-                                self.touristIdRef.append(listarray.touristIdRef ?? 0)
-                            }
-                            
-                            self.paxesList.removeAll()
-                            
-                            for i in 0...(self.touristInfoList.count) - 1 {
-                                
-                                self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
-                                
-                                self.paxesListinPaxPage.append(self.paxesList[i])
-                            }
-                            
-                            
-                            self.tempSendingListofPaxes = self.sendingListofPaxes
-                            
-                            for i in 0...self.sendingListofPaxes.count - 1 {
-                                
-                                if self.paxesListinPaxPage[0].pAX_NAME == self.sendingListofPaxes[i].pAX_NAME {
-                                    self.tempSendingListofPaxes.remove(at: i)
-                                }
-                            }
-                            if self.tempSendingListofPaxes.count > 0 {
-                                
-                                self.sendingListofPaxes = self.tempSendingListofPaxes
-                            }else {
-                                self.sendingListofPaxes.removeAll()
-                            }
-                            
-                            
-                            self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
-                            
-                        }else{
-                            print("data has not recived")
+                        // let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                        
+                        self.touristInfoList = response
+                        
+                        self.oprID.removeAll()
+                        self.oprName.removeAll()
+                        self.reservationNo.removeAll()
+                        self.hotelName.removeAll()
+                        self.ageGroup.removeAll()
+                        self.name.removeAll()
+                        self.birthDay.removeAll()
+                        self.passport.removeAll()
+                        self.touristIdRef.removeAll()
+                        
+                        for listarray in self.touristInfoList {
+                            // self.paxID.append(listarray.id ?? "")
+                            self.oprID.append(listarray.oprId ?? 0)
+                            self.oprName.append(listarray.operator ?? "")
+                            self.reservationNo.append(listarray.resNo ?? "")
+                            self.hotelName.append(listarray.hotelName ?? "")
+                            self.ageGroup.append(listarray.ageGroup ?? "")
+                            self.name.append(listarray.name ?? "")
+                            self.birthDay.append(listarray.birthDay ?? "")
+                            self.passport.append(listarray.passport ?? "")
+                            self.touristIdRef.append(listarray.touristIdRef ?? 0)
                         }
                         
+                        self.paxesList.removeAll()
+                        
+                        for i in 0...(self.touristInfoList.count) - 1 {
+                            
+                            self.paxesList.append(Paxes( pAX_CHECKOUT_DATE: "",  pAX_OPRID: self.oprID[i], pAX_OPRNAME: self.oprName[i], pAX_PHONE: "", hotelname: self.hotelName[i], pAX_GENDER: "MRS.", pAX_AGEGROUP: self.ageGroup[i], pAX_NAME: self.name[i], pAX_BIRTHDAY: self.birthDay[i], pAX_RESNO: self.reservationNo[i], pAX_PASSPORT: self.passport[i], pAX_ROOM: "1", pAX_TOURISTREF:self.touristIdRef[i], pAX_STATUS: 1 ))
+                            
+                            self.paxesListinPaxPage.append(self.paxesList[i])
+                        }
+                        
+                        
+                        self.tempSendingListofPaxes = self.sendingListofPaxes
+                        
+                        for i in 0...self.sendingListofPaxes.count - 1 {
+                            
+                            if self.paxesListinPaxPage[0].pAX_NAME == self.sendingListofPaxes[i].pAX_NAME {
+                                self.tempSendingListofPaxes.remove(at: i)
+                            }
+                        }
+                        if self.tempSendingListofPaxes.count > 0 {
+                            
+                            self.sendingListofPaxes = self.tempSendingListofPaxes
+                        }else {
+                            self.sendingListofPaxes.removeAll()
+                        }
+                        
+                        
+                        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
+                        
+                    }else{
+                        print("data has not recived")
                     }
                     
-                
-                
+                }      
             }
             
         }
