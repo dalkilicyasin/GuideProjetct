@@ -9,8 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TasksViewController" customModule="Rota" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TasksViewController" customModule="RotaIOS" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="ueE-Hf-nzc" id="dbh-Em-Ng3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,16 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TaskVC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V39-HP-DQw">
-                    <rect key="frame" x="94.5" y="390.5" width="225" height="115"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="225" id="Nn8-uL-gcv"/>
-                        <constraint firstAttribute="height" constant="115" id="kW0-U2-Wpf"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XvN-3q-I4d">
                     <rect key="frame" x="34" y="44" width="47" height="50"/>
                     <constraints>
@@ -41,14 +32,20 @@
                         <action selector="backButton:" destination="-1" eventType="touchUpInside" id="gCT-on-ZhM"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ueE-Hf-nzc">
+                    <rect key="frame" x="0.0" y="100" width="414" height="796"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="V39-HP-DQw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EgD-2u-grc"/>
                 <constraint firstItem="XvN-3q-I4d" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="Iow-Ee-T3C"/>
                 <constraint firstItem="XvN-3q-I4d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="34" id="LMF-I0-8nB"/>
-                <constraint firstItem="V39-HP-DQw" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="QUi-cK-J4t"/>
+                <constraint firstAttribute="bottom" secondItem="ueE-Hf-nzc" secondAttribute="bottom" id="dbH-VL-vG3"/>
+                <constraint firstItem="ueE-Hf-nzc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="gXQ-FA-k51"/>
+                <constraint firstItem="ueE-Hf-nzc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pAW-Vu-q3m"/>
+                <constraint firstAttribute="trailing" secondItem="ueE-Hf-nzc" secondAttribute="trailing" id="xi6-ZC-2K3"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="112.5"/>
         </view>

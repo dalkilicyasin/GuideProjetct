@@ -108,6 +108,8 @@
 		D94C407A265BE36400EBC7CD /* FavoriteCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D94C4079265BE36400EBC7CD /* FavoriteCustomView.xib */; };
 		D94C407F265D013C00EBC7CD /* FavoriteListCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C407E265D013C00EBC7CD /* FavoriteListCustomView.swift */; };
 		D94C4084265D02AF00EBC7CD /* FavoriteListCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D94C4083265D02AF00EBC7CD /* FavoriteListCustomView.xib */; };
+		D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C40A726692D4C00EBC7CD /* TaskTableViewCell.swift */; };
+		D94C40AA26692D4C00EBC7CD /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D94C40A826692D4C00EBC7CD /* TaskTableViewCell.xib */; };
 		D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -244,6 +246,8 @@
 		D94C4079265BE36400EBC7CD /* FavoriteCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCustomView.xib; sourceTree = "<group>"; };
 		D94C407E265D013C00EBC7CD /* FavoriteListCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListCustomView.swift; sourceTree = "<group>"; };
 		D94C4083265D02AF00EBC7CD /* FavoriteListCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteListCustomView.xib; sourceTree = "<group>"; };
+		D94C40A726692D4C00EBC7CD /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		D94C40A826692D4C00EBC7CD /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideMarketRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -491,6 +495,8 @@
 				BF44C9142640011800238035 /* BaseTableViewCell.swift */,
 				BF44C9312640015A00238035 /* MainPageTableViewCell.swift */,
 				BF44C9302640015A00238035 /* MainPageTableViewCell.xib */,
+				D94C40A726692D4C00EBC7CD /* TaskTableViewCell.swift */,
+				D94C40A826692D4C00EBC7CD /* TaskTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -644,6 +650,7 @@
 				D93F8895264B072200397283 /* AddManuelTouristCustomView.xib in Resources */,
 				BF44C98B264001B900238035 /* HotelPageCustomView.xib in Resources */,
 				BF44C9322640015A00238035 /* MainPageTableViewCell.xib in Resources */,
+				D94C40AA26692D4C00EBC7CD /* TaskTableViewCell.xib in Resources */,
 				D94C407A265BE36400EBC7CD /* FavoriteCustomView.xib in Resources */,
 				BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */,
 				BF44C9622640019200238035 /* HeaderCustomView.xib in Resources */,
@@ -802,6 +809,7 @@
 				BF44C8F2264000E900238035 /* GetTokenResponseModel.swift in Sources */,
 				BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */,
 				BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */,
+				D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */,
 				BF44C9492640017E00238035 /* ExcursionSaleViewController.swift in Sources */,
 				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
 				BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */,

@@ -408,13 +408,15 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                         
                         self.tempSendingListofPaxes = self.sendingListofPaxes
                         
-                        for i in 0...self.sendingListofPaxes.count - 1 {
-                            
-                            if self.paxesListinPaxPage[0].pAX_NAME == self.sendingListofPaxes[i].pAX_NAME {
-                                self.tempSendingListofPaxes.remove(at: i)
-                            }
-                        }
+                     
                         if self.tempSendingListofPaxes.count > 0 {
+                            
+                            for i in 0...self.sendingListofPaxes.count - 1 {
+                                
+                                if self.paxesListinPaxPage[0].pAX_NAME == self.sendingListofPaxes[i].pAX_NAME {
+                                    self.tempSendingListofPaxes.remove(at: i)
+                                }
+                            }
                             
                             self.sendingListofPaxes = self.tempSendingListofPaxes
                         }else {
