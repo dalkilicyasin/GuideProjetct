@@ -7,7 +7,7 @@
 
 import UIKit
 
-class VoucherViewController: ViewController {
+class VoucherViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

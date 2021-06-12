@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExcursionSaleViewController: ViewController {
+class ExcursionSaleViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

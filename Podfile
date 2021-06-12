@@ -12,7 +12,8 @@ target 'RotaIOS' do
     pod 'MBProgressHUD', '~> 1.1.0'
     pod  'DropDown'
     pod 'IQKeyboardManagerSwift'
-
+    pod 'Firebase/Analytics'
+    
   target 'RotaIOSTests' do
     inherit! :search_paths
     # Pods for testing

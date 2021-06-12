@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainPAgeViewController: ViewController {
+class MainPAgeViewController: BaseViewController {
 
     @IBOutlet var mainPageView: MainPageView!
     let date = Date()

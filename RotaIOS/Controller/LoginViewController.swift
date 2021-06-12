@@ -9,7 +9,7 @@ import Foundation
 
 import UIKit
 
-final class LoginViewController : UIViewController {
+final class LoginViewController : BaseViewController {
     
     @IBOutlet var viewLogin: LoginView!
     

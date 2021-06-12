@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OfflineSalesViewController: ViewController {
+class OfflineSalesViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

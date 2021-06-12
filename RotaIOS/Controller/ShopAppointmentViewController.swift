@@ -7,10 +7,7 @@
 
 import UIKit
 
-class ShopAppointmentViewController: ViewController {
-     
- 
-    
+class ShopAppointmentViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     

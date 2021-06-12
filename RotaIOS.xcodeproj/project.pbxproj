@@ -88,6 +88,8 @@
 		BF44C9DD2640023400238035 /* AddStepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9DB2640023400238035 /* AddStepTableViewCell.xib */; };
 		BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9E12640023800238035 /* ProceedPageCustomView.swift */; };
 		BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9E22640023800238035 /* ProceedPageCustomView.xib */; };
+		BF75706D26753C2E002EA494 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF75706C26753C2E002EA494 /* BaseViewController.swift */; };
+		BF75707226753E39002EA494 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF75707126753E39002EA494 /* GoogleService-Info.plist */; };
 		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
 		D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */; };
 		D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */; };
@@ -108,6 +110,8 @@
 		D94C407A265BE36400EBC7CD /* FavoriteCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D94C4079265BE36400EBC7CD /* FavoriteCustomView.xib */; };
 		D94C407F265D013C00EBC7CD /* FavoriteListCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C407E265D013C00EBC7CD /* FavoriteListCustomView.swift */; };
 		D94C4084265D02AF00EBC7CD /* FavoriteListCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D94C4083265D02AF00EBC7CD /* FavoriteListCustomView.xib */; };
+		D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C40A726692D4C00EBC7CD /* TaskTableViewCell.swift */; };
+		D94C40AA26692D4C00EBC7CD /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D94C40A826692D4C00EBC7CD /* TaskTableViewCell.xib */; };
 		D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -224,6 +228,8 @@
 		BF44C9DB2640023400238035 /* AddStepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddStepTableViewCell.xib; sourceTree = "<group>"; };
 		BF44C9E12640023800238035 /* ProceedPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProceedPageCustomView.swift; sourceTree = "<group>"; };
 		BF44C9E22640023800238035 /* ProceedPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProceedPageCustomView.xib; sourceTree = "<group>"; };
+		BF75706C26753C2E002EA494 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		BF75707126753E39002EA494 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileResponseModel.swift; sourceTree = "<group>"; };
 		D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTouristAddCustomView.swift; sourceTree = "<group>"; };
@@ -244,6 +250,8 @@
 		D94C4079265BE36400EBC7CD /* FavoriteCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCustomView.xib; sourceTree = "<group>"; };
 		D94C407E265D013C00EBC7CD /* FavoriteListCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListCustomView.swift; sourceTree = "<group>"; };
 		D94C4083265D02AF00EBC7CD /* FavoriteListCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteListCustomView.xib; sourceTree = "<group>"; };
+		D94C40A726692D4C00EBC7CD /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		D94C40A826692D4C00EBC7CD /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideMarketRequestModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -310,6 +318,7 @@
 		BF44C879263FF80000238035 /* RotaIOS */ = {
 			isa = PBXGroup;
 			children = (
+				BF75707126753E39002EA494 /* GoogleService-Info.plist */,
 				BF44C9132640011100238035 /* Cell */,
 				BF44C8DF264000D900238035 /* View */,
 				BF44C8D62640009500238035 /* Networking */,
@@ -367,6 +376,7 @@
 				BF44C9212640014800238035 /* MainPAgeViewController.xib */,
 				BF44C91A2640013B00238035 /* LoginView.swift */,
 				BF44C9192640013A00238035 /* LoginViewController.swift */,
+				BF75706C26753C2E002EA494 /* BaseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -491,6 +501,8 @@
 				BF44C9142640011800238035 /* BaseTableViewCell.swift */,
 				BF44C9312640015A00238035 /* MainPageTableViewCell.swift */,
 				BF44C9302640015A00238035 /* MainPageTableViewCell.xib */,
+				D94C40A726692D4C00EBC7CD /* TaskTableViewCell.swift */,
+				D94C40A826692D4C00EBC7CD /* TaskTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -624,6 +636,7 @@
 				BF44C9D62640022F00238035 /* AddStepCustomView.xib in Resources */,
 				BF44C93C2640016500238035 /* ShopAppointmentViewController.xib in Resources */,
 				BF44C887263FF80100238035 /* LaunchScreen.storyboard in Resources */,
+				BF75707226753E39002EA494 /* GoogleService-Info.plist in Resources */,
 				BF44C95B2640018B00238035 /* MyTourSaleViewController.xib in Resources */,
 				BF44C95C2640018B00238035 /* OfflineSalesViewController.xib in Resources */,
 				BF44C884263FF80100238035 /* Assets.xcassets in Resources */,
@@ -644,6 +657,7 @@
 				D93F8895264B072200397283 /* AddManuelTouristCustomView.xib in Resources */,
 				BF44C98B264001B900238035 /* HotelPageCustomView.xib in Resources */,
 				BF44C9322640015A00238035 /* MainPageTableViewCell.xib in Resources */,
+				D94C40AA26692D4C00EBC7CD /* TaskTableViewCell.xib in Resources */,
 				D94C407A265BE36400EBC7CD /* FavoriteCustomView.xib in Resources */,
 				BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */,
 				BF44C9622640019200238035 /* HeaderCustomView.xib in Resources */,
@@ -800,8 +814,10 @@
 				BF44C8E5264000E200238035 /* ExtensionUIView.swift in Sources */,
 				D94C406C2659313000EBC7CD /* GetSaveForMobileResponseList.swift in Sources */,
 				BF44C8F2264000E900238035 /* GetTokenResponseModel.swift in Sources */,
+				BF75706D26753C2E002EA494 /* BaseViewController.swift in Sources */,
 				BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */,
 				BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */,
+				D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */,
 				BF44C9492640017E00238035 /* ExcursionSaleViewController.swift in Sources */,
 				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
 				BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */,

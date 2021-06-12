@@ -7,10 +7,10 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
 
     var window: UIWindow?
 
@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         userDefaultsData.saveLanguageId(languageId: 2)
         IQKeyboardManager.shared.enable = true
+        FirebaseApp.configure()
         
         return true
     }
-
 }

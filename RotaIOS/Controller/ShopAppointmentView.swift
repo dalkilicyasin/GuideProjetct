@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-
-
 final class ShopAppointmentView : UIView {
     
     @IBOutlet weak var headerDetailCustomView: HeaderDetailCustomView!

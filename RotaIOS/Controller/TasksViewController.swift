@@ -7,12 +7,18 @@
 
 import UIKit
 
-class TasksViewController: ViewController {
+class TasksViewController: BaseViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(TaskTableViewCell.nib, forCellReuseIdentifier: TaskTableViewCell.identifier)
     }
 
 
@@ -30,4 +36,19 @@ class TasksViewController: ViewController {
     }
     */
 
+}
+
+extension TasksViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 300
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier) as! TaskTableViewCell
+        
+        cell.labelNAme.text = "Deneme"
+        return cell
+    }
+    
+    
 }
