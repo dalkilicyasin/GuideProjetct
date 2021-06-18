@@ -28,8 +28,26 @@ class ProceedPageCustomView : UIView {
     
     var paxFilteredList : [String] = []
     
-    let datePicker = UIDatePicker()
-    let timePicker = UIDatePicker()
+    var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
+        return datePicker
+    }()
+    var timePicker: UIDatePicker = {
+        let timePicker = UIDatePicker()
+        timePicker.datePickerMode = .time
+        if #available(iOS 13.4, *) {
+            timePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
+        return timePicker
+    }()
     let dateToolBar = UIToolbar()
     let timeToolBar = UIToolbar()
     
