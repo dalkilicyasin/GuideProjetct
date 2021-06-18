@@ -12,8 +12,11 @@ class MainPAgeViewController: BaseViewController {
     @IBOutlet var mainPageView: MainPageView!
     let date = Date()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
        
         let df = DateFormatter()
         df.dateFormat = "MM-dd-yyyy"
@@ -53,4 +56,6 @@ class MainPAgeViewController: BaseViewController {
         
         
     }
+    
+
 }

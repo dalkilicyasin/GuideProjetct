@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import DropDown
 
+protocol HotelPageDelegate {
+    func hotelPage(isChange : Bool )
+}
+
 class HotelPageCustomView : UIView {
     
     @IBOutlet var headerView: UIView!
@@ -24,6 +28,9 @@ class HotelPageCustomView : UIView {
     var marketList : [GetGuideMarketResponseModel] = []
     var filteredMarketList : [GetGuideMarketResponseModel] = []
     var filteredHotelList : [GetHotelsMobileResponseModel] = []
+    var hotelPageDlegate : HotelPageDelegate?
+    var paxPageCustomView : PaxPageCustomView?
+    var tempHotelMenu : [String] = []
     
     @IBOutlet weak var checkBoxView: CheckBoxView!
     
@@ -62,6 +69,52 @@ class HotelPageCustomView : UIView {
                 print("data has not recived")
             }
         }
+        
+        // Burda bunu çağırmamın sebebi, Güliz, rotam-20 de, eğer rehbere atanmış bir otel yok ise checkbox seçili gelsin ve oteller otomatik listelensin demesinden dolayıdır. Rehbere atanmış otelin olup olmadığını öğrenmek içim  ise guidehotel in 1 olması şartı var.
+        
+        let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
+            
+            if response.count > 0 {
+                //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+     
+                    self.hotelList = response
+                    self.tempHotelMenu.removeAll()
+                    let filtered = response.filter({return ($0.guideHotel != 0)})
+                    print("\(filtered)")
+                
+                if response[0].guideHotel != 0 {
+                    self.checkBoxView.imageCheck.isHidden = true
+                    self.checkBoxView.isCheckRemember = false
+                    self.hotelList = filtered
+                    for listofArray in self.hotelList {
+                        self.tempHotelMenu.append(listofArray.text ?? "")
+                    }
+                    self.hotelMenu.dataSource = self.tempHotelMenu
+                    self.hotelMenu.backgroundColor = UIColor.grayColor
+                    self.hotelMenu.separatorColor = UIColor.gray
+                    self.hotelMenu.textColor = .white
+                    self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView
+                    self.hotelMenu.topOffset = CGPoint(x: 0, y:-(self.hotelMenu.anchorView?.plainView.bounds.height)!)
+                }else{
+                    
+                    self.checkBoxView.imageCheck.isHidden = false
+                    self.checkBoxView.isCheckRemember = true
+                    for listofArray in self.hotelList {
+                        self.tempHotelMenu.append(listofArray.text ?? "")
+                    }
+                    self.hotelMenu.dataSource = self.tempHotelMenu
+                    self.hotelMenu.backgroundColor = UIColor.grayColor
+                    self.hotelMenu.separatorColor = UIColor.gray
+                    self.hotelMenu.textColor = .white
+                    self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView.mainLabel
+                    self.hotelMenu.topOffset = CGPoint(x: 0, y:-(self.hotelMenu.anchorView?.plainView.bounds.height)!)
+                }
+            }else{
+                print("data has not recived")
+            }
+        }
+        
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
         
@@ -82,6 +135,10 @@ class HotelPageCustomView : UIView {
         self.hotelMainTextSecondCustomView.addGestureRecognizer(secondGesture)
         
         self.marketMenu.selectionAction = { index, title in
+            
+            if title != self.marketMainTextCustomView.mainLabel.text {
+                self.hotelPageDlegate?.hotelPage(isChange: true)
+            }
             self.marketMainTextCustomView.mainLabel.text = title
             let filtered = self.marketList.filter{($0.text?.contains(title) ?? false)}
             self.filteredMarketList = filtered
@@ -92,8 +149,11 @@ class HotelPageCustomView : UIView {
         }
         
         self.hotelMenu.selectionAction = { index, title in
-            self.hotelMainTextSecondCustomView.mainLabel.text = title
             
+            if title != self.hotelMainTextSecondCustomView.mainLabel.text {
+                self.hotelPageDlegate?.hotelPage(isChange: true)
+            }
+            self.hotelMainTextSecondCustomView.mainLabel.text = title
             let filtered = self.hotelList.filter{($0.text?.contains(title) ?? false)}
             self.filteredHotelList = filtered
             for listofArray in self.filteredHotelList {
@@ -107,6 +167,7 @@ class HotelPageCustomView : UIView {
         self.hotelMainTextSecondCustomView.headerLAbel.text = "Hotel"
         
         self.checkBoxView.checkBoxViewDelegate = self
+        self.checkBoxView.imageCheck.isHidden = false
         
         print("tarih=\(userDefaultsData.getSaleDate() ?? "")")
     }
@@ -132,18 +193,17 @@ extension HotelPageCustomView : UISearchBarDelegate {
             
             
         }else {
+            self.hotelMenu.dataSource = self.tempHotelMenu
             self.isFilteredTextEmpty = false
             for data in self.hotelMenu.dataSource{
                 if data.description.lowercased().contains(searchText.lowercased()){
                     self.filteredData.append(data)
-                    self.hotelMenu.dataSource = filteredData
+                    self.hotelMenu.dataSource = self.filteredData
                     
                 }
             }
         }
-        for listofhotel in self.hotelList {
-            self.hotelMenu.dataSource.append(listofhotel.text ?? "")
-        }
+     
     }
     
 }
@@ -156,30 +216,32 @@ extension HotelPageCustomView : CheckBoxViewDelegate {
             
             if response.count > 0 {
                 //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                if isremember {
-                    
+                self.tempHotelMenu.removeAll()
+                if isremember == true{
                     self.hotelList = response
-                    for listOfArray in self.hotelList {
-                        self.hotelMenu.dataSource.append(listOfArray.text ?? "")
+                    for listofArray in self.hotelList {
+                        self.tempHotelMenu.append(listofArray.text ?? "")
                     }
+                    self.hotelMenu.dataSource = self.tempHotelMenu
                     self.hotelMenu.backgroundColor = UIColor.grayColor
                     self.hotelMenu.separatorColor = UIColor.gray
                     self.hotelMenu.textColor = .white
                     self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView.mainLabel
+                    self.hotelMenu.topOffset = CGPoint(x: 0, y:-(self.hotelMenu.anchorView?.plainView.bounds.height)!)
                     
-                }else{
-                    
-                    self.hotelMenu.dataSource.removeAll()
+                }else if isremember == false {
                     let filtered = response.filter({return ($0.guideHotel != 0)})
                     print("\(filtered)")
                     self.hotelList = filtered
                     for listofArray in self.hotelList {
-                        self.hotelMenu.dataSource.append(listofArray.text ?? "")
+                        self.tempHotelMenu.append(listofArray.text ?? "")
                     }
+                    self.hotelMenu.dataSource = self.tempHotelMenu
                     self.hotelMenu.backgroundColor = UIColor.grayColor
                     self.hotelMenu.separatorColor = UIColor.gray
                     self.hotelMenu.textColor = .white
                     self.hotelMenu.anchorView = self.hotelMainTextSecondCustomView
+                    self.hotelMenu.topOffset = CGPoint(x: 0, y:-(self.hotelMenu.anchorView?.plainView.bounds.height)!)
                     
                 }
                 

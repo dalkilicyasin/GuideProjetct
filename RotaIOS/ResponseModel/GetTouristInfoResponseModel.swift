@@ -17,7 +17,7 @@ struct GetTouristInfoResponseModel : Mappable {
     var birthDay : String?
     var resNo : String?
     var oprId : Int?
-    var `operator` : String?
+    var operatorName : String?
     var passport : String?
     var room : String?
     var hotelId : Int?
@@ -38,7 +38,7 @@ struct GetTouristInfoResponseModel : Mappable {
         birthDay <- map["BirthDay"]
         resNo <- map["ResNo"]
         oprId <- map["OprId"]
-        `operator` <- map["Operator"]
+        operatorName <- map["Operator"]
         passport <- map["Passport"]
         room <- map["Room"]
         hotelId <- map["HotelId"]

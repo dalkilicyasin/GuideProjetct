@@ -11,7 +11,9 @@ import Foundation
 import UIKit
 
 
-
+protocol ProceedPageDelegate {
+    func proceedPage(isSuccsess : Bool)
+}
 class ProceedPageCustomView : UIView {
 
     @IBOutlet var headerView: UIView!
@@ -22,7 +24,7 @@ class ProceedPageCustomView : UIView {
     @IBOutlet weak var sendButton: UIButton!
     var dateString = ""
     var timeString = ""
-    
+    var proceedPageDelegate : ProceedPageDelegate?
     
     var paxFilteredList : [String] = []
     
@@ -54,7 +56,7 @@ class ProceedPageCustomView : UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: ProceedPageCustomView.self), owner: self, options: nil)
         headerView.addCustomContainerView(self)
-        
+        self.sendButton.isEnabled = true
         self.headerView.backgroundColor = UIColor.mainViewColor
         
         self.sendButton.backgroundColor = UIColor.greenColor
@@ -97,16 +99,27 @@ class ProceedPageCustomView : UIView {
              
         NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveForMobileRequestModel ) { (response: GetSaveForMobileResponseList) in
             if response.isSuccesful ?? false{
-                
+                if let topVC = UIApplication.getTopViewController() {
+                    let alert = UIAlertController(title: "SUCCESS", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+           
                 self.sendButton.backgroundColor = UIColor.clear
                 self.sendButton.layer.borderWidth = 1
                 self.sendButton.layer.borderColor = UIColor.green.cgColor
                 self.sendButton.layer.cornerRadius = 10
+                self.sendButton.isEnabled = false
+                self.proceedPageDelegate?.proceedPage(isSuccsess: true)
                 print(response)
+                
             }else{
-                let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            
+                if let topVC = UIApplication.getTopViewController() {
+                    let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+                
             }
         }
         
@@ -130,9 +143,9 @@ class ProceedPageCustomView : UIView {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        formatter.dateFormat = "MM-dd-yyyy"
+        formatter.dateFormat = "dd-MM-yyyy"
         
-        self.shopDateMainText.mainText.text = formatter.string(from: datePicker.date)
+        self.shopDateMainText.mainText.text = "             \(formatter.string(from: datePicker.date))"
         self.headerView.endEditing(true)
         
         print(formatter.string(from: datePicker.date))
@@ -160,7 +173,7 @@ class ProceedPageCustomView : UIView {
         formatter.timeStyle = .medium
         formatter.dateFormat = "HH:dd a"
         
-        self.pickUpTimeMainText.mainText.text = formatter.string(for: timePicker.date)
+        self.pickUpTimeMainText.mainText.text = "             \(formatter.string(for: timePicker.date) ?? "12:00")"
         self.headerView.endEditing(true)
         print(formatter.string(from: timePicker.date))
         self.timeString = formatter.string(from: datePicker.date)

@@ -51,9 +51,7 @@ class CheckBoxView: UIView{
         }else {
             self.imageCheck.isHidden = true
             self.checkBoxViewDelegate?.checkBoxTapped(isremember: false)
-        }
-        
-       
+        } 
     }
 }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,6 +21,7 @@
                 <outlet property="viewName" destination="LHT-J6-Z3t" id="iNC-aF-9R1"/>
                 <outlet property="viewOperator" destination="3iB-d2-t3U" id="OUV-NL-m2u"/>
                 <outlet property="viewPhone" destination="YQJ-uu-xJV" id="Bbv-df-Rao"/>
+                <outlet property="viewRemoveView" destination="OAW-Io-So3" id="7q5-Tt-cCN"/>
                 <outlet property="viewRoom" destination="JXN-Rv-LvO" id="J4Q-Au-Tfb"/>
                 <outlet property="viewSlideUp" destination="QbZ-hS-6w1" id="oGG-pJ-U6H"/>
             </connections>
@@ -37,56 +38,56 @@
                             <rect key="frame" x="0.0" y="0.0" width="332" height="1200"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IB6-Cx-xbR" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="25" width="292" height="80"/>
+                                    <rect key="frame" x="20" y="35" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="hsD-n2-g4k"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHT-J6-Z3t" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="105" width="292" height="80"/>
+                                    <rect key="frame" x="20" y="115" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="aus-k5-99e"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdL-oi-B44" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="185" width="292" height="80"/>
+                                    <rect key="frame" x="20" y="195" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="E3b-dR-DG9"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3iB-d2-t3U" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="265" width="292" height="80"/>
+                                    <rect key="frame" x="20" y="275" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="X3L-ec-IB9"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXN-Rv-LvO" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="345" width="292" height="80"/>
+                                    <rect key="frame" x="20" y="355" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="8U8-aV-d9y"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQJ-uu-xJV" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="425" width="292" height="80"/>
+                                    <rect key="frame" x="20" y="435" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="1lk-sz-3r5"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUs-bg-b75" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="505" width="292" height="80"/>
+                                    <rect key="frame" x="20" y="515" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="skx-S8-wkI"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDa-R7-3L0">
-                                    <rect key="frame" x="30" y="590" width="272" height="50"/>
+                                    <rect key="frame" x="30" y="600" width="272" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="Ffx-NJ-8WP"/>
                                     </constraints>
@@ -99,10 +100,22 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QbZ-hS-6w1">
-                                    <rect key="frame" x="130" y="10" width="72" height="5"/>
-                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <rect key="frame" x="100" y="5" width="162" height="20"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAW-Io-So3">
+                                            <rect key="frame" x="40" y="5" width="102" height="5"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="5" id="BJu-Fy-oq6"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="5" id="8OR-AX-rPG"/>
+                                        <constraint firstAttribute="height" constant="20" id="8OR-AX-rPG"/>
+                                        <constraint firstItem="OAW-Io-So3" firstAttribute="top" secondItem="QbZ-hS-6w1" secondAttribute="top" constant="5" id="ONK-1j-2XP"/>
+                                        <constraint firstItem="OAW-Io-So3" firstAttribute="leading" secondItem="QbZ-hS-6w1" secondAttribute="leading" constant="40" id="exh-tr-uIS"/>
+                                        <constraint firstAttribute="trailing" secondItem="OAW-Io-So3" secondAttribute="trailing" constant="20" id="okW-sA-GBD"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -116,7 +129,7 @@
                                 <constraint firstAttribute="height" constant="1200" id="GGh-fr-X2n"/>
                                 <constraint firstItem="YQJ-uu-xJV" firstAttribute="top" secondItem="JXN-Rv-LvO" secondAttribute="bottom" id="IhK-d3-PVz"/>
                                 <constraint firstAttribute="trailing" secondItem="IB6-Cx-xbR" secondAttribute="trailing" constant="20" id="Mii-fB-pJ0"/>
-                                <constraint firstItem="QbZ-hS-6w1" firstAttribute="top" secondItem="hku-yx-8da" secondAttribute="top" constant="10" id="Nts-eH-kvo"/>
+                                <constraint firstItem="QbZ-hS-6w1" firstAttribute="top" secondItem="hku-yx-8da" secondAttribute="top" constant="5" id="Nts-eH-kvo"/>
                                 <constraint firstAttribute="trailing" secondItem="xdL-oi-B44" secondAttribute="trailing" constant="20" id="WAc-4s-i2x"/>
                                 <constraint firstAttribute="trailing" secondItem="fDa-R7-3L0" secondAttribute="trailing" constant="30" id="Yk6-P1-RkY"/>
                                 <constraint firstItem="nUs-bg-b75" firstAttribute="top" secondItem="YQJ-uu-xJV" secondAttribute="bottom" id="b75-Px-IHH"/>
@@ -127,8 +140,8 @@
                                 <constraint firstItem="fDa-R7-3L0" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="30" id="fdb-dq-zaj"/>
                                 <constraint firstItem="LHT-J6-Z3t" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="20" id="fg0-DP-x1R"/>
                                 <constraint firstItem="fDa-R7-3L0" firstAttribute="top" secondItem="nUs-bg-b75" secondAttribute="bottom" constant="5" id="gp6-Ev-TOb"/>
-                                <constraint firstAttribute="trailing" secondItem="QbZ-hS-6w1" secondAttribute="trailing" constant="130" id="ilh-KB-r98"/>
-                                <constraint firstItem="QbZ-hS-6w1" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="130" id="jgg-Il-P8Z"/>
+                                <constraint firstAttribute="trailing" secondItem="QbZ-hS-6w1" secondAttribute="trailing" constant="70" id="ilh-KB-r98"/>
+                                <constraint firstItem="QbZ-hS-6w1" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="100" id="jgg-Il-P8Z"/>
                                 <constraint firstAttribute="trailing" secondItem="JXN-Rv-LvO" secondAttribute="trailing" constant="20" id="jrA-dD-XkR"/>
                                 <constraint firstItem="3iB-d2-t3U" firstAttribute="top" secondItem="xdL-oi-B44" secondAttribute="bottom" id="oHr-RP-xMk"/>
                                 <constraint firstItem="xdL-oi-B44" firstAttribute="top" secondItem="LHT-J6-Z3t" secondAttribute="bottom" id="rum-EF-XRD"/>

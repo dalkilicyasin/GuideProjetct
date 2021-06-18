@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,6 +16,7 @@
                 <outlet property="headerView" destination="iN0-l3-epB" id="ZXy-QF-zJM"/>
                 <outlet property="slideIdicator" destination="vpN-Ku-AXV" id="4nu-DK-1Kw"/>
                 <outlet property="tableView" destination="ZHF-rH-EPv" id="dad-TI-VAv"/>
+                <outlet property="viewRemoveView" destination="AIW-w4-Rc6" id="usN-6I-dlp"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -27,14 +28,26 @@
                     <rect key="frame" x="0.0" y="200" width="373" height="533"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpN-Ku-AXV">
-                            <rect key="frame" x="132" y="8" width="109" height="5"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="100" y="8" width="173" height="30"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIW-w4-Rc6">
+                                    <rect key="frame" x="30" y="5" width="113" height="5"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="5" id="sHU-cN-Fgg"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="5" id="8Pt-oE-beC"/>
+                                <constraint firstAttribute="trailing" secondItem="AIW-w4-Rc6" secondAttribute="trailing" constant="30" id="7dT-BA-cne"/>
+                                <constraint firstAttribute="height" constant="30" id="8Pt-oE-beC"/>
+                                <constraint firstItem="AIW-w4-Rc6" firstAttribute="top" secondItem="vpN-Ku-AXV" secondAttribute="top" constant="5" id="p4b-o6-g9P"/>
+                                <constraint firstItem="AIW-w4-Rc6" firstAttribute="leading" secondItem="vpN-Ku-AXV" secondAttribute="leading" constant="30" id="qrh-V1-mqu"/>
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZHF-rH-EPv">
-                            <rect key="frame" x="0.0" y="43" width="373" height="200"/>
+                            <rect key="frame" x="0.0" y="48" width="373" height="200"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="200" id="olg-73-3SA"/>
@@ -42,7 +55,7 @@
                             <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ju-e4-BqJ">
-                            <rect key="frame" x="30" y="273" width="313" height="50"/>
+                            <rect key="frame" x="30" y="278" width="313" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="FgJ-GO-Xtf"/>
                             </constraints>
@@ -57,14 +70,14 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="ZHF-rH-EPv" firstAttribute="top" secondItem="vpN-Ku-AXV" secondAttribute="bottom" constant="30" id="4kP-Vn-bYO"/>
+                        <constraint firstItem="ZHF-rH-EPv" firstAttribute="top" secondItem="vpN-Ku-AXV" secondAttribute="bottom" constant="10" id="4kP-Vn-bYO"/>
                         <constraint firstItem="ZHF-rH-EPv" firstAttribute="leading" secondItem="GEZ-Gr-9EP" secondAttribute="leading" id="8D6-Ba-ar2"/>
                         <constraint firstItem="0ju-e4-BqJ" firstAttribute="top" secondItem="ZHF-rH-EPv" secondAttribute="bottom" constant="30" id="HOE-Ya-vMt"/>
                         <constraint firstItem="vpN-Ku-AXV" firstAttribute="top" secondItem="GEZ-Gr-9EP" secondAttribute="top" constant="8" id="JQP-mE-OeK"/>
                         <constraint firstAttribute="trailing" secondItem="0ju-e4-BqJ" secondAttribute="trailing" constant="30" id="Kbz-FV-Vr0"/>
                         <constraint firstItem="0ju-e4-BqJ" firstAttribute="leading" secondItem="GEZ-Gr-9EP" secondAttribute="leading" constant="30" id="aGw-U5-gK1"/>
-                        <constraint firstAttribute="trailing" secondItem="vpN-Ku-AXV" secondAttribute="trailing" constant="132" id="dan-ku-Cvo"/>
-                        <constraint firstItem="vpN-Ku-AXV" firstAttribute="leading" secondItem="GEZ-Gr-9EP" secondAttribute="leading" constant="132" id="guq-Ue-gdZ"/>
+                        <constraint firstAttribute="trailing" secondItem="vpN-Ku-AXV" secondAttribute="trailing" constant="100" id="dan-ku-Cvo"/>
+                        <constraint firstItem="vpN-Ku-AXV" firstAttribute="leading" secondItem="GEZ-Gr-9EP" secondAttribute="leading" constant="100" id="guq-Ue-gdZ"/>
                         <constraint firstAttribute="trailing" secondItem="ZHF-rH-EPv" secondAttribute="trailing" id="wUf-kG-BaP"/>
                     </constraints>
                 </view>

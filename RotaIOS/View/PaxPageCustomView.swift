@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol PaxesListDelegate {
-    func paxesList(ischosen : Bool, sendingPaxesLis : [Paxes])
+    func paxesList(ischosen : Bool, sendingPaxesLis : [Paxes], isChange : Bool)
 }
 
 class PaxPageCustomView : UIView {
@@ -51,6 +51,7 @@ class PaxPageCustomView : UIView {
     var equalableFilteredPaxList : [String] = []
     
     var addmanuelNameList : [String] = []
+    var tempValue = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -177,26 +178,16 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
             
             return self.nameList.count
         }
-        
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PaxPageTableViewCell.identifier) as! PaxPageTableViewCell
         cell.paxPageCounterDelegate = self
-        if isFilteredTextEmpty == false {
-            if self.filteredData.count > 0 {
+        if !isFilteredTextEmpty {
                 cell.labelPaxNameListCell.text = filteredData[indexPath.row]
-            }else{
-                self.tableView.reloadData()
-            }
         }else{
-            if self.nameList.count > 0 {
                 cell.labelPaxNameListCell.text = nameList[indexPath.row]
-                
-            }else{
-                self.tableView.reloadData()
-            }
         }
         return cell
     }
@@ -205,9 +196,7 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
         
         if self.nameList.count > 0 {
             let selectedName = nameList[indexPath.row]
-            
             let filterSelectedName = self.paxesNameList.filter{($0.text?.elementsEqual(selectedName) ?? false)}
-            
             let filterResNo = self.paxesNameList.filter{($0.resNo?.elementsEqual((filterSelectedName[0].resNo ?? "")) ?? false)}
             
             self.nameList.removeAll()
@@ -256,7 +245,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             
             self.counter += 1
             print(self.counter)
-            self.labelTouristAdded.text = "\(counter) Tourist Added"
+            self.labelTouristAdded.text = "\(self.counter) Tourist Added"
             self.tempNameList.append(touristName)
             self.filteredPaxesList.removeAll()
             self.filteredPaxesList.append(filter[0])
@@ -274,7 +263,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                     resNo.append(listarray.resNo ?? "")
                 }
                 
-                getInTouristInfoRequestModelList.removeAll()
+                self.getInTouristInfoRequestModelList.removeAll()
                 
                 for i in 0...filteredPaxesList.count - 1 {
                     self.getInTouristInfoRequestModelList.append(GetTouristInfoRequestModel(touristId: touristId[i], resNo: resNo[i]))
@@ -303,7 +292,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                         for listarray in self.touristInfoList {
                             // self.paxID.append(listarray.id ?? "")
                             self.oprID.append(listarray.oprId ?? 0)
-                            self.oprName.append(listarray.operator ?? "")
+                            self.oprName.append(listarray.operatorName ?? "")
                             self.reservationNo.append(listarray.resNo ?? "")
                             self.hotelName.append(listarray.hotelName ?? "")
                             self.ageGroup.append(listarray.ageGroup ?? "")
@@ -327,7 +316,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                             self.sendingListofPaxes.append(listarray)
                         }
                         
-                        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
+                        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
                         
                         
                     }else{
@@ -386,7 +375,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                         for listarray in self.touristInfoList {
                             // self.paxID.append(listarray.id ?? "")
                             self.oprID.append(listarray.oprId ?? 0)
-                            self.oprName.append(listarray.operator ?? "")
+                            self.oprName.append(listarray.operatorName ?? "")
                             self.reservationNo.append(listarray.resNo ?? "")
                             self.hotelName.append(listarray.hotelName ?? "")
                             self.ageGroup.append(listarray.ageGroup ?? "")
@@ -424,7 +413,7 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                         }
                         
                         
-                        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
+                        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
                         
                     }else{
                         print("data has not recived")
@@ -435,18 +424,25 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             
         }
         
-        
+      
     }
     
 }
 
 extension PaxPageCustomView : TempAddPaxesListDelegate {
-    func tempAddList(listofpaxes: [Paxes], manuellist: [String]) {
+    func tempAddList(listofpaxes: [Paxes], manuellist: [String], changeValue: Int) {
         // self.addmanuelNameList = manuellist
+        if self.tempValue != changeValue {
+            self.counter += changeValue
+            self.labelTouristAdded.text = "\(self.counter) Tourist Added"
+            self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
+        }
         self.paxesListinPaxPage.removeAll()
         self.sendingListofPaxes = listofpaxes
-        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes)
+        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: false)
+        self.tempValue = changeValue
     }
+  
     
 }
 

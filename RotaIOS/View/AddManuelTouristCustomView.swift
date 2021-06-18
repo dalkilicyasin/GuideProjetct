@@ -24,6 +24,7 @@ class AddManuelTouristCustomView : UIView {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var viewSlideUp: UIView!
+    @IBOutlet weak var viewRemoveView: UIView!
     @IBOutlet weak var viewGender: MainTextCustomView!
     @IBOutlet weak var viewName: MainTextCustomView!
     @IBOutlet weak var viewBirthDay: MainTextCustomView!
@@ -104,12 +105,8 @@ class AddManuelTouristCustomView : UIView {
         self.viewCheckOut.imageMainText.isHidden = true
         self.viewCheckOut.mainLabel.isHidden = true
         self.viewCheckOut.mainText.isHidden = false
-        
-       
-        
-      
-        
-       // self.viewSlideUp.roundCorners(.allCorners, radius: 10)
+    
+        self.viewRemoveView.roundCorners(.allCorners, radius: 10)
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
           self.viewSlideUp.addGestureRecognizer(tappedSlideUp)
           self.viewSlideUp.isUserInteractionEnabled = true
@@ -129,6 +126,7 @@ class AddManuelTouristCustomView : UIView {
         
         if self.viewGender.mainLabel.text != "" && self.viewName.mainText.text != "" {
             self.buttonAdd.isEnabled = true
+            
             
             let manuelAddPaxName = Paxes.init(pAX_CHECKOUT_DATE: self.viewCheckOut.mainText.text ?? "", pAX_OPRID: 0, pAX_OPRNAME: "", pAX_PHONE: self.viewPhone.mainText.text ?? "", hotelname: "", pAX_GENDER: self.viewGender.mainLabel.text ?? "" , pAX_AGEGROUP: "", pAX_NAME: self.viewName.mainText.text ?? "", pAX_BIRTHDAY: self.viewBirthDay.mainText.text ?? "", pAX_RESNO: "", pAX_PASSPORT: "", pAX_ROOM: self.viewRoom.mainText.text ?? "", pAX_TOURISTREF: 0, pAX_STATUS: 1)
             

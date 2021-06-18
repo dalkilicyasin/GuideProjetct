@@ -13,7 +13,7 @@ import UIKit
 import DropDown
 
 protocol StepsPageListDelegate {
-    func stepsPageList( listofsteps : [Steps] )
+    func stepsPageList( listofsteps : [Steps], isChange : Bool )
 }
 
 class StepsPageCustomView : UIView {
@@ -37,7 +37,7 @@ class StepsPageCustomView : UIView {
     var chldCount = 0
     var infCount = 0
     var x = 1
-    
+  
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -183,14 +183,16 @@ extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
         }
         
      
-        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps)
+        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps, isChange: true)
     }
 
 }
 
 extension StepsPageCustomView : SendInfoDelegate {
+   
     func sendInfo(sendinfo: String )
     {
+       
         self.firstMainTextView.mainLabel.text = sendinfo
         self.nameList.append(sendinfo)
         self.tableView.reloadData()
@@ -224,7 +226,7 @@ extension StepsPageCustomView : SendInfoDelegate {
             self.x += 1
         }
         
-        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps)
+        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps, isChange: true)
     }
 }
 
@@ -264,7 +266,7 @@ extension StepsPageCustomView : SendFavoriteInfoDelegate {
             self.x += 1
         }
         
-        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps)
+        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps, isChange: true)
     }
 }
 

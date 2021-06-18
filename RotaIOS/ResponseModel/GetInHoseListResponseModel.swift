@@ -17,6 +17,7 @@ struct GetInHoseListResponseModel : Mappable {
     var ageGroup : String?
     var marketId : Int?
     var mrkGrp : Int?
+    var isSelected : Bool?
 
     init?(map: Map) {
 

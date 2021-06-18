@@ -12,12 +12,13 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
     
     
   
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var headerCustomView: HeaderCustomView!
     @IBOutlet weak var tableView: UITableView!
 //    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var contentView: UIView!
-    
-    
+    @IBOutlet weak var viewofScroll: UIView!
+
     let imageList = ["operation","view","report"]
     let nameList = ["Operations","Views", "Reports"]
     let mainPageList = [["Tasks","Excursion Sale","Ind. Shop Appoinment","Cancel Voucher","Send Offline Sales"],["My Tour Sale","My Shopping Sales","Birthday","Speaking Hours","Documents","Announcement"],["Z Report","Daily Sale/Refund Report","Z Report Preview"]]
@@ -31,7 +32,10 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
         self.tableView.dataSource = self
         self.tableView.register(MainPageTableViewCell.nib, forCellReuseIdentifier: MainPageTableViewCell.identifier)
         
+        self.scrollView.layer.cornerRadius = 10
+        self.viewofScroll.layer.cornerRadius = 10
         self.contentView.layer.cornerRadius = 10
+        
         self.headerCustomView.imageHeader.image = UIImage(named: "odeonicon")
         self.headerCustomView.labelheader.text = "Odeon Tours TR"
         
@@ -91,6 +95,16 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 
                 case 0 :
                     viewController = MyTourSaleViewController()
+                case 1 :
+                    viewController = MyTourSaleViewController()
+                case 2 :
+                    viewController = MyTourSaleViewController()
+                case 3 :
+                    viewController = MyTourSaleViewController()
+                case 4 :
+                    viewController = MyTourSaleViewController()
+                case 5 :
+                    viewController = MyTourSaleViewController()
                 default :
                     print("selected")
                     
@@ -98,7 +112,28 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 topVC.otiPushViewController(viewController: viewController)
             }
         }else {
-            print("selected")
+            if let topVC = UIApplication.getTopViewController() {
+                var viewController: UIViewController = UIViewController()
+                switch(indexPath.row) {
+                
+                case 0 :
+                    viewController = MyTourSaleViewController()
+                case 1 :
+                    viewController = MyTourSaleViewController()
+                case 2 :
+                    viewController = MyTourSaleViewController()
+                case 3 :
+                    viewController = MyTourSaleViewController()
+                case 4 :
+                    viewController = MyTourSaleViewController()
+                case 5 :
+                    viewController = MyTourSaleViewController()
+                default :
+                    print("selected")
+                    
+                }
+                topVC.otiPushViewController(viewController: viewController)
+            }
         }
     }
     
