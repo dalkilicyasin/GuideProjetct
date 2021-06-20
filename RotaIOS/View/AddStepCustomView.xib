@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,6 +15,7 @@
                 <outlet property="searchBar" destination="ven-sf-YAT" id="EUq-Ju-qQl"/>
                 <outlet property="tableView" destination="7Db-Uk-TvK" id="dEN-es-Mrl"/>
                 <outlet property="topView" destination="RyN-30-GD5" id="2UR-jH-aND"/>
+                <outlet property="viewRemoveButton" destination="vgT-ml-U6Z" id="Pc0-i8-bhY"/>
                 <outlet property="viewSlideUP" destination="HH9-fM-HhT" id="HQa-5D-sHT"/>
             </connections>
         </placeholder>
@@ -27,12 +28,12 @@
                     <rect key="frame" x="0.0" y="80" width="414" height="816"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Db-Uk-TvK">
-                            <rect key="frame" x="0.0" y="120" width="414" height="696"/>
+                            <rect key="frame" x="0.0" y="115" width="414" height="701"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                         <searchBar contentMode="redraw" text="" placeholder="Steps Name Filter" translatesAutoresizingMaskIntoConstraints="NO" id="ven-sf-YAT">
-                            <rect key="frame" x="40" y="40" width="334" height="50"/>
+                            <rect key="frame" x="40" y="35" width="334" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="YSj-HL-qZK"/>
@@ -41,22 +42,34 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HH9-fM-HhT">
-                            <rect key="frame" x="144" y="5" width="126" height="5"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="89" y="5" width="248" height="23"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgT-ml-U6Z">
+                                    <rect key="frame" x="67" y="9" width="114" height="5"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="114" id="5iO-4o-owS"/>
+                                        <constraint firstAttribute="height" constant="5" id="axB-eF-po3"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="5" id="YS2-pq-NZe"/>
+                                <constraint firstItem="vgT-ml-U6Z" firstAttribute="centerY" secondItem="HH9-fM-HhT" secondAttribute="centerY" id="5VP-8S-p9k"/>
+                                <constraint firstItem="vgT-ml-U6Z" firstAttribute="centerX" secondItem="HH9-fM-HhT" secondAttribute="centerX" id="Ty8-ly-hH7"/>
+                                <constraint firstAttribute="height" constant="23" id="YS2-pq-NZe"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="ven-sf-YAT" firstAttribute="top" secondItem="HH9-fM-HhT" secondAttribute="bottom" constant="30" id="3O3-Jw-DrI"/>
+                        <constraint firstItem="ven-sf-YAT" firstAttribute="top" secondItem="HH9-fM-HhT" secondAttribute="bottom" constant="7" id="3O3-Jw-DrI"/>
                         <constraint firstItem="7Db-Uk-TvK" firstAttribute="leading" secondItem="RyN-30-GD5" secondAttribute="leading" id="6M8-it-DiI"/>
-                        <constraint firstAttribute="trailing" secondItem="HH9-fM-HhT" secondAttribute="trailing" constant="144" id="95k-LT-a82"/>
+                        <constraint firstAttribute="trailing" secondItem="HH9-fM-HhT" secondAttribute="trailing" constant="77" id="95k-LT-a82"/>
                         <constraint firstItem="ven-sf-YAT" firstAttribute="leading" secondItem="RyN-30-GD5" secondAttribute="leading" constant="40" id="9TT-pO-Qfu"/>
                         <constraint firstAttribute="trailing" secondItem="ven-sf-YAT" secondAttribute="trailing" constant="40" id="Iac-pm-gkn"/>
                         <constraint firstAttribute="bottom" secondItem="7Db-Uk-TvK" secondAttribute="bottom" id="TdH-Ir-Ao8"/>
-                        <constraint firstItem="HH9-fM-HhT" firstAttribute="leading" secondItem="RyN-30-GD5" secondAttribute="leading" constant="144" id="Wlv-o7-om4"/>
+                        <constraint firstItem="HH9-fM-HhT" firstAttribute="leading" secondItem="RyN-30-GD5" secondAttribute="leading" constant="89" id="Wlv-o7-om4"/>
                         <constraint firstAttribute="trailing" secondItem="7Db-Uk-TvK" secondAttribute="trailing" id="oyc-dU-VIq"/>
                         <constraint firstItem="7Db-Uk-TvK" firstAttribute="top" secondItem="ven-sf-YAT" secondAttribute="bottom" constant="30" id="sSY-Yq-tnP"/>
                         <constraint firstItem="HH9-fM-HhT" firstAttribute="top" secondItem="RyN-30-GD5" secondAttribute="top" constant="5" id="ySv-9u-J5o"/>

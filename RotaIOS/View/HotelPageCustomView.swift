@@ -186,12 +186,11 @@ extension HotelPageCustomView : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         self.filteredData = []
-        
+       
         if searchText.elementsEqual(""){
             self.isFilteredTextEmpty = true
-            self.hotelMenu.dataSource = self.filteredData
-            
-            
+            self.hotelMenu.dataSource = self.tempHotelMenu
+ 
         }else {
             self.hotelMenu.dataSource = self.tempHotelMenu
             self.isFilteredTextEmpty = false

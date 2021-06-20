@@ -14,6 +14,7 @@ protocol SendInfoDelegate {
 
 class AddStepCustomView : UIView {
     
+    @IBOutlet weak var viewRemoveButton: UIView!
     @IBOutlet weak var viewSlideUP: UIView!
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -29,7 +30,7 @@ class AddStepCustomView : UIView {
     var infoList : [String] = []
     
     var addFavoriteList : [String] = []
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +45,7 @@ class AddStepCustomView : UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: AddStepCustomView.self), owner: self, options: nil)
         self.headerView.addCustomContainerView(self)
-   
+        
         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetSelectList, method: .get, parameters: "") { (response : [GetSelectListResponseModel] ) in
             
             if response.count > 0 {
@@ -60,40 +61,31 @@ class AddStepCustomView : UIView {
                 self.tableView.delegate = self
                 self.tableView.dataSource = self
                 self.tableView.reloadData()
-             
+                
             }else{
                 print("data has not recived")
             }
         }
         
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
-          self.viewSlideUP.addGestureRecognizer(tappedSlideUp)
-          self.viewSlideUP.isUserInteractionEnabled = true
-        
-        
-        
+        self.viewRemoveButton.roundCorners(.allCorners, radius: 10)
+        self.viewSlideUP.addGestureRecognizer(tappedSlideUp)
+        self.viewSlideUP.isUserInteractionEnabled = true
         self.headerView.backgroundColor = UIColor.mainViewColor
-        
         self.topView.layer.borderWidth = 1
         self.topView.backgroundColor = UIColor.mainViewColor
         self.topView.layer.cornerRadius = 10
-        
-        
+        self.searchBar.delegate = self
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
- 
-       
         self.tableView.register(AddStepTableViewCell.nib, forCellReuseIdentifier: AddStepTableViewCell.identifier)
-        
-        self.searchBar.delegate = self
-        
         print(userDefaultsData.getFavorite() ?? "")
     }
     
     @objc func slideUpTapped() {
         self.removeFromSuperview()
     }
-
+    
 }
 
 extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
@@ -121,25 +113,25 @@ extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
                 self.tableView.reloadData()
             }
         }
-       // cell.nameList = self.infoList
+        // cell.nameList = self.infoList
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
-       self.infoList.append(addedNameList[indexPath.row])
+        
+        self.infoList.append(addedNameList[indexPath.row])
         self.sendInfoDelegate?.sendInfo(sendinfo: self.infoList[0])
-
+        
         self.removeFromSuperview()
     }
-       
+    
     
     
 }
 
 extension AddStepCustomView : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-  
+        
         self.filteredData = []
         
         if searchText.elementsEqual(""){
@@ -165,11 +157,11 @@ extension AddStepCustomView : TouchFavoriteDelegate {
         }
         
         if favoriteİsremember == true {
-          
+            
             self.addFavoriteList.append(touch)
             userDefaultsData.saveFavorite(id: self.addFavoriteList)
         }else {
-
+            
             
             for item in  self.addFavoriteList {
                 if item.elementsEqual(touch) {
@@ -180,10 +172,10 @@ extension AddStepCustomView : TouchFavoriteDelegate {
             }
         }
         
-       
+        
         print(self.addFavoriteList)
         
         
     }
-     
+    
 }

@@ -19,6 +19,7 @@ class PaxPageTableViewCell: BaseTableViewCell{
     var counter = 0
     var paxPageCustomView : PaxPageCustomView?
     var paxPageCounterDelegate : PaxPageCounterDelegate?
+    var paxesNameListResponse : PaxesNameListResponseModel?
    
     @IBOutlet weak var imageUserName: UIImageView!
     
@@ -45,10 +46,8 @@ extension PaxPageTableViewCell : CheckBoxViewDelegate {
     func checkBoxTapped(isremember: Bool) {
         print(isremember)
         self.paxPageCounterDelegate?.checkboxCounter(checkCounter: isremember, touristName: self.labelPaxNameListCell.text ?? "")
-      
+
     }
-    
-    
 }
 
 

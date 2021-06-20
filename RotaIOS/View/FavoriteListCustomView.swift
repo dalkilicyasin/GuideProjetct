@@ -14,7 +14,7 @@ protocol SendFavoriteInfoDelegate {
 class FavoriteListCustomView : UIView {
     
     @IBOutlet var headerView: UIView!
-   
+    @IBOutlet weak var viewRemoveButton: UIView!
     @IBOutlet weak var viewSlideUp: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var topView: UIView!
@@ -49,7 +49,7 @@ class FavoriteListCustomView : UIView {
         self.tableView.dataSource = self
      
         self.headerView.backgroundColor = UIColor.mainViewColor
-        
+        self.viewRemoveButton.roundCorners(.allCorners, radius: 10)
         self.topView.layer.borderWidth = 1
         self.topView.backgroundColor = UIColor.mainViewColor
         self.topView.layer.cornerRadius = 10

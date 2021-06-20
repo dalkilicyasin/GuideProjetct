@@ -27,25 +27,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GEZ-Gr-9EP">
                     <rect key="frame" x="0.0" y="200" width="373" height="533"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpN-Ku-AXV">
-                            <rect key="frame" x="100" y="8" width="173" height="30"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIW-w4-Rc6">
-                                    <rect key="frame" x="30" y="5" width="113" height="5"/>
-                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="5" id="sHU-cN-Fgg"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="AIW-w4-Rc6" secondAttribute="trailing" constant="30" id="7dT-BA-cne"/>
-                                <constraint firstAttribute="height" constant="30" id="8Pt-oE-beC"/>
-                                <constraint firstItem="AIW-w4-Rc6" firstAttribute="top" secondItem="vpN-Ku-AXV" secondAttribute="top" constant="5" id="p4b-o6-g9P"/>
-                                <constraint firstItem="AIW-w4-Rc6" firstAttribute="leading" secondItem="vpN-Ku-AXV" secondAttribute="leading" constant="30" id="qrh-V1-mqu"/>
-                            </constraints>
-                        </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZHF-rH-EPv">
                             <rect key="frame" x="0.0" y="48" width="373" height="200"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -67,17 +48,36 @@
                                 <action selector="addManuelButton:" destination="-1" eventType="touchUpInside" id="utp-1t-XfI"/>
                             </connections>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpN-Ku-AXV">
+                            <rect key="frame" x="100" y="8" width="173" height="30"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIW-w4-Rc6">
+                                    <rect key="frame" x="30" y="12.5" width="113" height="5"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="113" id="Edy-i8-Mkn"/>
+                                        <constraint firstAttribute="height" constant="5" id="LIV-yH-obZ"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="C13-NM-JRY"/>
+                                <constraint firstItem="AIW-w4-Rc6" firstAttribute="centerX" secondItem="vpN-Ku-AXV" secondAttribute="centerX" id="CNW-xE-Cz2"/>
+                                <constraint firstItem="AIW-w4-Rc6" firstAttribute="centerY" secondItem="vpN-Ku-AXV" secondAttribute="centerY" id="jWF-cH-YxU"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="ZHF-rH-EPv" firstAttribute="top" secondItem="vpN-Ku-AXV" secondAttribute="bottom" constant="10" id="4kP-Vn-bYO"/>
                         <constraint firstItem="ZHF-rH-EPv" firstAttribute="leading" secondItem="GEZ-Gr-9EP" secondAttribute="leading" id="8D6-Ba-ar2"/>
                         <constraint firstItem="0ju-e4-BqJ" firstAttribute="top" secondItem="ZHF-rH-EPv" secondAttribute="bottom" constant="30" id="HOE-Ya-vMt"/>
-                        <constraint firstItem="vpN-Ku-AXV" firstAttribute="top" secondItem="GEZ-Gr-9EP" secondAttribute="top" constant="8" id="JQP-mE-OeK"/>
                         <constraint firstAttribute="trailing" secondItem="0ju-e4-BqJ" secondAttribute="trailing" constant="30" id="Kbz-FV-Vr0"/>
+                        <constraint firstItem="vpN-Ku-AXV" firstAttribute="top" secondItem="GEZ-Gr-9EP" secondAttribute="top" constant="8" id="LqU-8d-0NC"/>
+                        <constraint firstItem="ZHF-rH-EPv" firstAttribute="top" secondItem="vpN-Ku-AXV" secondAttribute="bottom" constant="10" id="NT6-fu-R6y"/>
                         <constraint firstItem="0ju-e4-BqJ" firstAttribute="leading" secondItem="GEZ-Gr-9EP" secondAttribute="leading" constant="30" id="aGw-U5-gK1"/>
-                        <constraint firstAttribute="trailing" secondItem="vpN-Ku-AXV" secondAttribute="trailing" constant="100" id="dan-ku-Cvo"/>
-                        <constraint firstItem="vpN-Ku-AXV" firstAttribute="leading" secondItem="GEZ-Gr-9EP" secondAttribute="leading" constant="100" id="guq-Ue-gdZ"/>
+                        <constraint firstAttribute="trailing" secondItem="vpN-Ku-AXV" secondAttribute="trailing" constant="100" id="dft-Xq-hB8"/>
+                        <constraint firstItem="vpN-Ku-AXV" firstAttribute="leading" secondItem="GEZ-Gr-9EP" secondAttribute="leading" constant="100" id="nW9-yF-4Cc"/>
                         <constraint firstAttribute="trailing" secondItem="ZHF-rH-EPv" secondAttribute="trailing" id="wUf-kG-BaP"/>
                     </constraints>
                 </view>

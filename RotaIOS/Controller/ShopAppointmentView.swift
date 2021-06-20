@@ -278,12 +278,7 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
        
         }else if ischosen == 3 {
             self.footerView.buttonHiding(hidePrintbutton: false, hideButton: true)
-          
-            if procedPageIsSuccess == true {
-                self.footerView.printButton.isEnabled = true
-            }else{
-                self.footerView.printButton.isEnabled = true
-            }
+        
             if self.proceedPageCustomView == nil || self.isPaxesListChange == true || self.isStepListChange == true {
                 self.paxPageCustomView?.isHidden = true
                 self.stepsPageCustomView?.isHidden = true

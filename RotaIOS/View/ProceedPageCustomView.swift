@@ -136,6 +136,7 @@ class ProceedPageCustomView : UIView {
                     let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     topVC.present(alert, animated: true, completion: nil)
+                    self.proceedPageDelegate?.proceedPage(isSuccsess: false)
                 }
                 
             }
