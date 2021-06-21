@@ -162,7 +162,7 @@ class ProceedPageCustomView : UIView {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        formatter.dateFormat = "dd-MM-yyyy"
+        formatter.dateFormat = "MM-dd-yyyy"
         
         self.shopDateMainText.mainText.text = "             \(formatter.string(from: datePicker.date))"
         self.headerView.endEditing(true)

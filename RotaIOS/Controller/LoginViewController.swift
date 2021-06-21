@@ -28,7 +28,7 @@ final class LoginViewController : BaseViewController {
                 print("token received - \(response.access_token ?? "")")
                 self.otiPushViewController(viewController: MainPAgeViewController())
             }else{
-                let alert = UIAlertController(title: "Errror", message: "Token has not recived", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Errror", message: "Invalid Username/Password.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }

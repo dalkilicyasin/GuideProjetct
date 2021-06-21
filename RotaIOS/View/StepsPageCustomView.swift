@@ -24,7 +24,7 @@ class StepsPageCustomView : UIView {
     @IBOutlet var headerView: UIView!
     var filteredNameList : [GetSelectListResponseModel] = []
     var stepsNameList : [GetSelectListResponseModel] = []
-   
+    
     var remember = true
     var addStepCustomView : AddStepCustomView?
     var viewFavoriteList : FavoriteListCustomView?
@@ -33,11 +33,11 @@ class StepsPageCustomView : UIView {
     var sendingListofSteps : [Steps] = []
     var stepsPageListDelegate : StepsPageListDelegate?
     var stepsList : [Steps] = []
-    var adlCount = 0
+    var adlCount = 1
     var chldCount = 0
     var infCount = 0
     var x = 1
-  
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -56,17 +56,17 @@ class StepsPageCustomView : UIView {
         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetSelectList, method: .get, parameters: "") { (response : [GetSelectListResponseModel] ) in
             
             if response.count > 0 {
-            
+                
                 //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                 
                 self.stepsNameList = response
- 
-             
+                
+                
             }else{
                 print("data has not recived")
             }
         }
-      
+        
         self.firstMainTextView.headerLAbel.text = "Add Steps"
         
         self.secondMainTextView.headerLAbel.text = "Add from Favorite Steps"
@@ -75,20 +75,20 @@ class StepsPageCustomView : UIView {
         self.tableView.dataSource = self
         self.tableView.register(StepsPageTableViewCell.nib, forCellReuseIdentifier: StepsPageTableViewCell.identifier)
         
-      let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.firstMainTextView.addGestureRecognizer(tap)
         self.firstMainTextView.isUserInteractionEnabled = true
         
         let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(self.handleTapFavorite(_:)))
-          self.secondMainTextView.addGestureRecognizer(tapFavorite)
-          self.secondMainTextView.isUserInteractionEnabled = true
+        self.secondMainTextView.addGestureRecognizer(tapFavorite)
+        self.secondMainTextView.isUserInteractionEnabled = true
         
         
     }
-  
+    
     @objc func handleTapFavorite(_ sender: UITapGestureRecognizer) {
         
-       if self.remember == true{
+        if self.remember == true{
             if let topVC = UIApplication.getTopViewController() {
                 UIView.animate(withDuration: 0, animations: {
                     self.viewFavoriteList = FavoriteListCustomView()
@@ -107,37 +107,37 @@ class StepsPageCustomView : UIView {
     }
     
     
-      @objc func handleTap(_ sender: UITapGestureRecognizer) {
-          
-         if self.remember == true{
-              if let topVC = UIApplication.getTopViewController() {
-                  UIView.animate(withDuration: 0, animations: {
-                      self.addStepCustomView = AddStepCustomView()
-                      self.addStepCustomView?.sendInfoDelegate = self
-                      self.addStepCustomView!.frame = CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 896)
-                      topVC.view.addSubview(self.addStepCustomView!)
-                  }, completion: { (finished) in
-                      if finished{
-                          
-                      }
-                  })
-              }
-          }
-          
-          
-      }
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        
+        if self.remember == true{
+            if let topVC = UIApplication.getTopViewController() {
+                UIView.animate(withDuration: 0, animations: {
+                    self.addStepCustomView = AddStepCustomView()
+                    self.addStepCustomView?.sendInfoDelegate = self
+                    self.addStepCustomView!.frame = CGRect(x: 0, y: 0, width:UIScreen.main.bounds.width, height: 896)
+                    topVC.view.addSubview(self.addStepCustomView!)
+                }, completion: { (finished) in
+                    if finished{
+                        
+                    }
+                })
+            }
+        }
+        
+        
+    }
 }
 
 extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-       return self.nameList.count
+        
+        return self.nameList.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: StepsPageTableViewCell.identifier) as! StepsPageTableViewCell
-    
+        
         cell.labelText.text = nameList[indexPath.row]
         return cell
     }
@@ -146,7 +146,7 @@ extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             print("Deleted")
             self.nameList.remove(at: indexPath.row)
-           self.tableView.beginUpdates()
+            self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.endUpdates()
         }
@@ -154,10 +154,10 @@ extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
         print(nameList)
         self.filteredNameList.removeAll()
         for updateList in self.nameList {
-         let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
+            let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
             
             self.filteredNameList.append(filter[0])
-           // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
+            // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
         }
         print(self.filteredNameList)
         
@@ -166,7 +166,7 @@ extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
             var companyValue : [Int] = []
             var companyName  : [String] = []
             var status : [Int] = []
-        
+            
             for listarray in self.filteredNameList {
                 companyValue.append(listarray.value ?? 0)
                 companyName.append(listarray.text ?? "")
@@ -182,26 +182,26 @@ extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-     
+        
         self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps, isChange: true)
     }
-
+    
 }
 
 extension StepsPageCustomView : SendInfoDelegate {
-   
+    
     func sendInfo(sendinfo: String )
     {
-       
+        
         self.firstMainTextView.mainLabel.text = sendinfo
         self.nameList.append(sendinfo)
         self.tableView.reloadData()
         self.filteredNameList.removeAll()
         for updateList in self.nameList {
-         let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
+            let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
             
             self.filteredNameList.append(filter[0])
-           // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
+            // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
         }
         
         print(self.filteredNameList)
@@ -210,7 +210,7 @@ extension StepsPageCustomView : SendInfoDelegate {
         var companyName  : [String] = []
         var status : [Int] = []
         
-    
+        
         for listarray in self.filteredNameList {
             companyValue.append(listarray.value ?? 0)
             companyName.append(listarray.text ?? "")
@@ -218,6 +218,8 @@ extension StepsPageCustomView : SendInfoDelegate {
         }
         
         self.sendingListofSteps.removeAll()
+        self.stepsList.removeAll()
+        self.x = 1
         for i in 0...(self.filteredNameList.count) - 1 {
             
             self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: self.infCount, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: (self.x) ))
@@ -238,10 +240,10 @@ extension StepsPageCustomView : SendFavoriteInfoDelegate {
         self.tableView.reloadData()
         self.filteredNameList.removeAll()
         for updateList in self.nameList {
-         let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
+            let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
             
             self.filteredNameList.append(filter[0])
-           // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
+            // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
         }
         
         print(self.filteredNameList)
@@ -250,7 +252,7 @@ extension StepsPageCustomView : SendFavoriteInfoDelegate {
         var companyName  : [String] = []
         var status : [Int] = []
         
-    
+        
         for listarray in self.filteredNameList {
             companyValue.append(listarray.value ?? 0)
             companyName.append(listarray.text ?? "")
@@ -258,6 +260,7 @@ extension StepsPageCustomView : SendFavoriteInfoDelegate {
         }
         
         self.sendingListofSteps.removeAll()
+        self.x = 1
         for i in 0...(self.filteredNameList.count) - 1 {
             
             self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: self.infCount, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: (self.x) ))

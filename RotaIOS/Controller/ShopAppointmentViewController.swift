@@ -11,7 +11,9 @@ class ShopAppointmentViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
 
        let userId = userDefaultsData.getUserId()
         print(userId)
