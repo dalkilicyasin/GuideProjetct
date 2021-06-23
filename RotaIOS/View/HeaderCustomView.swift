@@ -11,9 +11,8 @@ import UIKit
 
 class HeaderCustomView : UIView {
     @IBOutlet var headerView: UIView!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var imageHeader: UIImageView!
-    @IBOutlet weak var labelheader: UILabel!
+    @IBOutlet weak var labelHeaderName: UILabel!
+    @IBOutlet weak var imageOdeonIcon: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,7 +27,8 @@ class HeaderCustomView : UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: HeaderCustomView.self), owner: self, options: nil)
         headerView.addCustomContainerView(self)
-        self.contentView.applyGradient(colours: [UIColor(hexString: "#BFD732"), UIColor(hexString: "#3DB54A")])
+        self.headerView.applyGradient(colours: [UIColor(hexString: "#BFD732"), UIColor(hexString: "#3DB54A")])
+        
         
     }
 }

@@ -9,16 +9,11 @@ import Foundation
 import UIKit
 
 final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
-    
-    
-  
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var headerCustomView: HeaderCustomView!
-    @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var bottomView: UIView!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var viewofScroll: UIView!
 
+    @IBOutlet weak var viewHeader: UIView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var tableViewHeigt: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
     let imageList = ["operation","view","report"]
     let nameList = ["Operations","Views", "Reports"]
     let mainPageList = [["Tasks","Excursion Sale","Ind. Shop Appoinment","Cancel Voucher","Send Offline Sales"],["My Tour Sale","My Shopping Sales","Birthday","Speaking Hours","Documents","Announcement"],["Z Report","Daily Sale/Refund Report","Z Report Preview"]]
@@ -31,14 +26,8 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(MainPageTableViewCell.nib, forCellReuseIdentifier: MainPageTableViewCell.identifier)
-        
-        self.scrollView.layer.cornerRadius = 10
-        self.viewofScroll.layer.cornerRadius = 10
-        self.contentView.layer.cornerRadius = 10
-        
-        self.headerCustomView.imageHeader.image = UIImage(named: "odeonicon")
-        self.headerCustomView.labelheader.text = "Odeon Tours TR"
-        
+        self.viewHeader.applyGradient(colours: [UIColor(hexString: "#BFD732"), UIColor(hexString: "#3DB54A")])
+        self.tableView.layer.cornerRadius = 20
     }
     
     required init(customParamArg: String) {
@@ -54,7 +43,7 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
         return 90.0
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: contentView.frame.size.width , height: 80))
         let imageView = MainPageCustomView()
         imageView.imageMainPage.image = UIImage(named: imageList[section])
@@ -147,6 +136,12 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainPageTableViewCell.identifier) as! MainPageTableViewCell
         cell.labelText.text = mainPageList[indexPath.section][indexPath.row]
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
   
     func numberOfSections(in tableView: UITableView) -> Int {

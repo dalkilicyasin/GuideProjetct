@@ -9,6 +9,7 @@ import UIKit
 
 class MainPAgeViewController: BaseViewController {
 
+
     @IBOutlet var mainPageView: MainPageView!
     let date = Date()
     
@@ -57,5 +58,27 @@ class MainPAgeViewController: BaseViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.mainPageView.tableView.addObserver(self, forKeyPath:"contentSize", options: .new, context: nil)
+        self.mainPageView.tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.mainPageView.tableView.removeObserver(self, forKeyPath: "contentSize")
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+           
+                
+                if let newValue = change?[.newKey] {
+                    let newSize = newValue as! CGSize
+                    self.mainPageView.tableViewHeigt.constant = newSize.height
+                }
+                
+            
+        }
+        
+    }
 
 }
