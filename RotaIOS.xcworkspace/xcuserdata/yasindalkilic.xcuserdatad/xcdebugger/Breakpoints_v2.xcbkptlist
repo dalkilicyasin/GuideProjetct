@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5A03F926-F932-4617-ACA1-30BBFA4A3B76"
+            uuid = "F2C112A6-348D-45C3-9582-51CBD02CA634"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RotaIOS/View/ProceedPageCustomView.swift"
+            filePath = "RotaIOS/Cell/PaxPageTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "sendButtonClicked(_:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "checkBoxTapped(isremember:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

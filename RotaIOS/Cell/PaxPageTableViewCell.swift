@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol PaxPageCounterDelegate {
-    func checkboxCounter(checkCounter : Bool, touristName : String)
+protocol PaxPageTableViewCellDelegate {
+    func checkBoxTapped(checkCounter : Bool, touristName : String, tempPaxes : GetInHoseListResponseModel)
 }
 
 class PaxPageTableViewCell: BaseTableViewCell{
@@ -17,9 +17,11 @@ class PaxPageTableViewCell: BaseTableViewCell{
     @IBOutlet weak var labelPaxNameListCell: UILabel!
     @IBOutlet weak var checkBoxView: CheckBoxView!
     var counter = 0
-    var paxPageCustomView : PaxPageCustomView?
-    var paxPageCounterDelegate : PaxPageCounterDelegate?
-    var paxesNameListResponse : PaxesNameListResponseModel?
+    var paxIsSelected : Bool?
+    var paxPageTableViewCellDelegate : PaxPageTableViewCellDelegate?
+    var tempPaxes : GetInHoseListResponseModel?
+  
+
    
     @IBOutlet weak var imageUserName: UIImageView!
     
@@ -45,9 +47,12 @@ class PaxPageTableViewCell: BaseTableViewCell{
 extension PaxPageTableViewCell : CheckBoxViewDelegate {
     func checkBoxTapped(isremember: Bool) {
         print(isremember)
-        self.paxPageCounterDelegate?.checkboxCounter(checkCounter: isremember, touristName: self.labelPaxNameListCell.text ?? "")
+        
+        self.paxPageTableViewCellDelegate?.checkBoxTapped(checkCounter: isremember, touristName: self.labelPaxNameListCell.text ?? "", tempPaxes: self.tempPaxes!)
 
     }
 }
+
+
 
 

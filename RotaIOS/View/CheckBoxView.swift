@@ -19,6 +19,7 @@ class CheckBoxView: UIView{
     
     var checkBoxViewDelegate : CheckBoxViewDelegate?
     var isCheckRemember = false
+    var paxesesNameisCheck : GetInHoseListResponseModel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

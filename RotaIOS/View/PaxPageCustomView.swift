@@ -18,11 +18,11 @@ class PaxPageCustomView : UIView {
     
     var tempTouristAddView : TempTouristAddCustomView?
     var remember = true
-    var isFilteredTextEmpty = true
-    var filteredData : [String] = []
+    var isFiltered = false
+    var filteredData : [GetInHoseListResponseModel] = []
     var paxesListDelegate : PaxesListDelegate?
     var counter = 0
-    var nameList : [String] = []
+    var tempPaxesNameList : [GetInHoseListResponseModel] = []
     var paxesNameList :[GetInHoseListResponseModel] = []
     var filteredPaxesList : [GetInHoseListResponseModel] = []
     var tempNameList : [String] = []
@@ -41,18 +41,16 @@ class PaxPageCustomView : UIView {
     var reservationNo : [String] = []
     var hotelName : [String] = []
     var ageGroup : [String] = []
-    var name : [String] = []
     var birthDay : [String] = []
     var passport : [String] = []
     var touristIdRef : [Int] = []
+    var name : [String] = []
     var sendingListofPaxes : [Paxes] = []
     var tempSendingListofPaxes : [Paxes] = []
     var paxesList : [Paxes] = []
     var equalableFilteredPaxList : [String] = []
-    
-    var addmanuelNameList : [String] = []
     var tempValue = 0
-    var paxesNameListResponse : PaxesNameListResponseModel?
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -80,12 +78,8 @@ class PaxPageCustomView : UIView {
                     //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                     
                     self.paxesNameList = response
-                    
-                    for listofArray in self.paxesNameList {
-                        self.nameList.append(listofArray.text ?? "")
-                    }
-                    self.filteredData = self.nameList
-                    
+                    self.tempPaxesNameList = self.paxesNameList
+                    self.filteredData = self.paxesNameList
                     self.tableView.delegate = self
                     self.tableView.dataSource = self
                     self.tableView.reloadData()
@@ -124,18 +118,13 @@ class PaxPageCustomView : UIView {
     
     @objc func refreshPaxses() {
         
-        self.nameList.removeAll()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-            for listofArray in self.paxesNameList {
-                self.nameList.append(listofArray.text ?? "")
-            }
-            self.filteredData = self.nameList
-            
-            
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.isFiltered = false
+            self.paxesNameList = self.tempPaxesNameList
             self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
         }
+        
         
     }
     
@@ -147,14 +136,7 @@ class PaxPageCustomView : UIView {
             
             UIView.animate(withDuration: 0, animations: {
                 self.tempTouristAddView = TempTouristAddCustomView()
-                //  self.tempTouristAddView?.nameListed = self.tempNameList
                 self.tempTouristAddView?.tempPaxesList = self.sendingListofPaxes
-                //  self.tempTouristAddView?.paxnameFromaddManuelList = self.addmanuelNameList
-                if self.addmanuelNameList.count != 0{
-                    for i in 0...self.addmanuelNameList.count - 1 {
-                        self.tempTouristAddView?.nameListed.append(self.addmanuelNameList[i])
-                    }
-                }
                 self.tempTouristAddView?.temppAddPaxesListDelegate = self
                 self.tempTouristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
                 topVC.view.addSubview(self.tempTouristAddView!)
@@ -173,7 +155,7 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if isFilteredTextEmpty == false {
+        if isFiltered == true {
             
             return self.filteredData.count
         }else{
@@ -185,36 +167,33 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PaxPageTableViewCell.identifier) as! PaxPageTableViewCell
-        cell.paxPageCounterDelegate = self
-        if !isFilteredTextEmpty {
-            cell.labelPaxNameListCell.text = filteredData[indexPath.row]
+        cell.paxPageTableViewCellDelegate = self
+        if isFiltered == true {
+            cell.labelPaxNameListCell.text = self.filteredData[indexPath.row].text
+            
+              //  cell.checkBoxView.imageCheck.isHidden = !(self.filteredData[indexPath.row].isSelected ?? false)
+           
+            
         }else{
-            let model : GetInHoseListResponseModel?
-            model = paxesNameList[indexPath.row]
-            self.paxesNameListResponse?.nameList = model // Akife danış. 
-            cell.labelPaxNameListCell.text = model?.text
-          //  cell.labelPaxNameListCell.text = nameList[indexPath.row]
+            cell.labelPaxNameListCell.text = self.paxesNameList[indexPath.row].text
+            cell.tempPaxes = self.paxesNameList[indexPath.row]
+     
+               // cell.checkBoxView.imageCheck.isHidden = !(self.paxesNameList[indexPath.row].isSelected ?? false)
+            
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-  
-        if self.nameList.count > 0 {
-            let selectedName = nameList[indexPath.row]
-            let filterSelectedName = self.paxesNameList.filter{($0.text?.elementsEqual(selectedName) ?? false)}
-            let filterResNo = self.paxesNameList.filter{($0.resNo?.elementsEqual((filterSelectedName[0].resNo ?? "")) ?? false)}
-            
-            self.nameList.removeAll()
-            
-            for i in 0...(filterResNo.count) - 1 {
-                
-                self.nameList.append(filterResNo[i].text ?? "")
-            }
-            
+        
+        
+       if self.paxesNameList.count > 0 {
+            let selectedName = paxesNameList[indexPath.row]
+            let filterResNo = self.paxesNameList.filter{($0.resNo?.elementsEqual((selectedName.resNo ?? "")) ?? false)}
+            self.isFiltered = true
+            self.filteredData = filterResNo
             self.tableView.reloadData()
-            
-            
+     
         }else{
             print("selected")
         }
@@ -228,13 +207,14 @@ extension PaxPageCustomView : UISearchBarDelegate {
         self.filteredData = []
         
         if searchText.elementsEqual(""){
-            self.isFilteredTextEmpty = true
-            self.filteredData = nameList
+            self.isFiltered = false
+            self.paxesNameList = self.tempPaxesNameList
         }else {
-            self.isFilteredTextEmpty = false
-            for data in nameList{
-                if data.description.lowercased().contains(searchText.lowercased()){
+            self.isFiltered = true
+            for data in self.paxesNameList{
+                if data.text!.lowercased().contains(searchText.lowercased()){
                     self.filteredData.append(data)
+                    self.paxesNameList = self.filteredData
                 }
             }
         }
@@ -242,23 +222,23 @@ extension PaxPageCustomView : UISearchBarDelegate {
     }
     
 }
-extension PaxPageCustomView : PaxPageCounterDelegate {
-    
-    func checkboxCounter(checkCounter: Bool, touristName: String) {
-        
+extension PaxPageCustomView : PaxPageTableViewCellDelegate {
+
+    func checkBoxTapped(checkCounter: Bool, touristName: String, tempPaxes: GetInHoseListResponseModel) {
+     
+     
         let filter = self.paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
+      
         if checkCounter {
-            
+           
             self.counter += 1
             print(self.counter)
             
             self.labelTouristAdded.text = "\(self.counter) Tourist Added"
             
-            
             self.tempNameList.append(touristName)
             self.filteredPaxesList.removeAll()
             self.filteredPaxesList.append(filter[0])
-            
             
             var touristId : [Int] = []
             var resNo : [String] = []
@@ -325,7 +305,8 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
                             self.sendingListofPaxes.append(listarray)
                         }
                         
-                        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
+                        
+                            self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
                         
                         
                     }else{
@@ -336,8 +317,10 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             
         }
         else{
+           
             self.counter -= 1
             print(self.counter)
+            
             if self.counter >= 0 {
                 self.labelTouristAdded.text = "\(counter) Tourist Added"
             }else {
@@ -439,14 +422,13 @@ extension PaxPageCustomView : PaxPageCounterDelegate {
             
         }
         
-        
+        self.tableView.reloadData()
     }
     
 }
 
 extension PaxPageCustomView : TempAddPaxesListDelegate {
     func tempAddList(listofpaxes: [Paxes], manuellist: [String], changeValue: Int) {
-        // self.addmanuelNameList = manuellist
         if self.tempValue != changeValue {
             self.counter += changeValue
             self.labelTouristAdded.text = "\(self.counter) Tourist Added"

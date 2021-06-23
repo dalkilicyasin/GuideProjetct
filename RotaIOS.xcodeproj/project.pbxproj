@@ -91,7 +91,6 @@
 		BF75706D26753C2E002EA494 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF75706C26753C2E002EA494 /* BaseViewController.swift */; };
 		BF75707226753E39002EA494 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF75707126753E39002EA494 /* GoogleService-Info.plist */; };
 		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
-		D92FDE86267E967A007671C7 /* PaxesNameListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92FDE85267E967A007671C7 /* PaxesNameListResponseModel.swift */; };
 		D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */; };
 		D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */; };
 		D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93F887226471C1100397283 /* TempTouristAddCustomView.xib */; };
@@ -232,7 +231,6 @@
 		BF75706C26753C2E002EA494 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BF75707126753E39002EA494 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
-		D92FDE85267E967A007671C7 /* PaxesNameListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaxesNameListResponseModel.swift; sourceTree = "<group>"; };
 		D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileResponseModel.swift; sourceTree = "<group>"; };
 		D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTouristAddCustomView.swift; sourceTree = "<group>"; };
 		D93F887226471C1100397283 /* TempTouristAddCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempTouristAddCustomView.xib; sourceTree = "<group>"; };
@@ -411,7 +409,6 @@
 				D93F88A82651AB1000397283 /* GetTouristInfoResponseModel.swift */,
 				D94C40662655D5FA00EBC7CD /* GetGuideInfoResponseModel.swift */,
 				D94C406B2659313000EBC7CD /* GetSaveForMobileResponseList.swift */,
-				D92FDE85267E967A007671C7 /* PaxesNameListResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -801,7 +798,6 @@
 				D93F8883264AAAE500397283 /* GetInHouseListRequestModel.swift in Sources */,
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
 				D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */,
-				D92FDE86267E967A007671C7 /* PaxesNameListResponseModel.swift in Sources */,
 				D93F889A264BC9A300397283 /* GetSelectListResponseModel.swift in Sources */,
 				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
 				BF44C97D264001AA00238035 /* FooterCustomView.swift in Sources */,
