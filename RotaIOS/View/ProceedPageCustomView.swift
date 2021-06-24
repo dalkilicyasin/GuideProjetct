@@ -113,36 +113,43 @@ class ProceedPageCustomView : UIView {
         
         let saveForMobileRequestModel = GetSaveForMobileRequestList.init(iND_CHLMAXAGE: NSNull() , iND_NOTE: self.notesMainText.mainText.text ?? NSNull(), iND_VOUCHER: NSNull(), iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId() , iND_MARKETGROUPREF: userDefaultsData.getMarketGruopId() , iND_MARKETREF: userDefaultsData.getMarketId() , iND_AREAREF: userDefaultsData.getHotelArea() , iND_HOTELREF: userDefaultsData.getHotelId() , iND_SHOPPICKUPTIME: self.timeString,  strPaxes: self.paxListinProceedPage.toJSONString(prettyPrint: true) ?? "" , strSteps: self.stepsListinProceedPage.toJSONString(prettyPrint: true) ?? "")
         
-       
-             
-        NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveForMobileRequestModel ) { (response: GetSaveForMobileResponseList) in
-            if response.isSuccesful ?? false{
-                if let topVC = UIApplication.getTopViewController() {
-                    let alert = UIAlertController(title: "SUCCESS", message: response.message, preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                    topVC.present(alert, animated: true, completion: nil)
+        if dateString.isEmpty == false && self.paxListinProceedPage.isEmpty == false && self.stepsListinProceedPage.isEmpty == false {
+            NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveForMobileRequestModel ) { (response: GetSaveForMobileResponseList) in
+                if response.isSuccesful ?? false{
+                    if let topVC = UIApplication.getTopViewController() {
+                        let alert = UIAlertController(title: "SUCCESS", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                        topVC.present(alert, animated: true, completion: nil)
+                    }
+               
+                    self.sendButton.backgroundColor = UIColor.clear
+                    self.sendButton.layer.borderWidth = 1
+                    self.sendButton.layer.borderColor = UIColor.green.cgColor
+                    self.sendButton.layer.cornerRadius = 10
+                    self.sendButton.isEnabled = false
+                    self.proceedPageDelegate?.proceedPage(isSuccsess: true)
+                    print(response)
+                    
+                }else{
+                    if let topVC = UIApplication.getTopViewController() {
+                        let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                        topVC.present(alert, animated: true, completion: nil)
+                        self.proceedPageDelegate?.proceedPage(isSuccsess: false)
+                    }
+                    
                 }
-           
-                self.sendButton.backgroundColor = UIColor.clear
-                self.sendButton.layer.borderWidth = 1
-                self.sendButton.layer.borderColor = UIColor.green.cgColor
-                self.sendButton.layer.cornerRadius = 10
-                self.sendButton.isEnabled = false
-                self.proceedPageDelegate?.proceedPage(isSuccsess: true)
-                print(response)
-                
-            }else{
-                if let topVC = UIApplication.getTopViewController() {
-                    let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                    topVC.present(alert, animated: true, completion: nil)
-                    self.proceedPageDelegate?.proceedPage(isSuccsess: false)
-                }
-                
             }
+        }else {
+            if let topVC = UIApplication.getTopViewController() {
+                let alert = UIAlertController(title: "Errror", message: "Please Insert Paxes/Steps/ShopDate", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                topVC.present(alert, animated: true, completion: nil)
+                self.proceedPageDelegate?.proceedPage(isSuccsess: false)
+            }
+            
         }
-        
- 
+     
 }
     
     func createDatePicker() {

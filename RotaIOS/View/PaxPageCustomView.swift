@@ -137,6 +137,7 @@ class PaxPageCustomView : UIView {
             UIView.animate(withDuration: 0, animations: {
                 self.tempTouristAddView = TempTouristAddCustomView()
                 self.tempTouristAddView?.tempPaxesList = self.sendingListofPaxes
+                self.tempTouristAddView?.changeCounterValue = self.tempValue
                 self.tempTouristAddView?.temppAddPaxesListDelegate = self
                 self.tempTouristAddView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 1200)
                 topVC.view.addSubview(self.tempTouristAddView!)
@@ -234,7 +235,7 @@ extension PaxPageCustomView : PaxPageTableViewCellDelegate {
             self.counter += 1
             print(self.counter)
             
-            self.labelTouristAdded.text = "\(self.counter) Tourist Added"
+            self.labelTouristAdded.text = "\(self.counter + self.tempValue) Tourist Added"
             
             self.tempNameList.append(touristName)
             self.filteredPaxesList.removeAll()
@@ -429,18 +430,19 @@ extension PaxPageCustomView : PaxPageTableViewCellDelegate {
 
 extension PaxPageCustomView : TempAddPaxesListDelegate {
     func tempAddList(listofpaxes: [Paxes], manuellist: [String], changeValue: Int) {
+        
         if self.tempValue != changeValue {
-            self.counter += changeValue
-            self.labelTouristAdded.text = "\(self.counter) Tourist Added"
+            self.tempValue = changeValue
+            self.labelTouristAdded.text = "\(self.counter + self.tempValue) Tourist Added"
             self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
+        }else {
+            self.paxesListinPaxPage.removeAll()
+            self.sendingListofPaxes = listofpaxes
+            self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: false)
+            self.tempValue = changeValue
         }
-        self.paxesListinPaxPage.removeAll()
-        self.sendingListofPaxes = listofpaxes
-        self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: false)
-        self.tempValue = changeValue
+   
     }
-    
-    
 }
 
 

@@ -58,7 +58,6 @@ class HotelPageCustomView : UIView {
                 
                 for listOfArray in self.marketList {
                     self.marketMenu.dataSource.append(listOfArray.text ?? "")
-                   
                 }
                 self.marketMenu.backgroundColor = UIColor.grayColor
                 self.marketMenu.separatorColor = UIColor.gray
@@ -134,8 +133,9 @@ class HotelPageCustomView : UIView {
         self.marketMainTextCustomView.addGestureRecognizer(gesture)
         self.hotelMainTextSecondCustomView.addGestureRecognizer(secondGesture)
         
+        self.marketMenu.topOffset = CGPoint(x: 0, y:-(self.marketMenu.anchorView?.plainView.bounds.height ?? 200))
         self.marketMenu.selectionAction = { index, title in
-            
+           
             if title != self.marketMainTextCustomView.mainLabel.text {
                 self.hotelPageDlegate?.hotelPage(isChange: true)
             }
