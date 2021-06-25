@@ -154,7 +154,7 @@ class ProceedPageCustomView : UIView {
     
     func createDatePicker() {
         
-        self.shopDateMainText.mainText.textAlignment = .center
+        self.shopDateMainText.mainText.textAlignment = .left
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(datePickerDonePressed))
         self.dateToolBar.setItems([doneButton], animated: true)
         self.dateToolBar.sizeToFit()
@@ -171,7 +171,7 @@ class ProceedPageCustomView : UIView {
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
         
-        self.shopDateMainText.mainText.text = "             \(formatter.string(from: datePicker.date))"
+        self.shopDateMainText.mainText.text = "\(formatter.string(from: datePicker.date))"
         self.headerView.endEditing(true)
         
         print(formatter.string(from: datePicker.date))
@@ -182,7 +182,7 @@ class ProceedPageCustomView : UIView {
     
     func createTimePicker() {
         
-        self.pickUpTimeMainText.mainText.textAlignment = .center
+        self.pickUpTimeMainText.mainText.textAlignment = .left
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(timePickerDonePressed))
         self.timeToolBar.setItems([doneButton], animated: true)
         self.timeToolBar.sizeToFit()
@@ -199,7 +199,7 @@ class ProceedPageCustomView : UIView {
         formatter.timeStyle = .medium
         formatter.dateFormat = "HH:dd a"
         
-        self.pickUpTimeMainText.mainText.text = "             \(formatter.string(for: timePicker.date) ?? "12:00")"
+        self.pickUpTimeMainText.mainText.text = "\(formatter.string(for: timePicker.date) ?? "12:00")"
         self.headerView.endEditing(true)
         print(formatter.string(from: timePicker.date))
         self.timeString = formatter.string(from: datePicker.date)
