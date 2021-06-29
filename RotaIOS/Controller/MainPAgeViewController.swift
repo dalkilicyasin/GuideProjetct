@@ -34,7 +34,7 @@ class MainPAgeViewController: BaseViewController {
                 userDefaultsData.saveGuideId(languageId: response.guideId!)
                 userDefaultsData.saveSaleDate(saleDate: dateString)
             }else{
-                let alert = UIAlertController(title: "Errror", message: "Token has not recived", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Error", message: "Token has not recived", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
@@ -49,7 +49,7 @@ class MainPAgeViewController: BaseViewController {
                 userDefaultsData.saveMarketGruopId(marketGroupId: response.marketGroupId ?? 0)
                 
             }else{
-                let alert = UIAlertController(title: "Errror", message: "Token has not recived", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Error", message: "Token has not recived", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }

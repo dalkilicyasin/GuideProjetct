@@ -139,7 +139,7 @@ class AddManuelTouristCustomView : UIView {
             
             if let topVC = UIApplication.getTopViewController() {
                 
-                let alert = UIAlertController(title: "Errror", message: "Plese Select Title and fill Name section", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Error", message: "Plese Select Title and fill Name section", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 
                 topVC.present(alert, animated: true, completion: nil)

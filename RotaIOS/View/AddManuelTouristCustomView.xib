@@ -38,56 +38,56 @@
                             <rect key="frame" x="0.0" y="0.0" width="332" height="1200"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IB6-Cx-xbR" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="35" width="292" height="90"/>
+                                    <rect key="frame" x="20" y="35" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="90" id="hsD-n2-g4k"/>
+                                        <constraint firstAttribute="height" constant="80" id="hsD-n2-g4k"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHT-J6-Z3t" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="135" width="292" height="90"/>
+                                    <rect key="frame" x="20" y="117" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="90" id="aus-k5-99e"/>
+                                        <constraint firstAttribute="height" constant="80" id="aus-k5-99e"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xdL-oi-B44" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="235" width="292" height="90"/>
+                                    <rect key="frame" x="20" y="199" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="90" id="E3b-dR-DG9"/>
+                                        <constraint firstAttribute="height" constant="80" id="E3b-dR-DG9"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3iB-d2-t3U" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="335" width="292" height="90"/>
+                                    <rect key="frame" x="20" y="281" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="90" id="X3L-ec-IB9"/>
+                                        <constraint firstAttribute="height" constant="80" id="X3L-ec-IB9"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXN-Rv-LvO" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="435" width="292" height="90"/>
+                                    <rect key="frame" x="20" y="363" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="90" id="8U8-aV-d9y"/>
+                                        <constraint firstAttribute="height" constant="80" id="8U8-aV-d9y"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQJ-uu-xJV" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="535" width="292" height="90"/>
+                                    <rect key="frame" x="20" y="445" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="90" id="1lk-sz-3r5"/>
+                                        <constraint firstAttribute="height" constant="80" id="1lk-sz-3r5"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUs-bg-b75" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="635" width="292" height="90"/>
+                                    <rect key="frame" x="20" y="527" width="292" height="80"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="90" id="skx-S8-wkI"/>
+                                        <constraint firstAttribute="height" constant="80" id="skx-S8-wkI"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDa-R7-3L0">
-                                    <rect key="frame" x="30" y="745" width="272" height="50"/>
+                                    <rect key="frame" x="30" y="617" width="272" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="Ffx-NJ-8WP"/>
                                     </constraints>
@@ -122,10 +122,10 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="xdL-oi-B44" secondAttribute="trailing" constant="20" id="3pV-SL-ANl"/>
-                                <constraint firstItem="JXN-Rv-LvO" firstAttribute="top" secondItem="3iB-d2-t3U" secondAttribute="bottom" constant="10" id="3xS-ar-iMJ"/>
+                                <constraint firstItem="JXN-Rv-LvO" firstAttribute="top" secondItem="3iB-d2-t3U" secondAttribute="bottom" constant="2" id="3xS-ar-iMJ"/>
                                 <constraint firstAttribute="trailing" secondItem="YQJ-uu-xJV" secondAttribute="trailing" constant="20" id="ECL-qy-HPs"/>
                                 <constraint firstItem="IB6-Cx-xbR" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="20" id="ILL-EL-Yn3"/>
-                                <constraint firstItem="YQJ-uu-xJV" firstAttribute="top" secondItem="JXN-Rv-LvO" secondAttribute="bottom" constant="10" id="IhK-d3-PVz"/>
+                                <constraint firstItem="YQJ-uu-xJV" firstAttribute="top" secondItem="JXN-Rv-LvO" secondAttribute="bottom" constant="2" id="IhK-d3-PVz"/>
                                 <constraint firstAttribute="trailing" secondItem="IB6-Cx-xbR" secondAttribute="trailing" constant="20" id="JX8-AH-tt9"/>
                                 <constraint firstItem="JXN-Rv-LvO" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="20" id="KMW-fT-cLB"/>
                                 <constraint firstAttribute="trailing" secondItem="JXN-Rv-LvO" secondAttribute="trailing" constant="20" id="Liv-dc-krB"/>
@@ -134,17 +134,17 @@
                                 <constraint firstItem="fDa-R7-3L0" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="30" id="V1d-Ki-Ko2"/>
                                 <constraint firstItem="xdL-oi-B44" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="20" id="aIm-2O-PFk"/>
                                 <constraint firstAttribute="height" constant="1200" id="auu-W5-OcD"/>
-                                <constraint firstItem="nUs-bg-b75" firstAttribute="top" secondItem="YQJ-uu-xJV" secondAttribute="bottom" constant="10" id="b75-Px-IHH"/>
+                                <constraint firstItem="nUs-bg-b75" firstAttribute="top" secondItem="YQJ-uu-xJV" secondAttribute="bottom" constant="2" id="b75-Px-IHH"/>
                                 <constraint firstAttribute="trailing" secondItem="nUs-bg-b75" secondAttribute="trailing" constant="20" id="bkV-qq-BG4"/>
                                 <constraint firstItem="QbZ-hS-6w1" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="85" id="c8p-cR-ibC"/>
-                                <constraint firstItem="LHT-J6-Z3t" firstAttribute="top" secondItem="IB6-Cx-xbR" secondAttribute="bottom" constant="10" id="ewF-2Z-TM2"/>
+                                <constraint firstItem="LHT-J6-Z3t" firstAttribute="top" secondItem="IB6-Cx-xbR" secondAttribute="bottom" constant="2" id="ewF-2Z-TM2"/>
                                 <constraint firstItem="IB6-Cx-xbR" firstAttribute="top" secondItem="QbZ-hS-6w1" secondAttribute="bottom" constant="8" id="fna-1r-Imj"/>
-                                <constraint firstItem="fDa-R7-3L0" firstAttribute="top" secondItem="nUs-bg-b75" secondAttribute="bottom" constant="20" id="gp6-Ev-TOb"/>
+                                <constraint firstItem="fDa-R7-3L0" firstAttribute="top" secondItem="nUs-bg-b75" secondAttribute="bottom" constant="10" id="gp6-Ev-TOb"/>
                                 <constraint firstAttribute="trailing" secondItem="3iB-d2-t3U" secondAttribute="trailing" constant="20" id="jiS-T1-PrO"/>
                                 <constraint firstAttribute="trailing" secondItem="QbZ-hS-6w1" secondAttribute="trailing" constant="85" id="kuX-LT-NRq"/>
                                 <constraint firstItem="QbZ-hS-6w1" firstAttribute="top" secondItem="hku-yx-8da" secondAttribute="top" constant="7" id="lFj-NX-fnv"/>
-                                <constraint firstItem="3iB-d2-t3U" firstAttribute="top" secondItem="xdL-oi-B44" secondAttribute="bottom" constant="10" id="oHr-RP-xMk"/>
-                                <constraint firstItem="xdL-oi-B44" firstAttribute="top" secondItem="LHT-J6-Z3t" secondAttribute="bottom" constant="10" id="rum-EF-XRD"/>
+                                <constraint firstItem="3iB-d2-t3U" firstAttribute="top" secondItem="xdL-oi-B44" secondAttribute="bottom" constant="2" id="oHr-RP-xMk"/>
+                                <constraint firstItem="xdL-oi-B44" firstAttribute="top" secondItem="LHT-J6-Z3t" secondAttribute="bottom" constant="2" id="rum-EF-XRD"/>
                                 <constraint firstItem="3iB-d2-t3U" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="20" id="tTc-Bo-mQ2"/>
                                 <constraint firstItem="nUs-bg-b75" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="20" id="uPc-9l-GaA"/>
                                 <constraint firstItem="LHT-J6-Z3t" firstAttribute="leading" secondItem="hku-yx-8da" secondAttribute="leading" constant="20" id="wFZ-9W-hno"/>

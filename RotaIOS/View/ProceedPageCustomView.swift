@@ -142,7 +142,7 @@ class ProceedPageCustomView : UIView {
             }
         }else {
             if let topVC = UIApplication.getTopViewController() {
-                let alert = UIAlertController(title: "Errror", message: "Please Insert Paxes/Steps/ShopDate", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Error", message: "Please Insert Paxes/Steps/ShopDate", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 topVC.present(alert, animated: true, completion: nil)
                 self.proceedPageDelegate?.proceedPage(isSuccsess: false)

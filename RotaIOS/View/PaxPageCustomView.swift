@@ -67,7 +67,7 @@ class PaxPageCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         self.headerView.backgroundColor = UIColor.mainViewColor
         
-     
+       
         
         if userDefaultsData.getHotelId() > 0 {
             let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: String(userDefaultsData.getHotelId()), marketId: String(userDefaultsData.getMarketId()))
@@ -76,7 +76,8 @@ class PaxPageCustomView : UIView {
                 if response.count > 0 {
                     
                     //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                    
+                    userDefaultsData.saveHotelId(hotelId: 0)
+                    userDefaultsData.saveMarketId(marketId: 0)
                     self.paxesNameList = response
                     self.tempPaxesNameList = self.paxesNameList
                     self.filteredData = self.paxesNameList
@@ -433,8 +434,10 @@ extension PaxPageCustomView : TempAddPaxesListDelegate {
         
         if self.tempValue != changeValue {
             self.tempValue = changeValue
+            self.sendingListofPaxes = listofpaxes
             self.labelTouristAdded.text = "\(self.counter + self.tempValue) Tourist Added"
             self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
+            return
         }else {
             self.paxesListinPaxPage.removeAll()
             self.sendingListofPaxes = listofpaxes

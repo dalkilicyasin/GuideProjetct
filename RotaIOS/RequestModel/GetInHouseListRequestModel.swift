@@ -28,7 +28,7 @@ public class  GetInHouseListRequestModel : Mappable{
     
     public func requestPathString()->String{
         // 2. parametre eklemek için & işareti koy
-        return "?hotelId=\(self.hotelId ?? "")&saleDate=\(self.marketId ?? "")"
+        return "?hotelId=\(self.hotelId ?? "")&marketId=\(self.marketId ?? "")"
     }
     
 }

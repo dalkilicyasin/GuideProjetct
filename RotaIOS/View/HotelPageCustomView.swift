@@ -173,12 +173,14 @@ class HotelPageCustomView : UIView {
     }
     
     @objc func didTappedItem() {
-        marketMenu.show()
+        self.marketMenu.show()
         
     }
     
     @objc func didSecondItemTapped() {
-        hotelMenu.show()
+        self.hotelMenu.show()
+        self.hotelMenu.direction = .top
+    
     }
 }
 

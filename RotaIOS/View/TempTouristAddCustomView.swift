@@ -86,7 +86,7 @@ class TempTouristAddCustomView : UIView{
     }
     
     @objc func removeButton(){
-       
+        
         self.temppAddPaxesListDelegate?.tempAddList(listofpaxes: self.tempPaxesList, manuellist: self.paxnameFromaddManuelList, changeValue: self.changeCounterValue)
         self.removeFromSuperview()
     }
@@ -146,7 +146,7 @@ extension TempTouristAddCustomView : SaveManuelListProtocol {
         self.changeCounterValue += 1
         self.tempPaxesList.append( manuelList)
         self.paxnameFromaddManuelList.append(manuelList.pAX_NAME)
-        self.nameListed.append(manuelList.pAX_NAME)
+       // self.nameListed.append(manuelList.pAX_NAME)
         self.tableView.reloadData()
     }
 }
