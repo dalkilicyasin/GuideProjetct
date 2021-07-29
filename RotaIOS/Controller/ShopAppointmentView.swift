@@ -65,8 +65,6 @@ final class ShopAppointmentView : UIView {
         super.init(coder: aDecoder)
         
     }
-    
-    
 }
 
 extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDelegate{
@@ -122,10 +120,7 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.stepsPageCustomView?.isHidden = true
                 self.hotelPageCustomView?.isHidden = true
                 self.proceedPageCustomView?.isHidden = true
-            }
-         
-         
-            
+            }   
         }else if tapped == 2 {
             self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             if stepsPageCustomView == nil || self.isPaxesListChange == true {
@@ -393,8 +388,6 @@ extension ShopAppointmentView : ProceedPageDelegate {
             self.footerView.printButton.backgroundColor = UIColor.clear
         }
     }
-    
-    
 }
 
 

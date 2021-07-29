@@ -78,8 +78,10 @@ class AddStepCustomView : UIView {
         self.searchBar.delegate = self
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
+        self.searchBar.compatibleSearchTextField.textColor = UIColor.white
         self.tableView.register(AddStepTableViewCell.nib, forCellReuseIdentifier: AddStepTableViewCell.identifier)
         print(userDefaultsData.getFavorite() ?? "")
+        
     }
     
     @objc func slideUpTapped() {
@@ -124,9 +126,6 @@ extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
         
         self.removeFromSuperview()
     }
-    
-    
-    
 }
 
 extension AddStepCustomView : UISearchBarDelegate {

@@ -24,5 +24,4 @@ public class GetUserRequestModel:Mappable{
     public func mapping(map: Map) {
         userId <- map["UserId"]
     }
-    
 }

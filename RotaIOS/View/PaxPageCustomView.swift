@@ -125,12 +125,8 @@ class PaxPageCustomView : UIView {
             self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
         }
-        
-        
     }
-    
-    
-    
+
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
         if let topVC = UIApplication.getTopViewController() {
@@ -147,8 +143,6 @@ class PaxPageCustomView : UIView {
                     
                 }
             })
-            
-            
         }
     }
 }
@@ -444,7 +438,6 @@ extension PaxPageCustomView : TempAddPaxesListDelegate {
             self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: false)
             self.tempValue = changeValue
         }
-   
     }
 }
 

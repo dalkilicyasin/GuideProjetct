@@ -26,6 +26,7 @@ class ProceedPageCustomView : UIView {
     var timeString = ""
     var proceedPageDelegate : ProceedPageDelegate?
     
+    
     var paxFilteredList : [String] = []
     
     var datePicker: UIDatePicker = {

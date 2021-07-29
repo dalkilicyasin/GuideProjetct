@@ -20,6 +20,7 @@ public enum ServiceEndPoint: String {
     case GetSelectList = "/api/api/Company/GetSelectList"
     case GetSaveForMobile = "/api/api/IndShop/SaveForMobile"
     case GetGuideInfo =  "/api/api/IndShop/GetGuideInfo"
+    case GetGuideAnnoucemenstAndDocuments = "/api//api/Announcement/GetGuideAnnouncementsAndDocuments"
 }
 
 

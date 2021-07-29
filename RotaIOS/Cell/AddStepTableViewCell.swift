@@ -13,14 +13,11 @@ protocol TouchFavoriteDelegate {
 
 class AddStepTableViewCell: BaseTableViewCell {
 
-  
     @IBOutlet weak var viewFavorite: FavoriteCustomView!
     @IBOutlet weak var labelText: UILabel!
     var touchDelegate : TouchFavoriteDelegate?
     var isCheckRemember = false
-   
-   
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -33,9 +30,6 @@ class AddStepTableViewCell: BaseTableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    
-
-
 }
 
 extension AddStepTableViewCell : FavoriteCustomViewDelegate {

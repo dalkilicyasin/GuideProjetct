@@ -9,22 +9,21 @@ import Foundation
 import UIKit
 import ObjectMapper
 
-public class  GetGuideAnnouncementsAndDocumentsRequestModel : Mappable{
+public class  GetGuideAnnouncementsRequestModel : Mappable{
     
     public var id = 0
     public var GuideId : Int!
-    public var GuideAreaId : Int!
-    public var GuideMarketId : Int!
-    public var MainType : Int!
-    
-    
+    public var GuideAreaId = 0
+    public var GuideMarketId = 0
+    public var MainType = 368
     
     public required init?(map: Map) {
         
     }
     
-    public init( id : Int ) {
-        self.id = id
+    public init( GuideId : Int, MainType : Int ) {
+        self.GuideId = GuideId
+        self.MainType = MainType
     }
     
     public func mapping(map: Map) {
@@ -32,7 +31,6 @@ public class  GetGuideAnnouncementsAndDocumentsRequestModel : Mappable{
     
     public func requestPathString()->String{
         // 2. parametre eklemek için & işareti koy
-        return "/?id=\(self.id ?? 0)"
+        return "/?id=\(self.id)&GuideId=\(self.GuideId ?? 310)&GuideAreaId=\(self.GuideAreaId)&GuideMarketId=\(self.GuideMarketId)&MainType=\(self.MainType)"
     }
-    
 }

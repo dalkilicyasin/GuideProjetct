@@ -28,5 +28,4 @@ public class  GetGuideInfoRequestModel : Mappable{
         // 2. parametre eklemek için & işareti koy
         return "/?id=\(self.id ?? 0)"
     }
-    
 }

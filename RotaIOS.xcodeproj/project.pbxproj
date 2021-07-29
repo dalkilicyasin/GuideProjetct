@@ -113,6 +113,20 @@
 		D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C40A726692D4C00EBC7CD /* TaskTableViewCell.swift */; };
 		D94C40AA26692D4C00EBC7CD /* TaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D94C40A826692D4C00EBC7CD /* TaskTableViewCell.xib */; };
 		D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */; };
+		D9561A3B269DF27E00AA75E5 /* AnnoucmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9561A39269DF27E00AA75E5 /* AnnoucmentsViewController.swift */; };
+		D9561A3C269DF27E00AA75E5 /* AnnoucmentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9561A3A269DF27E00AA75E5 /* AnnoucmentsViewController.xib */; };
+		D9561A3E269DF31A00AA75E5 /* AnnoucmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9561A3D269DF31A00AA75E5 /* AnnoucmentsView.swift */; };
+		D9561A41269E099C00AA75E5 /* AnnoucmentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9561A3F269E099C00AA75E5 /* AnnoucmentsTableViewCell.swift */; };
+		D9561A42269E099C00AA75E5 /* AnnoucmentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9561A40269E099C00AA75E5 /* AnnoucmentsTableViewCell.xib */; };
+		D9561A45269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9561A43269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.swift */; };
+		D9561A46269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9561A44269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib */; };
+		D9561A4826A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9561A4726A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift */; };
+		D9561A4C26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9561A4B26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift */; };
+		D9A48CFA26B1405D00D28A0A /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A48CF826B1405D00D28A0A /* DocumentsViewController.swift */; };
+		D9A48CFB26B1405D00D28A0A /* DocumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A48CF926B1405D00D28A0A /* DocumentsViewController.xib */; };
+		D9A48CFF26B1408A00D28A0A /* DocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A48CFE26B1408A00D28A0A /* DocumentsView.swift */; };
+		D9A48D0226B1895500D28A0A /* DocumentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A48D0026B1895500D28A0A /* DocumentsTableViewCell.swift */; };
+		D9A48D0326B1895500D28A0A /* DocumentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A48D0126B1895500D28A0A /* DocumentsTableViewCell.xib */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -253,6 +267,20 @@
 		D94C40A726692D4C00EBC7CD /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		D94C40A826692D4C00EBC7CD /* TaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskTableViewCell.xib; sourceTree = "<group>"; };
 		D951B3C7264009D000A0F76C /* GetGuideMarketRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideMarketRequestModel.swift; sourceTree = "<group>"; };
+		D9561A39269DF27E00AA75E5 /* AnnoucmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnoucmentsViewController.swift; sourceTree = "<group>"; };
+		D9561A3A269DF27E00AA75E5 /* AnnoucmentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnnoucmentsViewController.xib; sourceTree = "<group>"; };
+		D9561A3D269DF31A00AA75E5 /* AnnoucmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnoucmentsView.swift; sourceTree = "<group>"; };
+		D9561A3F269E099C00AA75E5 /* AnnoucmentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnoucmentsTableViewCell.swift; sourceTree = "<group>"; };
+		D9561A40269E099C00AA75E5 /* AnnoucmentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnnoucmentsTableViewCell.xib; sourceTree = "<group>"; };
+		D9561A43269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnoucmentsDetailTableViewCell.swift; sourceTree = "<group>"; };
+		D9561A44269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnnoucmentsDetailTableViewCell.xib; sourceTree = "<group>"; };
+		D9561A4726A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideAnnouncementsRequestModel.swift; sourceTree = "<group>"; };
+		D9561A4B26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideAnnouncementsAndDocumentsResponseModel.swift; sourceTree = "<group>"; };
+		D9A48CF826B1405D00D28A0A /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
+		D9A48CF926B1405D00D28A0A /* DocumentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentsViewController.xib; sourceTree = "<group>"; };
+		D9A48CFE26B1408A00D28A0A /* DocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsView.swift; sourceTree = "<group>"; };
+		D9A48D0026B1895500D28A0A /* DocumentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsTableViewCell.swift; sourceTree = "<group>"; };
+		D9A48D0126B1895500D28A0A /* DocumentsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +405,12 @@
 				BF44C91A2640013B00238035 /* LoginView.swift */,
 				BF44C9192640013A00238035 /* LoginViewController.swift */,
 				BF75706C26753C2E002EA494 /* BaseViewController.swift */,
+				D9561A39269DF27E00AA75E5 /* AnnoucmentsViewController.swift */,
+				D9561A3A269DF27E00AA75E5 /* AnnoucmentsViewController.xib */,
+				D9561A3D269DF31A00AA75E5 /* AnnoucmentsView.swift */,
+				D9A48CF826B1405D00D28A0A /* DocumentsViewController.swift */,
+				D9A48CF926B1405D00D28A0A /* DocumentsViewController.xib */,
+				D9A48CFE26B1408A00D28A0A /* DocumentsView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -392,6 +426,7 @@
 				D93F889E264EFF7800397283 /* GetSaveForMobileRequestList.swift */,
 				D93F88A32651AAE200397283 /* GetTouristInfoRequestModel.swift */,
 				D94C40612655D56E00EBC7CD /* GetGuideInfoRequestModel.swift */,
+				D9561A4726A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -409,6 +444,7 @@
 				D93F88A82651AB1000397283 /* GetTouristInfoResponseModel.swift */,
 				D94C40662655D5FA00EBC7CD /* GetGuideInfoResponseModel.swift */,
 				D94C406B2659313000EBC7CD /* GetSaveForMobileResponseList.swift */,
+				D9561A4B26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -503,6 +539,12 @@
 				BF44C9302640015A00238035 /* MainPageTableViewCell.xib */,
 				D94C40A726692D4C00EBC7CD /* TaskTableViewCell.swift */,
 				D94C40A826692D4C00EBC7CD /* TaskTableViewCell.xib */,
+				D9561A3F269E099C00AA75E5 /* AnnoucmentsTableViewCell.swift */,
+				D9561A40269E099C00AA75E5 /* AnnoucmentsTableViewCell.xib */,
+				D9561A43269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.swift */,
+				D9561A44269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib */,
+				D9A48D0026B1895500D28A0A /* DocumentsTableViewCell.swift */,
+				D9A48D0126B1895500D28A0A /* DocumentsTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -628,10 +670,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9A48D0326B1895500D28A0A /* DocumentsTableViewCell.xib in Resources */,
 				BF44C9242640014800238035 /* MainPAgeViewController.xib in Resources */,
 				BF44C9DD2640023400238035 /* AddStepTableViewCell.xib in Resources */,
 				BF44C9692640019900238035 /* ApponintmentBarCollectionViewCell.xib in Resources */,
 				BF44C99F264001C900238035 /* PaxPageTableViewCell.xib in Resources */,
+				D9A48CFB26B1405D00D28A0A /* DocumentsViewController.xib in Resources */,
 				BF44C8DB264000C700238035 /* Main.storyboard in Resources */,
 				BF44C9D62640022F00238035 /* AddStepCustomView.xib in Resources */,
 				BF44C93C2640016500238035 /* ShopAppointmentViewController.xib in Resources */,
@@ -644,8 +688,10 @@
 				BF44C9A6264001CE00238035 /* CheckBoxView.xib in Resources */,
 				BF44C9512640018400238035 /* VoucherViewController.xib in Resources */,
 				BF44C9432640017600238035 /* TasksViewController.xib in Resources */,
+				D9561A46269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib in Resources */,
 				BF44C97C264001AA00238035 /* FooterCustomView.xib in Resources */,
 				BF44C92B2640015400238035 /* MainPageCustomView.xib in Resources */,
+				D9561A42269E099C00AA75E5 /* AnnoucmentsTableViewCell.xib in Resources */,
 				BF44C998264001C400238035 /* PaxPageCustomView.xib in Resources */,
 				D94C4084265D02AF00EBC7CD /* FavoriteListCustomView.xib in Resources */,
 				BF44C9702640019F00238035 /* AppointmentBarCustomView.xib in Resources */,
@@ -660,6 +706,7 @@
 				D94C40AA26692D4C00EBC7CD /* TaskTableViewCell.xib in Resources */,
 				D94C407A265BE36400EBC7CD /* FavoriteCustomView.xib in Resources */,
 				BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */,
+				D9561A3C269DF27E00AA75E5 /* AnnoucmentsViewController.xib in Resources */,
 				BF44C9622640019200238035 /* HeaderCustomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -792,9 +839,11 @@
 				BF44C909264000FA00238035 /* NetworkManager.swift in Sources */,
 				BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */,
 				BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */,
+				D9A48CFF26B1408A00D28A0A /* DocumentsView.swift in Sources */,
 				D93F889F264EFF7800397283 /* GetSaveForMobileRequestList.swift in Sources */,
 				BF44C9332640015A00238035 /* MainPageTableViewCell.swift in Sources */,
 				D94C4075265BE35100EBC7CD /* FavoriteCustomView.swift in Sources */,
+				D9561A4826A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift in Sources */,
 				D93F8883264AAAE500397283 /* GetInHouseListRequestModel.swift in Sources */,
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
 				D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */,
@@ -814,10 +863,13 @@
 				BF44C8E5264000E200238035 /* ExtensionUIView.swift in Sources */,
 				D94C406C2659313000EBC7CD /* GetSaveForMobileResponseList.swift in Sources */,
 				BF44C8F2264000E900238035 /* GetTokenResponseModel.swift in Sources */,
+				D9561A45269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.swift in Sources */,
 				BF75706D26753C2E002EA494 /* BaseViewController.swift in Sources */,
 				BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */,
 				BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */,
+				D9561A3E269DF31A00AA75E5 /* AnnoucmentsView.swift in Sources */,
 				D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */,
+				D9A48CFA26B1405D00D28A0A /* DocumentsViewController.swift in Sources */,
 				BF44C9492640017E00238035 /* ExcursionSaleViewController.swift in Sources */,
 				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
 				BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */,
@@ -826,6 +878,7 @@
 				BF44C98A264001B900238035 /* HotelPageCustomView.swift in Sources */,
 				BF44C9592640018B00238035 /* OfflineSalesViewController.swift in Sources */,
 				BF44C9AE264001D400238035 /* HeaderDetailCustomView.swift in Sources */,
+				D9561A3B269DF27E00AA75E5 /* AnnoucmentsViewController.swift in Sources */,
 				BF44C9502640018400238035 /* VoucherViewController.swift in Sources */,
 				BF44C9632640019200238035 /* HeaderCustomView.swift in Sources */,
 				BF44C9C82640022000238035 /* StepsPageCustomView.swift in Sources */,
@@ -833,6 +886,7 @@
 				BF44C9422640017600238035 /* TasksViewController.swift in Sources */,
 				BF44C908264000FA00238035 /* BaseResponse.swift in Sources */,
 				BF44C96A2640019900238035 /* ApponintmentBarCollectionViewCell.swift in Sources */,
+				D9561A41269E099C00AA75E5 /* AnnoucmentsTableViewCell.swift in Sources */,
 				BF44C93A2640016500238035 /* ShopAppointmentViewController.swift in Sources */,
 				BF44C8F1264000E900238035 /* GetUserResponseModel.swift in Sources */,
 				BF44C9A7264001CE00238035 /* CheckBoxView.swift in Sources */,
@@ -840,6 +894,8 @@
 				D93F888B264AB14900397283 /* GetHotelsMobileRequestModel.swift in Sources */,
 				BF44C93B2640016500238035 /* ShopAppointmentView.swift in Sources */,
 				BF44C8E6264000E200238035 /* ExtensionUIApplication.swift in Sources */,
+				D9561A4C26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift in Sources */,
+				D9A48D0226B1895500D28A0A /* DocumentsTableViewCell.swift in Sources */,
 				BF44C976264001A400238035 /* BaseCollectionViewCell.swift in Sources */,
 				BF44C905264000FA00238035 /* BaseApiRequestBody.swift in Sources */,
 				D93F887B264AAA4B00397283 /* GetInHoseListResponseModel.swift in Sources */,
@@ -1029,7 +1085,7 @@
 				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1051,7 +1107,7 @@
 				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

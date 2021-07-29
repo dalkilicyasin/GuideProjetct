@@ -17,8 +17,6 @@ class MainPAgeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-       
         let df = DateFormatter()
         df.dateFormat = "MM-dd-yyyy"
         let dateString = df.string(from: date)
@@ -69,14 +67,10 @@ class MainPAgeViewController: BaseViewController {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentSize" {
-           
-                
                 if let newValue = change?[.newKey] {
                     let newSize = newValue as! CGSize
                     self.mainPageView.tableViewHeigt.constant = newSize.height
                 }
-                
-            
         }
         
     }

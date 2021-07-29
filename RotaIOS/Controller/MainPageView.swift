@@ -91,9 +91,9 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 case 3 :
                     viewController = MyTourSaleViewController()
                 case 4 :
-                    viewController = MyTourSaleViewController()
+                    viewController = DocumentsViewController()
                 case 5 :
-                    viewController = MyTourSaleViewController()
+                    viewController = AnnoucmentsViewController()
                 default :
                     print("selected")
                     
