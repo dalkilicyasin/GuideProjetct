@@ -37,6 +37,7 @@ class StepsPageCustomView : UIView {
     var chldCount = 0
     var infCount = 0
     var x = 1
+    var newInfo = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,10 +103,7 @@ class StepsPageCustomView : UIView {
                 })
             }
         }
-        
-        
     }
-    
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
@@ -123,8 +121,6 @@ class StepsPageCustomView : UIView {
                 })
             }
         }
-        
-        
     }
 }
 
@@ -190,86 +186,104 @@ extension StepsPageCustomView : UITableViewDelegate, UITableViewDataSource {
 
 extension StepsPageCustomView : SendInfoDelegate {
     
-    func sendInfo(sendinfo: String )
-    {
-        
-        self.firstMainTextView.mainLabel.text = sendinfo
-        self.nameList.append(sendinfo)
-        self.tableView.reloadData()
-        self.filteredNameList.removeAll()
-        for updateList in self.nameList {
-            let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
-            
-            self.filteredNameList.append(filter[0])
-            // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
+    func sendInfo(sendinfo: String ){
+        for item in self.nameList {
+            if item == sendinfo {
+                self.newInfo = item
+                break
+            }
         }
         
-        print(self.filteredNameList)
-        
-        var companyValue : [Int] = []
-        var companyName  : [String] = []
-        var status : [Int] = []
-        
-        
-        for listarray in self.filteredNameList {
-            companyValue.append(listarray.value ?? 0)
-            companyName.append(listarray.text ?? "")
-            status.append(listarray.sTATUS ?? 0)
-        }
-        
-        self.sendingListofSteps.removeAll()
-        self.stepsList.removeAll()
-        self.x = 1
-        for i in 0...(self.filteredNameList.count) - 1 {
+        if self.nameList == [] || self.newInfo != sendinfo {
+            self.firstMainTextView.mainLabel.text = sendinfo
+            self.nameList.append(sendinfo)
+            self.tableView.reloadData()
+            self.filteredNameList.removeAll()
+            for updateList in self.nameList {
+                let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
+                
+                self.filteredNameList.append(filter[0])
+                // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
+            }
             
-            self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: self.infCount, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: (self.x) ))
+            print(self.filteredNameList)
             
-            self.sendingListofSteps.append(self.stepsList[i])
-            self.x += 1
+            var companyValue : [Int] = []
+            var companyName  : [String] = []
+            var status : [Int] = []
+            
+            
+            for listarray in self.filteredNameList {
+                companyValue.append(listarray.value ?? 0)
+                companyName.append(listarray.text ?? "")
+                status.append(listarray.sTATUS ?? 0)
+            }
+            
+            self.sendingListofSteps.removeAll()
+            self.stepsList.removeAll()
+            self.x = 1
+            for i in 0...(self.filteredNameList.count) - 1 {
+                
+                self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: self.infCount, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: (self.x) ))
+                
+                self.sendingListofSteps.append(self.stepsList[i])
+                self.x += 1
+            }
+            
+            self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps, isChange: true)
+        }else {
+            return
         }
-        
-        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps, isChange: true)
     }
 }
 
 extension StepsPageCustomView : SendFavoriteInfoDelegate {
-    func sendFavoriteInfo(sendinfo: String )
-    {
-        self.secondMainTextView.mainLabel.text = sendinfo
-        self.nameList.append(sendinfo)
-        self.tableView.reloadData()
-        self.filteredNameList.removeAll()
-        for updateList in self.nameList {
-            let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
-            
-            self.filteredNameList.append(filter[0])
-            // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
+    func sendFavoriteInfo(sendinfo: String ){
+        for item in self.nameList {
+            if item == sendinfo {
+                self.newInfo = item
+                break
+            }
         }
-        
-        print(self.filteredNameList)
-        
-        var companyValue : [Int] = []
-        var companyName  : [String] = []
-        var status : [Int] = []
-        
-        
-        for listarray in self.filteredNameList {
-            companyValue.append(listarray.value ?? 0)
-            companyName.append(listarray.text ?? "")
-            status.append(listarray.sTATUS ?? 0)
-        }
-        
-        self.sendingListofSteps.removeAll()
-        self.x = 1
-        for i in 0...(self.filteredNameList.count) - 1 {
+        if self.nameList == [] || self.newInfo != sendinfo{
+            self.secondMainTextView.mainLabel.text = sendinfo
+            self.nameList.append(sendinfo)
+            self.tableView.reloadData()
+            self.filteredNameList.removeAll()
+            for updateList in self.nameList {
+                let filter = self.stepsNameList.filter{($0.text?.elementsEqual(updateList) ?? false)}
+                
+                self.filteredNameList.append(filter[0])
+                // let filter = paxesNameList.filter{($0.text?.contains(updateList) ?? false)}
+            }
             
-            self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: self.infCount, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: (self.x) ))
+            print(self.filteredNameList)
             
-            self.sendingListofSteps.append(self.stepsList[i])
-            self.x += 1
+            var companyValue : [Int] = []
+            var companyName  : [String] = []
+            var status : [Int] = []
+            
+            
+            for listarray in self.filteredNameList {
+                companyValue.append(listarray.value ?? 0)
+                companyName.append(listarray.text ?? "")
+                status.append(listarray.sTATUS ?? 0)
+            }
+            
+            self.sendingListofSteps.removeAll()
+            self.x = 1
+            for i in 0...(self.filteredNameList.count) - 1 {
+                
+                self.stepsList.append(Steps(sTP_STATE: 0, name: companyName[i], sTP_COMPANY: companyValue[i], sTP_NOTE: "", sTP_ID: 0, sTP_ADULTCOUNT: self.adlCount, sTP_CHILDCOUNT: self.chldCount, sTP_INFANTCOUNT: self.infCount, sTP_SHOPREF: 0, sTP_STATUS: status[i], sTP_ORDER: (self.x) ))
+                
+                self.sendingListofSteps.append(self.stepsList[i])
+                self.x += 1
+            }
+            
+            self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps, isChange: true)
+        }else {
+            return
         }
-        
-        self.stepsPageListDelegate?.stepsPageList(listofsteps: self.sendingListofSteps, isChange: true)
     }
 }
 
