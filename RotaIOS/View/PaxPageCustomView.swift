@@ -66,9 +66,7 @@ class PaxPageCustomView : UIView {
         Bundle.main.loadNibNamed(String(describing: PaxPageCustomView.self), owner: self, options: nil)
         self.headerView.addCustomContainerView(self)
         self.headerView.backgroundColor = UIColor.mainViewColor
-        
-       
-        
+  
         if userDefaultsData.getHotelId() > 0 {
             let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: String(userDefaultsData.getHotelId()), marketId: String(userDefaultsData.getMarketId()))
             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseList, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in

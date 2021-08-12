@@ -10,7 +10,6 @@ import UIKit
 
 final class DocumentsView : UIView {
  
-    
     @IBOutlet weak var viewHeaderDetailCustomView: HeaderDetailCustomView!
     @IBOutlet weak var tableView: UITableView!
     var announcementsDetail : [Record] = []

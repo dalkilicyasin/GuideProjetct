@@ -35,7 +35,7 @@ class MainTextCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         self.contentView.backgroundColor = UIColor.mainTextColor
         self.contentView.layer.cornerRadius = 10
-        self.headerView.backgroundColor = UIColor.mainViewColor
+        self.headerView.backgroundColor = UIColor.grayColor
         self.mainText.isHidden = true
         self.mainLabel.isHidden = false
         self.imageMainText.image = UIImage(named: "down")

@@ -15,7 +15,6 @@ protocol HotelPageDelegate {
 }
 
 class HotelPageCustomView : UIView {
-    
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var marketMainTextCustomView: MainTextCustomView!
     @IBOutlet weak var hotelMainTextSecondCustomView: MainTextCustomView!
@@ -76,11 +75,11 @@ class HotelPageCustomView : UIView {
             
             if response.count > 0 {
                 //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-     
-                    self.hotelList = response
-                    self.tempHotelMenu.removeAll()
-                    let filtered = response.filter({return ($0.guideHotel != 0)})
-                    print("\(filtered)")
+                
+                self.hotelList = response
+                self.tempHotelMenu.removeAll()
+                let filtered = response.filter({return ($0.guideHotel != 0)})
+                print("\(filtered)")
                 
                 if response[0].guideHotel != 0 {
                     self.checkBoxView.imageCheck.isHidden = true
@@ -116,10 +115,8 @@ class HotelPageCustomView : UIView {
         
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
-        
         self.searchBar.compatibleSearchTextField.textColor = UIColor.white
         self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
-        
         self.searchBar.delegate = self
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTappedItem))
@@ -134,8 +131,8 @@ class HotelPageCustomView : UIView {
         self.hotelMainTextSecondCustomView.addGestureRecognizer(secondGesture)
         
         self.marketMenu.topOffset = CGPoint(x: 0, y:-(self.marketMenu.anchorView?.plainView.bounds.height ?? 200))
+        
         self.marketMenu.selectionAction = { index, title in
-           
             if title != self.marketMainTextCustomView.mainLabel.text {
                 self.hotelPageDlegate?.hotelPage(isChange: true)
             }
@@ -144,7 +141,7 @@ class HotelPageCustomView : UIView {
             self.filteredMarketList = filtered
             for listofarray in self.filteredMarketList {
                 userDefaultsData.saveMarketId(marketId: listofarray.value ?? 0)
-             //   userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "") // silinecek
+                //   userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "") // silinecek
             }
         }
         
@@ -160,7 +157,6 @@ class HotelPageCustomView : UIView {
                 userDefaultsData.saveHotelId(hotelId: listofArray.value ?? 0)
                 userDefaultsData.saveHotelArea(hotelAreaId: listofArray.area ?? 0)
             }
-            
         }
         
         self.marketMainTextCustomView.headerLAbel.text = "Market"
@@ -180,7 +176,7 @@ class HotelPageCustomView : UIView {
     @objc func didSecondItemTapped() {
         self.hotelMenu.show()
         self.hotelMenu.direction = .top
-    
+        
     }
 }
 
@@ -188,11 +184,11 @@ extension HotelPageCustomView : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         self.filteredData = []
-       
+        
         if searchText.elementsEqual(""){
             self.isFilteredTextEmpty = true
             self.hotelMenu.dataSource = self.tempHotelMenu
- 
+            
         }else {
             self.hotelMenu.dataSource = self.tempHotelMenu
             self.isFilteredTextEmpty = false
@@ -204,7 +200,7 @@ extension HotelPageCustomView : UISearchBarDelegate {
                 }
             }
         }
-     
+        
     }
     
 }

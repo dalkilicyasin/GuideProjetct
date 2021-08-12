@@ -108,8 +108,8 @@ class AddManuelTouristCustomView : UIView {
     
         self.viewRemoveView.roundCorners(.allCorners, radius: 10)
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
-          self.viewSlideUp.addGestureRecognizer(tappedSlideUp)
-          self.viewSlideUp.isUserInteractionEnabled = true
+        self.viewSlideUp.addGestureRecognizer(tappedSlideUp)
+        self.viewSlideUp.isUserInteractionEnabled = true
     }
     @objc func didTappedItem() {
         self.genderMenu.show()

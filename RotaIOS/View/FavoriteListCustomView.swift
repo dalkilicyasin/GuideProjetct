@@ -12,7 +12,6 @@ protocol SendFavoriteInfoDelegate {
 }
 
 class FavoriteListCustomView : UIView {
-    
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var viewRemoveButton: UIView!
     @IBOutlet weak var viewSlideUp: UIView!
@@ -21,10 +20,8 @@ class FavoriteListCustomView : UIView {
     var selectList : [GetSelectListResponseModel] = []
     var stepsSelectedNameList : StepsPageCustomView?
     var sendFavoriteInfoDelegate : SendFavoriteInfoDelegate?
-    
     var addedNameList : [String] = []
     var infoList : [String] = []
-    
     var addFavoriteList : [String] = []
     
     override init(frame: CGRect) {
@@ -42,12 +39,16 @@ class FavoriteListCustomView : UIView {
         self.headerView.addCustomContainerView(self)
         
         if userDefaultsData.getFavorite()?.count ?? 0 > 0 {
+            for item in userDefaultsData.getFavorite() {
+            
+                self.addedNameList.append(item)
+            }
             self.addedNameList = userDefaultsData.getFavorite()
         }
-
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
-     
+        
         self.headerView.backgroundColor = UIColor.mainViewColor
         self.viewRemoveButton.roundCorners(.allCorners, radius: 10)
         self.topView.layer.borderWidth = 1
@@ -55,19 +56,14 @@ class FavoriteListCustomView : UIView {
         self.topView.layer.cornerRadius = 10
         
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
-          self.viewSlideUp.addGestureRecognizer(tappedSlideUp)
-          self.viewSlideUp.isUserInteractionEnabled = true
-        
-
-        
+        self.viewSlideUp.addGestureRecognizer(tappedSlideUp)
+        self.viewSlideUp.isUserInteractionEnabled = true
         self.tableView.register(AddStepTableViewCell.nib, forCellReuseIdentifier: AddStepTableViewCell.identifier)
     }
     
     @objc func slideUpTapped() {
         self.removeFromSuperview()
     }
-
-    
 }
 
 extension FavoriteListCustomView : UITableViewDelegate, UITableViewDataSource {
@@ -84,7 +80,6 @@ extension FavoriteListCustomView : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.infoList.append(addedNameList[indexPath.row])
         self.sendFavoriteInfoDelegate?.sendFavoriteInfo(sendinfo: self.infoList[0])
         
@@ -95,10 +90,10 @@ extension FavoriteListCustomView : UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             print("Deleted")
             self.addedNameList.remove(at: indexPath.row)
-           self.tableView.beginUpdates()
+            self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.endUpdates()
             userDefaultsData.saveFavorite(id: self.addedNameList)
         }
-      }
+    }
 }

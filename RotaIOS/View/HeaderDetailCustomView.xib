@@ -36,8 +36,8 @@
                                 <action selector="buttonClicked:" destination="-1" eventType="touchUpInside" id="cFU-BL-r7N"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPR-oK-lMf">
-                            <rect key="frame" x="70" y="26" width="400" height="39"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPR-oK-lMf">
+                            <rect key="frame" x="70" y="26" width="351" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="39" id="xNv-lf-6Yy"/>
                             </constraints>
@@ -51,7 +51,7 @@
                         <constraint firstItem="zPR-oK-lMf" firstAttribute="leading" secondItem="PqR-Eb-TXq" secondAttribute="trailing" constant="20" id="OBc-O5-Yz9"/>
                         <constraint firstItem="PqR-Eb-TXq" firstAttribute="leading" secondItem="hxL-d7-ZkI" secondAttribute="leading" constant="20" id="PIP-Fm-EWm"/>
                         <constraint firstItem="zPR-oK-lMf" firstAttribute="top" secondItem="hxL-d7-ZkI" secondAttribute="top" constant="26" id="Sw8-cd-Fr7"/>
-                        <constraint firstAttribute="trailing" secondItem="zPR-oK-lMf" secondAttribute="trailing" constant="20" id="tzW-Im-2HJ"/>
+                        <constraint firstAttribute="trailing" secondItem="zPR-oK-lMf" secondAttribute="trailing" constant="69" id="tzW-Im-2HJ"/>
                         <constraint firstItem="PqR-Eb-TXq" firstAttribute="top" secondItem="hxL-d7-ZkI" secondAttribute="top" constant="30" id="wNU-Pr-7Hn"/>
                     </constraints>
                 </view>

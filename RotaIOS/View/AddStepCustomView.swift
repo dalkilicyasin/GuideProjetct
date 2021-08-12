@@ -28,6 +28,7 @@ class AddStepCustomView : UIView {
     var filteredData : [String] = []
     var addedNameList : [String] = []
     var infoList : [String] = []
+    var newFavorite = ""
     
     var addFavoriteList : [String] = []
     
@@ -79,6 +80,7 @@ class AddStepCustomView : UIView {
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
         self.searchBar.compatibleSearchTextField.textColor = UIColor.white
+        self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.black
         self.tableView.register(AddStepTableViewCell.nib, forCellReuseIdentifier: AddStepTableViewCell.identifier)
         print(userDefaultsData.getFavorite() ?? "")
         
@@ -121,19 +123,20 @@ extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        self.infoList.append(addedNameList[indexPath.row])
+        if isFilteredTextEmpty == false {
+            self.infoList.append(self.filteredData[indexPath.row])
+        }else {
+            self.infoList.append(addedNameList[indexPath.row])
+        }
         self.sendInfoDelegate?.sendInfo(sendinfo: self.infoList[0])
-        
         self.removeFromSuperview()
     }
 }
 
 extension AddStepCustomView : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         self.filteredData = []
-        
-        if searchText.elementsEqual(""){
+        if searchText == ""{
             self.isFilteredTextEmpty = true
             self.filteredData = self.addedNameList
         }else {
@@ -145,7 +148,6 @@ extension AddStepCustomView : UISearchBarDelegate {
             }
         }
         self.tableView.reloadData()
-        
     }
 }
 
@@ -156,12 +158,18 @@ extension AddStepCustomView : TouchFavoriteDelegate {
         }
         
         if favoriteİsremember == true {
-            
-            self.addFavoriteList.append(touch)
+            for item in self.addFavoriteList {
+                if item == touch {
+                    self.newFavorite = item
+                    break
+                }
+            }
+        
+            if self.addFavoriteList == [] || self.newFavorite != touch {
+                self.addFavoriteList.append(touch)
+            }
             userDefaultsData.saveFavorite(id: self.addFavoriteList)
         }else {
-            
-            
             for item in  self.addFavoriteList {
                 if item.elementsEqual(touch) {
                     self.addFavoriteList.remove(object: touch)
@@ -170,11 +178,6 @@ extension AddStepCustomView : TouchFavoriteDelegate {
                 }
             }
         }
-        
-        
         print(self.addFavoriteList)
-        
-        
     }
-    
 }

@@ -83,7 +83,7 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 switch(indexPath.row) {
                 
                 case 0 :
-                    viewController = MyTourSaleViewController()
+                    viewController = MyTourSalesViewController()
                 case 1 :
                     viewController = MyTourSaleViewController()
                 case 2 :

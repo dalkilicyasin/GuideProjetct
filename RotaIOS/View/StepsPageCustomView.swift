@@ -8,7 +8,6 @@
 //
 
 import Foundation
-
 import UIKit
 import DropDown
 
@@ -17,7 +16,6 @@ protocol StepsPageListDelegate {
 }
 
 class StepsPageCustomView : UIView {
-    
     @IBOutlet weak var firstMainTextView: MainTextCustomView!
     @IBOutlet weak var secondMainTextView: MainTextCustomView!
     @IBOutlet weak var tableView: UITableView!
@@ -69,7 +67,6 @@ class StepsPageCustomView : UIView {
         }
         
         self.firstMainTextView.headerLAbel.text = "Add Steps"
-        
         self.secondMainTextView.headerLAbel.text = "Add from Favorite Steps"
         
         self.tableView.delegate = self
@@ -82,9 +79,7 @@ class StepsPageCustomView : UIView {
         
         let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(self.handleTapFavorite(_:)))
         self.secondMainTextView.addGestureRecognizer(tapFavorite)
-        self.secondMainTextView.isUserInteractionEnabled = true
-        
-        
+        self.secondMainTextView.isUserInteractionEnabled = true    
     }
     
     @objc func handleTapFavorite(_ sender: UITapGestureRecognizer) {
@@ -212,13 +207,11 @@ extension StepsPageCustomView : SendInfoDelegate {
             var companyName  : [String] = []
             var status : [Int] = []
             
-            
             for listarray in self.filteredNameList {
                 companyValue.append(listarray.value ?? 0)
                 companyName.append(listarray.text ?? "")
                 status.append(listarray.sTATUS ?? 0)
             }
-            
             self.sendingListofSteps.removeAll()
             self.stepsList.removeAll()
             self.x = 1
@@ -262,8 +255,7 @@ extension StepsPageCustomView : SendFavoriteInfoDelegate {
             var companyValue : [Int] = []
             var companyName  : [String] = []
             var status : [Int] = []
-            
-            
+
             for listarray in self.filteredNameList {
                 companyValue.append(listarray.value ?? 0)
                 companyName.append(listarray.text ?? "")
