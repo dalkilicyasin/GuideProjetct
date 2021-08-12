@@ -89,7 +89,7 @@
 		BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9E12640023800238035 /* ProceedPageCustomView.swift */; };
 		BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9E22640023800238035 /* ProceedPageCustomView.xib */; };
 		BF75706D26753C2E002EA494 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF75706C26753C2E002EA494 /* BaseViewController.swift */; };
-		BF75707226753E39002EA494 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF75707126753E39002EA494 /* GoogleService-Info.plist */; };
+		BFB977ED26B6F25400F0DD6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFB977EC26B6F25400F0DD6D /* GoogleService-Info.plist */; };
 		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
 		D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */; };
 		D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */; };
@@ -261,7 +261,7 @@
 		BF44C9E12640023800238035 /* ProceedPageCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProceedPageCustomView.swift; sourceTree = "<group>"; };
 		BF44C9E22640023800238035 /* ProceedPageCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProceedPageCustomView.xib; sourceTree = "<group>"; };
 		BF75706C26753C2E002EA494 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		BF75707126753E39002EA494 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BFB977EC26B6F25400F0DD6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileResponseModel.swift; sourceTree = "<group>"; };
 		D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTouristAddCustomView.swift; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 		BF44C879263FF80000238035 /* RotaIOS */ = {
 			isa = PBXGroup;
 			children = (
-				BF75707126753E39002EA494 /* GoogleService-Info.plist */,
+				BFB977EC26B6F25400F0DD6D /* GoogleService-Info.plist */,
 				BF44C9132640011100238035 /* Cell */,
 				BF44C8DF264000D900238035 /* View */,
 				BF44C8D62640009500238035 /* Networking */,
@@ -736,8 +736,8 @@
 				D97FB5A126C32CEB0099F28B /* MyTourSaleMoreDetailViewController.xib in Resources */,
 				D97FB58726C075940099F28B /* MyTourSaleDetailPageViewController.xib in Resources */,
 				BF44C887263FF80100238035 /* LaunchScreen.storyboard in Resources */,
-				BF75707226753E39002EA494 /* GoogleService-Info.plist in Resources */,
 				BF44C95B2640018B00238035 /* MyTourSaleViewController.xib in Resources */,
+				BFB977ED26B6F25400F0DD6D /* GoogleService-Info.plist in Resources */,
 				BF44C95C2640018B00238035 /* OfflineSalesViewController.xib in Resources */,
 				BF44C884263FF80100238035 /* Assets.xcassets in Resources */,
 				BF44C984264001B000238035 /* MainTextCustomView.xib in Resources */,
@@ -1157,7 +1157,7 @@
 				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1179,7 +1179,7 @@
 				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
