@@ -39,7 +39,7 @@ class MyShoppingSaleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.createBeginDatePicker()
         self.createEndDatePicker()
     }
@@ -86,9 +86,7 @@ class MyShoppingSaleViewController: UIViewController {
     }
     
     @IBAction func searchButtonClicked(_ sender: Any) {
-        
         let myTourSaleRequestModel = GetShoppingSaleRequestModel.init(begindate: self.beginDate, guideId: userDefaultsData.getGuideId(), endDate: self.endDate)
-        
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint:.GetIndShopDetailForMobile , method: .get, parameters: myTourSaleRequestModel.requestPathString()) { (response : [GetShoppingSaleResponseModel]) in
             if response.count > 0 {
                 

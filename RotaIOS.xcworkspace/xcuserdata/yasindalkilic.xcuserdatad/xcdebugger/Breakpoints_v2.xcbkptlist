@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E533FA25-082B-49EE-A93D-6473723EE27C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/Controller/MyShoppingSaleViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "searchButtonClicked(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E533FA25-082B-49EE-A93D-6473723EE27C - 230e94dbb195ded7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RotaIOS.MyShoppingSaleViewController.searchButtonClicked(Any) -&gt; ()"
-                  moduleName = "RotaIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/Controller/MyShoppingSaleViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "349">
-               </Location>
-               <Location
-                  uuid = "E533FA25-082B-49EE-A93D-6473723EE27C - 2ea5177c4098aa31"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;RotaIOS.GetShoppingSaleResponseModel&gt;) -&gt; () in RotaIOS.MyShoppingSaleViewController.searchButtonClicked(Any) -&gt; ()"
-                  moduleName = "RotaIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/Controller/MyShoppingSaleViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "114">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F9260F7E-6B3D-4315-B785-9106399ABB7F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"

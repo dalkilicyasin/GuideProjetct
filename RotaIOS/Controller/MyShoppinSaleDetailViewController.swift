@@ -13,7 +13,6 @@ class MyShoppinSaleDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(MyShopingSalesDetailTableViewCell.nib, forCellReuseIdentifier: MyShopingSalesDetailTableViewCell.identifier)

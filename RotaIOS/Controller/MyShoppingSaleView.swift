@@ -21,6 +21,7 @@ final class MyShoppingSaleView : UIView {
         self.contentView.backgroundColor = UIColor.grayColor
         self.contentView.layer.cornerRadius = 10
         self.buttonSearchButton.layer.cornerRadius = 10
+        self.buttonSearchButton.backgroundColor = UIColor.greenColor
         self.viewBeginDate.headerLAbel.text = "Begin Date"
         self.viewEndDate.headerLAbel.text = "End Date"
         self.viewBeginDate.imageMainText.isHidden = true

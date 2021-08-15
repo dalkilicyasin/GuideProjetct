@@ -13,8 +13,6 @@ class MyTourSaleMoreDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         self.viewMyTourSaleMoreDetailView.labelExcursionName.text = self.tourDetailListInMoreDetailPage?.tourName
         self.viewMyTourSaleMoreDetailView.labelExcursionDate.text = self.tourDetailListInMoreDetailPage?.tourDateStr
         self.viewMyTourSaleMoreDetailView.labelResevationNo.text = self.tourDetailListInMoreDetailPage?.pax_ResNo

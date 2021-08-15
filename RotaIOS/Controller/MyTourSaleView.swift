@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class MyTourSaleView : UIView {
-    
     @IBOutlet weak var viewHeaderDetail: HeaderDetailCustomView!
     @IBOutlet weak var viewContentView: UIView!
     @IBOutlet weak var viewTourSelect: MainTextCustomView!
@@ -26,7 +25,7 @@ final class MyTourSaleView : UIView {
         self.viewHeaderDetail.labelHeader.text = "My Tour Sale"
         self.viewContentView.layer.cornerRadius = 10
         self.viewContentView.backgroundColor = UIColor.grayColor
-        self.buttonSearch.backgroundColor = UIColor.green
+        self.buttonSearch.backgroundColor = UIColor.greenColor
         self.buttonSearch.layer.cornerRadius = 10
         self.viewTourSelect.headerLAbel.text = "Tour"
         self.viewStatusSelect.headerLAbel.text = "Status"

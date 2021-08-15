@@ -18,7 +18,6 @@ final class MyShoopingSaleDetailView : UIView {
         self.viewHeaderDetailView.labelHeader.text = "My Shopp Sales"
         self.tableView.layer.cornerRadius = 10
         self.tableView.backgroundColor = UIColor.grayColor
-        
     }
  
     required init(customParamArg: String) {
