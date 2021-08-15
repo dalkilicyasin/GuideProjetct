@@ -45,12 +45,12 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6I-nx-9Tf">
-                            <rect key="frame" x="30" y="420" width="354" height="50"/>
+                            <rect key="frame" x="30" y="420" width="354" height="60"/>
                             <color key="backgroundColor" systemColor="systemGreenColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="lDn-lk-Bh4"/>
+                                <constraint firstAttribute="height" constant="60" id="lDn-lk-Bh4"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" title="SEARCH">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
