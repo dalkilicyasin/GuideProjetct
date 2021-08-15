@@ -20,7 +20,6 @@ class MyTourSalesDetailPageTableViewCell: BaseTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.imageToMoreDetailPage.image = UIImage(named: "right")
         self.selectionStyle = .none
         self.viewContentView.backgroundColor = UIColor.clear

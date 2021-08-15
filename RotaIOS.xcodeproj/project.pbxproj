@@ -137,6 +137,16 @@
 		D97FB5A026C32CEB0099F28B /* MyTourSaleMoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB59E26C32CEB0099F28B /* MyTourSaleMoreDetailViewController.swift */; };
 		D97FB5A126C32CEB0099F28B /* MyTourSaleMoreDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB59F26C32CEB0099F28B /* MyTourSaleMoreDetailViewController.xib */; };
 		D97FB5A526C408BE0099F28B /* MyTourSaleMoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5A426C408BE0099F28B /* MyTourSaleMoreDetailView.swift */; };
+		D97FB5A826C685E90099F28B /* MyShoppingSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5A626C685E90099F28B /* MyShoppingSaleViewController.swift */; };
+		D97FB5A926C685E90099F28B /* MyShoppingSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB5A726C685E90099F28B /* MyShoppingSaleViewController.xib */; };
+		D97FB5AB26C6860A0099F28B /* MyShoppingSaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5AA26C6860A0099F28B /* MyShoppingSaleView.swift */; };
+		D97FB5AD26C69B6B0099F28B /* GetShoppingSaleResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5AC26C69B6B0099F28B /* GetShoppingSaleResponseModel.swift */; };
+		D97FB5AF26C69BE50099F28B /* GetShoppingSaleRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5AE26C69BE50099F28B /* GetShoppingSaleRequestModel.swift */; };
+		D97FB5B426C6ABC10099F28B /* MyShoppinSaleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5B226C6ABC10099F28B /* MyShoppinSaleDetailViewController.swift */; };
+		D97FB5B526C6ABC10099F28B /* MyShoppinSaleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB5B326C6ABC10099F28B /* MyShoppinSaleDetailViewController.xib */; };
+		D97FB5B726C6AC550099F28B /* MyShoopingSaleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5B626C6AC550099F28B /* MyShoopingSaleDetailView.swift */; };
+		D97FB5BA26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5B826C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift */; };
+		D97FB5BB26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */; };
 		D9A48CFA26B1405D00D28A0A /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A48CF826B1405D00D28A0A /* DocumentsViewController.swift */; };
 		D9A48CFB26B1405D00D28A0A /* DocumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A48CF926B1405D00D28A0A /* DocumentsViewController.xib */; };
 		D9A48CFF26B1408A00D28A0A /* DocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A48CFE26B1408A00D28A0A /* DocumentsView.swift */; };
@@ -309,6 +319,16 @@
 		D97FB59E26C32CEB0099F28B /* MyTourSaleMoreDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourSaleMoreDetailViewController.swift; sourceTree = "<group>"; };
 		D97FB59F26C32CEB0099F28B /* MyTourSaleMoreDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourSaleMoreDetailViewController.xib; sourceTree = "<group>"; };
 		D97FB5A426C408BE0099F28B /* MyTourSaleMoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourSaleMoreDetailView.swift; sourceTree = "<group>"; };
+		D97FB5A626C685E90099F28B /* MyShoppingSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShoppingSaleViewController.swift; sourceTree = "<group>"; };
+		D97FB5A726C685E90099F28B /* MyShoppingSaleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyShoppingSaleViewController.xib; sourceTree = "<group>"; };
+		D97FB5AA26C6860A0099F28B /* MyShoppingSaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShoppingSaleView.swift; sourceTree = "<group>"; };
+		D97FB5AC26C69B6B0099F28B /* GetShoppingSaleResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetShoppingSaleResponseModel.swift; sourceTree = "<group>"; };
+		D97FB5AE26C69BE50099F28B /* GetShoppingSaleRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetShoppingSaleRequestModel.swift; sourceTree = "<group>"; };
+		D97FB5B226C6ABC10099F28B /* MyShoppinSaleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShoppinSaleDetailViewController.swift; sourceTree = "<group>"; };
+		D97FB5B326C6ABC10099F28B /* MyShoppinSaleDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyShoppinSaleDetailViewController.xib; sourceTree = "<group>"; };
+		D97FB5B626C6AC550099F28B /* MyShoopingSaleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShoopingSaleDetailView.swift; sourceTree = "<group>"; };
+		D97FB5B826C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShopingSalesDetailTableViewCell.swift; sourceTree = "<group>"; };
+		D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyShopingSalesDetailTableViewCell.xib; sourceTree = "<group>"; };
 		D9A48CF826B1405D00D28A0A /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
 		D9A48CF926B1405D00D28A0A /* DocumentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentsViewController.xib; sourceTree = "<group>"; };
 		D9A48CFE26B1408A00D28A0A /* DocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsView.swift; sourceTree = "<group>"; };
@@ -456,6 +476,12 @@
 				D97FB59E26C32CEB0099F28B /* MyTourSaleMoreDetailViewController.swift */,
 				D97FB59F26C32CEB0099F28B /* MyTourSaleMoreDetailViewController.xib */,
 				D97FB5A426C408BE0099F28B /* MyTourSaleMoreDetailView.swift */,
+				D97FB5A626C685E90099F28B /* MyShoppingSaleViewController.swift */,
+				D97FB5A726C685E90099F28B /* MyShoppingSaleViewController.xib */,
+				D97FB5AA26C6860A0099F28B /* MyShoppingSaleView.swift */,
+				D97FB5B226C6ABC10099F28B /* MyShoppinSaleDetailViewController.swift */,
+				D97FB5B326C6ABC10099F28B /* MyShoppinSaleDetailViewController.xib */,
+				D97FB5B626C6AC550099F28B /* MyShoopingSaleDetailView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -473,6 +499,7 @@
 				D94C40612655D56E00EBC7CD /* GetGuideInfoRequestModel.swift */,
 				D9561A4726A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift */,
 				D97FB59026C147880099F28B /* GetTourDetailForMobileRequestModel.swift */,
+				D97FB5AE26C69BE50099F28B /* GetShoppingSaleRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -493,6 +520,7 @@
 				D9561A4B26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift */,
 				D968A88026BC24F3000FB00A /* GetTourSelectListResponseModel.swift */,
 				D97FB58E26C146B20099F28B /* GetTourDetailForMobileResponseModel.swift */,
+				D97FB5AC26C69B6B0099F28B /* GetShoppingSaleResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -599,6 +627,8 @@
 				D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */,
 				D97FB59626C15F5D0099F28B /* MyTourSalesDetailPageTableViewCell.swift */,
 				D97FB59826C15F650099F28B /* MyTourSalesDetailPageTableViewCell.xib */,
+				D97FB5B826C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift */,
+				D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -732,6 +762,7 @@
 				D9A48CFB26B1405D00D28A0A /* DocumentsViewController.xib in Resources */,
 				BF44C8DB264000C700238035 /* Main.storyboard in Resources */,
 				BF44C9D62640022F00238035 /* AddStepCustomView.xib in Resources */,
+				D97FB5A926C685E90099F28B /* MyShoppingSaleViewController.xib in Resources */,
 				BF44C93C2640016500238035 /* ShopAppointmentViewController.xib in Resources */,
 				D97FB5A126C32CEB0099F28B /* MyTourSaleMoreDetailViewController.xib in Resources */,
 				D97FB58726C075940099F28B /* MyTourSaleDetailPageViewController.xib in Resources */,
@@ -739,6 +770,7 @@
 				BF44C95B2640018B00238035 /* MyTourSaleViewController.xib in Resources */,
 				BFB977ED26B6F25400F0DD6D /* GoogleService-Info.plist in Resources */,
 				BF44C95C2640018B00238035 /* OfflineSalesViewController.xib in Resources */,
+				D97FB5B526C6ABC10099F28B /* MyShoppinSaleDetailViewController.xib in Resources */,
 				BF44C884263FF80100238035 /* Assets.xcassets in Resources */,
 				BF44C984264001B000238035 /* MainTextCustomView.xib in Resources */,
 				BF44C9A6264001CE00238035 /* CheckBoxView.xib in Resources */,
@@ -763,6 +795,7 @@
 				D94C40AA26692D4C00EBC7CD /* TaskTableViewCell.xib in Resources */,
 				D94C407A265BE36400EBC7CD /* FavoriteCustomView.xib in Resources */,
 				D9DCB19E26BBEB900064A040 /* MyTourSalesViewController.xib in Resources */,
+				D97FB5BB26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib in Resources */,
 				D968A88526BDADE7000FB00A /* MyTourStatusView.xib in Resources */,
 				BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */,
 				D9561A3C269DF27E00AA75E5 /* AnnoucmentsViewController.xib in Resources */,
@@ -898,6 +931,7 @@
 				D93F8890264B069000397283 /* AddManuelTouristCustomView.swift in Sources */,
 				BF44C909264000FA00238035 /* NetworkManager.swift in Sources */,
 				BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */,
+				D97FB5B426C6ABC10099F28B /* MyShoppinSaleDetailViewController.swift in Sources */,
 				BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */,
 				D9A48CFF26B1408A00D28A0A /* DocumentsView.swift in Sources */,
 				D93F889F264EFF7800397283 /* GetSaveForMobileRequestList.swift in Sources */,
@@ -934,6 +968,7 @@
 				D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */,
 				D9A48CFA26B1405D00D28A0A /* DocumentsViewController.swift in Sources */,
 				BF44C9492640017E00238035 /* ExcursionSaleViewController.swift in Sources */,
+				D97FB5BA26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift in Sources */,
 				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
 				D968A88326BDAC94000FB00A /* MyTourStatusView.swift in Sources */,
 				BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */,
@@ -948,6 +983,7 @@
 				BF44C9632640019200238035 /* HeaderCustomView.swift in Sources */,
 				D97FB58F26C146B20099F28B /* GetTourDetailForMobileResponseModel.swift in Sources */,
 				D9DCB19D26BBEB900064A040 /* MyTourSalesViewController.swift in Sources */,
+				D97FB5AB26C6860A0099F28B /* MyShoppingSaleView.swift in Sources */,
 				BF44C9C82640022000238035 /* StepsPageCustomView.swift in Sources */,
 				BF44C8E9264000E200238035 /* ExtensionUIDevice.swift in Sources */,
 				D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */,
@@ -957,6 +993,7 @@
 				D9561A41269E099C00AA75E5 /* AnnoucmentsTableViewCell.swift in Sources */,
 				BF44C93A2640016500238035 /* ShopAppointmentViewController.swift in Sources */,
 				BF44C8F1264000E900238035 /* GetUserResponseModel.swift in Sources */,
+				D97FB5AF26C69BE50099F28B /* GetShoppingSaleRequestModel.swift in Sources */,
 				BF44C9A7264001CE00238035 /* CheckBoxView.swift in Sources */,
 				D94C407F265D013C00EBC7CD /* FavoriteListCustomView.swift in Sources */,
 				D93F888B264AB14900397283 /* GetHotelsMobileRequestModel.swift in Sources */,
@@ -972,13 +1009,16 @@
 				D93F88A42651AAE300397283 /* GetTouristInfoRequestModel.swift in Sources */,
 				BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */,
 				D94C40672655D5FA00EBC7CD /* GetGuideInfoResponseModel.swift in Sources */,
+				D97FB5AD26C69B6B0099F28B /* GetShoppingSaleResponseModel.swift in Sources */,
 				BF44C8E7264000E200238035 /* ExtensionUIColor.swift in Sources */,
 				BF44C983264001B000238035 /* MainTextCustomView.swift in Sources */,
 				BF44C90F2640010200238035 /* Defaults.swift in Sources */,
 				BF44C95A2640018B00238035 /* MyTourSaleViewController.swift in Sources */,
+				D97FB5A826C685E90099F28B /* MyShoppingSaleViewController.swift in Sources */,
 				BF44C907264000FA00238035 /* BaseData.swift in Sources */,
 				D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */,
 				D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */,
+				D97FB5B726C6AC550099F28B /* MyShoopingSaleDetailView.swift in Sources */,
 				D97FB58926C075B90099F28B /* MyTourSaleDetailPageView.swift in Sources */,
 				D97FB5A526C408BE0099F28B /* MyTourSaleMoreDetailView.swift in Sources */,
 				BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */,

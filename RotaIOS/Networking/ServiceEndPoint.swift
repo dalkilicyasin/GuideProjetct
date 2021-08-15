@@ -10,7 +10,6 @@ import Foundation
 
 
 public enum ServiceEndPoint: String {
-    
     case CreateToken = "/api/api/User/GetToken"
     case GetUser = "/api/api/User/GetMyInfo"
     case GetGuideMarkets = "/api/api/IndShop/GetGuideMarkets"
@@ -23,6 +22,7 @@ public enum ServiceEndPoint: String {
     case GetGuideAnnoucemenstAndDocuments = "/api//api/Announcement/GetGuideAnnouncementsAndDocuments"
     case TourGetSelectList = "/api/api/TourDefinition/GetSelectList"
     case TourGetTourDetailForMobile = "/api/api/TourSale/GetTourDetailForMobile"
+    case GetIndShopDetailForMobile = "/api/api/IndShop/GetIndShopDetailForMobile"
 }
 
 

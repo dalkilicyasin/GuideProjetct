@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class AnnoucmentsView : UIView {
-    
     @IBOutlet weak var tableView: UITableView!
     var announcementsDetail : [Record] = []
     @IBOutlet weak var viewHeaderDetailCustomView: HeaderDetailCustomView!

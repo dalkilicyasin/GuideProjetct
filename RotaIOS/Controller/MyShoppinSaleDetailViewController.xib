@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyShoppinSaleDetailViewController" customModule="RotaIOS" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="Qgd-X0-MCS" id="Mok-FY-qHp"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="MyShoopingSaleDetailView" customModule="RotaIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bpi-y1-7O8" customClass="HeaderDetailCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="QA1-AC-U8w"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qgd-X0-MCS">
+                    <rect key="frame" x="0.0" y="100" width="414" height="796"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Qgd-X0-MCS" secondAttribute="bottom" id="0VC-ox-wQH"/>
+                <constraint firstItem="Bpi-y1-7O8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="0av-vV-v6u"/>
+                <constraint firstItem="Qgd-X0-MCS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1cO-Sx-hcn"/>
+                <constraint firstItem="Bpi-y1-7O8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4OM-a4-zG1"/>
+                <constraint firstAttribute="trailing" secondItem="Bpi-y1-7O8" secondAttribute="trailing" id="UHK-pK-TGQ"/>
+                <constraint firstItem="Qgd-X0-MCS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="Y7D-jW-CMj"/>
+                <constraint firstAttribute="trailing" secondItem="Qgd-X0-MCS" secondAttribute="trailing" id="wtg-GK-Xtj"/>
+            </constraints>
+            <connections>
+                <outlet property="tableView" destination="Qgd-X0-MCS" id="x1H-Jh-5dw"/>
+                <outlet property="viewHeaderDetailView" destination="Bpi-y1-7O8" id="EYQ-kV-g8c"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="86"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
