@@ -13,11 +13,11 @@
             <connections>
                 <outlet property="contentView" destination="d0R-ja-l3R" id="AJe-nN-dkM"/>
                 <outlet property="headerLAbel" destination="Vrr-FC-bPF" id="TMc-qR-ZJq"/>
-                <outlet property="headerView" destination="iN0-l3-epB" id="Gv5-0N-K86"/>
                 <outlet property="imageMainText" destination="yif-Gl-p73" id="Mmr-vG-rpu"/>
                 <outlet property="mainLabel" destination="JuH-VT-Rfg" id="FwX-eN-vmF"/>
                 <outlet property="mainText" destination="HUK-0q-wHc" id="VAy-vH-mJI"/>
                 <outlet property="mainTextCustomView" destination="d0R-ja-l3R" id="E4g-KV-VQr"/>
+                <outlet property="viewMainView" destination="iN0-l3-epB" id="Cw3-mZ-gTz"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

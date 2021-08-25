@@ -11,12 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProceedPageCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
-                <outlet property="headerView" destination="iN0-l3-epB" id="guv-Kt-fz7"/>
-                <outlet property="notesMainText" destination="oeo-BM-xiH" id="Bd3-gP-Cyh"/>
-                <outlet property="pickUpTimeMainText" destination="L90-kk-sKk" id="eoF-fO-y0J"/>
-                <outlet property="roomMainText" destination="Fad-V6-QWt" id="3co-sq-0cn"/>
                 <outlet property="sendButton" destination="CFd-gh-74w" id="Crf-Ny-dfA"/>
-                <outlet property="shopDateMainText" destination="SPA-pH-URU" id="czC-0v-qaZ"/>
+                <outlet property="viewMainView" destination="iN0-l3-epB" id="r50-Si-agp"/>
+                <outlet property="viewNotesMainTextView" destination="oeo-BM-xiH" id="KkO-Gt-rOX"/>
+                <outlet property="viewPickUpTimeMainTextView" destination="L90-kk-sKk" id="6RX-Wi-vkC"/>
+                <outlet property="viewRoomMainTextView" destination="Fad-V6-QWt" id="WaU-Vk-7Qf"/>
+                <outlet property="viewShopDateMainTextView" destination="SPA-pH-URU" id="ecB-px-VHK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

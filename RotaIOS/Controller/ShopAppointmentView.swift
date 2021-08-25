@@ -37,7 +37,7 @@ final class ShopAppointmentView : UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.headerDetailCustomView.labelHeader.text = "Ind. Shop Appointment"
+        self.headerDetailCustomView.labelHeaderDetailView.text = "Ind. Shop Appointment"
         
         self.appointmentBarCustomView.homePageTappedDelegate = self
         self.footerView.continueButtonTappedDelegate = self

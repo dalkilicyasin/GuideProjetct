@@ -10,9 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderDetailCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
-                <outlet property="contentView" destination="hxL-d7-ZkI" id="EIX-y0-KVp"/>
-                <outlet property="headerView" destination="iN0-l3-epB" id="oxg-wo-0QA"/>
-                <outlet property="labelHeader" destination="zPR-oK-lMf" id="kMd-kq-Alm"/>
+                <outlet property="labelHeaderDetailView" destination="zPR-oK-lMf" id="f9Q-ut-YN0"/>
+                <outlet property="viewContentView" destination="hxL-d7-ZkI" id="r7z-kW-oGK"/>
+                <outlet property="viewMainView" destination="iN0-l3-epB" id="YSA-re-mVB"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -83,7 +83,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="GEZ-Gr-9EP" secondAttribute="trailing" id="JE4-S7-ewV"/>
                 <constraint firstItem="GEZ-Gr-9EP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="b1C-rE-InE"/>

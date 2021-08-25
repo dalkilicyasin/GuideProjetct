@@ -12,7 +12,6 @@ protocol TouchFavoriteDelegate {
 }
 
 class AddStepTableViewCell: BaseTableViewCell {
-
     @IBOutlet weak var viewFavorite: FavoriteCustomView!
     @IBOutlet weak var labelText: UILabel!
     var touchDelegate : TouchFavoriteDelegate?
@@ -23,22 +22,17 @@ class AddStepTableViewCell: BaseTableViewCell {
         // Initialization code
         self.selectionStyle = .none
         self.viewFavorite.favoriteCustomViewDelegate = self
-      
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
 }
 
 extension AddStepTableViewCell : FavoriteCustomViewDelegate {
     func favoriteTapped(isremember: Bool) {
         print(isremember)
-
         self.touchDelegate?.touchfavoriteTapped(favoriteİsremember: isremember, touch: self.labelText.text ?? "")
-        
-      
     }
 }
 

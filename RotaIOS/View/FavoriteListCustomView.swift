@@ -68,7 +68,6 @@ class FavoriteListCustomView : UIView {
 
 extension FavoriteListCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return self.addedNameList.count
     }
     
@@ -82,7 +81,6 @@ extension FavoriteListCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.infoList.append(addedNameList[indexPath.row])
         self.sendFavoriteInfoDelegate?.sendFavoriteInfo(sendinfo: self.infoList[0])
-        
         self.removeFromSuperview()
     }
     

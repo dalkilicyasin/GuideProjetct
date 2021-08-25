@@ -28,7 +28,7 @@ final class MyTourSaleMoreDetailView : UIView {
     @IBOutlet weak var labelTotalPayment: UILabel!
     
     override func awakeFromNib() {
-        self.viewHeaderDetailView.labelHeader.text = "My Tour Sale"
+        self.viewHeaderDetailView.labelHeaderDetailView.text = "My Tour Sale"
         self.viewContentView.layer.cornerRadius = 10
         self.viewContentView.backgroundColor = UIColor.black
     }

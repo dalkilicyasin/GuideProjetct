@@ -179,6 +179,7 @@
                 <outlet property="viewContentView" destination="wHb-1d-cGQ" id="Yld-PD-4BW"/>
                 <outlet property="viewEndDate" destination="mBe-JJ-3NK" id="g1f-gY-51C"/>
                 <outlet property="viewHeaderDetail" destination="CJc-8h-9F8" id="WaG-bp-1Ur"/>
+                <outlet property="viewMainView" destination="c3u-CU-aer" id="1Sg-WJ-0sE"/>
                 <outlet property="viewSaleDate" destination="uJW-5r-5ko" id="oDg-H0-tvW"/>
                 <outlet property="viewSaleEndDate" destination="WMq-5r-T1Y" id="3tf-32-O6d"/>
                 <outlet property="viewStatusSelect" destination="Ygd-Ug-Wh9" id="mHZ-ym-hqu"/>

@@ -14,7 +14,6 @@ protocol FavoriteCustomViewDelegate {
 }
 
 class FavoriteCustomView: UIView{
-    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var imageFavoriteEmpty: UIImageView!
     @IBOutlet weak var imageFavoriteFull: UIImageView!

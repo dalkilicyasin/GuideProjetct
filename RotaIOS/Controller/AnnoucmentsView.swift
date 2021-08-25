@@ -15,8 +15,8 @@ final class AnnoucmentsView : UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.viewHeaderDetailCustomView.labelHeader.text = "Announcements"
-        self.tableView.backgroundColor = UIColor.mainViewColor
+        self.viewHeaderDetailCustomView.labelHeaderDetailView.text = "Announcements"
+        self.tableView.backgroundColor = UIColor.grayColor
         self.tableView.layer.cornerRadius = 10
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableView.automaticDimension

@@ -15,7 +15,7 @@ class MyTourSalesViewController: UIViewController {
     var tourList : [GetTourSelectListResponseModel] = []
     var filteredTourList : [GetTourSelectListResponseModel] = []
     var tourListInTourmenu : [String] = []
-    var myTourStatusView : MyTourStatusView?
+    var viewMyTourStatusView : MyTourStatusView?
     var viewControllerDetail : MyTourSaleDetailPageViewController?
     var tourDetailList : [GetTourDetailForMobileResponseModel] = []
     var isTappedStatus = false
@@ -62,7 +62,6 @@ class MyTourSalesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint:.TourGetSelectList , method:.get , parameters: "") { (response : [GetTourSelectListResponseModel]) in
             if response.count > 0 {
                 self.tourList = response
@@ -79,30 +78,25 @@ class MyTourSalesViewController: UIViewController {
                 print("data has not recived")
             }
         }
-        
         self.createBeginDatePicker()
         self.createEndDatePicker()
         self.createSaleDatePicker()
-        
         self.tourMenu.selectionAction = { index, title in
             self.viewMyTourSales.viewTourSelect.mainLabel.text = title
-            
             let filtered = self.tourList.filter{($0.text?.contains(title) ?? false)}
             self.filteredTourList = filtered
             for item in self.filteredTourList {
-                self.tourId = "\(item.value ?? 0)" 
-                //   userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "") // silinecek
+                self.tourId = "\(item.value ?? 0)"
             }
         }
-        
         let tourMenuGesture = UITapGestureRecognizer(target: self, action: #selector(tappedTour))
         self.viewMyTourSales.viewTourSelect.addGestureRecognizer(tourMenuGesture)
         
         let statusMenuGesture = UITapGestureRecognizer(target: self, action: #selector(tappedStatus))
-        self.viewMyTourSales.viewStatusSelect.addGestureRecognizer(statusMenuGesture)
+        self.viewMyTourSales.viewStatusSelect.addGestureRecognizer(statusMenuGesture) 
         
-        let contentViewGesture = UITapGestureRecognizer(target: self, action: #selector(tappedContentView))
-        self.viewMyTourSales.addGestureRecognizer(contentViewGesture)
+        let removeStatusMenuGesture = UITapGestureRecognizer(target: self, action: #selector(tappedViewContentView))
+        self.viewMyTourSales.addGestureRecognizer(removeStatusMenuGesture)
     }
     
     func createBeginDatePicker() {
@@ -170,22 +164,27 @@ class MyTourSalesViewController: UIViewController {
     @objc func tappedStatus() {
         self.isTappedStatus = !self.isTappedStatus
         if self.isTappedStatus == true {
-            UIView.animate(withDuration: 0, animations: { [self] in
-                self.myTourStatusView = MyTourStatusView()
-                self.viewMyTourSales.addSubview(myTourStatusView!)
-                myTourStatusView!.frame = CGRect(x: 30, y: 250, width: UIScreen.main.bounds.size.width - 60, height: self.viewMyTourSales.frame.size.height - 300)
-            }, completion: { (finished) in
-                if finished{
-                    
-                }
-            })
+            if self.viewMyTourStatusView == nil {
+                UIView.animate(withDuration: 0, animations: { [self] in
+                    self.viewMyTourStatusView = MyTourStatusView()
+                    self.viewMyTourStatusView?.myTourStatusViewDelegate = self
+                    self.viewMyTourSales.viewContentView.addSubview(self.viewMyTourStatusView!)
+                    self.viewMyTourStatusView!.frame = CGRect(x: 30, y: 180, width: UIScreen.main.bounds.size.width - 60, height: self.viewMyTourSales.frame.size.height - 350)
+                }, completion: { (finished) in
+                    if finished{
+                        
+                    }
+                })
+            }else {
+                self.viewMyTourStatusView?.isHidden = false
+            }
         }else {
-            self.myTourStatusView?.removeFromSuperview()
+            self.viewMyTourStatusView?.isHidden = true
         }  
     }
     
-    @objc func tappedContentView() {
-        self.myTourStatusView?.removeFromSuperview()
+    @objc func tappedViewContentView() {
+        // self.myTourStatusView?.removeFromSuperview()
     }
     
     @objc func tappedTour() {
@@ -193,20 +192,22 @@ class MyTourSalesViewController: UIViewController {
     }
     
     @IBAction func searchButtonClicked(_ sender: Any) {
-        
         let myTourSaleRequestModel = GetTourDetailForMobileRequestModel.init(begindate: self.beginDate, guideId: userDefaultsData.getGuideId(), endDate: self.endDate, saleDate: self.saleDate, voucher: self.voucherNo, tourId: self.tourId, statusId: self.statusId, saleEndDate: self.saleEndDate)
-        
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint:.TourGetTourDetailForMobile , method: .get, parameters: myTourSaleRequestModel.requestPathString()) { (response : [GetTourDetailForMobileResponseModel]) in
             if response.count > 0 {
                 self.tourDetailList = response
-                
                 self.otiPushViewController(viewController: MyTourSaleDetailPageViewController(tourDetailListInDetailPage: self.tourDetailList), animated: true)
-                
             }else {
                 let alert = UIAlertController(title: "Error", message: "Data has not recived", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
+    }
+}
+
+extension MyTourSalesViewController : MyTourStatusViewDelegate {
+    func myTourStatusSelectedIdList(selectedStatusIdList: [String]) {
+        self.statusId = selectedStatusIdList.joined(separator: ",")
     }
 }

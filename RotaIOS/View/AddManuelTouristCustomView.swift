@@ -70,7 +70,7 @@ class AddManuelTouristCustomView : UIView {
             
         }
         
-        self.contentView.backgroundColor = UIColor.mainViewColor
+        self.contentView.backgroundColor = UIColor.grayColor
         self.contentView.layer.cornerRadius = 10
         self.scrollView.layer.cornerRadius = 10
         self.buttonAdd.layer.cornerRadius = 10

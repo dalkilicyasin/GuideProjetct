@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import Foundation
 
 protocol PaxPageTableViewCellDelegate {
     func checkBoxTapped(checkCounter : Bool, touristName : String, tempPaxes : GetInHoseListResponseModel)
 }
 
 class PaxPageTableViewCell: BaseTableViewCell{
-
     @IBOutlet weak var viewContent: UIView!
     @IBOutlet weak var labelPaxNameListCell: UILabel!
     @IBOutlet weak var checkBoxView: CheckBoxView!
@@ -20,9 +20,6 @@ class PaxPageTableViewCell: BaseTableViewCell{
     var paxIsSelected : Bool?
     var paxPageTableViewCellDelegate : PaxPageTableViewCellDelegate?
     var tempPaxes : GetInHoseListResponseModel?
-  
-
-   
     @IBOutlet weak var imageUserName: UIImageView!
     
     override func awakeFromNib() {
@@ -33,23 +30,17 @@ class PaxPageTableViewCell: BaseTableViewCell{
         self.imageUserName.isHidden = true
         self.viewContent.backgroundColor = UIColor.grayColor
         self.labelPaxNameListCell.textColor = UIColor.white
-    
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
 }
 
 extension PaxPageTableViewCell : CheckBoxViewDelegate {
     func checkBoxTapped(isremember: Bool) {
         print(isremember)
-        
         self.paxPageTableViewCellDelegate?.checkBoxTapped(checkCounter: isremember, touristName: self.labelPaxNameListCell.text ?? "", tempPaxes: self.tempPaxes!)
-
     }
 }
 

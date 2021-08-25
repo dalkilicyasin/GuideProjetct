@@ -11,10 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StepsPageCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
-                <outlet property="firstMainTextView" destination="5na-JR-0ft" id="C6Q-kG-TYE"/>
-                <outlet property="headerView" destination="iN0-l3-epB" id="kFZ-PQ-Hc5"/>
-                <outlet property="secondMainTextView" destination="hjy-LK-sNk" id="TI8-SE-f3Y"/>
                 <outlet property="tableView" destination="m8O-SR-MWu" id="cqX-Kb-Ac5"/>
+                <outlet property="viewAddedFavoriteListView" destination="hjy-LK-sNk" id="psw-XJ-2Jp"/>
+                <outlet property="viewMainView" destination="iN0-l3-epB" id="QgY-Qf-NHH"/>
+                <outlet property="viewStepListView" destination="5na-JR-0ft" id="krP-wL-deA"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -7,28 +7,23 @@
 
 
 import Foundation
-
 import UIKit
-
 
 protocol ProceedPageDelegate {
     func proceedPage(isSuccsess : Bool)
 }
-class ProceedPageCustomView : UIView {
 
-    @IBOutlet var headerView: UIView!
-    @IBOutlet weak var shopDateMainText: MainTextCustomView!
-    @IBOutlet weak var roomMainText: MainTextCustomView!
-    @IBOutlet weak var notesMainText: MainTextCustomView!
-    @IBOutlet weak var pickUpTimeMainText: MainTextCustomView!
+class ProceedPageCustomView : UIView {
+    @IBOutlet var viewMainView: UIView!
+    @IBOutlet weak var viewShopDateMainTextView: MainTextCustomView!
+    @IBOutlet weak var viewRoomMainTextView: MainTextCustomView!
+    @IBOutlet weak var viewNotesMainTextView: MainTextCustomView!
+    @IBOutlet weak var viewPickUpTimeMainTextView: MainTextCustomView!
     @IBOutlet weak var sendButton: UIButton!
     var dateString = ""
     var timeString = ""
     var proceedPageDelegate : ProceedPageDelegate?
-    
-    
     var paxFilteredList : [String] = []
-    
     var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -51,13 +46,10 @@ class ProceedPageCustomView : UIView {
     }()
     let dateToolBar = UIToolbar()
     let timeToolBar = UIToolbar()
-    
     var paxListinProceedPage : [Paxes] = []
     var stepsListinProceedPage : [Steps] = []
-    
     var paxListStringType : [String : Any] = [:]
     var stepListStringType : [String : Any] = [:]
-    
     var adultCountinProceedPage = 0
     var childCountinProceedPage = 0
     var infantCountinProceedPage = 0
@@ -74,45 +66,39 @@ class ProceedPageCustomView : UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: ProceedPageCustomView.self), owner: self, options: nil)
-        headerView.addCustomContainerView(self)
+        self.viewMainView.addCustomContainerView(self)
         self.sendButton.isEnabled = true
-        self.headerView.backgroundColor = UIColor.mainViewColor
-        
+        self.viewMainView.backgroundColor = UIColor.mainViewColor
         self.sendButton.backgroundColor = UIColor.greenColor
         self.sendButton.layer.borderWidth = 1
         self.sendButton.layer.borderColor = UIColor.green.cgColor
         self.sendButton.layer.cornerRadius = 10
-        
-        self.shopDateMainText.headerLAbel.text = "Shop Date"
-        self.pickUpTimeMainText.headerLAbel.text = "Pick Up Time"
-        self.roomMainText.headerLAbel.text = "Room"
-        self.notesMainText.headerLAbel.text = "Notes"
-        
-        self.shopDateMainText.mainLabel.isHidden = true
-        self.shopDateMainText.mainText.isHidden = false
-        self.shopDateMainText.imageMainText.isHidden = true
-        self.pickUpTimeMainText.mainLabel.isHidden = true
-        self.pickUpTimeMainText.mainText.isHidden = false
-        self.pickUpTimeMainText.imageMainText.isHidden = true
-        self.roomMainText.mainLabel.isHidden = true
-        self.roomMainText.mainText.isHidden = false
-        self.roomMainText.imageMainText.isHidden = true
-        self.notesMainText.mainLabel.isHidden = true
-        self.notesMainText.mainText.isHidden = false
-        self.notesMainText.imageMainText.isHidden = true
+        self.viewShopDateMainTextView.headerLAbel.text = "Shop Date"
+        self.viewPickUpTimeMainTextView.headerLAbel.text = "Pick Up Time"
+        self.viewRoomMainTextView.headerLAbel.text = "Room"
+        self.viewNotesMainTextView.headerLAbel.text = "Notes"
+        self.viewShopDateMainTextView.mainLabel.isHidden = true
+        self.viewShopDateMainTextView.mainText.isHidden = false
+        self.viewShopDateMainTextView.imageMainText.isHidden = true
+        self.viewPickUpTimeMainTextView.mainLabel.isHidden = true
+        self.viewPickUpTimeMainTextView.mainText.isHidden = false
+        self.viewPickUpTimeMainTextView.imageMainText.isHidden = true
+        self.viewRoomMainTextView.mainLabel.isHidden = true
+        self.viewRoomMainTextView.mainText.isHidden = false
+        self.viewRoomMainTextView.imageMainText.isHidden = true
+        self.viewNotesMainTextView.mainLabel.isHidden = true
+        self.viewNotesMainTextView.mainText.isHidden = false
+        self.viewNotesMainTextView.imageMainText.isHidden = true
         
         self.createDatePicker()
         self.createTimePicker()
-        
-        
     }
     
     @IBAction func sendButtonClicked(_ sender: Any) {
+        print(paxListinProceedPage)
+        print(stepsListinProceedPage)
         
-      print(paxListinProceedPage)
-      print(stepsListinProceedPage)
-        
-        let saveForMobileRequestModel = GetSaveForMobileRequestList.init(iND_CHLMAXAGE: NSNull() , iND_NOTE: self.notesMainText.mainText.text ?? NSNull(), iND_VOUCHER: NSNull(), iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId() , iND_MARKETGROUPREF: userDefaultsData.getMarketGruopId() , iND_MARKETREF: userDefaultsData.getMarketId() , iND_AREAREF: userDefaultsData.getHotelArea() , iND_HOTELREF: userDefaultsData.getHotelId() , iND_SHOPPICKUPTIME: self.timeString,  strPaxes: self.paxListinProceedPage.toJSONString(prettyPrint: true) ?? "" , strSteps: self.stepsListinProceedPage.toJSONString(prettyPrint: true) ?? "")
+        let saveForMobileRequestModel = GetSaveForMobileRequestList.init(iND_CHLMAXAGE: NSNull() , iND_NOTE: self.viewNotesMainTextView.mainText.text ?? NSNull(), iND_VOUCHER: NSNull(), iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId() , iND_MARKETGROUPREF: userDefaultsData.getMarketGruopId() , iND_MARKETREF: userDefaultsData.getMarketId() , iND_AREAREF: userDefaultsData.getHotelArea() , iND_HOTELREF: userDefaultsData.getHotelId() , iND_SHOPPICKUPTIME: self.timeString,  strPaxes: self.paxListinProceedPage.toJSONString(prettyPrint: true) ?? "" , strSteps: self.stepsListinProceedPage.toJSONString(prettyPrint: true) ?? "")
         
         if dateString.isEmpty == false && self.paxListinProceedPage.isEmpty == false && self.stepsListinProceedPage.isEmpty == false {
             NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveForMobileRequestModel ) { (response: GetSaveForMobileResponseList) in
@@ -122,7 +108,6 @@ class ProceedPageCustomView : UIView {
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                         topVC.present(alert, animated: true, completion: nil)
                     }
-               
                     self.sendButton.backgroundColor = UIColor.clear
                     self.sendButton.layer.borderWidth = 1
                     self.sendButton.layer.borderColor = UIColor.green.cgColor
@@ -130,7 +115,6 @@ class ProceedPageCustomView : UIView {
                     self.sendButton.isEnabled = false
                     self.proceedPageDelegate?.proceedPage(isSuccsess: true)
                     print(response)
-                    
                 }else{
                     if let topVC = UIApplication.getTopViewController() {
                         let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)
@@ -138,7 +122,6 @@ class ProceedPageCustomView : UIView {
                         topVC.present(alert, animated: true, completion: nil)
                         self.proceedPageDelegate?.proceedPage(isSuccsess: false)
                     }
-                    
                 }
             }
         }else {
@@ -148,60 +131,47 @@ class ProceedPageCustomView : UIView {
                 topVC.present(alert, animated: true, completion: nil)
                 self.proceedPageDelegate?.proceedPage(isSuccsess: false)
             }
-            
         }
-     
-}
+    }
     
     func createDatePicker() {
-        
-        self.shopDateMainText.mainText.textAlignment = .left
+        self.viewShopDateMainTextView.mainText.textAlignment = .left
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(datePickerDonePressed))
         self.dateToolBar.setItems([doneButton], animated: true)
         self.dateToolBar.sizeToFit()
-        self.shopDateMainText.mainText.inputAccessoryView = dateToolBar
-        self.shopDateMainText.mainText.inputView = datePicker
+        self.viewShopDateMainTextView.mainText.inputAccessoryView = dateToolBar
+        self.viewShopDateMainTextView.mainText.inputView = datePicker
         self.datePicker.datePickerMode = .date
     }
     
-    
     @objc func datePickerDonePressed() {
-        
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
-        
-        self.shopDateMainText.mainText.text = "\(formatter.string(from: datePicker.date))"
-        self.headerView.endEditing(true)
-        
+        self.viewShopDateMainTextView.mainText.text = "\(formatter.string(from: datePicker.date))"
+        self.viewMainView.endEditing(true)
         print(formatter.string(from: datePicker.date))
-        
         self.dateString = formatter.string(from: datePicker.date)
     }
     
-    
     func createTimePicker() {
-        
-        self.pickUpTimeMainText.mainText.textAlignment = .left
+        self.viewPickUpTimeMainTextView.mainText.textAlignment = .left
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(timePickerDonePressed))
         self.timeToolBar.setItems([doneButton], animated: true)
         self.timeToolBar.sizeToFit()
-        self.pickUpTimeMainText.mainText.inputAccessoryView = timeToolBar
-        self.pickUpTimeMainText.mainText.inputView = timePicker
+        self.viewPickUpTimeMainTextView.mainText.inputAccessoryView = timeToolBar
+        self.viewPickUpTimeMainTextView.mainText.inputView = timePicker
         self.timePicker.datePickerMode = .time
     }
     
-    
     @objc func timePickerDonePressed() {
-        
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .medium
         formatter.dateFormat = "HH:dd a"
-        
-        self.pickUpTimeMainText.mainText.text = "\(formatter.string(for: timePicker.date) ?? "12:00")"
-        self.headerView.endEditing(true)
+        self.viewPickUpTimeMainTextView.mainText.text = "\(formatter.string(for: timePicker.date) ?? "12:00")"
+        self.viewMainView.endEditing(true)
         print(formatter.string(from: timePicker.date))
         self.timeString = formatter.string(from: datePicker.date)
     }

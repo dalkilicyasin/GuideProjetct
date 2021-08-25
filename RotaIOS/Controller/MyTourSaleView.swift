@@ -10,6 +10,7 @@ import UIKit
 
 final class MyTourSaleView : UIView {
     @IBOutlet weak var viewHeaderDetail: HeaderDetailCustomView!
+    @IBOutlet weak var viewMainView: UIView!
     @IBOutlet weak var viewContentView: UIView!
     @IBOutlet weak var viewTourSelect: MainTextCustomView!
     @IBOutlet weak var viewStatusSelect: MainTextCustomView!
@@ -22,7 +23,7 @@ final class MyTourSaleView : UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.viewHeaderDetail.labelHeader.text = "My Tour Sale"
+        self.viewHeaderDetail.labelHeaderDetailView.text = "My Tour Sale"
         self.viewContentView.layer.cornerRadius = 10
         self.viewContentView.backgroundColor = UIColor.grayColor
         self.buttonSearch.backgroundColor = UIColor.greenColor
@@ -59,3 +60,4 @@ final class MyTourSaleView : UIView {
         super.init(coder: aDecoder)
     }
 }
+

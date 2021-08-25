@@ -5,7 +5,6 @@
 //  Created by Yasin Dalkilic on 24.04.2021.
 //
 import Foundation
-
 import UIKit
 
 protocol SendInfoDelegate {
@@ -13,15 +12,13 @@ protocol SendInfoDelegate {
 }
 
 class AddStepCustomView : UIView {
-    
     @IBOutlet weak var viewRemoveButton: UIView!
     @IBOutlet weak var viewSlideUP: UIView!
-    @IBOutlet var headerView: UIView!
+    @IBOutlet var viewMainView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var topView: UIView!
-    var selectList : [GetSelectListResponseModel] = []
-    var stepsSelectedNameList : StepsPageCustomView?
+    @IBOutlet weak var viewContentView: UIView!
+    var selectedStepList : [GetSelectListResponseModel] = []
     var sendInfoDelegate : SendInfoDelegate?
     var remember = true
     var isFilteredTextEmpty = true
@@ -29,10 +26,8 @@ class AddStepCustomView : UIView {
     var addedNameList : [String] = []
     var infoList : [String] = []
     var newFavorite = ""
-    
     var addFavoriteList : [String] = []
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -45,18 +40,15 @@ class AddStepCustomView : UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: AddStepCustomView.self), owner: self, options: nil)
-        self.headerView.addCustomContainerView(self)
+        self.viewMainView.addCustomContainerView(self)
         
         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetSelectList, method: .get, parameters: "") { (response : [GetSelectListResponseModel] ) in
             
             if response.count > 0 {
-                
                 //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                
-                self.selectList = response
-                
-                for listArray in self.selectList {
-                    self.addedNameList.append(listArray.text ?? "")
+                self.selectedStepList = response
+                for item in self.selectedStepList {
+                    self.addedNameList.append(item.text ?? "")
                 }
                 self.filteredData = self.addedNameList
                 self.tableView.delegate = self
@@ -67,15 +59,14 @@ class AddStepCustomView : UIView {
                 print("data has not recived")
             }
         }
-        
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
         self.viewRemoveButton.roundCorners(.allCorners, radius: 10)
         self.viewSlideUP.addGestureRecognizer(tappedSlideUp)
         self.viewSlideUP.isUserInteractionEnabled = true
-        self.headerView.backgroundColor = UIColor.mainViewColor
-        self.topView.layer.borderWidth = 1
-        self.topView.backgroundColor = UIColor.mainViewColor
-        self.topView.layer.cornerRadius = 10
+        self.viewMainView.backgroundColor = UIColor.mainViewColor
+        self.viewContentView.layer.borderWidth = 1
+        self.viewContentView.backgroundColor = UIColor.mainViewColor
+        self.viewContentView.layer.cornerRadius = 10
         self.searchBar.delegate = self
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
         self.searchBar.layer.cornerRadius = 10
@@ -83,13 +74,11 @@ class AddStepCustomView : UIView {
         self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.black
         self.tableView.register(AddStepTableViewCell.nib, forCellReuseIdentifier: AddStepTableViewCell.identifier)
         print(userDefaultsData.getFavorite() ?? "")
-        
     }
     
     @objc func slideUpTapped() {
         self.removeFromSuperview()
     }
-    
 }
 
 extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
@@ -122,7 +111,6 @@ extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if isFilteredTextEmpty == false {
             self.infoList.append(self.filteredData[indexPath.row])
         }else {
@@ -156,7 +144,6 @@ extension AddStepCustomView : TouchFavoriteDelegate {
         if userDefaultsData.getFavorite()?.count ?? 0 > 0{
             self.addFavoriteList = userDefaultsData.getFavorite()
         }
-        
         if favoriteİsremember == true {
             for item in self.addFavoriteList {
                 if item == touch {

@@ -10,10 +10,9 @@ import Foundation
 import UIKit
 
 class HeaderDetailCustomView : UIView {
-
-    @IBOutlet var headerView: UIView!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var labelHeader: UILabel!
+    @IBOutlet var viewMainView: UIView!
+    @IBOutlet weak var viewContentView: UIView!
+    @IBOutlet weak var labelHeaderDetailView: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,14 +26,13 @@ class HeaderDetailCustomView : UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: HeaderDetailCustomView.self), owner: self, options: nil)
-        self.headerView.addCustomContainerView(self)
-        self.headerView.applyGradient(colours: [UIColor(hexString: "#BFD732"), UIColor(hexString: "#3DB54A")])
+        self.viewMainView.addCustomContainerView(self)
+        self.viewMainView.applyGradient(colours: [UIColor(hexString: "#BFD732"), UIColor(hexString: "#3DB54A")])
         
     }
     @IBAction func buttonClicked(_ sender: Any) {
         if let topVC = UIApplication.getTopViewController() {
             topVC.navigationController?.popViewController(animated: true)
         }
-      
     }
 }

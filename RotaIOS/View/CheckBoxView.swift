@@ -13,10 +13,8 @@ protocol CheckBoxViewDelegate {
 }
 
 class CheckBoxView: UIView{
-    
     @IBOutlet var viewCheckBox: UIView!
     @IBOutlet weak var imageCheck: UIImageView!
-    
     var checkBoxViewDelegate : CheckBoxViewDelegate?
     var isCheckRemember = false
     var paxesesNameisCheck : GetInHoseListResponseModel?

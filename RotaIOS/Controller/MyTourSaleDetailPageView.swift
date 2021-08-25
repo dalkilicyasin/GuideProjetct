@@ -14,7 +14,7 @@ final class MyTourSaleDetailPageView : UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.viewHeaderDetail.labelHeader.text = "My Tour Sales"
+        self.viewHeaderDetail.labelHeaderDetailView.text = "My Tour Sales"
         self.tableView.backgroundColor = UIColor.mainViewColor
         self.tableView.layer.cornerRadius = 10
     }

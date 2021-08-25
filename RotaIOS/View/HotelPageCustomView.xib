@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelPageCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
-                <outlet property="checkBoxView" destination="HAR-Ii-wyL" id="Uoo-q8-MdD"/>
-                <outlet property="headerView" destination="iN0-l3-epB" id="7fP-gG-mVg"/>
-                <outlet property="hotelMainTextSecondCustomView" destination="mfw-eI-be8" id="rrX-h9-bWH"/>
-                <outlet property="marketMainTextCustomView" destination="aZY-B3-kOA" id="Cab-u2-0ai"/>
                 <outlet property="searchBar" destination="Btp-Ng-Vbq" id="mb1-ct-T2C"/>
+                <outlet property="viewCheckBoxView" destination="HAR-Ii-wyL" id="oOB-2V-Ymf"/>
+                <outlet property="viewHotelListView" destination="mfw-eI-be8" id="t5H-6Y-Qbv"/>
+                <outlet property="viewMainView" destination="iN0-l3-epB" id="jch-pz-uda"/>
+                <outlet property="viewMarketListView" destination="aZY-B3-kOA" id="poD-sc-HaG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

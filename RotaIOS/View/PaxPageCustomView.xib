@@ -11,10 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaxPageCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
-                <outlet property="headerView" destination="iN0-l3-epB" id="uaK-rm-cWI"/>
                 <outlet property="labelTouristAdded" destination="8of-n1-1hM" id="qxG-lP-TWm"/>
                 <outlet property="searchBar" destination="bfk-4j-4rs" id="SoP-b0-2EG"/>
                 <outlet property="tableView" destination="wr5-2B-QIm" id="t2g-df-2NT"/>
+                <outlet property="viewMainView" destination="iN0-l3-epB" id="gCC-0m-g3k"/>
                 <outlet property="viewTouristAdded" destination="Nyi-aa-4wR" id="6Au-41-aUl"/>
             </connections>
         </placeholder>
