@@ -15,7 +15,7 @@ protocol MyTourStatusViewDelegate {
 class MyTourStatusView: UIView {
     @IBOutlet var viewMainView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    var statusList : [String] = [ "Status","Approved","Waiting Approval","Canceled","Rejected"]
+    var statusList : [String] = ["Approved","Waiting Approval","Canceled","Rejected"]
     var selectedStatusIdList : [String] = []
     var newStatus = ""
     var myTourStatusViewDelegate : MyTourStatusViewDelegate?

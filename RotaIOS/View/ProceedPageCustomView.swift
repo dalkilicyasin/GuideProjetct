@@ -149,10 +149,12 @@ class ProceedPageCustomView : UIView {
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
-        self.viewShopDateMainTextView.mainText.text = "\(formatter.string(from: datePicker.date))"
-        self.viewMainView.endEditing(true)
         print(formatter.string(from: datePicker.date))
         self.dateString = formatter.string(from: datePicker.date)
+        formatter.dateFormat = "dd-MM-yyyy"
+        self.viewShopDateMainTextView.mainText.text = "\(formatter.string(from: datePicker.date))"
+        self.viewMainView.endEditing(true)
+        
     }
     
     func createTimePicker() {

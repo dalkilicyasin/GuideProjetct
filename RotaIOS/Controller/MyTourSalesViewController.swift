@@ -56,9 +56,20 @@ class MyTourSalesViewController: UIViewController {
         }
         return datePicker
     }()
+    var saleEndDatePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
+        return datePicker
+    }()
     let beginDateToolBar = UIToolbar()
     let endDateToolBar = UIToolbar()
     let saleDateToolBar = UIToolbar()
+    let saleEndDateToolBar = UIToolbar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +92,7 @@ class MyTourSalesViewController: UIViewController {
         self.createBeginDatePicker()
         self.createEndDatePicker()
         self.createSaleDatePicker()
+        self.createSaleEndDatePicker()
         self.tourMenu.selectionAction = { index, title in
             self.viewMyTourSales.viewTourSelect.mainLabel.text = title
             let filtered = self.tourList.filter{($0.text?.contains(title) ?? false)}
@@ -118,6 +130,7 @@ class MyTourSalesViewController: UIViewController {
         self.viewMyTourSales.viewEndDate.mainText.inputView = self.endDatePicker
         self.self.endDatePicker.datePickerMode = .date
     }
+    
     func createSaleDatePicker() {
         self.viewMyTourSales.viewSaleDate.mainText.textAlignment = .left
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(saleDatePickerDonePressed))
@@ -125,7 +138,17 @@ class MyTourSalesViewController: UIViewController {
         self.saleDateToolBar.sizeToFit()
         self.viewMyTourSales.viewSaleDate.mainText.inputAccessoryView = saleDateToolBar
         self.viewMyTourSales.viewSaleDate.mainText.inputView = self.saleDatePicker
-        self.self.saleDatePicker.datePickerMode = .date
+        self.saleDatePicker.datePickerMode = .date
+    }
+    
+    func createSaleEndDatePicker() {
+        self.viewMyTourSales.viewSaleEndDate.mainText.textAlignment = .left
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(saleEndDatePickerDonePressed))
+        self.saleEndDateToolBar.setItems([doneButton], animated: true)
+        self.saleEndDateToolBar.sizeToFit()
+        self.viewMyTourSales.viewSaleEndDate.mainText.inputAccessoryView = self.saleEndDateToolBar
+        self.viewMyTourSales.viewSaleEndDate.mainText.inputView = self.saleEndDatePicker
+        self.saleEndDatePicker.datePickerMode = .date
     }
     
     @objc func beginDatePickerDonePressed() {
@@ -133,10 +156,11 @@ class MyTourSalesViewController: UIViewController {
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
-        self.viewMyTourSales.viewBeginDate.mainText.text = "\(formatter.string(from: self.beginDatePicker.date))"
-        self.viewMyTourSales.endEditing(true)
         print(formatter.string(from: self.beginDatePicker.date))
         self.beginDate = formatter.string(from: self.beginDatePicker.date)
+        formatter.dateFormat = "dd-MM-yyy"
+        self.viewMyTourSales.viewBeginDate.mainText.text = "\(formatter.string(from: self.beginDatePicker.date))"
+        self.viewMyTourSales.endEditing(true)
     }
     
     @objc func endDatePickerDonePressed() {
@@ -144,10 +168,11 @@ class MyTourSalesViewController: UIViewController {
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
-        self.viewMyTourSales.viewEndDate.mainText.text = "\(formatter.string(from: self.endDatePicker.date))"
-        self.viewMyTourSales.endEditing(true)
         print(formatter.string(from: self.endDatePicker.date))
         self.endDate = formatter.string(from: self.endDatePicker.date)
+        formatter.dateFormat = "dd-MM-yyyy"
+        self.viewMyTourSales.viewEndDate.mainText.text = "\(formatter.string(from: self.endDatePicker.date))"
+        self.viewMyTourSales.endEditing(true)
     }
     
     @objc func saleDatePickerDonePressed() {
@@ -155,10 +180,23 @@ class MyTourSalesViewController: UIViewController {
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
-        self.viewMyTourSales.viewSaleDate.mainText.text = "\(formatter.string(from: self.saleDatePicker.date))"
-        self.viewMyTourSales.endEditing(true)
         print(formatter.string(from: self.saleDatePicker.date))
         self.saleDate = formatter.string(from: self.saleDatePicker.date)
+        formatter.dateFormat = "dd-MM-yyyy"
+        self.viewMyTourSales.viewSaleDate.mainText.text = "\(formatter.string(from: self.saleDatePicker.date))"
+        self.viewMyTourSales.endEditing(true)
+    }
+    
+    @objc func saleEndDatePickerDonePressed() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.dateFormat = "MM-dd-yyyy"
+        print(formatter.string(from: self.saleEndDatePicker.date))
+        self.saleEndDate = formatter.string(from: self.saleEndDatePicker.date)
+        formatter.dateFormat = "dd-MM-yyyy"
+        self.viewMyTourSales.viewSaleEndDate.mainText.text = "\(formatter.string(from: self.saleEndDatePicker.date))"
+        self.viewMyTourSales.endEditing(true)
     }
     
     @objc func tappedStatus() {

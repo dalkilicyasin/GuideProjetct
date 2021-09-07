@@ -147,6 +147,19 @@
 		D97FB5B726C6AC550099F28B /* MyShoopingSaleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5B626C6AC550099F28B /* MyShoopingSaleDetailView.swift */; };
 		D97FB5BA26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5B826C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift */; };
 		D97FB5BB26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */; };
+		D991469226D68B620010E74F /* CancelVoucherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991469026D68B620010E74F /* CancelVoucherViewController.swift */; };
+		D991469326D68B620010E74F /* CancelVoucherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D991469126D68B620010E74F /* CancelVoucherViewController.xib */; };
+		D991469526D68CBF0010E74F /* CancelVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991469426D68CBF0010E74F /* CancelVoucherView.swift */; };
+		D9956BFA26D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */; };
+		D9956BFC26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BFB26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift */; };
+		D9956BFF26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */; };
+		D9956C0026D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9956BFE26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.xib */; };
+		D9956C0226D7DFAD006CFC6D /* CancelVoucherDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956C0126D7DFAD006CFC6D /* CancelVoucherDetailView.swift */; };
+		D9956C0426DC01E7006CFC6D /* GetCancelRulesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956C0326DC01E7006CFC6D /* GetCancelRulesResponseModel.swift */; };
+		D9956C0626DC022B006CFC6D /* GetCancelRulesRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956C0526DC022B006CFC6D /* GetCancelRulesRequestModel.swift */; };
+		D9956C0826DE2E6E006CFC6D /* GetCalculateCancelFeeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956C0726DE2E6E006CFC6D /* GetCalculateCancelFeeResponseModel.swift */; };
+		D9956C0A26DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956C0926DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift */; };
+		D9956C0E26DE3DAA006CFC6D /* GetPaymentTypeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956C0D26DE3DAA006CFC6D /* GetPaymentTypeResponseModel.swift */; };
 		D9A48CFA26B1405D00D28A0A /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A48CF826B1405D00D28A0A /* DocumentsViewController.swift */; };
 		D9A48CFB26B1405D00D28A0A /* DocumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A48CF926B1405D00D28A0A /* DocumentsViewController.xib */; };
 		D9A48CFF26B1408A00D28A0A /* DocumentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A48CFE26B1408A00D28A0A /* DocumentsView.swift */; };
@@ -329,6 +342,19 @@
 		D97FB5B626C6AC550099F28B /* MyShoopingSaleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShoopingSaleDetailView.swift; sourceTree = "<group>"; };
 		D97FB5B826C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShopingSalesDetailTableViewCell.swift; sourceTree = "<group>"; };
 		D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyShopingSalesDetailTableViewCell.xib; sourceTree = "<group>"; };
+		D991469026D68B620010E74F /* CancelVoucherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherViewController.swift; sourceTree = "<group>"; };
+		D991469126D68B620010E74F /* CancelVoucherViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelVoucherViewController.xib; sourceTree = "<group>"; };
+		D991469426D68CBF0010E74F /* CancelVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherView.swift; sourceTree = "<group>"; };
+		D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVoucherDetailRequestModel.swift; sourceTree = "<group>"; };
+		D9956BFB26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVoucherDetailResponseModel.swift; sourceTree = "<group>"; };
+		D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherDetailViewControllerViewController.swift; sourceTree = "<group>"; };
+		D9956BFE26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelVoucherDetailViewControllerViewController.xib; sourceTree = "<group>"; };
+		D9956C0126D7DFAD006CFC6D /* CancelVoucherDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherDetailView.swift; sourceTree = "<group>"; };
+		D9956C0326DC01E7006CFC6D /* GetCancelRulesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCancelRulesResponseModel.swift; sourceTree = "<group>"; };
+		D9956C0526DC022B006CFC6D /* GetCancelRulesRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCancelRulesRequestModel.swift; sourceTree = "<group>"; };
+		D9956C0726DE2E6E006CFC6D /* GetCalculateCancelFeeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalculateCancelFeeResponseModel.swift; sourceTree = "<group>"; };
+		D9956C0926DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalculateCancelFeeRequestModel.swift; sourceTree = "<group>"; };
+		D9956C0D26DE3DAA006CFC6D /* GetPaymentTypeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPaymentTypeResponseModel.swift; sourceTree = "<group>"; };
 		D9A48CF826B1405D00D28A0A /* DocumentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
 		D9A48CF926B1405D00D28A0A /* DocumentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentsViewController.xib; sourceTree = "<group>"; };
 		D9A48CFE26B1408A00D28A0A /* DocumentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsView.swift; sourceTree = "<group>"; };
@@ -482,6 +508,12 @@
 				D97FB5B226C6ABC10099F28B /* MyShoppinSaleDetailViewController.swift */,
 				D97FB5B326C6ABC10099F28B /* MyShoppinSaleDetailViewController.xib */,
 				D97FB5B626C6AC550099F28B /* MyShoopingSaleDetailView.swift */,
+				D991469026D68B620010E74F /* CancelVoucherViewController.swift */,
+				D991469126D68B620010E74F /* CancelVoucherViewController.xib */,
+				D991469426D68CBF0010E74F /* CancelVoucherView.swift */,
+				D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */,
+				D9956BFE26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.xib */,
+				D9956C0126D7DFAD006CFC6D /* CancelVoucherDetailView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -500,6 +532,9 @@
 				D9561A4726A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift */,
 				D97FB59026C147880099F28B /* GetTourDetailForMobileRequestModel.swift */,
 				D97FB5AE26C69BE50099F28B /* GetShoppingSaleRequestModel.swift */,
+				D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */,
+				D9956C0526DC022B006CFC6D /* GetCancelRulesRequestModel.swift */,
+				D9956C0926DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -521,6 +556,10 @@
 				D968A88026BC24F3000FB00A /* GetTourSelectListResponseModel.swift */,
 				D97FB58E26C146B20099F28B /* GetTourDetailForMobileResponseModel.swift */,
 				D97FB5AC26C69B6B0099F28B /* GetShoppingSaleResponseModel.swift */,
+				D9956BFB26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift */,
+				D9956C0326DC01E7006CFC6D /* GetCancelRulesResponseModel.swift */,
+				D9956C0726DE2E6E006CFC6D /* GetCalculateCancelFeeResponseModel.swift */,
+				D9956C0D26DE3DAA006CFC6D /* GetPaymentTypeResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -759,6 +798,7 @@
 				BF44C9DD2640023400238035 /* AddStepTableViewCell.xib in Resources */,
 				BF44C9692640019900238035 /* ApponintmentBarCollectionViewCell.xib in Resources */,
 				BF44C99F264001C900238035 /* PaxPageTableViewCell.xib in Resources */,
+				D9956C0026D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.xib in Resources */,
 				D9A48CFB26B1405D00D28A0A /* DocumentsViewController.xib in Resources */,
 				BF44C8DB264000C700238035 /* Main.storyboard in Resources */,
 				BF44C9D62640022F00238035 /* AddStepCustomView.xib in Resources */,
@@ -771,6 +811,7 @@
 				BFB977ED26B6F25400F0DD6D /* GoogleService-Info.plist in Resources */,
 				BF44C95C2640018B00238035 /* OfflineSalesViewController.xib in Resources */,
 				D97FB5B526C6ABC10099F28B /* MyShoppinSaleDetailViewController.xib in Resources */,
+				D991469326D68B620010E74F /* CancelVoucherViewController.xib in Resources */,
 				BF44C884263FF80100238035 /* Assets.xcassets in Resources */,
 				BF44C984264001B000238035 /* MainTextCustomView.xib in Resources */,
 				BF44C9A6264001CE00238035 /* CheckBoxView.xib in Resources */,
@@ -935,6 +976,7 @@
 				BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */,
 				D9A48CFF26B1408A00D28A0A /* DocumentsView.swift in Sources */,
 				D93F889F264EFF7800397283 /* GetSaveForMobileRequestList.swift in Sources */,
+				D9956C0226D7DFAD006CFC6D /* CancelVoucherDetailView.swift in Sources */,
 				BF44C9332640015A00238035 /* MainPageTableViewCell.swift in Sources */,
 				D94C4075265BE35100EBC7CD /* FavoriteCustomView.swift in Sources */,
 				D9561A4826A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift in Sources */,
@@ -944,6 +986,7 @@
 				D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */,
 				D93F889A264BC9A300397283 /* GetSelectListResponseModel.swift in Sources */,
 				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
+				D9956BFC26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift in Sources */,
 				BF44C97D264001AA00238035 /* FooterCustomView.swift in Sources */,
 				BF44C906264000FA00238035 /* ServiceEndPoint.swift in Sources */,
 				BF44C9A0264001C900238035 /* PaxPageTableViewCell.swift in Sources */,
@@ -953,6 +996,7 @@
 				BF44C9712640019F00238035 /* AppointmentBarCustomView.swift in Sources */,
 				BF44C91C2640013B00238035 /* LoginView.swift in Sources */,
 				BF44C9152640011800238035 /* BaseTableViewCell.swift in Sources */,
+				D9956C0626DC022B006CFC6D /* GetCancelRulesRequestModel.swift in Sources */,
 				BF44C90A264000FA00238035 /* BaseMessageItem.swift in Sources */,
 				BF44C9252640014800238035 /* MainPAgeViewController.swift in Sources */,
 				BF44C9E32640023800238035 /* ProceedPageCustomView.swift in Sources */,
@@ -981,8 +1025,11 @@
 				D9561A3B269DF27E00AA75E5 /* AnnoucmentsViewController.swift in Sources */,
 				BF44C9502640018400238035 /* VoucherViewController.swift in Sources */,
 				BF44C9632640019200238035 /* HeaderCustomView.swift in Sources */,
+				D9956C0E26DE3DAA006CFC6D /* GetPaymentTypeResponseModel.swift in Sources */,
 				D97FB58F26C146B20099F28B /* GetTourDetailForMobileResponseModel.swift in Sources */,
+				D9956BFA26D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift in Sources */,
 				D9DCB19D26BBEB900064A040 /* MyTourSalesViewController.swift in Sources */,
+				D9956BFF26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift in Sources */,
 				D97FB5AB26C6860A0099F28B /* MyShoppingSaleView.swift in Sources */,
 				BF44C9C82640022000238035 /* StepsPageCustomView.swift in Sources */,
 				BF44C8E9264000E200238035 /* ExtensionUIDevice.swift in Sources */,
@@ -1008,12 +1055,15 @@
 				D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */,
 				D93F88A42651AAE300397283 /* GetTouristInfoRequestModel.swift in Sources */,
 				BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */,
+				D9956C0426DC01E7006CFC6D /* GetCancelRulesResponseModel.swift in Sources */,
+				D9956C0A26DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift in Sources */,
 				D94C40672655D5FA00EBC7CD /* GetGuideInfoResponseModel.swift in Sources */,
 				D97FB5AD26C69B6B0099F28B /* GetShoppingSaleResponseModel.swift in Sources */,
 				BF44C8E7264000E200238035 /* ExtensionUIColor.swift in Sources */,
 				BF44C983264001B000238035 /* MainTextCustomView.swift in Sources */,
 				BF44C90F2640010200238035 /* Defaults.swift in Sources */,
 				BF44C95A2640018B00238035 /* MyTourSaleViewController.swift in Sources */,
+				D9956C0826DE2E6E006CFC6D /* GetCalculateCancelFeeResponseModel.swift in Sources */,
 				D97FB5A826C685E90099F28B /* MyShoppingSaleViewController.swift in Sources */,
 				BF44C907264000FA00238035 /* BaseData.swift in Sources */,
 				D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */,
@@ -1023,8 +1073,10 @@
 				D97FB5A526C408BE0099F28B /* MyTourSaleMoreDetailView.swift in Sources */,
 				BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */,
 				BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */,
+				D991469526D68CBF0010E74F /* CancelVoucherView.swift in Sources */,
 				D93F88A92651AB1000397283 /* GetTouristInfoResponseModel.swift in Sources */,
 				D9DCB1A026BBECE50064A040 /* MyTourSaleView.swift in Sources */,
+				D991469226D68B620010E74F /* CancelVoucherViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

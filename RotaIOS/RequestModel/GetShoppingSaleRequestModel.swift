@@ -10,13 +10,10 @@ import UIKit
 import ObjectMapper
 
 public class  GetShoppingSaleRequestModel : Mappable{
-    
     public var guideId : Int!
     public var begindate : String!
     public var endDate : String!
   
-    
-    
     public required init?(map: Map) {
         
     }

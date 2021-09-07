@@ -36,7 +36,7 @@ extension MyShoppinSaleDetailViewController : UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MyShopingSalesDetailTableViewCell.identifier) as! MyShopingSalesDetailTableViewCell
         cell.labelShopDate.text = shopSalesDetailListInDetailPage[indexPath.row].shopDateStr
-        cell.labelTourName.text = "Moda Show Antalya"
+        cell.labelTourName.text = shopSalesDetailListInDetailPage[indexPath.row].steps
         cell.labelHotelName.text = shopSalesDetailListInDetailPage[indexPath.row].hotel
         cell.labelOperatorNAme.text = shopSalesDetailListInDetailPage[indexPath.row].oprName
         cell.labelPickUpTime.text = shopSalesDetailListInDetailPage[indexPath.row].pickupTimeStr

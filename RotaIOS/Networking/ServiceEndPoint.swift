@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public enum ServiceEndPoint: String {
     case CreateToken = "/api/api/User/GetToken"
     case GetUser = "/api/api/User/GetMyInfo"
@@ -23,6 +22,10 @@ public enum ServiceEndPoint: String {
     case TourGetSelectList = "/api/api/TourDefinition/GetSelectList"
     case TourGetTourDetailForMobile = "/api/api/TourSale/GetTourDetailForMobile"
     case GetIndShopDetailForMobile = "/api/api/IndShop/GetIndShopDetailForMobile"
+    case GetVoucherDetail = "/api/api/TourSale/GetVoucherDetail"
+    case GetMobilCancelRules = "/api/api/TourSaleCancel/GetMobileCancelRules"
+    case GetPaymentTypes = "/api/api/TourSale/GetPaymentTypes"
+    case GetCalculateCancelFee = "/api/api/TourSaleCancel/CalculateCancelFee"
 }
 
 

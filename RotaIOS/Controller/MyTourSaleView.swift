@@ -30,10 +30,11 @@ final class MyTourSaleView : UIView {
         self.buttonSearch.layer.cornerRadius = 10
         self.viewTourSelect.headerLAbel.text = "Tour"
         self.viewStatusSelect.headerLAbel.text = "Status"
+        self.viewStatusSelect.mainLabel.text = "Select Status"
         self.viewBeginDate.headerLAbel.text = "Begin Date"
         self.viewEndDate.headerLAbel.text = "End Date"
         self.viewSaleDate.headerLAbel.text = "Sale Date"
-        self.viewSaleEndDate.headerLAbel.text = "Sale End Date"
+        self.viewSaleEndDate.headerLAbel.text = "Sale EndDate"
         self.viewVoucherNo.headerLAbel.text = "Voucher No"
         self.viewBeginDate.imageMainText.isHidden = true
         self.viewEndDate.imageMainText.isHidden = true

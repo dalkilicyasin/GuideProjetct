@@ -17,7 +17,7 @@ final class MyShoppingSaleView : UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.viewHeaderDetail.labelHeaderDetailView.text = "My Shopp Sales"
+        self.viewHeaderDetail.labelHeaderDetailView.text = "My Shopping Sales"
         self.contentView.backgroundColor = UIColor.grayColor
         self.contentView.layer.cornerRadius = 10
         self.buttonSearchButton.layer.cornerRadius = 10

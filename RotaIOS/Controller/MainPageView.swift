@@ -67,7 +67,7 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 case 2 :
                     viewController = ShopAppointmentViewController()
                 case 3 :
-                    viewController = VoucherViewController()
+                    viewController = CancelVoucherViewController()
                 case 4 :
                     viewController = OfflineSalesViewController()
                 default :
