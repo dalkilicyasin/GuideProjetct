@@ -133,6 +133,8 @@
 		D95C203826F20184007D1506 /* SpeakingHoursDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C203726F20184007D1506 /* SpeakingHoursDetailView.swift */; };
 		D95C203A26F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C203926F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift */; };
 		D95C203C26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C203B26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift */; };
+		D95C203F26F216B8007D1506 /* SpeakingHoursTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C203D26F216B8007D1506 /* SpeakingHoursTableViewCell.swift */; };
+		D95C204026F216B8007D1506 /* SpeakingHoursTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95C203E26F216B8007D1506 /* SpeakingHoursTableViewCell.xib */; };
 		D968A88126BC24F3000FB00A /* GetTourSelectListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A88026BC24F3000FB00A /* GetTourSelectListResponseModel.swift */; };
 		D968A88326BDAC94000FB00A /* MyTourStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A88226BDAC94000FB00A /* MyTourStatusView.swift */; };
 		D968A88526BDADE7000FB00A /* MyTourStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D968A88426BDADE7000FB00A /* MyTourStatusView.xib */; };
@@ -340,6 +342,8 @@
 		D95C203726F20184007D1506 /* SpeakingHoursDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingHoursDetailView.swift; sourceTree = "<group>"; };
 		D95C203926F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSpeakTimeForMobileResponseModel.swift; sourceTree = "<group>"; };
 		D95C203B26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSpeakTimeForMobileRequestModel.swift; sourceTree = "<group>"; };
+		D95C203D26F216B8007D1506 /* SpeakingHoursTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingHoursTableViewCell.swift; sourceTree = "<group>"; };
+		D95C203E26F216B8007D1506 /* SpeakingHoursTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpeakingHoursTableViewCell.xib; sourceTree = "<group>"; };
 		D968A88026BC24F3000FB00A /* GetTourSelectListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSelectListResponseModel.swift; sourceTree = "<group>"; };
 		D968A88226BDAC94000FB00A /* MyTourStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusView.swift; sourceTree = "<group>"; };
 		D968A88426BDADE7000FB00A /* MyTourStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusView.xib; sourceTree = "<group>"; };
@@ -704,6 +708,8 @@
 				D97FB59826C15F650099F28B /* MyTourSalesDetailPageTableViewCell.xib */,
 				D97FB5B826C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift */,
 				D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */,
+				D95C203D26F216B8007D1506 /* SpeakingHoursTableViewCell.swift */,
+				D95C203E26F216B8007D1506 /* SpeakingHoursTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -874,6 +880,7 @@
 				D94C40AA26692D4C00EBC7CD /* TaskTableViewCell.xib in Resources */,
 				D94C407A265BE36400EBC7CD /* FavoriteCustomView.xib in Resources */,
 				D9DCB19E26BBEB900064A040 /* MyTourSalesViewController.xib in Resources */,
+				D95C204026F216B8007D1506 /* SpeakingHoursTableViewCell.xib in Resources */,
 				D97FB5BB26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib in Resources */,
 				D968A88526BDADE7000FB00A /* MyTourStatusView.xib in Resources */,
 				BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */,
@@ -1114,6 +1121,7 @@
 				D97FB5A826C685E90099F28B /* MyShoppingSaleViewController.swift in Sources */,
 				BF44C907264000FA00238035 /* BaseData.swift in Sources */,
 				D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */,
+				D95C203F26F216B8007D1506 /* SpeakingHoursTableViewCell.swift in Sources */,
 				D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */,
 				D97FB5B726C6AC550099F28B /* MyShoopingSaleDetailView.swift in Sources */,
 				D97FB58926C075B90099F28B /* MyTourSaleDetailPageView.swift in Sources */,

@@ -25,12 +25,13 @@ final class CancelVoucherDetailView : UIView {
     @IBOutlet weak var labelTourist: UILabel!
     @IBOutlet weak var labelTourOperator: UILabel!
     @IBOutlet weak var labelHotel: UILabel!
-    @IBOutlet weak var labelAdult: UILabel!
-    @IBOutlet weak var labelChild: UILabel!
-    @IBOutlet weak var labelToodler: UILabel!
-    @IBOutlet weak var labelInfant: UILabel!
     @IBOutlet weak var labelPayment: UILabel!
-    @IBOutlet weak var labelRefund: UILabel!
+    @IBOutlet weak var labelTotalPax: UILabel!
+    @IBOutlet weak var labelCancelationFee: UILabel!
+    @IBOutlet weak var labelRefundAmount: UILabel!
+    @IBOutlet weak var labelCancelationDate: UILabel!
+    @IBOutlet weak var labelVoucherNo: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,6 +60,9 @@ final class CancelVoucherDetailView : UIView {
         self.labelTourist.text = model.tourist
         self.labelTourOperator.text = model.operatorName
         self.labelHotel.text = model.hotelName
+        self.labelTotalPax.text = model.totalPax
+        self.labelVoucherNo.text = model.voucherNo
+        self.labelCancelationDate.text = model.cancelDate
         self.labelPayment.text = "\(model.totalAmount ?? 0) \(model.currencyDesc ?? "")"
     }
  

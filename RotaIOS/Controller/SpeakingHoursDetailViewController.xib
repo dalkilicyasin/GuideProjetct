@@ -11,9 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SpeakingHoursDetailViewController" customModule="RotaIOS" customModuleProvider="target">
             <connections>
-                <outlet property="tableView" destination="ydq-Sk-DQa" id="fGz-Nr-pKT"/>
+                <outlet property="tableView" destination="ydq-Sk-DQa" id="hdn-bd-ObT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="viewHeaderDetailView" destination="JV6-Ti-ni7" id="zas-p8-axI"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -44,6 +43,10 @@
                 <constraint firstAttribute="bottom" secondItem="ydq-Sk-DQa" secondAttribute="bottom" id="qOy-Nt-xeC"/>
                 <constraint firstItem="ydq-Sk-DQa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="y3L-K5-h91"/>
             </constraints>
+            <connections>
+                <outlet property="tableView" destination="ydq-Sk-DQa" id="WNs-HS-myg"/>
+                <outlet property="viewHeaderDetailView" destination="JV6-Ti-ni7" id="ski-bo-r72"/>
+            </connections>
             <point key="canvasLocation" x="135" y="86"/>
         </view>
     </objects>

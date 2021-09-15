@@ -48,7 +48,6 @@ extension MyTourSaleDetailPageViewController : UITableViewDelegate, UITableViewD
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.otiPushViewController(viewController: MyTourSaleMoreDetailViewController(tourDetailListInMoreDetailPage: self.tourDetailListInDetailPage[indexPath.row]), animated: true)
     }
 }

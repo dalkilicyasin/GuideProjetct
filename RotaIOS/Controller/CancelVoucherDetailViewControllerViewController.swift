@@ -37,8 +37,8 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
                 print("data has not recived")
             }
         }
-        
         self.viewCancelVoucherDetailView.setConfigure(model: self.voucherDetailInCancelVoucherDetailPage ?? GetVoucherDetailResponseModel.init())
+        
         self.cancelRulesMenu.selectionAction = { index, title in
             self.viewCancelVoucherDetailView.viewCancelReason.mainLabel.text = title
             let filtered = self.cancelRulesList.filter{($0.text?.contains(title) ?? false)}
@@ -49,8 +49,8 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
             let cancalCalculateFeeRequestModel = GetCalculateCancelFeeRequestModel.init(cancelReasonId: self.cancelRuleId, saleId: self.voucherDetailInCancelVoucherDetailPage?.saleId ?? 0)
             NetworkManager.sendGetRequest(url: NetworkManager.BASEURL, endPoint: .GetCalculateCancelFee, method: .get, parameters: cancalCalculateFeeRequestModel.requestPathString()) { (response : GetCalculateCancelFeeResponseModel) in
                 if response.amount != nil {
-                    self.viewCancelVoucherDetailView.labelPayment.text = "\(response.amount ?? 0)"
-                    self.viewCancelVoucherDetailView.labelRefund.text = "\(response.refundAmount ?? 0)"
+                    self.viewCancelVoucherDetailView.labelCancelationFee.text = "\(response.amount ?? 0) EUR"
+                    self.viewCancelVoucherDetailView.labelRefundAmount.text = "\(response.refundAmount ?? 0) EUR"
                 }else{
                     let alert = UIAlertController(title: "Error", message: "Data has not recived", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))

@@ -175,6 +175,7 @@ class SpeakingHoursViewController: UIViewController {
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetSpeakTimeForMobile, method: .get, parameters: getSpeakTimeRequestModel.requestPathString()) { (response : [GetSpeakTimeForMobileResponseModel]) in
             if response.count > 0 {
                 self.speakingHoursList = response
+                self.otiPushViewController(viewController: SpeakingHoursDetailViewController.init(tourDetailListInDetailPage: self.speakingHoursList))
             }else{
                 print("speaktime data has not recived")
             }
