@@ -109,10 +109,12 @@ class MyShoppingSaleViewController: UIViewController {
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
-        self.viewMyShoppinSaleView.viewBeginDate.mainText.text = "\(formatter.string(from: self.beginDatePicker.date))"
-        self.viewMyShoppinSaleView.endEditing(true)
         print(formatter.string(from: self.beginDatePicker.date))
         self.beginDate = formatter.string(from: self.beginDatePicker.date)
+        formatter.dateFormat = "dd-MM-yyyy"
+        self.viewMyShoppinSaleView.viewBeginDate.mainText.text = "\(formatter.string(from: self.beginDatePicker.date))"
+        self.viewMyShoppinSaleView.endEditing(true)
+       
     }
     
     @objc func endDatePickerDonePressed() {
@@ -120,10 +122,12 @@ class MyShoppingSaleViewController: UIViewController {
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         formatter.dateFormat = "MM-dd-yyyy"
-        self.viewMyShoppinSaleView.viewEndDate.mainText.text = "\(formatter.string(from: self.endDatePicker.date))"
-        self.viewMyShoppinSaleView.endEditing(true)
         print(formatter.string(from: self.endDatePicker.date))
         self.endDate = formatter.string(from: self.endDatePicker.date)
+        formatter.dateFormat = "dd-MM-yyyy"
+        self.viewMyShoppinSaleView.viewEndDate.mainText.text = "\(formatter.string(from: self.endDatePicker.date))"
+        self.viewMyShoppinSaleView.endEditing(true)
+       
     }
     
     @IBAction func searchButtonClicked(_ sender: Any) {
