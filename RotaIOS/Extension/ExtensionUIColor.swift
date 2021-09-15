@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    
     class var mainColor:                        UIColor { return UIColor(hexString: "4485a3") }
     class var tabbarHighlineBackground:         UIColor { return UIColor(hexString: "f9a01c") }
     class var textColor:                        UIColor { return UIColor.white }

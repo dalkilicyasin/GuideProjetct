@@ -33,6 +33,5 @@ final class LoginViewController : BaseViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-        
     }
 }

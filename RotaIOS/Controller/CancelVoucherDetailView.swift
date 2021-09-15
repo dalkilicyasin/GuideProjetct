@@ -49,6 +49,18 @@ final class CancelVoucherDetailView : UIView {
         self.viewNoteMenu.mainText.isHidden = false
         self.viewNoteMenu.headerLAbel.text = "Note"
     }
+    
+    func setConfigure(model : GetVoucherDetailResponseModel ) {
+        self.labelExcursionLabel.text = model.tourName
+        self.labelExcursionDate.text = model.tourDate
+        self.labelReservationNo.text = model.pax_ResNo
+        self.labelSaleDate.text = model.saleDate
+        self.labelResNo.text = model.pax_ResNo
+        self.labelTourist.text = model.tourist
+        self.labelTourOperator.text = model.operatorName
+        self.labelHotel.text = model.hotelName
+        self.labelPayment.text = "\(model.totalAmount ?? 0) \(model.currencyDesc ?? "")"
+    }
  
     required init(customParamArg: String) {
         super.init(frame: .zero)

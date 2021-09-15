@@ -31,5 +31,4 @@ struct GetSaveForMobileResponseList : Mappable {
         detailMessage <- map["DetailMessage"]
         exceptionMessage <- map["ExceptionMessage"]
     }
-
 }

@@ -87,5 +87,4 @@ struct MarketSelect : Mappable {
         typeId <- map["TypeId"]
         cmlValue <- map["CmlValue"]
     }
-
 }

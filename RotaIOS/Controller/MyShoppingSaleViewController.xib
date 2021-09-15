@@ -31,21 +31,37 @@
                     <rect key="frame" x="0.0" y="100" width="414" height="796"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3E-HB-0Hu" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                            <rect key="frame" x="30" y="150" width="354" height="90"/>
+                            <rect key="frame" x="30" y="200" width="354" height="90"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="90" id="tiU-lJ-Yaf"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPQ-0S-z39" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                            <rect key="frame" x="30" y="260" width="354" height="90"/>
+                            <rect key="frame" x="30" y="310" width="354" height="90"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="90" id="VW5-zt-Twg"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAE-bj-z6E" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                            <rect key="frame" x="30" y="90" width="354" height="90"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="90" id="VFz-z6-SMM"/>
+                            </constraints>
+                        </view>
+                        <searchBar contentMode="redraw" placeholder="Hotel Name Filter" translatesAutoresizingMaskIntoConstraints="NO" id="H4T-Pr-SPl">
+                            <rect key="frame" x="30" y="20" width="354" height="60"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="8Na-oZ-NzB"/>
+                            </constraints>
+                            <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6I-nx-9Tf">
-                            <rect key="frame" x="30" y="420" width="354" height="60"/>
+                            <rect key="frame" x="30" y="470" width="354" height="60"/>
                             <color key="backgroundColor" systemColor="systemGreenColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="lDn-lk-Bh4"/>
@@ -62,13 +78,19 @@
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="I3E-HB-0Hu" firstAttribute="leading" secondItem="ITS-Fn-bBl" secondAttribute="leading" constant="30" id="3RH-ql-B0b"/>
-                        <constraint firstItem="I3E-HB-0Hu" firstAttribute="top" secondItem="ITS-Fn-bBl" secondAttribute="top" constant="150" id="8QL-Zu-dye"/>
+                        <constraint firstItem="I3E-HB-0Hu" firstAttribute="top" secondItem="kAE-bj-z6E" secondAttribute="bottom" constant="20" id="D9P-lQ-eai"/>
                         <constraint firstItem="I6I-nx-9Tf" firstAttribute="leading" secondItem="ITS-Fn-bBl" secondAttribute="leading" constant="30" id="KHV-Gi-sD0"/>
+                        <constraint firstItem="kAE-bj-z6E" firstAttribute="leading" secondItem="ITS-Fn-bBl" secondAttribute="leading" constant="30" id="LRr-Hk-Bg9"/>
                         <constraint firstItem="I6I-nx-9Tf" firstAttribute="top" secondItem="bPQ-0S-z39" secondAttribute="bottom" constant="70" id="O9T-yO-erm"/>
+                        <constraint firstAttribute="trailing" secondItem="kAE-bj-z6E" secondAttribute="trailing" constant="30" id="PfC-pt-THf"/>
+                        <constraint firstItem="kAE-bj-z6E" firstAttribute="top" secondItem="H4T-Pr-SPl" secondAttribute="bottom" constant="10" id="SYD-hz-sSE"/>
                         <constraint firstAttribute="trailing" secondItem="I6I-nx-9Tf" secondAttribute="trailing" constant="30" id="Srh-Kw-4M3"/>
                         <constraint firstAttribute="trailing" secondItem="bPQ-0S-z39" secondAttribute="trailing" constant="30" id="WVJ-v9-81q"/>
                         <constraint firstAttribute="trailing" secondItem="I3E-HB-0Hu" secondAttribute="trailing" constant="30" id="X1i-bL-kbg"/>
+                        <constraint firstAttribute="trailing" secondItem="H4T-Pr-SPl" secondAttribute="trailing" constant="30" id="Xph-uC-wiF"/>
+                        <constraint firstItem="H4T-Pr-SPl" firstAttribute="leading" secondItem="ITS-Fn-bBl" secondAttribute="leading" constant="30" id="ZbH-BY-jqA"/>
                         <constraint firstItem="bPQ-0S-z39" firstAttribute="top" secondItem="I3E-HB-0Hu" secondAttribute="bottom" constant="20" id="had-z6-ySW"/>
+                        <constraint firstItem="H4T-Pr-SPl" firstAttribute="top" secondItem="ITS-Fn-bBl" secondAttribute="top" constant="20" id="jg5-UV-YZn"/>
                         <constraint firstItem="bPQ-0S-z39" firstAttribute="leading" secondItem="ITS-Fn-bBl" secondAttribute="leading" constant="30" id="obh-1e-IpY"/>
                     </constraints>
                 </view>
@@ -87,9 +109,11 @@
             <connections>
                 <outlet property="buttonSearchButton" destination="I6I-nx-9Tf" id="y21-RG-AIr"/>
                 <outlet property="contentView" destination="ITS-Fn-bBl" id="o71-US-cvt"/>
+                <outlet property="searchBar" destination="H4T-Pr-SPl" id="Sal-qW-Ehz"/>
                 <outlet property="viewBeginDate" destination="I3E-HB-0Hu" id="3bz-Va-J8Q"/>
                 <outlet property="viewEndDate" destination="bPQ-0S-z39" id="2cV-BQ-aHG"/>
                 <outlet property="viewHeaderDetail" destination="Mi1-aI-YOm" id="8Ke-F1-Esj"/>
+                <outlet property="viewHotelListView" destination="kAE-bj-z6E" id="0lX-0T-QJf"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="85.714285714285708"/>
         </view>

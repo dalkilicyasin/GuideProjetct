@@ -32,7 +32,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbc-ic-kYn" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
                             <rect key="frame" x="40" y="200" width="334" height="90"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="90" id="DpP-IP-DVu"/>
                             </constraints>

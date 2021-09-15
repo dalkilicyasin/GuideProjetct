@@ -26,6 +26,10 @@ public enum ServiceEndPoint: String {
     case GetMobilCancelRules = "/api/api/TourSaleCancel/GetMobileCancelRules"
     case GetPaymentTypes = "/api/api/TourSale/GetPaymentTypes"
     case GetCalculateCancelFee = "/api/api/TourSaleCancel/CalculateCancelFee"
+    case GetCancelMobile = "/api/api/TourSaleCancel/CancelMobile"
+    case GetHotelSelectListByAreaRef = "/api/api/Hotel/GetHotelSelectListByAreaRef"
+    case GetGuideSelectList = "/api/api/Guide/GetSelectList"
+    case GetSpeakTimeForMobile = "/api/api/GSpeakTime/GetSpeakTimeForMobile"
 }
 
 

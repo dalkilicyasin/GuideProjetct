@@ -39,7 +39,6 @@ class MainPAgeViewController: BaseViewController {
         }
         
         let getGuideInfRequestModel =  GetGuideInfoRequestModel( id : userDefaultsData.getGuideId())
-        
         NetworkManager.sendGetRequest(url:NetworkManager.BASEURL, endPoint: .GetGuideInfo, method: .get, parameters: getGuideInfRequestModel.requestPathString()) { (response : GetGuideInfoResponseModel) in
             
             if response.marketGroupId != nil {

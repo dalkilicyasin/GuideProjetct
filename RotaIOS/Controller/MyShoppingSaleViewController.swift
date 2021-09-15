@@ -7,10 +7,16 @@
 
 import UIKit
 import Foundation
+import DropDown
 
 class MyShoppingSaleViewController: UIViewController {
-    
     @IBOutlet var viewMyShoppinSaleView: MyShoppingSaleView!
+    var hotelListMenu = DropDown()
+    var filteredHotelList : [String] = []
+    var tempHotelMenu : [String] = []
+    var isFilteredTextEmpty = true
+    var hotelList : [GetHotelsMobileResponseModel] = []
+    var hotelId = 0
     var shopSaleList : [GetShoppingSaleResponseModel] = []
     var beginDate = ""
     var endDate = ""
@@ -39,9 +45,44 @@ class MyShoppingSaleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
+            if response.count > 0 {
+                //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                self.hotelList = response
+                for item in self.hotelList {
+                    self.tempHotelMenu.append(item.text ?? "")
+                }
+                self.hotelListMenu.dataSource = self.tempHotelMenu
+                self.hotelListMenu.backgroundColor = UIColor.grayColor
+                self.hotelListMenu.separatorColor = UIColor.gray
+                self.hotelListMenu.textColor = .white
+                self.hotelListMenu.anchorView = self.viewMyShoppinSaleView.viewHotelListView
+                self.hotelListMenu.topOffset = CGPoint(x: 0, y:-(self.hotelListMenu.anchorView?.plainView.bounds.height)!)
+                
+            }else{
+                print("data has not recived")
+            }
+        }
+        self.hotelListMenu.selectionAction = { index, title in
+            self.viewMyShoppinSaleView.viewHotelListView.mainLabel.text = title
+            let filteredHotelList = self.hotelList.filter{($0.text?.contains(title) ?? false)}
+            for item in filteredHotelList {
+                self.hotelId = item.value ?? 0
+            }
+        }
         
+        let hotelListTapgesture = UITapGestureRecognizer(target: self, action: #selector(didTouchHotelListMenu))
+        hotelListTapgesture.numberOfTouchesRequired = 1
+        self.viewMyShoppinSaleView.viewHotelListView.addGestureRecognizer(hotelListTapgesture)
+        self.viewMyShoppinSaleView.searchBar.delegate = self
         self.createBeginDatePicker()
         self.createEndDatePicker()
+    }
+    
+    @objc func didTouchHotelListMenu() {
+        self.hotelListMenu.show()
+        self.hotelListMenu.direction = .bottom
     }
     func createBeginDatePicker() {
         self.viewMyShoppinSaleView.viewBeginDate.mainText.textAlignment = .left
@@ -86,7 +127,7 @@ class MyShoppingSaleViewController: UIViewController {
     }
     
     @IBAction func searchButtonClicked(_ sender: Any) {
-        let myTourSaleRequestModel = GetShoppingSaleRequestModel.init(begindate: self.beginDate, guideId: userDefaultsData.getGuideId(), endDate: self.endDate)
+        let myTourSaleRequestModel = GetShoppingSaleRequestModel.init(begindate: self.beginDate, guideId: userDefaultsData.getGuideId(), endDate: self.endDate, hotelId: self.hotelId)
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint:.GetIndShopDetailForMobile , method: .get, parameters: myTourSaleRequestModel.requestPathString()) { (response : [GetShoppingSaleResponseModel]) in
             if response.count > 0 {
                 
@@ -97,6 +138,25 @@ class MyShoppingSaleViewController: UIViewController {
                 let alert = UIAlertController(title: "Error", message: "Data has not recived", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+extension MyShoppingSaleViewController : UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filteredHotelList = []
+        if searchText.elementsEqual(""){
+            self.isFilteredTextEmpty = true
+            self.hotelListMenu.dataSource = self.tempHotelMenu
+        }else {
+            self.hotelListMenu.dataSource = self.tempHotelMenu
+            self.isFilteredTextEmpty = false
+            for item in self.hotelListMenu.dataSource{
+                if item.description.lowercased().contains(searchText.lowercased()){
+                    self.filteredHotelList.append(item)
+                    self.hotelListMenu.dataSource = self.filteredHotelList
+                }
             }
         }
     }

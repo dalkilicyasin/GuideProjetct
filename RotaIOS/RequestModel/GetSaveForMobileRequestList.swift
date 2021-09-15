@@ -82,8 +82,6 @@ public class Paxes : Mappable {
 }
 
 public class Steps : Mappable {
- 
-    
     public var sTP_COMPANY : Int!
     public  var sTP_NOTE : String!
     public  var sTP_ID : Int!
@@ -189,7 +187,6 @@ public class GetSaveForMobileRequestList : Mappable {
         self.iND_VOUCHER = iND_VOUCHER
         self.iND_NOTE = iND_NOTE
         self.iND_CHLMAXAGE = iND_CHLMAXAGE
-       
     }
     
 
@@ -218,7 +215,6 @@ public class GetSaveForMobileRequestList : Mappable {
         iD <- map["ID"]
         action <- map["Action"]
     }
-    
 }
 
 

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SpeakingHoursViewController" customModule="RotaIOS" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewSpeakingHoursView" destination="i5M-Pr-FkT" id="UTq-3e-jq5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="SpeakingHoursView" customModule="RotaIOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUF-pS-Asy" customClass="HeaderDetailCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="N0k-pb-3UO"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vi1-4l-Pxd">
+                    <rect key="frame" x="0.0" y="100" width="414" height="796"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Rc-he-Ud0" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                            <rect key="frame" x="30" y="5" width="354" height="80"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="ura-Nn-M5i"/>
+                            </constraints>
+                        </view>
+                        <searchBar contentMode="redraw" placeholder="Hotel Name Filter" translatesAutoresizingMaskIntoConstraints="NO" id="4gu-ZX-gDT">
+                            <rect key="frame" x="30" y="105" width="354" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="yV2-Bg-9HR"/>
+                            </constraints>
+                            <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jca-Ry-vCZ" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                            <rect key="frame" x="30" y="157" width="354" height="90"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="90" id="OVR-aP-tkq"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aLd-eb-zBA" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                            <rect key="frame" x="30" y="319" width="354" height="80"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="EDD-ax-QWQ"/>
+                            </constraints>
+                        </view>
+                        <searchBar contentMode="redraw" placeholder="Guide Name Filter" translatesAutoresizingMaskIntoConstraints="NO" id="NSz-dD-8EO">
+                            <rect key="frame" x="30" y="267" width="354" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Anf-A0-SLc"/>
+                            </constraints>
+                            <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXV-q2-uG8" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                            <rect key="frame" x="30" y="404" width="354" height="80"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="Z8P-0e-ncT"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13i-z3-cUB">
+                            <rect key="frame" x="30" y="504" width="354" height="50"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="9cj-Fa-gsb"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="SEARCH">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="searchButtonTapped:" destination="-1" eventType="touchUpInside" id="tsc-bk-XV4"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGrayColor"/>
+                    <constraints>
+                        <constraint firstItem="4gu-ZX-gDT" firstAttribute="leading" secondItem="vi1-4l-Pxd" secondAttribute="leading" constant="30" id="4wF-2W-X2D"/>
+                        <constraint firstAttribute="trailing" secondItem="13i-z3-cUB" secondAttribute="trailing" constant="30" id="7SY-JE-mz5"/>
+                        <constraint firstItem="fXV-q2-uG8" firstAttribute="top" secondItem="aLd-eb-zBA" secondAttribute="bottom" constant="5" id="80t-Xv-AyD"/>
+                        <constraint firstAttribute="trailing" secondItem="jca-Ry-vCZ" secondAttribute="trailing" constant="30" id="CoO-Ug-t5U"/>
+                        <constraint firstItem="13i-z3-cUB" firstAttribute="top" secondItem="fXV-q2-uG8" secondAttribute="bottom" constant="20" id="Kcs-nB-jCo"/>
+                        <constraint firstItem="fXV-q2-uG8" firstAttribute="leading" secondItem="vi1-4l-Pxd" secondAttribute="leading" constant="30" id="N2i-jq-dkV"/>
+                        <constraint firstAttribute="trailing" secondItem="NSz-dD-8EO" secondAttribute="trailing" constant="30" id="NjL-qt-R21"/>
+                        <constraint firstItem="NSz-dD-8EO" firstAttribute="leading" secondItem="vi1-4l-Pxd" secondAttribute="leading" constant="30" id="QUw-O5-2ZY"/>
+                        <constraint firstItem="aLd-eb-zBA" firstAttribute="top" secondItem="NSz-dD-8EO" secondAttribute="bottom" constant="2" id="SNP-Lh-jOf"/>
+                        <constraint firstAttribute="trailing" secondItem="aLd-eb-zBA" secondAttribute="trailing" constant="30" id="Sb0-3d-vUv"/>
+                        <constraint firstItem="6Rc-he-Ud0" firstAttribute="top" secondItem="vi1-4l-Pxd" secondAttribute="top" constant="5" id="XXI-aY-gIc"/>
+                        <constraint firstItem="NSz-dD-8EO" firstAttribute="top" secondItem="jca-Ry-vCZ" secondAttribute="bottom" constant="20" id="amW-TU-JDz"/>
+                        <constraint firstItem="6Rc-he-Ud0" firstAttribute="leading" secondItem="vi1-4l-Pxd" secondAttribute="leading" constant="30" id="cIV-cP-OGz"/>
+                        <constraint firstAttribute="trailing" secondItem="fXV-q2-uG8" secondAttribute="trailing" constant="30" id="jOD-x5-j6g"/>
+                        <constraint firstAttribute="trailing" secondItem="6Rc-he-Ud0" secondAttribute="trailing" constant="30" id="klJ-bM-FIt"/>
+                        <constraint firstAttribute="trailing" secondItem="4gu-ZX-gDT" secondAttribute="trailing" constant="30" id="lOo-XG-QB8"/>
+                        <constraint firstItem="aLd-eb-zBA" firstAttribute="leading" secondItem="vi1-4l-Pxd" secondAttribute="leading" constant="30" id="nGg-TM-Y8y"/>
+                        <constraint firstItem="13i-z3-cUB" firstAttribute="leading" secondItem="vi1-4l-Pxd" secondAttribute="leading" constant="30" id="nNq-co-ayX"/>
+                        <constraint firstItem="4gu-ZX-gDT" firstAttribute="top" secondItem="6Rc-he-Ud0" secondAttribute="bottom" constant="20" id="szD-Gd-dPr"/>
+                        <constraint firstItem="jca-Ry-vCZ" firstAttribute="leading" secondItem="vi1-4l-Pxd" secondAttribute="leading" constant="30" id="uzU-Ki-SiF"/>
+                        <constraint firstItem="jca-Ry-vCZ" firstAttribute="top" secondItem="4gu-ZX-gDT" secondAttribute="bottom" constant="2" id="wVR-Eb-urn"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="vi1-4l-Pxd" secondAttribute="bottom" id="4qy-b6-Mvj"/>
+                <constraint firstAttribute="trailing" secondItem="vi1-4l-Pxd" secondAttribute="trailing" id="N5b-aD-8Vg"/>
+                <constraint firstItem="vi1-4l-Pxd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="aXY-6d-pgB"/>
+                <constraint firstItem="vi1-4l-Pxd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fyL-kr-wgn"/>
+                <constraint firstAttribute="trailing" secondItem="zUF-pS-Asy" secondAttribute="trailing" id="jYx-O3-p6G"/>
+                <constraint firstItem="zUF-pS-Asy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jeO-MX-Wn9"/>
+                <constraint firstItem="zUF-pS-Asy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xIE-sv-kuM"/>
+            </constraints>
+            <connections>
+                <outlet property="buttonSearchButton" destination="13i-z3-cUB" id="5gK-bI-bAz"/>
+                <outlet property="searchGuide" destination="NSz-dD-8EO" id="fIA-xq-1U0"/>
+                <outlet property="searchHotel" destination="4gu-ZX-gDT" id="Wu8-18-IfO"/>
+                <outlet property="viewContentView" destination="vi1-4l-Pxd" id="DH9-ap-DLk"/>
+                <outlet property="viewDate" destination="fXV-q2-uG8" id="cgc-6e-UzE"/>
+                <outlet property="viewGuide" destination="aLd-eb-zBA" id="99M-P0-dEx"/>
+                <outlet property="viewHeaderView" destination="zUF-pS-Asy" id="Kbo-6C-KcL"/>
+                <outlet property="viewHotel" destination="jca-Ry-vCZ" id="cUp-gY-A7h"/>
+                <outlet property="viewRegion" destination="6Rc-he-Ud0" id="ofj-6G-110"/>
+            </connections>
+            <point key="canvasLocation" x="-42.028985507246382" y="-21.428571428571427"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -13,15 +13,17 @@ public class  GetShoppingSaleRequestModel : Mappable{
     public var guideId : Int!
     public var begindate : String!
     public var endDate : String!
-  
+    public var hotelId : Int!
+    
     public required init?(map: Map) {
         
     }
     
-    public init( begindate : String, guideId : Int, endDate : String) {
+    public init( begindate : String, guideId : Int, endDate : String, hotelId : Int) {
         self.begindate = begindate
         self.guideId = guideId
         self.endDate = endDate
+        self.hotelId = hotelId
     }
     
     public func mapping(map: Map) {
@@ -29,6 +31,6 @@ public class  GetShoppingSaleRequestModel : Mappable{
     
     public func requestPathString()->String{
         // 2. parametre eklemek için & işareti koy
-        return "?guideId=\(self.guideId ?? 0)&begindate=\(self.begindate ?? "")&endDate=\(self.endDate ?? "")"
+        return "?guideId=\(self.guideId ?? 0)&begindate=\(self.begindate ?? "")&endDate=\(self.endDate ?? "")&hotelId=\(self.hotelId ?? 0)"
     }
 }

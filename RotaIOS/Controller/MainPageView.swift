@@ -89,7 +89,7 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 case 2 :
                     viewController = MyTourSaleViewController()
                 case 3 :
-                    viewController = MyTourSaleViewController()
+                    viewController = SpeakingHoursViewController()
                 case 4 :
                     viewController = DocumentsViewController()
                 case 5 :

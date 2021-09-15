@@ -38,15 +38,7 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
             }
         }
         
-        self.viewCancelVoucherDetailView.labelExcursionLabel.text = self.voucherDetailInCancelVoucherDetailPage?.tourName
-        self.viewCancelVoucherDetailView.labelExcursionDate.text = self.voucherDetailInCancelVoucherDetailPage?.tourDate
-        self.viewCancelVoucherDetailView.labelReservationNo.text = self.voucherDetailInCancelVoucherDetailPage?.pax_ResNo
-        self.viewCancelVoucherDetailView.labelSaleDate.text = self.voucherDetailInCancelVoucherDetailPage?.saleDate
-        self.viewCancelVoucherDetailView.labelResNo.text = self.voucherDetailInCancelVoucherDetailPage?.pax_ResNo
-        self.viewCancelVoucherDetailView.labelTourist.text = self.voucherDetailInCancelVoucherDetailPage?.tourist
-        self.viewCancelVoucherDetailView.labelTourOperator.text = self.voucherDetailInCancelVoucherDetailPage?.operatorName
-        self.viewCancelVoucherDetailView.labelHotel.text = self.voucherDetailInCancelVoucherDetailPage?.hotelName
-        self.viewCancelVoucherDetailView.labelPayment.text = "\(self.voucherDetailInCancelVoucherDetailPage?.totalAmount ?? 0) \(self.voucherDetailInCancelVoucherDetailPage?.currencyDesc ?? "")"
+        self.viewCancelVoucherDetailView.setConfigure(model: self.voucherDetailInCancelVoucherDetailPage ?? GetVoucherDetailResponseModel.init())
         self.cancelRulesMenu.selectionAction = { index, title in
             self.viewCancelVoucherDetailView.viewCancelReason.mainLabel.text = title
             let filtered = self.cancelRulesList.filter{($0.text?.contains(title) ?? false)}
@@ -91,15 +83,31 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
         self.paymentTypeMenu.show()
     }
     @IBAction func cancelVoucherButtonClicked(_ sender: Any) {
-        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetPaymentTypes, method: .get, parameters: "") { (response : [GetPaymentTypeResponseModel] ) in
-            
-            if response.count > 0 {
+      /*  NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveForMobileRequestModel ) { (response: GetSaveForMobileResponseList) in
+            if response.isSuccesful ?? false{
+                if let topVC = UIApplication.getTopViewController() {
+                    let alert = UIAlertController(title: "SUCCESS", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+                self.sendButton.backgroundColor = UIColor.clear
+                self.sendButton.layer.borderWidth = 1
+                self.sendButton.layer.borderColor = UIColor.green.cgColor
+                self.sendButton.layer.cornerRadius = 10
+                self.sendButton.isEnabled = false
+                self.proceedPageDelegate?.proceedPage(isSuccsess: true)
                 print(response)
-                
             }else{
-                print("data has not recived")
+                if let topVC = UIApplication.getTopViewController() {
+                    let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    topVC.present(alert, animated: true, completion: nil)
+                    self.proceedPageDelegate?.proceedPage(isSuccsess: false)
+                }
             }
         }
+ */
+       
     }
 }
 

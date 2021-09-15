@@ -122,9 +122,21 @@
 		D9561A46269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9561A44269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib */; };
 		D9561A4826A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9561A4726A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift */; };
 		D9561A4C26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9561A4B26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift */; };
+		D95C202626ECC2B1007D1506 /* SpeakingHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C202526ECC2B1007D1506 /* SpeakingHoursView.swift */; };
+		D95C202826EFDD83007D1506 /* GetHotelSelectListByAreaRefResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C202726EFDD83007D1506 /* GetHotelSelectListByAreaRefResponseModel.swift */; };
+		D95C202A26EFDDB7007D1506 /* GetHotelSelectListByAreaRefRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C202926EFDDB7007D1506 /* GetHotelSelectListByAreaRefRequestModel.swift */; };
+		D95C202E26F0936F007D1506 /* GuideGetSelectListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C202D26F0936F007D1506 /* GuideGetSelectListResponseModel.swift */; };
+		D95C203126F0CA70007D1506 /* SpeakingHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C202F26F0CA70007D1506 /* SpeakingHoursViewController.swift */; };
+		D95C203226F0CA70007D1506 /* SpeakingHoursViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95C203026F0CA70007D1506 /* SpeakingHoursViewController.xib */; };
+		D95C203526F2010C007D1506 /* SpeakingHoursDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C203326F2010C007D1506 /* SpeakingHoursDetailViewController.swift */; };
+		D95C203626F2010C007D1506 /* SpeakingHoursDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95C203426F2010C007D1506 /* SpeakingHoursDetailViewController.xib */; };
+		D95C203826F20184007D1506 /* SpeakingHoursDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C203726F20184007D1506 /* SpeakingHoursDetailView.swift */; };
+		D95C203A26F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C203926F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift */; };
+		D95C203C26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C203B26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift */; };
 		D968A88126BC24F3000FB00A /* GetTourSelectListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A88026BC24F3000FB00A /* GetTourSelectListResponseModel.swift */; };
 		D968A88326BDAC94000FB00A /* MyTourStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A88226BDAC94000FB00A /* MyTourStatusView.swift */; };
 		D968A88526BDADE7000FB00A /* MyTourStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D968A88426BDADE7000FB00A /* MyTourStatusView.xib */; };
+		D968ABF626E91A260046761E /* PostCancelMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968ABF526E91A260046761E /* PostCancelMobileRequestModel.swift */; };
 		D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */; };
 		D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */; };
 		D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */; };
@@ -317,9 +329,21 @@
 		D9561A44269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnnoucmentsDetailTableViewCell.xib; sourceTree = "<group>"; };
 		D9561A4726A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideAnnouncementsRequestModel.swift; sourceTree = "<group>"; };
 		D9561A4B26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGuideAnnouncementsAndDocumentsResponseModel.swift; sourceTree = "<group>"; };
+		D95C202526ECC2B1007D1506 /* SpeakingHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingHoursView.swift; sourceTree = "<group>"; };
+		D95C202726EFDD83007D1506 /* GetHotelSelectListByAreaRefResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelSelectListByAreaRefResponseModel.swift; sourceTree = "<group>"; };
+		D95C202926EFDDB7007D1506 /* GetHotelSelectListByAreaRefRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelSelectListByAreaRefRequestModel.swift; sourceTree = "<group>"; };
+		D95C202D26F0936F007D1506 /* GuideGetSelectListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideGetSelectListResponseModel.swift; sourceTree = "<group>"; };
+		D95C202F26F0CA70007D1506 /* SpeakingHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingHoursViewController.swift; sourceTree = "<group>"; };
+		D95C203026F0CA70007D1506 /* SpeakingHoursViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpeakingHoursViewController.xib; sourceTree = "<group>"; };
+		D95C203326F2010C007D1506 /* SpeakingHoursDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingHoursDetailViewController.swift; sourceTree = "<group>"; };
+		D95C203426F2010C007D1506 /* SpeakingHoursDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SpeakingHoursDetailViewController.xib; sourceTree = "<group>"; };
+		D95C203726F20184007D1506 /* SpeakingHoursDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakingHoursDetailView.swift; sourceTree = "<group>"; };
+		D95C203926F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSpeakTimeForMobileResponseModel.swift; sourceTree = "<group>"; };
+		D95C203B26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSpeakTimeForMobileRequestModel.swift; sourceTree = "<group>"; };
 		D968A88026BC24F3000FB00A /* GetTourSelectListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSelectListResponseModel.swift; sourceTree = "<group>"; };
 		D968A88226BDAC94000FB00A /* MyTourStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusView.swift; sourceTree = "<group>"; };
 		D968A88426BDADE7000FB00A /* MyTourStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusView.xib; sourceTree = "<group>"; };
+		D968ABF526E91A260046761E /* PostCancelMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCancelMobileRequestModel.swift; sourceTree = "<group>"; };
 		D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusTableViewCell.swift; sourceTree = "<group>"; };
 		D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusTableViewCell.xib; sourceTree = "<group>"; };
 		D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourSaleDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -514,6 +538,12 @@
 				D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */,
 				D9956BFE26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.xib */,
 				D9956C0126D7DFAD006CFC6D /* CancelVoucherDetailView.swift */,
+				D95C202F26F0CA70007D1506 /* SpeakingHoursViewController.swift */,
+				D95C203026F0CA70007D1506 /* SpeakingHoursViewController.xib */,
+				D95C202526ECC2B1007D1506 /* SpeakingHoursView.swift */,
+				D95C203326F2010C007D1506 /* SpeakingHoursDetailViewController.swift */,
+				D95C203426F2010C007D1506 /* SpeakingHoursDetailViewController.xib */,
+				D95C203726F20184007D1506 /* SpeakingHoursDetailView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -535,6 +565,9 @@
 				D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */,
 				D9956C0526DC022B006CFC6D /* GetCancelRulesRequestModel.swift */,
 				D9956C0926DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift */,
+				D968ABF526E91A260046761E /* PostCancelMobileRequestModel.swift */,
+				D95C202926EFDDB7007D1506 /* GetHotelSelectListByAreaRefRequestModel.swift */,
+				D95C203B26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -560,6 +593,9 @@
 				D9956C0326DC01E7006CFC6D /* GetCancelRulesResponseModel.swift */,
 				D9956C0726DE2E6E006CFC6D /* GetCalculateCancelFeeResponseModel.swift */,
 				D9956C0D26DE3DAA006CFC6D /* GetPaymentTypeResponseModel.swift */,
+				D95C202726EFDD83007D1506 /* GetHotelSelectListByAreaRefResponseModel.swift */,
+				D95C202D26F0936F007D1506 /* GuideGetSelectListResponseModel.swift */,
+				D95C203926F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -793,6 +829,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95C203226F0CA70007D1506 /* SpeakingHoursViewController.xib in Resources */,
 				D9A48D0326B1895500D28A0A /* DocumentsTableViewCell.xib in Resources */,
 				BF44C9242640014800238035 /* MainPAgeViewController.xib in Resources */,
 				BF44C9DD2640023400238035 /* AddStepTableViewCell.xib in Resources */,
@@ -829,6 +866,7 @@
 				BF44C9CF2640022600238035 /* StepsPageTableViewCell.xib in Resources */,
 				D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */,
 				BF44C94A2640017E00238035 /* ExcursionSaleViewController.xib in Resources */,
+				D95C203626F2010C007D1506 /* SpeakingHoursDetailViewController.xib in Resources */,
 				D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */,
 				D93F8895264B072200397283 /* AddManuelTouristCustomView.xib in Resources */,
 				BF44C98B264001B900238035 /* HotelPageCustomView.xib in Resources */,
@@ -983,10 +1021,12 @@
 				D97FB59726C15F5D0099F28B /* MyTourSalesDetailPageTableViewCell.swift in Sources */,
 				D93F8883264AAAE500397283 /* GetInHouseListRequestModel.swift in Sources */,
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
+				D95C203A26F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift in Sources */,
 				D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */,
 				D93F889A264BC9A300397283 /* GetSelectListResponseModel.swift in Sources */,
 				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
 				D9956BFC26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift in Sources */,
+				D95C202826EFDD83007D1506 /* GetHotelSelectListByAreaRefResponseModel.swift in Sources */,
 				BF44C97D264001AA00238035 /* FooterCustomView.swift in Sources */,
 				BF44C906264000FA00238035 /* ServiceEndPoint.swift in Sources */,
 				BF44C9A0264001C900238035 /* PaxPageTableViewCell.swift in Sources */,
@@ -994,6 +1034,7 @@
 				BF44C8E8264000E200238035 /* ExtensionUIViewController.swift in Sources */,
 				BF44C9C1264001F800238035 /* PresentationController.swift in Sources */,
 				BF44C9712640019F00238035 /* AppointmentBarCustomView.swift in Sources */,
+				D95C202626ECC2B1007D1506 /* SpeakingHoursView.swift in Sources */,
 				BF44C91C2640013B00238035 /* LoginView.swift in Sources */,
 				BF44C9152640011800238035 /* BaseTableViewCell.swift in Sources */,
 				D9956C0626DC022B006CFC6D /* GetCancelRulesRequestModel.swift in Sources */,
@@ -1016,6 +1057,7 @@
 				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
 				D968A88326BDAC94000FB00A /* MyTourStatusView.swift in Sources */,
 				BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */,
+				D95C203826F20184007D1506 /* SpeakingHoursDetailView.swift in Sources */,
 				BF44C9DC2640023400238035 /* AddStepTableViewCell.swift in Sources */,
 				D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */,
 				BF44C98A264001B900238035 /* HotelPageCustomView.swift in Sources */,
@@ -1036,6 +1078,7 @@
 				D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */,
 				BF44C9422640017600238035 /* TasksViewController.swift in Sources */,
 				BF44C908264000FA00238035 /* BaseResponse.swift in Sources */,
+				D95C202A26EFDDB7007D1506 /* GetHotelSelectListByAreaRefRequestModel.swift in Sources */,
 				BF44C96A2640019900238035 /* ApponintmentBarCollectionViewCell.swift in Sources */,
 				D9561A41269E099C00AA75E5 /* AnnoucmentsTableViewCell.swift in Sources */,
 				BF44C93A2640016500238035 /* ShopAppointmentViewController.swift in Sources */,
@@ -1043,17 +1086,20 @@
 				D97FB5AF26C69BE50099F28B /* GetShoppingSaleRequestModel.swift in Sources */,
 				BF44C9A7264001CE00238035 /* CheckBoxView.swift in Sources */,
 				D94C407F265D013C00EBC7CD /* FavoriteListCustomView.swift in Sources */,
+				D95C202E26F0936F007D1506 /* GuideGetSelectListResponseModel.swift in Sources */,
 				D93F888B264AB14900397283 /* GetHotelsMobileRequestModel.swift in Sources */,
 				BF44C93B2640016500238035 /* ShopAppointmentView.swift in Sources */,
 				BF44C8E6264000E200238035 /* ExtensionUIApplication.swift in Sources */,
 				D9561A4C26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift in Sources */,
 				D9A48D0226B1895500D28A0A /* DocumentsTableViewCell.swift in Sources */,
+				D95C203526F2010C007D1506 /* SpeakingHoursDetailViewController.swift in Sources */,
 				BF44C976264001A400238035 /* BaseCollectionViewCell.swift in Sources */,
 				BF44C905264000FA00238035 /* BaseApiRequestBody.swift in Sources */,
 				D93F887B264AAA4B00397283 /* GetInHoseListResponseModel.swift in Sources */,
 				BF44C8F3264000E900238035 /* GetMyInfoResponseModel.swift in Sources */,
 				D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */,
 				D93F88A42651AAE300397283 /* GetTouristInfoRequestModel.swift in Sources */,
+				D968ABF626E91A260046761E /* PostCancelMobileRequestModel.swift in Sources */,
 				BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */,
 				D9956C0426DC01E7006CFC6D /* GetCancelRulesResponseModel.swift in Sources */,
 				D9956C0A26DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift in Sources */,
@@ -1063,6 +1109,7 @@
 				BF44C983264001B000238035 /* MainTextCustomView.swift in Sources */,
 				BF44C90F2640010200238035 /* Defaults.swift in Sources */,
 				BF44C95A2640018B00238035 /* MyTourSaleViewController.swift in Sources */,
+				D95C203C26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift in Sources */,
 				D9956C0826DE2E6E006CFC6D /* GetCalculateCancelFeeResponseModel.swift in Sources */,
 				D97FB5A826C685E90099F28B /* MyShoppingSaleViewController.swift in Sources */,
 				BF44C907264000FA00238035 /* BaseData.swift in Sources */,
@@ -1072,6 +1119,7 @@
 				D97FB58926C075B90099F28B /* MyTourSaleDetailPageView.swift in Sources */,
 				D97FB5A526C408BE0099F28B /* MyTourSaleMoreDetailView.swift in Sources */,
 				BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */,
+				D95C203126F0CA70007D1506 /* SpeakingHoursViewController.swift in Sources */,
 				BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */,
 				D991469526D68CBF0010E74F /* CancelVoucherView.swift in Sources */,
 				D93F88A92651AB1000397283 /* GetTouristInfoResponseModel.swift in Sources */,
@@ -1246,7 +1294,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 1.9;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1268,7 +1316,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 1.9;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
