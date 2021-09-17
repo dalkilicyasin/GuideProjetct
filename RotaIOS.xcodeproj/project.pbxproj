@@ -91,6 +91,7 @@
 		BF75706D26753C2E002EA494 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF75706C26753C2E002EA494 /* BaseViewController.swift */; };
 		BFB977ED26B6F25400F0DD6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFB977EC26B6F25400F0DD6D /* GoogleService-Info.plist */; };
 		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
+		D931573926F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931573826F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift */; };
 		D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */; };
 		D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */; };
 		D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93F887226471C1100397283 /* TempTouristAddCustomView.xib */; };
@@ -138,7 +139,7 @@
 		D968A88126BC24F3000FB00A /* GetTourSelectListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A88026BC24F3000FB00A /* GetTourSelectListResponseModel.swift */; };
 		D968A88326BDAC94000FB00A /* MyTourStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A88226BDAC94000FB00A /* MyTourStatusView.swift */; };
 		D968A88526BDADE7000FB00A /* MyTourStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D968A88426BDADE7000FB00A /* MyTourStatusView.xib */; };
-		D968ABF626E91A260046761E /* PostCancelMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968ABF526E91A260046761E /* PostCancelMobileRequestModel.swift */; };
+		D968ABF626E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */; };
 		D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */; };
 		D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */; };
 		D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */; };
@@ -300,6 +301,7 @@
 		BF75706C26753C2E002EA494 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BFB977EC26B6F25400F0DD6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
+		D931573826F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSaleCancelMobileResponseModel.swift; sourceTree = "<group>"; };
 		D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileResponseModel.swift; sourceTree = "<group>"; };
 		D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTouristAddCustomView.swift; sourceTree = "<group>"; };
 		D93F887226471C1100397283 /* TempTouristAddCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempTouristAddCustomView.xib; sourceTree = "<group>"; };
@@ -347,7 +349,7 @@
 		D968A88026BC24F3000FB00A /* GetTourSelectListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSelectListResponseModel.swift; sourceTree = "<group>"; };
 		D968A88226BDAC94000FB00A /* MyTourStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusView.swift; sourceTree = "<group>"; };
 		D968A88426BDADE7000FB00A /* MyTourStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusView.xib; sourceTree = "<group>"; };
-		D968ABF526E91A260046761E /* PostCancelMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCancelMobileRequestModel.swift; sourceTree = "<group>"; };
+		D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSaleCancelMobileRequestModel.swift; sourceTree = "<group>"; };
 		D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusTableViewCell.swift; sourceTree = "<group>"; };
 		D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusTableViewCell.xib; sourceTree = "<group>"; };
 		D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourSaleDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -569,7 +571,7 @@
 				D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */,
 				D9956C0526DC022B006CFC6D /* GetCancelRulesRequestModel.swift */,
 				D9956C0926DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift */,
-				D968ABF526E91A260046761E /* PostCancelMobileRequestModel.swift */,
+				D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */,
 				D95C202926EFDDB7007D1506 /* GetHotelSelectListByAreaRefRequestModel.swift */,
 				D95C203B26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift */,
 			);
@@ -600,6 +602,7 @@
 				D95C202726EFDD83007D1506 /* GetHotelSelectListByAreaRefResponseModel.swift */,
 				D95C202D26F0936F007D1506 /* GuideGetSelectListResponseModel.swift */,
 				D95C203926F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift */,
+				D931573826F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -1016,6 +1019,7 @@
 			files = (
 				D93F8890264B069000397283 /* AddManuelTouristCustomView.swift in Sources */,
 				BF44C909264000FA00238035 /* NetworkManager.swift in Sources */,
+				D931573926F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift in Sources */,
 				BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */,
 				D97FB5B426C6ABC10099F28B /* MyShoppinSaleDetailViewController.swift in Sources */,
 				BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */,
@@ -1106,7 +1110,7 @@
 				BF44C8F3264000E900238035 /* GetMyInfoResponseModel.swift in Sources */,
 				D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */,
 				D93F88A42651AAE300397283 /* GetTouristInfoRequestModel.swift in Sources */,
-				D968ABF626E91A260046761E /* PostCancelMobileRequestModel.swift in Sources */,
+				D968ABF626E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift in Sources */,
 				BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */,
 				D9956C0426DC01E7006CFC6D /* GetCancelRulesResponseModel.swift in Sources */,
 				D9956C0A26DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift in Sources */,

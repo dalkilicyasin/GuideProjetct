@@ -17,6 +17,8 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
     var cancelRulesList : [GetCancelRulesResponseModel] = []
     var filteredCancelRuleList : [GetCancelRulesResponseModel] = []
     var cancelRuleId = 0
+    var message = ""
+    var paymenTypeList : [String] = ["CASH","CARD"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,16 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
             for item in self.filteredCancelRuleList {
                 self.cancelRuleId = item.value ?? 0
             }
+            self.paymentTypeMenu.selectionAction = { index, title in
+                self.viewCancelVoucherDetailView.viewPaymentType.mainLabel.text = title
+            }
+            self.paymentTypeMenu.dataSource = self.paymenTypeList
+            self.paymentTypeMenu.backgroundColor = UIColor.grayColor
+            self.paymentTypeMenu.separatorColor = UIColor.gray
+            self.paymentTypeMenu.textColor = .white
+            self.paymentTypeMenu.anchorView = self.viewCancelVoucherDetailView.viewPaymentType
+            self.paymentTypeMenu.topOffset = CGPoint(x: 0, y:-(self.paymentTypeMenu.anchorView?.plainView.bounds.height)!)
+
             let cancalCalculateFeeRequestModel = GetCalculateCancelFeeRequestModel.init(cancelReasonId: self.cancelRuleId, saleId: self.voucherDetailInCancelVoucherDetailPage?.saleId ?? 0)
             NetworkManager.sendGetRequest(url: NetworkManager.BASEURL, endPoint: .GetCalculateCancelFee, method: .get, parameters: cancalCalculateFeeRequestModel.requestPathString()) { (response : GetCalculateCancelFeeResponseModel) in
                 if response.amount != nil {
@@ -76,38 +88,29 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
     
     @objc func tappedCancelReason() {
         self.cancelRulesMenu.show()
- 
+        
     }
     
     @objc func tappedPaymentTypeListMenu() {
         self.paymentTypeMenu.show()
     }
     @IBAction func cancelVoucherButtonClicked(_ sender: Any) {
-      /*  NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveForMobileRequestModel ) { (response: GetSaveForMobileResponseList) in
-            if response.isSuccesful ?? false{
-                if let topVC = UIApplication.getTopViewController() {
-                    let alert = UIAlertController(title: "SUCCESS", message: response.message, preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                    topVC.present(alert, animated: true, completion: nil)
-                }
-                self.sendButton.backgroundColor = UIColor.clear
-                self.sendButton.layer.borderWidth = 1
-                self.sendButton.layer.borderColor = UIColor.green.cgColor
-                self.sendButton.layer.cornerRadius = 10
-                self.sendButton.isEnabled = false
-                self.proceedPageDelegate?.proceedPage(isSuccsess: true)
-                print(response)
+        let tourSaleRequestCancelMobile = GetTourSaleCancelMobileRequestModel.init(GuideId: String(userDefaultsData.getGuideId()) , CancelConditionId: String(self.cancelRuleId) , Note: "", ChangeVoucher: self.viewCancelVoucherDetailView.labelVoucherNo.text ??  "", TourSaleId: String(self.viewCancelVoucherDetailView.saleId) , Amount: self.viewCancelVoucherDetailView.labelPayment.text ?? "0.00", CurrencyId: String(self.viewCancelVoucherDetailView.currencyId) , PaymentType: "CASH")
+        NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleCancelMobile, requestModel: tourSaleRequestCancelMobile ) { (response: GetTourSaleCancelMobileResponseModel) in
+            if response.IsSuccesful ?? false{
+                self.message = response.Message ?? ""
+                print(response.Message ?? "success")
+                let alert = UIAlertController(title: "Cancel Voucher", message: "\(self.message)", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
             }else{
-                if let topVC = UIApplication.getTopViewController() {
-                    let alert = UIAlertController(title: "Errror", message: response.exceptionMessage, preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                    topVC.present(alert, animated: true, completion: nil)
-                    self.proceedPageDelegate?.proceedPage(isSuccsess: false)
-                }
+                self.message = response.Message ?? ""
+                let alert = UIAlertController(title: "Cancel Voucher", message: "\(self.message)", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
- */
-       
     }
 }
 

@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import DropDown
 
 final class CancelVoucherDetailView : UIView {
     @IBOutlet weak var viewHeaderDetailView: HeaderDetailCustomView!
@@ -31,6 +32,9 @@ final class CancelVoucherDetailView : UIView {
     @IBOutlet weak var labelRefundAmount: UILabel!
     @IBOutlet weak var labelCancelationDate: UILabel!
     @IBOutlet weak var labelVoucherNo: UILabel!
+    var saleId = 0
+    var currencyId = 0
+    var paymentTypeMenu = DropDown()
     
     
     override func awakeFromNib() {
@@ -49,6 +53,8 @@ final class CancelVoucherDetailView : UIView {
         self.viewNoteMenu.imageMainText.isHidden = true
         self.viewNoteMenu.mainText.isHidden = false
         self.viewNoteMenu.headerLAbel.text = "Note"
+        
+       
     }
     
     func setConfigure(model : GetVoucherDetailResponseModel ) {
@@ -64,6 +70,8 @@ final class CancelVoucherDetailView : UIView {
         self.labelVoucherNo.text = model.voucherNo
         self.labelCancelationDate.text = model.cancelDate
         self.labelPayment.text = "\(model.totalAmount ?? 0) \(model.currencyDesc ?? "")"
+        self.saleId = model.saleId ?? 0
+        self.currencyId = model.currencyId ?? 0
     }
  
     required init(customParamArg: String) {

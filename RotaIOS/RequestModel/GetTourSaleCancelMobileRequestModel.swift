@@ -1,5 +1,5 @@
 //
-//  PostCancelMobileRequestModel.swift
+//  GetTourSaleCancelMobileRequestModel..swift
 //  RotaIOS
 //
 //  Created by Yasin Dalkilic on 8.09.2021.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import ObjectMapper
 
-public class  PostCancelMobileRequestModel : Mappable{
+public class  GetTourSaleCancelMobileRequestModel : Mappable{
     public var GuideId : String!
     public var CancelConditionId : String!
     public var Note : String!
