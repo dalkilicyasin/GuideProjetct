@@ -53,8 +53,6 @@ final class CancelVoucherDetailView : UIView {
         self.viewNoteMenu.imageMainText.isHidden = true
         self.viewNoteMenu.mainText.isHidden = false
         self.viewNoteMenu.headerLAbel.text = "Note"
-        
-       
     }
     
     func setConfigure(model : GetVoucherDetailResponseModel ) {
