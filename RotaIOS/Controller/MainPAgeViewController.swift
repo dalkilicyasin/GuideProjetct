@@ -8,8 +8,8 @@
 import UIKit
 
 class MainPAgeViewController: BaseViewController {
-
-
+    
+    
     @IBOutlet var mainPageView: MainPageView!
     let date = Date()
     
@@ -27,7 +27,7 @@ class MainPAgeViewController: BaseViewController {
             
             if response.id != nil {
                 print("info recived - \(response.id ?? "")")
-        
+                
                 userDefaultsData.saveUserId(languageId: response.id ?? "default")
                 userDefaultsData.saveGuideId(languageId: response.guideId!)
                 userDefaultsData.saveSaleDate(saleDate: dateString)
@@ -42,7 +42,7 @@ class MainPAgeViewController: BaseViewController {
         NetworkManager.sendGetRequest(url:NetworkManager.BASEURL, endPoint: .GetGuideInfo, method: .get, parameters: getGuideInfRequestModel.requestPathString()) { (response : GetGuideInfoResponseModel) in
             
             if response.marketGroupId != nil {
-    
+                
                 userDefaultsData.saveMarketGruopId(marketGroupId: response.marketGroupId ?? 0)
                 
             }else{
@@ -64,12 +64,10 @@ class MainPAgeViewController: BaseViewController {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentSize" {
-                if let newValue = change?[.newKey] {
-                    let newSize = newValue as! CGSize
-                    self.mainPageView.tableViewHeigt.constant = newSize.height
-                }
+            if let newValue = change?[.newKey] {
+                let newSize = newValue as! CGSize
+                self.mainPageView.tableViewHeigt.constant = newSize.height
+            }
         }
-        
     }
-
 }

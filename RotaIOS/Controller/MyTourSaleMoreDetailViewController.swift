@@ -28,7 +28,6 @@ class MyTourSaleMoreDetailViewController: UIViewController {
         self.viewMyTourSaleMoreDetailView.labelCancelStaff.text = self.tourDetailListInMoreDetailPage?.cancelStaff
         self.viewMyTourSaleMoreDetailView.labelRefund.text = "\(self.tourDetailListInMoreDetailPage?.refundAmount ?? 0.0)"
         self.viewMyTourSaleMoreDetailView.labelTotalPayment.text = "\(self.tourDetailListInMoreDetailPage?.totalAmount ?? 0.0)"
-        
     }
     
   init(tourDetailListInMoreDetailPage : GetTourDetailForMobileResponseModel ) {

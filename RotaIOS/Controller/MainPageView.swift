@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
-
     @IBOutlet weak var viewHeader: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var tableViewHeigt: NSLayoutConstraint!
@@ -17,12 +16,10 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
     let imageList = ["operation","view","report"]
     let nameList = ["Operations","Views", "Reports"]
     let mainPageList = [["Tasks","Excursion Sale","Ind. Shop Appoinment","Cancel Voucher","Send Offline Sales"],["My Tour Sale","My Shopping Sales","Birthday","Speaking Hours","Documents","Announcement"],["Z Report","Daily Sale/Refund Report","Z Report Preview"]]
-    
     var sectionData : [Int : [String]] = [:]
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(MainPageTableViewCell.nib, forCellReuseIdentifier: MainPageTableViewCell.identifier)
@@ -55,7 +52,6 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected")
-        
         if self.mainPageList[indexPath.section] == mainPageList[0] {
             if let topVC = UIApplication.getTopViewController() {
                 var viewController: UIViewController = UIViewController()
@@ -72,11 +68,9 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                     viewController = OfflineSalesViewController()
                 default :
                     print("selected")
-                    
                 }
                 topVC.otiPushViewController(viewController: viewController)
             }
-            
         }else if self.mainPageList[indexPath.section] == mainPageList[1]{
             if let topVC = UIApplication.getTopViewController() {
                 var viewController: UIViewController = UIViewController()
@@ -106,7 +100,7 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 switch(indexPath.row) {
                 
                 case 0 :
-                    viewController = MyTourSaleViewController()
+                    viewController = ZReportViewController()
                 case 1 :
                     viewController = MyTourSaleViewController()
                 case 2 :
@@ -147,5 +141,4 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return mainPageList.count
     }
-    
 }

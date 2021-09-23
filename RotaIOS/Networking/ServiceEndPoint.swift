@@ -30,6 +30,8 @@ public enum ServiceEndPoint: String {
     case GetHotelSelectListByAreaRef = "/api/api/Hotel/GetHotelSelectListByAreaRef"
     case GetGuideSelectList = "/api/api/Guide/GetSelectList"
     case GetSpeakTimeForMobile = "/api/api/GSpeakTime/GetSpeakTimeForMobile"
+    case GetSearchZReport = "/api/api/AccountingZReportMobile/SearchZReport"
+    case GetZReportData = "/api/api/AccountingZReportMobile/GetReportData"
 }
 
 

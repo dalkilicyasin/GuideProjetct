@@ -36,7 +36,6 @@ final class CancelVoucherDetailView : UIView {
     var currencyId = 0
     var paymentTypeMenu = DropDown()
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.viewHeaderDetailView.labelHeaderDetailView.text = "Cancel Voucher"

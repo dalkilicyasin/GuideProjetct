@@ -92,6 +92,25 @@
 		BFB977ED26B6F25400F0DD6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFB977EC26B6F25400F0DD6D /* GoogleService-Info.plist */; };
 		D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B093EA7E3F353A2A3F207150 /* Pods_RotaIOS.framework */; };
 		D931573926F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931573826F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift */; };
+		D931573C26F8C183000C91AD /* ZReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931573A26F8C183000C91AD /* ZReportViewController.swift */; };
+		D931573D26F8C183000C91AD /* ZReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931573B26F8C183000C91AD /* ZReportViewController.xib */; };
+		D931573F26F8C206000C91AD /* ZReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931573E26F8C206000C91AD /* ZReportView.swift */; };
+		D931574126F8DF17000C91AD /* GetZReportResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931574026F8DF17000C91AD /* GetZReportResponseModel.swift */; };
+		D931574326F8DF49000C91AD /* GetZReportRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931574226F8DF49000C91AD /* GetZReportRequestModel.swift */; };
+		D931574626FA1DBD000C91AD /* ZReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931574426FA1DBD000C91AD /* ZReportTableViewCell.swift */; };
+		D931574726FA1DBD000C91AD /* ZReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931574526FA1DBD000C91AD /* ZReportTableViewCell.xib */; };
+		D931574E26FA2257000C91AD /* ZReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931574C26FA2257000C91AD /* ZReportDetailViewController.swift */; };
+		D931574F26FA2257000C91AD /* ZReportDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931574D26FA2257000C91AD /* ZReportDetailViewController.xib */; };
+		D931575126FA2277000C91AD /* ZReportDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931575026FA2277000C91AD /* ZReportDetailView.swift */; };
+		D931575426FA5E72000C91AD /* ZReportMoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931575226FA5E72000C91AD /* ZReportMoreDetailViewController.swift */; };
+		D931575526FA5E72000C91AD /* ZReportMoreDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931575326FA5E72000C91AD /* ZReportMoreDetailViewController.xib */; };
+		D931575726FA5E88000C91AD /* ZReportMoreDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931575626FA5E88000C91AD /* ZReportMoreDetailView.swift */; };
+		D931575926FB48AA000C91AD /* GetReportDataResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931575826FB48AA000C91AD /* GetReportDataResponseModel.swift */; };
+		D931575B26FB4A0F000C91AD /* GetReportDataRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931575A26FB4A0F000C91AD /* GetReportDataRequestModel.swift */; };
+		D931575E26FB58A3000C91AD /* ZReportPriviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931575C26FB58A3000C91AD /* ZReportPriviewTableViewCell.swift */; };
+		D931575F26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931575D26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib */; };
+		D931576226FCB0C0000C91AD /* ZReportTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931576026FCB0C0000C91AD /* ZReportTotalTableViewCell.swift */; };
+		D931576326FCB0C0000C91AD /* ZReportTotalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931576126FCB0C0000C91AD /* ZReportTotalTableViewCell.xib */; };
 		D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */; };
 		D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */; };
 		D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93F887226471C1100397283 /* TempTouristAddCustomView.xib */; };
@@ -302,6 +321,25 @@
 		BFB977EC26B6F25400F0DD6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB6FE34ACFA6F35ECABA9BA1 /* Pods-RotaIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RotaIOS.release.xcconfig"; path = "Target Support Files/Pods-RotaIOS/Pods-RotaIOS.release.xcconfig"; sourceTree = "<group>"; };
 		D931573826F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSaleCancelMobileResponseModel.swift; sourceTree = "<group>"; };
+		D931573A26F8C183000C91AD /* ZReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportViewController.swift; sourceTree = "<group>"; };
+		D931573B26F8C183000C91AD /* ZReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportViewController.xib; sourceTree = "<group>"; };
+		D931573E26F8C206000C91AD /* ZReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportView.swift; sourceTree = "<group>"; };
+		D931574026F8DF17000C91AD /* GetZReportResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetZReportResponseModel.swift; sourceTree = "<group>"; };
+		D931574226F8DF49000C91AD /* GetZReportRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetZReportRequestModel.swift; sourceTree = "<group>"; };
+		D931574426FA1DBD000C91AD /* ZReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportTableViewCell.swift; sourceTree = "<group>"; };
+		D931574526FA1DBD000C91AD /* ZReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportTableViewCell.xib; sourceTree = "<group>"; };
+		D931574C26FA2257000C91AD /* ZReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportDetailViewController.swift; sourceTree = "<group>"; };
+		D931574D26FA2257000C91AD /* ZReportDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportDetailViewController.xib; sourceTree = "<group>"; };
+		D931575026FA2277000C91AD /* ZReportDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportDetailView.swift; sourceTree = "<group>"; };
+		D931575226FA5E72000C91AD /* ZReportMoreDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportMoreDetailViewController.swift; sourceTree = "<group>"; };
+		D931575326FA5E72000C91AD /* ZReportMoreDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportMoreDetailViewController.xib; sourceTree = "<group>"; };
+		D931575626FA5E88000C91AD /* ZReportMoreDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportMoreDetailView.swift; sourceTree = "<group>"; };
+		D931575826FB48AA000C91AD /* GetReportDataResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReportDataResponseModel.swift; sourceTree = "<group>"; };
+		D931575A26FB4A0F000C91AD /* GetReportDataRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetReportDataRequestModel.swift; sourceTree = "<group>"; };
+		D931575C26FB58A3000C91AD /* ZReportPriviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportPriviewTableViewCell.swift; sourceTree = "<group>"; };
+		D931575D26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportPriviewTableViewCell.xib; sourceTree = "<group>"; };
+		D931576026FCB0C0000C91AD /* ZReportTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportTotalTableViewCell.swift; sourceTree = "<group>"; };
+		D931576126FCB0C0000C91AD /* ZReportTotalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportTotalTableViewCell.xib; sourceTree = "<group>"; };
 		D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileResponseModel.swift; sourceTree = "<group>"; };
 		D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTouristAddCustomView.swift; sourceTree = "<group>"; };
 		D93F887226471C1100397283 /* TempTouristAddCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempTouristAddCustomView.xib; sourceTree = "<group>"; };
@@ -550,6 +588,15 @@
 				D95C203326F2010C007D1506 /* SpeakingHoursDetailViewController.swift */,
 				D95C203426F2010C007D1506 /* SpeakingHoursDetailViewController.xib */,
 				D95C203726F20184007D1506 /* SpeakingHoursDetailView.swift */,
+				D931573A26F8C183000C91AD /* ZReportViewController.swift */,
+				D931573B26F8C183000C91AD /* ZReportViewController.xib */,
+				D931573E26F8C206000C91AD /* ZReportView.swift */,
+				D931574C26FA2257000C91AD /* ZReportDetailViewController.swift */,
+				D931574D26FA2257000C91AD /* ZReportDetailViewController.xib */,
+				D931575026FA2277000C91AD /* ZReportDetailView.swift */,
+				D931575226FA5E72000C91AD /* ZReportMoreDetailViewController.swift */,
+				D931575326FA5E72000C91AD /* ZReportMoreDetailViewController.xib */,
+				D931575626FA5E88000C91AD /* ZReportMoreDetailView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -574,6 +621,8 @@
 				D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */,
 				D95C202926EFDDB7007D1506 /* GetHotelSelectListByAreaRefRequestModel.swift */,
 				D95C203B26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift */,
+				D931574226F8DF49000C91AD /* GetZReportRequestModel.swift */,
+				D931575A26FB4A0F000C91AD /* GetReportDataRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -603,6 +652,8 @@
 				D95C202D26F0936F007D1506 /* GuideGetSelectListResponseModel.swift */,
 				D95C203926F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift */,
 				D931573826F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift */,
+				D931574026F8DF17000C91AD /* GetZReportResponseModel.swift */,
+				D931575826FB48AA000C91AD /* GetReportDataResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -713,6 +764,12 @@
 				D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */,
 				D95C203D26F216B8007D1506 /* SpeakingHoursTableViewCell.swift */,
 				D95C203E26F216B8007D1506 /* SpeakingHoursTableViewCell.xib */,
+				D931574426FA1DBD000C91AD /* ZReportTableViewCell.swift */,
+				D931574526FA1DBD000C91AD /* ZReportTableViewCell.xib */,
+				D931575C26FB58A3000C91AD /* ZReportPriviewTableViewCell.swift */,
+				D931575D26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib */,
+				D931576026FCB0C0000C91AD /* ZReportTotalTableViewCell.swift */,
+				D931576126FCB0C0000C91AD /* ZReportTotalTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -847,6 +904,7 @@
 				D9956C0026D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.xib in Resources */,
 				D9A48CFB26B1405D00D28A0A /* DocumentsViewController.xib in Resources */,
 				BF44C8DB264000C700238035 /* Main.storyboard in Resources */,
+				D931573D26F8C183000C91AD /* ZReportViewController.xib in Resources */,
 				BF44C9D62640022F00238035 /* AddStepCustomView.xib in Resources */,
 				D97FB5A926C685E90099F28B /* MyShoppingSaleViewController.xib in Resources */,
 				BF44C93C2640016500238035 /* ShopAppointmentViewController.xib in Resources */,
@@ -864,6 +922,7 @@
 				BF44C9512640018400238035 /* VoucherViewController.xib in Resources */,
 				BF44C9432640017600238035 /* TasksViewController.xib in Resources */,
 				D9561A46269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib in Resources */,
+				D931576326FCB0C0000C91AD /* ZReportTotalTableViewCell.xib in Resources */,
 				BF44C97C264001AA00238035 /* FooterCustomView.xib in Resources */,
 				BF44C92B2640015400238035 /* MainPageCustomView.xib in Resources */,
 				D9561A42269E099C00AA75E5 /* AnnoucmentsTableViewCell.xib in Resources */,
@@ -871,6 +930,7 @@
 				D94C4084265D02AF00EBC7CD /* FavoriteListCustomView.xib in Resources */,
 				BF44C9702640019F00238035 /* AppointmentBarCustomView.xib in Resources */,
 				BF44C9AD264001D400238035 /* HeaderDetailCustomView.xib in Resources */,
+				D931574F26FA2257000C91AD /* ZReportDetailViewController.xib in Resources */,
 				BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */,
 				BF44C9CF2640022600238035 /* StepsPageTableViewCell.xib in Resources */,
 				D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */,
@@ -881,15 +941,18 @@
 				BF44C98B264001B900238035 /* HotelPageCustomView.xib in Resources */,
 				BF44C9322640015A00238035 /* MainPageTableViewCell.xib in Resources */,
 				D94C40AA26692D4C00EBC7CD /* TaskTableViewCell.xib in Resources */,
+				D931574726FA1DBD000C91AD /* ZReportTableViewCell.xib in Resources */,
 				D94C407A265BE36400EBC7CD /* FavoriteCustomView.xib in Resources */,
 				D9DCB19E26BBEB900064A040 /* MyTourSalesViewController.xib in Resources */,
 				D95C204026F216B8007D1506 /* SpeakingHoursTableViewCell.xib in Resources */,
 				D97FB5BB26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib in Resources */,
 				D968A88526BDADE7000FB00A /* MyTourStatusView.xib in Resources */,
 				BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */,
+				D931575F26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib in Resources */,
 				D9561A3C269DF27E00AA75E5 /* AnnoucmentsViewController.xib in Resources */,
 				D97FB59926C15F650099F28B /* MyTourSalesDetailPageTableViewCell.xib in Resources */,
 				BF44C9622640019200238035 /* HeaderCustomView.xib in Resources */,
+				D931575526FA5E72000C91AD /* ZReportMoreDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1023,6 +1086,7 @@
 				BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */,
 				D97FB5B426C6ABC10099F28B /* MyShoppinSaleDetailViewController.swift in Sources */,
 				BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */,
+				D931576226FCB0C0000C91AD /* ZReportTotalTableViewCell.swift in Sources */,
 				D9A48CFF26B1408A00D28A0A /* DocumentsView.swift in Sources */,
 				D93F889F264EFF7800397283 /* GetSaveForMobileRequestList.swift in Sources */,
 				D9956C0226D7DFAD006CFC6D /* CancelVoucherDetailView.swift in Sources */,
@@ -1034,6 +1098,7 @@
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
 				D95C203A26F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift in Sources */,
 				D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */,
+				D931574126F8DF17000C91AD /* GetZReportResponseModel.swift in Sources */,
 				D93F889A264BC9A300397283 /* GetSelectListResponseModel.swift in Sources */,
 				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
 				D9956BFC26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift in Sources */,
@@ -1046,6 +1111,7 @@
 				BF44C9C1264001F800238035 /* PresentationController.swift in Sources */,
 				BF44C9712640019F00238035 /* AppointmentBarCustomView.swift in Sources */,
 				D95C202626ECC2B1007D1506 /* SpeakingHoursView.swift in Sources */,
+				D931575B26FB4A0F000C91AD /* GetReportDataRequestModel.swift in Sources */,
 				BF44C91C2640013B00238035 /* LoginView.swift in Sources */,
 				BF44C9152640011800238035 /* BaseTableViewCell.swift in Sources */,
 				D9956C0626DC022B006CFC6D /* GetCancelRulesRequestModel.swift in Sources */,
@@ -1058,6 +1124,7 @@
 				D9561A45269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.swift in Sources */,
 				D968A88126BC24F3000FB00A /* GetTourSelectListResponseModel.swift in Sources */,
 				BF75706D26753C2E002EA494 /* BaseViewController.swift in Sources */,
+				D931575126FA2277000C91AD /* ZReportDetailView.swift in Sources */,
 				BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */,
 				BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */,
 				D9561A3E269DF31A00AA75E5 /* AnnoucmentsView.swift in Sources */,
@@ -1080,17 +1147,22 @@
 				BF44C9632640019200238035 /* HeaderCustomView.swift in Sources */,
 				D9956C0E26DE3DAA006CFC6D /* GetPaymentTypeResponseModel.swift in Sources */,
 				D97FB58F26C146B20099F28B /* GetTourDetailForMobileResponseModel.swift in Sources */,
+				D931574626FA1DBD000C91AD /* ZReportTableViewCell.swift in Sources */,
+				D931573F26F8C206000C91AD /* ZReportView.swift in Sources */,
 				D9956BFA26D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift in Sources */,
 				D9DCB19D26BBEB900064A040 /* MyTourSalesViewController.swift in Sources */,
 				D9956BFF26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift in Sources */,
+				D931575926FB48AA000C91AD /* GetReportDataResponseModel.swift in Sources */,
 				D97FB5AB26C6860A0099F28B /* MyShoppingSaleView.swift in Sources */,
 				BF44C9C82640022000238035 /* StepsPageCustomView.swift in Sources */,
 				BF44C8E9264000E200238035 /* ExtensionUIDevice.swift in Sources */,
+				D931573C26F8C183000C91AD /* ZReportViewController.swift in Sources */,
 				D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */,
 				BF44C9422640017600238035 /* TasksViewController.swift in Sources */,
 				BF44C908264000FA00238035 /* BaseResponse.swift in Sources */,
 				D95C202A26EFDDB7007D1506 /* GetHotelSelectListByAreaRefRequestModel.swift in Sources */,
 				BF44C96A2640019900238035 /* ApponintmentBarCollectionViewCell.swift in Sources */,
+				D931574E26FA2257000C91AD /* ZReportDetailViewController.swift in Sources */,
 				D9561A41269E099C00AA75E5 /* AnnoucmentsTableViewCell.swift in Sources */,
 				BF44C93A2640016500238035 /* ShopAppointmentViewController.swift in Sources */,
 				BF44C8F1264000E900238035 /* GetUserResponseModel.swift in Sources */,
@@ -1101,9 +1173,13 @@
 				D93F888B264AB14900397283 /* GetHotelsMobileRequestModel.swift in Sources */,
 				BF44C93B2640016500238035 /* ShopAppointmentView.swift in Sources */,
 				BF44C8E6264000E200238035 /* ExtensionUIApplication.swift in Sources */,
+				D931574326F8DF49000C91AD /* GetZReportRequestModel.swift in Sources */,
+				D931575426FA5E72000C91AD /* ZReportMoreDetailViewController.swift in Sources */,
+				D931575726FA5E88000C91AD /* ZReportMoreDetailView.swift in Sources */,
 				D9561A4C26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift in Sources */,
 				D9A48D0226B1895500D28A0A /* DocumentsTableViewCell.swift in Sources */,
 				D95C203526F2010C007D1506 /* SpeakingHoursDetailViewController.swift in Sources */,
+				D931575E26FB58A3000C91AD /* ZReportPriviewTableViewCell.swift in Sources */,
 				BF44C976264001A400238035 /* BaseCollectionViewCell.swift in Sources */,
 				BF44C905264000FA00238035 /* BaseApiRequestBody.swift in Sources */,
 				D93F887B264AAA4B00397283 /* GetInHoseListResponseModel.swift in Sources */,
@@ -1306,7 +1382,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.1;
+				CURRENT_PROJECT_VERSION = 2.2;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1328,7 +1404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.1;
+				CURRENT_PROJECT_VERSION = 2.2;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
