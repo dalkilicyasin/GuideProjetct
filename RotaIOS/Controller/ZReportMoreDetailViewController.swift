@@ -24,6 +24,7 @@ class ZReportMoreDetailViewController: UIViewController {
                 self.zReportPreview = response.reportPreview ?? self.zReportPreview
                 self.zReportTotal = response.reportTotal ?? self.zReportTotal
                 self.tableView.reloadData()
+                self.viewZreportMoreDetailview.setConfigure(model: self.zReportData ?? GetReportDataResponseModel.init())
             }else {
                 let alert = UIAlertController(title: "Error", message: "Data Has not Recived", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
@@ -34,7 +35,9 @@ class ZReportMoreDetailViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.register(ZReportTotalTableViewCell.nib, forCellReuseIdentifier: ZReportTotalTableViewCell.identifier)
         self.tableView.register(ZReportPriviewTableViewCell.nib, forCellReuseIdentifier: ZReportPriviewTableViewCell.identifier)
-        self.tableView.register(ZReportTableViewCell.nib, forCellReuseIdentifier: ZReportTableViewCell.identifier)
+    }
+    
+    @IBAction func printButtonClicked(_ sender: Any) {
     }
     
     init(zReportNumberInZReportDetailPage : String? ) {
