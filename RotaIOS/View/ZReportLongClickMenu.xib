@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZReportLongClickMenu" customModule="RotaIOS" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonBackButton" destination="5v1-jA-L3x" id="hfP-dV-upA"/>
+                <outlet property="buttonZReportPayments" destination="l99-jB-5eU" id="Gky-8m-DSO"/>
+                <outlet property="buttonZReportRefund" destination="1RE-R4-rfD" id="8P6-3O-k3D"/>
+                <outlet property="viewContentView" destination="p5g-CO-M6F" id="j0p-6K-yLr"/>
+                <outlet property="viewMainView" destination="iN0-l3-epB" id="4X7-Nh-YPt"/>
+                <outlet property="viewRemoveView" destination="8NL-NJ-76f" id="yer-tA-fZa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="503" height="846"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5g-CO-M6F">
+                    <rect key="frame" x="0.0" y="300" width="503" height="546"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l99-jB-5eU">
+                            <rect key="frame" x="40" y="77" width="423" height="50"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="sVj-Up-3yy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Z REPORT PAYMENTS">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="zReportPaymentsButtonClicked:" destination="-1" eventType="touchUpInside" id="sOA-9e-En3"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1RE-R4-rfD">
+                            <rect key="frame" x="40" y="147" width="423" height="50"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="BNB-0O-oAF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Z REPORT REFUND">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="zReportRefundButtonClicked:" destination="-1" eventType="touchUpInside" id="ijv-N7-UiQ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5v1-jA-L3x">
+                            <rect key="frame" x="40" y="227" width="423" height="50"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="F2k-UH-OUQ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="BACK">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="backButtonClicked:" destination="-1" eventType="touchUpInside" id="DU3-av-e2H"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8NL-NJ-76f">
+                            <rect key="frame" x="132" y="10" width="239" height="5"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="5" id="62i-xP-yXO"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="5v1-jA-L3x" secondAttribute="trailing" constant="40" id="5p3-aZ-Xps"/>
+                        <constraint firstItem="1RE-R4-rfD" firstAttribute="top" secondItem="l99-jB-5eU" secondAttribute="bottom" constant="20" id="7YA-b6-bFD"/>
+                        <constraint firstItem="5v1-jA-L3x" firstAttribute="leading" secondItem="p5g-CO-M6F" secondAttribute="leading" constant="40" id="Avm-g5-e2n"/>
+                        <constraint firstAttribute="trailing" secondItem="l99-jB-5eU" secondAttribute="trailing" constant="40" id="JvL-oR-xl4"/>
+                        <constraint firstAttribute="trailing" secondItem="1RE-R4-rfD" secondAttribute="trailing" constant="40" id="QK6-n1-Clg"/>
+                        <constraint firstItem="1RE-R4-rfD" firstAttribute="leading" secondItem="p5g-CO-M6F" secondAttribute="leading" constant="40" id="QL4-fB-Gc0"/>
+                        <constraint firstItem="l99-jB-5eU" firstAttribute="leading" secondItem="p5g-CO-M6F" secondAttribute="leading" constant="40" id="Qjh-qa-Zc1"/>
+                        <constraint firstItem="l99-jB-5eU" firstAttribute="top" secondItem="8NL-NJ-76f" secondAttribute="bottom" constant="62" id="iIQ-tg-Zed"/>
+                        <constraint firstItem="8NL-NJ-76f" firstAttribute="top" secondItem="p5g-CO-M6F" secondAttribute="top" constant="10" id="nwr-87-d2j"/>
+                        <constraint firstItem="5v1-jA-L3x" firstAttribute="top" secondItem="1RE-R4-rfD" secondAttribute="bottom" constant="30" id="rAf-qO-5It"/>
+                        <constraint firstItem="8NL-NJ-76f" firstAttribute="leading" secondItem="p5g-CO-M6F" secondAttribute="leading" constant="132" id="t7Q-cu-znJ"/>
+                        <constraint firstAttribute="trailing" secondItem="8NL-NJ-76f" secondAttribute="trailing" constant="132" id="xZZ-cF-luD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.68908155832859064" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="p5g-CO-M6F" secondAttribute="bottom" id="dr9-jK-8JF"/>
+                <constraint firstItem="p5g-CO-M6F" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eXu-NQ-OR2"/>
+                <constraint firstItem="p5g-CO-M6F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="300" id="fdj-Sy-NIh"/>
+                <constraint firstAttribute="trailing" secondItem="p5g-CO-M6F" secondAttribute="trailing" id="h1x-gs-ZuT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="271.73913043478262" y="7.3660714285714279"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

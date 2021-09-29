@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,17 +16,17 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="ZReportMoreDetailView" customModule="RotaIOS" customModuleProvider="target">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i5M-Pr-FkT" customClass="ZReportMoreDetailView" customModule="RotaIOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hux-8t-yBq">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="Hux-8t-yBq">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="quB-Na-W6g">
+                        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quB-Na-W6g">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgE-X7-gn7" customClass="HeaderDetailCustomView" customModule="RotaIOS" customModuleProvider="target">
+                                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgE-X7-gn7" customClass="HeaderDetailCustomView" customModule="RotaIOS" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -200,9 +199,9 @@
                                 <constraint firstItem="qgE-X7-gn7" firstAttribute="leading" secondItem="quB-Na-W6g" secondAttribute="leading" id="Om3-UV-Q3n"/>
                                 <constraint firstItem="4s8-Kp-NN6" firstAttribute="leading" secondItem="quB-Na-W6g" secondAttribute="leading" id="RzD-fl-mcU"/>
                                 <constraint firstAttribute="height" constant="1200" id="Slz-zq-yH7"/>
+                                <constraint firstItem="qgE-X7-gn7" firstAttribute="top" secondItem="quB-Na-W6g" secondAttribute="top" id="UJy-kU-ZEK"/>
                                 <constraint firstAttribute="trailing" secondItem="I5T-vo-uAw" secondAttribute="trailing" id="aYl-9H-qIg"/>
                                 <constraint firstAttribute="bottom" secondItem="r18-Sp-jNI" secondAttribute="bottom" id="d5B-Sg-Etb"/>
-                                <constraint firstItem="qgE-X7-gn7" firstAttribute="top" secondItem="quB-Na-W6g" secondAttribute="top" id="eI2-Qa-4Bb"/>
                                 <constraint firstItem="I5T-vo-uAw" firstAttribute="leading" secondItem="quB-Na-W6g" secondAttribute="leading" id="g3N-YD-wHJ"/>
                                 <constraint firstItem="r18-Sp-jNI" firstAttribute="top" secondItem="4s8-Kp-NN6" secondAttribute="bottom" id="gMA-8j-EqI"/>
                                 <constraint firstAttribute="trailing" secondItem="qgE-X7-gn7" secondAttribute="trailing" id="pQa-VX-Wws"/>
@@ -219,7 +218,6 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Hux-8t-yBq" secondAttribute="bottom" id="07H-UL-hgZ"/>

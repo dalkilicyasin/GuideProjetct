@@ -14,7 +14,6 @@ protocol TempAddPaxesListDelegate {
 }
 
 class TempTouristAddCustomView : UIView{
-    
     var addManuelTouristAddCustomView : AddManuelTouristCustomView?
     @IBOutlet var headerView: UIView!
     @IBOutlet var contentView: UIView!

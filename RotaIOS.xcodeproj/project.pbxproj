@@ -111,6 +111,22 @@
 		D931575F26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931575D26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib */; };
 		D931576226FCB0C0000C91AD /* ZReportTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931576026FCB0C0000C91AD /* ZReportTotalTableViewCell.swift */; };
 		D931576326FCB0C0000C91AD /* ZReportTotalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931576126FCB0C0000C91AD /* ZReportTotalTableViewCell.xib */; };
+		D93157712700AD55000C91AD /* ZReportLongClickMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93157702700AD55000C91AD /* ZReportLongClickMenu.swift */; };
+		D93157732700ADBB000C91AD /* ZReportLongClickMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93157722700ADBB000C91AD /* ZReportLongClickMenu.xib */; };
+		D931577627033A54000C91AD /* ZReportPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931577427033A54000C91AD /* ZReportPaymentViewController.swift */; };
+		D931577727033A54000C91AD /* ZReportPaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931577527033A54000C91AD /* ZReportPaymentViewController.xib */; };
+		D931577927033A99000C91AD /* ZReportPaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931577827033A99000C91AD /* ZReportPaymentView.swift */; };
+		D931577B27036955000C91AD /* ZReportPaymentResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931577A27036955000C91AD /* ZReportPaymentResponseModel.swift */; };
+		D931577D2703698E000C91AD /* ZReportPaymentRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931577C2703698E000C91AD /* ZReportPaymentRequestModel.swift */; };
+		D931578027036D4C000C91AD /* ZReportPaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931577E27036D4C000C91AD /* ZReportPaymentTableViewCell.swift */; };
+		D931578127036D4C000C91AD /* ZReportPaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931577F27036D4C000C91AD /* ZReportPaymentTableViewCell.xib */; };
+		D9315784270486AD000C91AD /* ZReportRefundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9315782270486AD000C91AD /* ZReportRefundTableViewCell.swift */; };
+		D9315785270486AD000C91AD /* ZReportRefundTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9315783270486AD000C91AD /* ZReportRefundTableViewCell.xib */; };
+		D93157882704892B000C91AD /* ZReportRefundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93157862704892B000C91AD /* ZReportRefundViewController.swift */; };
+		D93157892704892B000C91AD /* ZReportRefundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93157872704892B000C91AD /* ZReportRefundViewController.xib */; };
+		D931578B27048C38000C91AD /* ZReportRefundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931578A27048C38000C91AD /* ZReportRefundView.swift */; };
+		D931578D27049614000C91AD /* GetZreportRefundResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931578C27049614000C91AD /* GetZreportRefundResponseModel.swift */; };
+		D931578F270496B4000C91AD /* GetZreportRefundRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931578E270496B4000C91AD /* GetZreportRefundRequestModel.swift */; };
 		D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */; };
 		D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */; };
 		D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93F887226471C1100397283 /* TempTouristAddCustomView.xib */; };
@@ -340,6 +356,22 @@
 		D931575D26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportPriviewTableViewCell.xib; sourceTree = "<group>"; };
 		D931576026FCB0C0000C91AD /* ZReportTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportTotalTableViewCell.swift; sourceTree = "<group>"; };
 		D931576126FCB0C0000C91AD /* ZReportTotalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportTotalTableViewCell.xib; sourceTree = "<group>"; };
+		D93157702700AD55000C91AD /* ZReportLongClickMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportLongClickMenu.swift; sourceTree = "<group>"; };
+		D93157722700ADBB000C91AD /* ZReportLongClickMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportLongClickMenu.xib; sourceTree = "<group>"; };
+		D931577427033A54000C91AD /* ZReportPaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportPaymentViewController.swift; sourceTree = "<group>"; };
+		D931577527033A54000C91AD /* ZReportPaymentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportPaymentViewController.xib; sourceTree = "<group>"; };
+		D931577827033A99000C91AD /* ZReportPaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportPaymentView.swift; sourceTree = "<group>"; };
+		D931577A27036955000C91AD /* ZReportPaymentResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportPaymentResponseModel.swift; sourceTree = "<group>"; };
+		D931577C2703698E000C91AD /* ZReportPaymentRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportPaymentRequestModel.swift; sourceTree = "<group>"; };
+		D931577E27036D4C000C91AD /* ZReportPaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportPaymentTableViewCell.swift; sourceTree = "<group>"; };
+		D931577F27036D4C000C91AD /* ZReportPaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportPaymentTableViewCell.xib; sourceTree = "<group>"; };
+		D9315782270486AD000C91AD /* ZReportRefundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportRefundTableViewCell.swift; sourceTree = "<group>"; };
+		D9315783270486AD000C91AD /* ZReportRefundTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportRefundTableViewCell.xib; sourceTree = "<group>"; };
+		D93157862704892B000C91AD /* ZReportRefundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportRefundViewController.swift; sourceTree = "<group>"; };
+		D93157872704892B000C91AD /* ZReportRefundViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportRefundViewController.xib; sourceTree = "<group>"; };
+		D931578A27048C38000C91AD /* ZReportRefundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportRefundView.swift; sourceTree = "<group>"; };
+		D931578C27049614000C91AD /* GetZreportRefundResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetZreportRefundResponseModel.swift; sourceTree = "<group>"; };
+		D931578E270496B4000C91AD /* GetZreportRefundRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetZreportRefundRequestModel.swift; sourceTree = "<group>"; };
 		D93F885726446D4700397283 /* GetHotelsMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHotelsMobileResponseModel.swift; sourceTree = "<group>"; };
 		D93F886D26471B4D00397283 /* TempTouristAddCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTouristAddCustomView.swift; sourceTree = "<group>"; };
 		D93F887226471C1100397283 /* TempTouristAddCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempTouristAddCustomView.xib; sourceTree = "<group>"; };
@@ -597,6 +629,12 @@
 				D931575226FA5E72000C91AD /* ZReportMoreDetailViewController.swift */,
 				D931575326FA5E72000C91AD /* ZReportMoreDetailViewController.xib */,
 				D931575626FA5E88000C91AD /* ZReportMoreDetailView.swift */,
+				D931577427033A54000C91AD /* ZReportPaymentViewController.swift */,
+				D931577527033A54000C91AD /* ZReportPaymentViewController.xib */,
+				D931577827033A99000C91AD /* ZReportPaymentView.swift */,
+				D93157862704892B000C91AD /* ZReportRefundViewController.swift */,
+				D93157872704892B000C91AD /* ZReportRefundViewController.xib */,
+				D931578A27048C38000C91AD /* ZReportRefundView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -623,6 +661,8 @@
 				D95C203B26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift */,
 				D931574226F8DF49000C91AD /* GetZReportRequestModel.swift */,
 				D931575A26FB4A0F000C91AD /* GetReportDataRequestModel.swift */,
+				D931577C2703698E000C91AD /* ZReportPaymentRequestModel.swift */,
+				D931578E270496B4000C91AD /* GetZreportRefundRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -654,6 +694,8 @@
 				D931573826F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift */,
 				D931574026F8DF17000C91AD /* GetZReportResponseModel.swift */,
 				D931575826FB48AA000C91AD /* GetReportDataResponseModel.swift */,
+				D931577A27036955000C91AD /* ZReportPaymentResponseModel.swift */,
+				D931578C27049614000C91AD /* GetZreportRefundResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -729,6 +771,8 @@
 				D94C4083265D02AF00EBC7CD /* FavoriteListCustomView.xib */,
 				D968A88226BDAC94000FB00A /* MyTourStatusView.swift */,
 				D968A88426BDADE7000FB00A /* MyTourStatusView.xib */,
+				D93157702700AD55000C91AD /* ZReportLongClickMenu.swift */,
+				D93157722700ADBB000C91AD /* ZReportLongClickMenu.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -770,6 +814,10 @@
 				D931575D26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib */,
 				D931576026FCB0C0000C91AD /* ZReportTotalTableViewCell.swift */,
 				D931576126FCB0C0000C91AD /* ZReportTotalTableViewCell.xib */,
+				D931577E27036D4C000C91AD /* ZReportPaymentTableViewCell.swift */,
+				D931577F27036D4C000C91AD /* ZReportPaymentTableViewCell.xib */,
+				D9315782270486AD000C91AD /* ZReportRefundTableViewCell.swift */,
+				D9315783270486AD000C91AD /* ZReportRefundTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -895,6 +943,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D931577727033A54000C91AD /* ZReportPaymentViewController.xib in Resources */,
 				D95C203226F0CA70007D1506 /* SpeakingHoursViewController.xib in Resources */,
 				D9A48D0326B1895500D28A0A /* DocumentsTableViewCell.xib in Resources */,
 				BF44C9242640014800238035 /* MainPAgeViewController.xib in Resources */,
@@ -924,6 +973,7 @@
 				D9561A46269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib in Resources */,
 				D931576326FCB0C0000C91AD /* ZReportTotalTableViewCell.xib in Resources */,
 				BF44C97C264001AA00238035 /* FooterCustomView.xib in Resources */,
+				D9315785270486AD000C91AD /* ZReportRefundTableViewCell.xib in Resources */,
 				BF44C92B2640015400238035 /* MainPageCustomView.xib in Resources */,
 				D9561A42269E099C00AA75E5 /* AnnoucmentsTableViewCell.xib in Resources */,
 				BF44C998264001C400238035 /* PaxPageCustomView.xib in Resources */,
@@ -945,12 +995,15 @@
 				D94C407A265BE36400EBC7CD /* FavoriteCustomView.xib in Resources */,
 				D9DCB19E26BBEB900064A040 /* MyTourSalesViewController.xib in Resources */,
 				D95C204026F216B8007D1506 /* SpeakingHoursTableViewCell.xib in Resources */,
+				D93157732700ADBB000C91AD /* ZReportLongClickMenu.xib in Resources */,
 				D97FB5BB26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib in Resources */,
 				D968A88526BDADE7000FB00A /* MyTourStatusView.xib in Resources */,
 				BF44C9C72640022000238035 /* StepsPageCustomView.xib in Resources */,
+				D931578127036D4C000C91AD /* ZReportPaymentTableViewCell.xib in Resources */,
 				D931575F26FB58A3000C91AD /* ZReportPriviewTableViewCell.xib in Resources */,
 				D9561A3C269DF27E00AA75E5 /* AnnoucmentsViewController.xib in Resources */,
 				D97FB59926C15F650099F28B /* MyTourSalesDetailPageTableViewCell.xib in Resources */,
+				D93157892704892B000C91AD /* ZReportRefundViewController.xib in Resources */,
 				BF44C9622640019200238035 /* HeaderCustomView.xib in Resources */,
 				D931575526FA5E72000C91AD /* ZReportMoreDetailViewController.xib in Resources */,
 			);
@@ -1085,6 +1138,7 @@
 				D931573926F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift in Sources */,
 				BF44C9D52640022F00238035 /* AddStepCustomView.swift in Sources */,
 				D97FB5B426C6ABC10099F28B /* MyShoppinSaleDetailViewController.swift in Sources */,
+				D931578F270496B4000C91AD /* GetZreportRefundRequestModel.swift in Sources */,
 				BF44C8F4264000E900238035 /* GetGuideMarketResponseModel.swift in Sources */,
 				D931576226FCB0C0000C91AD /* ZReportTotalTableViewCell.swift in Sources */,
 				D9A48CFF26B1408A00D28A0A /* DocumentsView.swift in Sources */,
@@ -1100,12 +1154,14 @@
 				D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */,
 				D931574126F8DF17000C91AD /* GetZReportResponseModel.swift in Sources */,
 				D93F889A264BC9A300397283 /* GetSelectListResponseModel.swift in Sources */,
+				D931577D2703698E000C91AD /* ZReportPaymentRequestModel.swift in Sources */,
 				BF44C9CE2640022600238035 /* StepsPageTableViewCell.swift in Sources */,
 				D9956BFC26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift in Sources */,
 				D95C202826EFDD83007D1506 /* GetHotelSelectListByAreaRefResponseModel.swift in Sources */,
 				BF44C97D264001AA00238035 /* FooterCustomView.swift in Sources */,
 				BF44C906264000FA00238035 /* ServiceEndPoint.swift in Sources */,
 				BF44C9A0264001C900238035 /* PaxPageTableViewCell.swift in Sources */,
+				D931577927033A99000C91AD /* ZReportPaymentView.swift in Sources */,
 				D97FB59126C147880099F28B /* GetTourDetailForMobileRequestModel.swift in Sources */,
 				BF44C8E8264000E200238035 /* ExtensionUIViewController.swift in Sources */,
 				BF44C9C1264001F800238035 /* PresentationController.swift in Sources */,
@@ -1114,6 +1170,7 @@
 				D931575B26FB4A0F000C91AD /* GetReportDataRequestModel.swift in Sources */,
 				BF44C91C2640013B00238035 /* LoginView.swift in Sources */,
 				BF44C9152640011800238035 /* BaseTableViewCell.swift in Sources */,
+				D931578027036D4C000C91AD /* ZReportPaymentTableViewCell.swift in Sources */,
 				D9956C0626DC022B006CFC6D /* GetCancelRulesRequestModel.swift in Sources */,
 				BF44C90A264000FA00238035 /* BaseMessageItem.swift in Sources */,
 				BF44C9252640014800238035 /* MainPAgeViewController.swift in Sources */,
@@ -1126,6 +1183,7 @@
 				BF75706D26753C2E002EA494 /* BaseViewController.swift in Sources */,
 				D931575126FA2277000C91AD /* ZReportDetailView.swift in Sources */,
 				BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */,
+				D93157712700AD55000C91AD /* ZReportLongClickMenu.swift in Sources */,
 				BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */,
 				D9561A3E269DF31A00AA75E5 /* AnnoucmentsView.swift in Sources */,
 				D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */,
@@ -1137,6 +1195,7 @@
 				BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */,
 				D95C203826F20184007D1506 /* SpeakingHoursDetailView.swift in Sources */,
 				BF44C9DC2640023400238035 /* AddStepTableViewCell.swift in Sources */,
+				D931577627033A54000C91AD /* ZReportPaymentViewController.swift in Sources */,
 				D951B3C8264009D000A0F76C /* GetGuideMarketRequestModel.swift in Sources */,
 				BF44C98A264001B900238035 /* HotelPageCustomView.swift in Sources */,
 				BF44C9592640018B00238035 /* OfflineSalesViewController.swift in Sources */,
@@ -1148,11 +1207,13 @@
 				D9956C0E26DE3DAA006CFC6D /* GetPaymentTypeResponseModel.swift in Sources */,
 				D97FB58F26C146B20099F28B /* GetTourDetailForMobileResponseModel.swift in Sources */,
 				D931574626FA1DBD000C91AD /* ZReportTableViewCell.swift in Sources */,
+				D931578B27048C38000C91AD /* ZReportRefundView.swift in Sources */,
 				D931573F26F8C206000C91AD /* ZReportView.swift in Sources */,
 				D9956BFA26D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift in Sources */,
 				D9DCB19D26BBEB900064A040 /* MyTourSalesViewController.swift in Sources */,
 				D9956BFF26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift in Sources */,
 				D931575926FB48AA000C91AD /* GetReportDataResponseModel.swift in Sources */,
+				D93157882704892B000C91AD /* ZReportRefundViewController.swift in Sources */,
 				D97FB5AB26C6860A0099F28B /* MyShoppingSaleView.swift in Sources */,
 				BF44C9C82640022000238035 /* StepsPageCustomView.swift in Sources */,
 				BF44C8E9264000E200238035 /* ExtensionUIDevice.swift in Sources */,
@@ -1196,6 +1257,7 @@
 				BF44C983264001B000238035 /* MainTextCustomView.swift in Sources */,
 				BF44C90F2640010200238035 /* Defaults.swift in Sources */,
 				BF44C95A2640018B00238035 /* MyTourSaleViewController.swift in Sources */,
+				D931577B27036955000C91AD /* ZReportPaymentResponseModel.swift in Sources */,
 				D95C203C26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift in Sources */,
 				D9956C0826DE2E6E006CFC6D /* GetCalculateCancelFeeResponseModel.swift in Sources */,
 				D97FB5A826C685E90099F28B /* MyShoppingSaleViewController.swift in Sources */,
@@ -1206,10 +1268,12 @@
 				D97FB5B726C6AC550099F28B /* MyShoopingSaleDetailView.swift in Sources */,
 				D97FB58926C075B90099F28B /* MyTourSaleDetailPageView.swift in Sources */,
 				D97FB5A526C408BE0099F28B /* MyTourSaleMoreDetailView.swift in Sources */,
+				D9315784270486AD000C91AD /* ZReportRefundTableViewCell.swift in Sources */,
 				BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */,
 				D95C203126F0CA70007D1506 /* SpeakingHoursViewController.swift in Sources */,
 				BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */,
 				D991469526D68CBF0010E74F /* CancelVoucherView.swift in Sources */,
+				D931578D27049614000C91AD /* GetZreportRefundResponseModel.swift in Sources */,
 				D93F88A92651AB1000397283 /* GetTouristInfoResponseModel.swift in Sources */,
 				D9DCB1A026BBECE50064A040 /* MyTourSaleView.swift in Sources */,
 				D991469226D68B620010E74F /* CancelVoucherViewController.swift in Sources */,
@@ -1382,7 +1446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.2;
+				CURRENT_PROJECT_VERSION = 2.3;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1404,7 +1468,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.2;
+				CURRENT_PROJECT_VERSION = 2.3;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

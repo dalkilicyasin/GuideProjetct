@@ -21,7 +21,7 @@ public enum ServiceEndPoint: String {
     case GetGuideAnnoucemenstAndDocuments = "/api//api/Announcement/GetGuideAnnouncementsAndDocuments"
     case TourGetSelectList = "/api/api/TourDefinition/GetSelectList"
     case TourGetTourDetailForMobile = "/api/api/TourSale/GetTourDetailForMobile"
-    case GetIndShopDetailForMobile = "/api/api/IndShop/GetIndShopDetailForMobile"
+    case GetIndShopDetailForMobile = "/api/api/IndShop/GetIndShopDetailForMobile2"
     case GetVoucherDetail = "/api/api/TourSale/GetVoucherDetail"
     case GetMobilCancelRules = "/api/api/TourSaleCancel/GetMobileCancelRules"
     case GetPaymentTypes = "/api/api/TourSale/GetPaymentTypes"
@@ -32,6 +32,8 @@ public enum ServiceEndPoint: String {
     case GetSpeakTimeForMobile = "/api/api/GSpeakTime/GetSpeakTimeForMobile"
     case GetSearchZReport = "/api/api/AccountingZReportMobile/SearchZReport"
     case GetZReportData = "/api/api/AccountingZReportMobile/GetReportData"
+    case GetZReportPayments = "/api/api/AccountingZReportMobile/GetReportPayments"
+    case GetZReportRefunds = "/api/api/AccountingZReportMobile/GetReportRefunds"
 }
 
 
