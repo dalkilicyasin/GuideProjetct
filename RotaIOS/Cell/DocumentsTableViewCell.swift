@@ -29,6 +29,6 @@ class DocumentsTableViewCell: BaseTableViewCell {
         super.setSelected(selected, animated: animated)
     }
     @IBAction func fileUrlClickedButton(_ sender: Any) {
-        UIApplication.shared.open(URL(string: "https://rota-uat.odeontours.com/api/\(self.fileURL)" )! as URL , options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: "https://www.google.com" )! as URL , options: [:], completionHandler: nil)
     }
 }

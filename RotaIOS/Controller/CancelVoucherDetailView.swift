@@ -54,18 +54,20 @@ final class CancelVoucherDetailView : UIView {
         self.viewNoteMenu.headerLAbel.text = "Note"
     }
     
+ 
+    
     func setConfigure(model : GetVoucherDetailResponseModel ) {
         self.labelExcursionLabel.text = model.tourName
         self.labelExcursionDate.text = model.tourDate
         self.labelReservationNo.text = model.pax_ResNo
         self.labelSaleDate.text = model.saleDate
         self.labelResNo.text = model.pax_ResNo
-        self.labelTourist.text = model.tourist
+        self.labelTourist.text = model.totalPaxName
         self.labelTourOperator.text = model.operatorName
         self.labelHotel.text = model.hotelName
         self.labelTotalPax.text = model.totalPax
         self.labelVoucherNo.text = model.voucherNo
-        self.labelCancelationDate.text = model.cancelDate
+        self.labelCancelationDate.text = model.cancelDate // bugünün tarihini ekleyeceğiz.
         self.labelPayment.text = "\(model.totalAmount ?? 0) \(model.currencyDesc ?? "")"
         self.saleId = model.saleId ?? 0
         self.currencyId = model.currencyId ?? 0

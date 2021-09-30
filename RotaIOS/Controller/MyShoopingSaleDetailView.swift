@@ -15,7 +15,7 @@ final class MyShoopingSaleDetailView : UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.viewHeaderDetailView.labelHeaderDetailView.text = "My Shopp Sales"
+        self.viewHeaderDetailView.labelHeaderDetailView.text = "My Shopping Sales"
         self.tableView.layer.cornerRadius = 10
         self.tableView.backgroundColor = UIColor.grayColor
     }

@@ -95,7 +95,7 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
         self.paymentTypeMenu.show()
     }
     @IBAction func cancelVoucherButtonClicked(_ sender: Any) {
-        let tourSaleRequestCancelMobile = GetTourSaleCancelMobileRequestModel.init(GuideId: String(userDefaultsData.getGuideId()) , CancelConditionId: String(self.cancelRuleId) , Note: "", ChangeVoucher: self.viewCancelVoucherDetailView.labelVoucherNo.text ??  "", TourSaleId: String(self.viewCancelVoucherDetailView.saleId) , Amount: self.viewCancelVoucherDetailView.labelPayment.text ?? "0.00", CurrencyId: String(self.viewCancelVoucherDetailView.currencyId) , PaymentType: "CASH")
+        let tourSaleRequestCancelMobile = GetTourSaleCancelMobileRequestModel.init(GuideId: String(userDefaultsData.getGuideId()) , CancelConditionId: String(self.cancelRuleId) , Note: "", ChangeVoucher: "", TourSaleId: String(self.viewCancelVoucherDetailView.saleId) , Amount: self.viewCancelVoucherDetailView.labelCancelationFee.text ?? "", CurrencyId: String(self.viewCancelVoucherDetailView.currencyId) , PaymentType: "CASH")
         NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleCancelMobile, requestModel: tourSaleRequestCancelMobile ) { (response: GetTourSaleCancelMobileResponseModel) in
             if response.IsSuccesful ?? false{
                 self.message = response.Message ?? ""
