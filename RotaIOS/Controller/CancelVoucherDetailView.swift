@@ -35,9 +35,16 @@ final class CancelVoucherDetailView : UIView {
     var saleId = 0
     var currencyId = 0
     var paymentTypeMenu = DropDown()
+    let date = Date()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let df = DateFormatter()
+        df.dateFormat = "dd-MM-yyyy"
+        let dateString = df.string(from: date)
+        print(dateString)
+        self.labelCancelationDate.text = dateString
         self.viewHeaderDetailView.labelHeaderDetailView.text = "Cancel Voucher"
         self.viewContentView.backgroundColor = UIColor.black
         self.viewContentView.layer.cornerRadius = 10
@@ -53,9 +60,7 @@ final class CancelVoucherDetailView : UIView {
         self.viewNoteMenu.mainText.isHidden = false
         self.viewNoteMenu.headerLAbel.text = "Note"
     }
-    
- 
-    
+   
     func setConfigure(model : GetVoucherDetailResponseModel ) {
         self.labelExcursionLabel.text = model.tourName
         self.labelExcursionDate.text = model.tourDate
@@ -67,7 +72,6 @@ final class CancelVoucherDetailView : UIView {
         self.labelHotel.text = model.hotelName
         self.labelTotalPax.text = model.totalPax
         self.labelVoucherNo.text = model.voucherNo
-        self.labelCancelationDate.text = model.cancelDate // bugünün tarihini ekleyeceğiz.
         self.labelPayment.text = "\(model.totalAmount ?? 0) \(model.currencyDesc ?? "")"
         self.saleId = model.saleId ?? 0
         self.currencyId = model.currencyId ?? 0

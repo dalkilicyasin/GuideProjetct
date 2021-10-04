@@ -19,9 +19,14 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
     var cancelRuleId = 0
     var message = ""
     var paymenTypeList : [String] = ["CASH","CARD"]
+    var paymentType = ""
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        
         let cancalRulesRequestModel = GetCancelRulesRequestModel.init(saleId: voucherDetailInCancelVoucherDetailPage?.saleId ?? 0)
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint:.GetMobilCancelRules , method: .get, parameters: cancalRulesRequestModel.requestPathString()) { (response : [GetCancelRulesResponseModel]) in
             if response.count > 0 {
@@ -40,7 +45,6 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
             }
         }
         self.viewCancelVoucherDetailView.setConfigure(model: self.voucherDetailInCancelVoucherDetailPage ?? GetVoucherDetailResponseModel.init())
-        
         self.cancelRulesMenu.selectionAction = { index, title in
             self.viewCancelVoucherDetailView.viewCancelReason.mainLabel.text = title
             let filtered = self.cancelRulesList.filter{($0.text?.contains(title) ?? false)}
@@ -50,6 +54,7 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
             }
             self.paymentTypeMenu.selectionAction = { index, title in
                 self.viewCancelVoucherDetailView.viewPaymentType.mainLabel.text = title
+                self.paymentType = title
             }
             self.paymentTypeMenu.dataSource = self.paymenTypeList
             self.paymentTypeMenu.backgroundColor = UIColor.grayColor
@@ -95,7 +100,7 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
         self.paymentTypeMenu.show()
     }
     @IBAction func cancelVoucherButtonClicked(_ sender: Any) {
-        let tourSaleRequestCancelMobile = GetTourSaleCancelMobileRequestModel.init(GuideId: String(userDefaultsData.getGuideId()) , CancelConditionId: String(self.cancelRuleId) , Note: "", ChangeVoucher: "", TourSaleId: String(self.viewCancelVoucherDetailView.saleId) , Amount: self.viewCancelVoucherDetailView.labelCancelationFee.text ?? "", CurrencyId: String(self.viewCancelVoucherDetailView.currencyId) , PaymentType: "CASH")
+        let tourSaleRequestCancelMobile = GetTourSaleCancelMobileRequestModel.init(GuideId: String(userDefaultsData.getGuideId()) , CancelConditionId: String(self.cancelRuleId) , Note: "", ChangeVoucher: "", TourSaleId: String(self.viewCancelVoucherDetailView.saleId) , Amount: self.viewCancelVoucherDetailView.labelCancelationFee.text ?? "", CurrencyId: String(self.viewCancelVoucherDetailView.currencyId) , PaymentType: self.paymentType)
         NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleCancelMobile, requestModel: tourSaleRequestCancelMobile ) { (response: GetTourSaleCancelMobileResponseModel) in
             if response.IsSuccesful ?? false{
                 self.message = response.Message ?? ""

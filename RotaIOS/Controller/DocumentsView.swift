@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 
 final class DocumentsView : UIView {
- 
     @IBOutlet weak var viewHeaderDetailCustomView: HeaderDetailCustomView!
     @IBOutlet weak var tableView: UITableView!
     var announcementsDetail : [Record] = []
+    var fileURLInView = ""
+   
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -58,7 +59,10 @@ extension DocumentsView : UITableViewDelegate, UITableViewDataSource {
         cell.labelDocumentsHeader.text = self.announcementsDetail[indexPath.row].header
         cell.labelDocumentsDescription.text = self.announcementsDetail[indexPath.row].description
         cell.buttonFileUrl.setTitle(self.announcementsDetail[indexPath.row].fileUrl, for: .normal)
-        cell.fileURL = self.announcementsDetail[indexPath.row].fileUrl ?? ""
+        //self.fileURLInView = self.announcementsDetail[0].fileUrl ?? ""
+        let stringWithoutSpaces = (self.announcementsDetail[indexPath.row].fileUrl ?? "www.google.com").replacingOccurrences(of: " ", with: "%20")
+        cell.fileURL = stringWithoutSpaces
+        print(stringWithoutSpaces)
         return cell
     }
 }

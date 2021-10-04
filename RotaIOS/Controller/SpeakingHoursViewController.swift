@@ -22,6 +22,7 @@ class SpeakingHoursViewController: UIViewController {
     var hotelNameList : [String] = []
     var hotelFilteredList : [GetHotelSelectListByAreaRefResponseModel] = []
     var hotelId = 0
+    var hotelIdStringType = ""
     var guideList : [GuideGetSelectListResponseModel] = []
     var guideListMenu = DropDown()
     var guideNameList : [String] = []
@@ -54,6 +55,7 @@ class SpeakingHoursViewController: UIViewController {
                     self.areaNameList.append(item.text ?? "")
                 }
                 self.areaListMenu.dataSource = self.areaNameList
+                self.areaListMenu.dataSource.insert("", at: 0)
                 self.areaListMenu.backgroundColor = UIColor.grayColor
                 self.areaListMenu.separatorColor = UIColor.gray
                 self.areaListMenu.textColor = .white
@@ -70,22 +72,27 @@ class SpeakingHoursViewController: UIViewController {
             for item in self.areaFilteredList {
                 self.areaId = item.id ?? ""
             }
-            let getHotelSelectListRequestModel = GetHotelSelectListByAreaRefRequestModel.init(areaId: self.areaId)
-            NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetHotelSelectListByAreaRef , method: .get, parameters: getHotelSelectListRequestModel.requestPathString()) {(response : [GetHotelSelectListByAreaRefResponseModel]) in
-               if  response.count > 0 {
-                self.hotelList = response
-                for item in self.hotelList {
-                    self.hotelNameList.append(item.text ?? "")
+            if self.areaId != "" {
+                let getHotelSelectListRequestModel = GetHotelSelectListByAreaRefRequestModel.init(areaId: self.areaId)
+                NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetHotelSelectListByAreaRef , method: .get, parameters: getHotelSelectListRequestModel.requestPathString()) {(response : [GetHotelSelectListByAreaRefResponseModel]) in
+                   if  response.count > 0 {
+                    self.hotelList = response
+                    for item in self.hotelList {
+                        self.hotelNameList.append(item.text ?? "")
+                    }
+                    self.hotelListMenu.dataSource = self.hotelNameList
+                    self.hotelListMenu.backgroundColor = UIColor.grayColor
+                    self.hotelListMenu.separatorColor = UIColor.gray
+                    self.hotelListMenu.textColor = .white
+                    self.hotelListMenu.anchorView = self.viewSpeakingHoursView.viewHotel
+                    self.hotelListMenu.topOffset = CGPoint(x: 0, y:-((self.hotelListMenu.anchorView?.plainView.bounds.height)! - 80))
+                    self.areaId = ""
+                   }else {
+                    print("hotellist data has not recived")
+                   }
                 }
-                self.hotelListMenu.dataSource = self.hotelNameList
-                self.hotelListMenu.backgroundColor = UIColor.grayColor
-                self.hotelListMenu.separatorColor = UIColor.gray
-                self.hotelListMenu.textColor = .white
-                self.hotelListMenu.anchorView = self.viewSpeakingHoursView.viewHotel
-                self.hotelListMenu.topOffset = CGPoint(x: 0, y:-((self.hotelListMenu.anchorView?.plainView.bounds.height)! - 80))
-               }else {
-                print("hotellist data has not recived")
-               }
+            }else {
+                self.hotelListMenu.dataSource.removeAll()
             }
         }
         self.hotelListMenu.selectionAction = { index , item in
@@ -95,6 +102,7 @@ class SpeakingHoursViewController: UIViewController {
             for item in self.hotelFilteredList {
                 self.hotelId = item.value ?? 0
             }
+            self.hotelIdStringType = String(self.hotelId)
         }
         
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetGuideSelectList, method:.get, parameters: "") { (response : [GuideGetSelectListResponseModel]) in
@@ -170,8 +178,9 @@ class SpeakingHoursViewController: UIViewController {
         self.guideListMenu.direction = .bottom
         self.guideListMenu.show()
     }
+    
     @IBAction func searchButtonTapped(_ sender: Any) {
-        let getSpeakTimeRequestModel = GetSpeakTimeForMobileRequestModel.init(HotelId: String(self.hotelId), date: self.currentDate , guideId: String(self.guideId), areaId: self.areaId)
+        let getSpeakTimeRequestModel = GetSpeakTimeForMobileRequestModel.init(HotelId: String(self.hotelIdStringType), date: self.currentDate , guideId: String(self.guideId), areaId: self.areaId)
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetSpeakTimeForMobile, method: .get, parameters: getSpeakTimeRequestModel.requestPathString()) { (response : [GetSpeakTimeForMobileResponseModel]) in
             if response.count > 0 {
                 self.speakingHoursList = response

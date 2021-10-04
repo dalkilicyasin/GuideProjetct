@@ -23,12 +23,13 @@ class DocumentsTableViewCell: BaseTableViewCell {
         self.viewDocumentsView.backgroundColor = UIColor.mainTextColor
         self.viewDocumentsView.layer.cornerRadius = 10
         self.viewDocumentsView.clipsToBounds = true
+        print(self.fileURL)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     @IBAction func fileUrlClickedButton(_ sender: Any) {
-        UIApplication.shared.open(URL(string: "https://www.google.com" )! as URL , options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: self.fileURL )! as URL , options: [:], completionHandler: nil)
     }
 }

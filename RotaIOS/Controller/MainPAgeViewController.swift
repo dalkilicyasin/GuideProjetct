@@ -8,12 +8,9 @@
 import UIKit
 
 class MainPAgeViewController: BaseViewController {
-    
-    
     @IBOutlet var mainPageView: MainPageView!
     let date = Date()
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
