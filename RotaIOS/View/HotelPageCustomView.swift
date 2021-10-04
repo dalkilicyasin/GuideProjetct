@@ -51,6 +51,7 @@ class HotelPageCustomView : UIView {
                 for listOfArray in self.marketList {
                     self.marketMenu.dataSource.append(listOfArray.text ?? "")
                 }
+                self.marketMenu.dataSource.insert("", at: 0)
                 self.marketMenu.backgroundColor = UIColor.grayColor
                 self.marketMenu.separatorColor = UIColor.gray
                 self.marketMenu.textColor = .white
@@ -78,6 +79,7 @@ class HotelPageCustomView : UIView {
                         self.tempHotelMenu.append(listofArray.text ?? "")
                     }
                     self.hotelMenu.dataSource = self.tempHotelMenu
+                    self.hotelMenu.dataSource.insert("", at: 0)
                     self.hotelMenu.backgroundColor = UIColor.grayColor
                     self.hotelMenu.separatorColor = UIColor.gray
                     self.hotelMenu.textColor = .white
@@ -90,6 +92,7 @@ class HotelPageCustomView : UIView {
                         self.tempHotelMenu.append(listofArray.text ?? "")
                     }
                     self.hotelMenu.dataSource = self.tempHotelMenu
+                    self.hotelMenu.dataSource.insert("", at: 0)
                     self.hotelMenu.backgroundColor = UIColor.grayColor
                     self.hotelMenu.separatorColor = UIColor.gray
                     self.hotelMenu.textColor = .white

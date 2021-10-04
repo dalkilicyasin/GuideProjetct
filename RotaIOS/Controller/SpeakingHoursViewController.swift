@@ -81,6 +81,7 @@ class SpeakingHoursViewController: UIViewController {
                         self.hotelNameList.append(item.text ?? "")
                     }
                     self.hotelListMenu.dataSource = self.hotelNameList
+                    self.hotelListMenu.dataSource.insert("", at: 0)
                     self.hotelListMenu.backgroundColor = UIColor.grayColor
                     self.hotelListMenu.separatorColor = UIColor.gray
                     self.hotelListMenu.textColor = .white
@@ -112,6 +113,7 @@ class SpeakingHoursViewController: UIViewController {
                     self.guideNameList.append(item.text ?? "")
                 }
                 self.guideListMenu.dataSource = self.guideNameList
+                self.guideListMenu.dataSource.insert("", at: 0)
                 self.guideListMenu.backgroundColor = UIColor.grayColor
                 self.guideListMenu.separatorColor = UIColor.gray
                 self.guideListMenu.textColor = .white
@@ -140,6 +142,11 @@ class SpeakingHoursViewController: UIViewController {
         
         let tapGestureGuide = UITapGestureRecognizer(target: self, action: #selector(tappedGuideListMenu))
         self.viewSpeakingHoursView.viewGuide.addGestureRecognizer(tapGestureGuide)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.viewSpeakingHoursView.searchHotel.endEditing(true)
+        self.viewSpeakingHoursView.searchGuide.endEditing(true)
     }
     
     func createCurrentDatePicker() {
@@ -193,6 +200,7 @@ class SpeakingHoursViewController: UIViewController {
 }
 
 extension SpeakingHoursViewController : UISearchBarDelegate {
+   
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.filteredData = []
         if searchText.elementsEqual(""){
@@ -223,3 +231,4 @@ extension SpeakingHoursViewController : UISearchBarDelegate {
         }
     }
 }
+

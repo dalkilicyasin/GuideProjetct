@@ -80,6 +80,7 @@ class MyTourSalesViewController: UIViewController {
                     self.tourListInTourmenu.append(item.text ?? "")
                 }
                 self.tourMenu.dataSource = self.tourListInTourmenu
+                self.tourMenu.dataSource.insert("", at: 0)
                 self.tourMenu.backgroundColor = UIColor.grayColor
                 self.tourMenu.separatorColor = UIColor.gray
                 self.tourMenu.textColor = .white
