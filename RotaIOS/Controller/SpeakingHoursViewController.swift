@@ -67,6 +67,7 @@ class SpeakingHoursViewController: UIViewController {
         }
         self.areaListMenu.selectionAction = {index, item in
             self.viewSpeakingHoursView.viewRegion.mainLabel.text = item
+            self.areaId = ""
             let filtered = self.areaList.filter{($0.text?.contains(item)) ?? false}
             self.areaFilteredList = filtered
             for item in self.areaFilteredList {
@@ -87,7 +88,6 @@ class SpeakingHoursViewController: UIViewController {
                     self.hotelListMenu.textColor = .white
                     self.hotelListMenu.anchorView = self.viewSpeakingHoursView.viewHotel
                     self.hotelListMenu.topOffset = CGPoint(x: 0, y:-((self.hotelListMenu.anchorView?.plainView.bounds.height)! - 80))
-                    self.areaId = ""
                    }else {
                     print("hotellist data has not recived")
                    }
@@ -99,12 +99,17 @@ class SpeakingHoursViewController: UIViewController {
         }
         self.hotelListMenu.selectionAction = { index , item in
             self.viewSpeakingHoursView.viewHotel.mainLabel.text = item
+            self.hotelId = 0
             let filtered = self.hotelList.filter{($0.text?.contains(item)) ?? false}
             self.hotelFilteredList = filtered
             for item in self.hotelFilteredList {
                 self.hotelId = item.value ?? 0
             }
-            self.hotelIdStringType = String(self.hotelId)
+            if self.hotelId == 0 {
+                self.hotelIdStringType = ""
+            }else {
+                self.hotelIdStringType = String(self.hotelId)
+            }
         }
         
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetGuideSelectList, method:.get, parameters: "") { (response : [GuideGetSelectListResponseModel]) in
