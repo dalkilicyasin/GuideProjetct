@@ -82,16 +82,12 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.stepsPageCustomView?.isHidden = true
                 self.proceedPageCustomView?.isHidden = true
                 self.animatedCustomView(customView: HotelPageCustomView())
-               
             }else {
                 self.hotelPageCustomView?.isHidden = false
                 self.paxPageCustomView?.isHidden = true
                 self.stepsPageCustomView?.isHidden = true
                 self.proceedPageCustomView?.isHidden = true
             }
-
-            
-            
         }else if tapped == 1 {
             self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             self.hotelPageCustomView?.hotelPageDlegate = self
@@ -158,10 +154,19 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                //  self.animatedCustomView(customView: ProceedPageCustomView())
                  
                 // self.lastUIView.removeFromSuperview()
+                self.paxPageCustomView?.isHidden = true
+                self.hotelPageCustomView?.isHidden = true
+                self.stepsPageCustomView?.isHidden = true
                  self.footerView.buttonHiding(hidePrintbutton: false, hideButton: true)
                  UIView.animate(withDuration: 0, animations: { [self] in
                      self.proceedPageCustomView = ProceedPageCustomView()
-                  self.proceedPageCustomView?.paxListinProceedPage = self.paxesListinShopView
+                      self.proceedPageCustomView?.paxListinProceedPage = self.paxesListinShopView
+                    self.proceedPageCustomView?.paxListinProceedPage = self.paxesListinShopView
+                    self.proceedPageCustomView?.stepsListinProceedPage = self.stepsListinShopView
+                    self.proceedPageCustomView?.adultCountinProceedPage = self.adultCount // procced page de değer doğru geliyormu görmek için koydum
+                    self.proceedPageCustomView?.childCountinProceedPage = self.childCount
+                    self.proceedPageCustomView?.infantCountinProceedPage = self.infantCount
+                    self.proceedPageCustomView?.proceedPageDelegate = self
                      self.contentView.addSubview(proceedPageCustomView!)
                      proceedPageCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.contentView.frame.size.height)
                  }, completion: { (finished) in
@@ -171,7 +176,6 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                  })
                 // self.lastUIView = self.proceedPageCustomView!
                 self.isPaxesListChange = false
-                self.isStepListChange = false
             }else {
                 self.proceedPageCustomView?.isHidden = false
                 self.paxPageCustomView?.isHidden = true
