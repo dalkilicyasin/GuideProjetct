@@ -94,6 +94,7 @@ class SpeakingHoursViewController: UIViewController {
                 }
             }else {
                 self.hotelListMenu.dataSource.removeAll()
+                self.hotelListMenu.dataSource.insert("", at: 0)
             }
         }
         self.hotelListMenu.selectionAction = { index , item in
@@ -193,40 +194,50 @@ class SpeakingHoursViewController: UIViewController {
                 self.speakingHoursList = response
                 self.otiPushViewController(viewController: SpeakingHoursDetailViewController.init(tourDetailListInDetailPage: self.speakingHoursList))
             }else{
-                print("speaktime data has not recived")
+                let alert = UIAlertController(title: "Error", message: "Sorry, Cannot find SH", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
 }
 
 extension SpeakingHoursViewController : UISearchBarDelegate {
-   
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.filteredData = []
-        if searchText.elementsEqual(""){
-            self.isFilteredTextEmpty = true
-            self.hotelListMenu.dataSource = self.hotelNameList
-        }else {
-            self.hotelListMenu.dataSource = self.hotelNameList
-            self.isFilteredTextEmpty = false
-            for data in self.hotelListMenu.dataSource{
-                if data.description.lowercased().contains(searchText.lowercased()){
-                    self.filteredData.append(data)
-                    self.hotelListMenu.dataSource = self.filteredData
+        if self.viewSpeakingHoursView.searchHotel.text?.isEmpty == false {
+            if searchText.elementsEqual(""){
+                self.isFilteredTextEmpty = true
+                self.hotelListMenu.dataSource = self.hotelNameList
+                self.hotelListMenu.dataSource.insert("", at: 0)
+            }else {
+                self.hotelListMenu.dataSource = self.hotelNameList
+                self.isFilteredTextEmpty = false
+                for data in self.hotelListMenu.dataSource{
+                    if data.description.lowercased().contains(searchText.lowercased()){
+                        self.filteredData.append(data)
+                        self.hotelListMenu.dataSource = self.filteredData
+                    }else {
+                        self.hotelListMenu.dataSource = self.filteredData
+                    }
                 }
+                self.hotelListMenu.dataSource.insert("", at: 0)
             }
-        }
-        if searchText.elementsEqual(""){
-            self.isFilteredTextEmpty = true
-            self.guideListMenu.dataSource = self.guideNameList
-        }else {
-            self.guideListMenu.dataSource = self.guideNameList
-            self.isFilteredTextEmpty = false
-            for data in self.guideListMenu.dataSource{
-                if data.description.lowercased().contains(searchText.lowercased()){
-                    self.filteredData.append(data)
-                    self.guideListMenu.dataSource = self.filteredData
+        }else if self.viewSpeakingHoursView.searchGuide.text?.isEmpty == false {
+            if searchText.elementsEqual(""){
+                self.isFilteredTextEmpty = true
+                self.guideListMenu.dataSource = self.guideNameList
+                self.guideListMenu.dataSource.insert("", at: 0)
+            }else {
+                self.guideListMenu.dataSource = self.guideNameList
+                self.isFilteredTextEmpty = false
+                for data in self.guideListMenu.dataSource{
+                    if data.description.lowercased().contains(searchText.lowercased()){
+                        self.filteredData.append(data)
+                        self.guideListMenu.dataSource = self.filteredData
+                    }
                 }
+                self.guideListMenu.dataSource.insert("", at: 0)
             }
         }
     }
