@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 final class LoginViewController : BaseViewController {
-    
     @IBOutlet var viewLogin: LoginView!
     
     override func viewDidLoad() {
@@ -18,7 +17,6 @@ final class LoginViewController : BaseViewController {
     
 }
     @IBAction func buttonClicked(_ sender: Any) {
-        
         let createTokenRequestModel = CreateTokenRequestModel.init()
         createTokenRequestModel.userName = viewLogin.textUsername.text
         createTokenRequestModel.password = viewLogin.textPassword.text

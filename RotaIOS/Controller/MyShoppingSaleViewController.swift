@@ -54,6 +54,7 @@ class MyShoppingSaleViewController: UIViewController {
                     self.tempHotelMenu.append(item.text ?? "")
                 }
                 self.hotelListMenu.dataSource = self.tempHotelMenu
+                self.hotelListMenu.dataSource.insert("", at: 0)
                 self.hotelListMenu.backgroundColor = UIColor.grayColor
                 self.hotelListMenu.separatorColor = UIColor.gray
                 self.hotelListMenu.textColor = .white
@@ -78,6 +79,10 @@ class MyShoppingSaleViewController: UIViewController {
         self.viewMyShoppinSaleView.searchBar.delegate = self
         self.createBeginDatePicker()
         self.createEndDatePicker()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.viewMyShoppinSaleView.searchBar.endEditing(true)
     }
     
     @objc func didTouchHotelListMenu() {
@@ -153,6 +158,7 @@ extension MyShoppingSaleViewController : UISearchBarDelegate {
         if searchText.elementsEqual(""){
             self.isFilteredTextEmpty = true
             self.hotelListMenu.dataSource = self.tempHotelMenu
+            self.hotelListMenu.dataSource.insert("", at: 0)
         }else {
             self.hotelListMenu.dataSource = self.tempHotelMenu
             self.isFilteredTextEmpty = false
@@ -160,7 +166,11 @@ extension MyShoppingSaleViewController : UISearchBarDelegate {
                 if item.description.lowercased().contains(searchText.lowercased()){
                     self.filteredHotelList.append(item)
                     self.hotelListMenu.dataSource = self.filteredHotelList
+                    self.hotelListMenu.dataSource.insert("", at: 0)
+                }else {
+                    self.hotelListMenu.dataSource = self.filteredHotelList
                 }
+                self.hotelListMenu.dataSource.insert("", at: 0)
             }
         }
     }

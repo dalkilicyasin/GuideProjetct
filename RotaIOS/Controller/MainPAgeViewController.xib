@@ -23,20 +23,20 @@
                     <rect key="frame" x="0.0" y="0.0" width="266" height="619"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGm-R3-xeN">
-                            <rect key="frame" x="0.0" y="0.0" width="266" height="188"/>
+                            <rect key="frame" x="0.0" y="0.0" width="266" height="178"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYt-Hh-l2s">
                                     <rect key="frame" x="0.0" y="-50" width="416" height="110"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="odeonicon" translatesAutoresizingMaskIntoConstraints="NO" id="Ida-7X-YNR">
-                                            <rect key="frame" x="20" y="50" width="35" height="35"/>
+                                            <rect key="frame" x="20" y="55" width="35" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="35" id="XBs-x3-zYv"/>
                                                 <constraint firstAttribute="height" constant="35" id="eXQ-fP-9ow"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Odeon Tours TR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nun-Ez-31V">
-                                            <rect key="frame" x="105" y="57" width="150" height="21"/>
+                                            <rect key="frame" x="115" y="65" width="150" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="X9s-Hd-mwK"/>
                                                 <constraint firstAttribute="height" constant="21" id="k2Z-n3-gNe"/>
@@ -48,15 +48,15 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="Nun-Ez-31V" firstAttribute="top" secondItem="TYt-Hh-l2s" secondAttribute="top" constant="57" id="0D9-mk-XvV"/>
+                                        <constraint firstItem="Nun-Ez-31V" firstAttribute="top" secondItem="TYt-Hh-l2s" secondAttribute="top" constant="65" id="0D9-mk-XvV"/>
                                         <constraint firstItem="Ida-7X-YNR" firstAttribute="leading" secondItem="TYt-Hh-l2s" secondAttribute="leading" constant="20" id="4Wr-MI-CdK"/>
-                                        <constraint firstItem="Nun-Ez-31V" firstAttribute="leading" secondItem="Ida-7X-YNR" secondAttribute="trailing" constant="50" id="6Vb-HJ-l6g"/>
+                                        <constraint firstItem="Nun-Ez-31V" firstAttribute="leading" secondItem="Ida-7X-YNR" secondAttribute="trailing" constant="60" id="6Vb-HJ-l6g"/>
                                         <constraint firstAttribute="height" constant="110" id="8Zd-U1-4MS"/>
-                                        <constraint firstItem="Ida-7X-YNR" firstAttribute="top" secondItem="TYt-Hh-l2s" secondAttribute="top" constant="50" id="tct-hi-Lh6"/>
+                                        <constraint firstItem="Ida-7X-YNR" firstAttribute="top" secondItem="TYt-Hh-l2s" secondAttribute="top" constant="55" id="tct-hi-Lh6"/>
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kiV-GI-uEw">
-                                    <rect key="frame" x="0.0" y="60" width="266" height="128"/>
+                                    <rect key="frame" x="0.0" y="50" width="266" height="128"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="128" id="i4o-wT-oqv"/>
@@ -71,7 +71,7 @@
                                 <constraint firstAttribute="trailing" secondItem="TYt-Hh-l2s" secondAttribute="trailing" constant="-150" id="JAG-WB-an9"/>
                                 <constraint firstAttribute="bottom" secondItem="kiV-GI-uEw" secondAttribute="bottom" id="XrW-da-l0j"/>
                                 <constraint firstAttribute="trailing" secondItem="kiV-GI-uEw" secondAttribute="trailing" id="al6-q1-lBU"/>
-                                <constraint firstItem="kiV-GI-uEw" firstAttribute="top" secondItem="TYt-Hh-l2s" secondAttribute="bottom" id="bJX-0C-4E7"/>
+                                <constraint firstItem="kiV-GI-uEw" firstAttribute="top" secondItem="zGm-R3-xeN" secondAttribute="top" constant="50" id="b1G-ds-Lqw"/>
                                 <constraint firstItem="TYt-Hh-l2s" firstAttribute="top" secondItem="zGm-R3-xeN" secondAttribute="top" constant="-50" id="tcw-bO-1NA"/>
                             </constraints>
                         </view>

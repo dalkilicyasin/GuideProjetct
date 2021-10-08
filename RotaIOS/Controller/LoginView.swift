@@ -15,15 +15,16 @@ final class LoginView : UIView {
     @IBOutlet weak var viewTop: UIView!
     @IBOutlet weak var textUsername: UITextField! {
         didSet{
-            textUsername.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray] )
+            textUsername.attributedPlaceholder = NSAttributedString(string: "     Username", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray] )
             textUsername.setLeftView(image: UIImage.init(named: "username")!)
             textUsername.tintColor = .darkGray
             textUsername.isSecureTextEntry = false
         }
     }
+    
     @IBOutlet weak var textPassword: UITextField! {
         didSet{
-            textPassword.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray] )
+            textPassword.attributedPlaceholder = NSAttributedString(string: "     Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray] )
             textPassword.setLeftView(image: UIImage.init(named: "password")!)
             textPassword.tintColor = .darkGray
             textPassword.isSecureTextEntry = true
@@ -32,7 +33,9 @@ final class LoginView : UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.viewBottom.layer.cornerRadius = 10.0
+        self.textUsername.layer.cornerRadius = 10
+        self.textPassword.layer.cornerRadius = 10
+        self.viewBottom.layer.cornerRadius = 20.0
         self.viewTop.applyGradient(colours: [UIColor(hexString: "#BFD732"), UIColor(hexString: "#3DB54A")])
         self.buttonLogin.layer.cornerRadius = 10
     }
@@ -45,12 +48,11 @@ final class LoginView : UIView {
         super.init(coder: aDecoder)
         
     }
-    
 }
 
 extension UITextField {
     func setLeftView(image: UIImage) {
-        let iconView = UIImageView(frame: CGRect(x: 10, y: 10, width: 25, height: 25)) // set your Own size
+        let iconView = UIImageView(frame: CGRect(x: 10, y: 10, width: 20, height: 20)) // set your Own size
         iconView.image = image
         let iconContainerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 35, height: 45))
         iconContainerView.addSubview(iconView)

@@ -24,7 +24,8 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
         self.tableView.dataSource = self
         self.tableView.register(MainPageTableViewCell.nib, forCellReuseIdentifier: MainPageTableViewCell.identifier)
         self.viewHeader.applyGradient(colours: [UIColor(hexString: "#BFD732"), UIColor(hexString: "#3DB54A")])
-        self.tableView.layer.cornerRadius = 20
+        self.tableView.layer.cornerRadius = 10
+        
     }
     
     required init(customParamArg: String) {
@@ -47,9 +48,9 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
         imageView.labelMainPage.text = nameList[section]
         header.addSubview(imageView)
         imageView.frame = CGRect(x: 0, y: 0, width: header.frame.size.width, height: header.frame.size.height)
-        
         return header
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected")
         if self.mainPageList[indexPath.section] == mainPageList[0] {

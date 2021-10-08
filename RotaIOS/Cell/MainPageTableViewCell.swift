@@ -27,5 +27,4 @@ class MainPageTableViewCell: BaseTableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }
