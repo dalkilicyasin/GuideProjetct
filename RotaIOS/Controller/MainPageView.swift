@@ -103,7 +103,7 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 case 0 :
                     viewController = ZReportViewController()
                 case 1 :
-                    viewController = MyTourSaleViewController()
+                    viewController = DailyReportViewController()
                 case 2 :
                     viewController = MyTourSaleViewController()
                 case 3 :
