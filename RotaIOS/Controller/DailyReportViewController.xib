@@ -51,6 +51,9 @@
                                     <state key="normal" title="SEARCH">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <connections>
+                                        <action selector="searchButtonClicked:" destination="-1" eventType="touchUpInside" id="lTI-nn-Pcw"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
