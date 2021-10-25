@@ -20,6 +20,7 @@ final class DailyReportView : UIView {
         self.viewContentView.backgroundColor = UIColor.grayColor
         self.buttonSearchButton.layer.cornerRadius = 10
         self.buttonSearchButton.backgroundColor = UIColor.greenColor
+        UITableViewHeaderFooterView.appearance().tintColor = .gray
     }
     
     required init(customParamArg: String) {

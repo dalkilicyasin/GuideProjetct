@@ -17,7 +17,6 @@ class DailyReportViewController: UIViewController {
     var dailyReportRefund : [TourRefund] = []
     let date = Date()
     var dateString = ""
-  
     var tempReportPreview : [String] = ["-","-","-","-","-","-"]
     var tempReportTotal : [String] = ["-","-","-"]
     var tempReportRefund : [String] = ["-","-","-","-"]
@@ -80,11 +79,12 @@ extension DailyReportViewController : UITableViewDelegate, UITableViewDataSource
             return "Daily Report Refund"
         }
     }
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        
         let header = view as? UITableViewHeaderFooterView
         header?.textLabel?.font = UIFont.init(name: "Montserrat-Regular", size: 14)
-        header?.textLabel?.textColor = .white
+        header?.textLabel?.textColor = .black
+       // header?.backgroundView?.backgroundColor = UIColor.grayColor
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -111,7 +111,6 @@ extension DailyReportViewController : UITableViewDelegate, UITableViewDataSource
                 cell.labelCurrency.text = self.tempReportPreview[indexPath.row]
                 return cell
             }
-           
         }else if indexPath.section == 1{
             let cell = self.tableView.dequeueReusableCell(withIdentifier: ZReportTotalTableViewCell.identifier) as! ZReportTotalTableViewCell
             if self.dailyReportTotal.count > 0 {

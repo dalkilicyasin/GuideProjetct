@@ -47,6 +47,11 @@ class PaxPageCustomView : UIView {
     var paxesList : [Paxes] = []
     var equalableFilteredPaxList : [String] = []
     var tempValue = 0
+    var checkList : [Bool] = []
+    var checkFilteredList : [Bool] = []
+    var tempFilteredList : [GetInHoseListResponseModel] = []
+    var tempList : [GetInHoseListResponseModel] = []
+    var filteredList : [GetInHoseListResponseModel] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,6 +75,12 @@ class PaxPageCustomView : UIView {
                     userDefaultsData.saveHotelId(hotelId: 0)
                     userDefaultsData.saveMarketId(marketId: 0)
                     self.paxesNameList = response
+                    // düzenleme yapılıyor
+                    for index in 0...self.paxesNameList.count - 1 {
+                        self.paxesNameList[index].isTapped = false
+                        self.checkList.append(self.paxesNameList[index].isTapped ?? false)
+                    }
+                    //
                     self.tempPaxesNameList = self.paxesNameList // servis düzeldikten sonra denelinip silinecek.
                     self.filteredData = self.paxesNameList
                     self.tableView.delegate = self
@@ -138,18 +149,21 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PaxPageTableViewCell.identifier) as! PaxPageTableViewCell
         cell.paxPageTableViewCellDelegate = self
-        if isFiltered == true {
+        if self.isFiltered == true {
             cell.labelPaxNameListCell.text = self.filteredData[indexPath.row].text
+            cell.tempPaxes = self.filteredData[indexPath.row]
+            cell.isTappedCheck = self.checkFilteredList[indexPath.row]
             //  cell.checkBoxView.imageCheck.isHidden = !(self.filteredData[indexPath.row].isSelected ?? false)
         }else{
             cell.labelPaxNameListCell.text = self.paxesNameList[indexPath.row].text
             cell.tempPaxes = self.paxesNameList[indexPath.row]
+            cell.isTappedCheck = self.checkList[indexPath.row]
             // cell.checkBoxView.imageCheck.isHidden = !(self.paxesNameList[indexPath.row].isSelected ?? false)
         }
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  /*  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.paxesNameList.count > 0 {
             let selectedName = paxesNameList[indexPath.row]
             let filterResNo = self.paxesNameList.filter{($0.resNo?.elementsEqual((selectedName.resNo ?? "")) ?? false)}
@@ -159,30 +173,108 @@ extension PaxPageCustomView : UITableViewDelegate, UITableViewDataSource {
         }else{
             print("selected")
         }
-    }
+    } */
 }
 
 extension PaxPageCustomView : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.filteredData = []
+        self.checkFilteredList = []
+        self.filteredList  = []
+       // self.checkList = []
         if searchText.elementsEqual(""){
             self.isFiltered = false
-            self.paxesNameList = self.tempPaxesNameList
+            //  self.paxesNameList = self.tempPaxesNameList
+            self.filteredData = self.paxesNameList
         }else {
             self.isFiltered = true
             for data in self.paxesNameList{
                 if data.text!.lowercased().contains(searchText.lowercased()){
                     self.filteredData.append(data)
-                    self.paxesNameList = self.filteredData
+                    //   self.paxesNameList = self.filteredData
                 }
             }
         }
+        
+        if filteredData.count > 0 {
+            for index in 0...self.filteredData.count - 1 {
+                let filter = self.paxesNameList.filter{($0.text?.contains(self.filteredData[index].text ?? "") ?? false)}
+                if filter.count > 0 {
+                    self.filteredList.append(filter[0])
+                }
+            }
+            for index in 0...self.filteredList.count - 1 {
+                self.checkFilteredList.append(self.filteredList[index].isTapped ?? false)
+                //   self.checkList.append(self.paxesNameList[index].isTapped ?? false)
+                let filter = self.tempFilteredList.filter{($0.text?.contains(self.filteredList[index].text ?? "") ?? false)}
+                if filter.count > 0 {
+                    if let insideIndex = self.filteredList.firstIndex(where: {$0.text == filter[0].text}){
+                        self.filteredList[insideIndex].isTapped = filter[0].isTapped ?? false
+                        self.checkFilteredList[insideIndex] = filter[0].isTapped ?? false
+                     /*   if  self.tempFilteredList.count > 0 {
+                            self.tempFilteredList[insideIndex].isTapped = filter[0].isTapped ?? false
+                        } */
+                    }
+                }
+            }
+           
+        }
+        if self.checkFilteredList.count == self.checkList.count {
+         self.checkList = self.checkFilteredList
+         }
+        /*else {
+            for index in 0...self.paxesNameList.count - 1 {
+                //  self.checkFilteredList.append(self.filteredList[index].isTapped ?? false)
+                self.checkList.append(self.paxesNameList[index].isTapped ?? false)
+                let filter = self.tempList.filter{($0.text?.contains(self.paxesNameList[index].text ?? "") ?? false)}
+                if filter.count > 0 {
+                    if let insideIndex = self.paxesNameList.firstIndex(where: {$0.text == filter[0].text}){
+                        // self.checkFilteredList[insideIndex] = filter[0].isTapped ?? false
+                        self.checkList[insideIndex] = filter[0].isTapped ?? false
+                        self.tempList[insideIndex].isTapped = filter[0].isTapped ?? false
+                    }
+                }
+                let tempFilter = self.tempFilteredList.filter{($0.text?.contains(self.paxesNameList[index].text ?? "") ?? false)}
+                if tempFilter.count > 0 {
+                    if let insideIndex = self.paxesNameList.firstIndex(where: {$0.text == tempFilter[0].text}){
+                        // self.checkFilteredList[insideIndex] = filter[0].isTapped ?? false
+                        self.checkList[insideIndex] = tempFilter[0].isTapped ?? false
+                        if self.tempList.count > 0 {
+                            self.tempList[insideIndex].isTapped = tempFilter[0].isTapped ?? false
+                        }
+                    }
+                }
+            }
+            
+            /* if self.checkFilteredList.count == self.paxesNameList.count {
+             self.checkFilteredList = self.checkList
+             self.tempFilteredList = self.tempList
+             }*/
+        }
+        if self.checkFilteredList.count == self.checkList.count {
+            self.checkList = self.checkFilteredList
+        } */
         self.tableView.reloadData()
     }
 }
 
 extension PaxPageCustomView : PaxPageTableViewCellDelegate {
     func checkBoxTapped(checkCounter: Bool, touristName: String, tempPaxes: GetInHoseListResponseModel) {
+        self.tempFilteredList = []
+        if isFiltered == true {
+            if let index = self.filteredData.firstIndex(where: {$0.text == touristName} ){
+                self.filteredList[index].isTapped = checkCounter
+                self.checkFilteredList[index] = checkCounter
+                self.tempFilteredList = self.filteredList
+            }
+        }else{
+            if let index = self.paxesNameList.firstIndex(where: {$0.text == touristName}){
+                self.paxesNameList[index].isTapped = checkCounter
+                self.checkList[index] = checkCounter
+                self.tempList = self.paxesNameList
+            }
+        }
+        self.tableView.reloadData()
         let filter = self.paxesNameList.filter{($0.text?.elementsEqual(touristName) ?? false)}
         if checkCounter {
             self.counter += 1

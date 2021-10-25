@@ -23,7 +23,7 @@ class FavoriteListCustomView : UIView {
     var addedNameList : [String] = []
     var infoList : [String] = []
     var addFavoriteList : [String] = []
-    
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -37,7 +37,6 @@ class FavoriteListCustomView : UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: FavoriteListCustomView.self), owner: self, options: nil)
         self.headerView.addCustomContainerView(self)
-        
         if userDefaultsData.getFavorite()?.count ?? 0 > 0 {
             for item in userDefaultsData.getFavorite() {
             
@@ -73,7 +72,7 @@ extension FavoriteListCustomView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AddStepTableViewCell.identifier) as! AddStepTableViewCell
-        cell.viewFavorite.isHidden = true
+        cell.imageFavoriteIcon.isHidden = true
         cell.labelText.text = addedNameList[indexPath.row]
         return cell
     }

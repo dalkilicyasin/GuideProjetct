@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 
 struct GetInHoseListResponseModel : Mappable {
+    var isTapped : Bool?
     var id : String?
     var value : Int?
     var text : String?

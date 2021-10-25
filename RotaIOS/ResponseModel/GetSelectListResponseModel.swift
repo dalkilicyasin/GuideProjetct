@@ -9,6 +9,7 @@ import Foundation
 import ObjectMapper
 
 struct GetSelectListResponseModel : Mappable {
+    var isTapped : Bool?
     var id : String?
     var value : Int?
     var text : String?
@@ -18,6 +19,10 @@ struct GetSelectListResponseModel : Mappable {
 
     init?(map: Map) {
 
+    }
+    
+    public init(isTapped : Bool) {
+        self.isTapped = isTapped
     }
 
     mutating func mapping(map: Map) {

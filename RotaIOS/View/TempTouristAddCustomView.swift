@@ -27,11 +27,9 @@ class TempTouristAddCustomView : UIView{
     var filteredPaxesList : [GetInHoseListResponseModel] = []
     var paxesList : [Paxes] = []
     var touristInfoList : [GetTouristInfoResponseModel] = []
-    
     var paxID : [String] = [] 
     var oprID : [Int] = []
     var oprName : [String] = []
-    
     var reservationNo : [String] = []
     var hotelName : [String] = []
     var paxRoom  : [String] = []
@@ -41,10 +39,8 @@ class TempTouristAddCustomView : UIView{
     var passport : [String] = []
     var touristIdRef : [Int] = []
     var paxnameFromaddManuelList : [String] = []
-    
     var sendingListofPaxes : [Paxes] = []
     var tempPaxesList : [Paxes] = []
-    
     var getInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
     var temppAddPaxesListDelegate : TempAddPaxesListDelegate?
     var changeCounterValue = 0
@@ -62,7 +58,6 @@ class TempTouristAddCustomView : UIView{
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: TempTouristAddCustomView.self), owner: self, options: nil)
         self.headerView.addCustomContainerView(self)
-       
         
         self.viewRemoveView.roundCorners(.allCorners, radius: 10)
         self.buttonManuelAdd.layer.cornerRadius = 10
@@ -85,7 +80,6 @@ class TempTouristAddCustomView : UIView{
     }
     
     @objc func removeButton(){
-        
         self.temppAddPaxesListDelegate?.tempAddList(listofpaxes: self.tempPaxesList, manuellist: self.paxnameFromaddManuelList, changeValue: self.changeCounterValue)
         self.removeFromSuperview()
     }
@@ -111,7 +105,6 @@ class TempTouristAddCustomView : UIView{
     }
 }
 
-
 extension TempTouristAddCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tempPaxesList.count
@@ -121,13 +114,14 @@ extension TempTouristAddCustomView : UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PaxPageTableViewCell.identifier) as! PaxPageTableViewCell
         cell.imageUserName.isHidden = false
-        cell.checkBoxView.isHidden = true
+        cell.imageCheckBox.isHidden = true
         let model : Paxes?
         model = tempPaxesList[indexPath.row]
         cell.labelPaxNameListCell.text = model?.pAX_NAME
         //   cell.labelPaxNameListCell.text = nameListed[indexPath.row]
         return cell
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("Deleted")

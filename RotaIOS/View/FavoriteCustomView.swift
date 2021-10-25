@@ -41,7 +41,7 @@ class FavoriteCustomView: UIView{
     }
     
     @objc func didTabFavorite() {
-        self.isCheckRemember = !isCheckRemember
+       self.isCheckRemember = !isCheckRemember
         if self.isCheckRemember{
             self.imageFavoriteFull.isHidden = false
             self.favoriteCustomViewDelegate?.favoriteTapped(isremember: true)

@@ -20,14 +20,19 @@ class AddStepCustomView : UIView {
     @IBOutlet weak var viewContentView: UIView!
     var selectedStepList : [GetSelectListResponseModel] = []
     var sendInfoDelegate : SendInfoDelegate?
+    var tempStepList : GetSelectListResponseModel?
     var remember = true
     var isFilteredTextEmpty = true
     var filteredData : [String] = []
     var addedNameList : [String] = []
     var infoList : [String] = []
-    var newFavorite = ""
+    var firstFavorite = ""
     var addFavoriteList : [String] = []
-
+    var favoriteTouchList : [Bool] = []
+    var filteredFavoriteTouchList : [Bool] = []
+    var filteredList  : [GetSelectListResponseModel] = []
+    var tempFilteredList :[GetSelectListResponseModel] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -50,6 +55,13 @@ class AddStepCustomView : UIView {
                 for item in self.selectedStepList {
                     self.addedNameList.append(item.text ?? "")
                 }
+                // düzenleme yapılıyor
+                for index in 0...self.selectedStepList.count - 1{
+                    self.selectedStepList[index].isTapped = false
+                    self.favoriteTouchList.append(self.selectedStepList[index].isTapped  ?? false)
+                }
+                
+                ///
                 self.filteredData = self.addedNameList
                 self.tableView.delegate = self
                 self.tableView.dataSource = self
@@ -96,12 +108,15 @@ extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
         if isFilteredTextEmpty == false {
             if self.filteredData.count > 0 {
                 cell.labelText.text = filteredData[indexPath.row]
+                cell.isTappedFavorite = self.filteredFavoriteTouchList[indexPath.row]
+                
             }else{
                 self.tableView.reloadData()
             }
         }else{
             if self.addedNameList.count > 0 {
                 cell.labelText.text = addedNameList[indexPath.row]
+                cell.isTappedFavorite = self.favoriteTouchList[indexPath.row]
             }else{
                 self.tableView.reloadData()
             }
@@ -124,7 +139,10 @@ extension AddStepCustomView : UITableViewDelegate, UITableViewDataSource {
 extension AddStepCustomView : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.filteredData = []
+        self.filteredFavoriteTouchList = []
+        self.filteredList = []
         if searchText == ""{
+            self.filteredList.insert(self.selectedStepList[0], at: 0)
             self.isFilteredTextEmpty = true
             self.filteredData = self.addedNameList
         }else {
@@ -135,28 +153,82 @@ extension AddStepCustomView : UISearchBarDelegate {
                 }
             }
         }
+        if filteredData.count > 0 {
+            for index in 0...self.filteredData.count - 1 {
+                let filter = self.selectedStepList.filter{($0.text?.contains(self.filteredData[index]) ?? false)}
+                if filter.count > 0 {
+                    self.filteredList.append(filter[0])
+                }
+            }
+            for index in 0...self.filteredList.count - 1 {
+               self.filteredFavoriteTouchList.append(self.filteredList[index].isTapped ?? false)
+               let filter = self.tempFilteredList.filter{($0.text?.contains(self.filteredList[index].text ?? "") ?? false)}
+                if filter.count > 0 {
+                    if let insideIndex = self.filteredList.firstIndex(where: {$0.text == filter[0].text}){
+                        self.filteredFavoriteTouchList[insideIndex] = filter[0].isTapped ?? false
+                        self.filteredList[insideIndex].isTapped = filter[0].isTapped ?? false
+                    }
+                }
+            }
+        }
+       if self.filteredFavoriteTouchList.count == self.favoriteTouchList.count {
+            self.favoriteTouchList = self.filteredFavoriteTouchList
+        }
         self.tableView.reloadData()
     }
 }
 
 extension AddStepCustomView : TouchFavoriteDelegate {
     func touchfavoriteTapped(favoriteİsremember: Bool, touch: String) {
+        //  self.remember = favoriteİsremember
+        //düzenleme yapılıyor
+        /*  let filter = selectedStepList.filter{($0.text?.contains(touch) ?? false)}
+         for item in filter {
+         self.tempStepList?.isTapped = item.isTapped
+         }
+         self.tempStepList?.isTapped = self.remember */
+        self.tempFilteredList = []
+        if self.isFilteredTextEmpty != true {
+            if let index = self.filteredData.firstIndex(where: {$0 == touch}){
+                self.filteredFavoriteTouchList[index] = favoriteİsremember
+                self.filteredList[index].isTapped = favoriteİsremember
+                self.tempFilteredList = self.filteredList
+            }
+        }else {
+            if let index = self.selectedStepList.firstIndex(where: {$0.text == touch}){
+                self.selectedStepList[index].isTapped = favoriteİsremember
+                /*  if self.tempStepList?.text != nil {
+                 self.selectedStepList.insert(self.tempStepList!, at: index)
+                 }*/
+                self.favoriteTouchList[index] = favoriteİsremember
+            }
+        }
+        /*  print(self.selectedStepList)
+         for item in self.selectedStepList {
+         self.addedNameList.append(item.text ?? "")
+         self.favoriteTouchList.append(item.isTapped ?? false)
+         }*/
+        // print(favoriteTouchList)
+        self.tableView.reloadData()
+        //////////
         if userDefaultsData.getFavorite()?.count ?? 0 > 0{
             self.addFavoriteList = userDefaultsData.getFavorite()
         }
         if favoriteİsremember == true {
             for item in self.addFavoriteList {
                 if item == touch {
-                    self.newFavorite = item
+                    self.firstFavorite = item
                     break
                 }
             }
-        
-            if self.addFavoriteList == [] || self.newFavorite != touch {
+            if self.addFavoriteList == [] || self.firstFavorite != touch {
                 self.addFavoriteList.append(touch)
             }
             userDefaultsData.saveFavorite(id: self.addFavoriteList)
         }else {
+            if self.firstFavorite == touch {
+                self.firstFavorite = ""
+            }
             for item in  self.addFavoriteList {
                 if item.elementsEqual(touch) {
                     self.addFavoriteList.remove(object: touch)
@@ -168,3 +240,4 @@ extension AddStepCustomView : TouchFavoriteDelegate {
         print(self.addFavoriteList)
     }
 }
+
