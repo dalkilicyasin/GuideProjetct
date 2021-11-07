@@ -35,6 +35,8 @@ public enum ServiceEndPoint: String {
     case GetZReportPayments = "/api/api/AccountingZReportMobile/GetReportPayments"
     case GetZReportRefunds = "/api/api/AccountingZReportMobile/GetReportRefunds"
     case GetGuideDailyReport = "/api/api/AccountingZReportMobile/GetGuideDailyReport"
+    case GetZReportPreview = "/api/api/AccountingZReportMobile/GetReportPreview"
+    case GetCreateZReportPreview = "/api/api/AccountingZReportMobile/CreateZReport"
 }
 
 

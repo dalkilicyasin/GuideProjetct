@@ -258,38 +258,6 @@
             endingLineNumber = "239"
             landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7A50F44A-63D7-4AAD-82FB-E309BC63F812 - 6dd690c21aec1e05"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RotaIOS.PaxPageCustomView.searchBar(_: __C.UISearchBar, textDidChange: Swift.String) -&gt; ()"
-                  moduleName = "RotaIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/View/PaxPageCustomView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "10979">
-               </Location>
-               <Location
-                  uuid = "7A50F44A-63D7-4AAD-82FB-E309BC63F812 - fa340a2a847826a6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #7 (RotaIOS.GetInHoseListResponseModel) -&gt; Swift.Bool in RotaIOS.PaxPageCustomView.searchBar(_: __C.UISearchBar, textDidChange: Swift.String) -&gt; ()"
-                  moduleName = "RotaIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/View/PaxPageCustomView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "35">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -322,38 +290,6 @@
             endingLineNumber = "231"
             landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1446B9A3-1C3E-41BE-B695-62BC19E41B81 - 6dd690c21aec1f0d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "RotaIOS.PaxPageCustomView.searchBar(_: __C.UISearchBar, textDidChange: Swift.String) -&gt; ()"
-                  moduleName = "RotaIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/View/PaxPageCustomView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "227"
-                  endingLineNumber = "227"
-                  offsetFromSymbolStart = "9573">
-               </Location>
-               <Location
-                  uuid = "1446B9A3-1C3E-41BE-B695-62BC19E41B81 - 5ddcbcb639099bac"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #5 (RotaIOS.GetInHoseListResponseModel) -&gt; Swift.Bool in RotaIOS.PaxPageCustomView.searchBar(_: __C.UISearchBar, textDidChange: Swift.String) -&gt; ()"
-                  moduleName = "RotaIOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/View/PaxPageCustomView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "227"
-                  endingLineNumber = "227"
-                  offsetFromSymbolStart = "35">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -11,12 +11,16 @@ import UIKit
 
 final class LoginViewController : BaseViewController {
     @IBOutlet var viewLogin: LoginView!
+    var userName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
 }
+    
     @IBAction func buttonClicked(_ sender: Any) {
+        self.userName = self.viewLogin.textUsername.text ?? ""
+        userDefaultsData.saveUserName(id: self.userName)
         let createTokenRequestModel = CreateTokenRequestModel.init()
         createTokenRequestModel.userName = viewLogin.textUsername.text
         createTokenRequestModel.password = viewLogin.textPassword.text

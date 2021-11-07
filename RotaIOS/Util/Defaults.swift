@@ -13,6 +13,7 @@ public var userDefaultsData:Defaults = Defaults()
 
 public class Defaults{
     public enum DefaultsType {
+        case UserName
         case LanguageID
         case DeviceID
         case UserID
@@ -27,6 +28,20 @@ public class Defaults{
     
    public init(){}
     
+    public func saveUserName(id:String){
+        let preferences = UserDefaults.standard
+        preferences.set( id , forKey:getIdentifier(type: .UserName))
+        preferences.synchronize()
+    }
+    
+    public func geUserNAme() -> String! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .UserName)) == nil {
+            return nil
+        }
+        let data:String = preferences.value(forKey: getIdentifier(type: .UserName)) as! String
+        return data
+    }
     
     //LanguageID
     public func saveLanguageId(languageId:Int){
@@ -235,6 +250,8 @@ public class Defaults{
             return "MarketGruopId"
         case .Favorite:
             return "Favorite"
+        case .UserName:
+            return "UserName"
         }
     }
 }
