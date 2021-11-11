@@ -35,14 +35,14 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3rE-6L-t2o">
-                                    <rect key="frame" x="0.0" y="130" width="414" height="866"/>
+                                    <rect key="frame" x="0.0" y="100" width="414" height="866"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="866" id="foD-yN-bzS"/>
                                     </constraints>
                                 </tableView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rF8-LZ-AJ4">
-                                    <rect key="frame" x="40" y="1026" width="334" height="50"/>
+                                    <rect key="frame" x="40" y="996" width="334" height="50"/>
                                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="XIs-ZH-7Gz"/>
@@ -56,7 +56,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmL-0j-MB8">
-                                    <rect key="frame" x="40" y="1096" width="334" height="50"/>
+                                    <rect key="frame" x="40" y="1066" width="334" height="50"/>
                                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="BCg-FV-bvq"/>
@@ -79,7 +79,7 @@
                                 <constraint firstAttribute="height" constant="1200" id="Fo1-5F-g6Q"/>
                                 <constraint firstItem="gmL-0j-MB8" firstAttribute="top" secondItem="rF8-LZ-AJ4" secondAttribute="bottom" constant="20" id="ICf-eg-P7q"/>
                                 <constraint firstAttribute="trailing" secondItem="gmL-0j-MB8" secondAttribute="trailing" constant="40" id="KrL-IH-ekA"/>
-                                <constraint firstItem="3rE-6L-t2o" firstAttribute="top" secondItem="LES-kc-Kf1" secondAttribute="top" constant="130" id="aon-Sc-vCL"/>
+                                <constraint firstItem="3rE-6L-t2o" firstAttribute="top" secondItem="LES-kc-Kf1" secondAttribute="top" constant="100" id="aon-Sc-vCL"/>
                                 <constraint firstAttribute="trailing" secondItem="Dyy-IH-Q4y" secondAttribute="trailing" id="ckp-3U-vKW"/>
                                 <constraint firstItem="Dyy-IH-Q4y" firstAttribute="leading" secondItem="LES-kc-Kf1" secondAttribute="leading" id="dqj-Id-UKb"/>
                                 <constraint firstAttribute="trailing" secondItem="3rE-6L-t2o" secondAttribute="trailing" id="iwE-D3-7oM"/>

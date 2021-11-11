@@ -78,7 +78,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlm-BP-K7m">
                                 <rect key="frame" x="240" y="90" width="130" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="Ywt-rd-jcQ"/>
                                     <constraint firstAttribute="width" constant="130" id="i05-Fi-duk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -100,6 +99,7 @@
                             <constraint firstItem="1kj-8M-iWD" firstAttribute="top" secondItem="Psh-gF-7j7" secondAttribute="bottom" constant="8" id="bUi-vf-ghA"/>
                             <constraint firstItem="qNC-VA-sVM" firstAttribute="top" secondItem="b0y-bU-VFf" secondAttribute="bottom" constant="8" id="cRa-XK-6Tu"/>
                             <constraint firstItem="qNC-VA-sVM" firstAttribute="leading" secondItem="xeF-KX-zqE" secondAttribute="leading" constant="20" symbolic="YES" id="fcp-Yh-4vP"/>
+                            <constraint firstAttribute="bottom" secondItem="nlm-BP-K7m" secondAttribute="bottom" priority="252" constant="71" id="foe-Jy-3og"/>
                             <constraint firstItem="TD8-ZZ-C1f" firstAttribute="leading" secondItem="xeF-KX-zqE" secondAttribute="leading" constant="20" symbolic="YES" id="kv4-gD-MYn"/>
                             <constraint firstItem="nlm-BP-K7m" firstAttribute="top" secondItem="gbi-hr-Vhm" secondAttribute="bottom" constant="8" id="rDC-PI-W77"/>
                             <constraint firstItem="Psh-gF-7j7" firstAttribute="top" secondItem="TD8-ZZ-C1f" secondAttribute="bottom" constant="20" id="wF2-RT-dE7"/>

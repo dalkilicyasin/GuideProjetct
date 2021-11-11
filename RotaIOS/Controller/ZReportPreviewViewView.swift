@@ -21,7 +21,9 @@ final class ZReportPreviewViewView : UIView {
         self.buttonSearch.layer.cornerRadius = 10
         self.buttonPrint.layer.cornerRadius = 10
         self.buttonSearch.backgroundColor = UIColor.greenColor
-        self.buttonPrint.backgroundColor = UIColor.greenColor
+        self.buttonPrint.backgroundColor = UIColor.clear
+        self.buttonPrint.layer.borderWidth = 1
+        self.buttonPrint.layer.borderColor = UIColor.greenColor.cgColor
         self.viewContentView.backgroundColor = UIColor.grayColor
         self.viewContentView.layer.cornerRadius = 10
         UITableViewHeaderFooterView.appearance().tintColor = .gray

@@ -17,6 +17,12 @@ class ZReportLoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func loginButtonClicked(_ sender: Any) {
         self.userName = self.viewZReportLoginView.textUserName.text ?? ""
         self.password = self.viewZReportLoginView.textPassword.text ?? ""

@@ -32,12 +32,16 @@ class ZReportPreviewViewController: UIViewController {
         self.tableView.register(ZReportTotalTableViewCell.nib, forCellReuseIdentifier: ZReportTotalTableViewCell.identifier)
         self.tableView.register(ZReportPriviewTableViewCell.nib, forCellReuseIdentifier: ZReportPriviewTableViewCell.identifier)
         self.tableView.register(DailyReportTableViewCell.nib, forCellReuseIdentifier: DailyReportTableViewCell.identifier)
+        
+        self.viewZreportPreview.buttonPrint.isEnabled = false
     }
     
     @IBAction func searchButtonClicked(_ sender: Any) {
         let getDailyReportRequestModel = GetZReportPreviewRequestModel.init(guideId: String(userDefaultsData.getGuideId()), date: dateString, guideRegistrationNumber: userDefaultsData.geUserNAme())
         NetworkManager.sendGetRequest(url: NetworkManager.BASEURL, endPoint:.GetZReportPreview, method: .get, parameters: getDailyReportRequestModel.requestPathString()) { (response : GetZReportPreviewResponseModel) in
             if response.guide != "" {
+                self.viewZreportPreview.buttonPrint.isEnabled = true
+                self.viewZreportPreview.buttonPrint.backgroundColor = UIColor.greenColor
                 self.zReportPreviewData = response
                 self.zReportPreview = response.reportPreview ?? self.zReportPreview
                 self.zReportTotal = response.reportTotal ?? self.zReportTotal

@@ -14,7 +14,6 @@ class ZReportPaymentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.tableview.delegate = self
         self.tableview.dataSource = self
         self.tableview.register(ZReportPaymentTableViewCell.nib, forCellReuseIdentifier: ZReportPaymentTableViewCell.identifier)

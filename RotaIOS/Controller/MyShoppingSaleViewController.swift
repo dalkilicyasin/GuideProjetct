@@ -16,7 +16,8 @@ class MyShoppingSaleViewController: UIViewController {
     var tempHotelMenu : [String] = []
     var isFilteredTextEmpty = true
     var hotelList : [GetHotelsMobileResponseModel] = []
-    var hotelId = 0
+    var hotelId = ""
+    var hotelIntId = 0
     var shopSaleList : [GetShoppingSaleResponseModel] = []
     var beginDate = ""
     var endDate = ""
@@ -69,7 +70,10 @@ class MyShoppingSaleViewController: UIViewController {
             self.viewMyShoppinSaleView.viewHotelListView.mainLabel.text = title
             let filteredHotelList = self.hotelList.filter{($0.text?.contains(title) ?? false)}
             for item in filteredHotelList {
-                self.hotelId = item.value ?? 0
+                self.hotelIntId = item.value ?? 0
+            }
+            if self.hotelIntId == 0 {
+                self.hotelId = ""
             }
         }
         

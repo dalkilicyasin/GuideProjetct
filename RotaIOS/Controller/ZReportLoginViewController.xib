@@ -32,9 +32,25 @@
                                 <constraint firstAttribute="height" constant="117" id="pKN-1K-E8k"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBL-oQ-TOj">
+                            <rect key="frame" x="25" y="25" width="46" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="46" id="bqm-kH-Eex"/>
+                                <constraint firstAttribute="height" constant="30" id="ejO-hR-leH"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                            <state key="normal" title="&lt;">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="backButtonTapped:" destination="-1" eventType="touchUpInside" id="PRF-Kg-5iU"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.23921568630000001" green="0.70980392160000005" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="UBL-oQ-TOj" firstAttribute="leading" secondItem="ikh-Vl-4Pi" secondAttribute="leading" constant="25" id="Or5-1X-XLB"/>
+                        <constraint firstItem="UBL-oQ-TOj" firstAttribute="top" secondItem="ikh-Vl-4Pi" secondAttribute="top" constant="25" id="Rcz-qV-f4K"/>
                         <constraint firstAttribute="height" constant="244" id="bdd-Hq-82W"/>
                         <constraint firstItem="dPg-y1-823" firstAttribute="centerY" secondItem="ikh-Vl-4Pi" secondAttribute="centerY" id="sdb-uI-HNB"/>
                         <constraint firstItem="dPg-y1-823" firstAttribute="centerX" secondItem="ikh-Vl-4Pi" secondAttribute="centerX" id="wJH-Br-8gQ"/>

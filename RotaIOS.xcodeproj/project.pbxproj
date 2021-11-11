@@ -235,6 +235,8 @@
 		D9FD64EB273813D9009B6619 /* ZReportLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD64EA273813D9009B6619 /* ZReportLoginView.swift */; };
 		D9FD64ED2738182A009B6619 /* GetCreateZReportRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD64EC2738182A009B6619 /* GetCreateZReportRequestModel.swift */; };
 		D9FD64EF273818C3009B6619 /* GetCreateZReportResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD64EE273818C3009B6619 /* GetCreateZReportResponseModel.swift */; };
+		D9FD6503273C1F7B009B6619 /* HotelsandFlightsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD6501273C1F7B009B6619 /* HotelsandFlightsTableViewCell.swift */; };
+		D9FD6504273C1F7B009B6619 /* HotelsandFlightsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9FD6502273C1F7B009B6619 /* HotelsandFlightsTableViewCell.xib */; };
 		FA59B99855335A308CA23D82 /* Pods_RotaIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594B0071A1EABE661285D73C /* Pods_RotaIOSTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -497,6 +499,8 @@
 		D9FD64EA273813D9009B6619 /* ZReportLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportLoginView.swift; sourceTree = "<group>"; };
 		D9FD64EC2738182A009B6619 /* GetCreateZReportRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCreateZReportRequestModel.swift; sourceTree = "<group>"; };
 		D9FD64EE273818C3009B6619 /* GetCreateZReportResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCreateZReportResponseModel.swift; sourceTree = "<group>"; };
+		D9FD6501273C1F7B009B6619 /* HotelsandFlightsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsandFlightsTableViewCell.swift; sourceTree = "<group>"; };
+		D9FD6502273C1F7B009B6619 /* HotelsandFlightsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelsandFlightsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -869,6 +873,8 @@
 				D9315783270486AD000C91AD /* ZReportRefundTableViewCell.xib */,
 				D9004079271738DD00DDE088 /* DailyReportTableViewCell.swift */,
 				D900407A271738DD00DDE088 /* DailyReportTableViewCell.xib */,
+				D9FD6501273C1F7B009B6619 /* HotelsandFlightsTableViewCell.swift */,
+				D9FD6502273C1F7B009B6619 /* HotelsandFlightsTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1022,6 +1028,7 @@
 				BF44C9A6264001CE00238035 /* CheckBoxView.xib in Resources */,
 				D9FD64DD27355EFF009B6619 /* ZReportPreviewViewController.xib in Resources */,
 				BF44C9512640018400238035 /* VoucherViewController.xib in Resources */,
+				D9FD6504273C1F7B009B6619 /* HotelsandFlightsTableViewCell.xib in Resources */,
 				BF44C9432640017600238035 /* TasksViewController.xib in Resources */,
 				D9561A46269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib in Resources */,
 				D931576326FCB0C0000C91AD /* ZReportTotalTableViewCell.xib in Resources */,
@@ -1280,6 +1287,7 @@
 				BF44C8E9264000E200238035 /* ExtensionUIDevice.swift in Sources */,
 				D931573C26F8C183000C91AD /* ZReportViewController.swift in Sources */,
 				D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */,
+				D9FD6503273C1F7B009B6619 /* HotelsandFlightsTableViewCell.swift in Sources */,
 				BF44C9422640017600238035 /* TasksViewController.swift in Sources */,
 				BF44C908264000FA00238035 /* BaseResponse.swift in Sources */,
 				D95C202A26EFDDB7007D1506 /* GetHotelSelectListByAreaRefRequestModel.swift in Sources */,
@@ -1514,7 +1522,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.4;
+				CURRENT_PROJECT_VERSION = 3.6;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1536,7 +1544,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.4;
+				CURRENT_PROJECT_VERSION = 3.6;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

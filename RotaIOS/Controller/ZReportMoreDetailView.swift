@@ -21,11 +21,13 @@ final class ZReportMoreDetailView : UIView {
     @IBOutlet weak var labelCreatedBy: UILabel!
     @IBOutlet weak var buttonPrintButton: UIButton!
     
-    
     override func awakeFromNib() {
         self.viewHeaderDetailView.labelHeaderDetailView.text = "Z Report"
-        self.viewTopView.roundCorners(.topLeft, radius: 10)
-        self.viewTopView.roundCorners(.topRight, radius: 10)
+       /* self.viewTopView.roundCorners(.topLeft, radius: 10)
+        self.viewTopView.roundCorners(.topRight, radius: 10)*/
+        self.viewTopView.clipsToBounds = true
+        self.viewTopView.layer.cornerRadius = 10
+        self.viewTopView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         self.tableView.backgroundColor = UIColor.grayColor
         self.footerView.backgroundColor = UIColor.grayColor
         self.viewTopView.backgroundColor = UIColor.grayColor
