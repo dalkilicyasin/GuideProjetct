@@ -36,7 +36,18 @@ class AddManuelTouristCustomView : UIView {
     var tempTouristAddCustomView : TempTouristAddCustomView?
     var tempSaveManuelList : [String] = []
     var saveMAnuelListDelegate : SaveManuelListProtocol?
-    
+    var birtDate = ""
+    let birtDateToolBar = UIToolbar()
+    var birtDatePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
+        return datePicker
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,7 +62,7 @@ class AddManuelTouristCustomView : UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(String(describing: AddManuelTouristCustomView.self), owner: self, options: nil)
         self.headerView.addCustomContainerView(self)
-        
+        self.viewPhone.mainText.delegate = self
         self.genderMenu.dataSource = self.genderList
         self.genderMenu.backgroundColor = UIColor.grayColor
         self.genderMenu.separatorColor = UIColor.gray
@@ -110,7 +121,33 @@ class AddManuelTouristCustomView : UIView {
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
         self.viewSlideUp.addGestureRecognizer(tappedSlideUp)
         self.viewSlideUp.isUserInteractionEnabled = true
+        
+        self.createCurrentDatePicker()
     }
+    
+    func createCurrentDatePicker() {
+        self.viewBirthDay.mainText.textAlignment = .left
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(currentDatePickerDonePressed))
+        self.birtDateToolBar.setItems([doneButton], animated: true)
+        self.birtDateToolBar.sizeToFit()
+        self.viewBirthDay.mainText.inputAccessoryView = self.birtDateToolBar
+        self.viewBirthDay.mainText.inputView = self.birtDatePicker
+        self.birtDatePicker.datePickerMode = .date
+    }
+    
+    @objc func currentDatePickerDonePressed() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        formatter.dateFormat = "MM-dd-yyyy"
+        print(formatter.string(from: self.birtDatePicker.date))
+        self.birtDate = formatter.string(from: self.birtDatePicker.date)
+        formatter.dateFormat = "dd-MM-yyy"
+        self.viewBirthDay.mainText.text = "\(formatter.string(from: self.birtDatePicker.date))"
+        self.viewBirthDay.endEditing(true)
+    }
+
+    
     @objc func didTappedItem() {
         self.genderMenu.show()
         
@@ -150,5 +187,15 @@ class AddManuelTouristCustomView : UIView {
     }
 }
 
+extension AddManuelTouristCustomView : UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let isNumber = CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string))
+        let withDecimal = (
+            string == NumberFormatter().decimalSeparator &&
+            textField.text?.contains(string) == false
+        )
+        return isNumber || withDecimal
+    }
+}
 
 
