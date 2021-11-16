@@ -33,6 +33,7 @@ class ZReportLoginViewController: UIViewController {
                 let alert = UIAlertController(title: "SUCCESS", message: response.message ?? "", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                self.viewZReportLoginView.buttonLogin.isEnabled = false
             }else if response.isSuccesful == false {
                 let alert = UIAlertController(title: "FALSE", message:  response.message ?? "" , preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
