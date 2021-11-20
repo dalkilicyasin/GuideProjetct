@@ -20,7 +20,7 @@ class  AppointmentBarCustomView : UIView {
     @IBOutlet var viewHeader: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var collectionList = ["Hotel","Pax","Steps","Proceed"]
+    var collectionList : [String] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,6 +70,7 @@ extension AppointmentBarCustomView : UICollectionViewDelegate, UICollectionViewD
         }
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected")
         self.selectedIndex = indexPath
@@ -89,6 +90,5 @@ extension AppointmentBarCustomView : UICollectionViewDelegate, UICollectionViewD
         }
         self.collectionView.reloadData()
     }
-    
 }
 

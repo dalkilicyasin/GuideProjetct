@@ -48,8 +48,6 @@
 		BF44C93C2640016500238035 /* ShopAppointmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9392640016500238035 /* ShopAppointmentViewController.xib */; };
 		BF44C9422640017600238035 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9402640017600238035 /* TasksViewController.swift */; };
 		BF44C9432640017600238035 /* TasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9412640017600238035 /* TasksViewController.xib */; };
-		BF44C9492640017E00238035 /* ExcursionSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9472640017E00238035 /* ExcursionSaleViewController.swift */; };
-		BF44C94A2640017E00238035 /* ExcursionSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C9482640017E00238035 /* ExcursionSaleViewController.xib */; };
 		BF44C9502640018400238035 /* VoucherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C94E2640018400238035 /* VoucherViewController.swift */; };
 		BF44C9512640018400238035 /* VoucherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF44C94F2640018400238035 /* VoucherViewController.xib */; };
 		BF44C9592640018B00238035 /* OfflineSalesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C9552640018A00238035 /* OfflineSalesViewController.swift */; };
@@ -207,6 +205,11 @@
 		D991469226D68B620010E74F /* CancelVoucherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991469026D68B620010E74F /* CancelVoucherViewController.swift */; };
 		D991469326D68B620010E74F /* CancelVoucherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D991469126D68B620010E74F /* CancelVoucherViewController.xib */; };
 		D991469526D68CBF0010E74F /* CancelVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991469426D68CBF0010E74F /* CancelVoucherView.swift */; };
+		D994FBCD27451851003564F3 /* ExcursionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBCB27451851003564F3 /* ExcursionViewController.swift */; };
+		D994FBCE27451851003564F3 /* ExcursionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D994FBCC27451851003564F3 /* ExcursionViewController.xib */; };
+		D994FBD027451862003564F3 /* ExcursionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBCF27451862003564F3 /* ExcursionView.swift */; };
+		D994FBD22745307F003564F3 /* ExcSearchCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBD12745307F003564F3 /* ExcSearchCustomView.swift */; };
+		D994FBD4274530B6003564F3 /* ExcSearchCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D994FBD3274530B6003564F3 /* ExcSearchCustomView.xib */; };
 		D9956BFA26D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */; };
 		D9956BFC26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BFB26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift */; };
 		D9956BFF26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */; };
@@ -312,8 +315,6 @@
 		BF44C9392640016500238035 /* ShopAppointmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopAppointmentViewController.xib; sourceTree = "<group>"; };
 		BF44C9402640017600238035 /* TasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		BF44C9412640017600238035 /* TasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TasksViewController.xib; sourceTree = "<group>"; };
-		BF44C9472640017E00238035 /* ExcursionSaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExcursionSaleViewController.swift; sourceTree = "<group>"; };
-		BF44C9482640017E00238035 /* ExcursionSaleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExcursionSaleViewController.xib; sourceTree = "<group>"; };
 		BF44C94E2640018400238035 /* VoucherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoucherViewController.swift; sourceTree = "<group>"; };
 		BF44C94F2640018400238035 /* VoucherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoucherViewController.xib; sourceTree = "<group>"; };
 		BF44C9552640018A00238035 /* OfflineSalesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineSalesViewController.swift; sourceTree = "<group>"; };
@@ -471,6 +472,11 @@
 		D991469026D68B620010E74F /* CancelVoucherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherViewController.swift; sourceTree = "<group>"; };
 		D991469126D68B620010E74F /* CancelVoucherViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelVoucherViewController.xib; sourceTree = "<group>"; };
 		D991469426D68CBF0010E74F /* CancelVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherView.swift; sourceTree = "<group>"; };
+		D994FBCB27451851003564F3 /* ExcursionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionViewController.swift; sourceTree = "<group>"; };
+		D994FBCC27451851003564F3 /* ExcursionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcursionViewController.xib; sourceTree = "<group>"; };
+		D994FBCF27451862003564F3 /* ExcursionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionView.swift; sourceTree = "<group>"; };
+		D994FBD12745307F003564F3 /* ExcSearchCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcSearchCustomView.swift; sourceTree = "<group>"; };
+		D994FBD3274530B6003564F3 /* ExcSearchCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcSearchCustomView.xib; sourceTree = "<group>"; };
 		D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVoucherDetailRequestModel.swift; sourceTree = "<group>"; };
 		D9956BFB26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVoucherDetailResponseModel.swift; sourceTree = "<group>"; };
 		D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherDetailViewControllerViewController.swift; sourceTree = "<group>"; };
@@ -612,8 +618,6 @@
 				BF44C9582640018B00238035 /* OfflineSalesViewController.xib */,
 				BF44C94E2640018400238035 /* VoucherViewController.swift */,
 				BF44C94F2640018400238035 /* VoucherViewController.xib */,
-				BF44C9472640017E00238035 /* ExcursionSaleViewController.swift */,
-				BF44C9482640017E00238035 /* ExcursionSaleViewController.xib */,
 				BF44C9402640017600238035 /* TasksViewController.swift */,
 				BF44C9412640017600238035 /* TasksViewController.xib */,
 				BF44C9382640016400238035 /* ShopAppointmentView.swift */,
@@ -682,6 +686,9 @@
 				D9FD64E627381280009B6619 /* ZReportLoginViewController.swift */,
 				D9FD64E727381280009B6619 /* ZReportLoginViewController.xib */,
 				D9FD64EA273813D9009B6619 /* ZReportLoginView.swift */,
+				D994FBCB27451851003564F3 /* ExcursionViewController.swift */,
+				D994FBCC27451851003564F3 /* ExcursionViewController.xib */,
+				D994FBCF27451862003564F3 /* ExcursionView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -826,6 +833,8 @@
 				D968A88426BDADE7000FB00A /* MyTourStatusView.xib */,
 				D93157702700AD55000C91AD /* ZReportLongClickMenu.swift */,
 				D93157722700ADBB000C91AD /* ZReportLongClickMenu.xib */,
+				D994FBD12745307F003564F3 /* ExcSearchCustomView.swift */,
+				D994FBD3274530B6003564F3 /* ExcSearchCustomView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1029,6 +1038,7 @@
 				D9FD64DD27355EFF009B6619 /* ZReportPreviewViewController.xib in Resources */,
 				BF44C9512640018400238035 /* VoucherViewController.xib in Resources */,
 				D9FD6504273C1F7B009B6619 /* HotelsandFlightsTableViewCell.xib in Resources */,
+				D994FBCE27451851003564F3 /* ExcursionViewController.xib in Resources */,
 				BF44C9432640017600238035 /* TasksViewController.xib in Resources */,
 				D9561A46269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.xib in Resources */,
 				D931576326FCB0C0000C91AD /* ZReportTotalTableViewCell.xib in Resources */,
@@ -1041,11 +1051,11 @@
 				BF44C9702640019F00238035 /* AppointmentBarCustomView.xib in Resources */,
 				BF44C9AD264001D400238035 /* HeaderDetailCustomView.xib in Resources */,
 				D931574F26FA2257000C91AD /* ZReportDetailViewController.xib in Resources */,
+				D994FBD4274530B6003564F3 /* ExcSearchCustomView.xib in Resources */,
 				BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */,
 				BF44C9CF2640022600238035 /* StepsPageTableViewCell.xib in Resources */,
 				D900407C271738DD00DDE088 /* DailyReportTableViewCell.xib in Resources */,
 				D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */,
-				BF44C94A2640017E00238035 /* ExcursionSaleViewController.xib in Resources */,
 				D95C203626F2010C007D1506 /* SpeakingHoursDetailViewController.xib in Resources */,
 				D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */,
 				D93F8895264B072200397283 /* AddManuelTouristCustomView.xib in Resources */,
@@ -1236,6 +1246,7 @@
 				BF44C91C2640013B00238035 /* LoginView.swift in Sources */,
 				BF44C9152640011800238035 /* BaseTableViewCell.swift in Sources */,
 				D931578027036D4C000C91AD /* ZReportPaymentTableViewCell.swift in Sources */,
+				D994FBD027451862003564F3 /* ExcursionView.swift in Sources */,
 				D9956C0626DC022B006CFC6D /* GetCancelRulesRequestModel.swift in Sources */,
 				BF44C90A264000FA00238035 /* BaseMessageItem.swift in Sources */,
 				BF44C9252640014800238035 /* MainPAgeViewController.swift in Sources */,
@@ -1255,7 +1266,6 @@
 				D9561A3E269DF31A00AA75E5 /* AnnoucmentsView.swift in Sources */,
 				D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */,
 				D9A48CFA26B1405D00D28A0A /* DocumentsViewController.swift in Sources */,
-				BF44C9492640017E00238035 /* ExcursionSaleViewController.swift in Sources */,
 				D97FB5BA26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift in Sources */,
 				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
 				D968A88326BDAC94000FB00A /* MyTourStatusView.swift in Sources */,
@@ -1350,7 +1360,9 @@
 				D991469526D68CBF0010E74F /* CancelVoucherView.swift in Sources */,
 				D931578D27049614000C91AD /* GetZreportRefundResponseModel.swift in Sources */,
 				D93F88A92651AB1000397283 /* GetTouristInfoResponseModel.swift in Sources */,
+				D994FBCD27451851003564F3 /* ExcursionViewController.swift in Sources */,
 				D9DCB1A026BBECE50064A040 /* MyTourSaleView.swift in Sources */,
+				D994FBD22745307F003564F3 /* ExcSearchCustomView.swift in Sources */,
 				D9FD64EB273813D9009B6619 /* ZReportLoginView.swift in Sources */,
 				D991469226D68B620010E74F /* CancelVoucherViewController.swift in Sources */,
 			);
@@ -1522,7 +1534,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.8;
+				CURRENT_PROJECT_VERSION = 3.9;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1544,7 +1556,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3.8;
+				CURRENT_PROJECT_VERSION = 3.9;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

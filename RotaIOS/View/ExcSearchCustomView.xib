@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExcSearchCustomView" customModule="RotaIOS" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="gLY-ep-NJu" id="3SV-OP-vFt"/>
+                <outlet property="viewChecBoxView" destination="hqt-zb-vD9" id="DZk-1q-ca3"/>
+                <outlet property="viewHotelList" destination="JWB-BK-LCD" id="CRO-wO-bGN"/>
+                <outlet property="viewMainView" destination="iN0-l3-epB" id="mXe-B4-ktz"/>
+                <outlet property="viewMarketList" destination="v95-SI-bqY" id="TbW-7S-O2F"/>
+                <outlet property="viewTourBeginDate" destination="ZR0-0a-vjZ" id="AK3-Z1-M04"/>
+                <outlet property="viewTourEndDate" destination="PoD-U0-mcW" id="Bn8-Aq-Gq1"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="407" height="663"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZR0-0a-vjZ" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="30" y="50" width="347" height="90"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="uxm-5l-JbU"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PoD-U0-mcW" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="30" y="150" width="347" height="90"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="UOD-av-8gg"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v95-SI-bqY" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="30" y="250" width="347" height="90"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="82G-5G-skJ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JWB-BK-LCD" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="30" y="350" width="347" height="90"/>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="tQz-19-QLj"/>
+                    </constraints>
+                </view>
+                <searchBar contentMode="redraw" placeholder="Hotel Name Filter" translatesAutoresizingMaskIntoConstraints="NO" id="gLY-ep-NJu">
+                    <rect key="frame" x="35" y="460" width="337" height="60"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="kwz-s8-Nva"/>
+                    </constraints>
+                    <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-zb-vD9" customClass="CheckBoxView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="40" y="545" width="25" height="25"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="C0c-VI-TBR"/>
+                        <constraint firstAttribute="width" constant="25" id="sz1-2a-Iam"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Hotels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4R-eE-fas">
+                    <rect key="frame" x="85" y="538" width="153" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="qKt-4m-Bjf"/>
+                        <constraint firstAttribute="width" constant="153" id="yYQ-Xt-u0B"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="JWB-BK-LCD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="1I3-1B-UmI"/>
+                <constraint firstItem="JWB-BK-LCD" firstAttribute="top" secondItem="v95-SI-bqY" secondAttribute="bottom" constant="10" id="27O-R4-3CS"/>
+                <constraint firstAttribute="trailing" secondItem="PoD-U0-mcW" secondAttribute="trailing" constant="30" id="8SH-9g-Gat"/>
+                <constraint firstItem="hqt-zb-vD9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="Big-Pq-OKX"/>
+                <constraint firstItem="ZR0-0a-vjZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="Eas-Hy-byc"/>
+                <constraint firstAttribute="trailing" secondItem="JWB-BK-LCD" secondAttribute="trailing" constant="30" id="F1w-aP-Bdn"/>
+                <constraint firstItem="W4R-eE-fas" firstAttribute="top" secondItem="gLY-ep-NJu" secondAttribute="bottom" constant="18" id="Gn3-1l-pja"/>
+                <constraint firstAttribute="trailing" secondItem="v95-SI-bqY" secondAttribute="trailing" constant="30" id="NWv-fV-jRK"/>
+                <constraint firstItem="W4R-eE-fas" firstAttribute="leading" secondItem="hqt-zb-vD9" secondAttribute="trailing" constant="20" id="RYb-C4-LIj"/>
+                <constraint firstItem="hqt-zb-vD9" firstAttribute="top" secondItem="gLY-ep-NJu" secondAttribute="bottom" constant="25" id="bV6-sY-dSg"/>
+                <constraint firstItem="v95-SI-bqY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="cOP-X4-wo9"/>
+                <constraint firstItem="gLY-ep-NJu" firstAttribute="top" secondItem="JWB-BK-LCD" secondAttribute="bottom" constant="20" id="hdM-0a-KZO"/>
+                <constraint firstItem="gLY-ep-NJu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="35" id="i9b-Yg-oRA"/>
+                <constraint firstItem="PoD-U0-mcW" firstAttribute="top" secondItem="ZR0-0a-vjZ" secondAttribute="bottom" constant="10" id="niU-fF-91L"/>
+                <constraint firstItem="v95-SI-bqY" firstAttribute="top" secondItem="PoD-U0-mcW" secondAttribute="bottom" constant="10" id="pkb-RM-AUT"/>
+                <constraint firstItem="ZR0-0a-vjZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="vHZ-cG-sZg"/>
+                <constraint firstItem="PoD-U0-mcW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="xbF-Zk-0pG"/>
+                <constraint firstAttribute="trailing" secondItem="ZR0-0a-vjZ" secondAttribute="trailing" constant="30" id="xsW-cl-Ac6"/>
+                <constraint firstAttribute="trailing" secondItem="gLY-ep-NJu" secondAttribute="trailing" constant="35" id="zt6-Wr-b0Z"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="132.60869565217394" y="-4.3526785714285712"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

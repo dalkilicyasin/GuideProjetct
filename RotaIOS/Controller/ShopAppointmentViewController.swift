@@ -30,7 +30,6 @@ class ShopAppointmentViewController: BaseViewController {
     @IBAction func backButton(_ sender: Any) {
         self.otiPushViewController(viewController: MainPAgeViewController())
     }
-    
 }
 
 

@@ -14,13 +14,11 @@ protocol ContinueButtonTappedDelegate {
 }
 
 class FooterCustomView: UIView {
-    
+    @IBOutlet weak var buttonGetOfflineData: UIButton!
     @IBOutlet var viewHeader: UIView!
     @IBOutlet weak var buttonView: UIButton!
     @IBOutlet weak var printButton: UIButton!
-   
     var continueButtonTappedDelegate : ContinueButtonTappedDelegate?
-    
     var counter = 0
 
     override init(frame: CGRect) {
@@ -37,17 +35,23 @@ class FooterCustomView: UIView {
         Bundle.main.loadNibNamed(String(describing: FooterCustomView.self), owner: self, options: nil)
         self.viewHeader.addCustomContainerView(self)
         self.buttonView.layer.cornerRadius = 10
+        self.buttonView.backgroundColor = UIColor.greenColor
         
-        self.printButton.layer.cornerRadius = 10
         self.printButton.isHidden = true
-        
         self.printButton.isEnabled = false
+        
+        self.buttonGetOfflineData.isHidden = true
+        self.buttonGetOfflineData.isEnabled = false
        
         self.printButton.layer.borderWidth = 1
         self.printButton.layer.borderColor = UIColor.green.cgColor
         self.printButton.layer.cornerRadius = 10
         self.printButton.backgroundColor = UIColor.clear
-       
+        
+        self.buttonGetOfflineData.backgroundColor = UIColor.clear
+        self.buttonGetOfflineData.layer.borderWidth = 1
+        self.buttonGetOfflineData.layer.cornerRadius = 10
+        self.buttonGetOfflineData.layer.borderColor = UIColor.green.cgColor
     }
     
     @IBAction func countinueButtonClicked(_ sender: Any) {
@@ -59,9 +63,7 @@ class FooterCustomView: UIView {
         }
 
         self.continueButtonTappedDelegate?.continueButtonTappedDelegate(tapped: counter)
-
         print(counter)
-
     }
     
     func buttonHiding( hidePrintbutton : Bool, hideButton : Bool) {

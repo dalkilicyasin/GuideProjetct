@@ -48,8 +48,6 @@ class ProceedPageCustomView : UIView {
     let timeToolBar = UIToolbar()
     var paxListinProceedPage : [Paxes] = []
     var stepsListinProceedPage : [Steps] = []
-    var paxListStringType : [String : Any] = [:]
-    var stepListStringType : [String : Any] = [:]
     var adultCountinProceedPage = 0
     var childCountinProceedPage = 0
     var infantCountinProceedPage = 0
@@ -154,7 +152,6 @@ class ProceedPageCustomView : UIView {
         formatter.dateFormat = "dd-MM-yyyy"
         self.viewShopDateMainTextView.mainText.text = "\(formatter.string(from: datePicker.date))"
         self.viewMainView.endEditing(true)
-        
     }
     
     func createTimePicker() {

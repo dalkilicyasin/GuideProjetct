@@ -19,6 +19,7 @@ final class ZReportLoginView : UIView {
             textUserName.isSecureTextEntry = false
         }
     }
+    
     @IBOutlet weak var textPassword: UITextField! {
         didSet{
             textPassword.attributedPlaceholder = NSAttributedString(string: "     Password", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray] )
@@ -27,7 +28,6 @@ final class ZReportLoginView : UIView {
             textPassword.isSecureTextEntry = true
         }
     }
-
     
     override func awakeFromNib() {
         self.textUserName.layer.cornerRadius = 10
@@ -35,14 +35,14 @@ final class ZReportLoginView : UIView {
         self.viewBottom.layer.cornerRadius = 20.0
         self.viewTop.applyGradient(colours: [UIColor(hexString: "#BFD732"), UIColor(hexString: "#3DB54A")])
         self.buttonLogin.layer.cornerRadius = 10
-  
-}
-
-required init(customParamArg: String) {
-    super.init(frame: .zero)
-}
-
-required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-}
+        
+    }
+    
+    required init(customParamArg: String) {
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }

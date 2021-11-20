@@ -60,7 +60,7 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 case 0 :
                     viewController = TasksViewController()
                 case 1 :
-                    viewController = ExcursionSaleViewController()
+                    viewController = ExcursionViewController()
                 case 2 :
                     viewController = ShopAppointmentViewController()
                 case 3 :

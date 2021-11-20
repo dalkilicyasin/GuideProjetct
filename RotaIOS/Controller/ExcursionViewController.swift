@@ -1,76 +1,46 @@
 //
-//  ShopAppointmentView.swift
-//  Rota
+//  ExcursionViewController.swift
+//  RotaIOS
 //
-//  Created by Yasin Dalkilic on 18.04.2021.
+//  Created by Yasin Dalkilic on 17.11.2021.
 //
 
-import Foundation
 import UIKit
 
-final class ShopAppointmentView : UIView {
-    @IBOutlet weak var headerDetailCustomView: HeaderDetailCustomView!
-    @IBOutlet weak var appointmentBarCustomView: AppointmentBarCustomView!
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var footerView: FooterCustomView!
-    var hotelPageCustomView : HotelPageCustomView?
-    var paxPageCustomView : PaxPageCustomView?
-    var stepsPageCustomView : StepsPageCustomView?
-    var proceedPageCustomView : ProceedPageCustomView?
-    var appontmentBarCell : ApponintmentBarCollectionViewCell?
+class ExcursionViewController: UIViewController {
+    @IBOutlet var viewExcursionView: ExcursionView!
+    @IBOutlet weak var viewAppointMentBarCutomView: AppointmentBarCustomView!
+    @IBOutlet weak var viewFooterViewCustomView: FooterCustomView!
+    var viewExcSearchCustomView : ExcSearchCustomView?
     var lastUIView = UIView()
-    var homePageTapped = true // işlevi yok silinecek
-    var paxPageTapped = false //işlevi yok silinecek
-    var isHere = false
-    var paxesListinShopView : [Paxes] = []
-    var stepsListinShopView : [Steps] = []
-    var adultCount = 0
-    var childCount = 0
-    var infantCount = 0
-    var isHotelChange = false
-    var isPaxesListChange = false
-    var isStepListChange = false
-    var procedPageIsSuccess = false
- 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.appointmentBarCustomView.collectionList = ["Hotel","Pax","Steps","Proceed"]
-        self.headerDetailCustomView.labelHeaderDetailView.text = "Ind. Shop Appointment"
-        self.appointmentBarCustomView.homePageTappedDelegate = self
-        self.footerView.continueButtonTappedDelegate = self
-        self.lastUIView = UIView ()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.viewAppointMentBarCutomView.homePageTappedDelegate = self
+        self.viewFooterViewCustomView.continueButtonTappedDelegate = self
         UIView.animate(withDuration: 0, animations: { [self] in
-            self.hotelPageCustomView = HotelPageCustomView()
-            self.contentView.addSubview(hotelPageCustomView!)
-            self.hotelPageCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.contentView.frame.size.height)
+            self.viewExcSearchCustomView = ExcSearchCustomView()
+            self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = false
+            self.viewExcursionView.viewContentView.addSubview(viewExcSearchCustomView!)
+            self.viewExcSearchCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
         }, completion: { (finished) in
             if finished{
-                
             }
         })
-        self.lastUIView = self.hotelPageCustomView!
-    }
-    
-    required init(customParamArg: String) {
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
+        self.lastUIView = self.viewExcSearchCustomView!
     }
 }
 
-extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDelegate {
+extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappedDelegate {
     
     func continueButtonTappedDelegate(tapped: Int) {
+        self.viewAppointMentBarCutomView.collectionView(viewAppointMentBarCutomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
         
-    self.appointmentBarCustomView.collectionView(appointmentBarCustomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
-
-        self.footerView.counter = tapped
+        self.viewFooterViewCustomView.counter = tapped
         if tapped == 0 {
-            self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-            if self.hotelPageCustomView == nil {
+            self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = false
+          //  self.viewFooterViewCustomView.buttonHiding(hidePrintbutton: true, hideButton: false)
+          /*  if self.hotelPageCustomView == nil {
                // self.lastUIView.removeFromSuperview()
                 self.paxPageCustomView?.isHidden = true
                 self.stepsPageCustomView?.isHidden = true
@@ -81,9 +51,17 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.paxPageCustomView?.isHidden = true
                 self.stepsPageCustomView?.isHidden = true
                 self.proceedPageCustomView?.isHidden = true
-            }
+            }*/
         }else if tapped == 1 {
-            self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+            self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
+            self.viewFooterViewCustomView.addSubview(self.viewFooterViewCustomView.buttonGetOfflineData)
+            self.viewFooterViewCustomView.buttonGetOfflineData.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                viewFooterViewCustomView.buttonGetOfflineData.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+                viewFooterViewCustomView.buttonGetOfflineData.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+                viewFooterViewCustomView.buttonGetOfflineData.widthAnchor.constraint(equalToConstant: 100),
+                viewFooterViewCustomView.buttonGetOfflineData.heightAnchor.constraint(equalToConstant:50)])
+           /* self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             self.hotelPageCustomView?.hotelPageDlegate = self
             if self.paxPageCustomView == nil || self.isHotelChange == true{
       
@@ -110,9 +88,9 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.stepsPageCustomView?.isHidden = true
                 self.hotelPageCustomView?.isHidden = true
                 self.proceedPageCustomView?.isHidden = true
-            }   
+            }*/
         }else if tapped == 2 {
-            self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+          /*  self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             if stepsPageCustomView == nil || self.isPaxesListChange == true {
                 self.paxPageCustomView?.isHidden = true
                 self.hotelPageCustomView?.isHidden = true
@@ -134,15 +112,15 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 
                 self.isPaxesListChange = false
             }else {
-                self.stepsPageCustomView?.isHidden = false
+               self.stepsPageCustomView?.isHidden = false
                 self.paxPageCustomView?.isHidden = true
                 self.hotelPageCustomView?.isHidden = true
                 self.proceedPageCustomView?.isHidden = true
             }
-           
+           */
         }else if tapped == 3 {
             
-            self.footerView.buttonHiding(hidePrintbutton: false, hideButton: true)
+          /*  self.footerView.buttonHiding(hidePrintbutton: false, hideButton: true)
             if proceedPageCustomView == nil || self.isPaxesListChange == true || self.isStepListChange == true {
                 // self.lastUIView.removeFromSuperview()
                //  self.animatedCustomView(customView: ProceedPageCustomView())
@@ -175,7 +153,7 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.paxPageCustomView?.isHidden = true
                 self.stepsPageCustomView?.isHidden = true
                 self.hotelPageCustomView?.isHidden = true
-            }
+            }*/
           
         }
         else{
@@ -185,14 +163,13 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
     }
     
     func homePageTapped(ischosen: Int) {
-        
-        if self.footerView.counter == ischosen {
+        if self.viewFooterViewCustomView.counter == ischosen {
             return
         }
-        self.footerView.counter = ischosen
+        self.viewFooterViewCustomView.counter = ischosen
         
         if ischosen == 0 {
-          
+          /*
             self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             if self.hotelPageCustomView == nil {
                // self.lastUIView.removeFromSuperview()
@@ -205,11 +182,11 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.paxPageCustomView?.isHidden = true
                 self.stepsPageCustomView?.isHidden = true
                 self.proceedPageCustomView?.isHidden = true
-            }
+            }*/
             
         }
         else if ischosen == 1 {
-            self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+           /* self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             self.hotelPageCustomView?.hotelPageDlegate = self
             if self.paxPageCustomView == nil || self.isHotelChange == true{
                  // self.lastUIView.removeFromSuperview()
@@ -235,10 +212,10 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.hotelPageCustomView?.isHidden = true
                 self.stepsPageCustomView?.isHidden = true
                 self.proceedPageCustomView?.isHidden = true
-            }
+            }*/
           
         }else if ischosen == 2 {
-            self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+           /* self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             if self.stepsPageCustomView == nil || self.isPaxesListChange == true {
                 // self.lastUIView.removeFromSuperview()
                //  self.animatedCustomView(customView: StepsPageCustomView())
@@ -267,10 +244,10 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.paxPageCustomView?.isHidden = true
                 self.hotelPageCustomView?.isHidden = true
                 self.proceedPageCustomView?.isHidden = true
-            }
+            } */
        
         }else if ischosen == 3 {
-            self.footerView.buttonHiding(hidePrintbutton: false, hideButton: true)
+          /*  self.footerView.buttonHiding(hidePrintbutton: false, hideButton: true)
         
             if self.proceedPageCustomView == nil || self.isPaxesListChange == true || self.isStepListChange == true {
                 self.paxPageCustomView?.isHidden = true
@@ -301,92 +278,11 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
                 self.stepsPageCustomView?.isHidden = true
                 self.hotelPageCustomView?.isHidden = true
             }
-      // self.animatedCustomView(customView: ProceedPageCustomView())
+      // self.animatedCustomView(customView: ProceedPageCustomView()) */
         }
         else{
             
             print("default")
         }
     }
-    
-    func animatedCustomView( customView : UIView ){
-      //  self.lastUIView.removeFromSuperview()
-        UIView.animate(withDuration: 0, animations: { [self] in
-           // self.paxPageCustomView?.paxesListDelegate = self
-           
-            self.contentView.addSubview(customView)
-            customView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.contentView.frame.size.height)
-        }, completion: { (finished) in
-            if finished{
-                
-            }
-        })
-        self.lastUIView = customView
-    }
 }
-
-
-extension ShopAppointmentView : HotelPageDelegate {
-    func hotelPage(isChange: Bool) {
-        self.isHotelChange = isChange
-    }
-}
-
-extension ShopAppointmentView : PaxesListDelegate {
-  
-    func paxesList(ischosen: Bool, sendingPaxesLis: [Paxes], isChange: Bool) {
-        self.isPaxesListChange = isChange
-        self.paxesListinShopView.removeAll()
-            for listarray in sendingPaxesLis {
-                self.paxesListinShopView.append(listarray)
-            }
-        
-        var adultList : [String] = []
-        adultList.removeAll()
-        
-        for listarray in self.paxesListinShopView{
-            adultList.append(listarray.pAX_AGEGROUP ?? "")
-        }
-        if paxesListinShopView.count > 0 {
-            self.adultCount = 0
-            self.childCount = 0
-            self.infantCount = 0
-            for i in 0...self.paxesListinShopView.count - 1 {
-                if adultList[i] == "ADL" {
-                    self.adultCount += 1
-                }else if adultList[i] == "CHD" {
-                    self.childCount += 1
-                }else if adultList[i] == "INF" {
-                    self.infantCount += 1
-                }
-            }
-        }
-    }
-}
-
-extension ShopAppointmentView : StepsPageListDelegate {
-  
-    func stepsPageList(listofsteps: [Steps], isChange: Bool) {
-        self.isStepListChange = isChange
-        self.stepsListinShopView.removeAll()
-        for listarray in listofsteps {
-            self.stepsListinShopView.append(listarray)
-        }
-    }
-}
-
-extension ShopAppointmentView : ProceedPageDelegate {
-    func proceedPage(isSuccsess: Bool) {
-        self.procedPageIsSuccess = isSuccsess
-        if self.procedPageIsSuccess == true {
-            self.footerView.printButton.isEnabled = true
-            self.footerView.printButton.backgroundColor = UIColor.greenColor
-        }else {
-            self.footerView.printButton.isEnabled = false
-            self.footerView.printButton.backgroundColor = UIColor.clear
-        }
-    }
-}
-
-
-
