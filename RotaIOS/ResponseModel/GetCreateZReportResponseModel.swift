@@ -8,7 +8,6 @@
 import Foundation
 import ObjectMapper
 
-
 struct GetCreateZReportResponseModel : Mappable {
     var id : String?
     var record : Int?
@@ -30,5 +29,4 @@ struct GetCreateZReportResponseModel : Mappable {
         message <- map["Message"]
         detailMessage <- map["DetailMessage"]
     }
-
 }

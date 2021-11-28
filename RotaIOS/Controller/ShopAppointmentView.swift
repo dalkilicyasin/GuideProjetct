@@ -49,7 +49,23 @@ final class ShopAppointmentView : UIView {
             }
         })
         self.lastUIView = self.hotelPageCustomView!
+        self.footerView.addSubview(self.footerView.buttonView)
+        self.footerView.buttonView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+                                        self.footerView.buttonView.centerXAnchor.constraint(equalTo: self.footerView.viewHeader.centerXAnchor),
+                                        self.footerView.buttonView.centerYAnchor.constraint(equalTo: self.footerView.viewHeader.centerYAnchor),
+                                        self.footerView.buttonView.widthAnchor.constraint(equalToConstant: 320),
+                                        self.footerView.buttonView.heightAnchor.constraint(equalToConstant: 50)])
+        
+        self.footerView.addSubview(self.footerView.printButton)
+        self.footerView.printButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+                                        self.footerView.printButton.centerXAnchor.constraint(equalTo: self.footerView.viewHeader.centerXAnchor),
+                                        self.footerView.printButton.centerYAnchor.constraint(equalTo: self.footerView.viewHeader.centerYAnchor),
+                                        self.footerView.printButton.widthAnchor.constraint(equalToConstant: 320),
+                                        self.footerView.printButton.heightAnchor.constraint(equalToConstant: 50)])
     }
+    
     
     required init(customParamArg: String) {
         super.init(frame: .zero)
@@ -66,7 +82,7 @@ extension ShopAppointmentView : HomePageTappedDelegate , ContinueButtonTappedDel
     func continueButtonTappedDelegate(tapped: Int) {
         
     self.appointmentBarCustomView.collectionView(appointmentBarCustomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
-
+       
         self.footerView.counter = tapped
         if tapped == 0 {
             self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)

@@ -12,6 +12,10 @@ class ExcursionViewController: UIViewController {
     @IBOutlet weak var viewAppointMentBarCutomView: AppointmentBarCustomView!
     @IBOutlet weak var viewFooterViewCustomView: FooterCustomView!
     var viewExcSearchCustomView : ExcSearchCustomView?
+    var beginDateStringType = ""
+    var endDateStringType = ""
+    var tourList : [GetSearchTourResponseModel] = []
+    var oflineDataTourList : [GetSearchTourResponseModel] = []
     var lastUIView = UIView()
     
     override func viewDidLoad() {
@@ -28,6 +32,24 @@ class ExcursionViewController: UIViewController {
             }
         })
         self.lastUIView = self.viewExcSearchCustomView!
+        
+        self.viewFooterViewCustomView.buttonGetOfflineData.isEnabled = true
+        let getOfflineDataGesture = UITapGestureRecognizer(target: self, action: #selector(tappedOfflinedataButton))
+        self.viewFooterViewCustomView.buttonGetOfflineData.isUserInteractionEnabled = true
+        self.viewFooterViewCustomView.buttonGetOfflineData.addGestureRecognizer(getOfflineDataGesture)
+    }
+    
+    @objc func tappedOfflinedataButton() {
+        let getOfflineDataRequestModel = GetTourSearchCacheRequestModel.init(guideId: String(userDefaultsData.getGuideId()), hotelIds: self.viewExcSearchCustomView?.hotelIdStringType ?? "")
+        NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSearchCache, method: .get, parameters: getOfflineDataRequestModel.requestPathString()) { (response : [GetSearchTourResponseModel]) in
+            if response.count > 0 {
+                print(response[0])
+            }else{
+                print("data has not recived")
+            }
+        }
+       print("tapped")
+        
     }
 }
 
@@ -35,9 +57,10 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
     
     func continueButtonTappedDelegate(tapped: Int) {
         self.viewAppointMentBarCutomView.collectionView(viewAppointMentBarCutomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
-        
         self.viewFooterViewCustomView.counter = tapped
         if tapped == 0 {
+            self.viewFooterViewCustomView.buttonGetOfflineData.translatesAutoresizingMaskIntoConstraints = true
+            self.viewFooterViewCustomView.commonInit()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = false
           //  self.viewFooterViewCustomView.buttonHiding(hidePrintbutton: true, hideButton: false)
           /*  if self.hotelPageCustomView == nil {
@@ -54,13 +77,28 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }*/
         }else if tapped == 1 {
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
-            self.viewFooterViewCustomView.addSubview(self.viewFooterViewCustomView.buttonGetOfflineData)
-            self.viewFooterViewCustomView.buttonGetOfflineData.translatesAutoresizingMaskIntoConstraints = false
+            self.viewFooterViewCustomView.addSubview(self.viewFooterViewCustomView.buttonView)
+            self.viewFooterViewCustomView.buttonView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                viewFooterViewCustomView.buttonGetOfflineData.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-                viewFooterViewCustomView.buttonGetOfflineData.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-                viewFooterViewCustomView.buttonGetOfflineData.widthAnchor.constraint(equalToConstant: 100),
-                viewFooterViewCustomView.buttonGetOfflineData.heightAnchor.constraint(equalToConstant:50)])
+                                            self.viewFooterViewCustomView.buttonView.centerXAnchor.constraint(equalTo: self.viewFooterViewCustomView.viewHeader.centerXAnchor),
+                                            self.viewFooterViewCustomView.buttonView.centerYAnchor.constraint(equalTo: self.viewFooterViewCustomView.viewHeader.centerYAnchor),
+                                            self.viewFooterViewCustomView.buttonView.widthAnchor.constraint(equalToConstant: 320),
+                                            self.viewFooterViewCustomView.buttonView.heightAnchor.constraint(equalToConstant: 50)])
+            
+            let getTourSearchRequestModel = GetTourSearchRequestModel.init(guide: String(userDefaultsData.getGuideId()), market: self.viewExcSearchCustomView?.marketIdStringType ?? "", hotel: self.viewExcSearchCustomView?.hotelIdStringType ?? "", area: self.viewExcSearchCustomView?.areaIdStringType ?? "", tourdatestart: self.viewExcSearchCustomView?.beginDateString ??  "", tourdateend: self.viewExcSearchCustomView?.endDateString ?? "", saledate: userDefaultsData.getSaleDate())
+            
+            NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
+                if response.count > 0 {
+                    self.tourList = response
+                    print(self.tourList[0])
+                    
+                }else{
+                    let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+           
            /* self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             self.hotelPageCustomView?.hotelPageDlegate = self
             if self.paxPageCustomView == nil || self.isHotelChange == true{

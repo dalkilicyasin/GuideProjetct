@@ -51,6 +51,9 @@ class ExcSearchCustomView : UIView {
     let endDateToolBar = UIToolbar()
     var beginDateString = ""
     var endDateString = ""
+    var marketIdStringType = ""
+    var hotelIdStringType = ""
+    var areaIdStringType = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -157,6 +160,7 @@ class ExcSearchCustomView : UIView {
         self.viewMarketList.addGestureRecognizer(gestureMarket)
         self.viewHotelList.addGestureRecognizer(gestureHotel)
         self.marketMenu.topOffset = CGPoint(x: 0, y:-(self.marketMenu.anchorView?.plainView.bounds.height ?? 200))
+        
         self.marketMenu.selectionAction = { index, title in
             if title != self.viewMarketList.mainLabel.text {
                 self.hotelPageDlegate?.hotelPage(isChange: true)
@@ -166,9 +170,11 @@ class ExcSearchCustomView : UIView {
             self.filteredMarketList = filtered
             for listofarray in self.filteredMarketList {
                 userDefaultsData.saveMarketId(marketId: listofarray.value ?? 0)
+                self.marketIdStringType = String(listofarray.value ?? 0)
                 //   userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "") // silinecek
             }
         }
+        
         self.hotelMenu.selectionAction = { index, title in
             if title != self.viewHotelList.mainLabel.text {
                 self.hotelPageDlegate?.hotelPage(isChange: true)
@@ -179,6 +185,8 @@ class ExcSearchCustomView : UIView {
             for listofArray in self.filteredHotelList {
                 userDefaultsData.saveHotelId(hotelId: listofArray.value ?? 0)
                 userDefaultsData.saveHotelArea(hotelAreaId: listofArray.area ?? 0)
+                self.hotelIdStringType = String(listofArray.value ?? 0)
+                self.areaIdStringType = String(listofArray.area ?? 0)
             }
         }
         self.viewMarketList.headerLAbel.text = "Market"

@@ -17,14 +17,11 @@ class ShopAppointmentViewController: BaseViewController {
 
        let userId = userDefaultsData.getUserId()
         print(userId)
-        
-
     }
     
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         
-   
     }
 
     @IBAction func backButton(_ sender: Any) {

@@ -49,6 +49,38 @@ public class NetworkManager {
         }
     }
     
+    public static func sendRequestArray<T: Mappable>(url: String,endPoint: ServiceEndPoint, method: HTTPMethod = .post, requestModel: Mappable, indicatorEnabled: Bool = true,
+                                         completion: @escaping([T]) -> ()) {
+        
+        if !networkConnectionEnabled {
+            return
+        }
+        
+        guard let request = prepareRequest(url : url,endPoint: endPoint, method: method, requestModel: requestModel),
+            let viewController = UIApplication.getTopViewController()
+            else { return }
+        
+        
+        if indicatorEnabled {
+            viewController.showIndicator(tag: String(describing: request.self))
+        }
+        
+        Alamofire.request(request).responseArray { (response: DataResponse<[T]>) in
+            if indicatorEnabled {
+                viewController.hideIndicator(tag: String(describing: request.self))
+            }
+            
+            switch response.result {
+            case .success(let responseModel):
+                completion(responseModel)
+                
+            case .failure(let error as NSError):
+                viewController.errorPopup(title: "Warning", message: "An error occurred when requesting", cancelButtonTitle: "OK")
+                debugPrint(error.description)
+            }
+        }
+    }
+    
     public static func sendRequest<T: Mappable>(url : String,endPoint: ServiceEndPoint, method: HTTPMethod = .post, parameters: Parameters? = nil, indicatorEnabled: Bool = true,
                                          completion: @escaping(T) -> ()) {
         

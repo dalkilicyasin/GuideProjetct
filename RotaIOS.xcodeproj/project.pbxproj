@@ -210,6 +210,9 @@
 		D994FBD027451862003564F3 /* ExcursionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBCF27451862003564F3 /* ExcursionView.swift */; };
 		D994FBD22745307F003564F3 /* ExcSearchCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBD12745307F003564F3 /* ExcSearchCustomView.swift */; };
 		D994FBD4274530B6003564F3 /* ExcSearchCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D994FBD3274530B6003564F3 /* ExcSearchCustomView.xib */; };
+		D994FBD6274FFB2C003564F3 /* GetSearchTourResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBD5274FFB2C003564F3 /* GetSearchTourResponseModel.swift */; };
+		D994FBD8274FFBC6003564F3 /* GetTourSearchRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBD7274FFBC6003564F3 /* GetTourSearchRequestModel.swift */; };
+		D994FBDA2753A8D9003564F3 /* GetTourSearchCacheRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBD92753A8D9003564F3 /* GetTourSearchCacheRequestModel.swift */; };
 		D9956BFA26D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */; };
 		D9956BFC26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BFB26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift */; };
 		D9956BFF26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */; };
@@ -477,6 +480,9 @@
 		D994FBCF27451862003564F3 /* ExcursionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionView.swift; sourceTree = "<group>"; };
 		D994FBD12745307F003564F3 /* ExcSearchCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcSearchCustomView.swift; sourceTree = "<group>"; };
 		D994FBD3274530B6003564F3 /* ExcSearchCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcSearchCustomView.xib; sourceTree = "<group>"; };
+		D994FBD5274FFB2C003564F3 /* GetSearchTourResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSearchTourResponseModel.swift; sourceTree = "<group>"; };
+		D994FBD7274FFBC6003564F3 /* GetTourSearchRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSearchRequestModel.swift; sourceTree = "<group>"; };
+		D994FBD92753A8D9003564F3 /* GetTourSearchCacheRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSearchCacheRequestModel.swift; sourceTree = "<group>"; };
 		D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVoucherDetailRequestModel.swift; sourceTree = "<group>"; };
 		D9956BFB26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVoucherDetailResponseModel.swift; sourceTree = "<group>"; };
 		D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherDetailViewControllerViewController.swift; sourceTree = "<group>"; };
@@ -720,6 +726,8 @@
 				D900407727172F1C00DDE088 /* GetDailyReportRequestModel.swift */,
 				D9FD64E22737F8EA009B6619 /* GetZReportPreviewRequestModel.swift */,
 				D9FD64EC2738182A009B6619 /* GetCreateZReportRequestModel.swift */,
+				D994FBD7274FFBC6003564F3 /* GetTourSearchRequestModel.swift */,
+				D994FBD92753A8D9003564F3 /* GetTourSearchCacheRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -756,6 +764,7 @@
 				D900407527172AC900DDE088 /* GetDailyReportResponseModel.swift */,
 				D9FD64E42737FA48009B6619 /* GetZReportPreviewResponseModel.swift */,
 				D9FD64EE273818C3009B6619 /* GetCreateZReportResponseModel.swift */,
+				D994FBD5274FFB2C003564F3 /* GetSearchTourResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -1245,6 +1254,7 @@
 				D931575B26FB4A0F000C91AD /* GetReportDataRequestModel.swift in Sources */,
 				BF44C91C2640013B00238035 /* LoginView.swift in Sources */,
 				BF44C9152640011800238035 /* BaseTableViewCell.swift in Sources */,
+				D994FBDA2753A8D9003564F3 /* GetTourSearchCacheRequestModel.swift in Sources */,
 				D931578027036D4C000C91AD /* ZReportPaymentTableViewCell.swift in Sources */,
 				D994FBD027451862003564F3 /* ExcursionView.swift in Sources */,
 				D9956C0626DC022B006CFC6D /* GetCancelRulesRequestModel.swift in Sources */,
@@ -1323,6 +1333,7 @@
 				D9FD64ED2738182A009B6619 /* GetCreateZReportRequestModel.swift in Sources */,
 				D95C203526F2010C007D1506 /* SpeakingHoursDetailViewController.swift in Sources */,
 				D931575E26FB58A3000C91AD /* ZReportPriviewTableViewCell.swift in Sources */,
+				D994FBD8274FFBC6003564F3 /* GetTourSearchRequestModel.swift in Sources */,
 				D9004074271722E200DDE088 /* DailyReportView.swift in Sources */,
 				D900407627172AC900DDE088 /* GetDailyReportResponseModel.swift in Sources */,
 				BF44C976264001A400238035 /* BaseCollectionViewCell.swift in Sources */,
@@ -1352,6 +1363,7 @@
 				D93F885826446D4700397283 /* GetHotelsMobileResponseModel.swift in Sources */,
 				D97FB5B726C6AC550099F28B /* MyShoopingSaleDetailView.swift in Sources */,
 				D97FB58926C075B90099F28B /* MyTourSaleDetailPageView.swift in Sources */,
+				D994FBD6274FFB2C003564F3 /* GetSearchTourResponseModel.swift in Sources */,
 				D97FB5A526C408BE0099F28B /* MyTourSaleMoreDetailView.swift in Sources */,
 				D9315784270486AD000C91AD /* ZReportRefundTableViewCell.swift in Sources */,
 				BF44C999264001C400238035 /* PaxPageCustomView.swift in Sources */,

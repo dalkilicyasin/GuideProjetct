@@ -55,10 +55,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rax-Co-yw1" customClass="FooterCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="776" width="414" height="120"/>
+                    <rect key="frame" x="0.0" y="746" width="414" height="150"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="120" id="OS9-1h-5yE"/>
+                        <constraint firstAttribute="height" constant="150" id="OS9-1h-5yE"/>
                     </constraints>
                 </view>
             </subviews>
