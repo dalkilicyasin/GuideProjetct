@@ -6,6 +6,14 @@
 //
 
 import UIKit
+import Alamofire
+
+struct Connectivity {
+  static let sharedInstance = NetworkReachabilityManager()!
+  static var isConnectedToInternet:Bool {
+      return self.sharedInstance.isReachable
+    }
+}
 
 class ExcursionViewController: UIViewController {
     @IBOutlet var viewExcursionView: ExcursionView!
@@ -17,6 +25,7 @@ class ExcursionViewController: UIViewController {
     var tourList : [GetSearchTourResponseModel] = []
     var oflineDataTourList : [GetSearchTourResponseModel] = []
     var lastUIView = UIView()
+    var isConnectedInternet : Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +46,14 @@ class ExcursionViewController: UIViewController {
         let getOfflineDataGesture = UITapGestureRecognizer(target: self, action: #selector(tappedOfflinedataButton))
         self.viewFooterViewCustomView.buttonGetOfflineData.isUserInteractionEnabled = true
         self.viewFooterViewCustomView.buttonGetOfflineData.addGestureRecognizer(getOfflineDataGesture)
+        
+        if Connectivity.isConnectedToInternet {
+             print("Connected")
+            self.isConnectedInternet = true
+         } else {
+             print("No Internet")
+            self.isConnectedInternet = false
+        }
     }
     
     @objc func tappedOfflinedataButton() {
@@ -44,6 +61,7 @@ class ExcursionViewController: UIViewController {
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSearchCache, method: .get, parameters: getOfflineDataRequestModel.requestPathString()) { (response : [GetSearchTourResponseModel]) in
             if response.count > 0 {
                 print(response[0])
+                userDefaultsData.saveSearchTourOffline(id: response)
             }else{
                 print("data has not recived")
             }
@@ -54,7 +72,6 @@ class ExcursionViewController: UIViewController {
 }
 
 extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappedDelegate {
-    
     func continueButtonTappedDelegate(tapped: Int) {
         self.viewAppointMentBarCutomView.collectionView(viewAppointMentBarCutomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
         self.viewFooterViewCustomView.counter = tapped
@@ -91,7 +108,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 if response.count > 0 {
                     self.tourList = response
                     print(self.tourList[0])
-                    
                 }else{
                     let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
@@ -324,3 +340,5 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
         }
     }
 }
+
+

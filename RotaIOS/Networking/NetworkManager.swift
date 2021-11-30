@@ -10,6 +10,7 @@ import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 
+
 public class NetworkManager {
     
     public static var networkConnectionEnabled = true

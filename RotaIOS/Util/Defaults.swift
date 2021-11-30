@@ -24,10 +24,12 @@ public class Defaults{
         case HotelArea
         case MarketGruopId
         case Favorite
+        case SearchTourOfflineData
+        case Password
     }
     
    public init(){}
-    
+    // UserName and Password
     public func saveUserName(id:String){
         let preferences = UserDefaults.standard
         preferences.set( id , forKey:getIdentifier(type: .UserName))
@@ -42,6 +44,40 @@ public class Defaults{
         let data:String = preferences.value(forKey: getIdentifier(type: .UserName)) as! String
         return data
     }
+    
+    public func savePassword(id:String){
+        let preferences = UserDefaults.standard
+        preferences.set( id , forKey:getIdentifier(type: .Password))
+        preferences.synchronize()
+    }
+    
+    public func getPassword() -> String! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .Password)) == nil {
+            return nil
+        }
+        let data:String = preferences.value(forKey: getIdentifier(type: .UserName)) as! String
+        return data
+    }
+    
+    
+    //SearchTourOfflineData
+    
+    func saveSearchTourOffline(id:[GetSearchTourResponseModel]){
+        let preferences = UserDefaults.standard
+        preferences.set( id , forKey:getIdentifier(type: .UserName))
+        preferences.synchronize()
+    }
+    
+    func getSearchTourOffline() -> [GetSearchTourResponseModel]! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .UserName)) == nil {
+            return nil
+        }
+        let data:[GetSearchTourResponseModel] = preferences.value(forKey: getIdentifier(type: .SearchTourOfflineData)) as! [GetSearchTourResponseModel]
+        return data
+    }
+    
     
     //LanguageID
     public func saveLanguageId(languageId:Int){
@@ -252,6 +288,10 @@ public class Defaults{
             return "Favorite"
         case .UserName:
             return "UserName"
+        case .SearchTourOfflineData:
+            return "SearchTourOfflineData"
+        case .Password:
+            return "Password"
         }
     }
 }

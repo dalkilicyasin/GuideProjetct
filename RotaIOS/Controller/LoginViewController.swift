@@ -6,20 +6,22 @@
 //
 
 import Foundation
-
+import Alamofire
 import UIKit
 
 final class LoginViewController : BaseViewController {
     @IBOutlet var viewLogin: LoginView!
     var userName = ""
+    var password = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 }
     
     @IBAction func buttonClicked(_ sender: Any) {
         self.userName = self.viewLogin.textUsername.text ?? ""
+        self.password = self.viewLogin.textPassword.text ?? ""
+        userDefaultsData.savePassword(id: self.password)
         userDefaultsData.saveUserName(id: self.userName)
         let createTokenRequestModel = CreateTokenRequestModel.init()
         createTokenRequestModel.userName = viewLogin.textUsername.text
