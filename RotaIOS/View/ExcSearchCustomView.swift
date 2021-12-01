@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 import DropDown
 
+protocol ExcSearchDelegate {
+    func hotelorMarketChange( isChange : Bool)
+}
+
 class ExcSearchCustomView : UIView {
     @IBOutlet var viewMainView: UIView!
     @IBOutlet weak var viewTourBeginDate: MainTextCustomView!
@@ -25,7 +29,7 @@ class ExcSearchCustomView : UIView {
     var marketList : [GetGuideMarketResponseModel] = []
     var filteredMarketList : [GetGuideMarketResponseModel] = []
     var filteredHotelList : [GetHotelsMobileResponseModel] = []
-    var hotelPageDlegate : HotelPageDelegate?
+    var excurSearchDelegate : ExcSearchDelegate?
     var tempHotelMenu : [String] = []
     var beginDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -163,7 +167,7 @@ class ExcSearchCustomView : UIView {
         
         self.marketMenu.selectionAction = { index, title in
             if title != self.viewMarketList.mainLabel.text {
-                self.hotelPageDlegate?.hotelPage(isChange: true)
+                self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
             }
             self.viewMarketList.mainLabel.text = title
             let filtered = self.marketList.filter{($0.text?.contains(title) ?? false)}
@@ -177,7 +181,7 @@ class ExcSearchCustomView : UIView {
         
         self.hotelMenu.selectionAction = { index, title in
             if title != self.viewHotelList.mainLabel.text {
-                self.hotelPageDlegate?.hotelPage(isChange: true)
+                self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
             }
             self.viewHotelList.mainLabel.text = title
             let filtered = self.hotelList.filter{($0.text?.contains(title) ?? false)}

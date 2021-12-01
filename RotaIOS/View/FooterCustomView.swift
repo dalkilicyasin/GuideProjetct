@@ -55,13 +55,10 @@ class FooterCustomView: UIView {
     }
     
     @IBAction func countinueButtonClicked(_ sender: Any) {
-        
         self.counter += 1
-
         if counter == 4 {
             self.counter = 0
         }
-
         self.continueButtonTappedDelegate?.continueButtonTappedDelegate(tapped: counter)
         print(counter)
     }

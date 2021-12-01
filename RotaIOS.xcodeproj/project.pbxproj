@@ -213,6 +213,8 @@
 		D994FBD6274FFB2C003564F3 /* GetSearchTourResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBD5274FFB2C003564F3 /* GetSearchTourResponseModel.swift */; };
 		D994FBD8274FFBC6003564F3 /* GetTourSearchRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBD7274FFBC6003564F3 /* GetTourSearchRequestModel.swift */; };
 		D994FBDA2753A8D9003564F3 /* GetTourSearchCacheRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBD92753A8D9003564F3 /* GetTourSearchCacheRequestModel.swift */; };
+		D994FBDC2756377F003564F3 /* ExcSelectCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994FBDB2756377F003564F3 /* ExcSelectCustomView.swift */; };
+		D994FBDE27563796003564F3 /* ExcSelectCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D994FBDD27563796003564F3 /* ExcSelectCustomView.xib */; };
 		D9956BFA26D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */; };
 		D9956BFC26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BFB26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift */; };
 		D9956BFF26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */; };
@@ -483,6 +485,8 @@
 		D994FBD5274FFB2C003564F3 /* GetSearchTourResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSearchTourResponseModel.swift; sourceTree = "<group>"; };
 		D994FBD7274FFBC6003564F3 /* GetTourSearchRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSearchRequestModel.swift; sourceTree = "<group>"; };
 		D994FBD92753A8D9003564F3 /* GetTourSearchCacheRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSearchCacheRequestModel.swift; sourceTree = "<group>"; };
+		D994FBDB2756377F003564F3 /* ExcSelectCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcSelectCustomView.swift; sourceTree = "<group>"; };
+		D994FBDD27563796003564F3 /* ExcSelectCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcSelectCustomView.xib; sourceTree = "<group>"; };
 		D9956BF926D7D2A3006CFC6D /* GetVoucherDetailRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVoucherDetailRequestModel.swift; sourceTree = "<group>"; };
 		D9956BFB26D7D31C006CFC6D /* GetVoucherDetailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVoucherDetailResponseModel.swift; sourceTree = "<group>"; };
 		D9956BFD26D7DF94006CFC6D /* CancelVoucherDetailViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherDetailViewControllerViewController.swift; sourceTree = "<group>"; };
@@ -844,6 +848,8 @@
 				D93157722700ADBB000C91AD /* ZReportLongClickMenu.xib */,
 				D994FBD12745307F003564F3 /* ExcSearchCustomView.swift */,
 				D994FBD3274530B6003564F3 /* ExcSearchCustomView.xib */,
+				D994FBDB2756377F003564F3 /* ExcSelectCustomView.swift */,
+				D994FBDD27563796003564F3 /* ExcSelectCustomView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1030,6 +1036,7 @@
 				BF44C8DB264000C700238035 /* Main.storyboard in Resources */,
 				D931573D26F8C183000C91AD /* ZReportViewController.xib in Resources */,
 				BF44C9D62640022F00238035 /* AddStepCustomView.xib in Resources */,
+				D994FBDE27563796003564F3 /* ExcSelectCustomView.xib in Resources */,
 				D97FB5A926C685E90099F28B /* MyShoppingSaleViewController.xib in Resources */,
 				BF44C93C2640016500238035 /* ShopAppointmentViewController.xib in Resources */,
 				D9FD64E927381280009B6619 /* ZReportLoginViewController.xib in Resources */,
@@ -1356,6 +1363,7 @@
 				D931577B27036955000C91AD /* ZReportPaymentResponseModel.swift in Sources */,
 				D95C203C26F20428007D1506 /* GetSpeakTimeForMobileRequestModel.swift in Sources */,
 				D9956C0826DE2E6E006CFC6D /* GetCalculateCancelFeeResponseModel.swift in Sources */,
+				D994FBDC2756377F003564F3 /* ExcSelectCustomView.swift in Sources */,
 				D97FB5A826C685E90099F28B /* MyShoppingSaleViewController.swift in Sources */,
 				BF44C907264000FA00238035 /* BaseData.swift in Sources */,
 				D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */,

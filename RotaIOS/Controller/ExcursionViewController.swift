@@ -20,12 +20,14 @@ class ExcursionViewController: UIViewController {
     @IBOutlet weak var viewAppointMentBarCutomView: AppointmentBarCustomView!
     @IBOutlet weak var viewFooterViewCustomView: FooterCustomView!
     var viewExcSearchCustomView : ExcSearchCustomView?
+    var viewExcSelectCustomView : ExcSelectCustomView?
     var beginDateStringType = ""
     var endDateStringType = ""
     var tourList : [GetSearchTourResponseModel] = []
     var oflineDataTourList : [GetSearchTourResponseModel] = []
     var lastUIView = UIView()
     var isConnectedInternet : Bool?
+    var isHotelorMarketChanged = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,18 +82,18 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.commonInit()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = false
           //  self.viewFooterViewCustomView.buttonHiding(hidePrintbutton: true, hideButton: false)
-          /*  if self.hotelPageCustomView == nil {
+            if self.viewExcSearchCustomView == nil {
                // self.lastUIView.removeFromSuperview()
-                self.paxPageCustomView?.isHidden = true
-                self.stepsPageCustomView?.isHidden = true
-                self.proceedPageCustomView?.isHidden = true
-                self.animatedCustomView(customView: HotelPageCustomView())
+                self.viewExcSelectCustomView?.isHidden = true
+               // self.stepsPageCustomView?.isHidden = true
+               // self.proceedPageCustomView?.isHidden = true
+                self.animatedCustomView(customView: ExcSearchCustomView())
             }else {
-                self.hotelPageCustomView?.isHidden = false
-                self.paxPageCustomView?.isHidden = true
-                self.stepsPageCustomView?.isHidden = true
-                self.proceedPageCustomView?.isHidden = true
-            }*/
+                self.viewExcSearchCustomView?.isHidden = false
+                self.viewExcSelectCustomView?.isHidden = true
+               // self.stepsPageCustomView?.isHidden = true
+                //self.proceedPageCustomView?.isHidden = true
+            }
         }else if tapped == 1 {
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.addSubview(self.viewFooterViewCustomView.buttonView)
@@ -115,34 +117,33 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }
             }
            
-           /* self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-            self.hotelPageCustomView?.hotelPageDlegate = self
-            if self.paxPageCustomView == nil || self.isHotelChange == true{
-      
+           // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+            self.viewExcSearchCustomView?.excurSearchDelegate = self
+            if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
               //  self.lastUIView.removeFromSuperview()
                 //  self.animatedCustomView(customView: PaxPageCustomView())
-                self.stepsPageCustomView?.isHidden = true
-                self.hotelPageCustomView?.isHidden = true
-                self.proceedPageCustomView?.isHidden = true
-                self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                self.viewExcSearchCustomView?.isHidden = true
+               // self.hotelPageCustomView?.isHidden = true
+               // self.proceedPageCustomView?.isHidden = true
+               // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
                 UIView.animate(withDuration: 0, animations: { [self] in
-                    self.paxPageCustomView = PaxPageCustomView()
-                  self.paxPageCustomView?.paxesListDelegate = self
-                    self.contentView.addSubview(paxPageCustomView!)
-                    paxPageCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.contentView.frame.size.height)
+                    self.viewExcSelectCustomView = ExcSelectCustomView()
+                   // self.paxPageCustomView?.paxesListDelegate = self
+                    self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
+                    self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in
                     if finished{
                         
                     }
                 })
               // self.lastUIView = self.paxPageCustomView!
-                self.isHotelChange = false
+                self.isHotelorMarketChanged = false
             }else {
-                self.paxPageCustomView?.isHidden = false
-                self.stepsPageCustomView?.isHidden = true
-                self.hotelPageCustomView?.isHidden = true
-                self.proceedPageCustomView?.isHidden = true
-            }*/
+                self.viewExcSelectCustomView?.isHidden = false
+                self.viewExcSearchCustomView?.isHidden = true
+               // self.hotelPageCustomView?.isHidden = true
+               // self.proceedPageCustomView?.isHidden = true
+            }
         }else if tapped == 2 {
           /*  self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             if stepsPageCustomView == nil || self.isPaxesListChange == true {
@@ -338,6 +339,27 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             print("default")
         }
+    }
+    
+    func animatedCustomView( customView : UIView ){
+      //  self.lastUIView.removeFromSuperview()
+        UIView.animate(withDuration: 0, animations: { [self] in
+           // self.paxPageCustomView?.paxesListDelegate = self
+           
+            self.viewExcursionView.viewContentView.addSubview(customView)
+            customView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
+        }, completion: { (finished) in
+            if finished{
+                
+            }
+        })
+        self.lastUIView = customView
+    }
+}
+
+extension ExcursionViewController : ExcSearchDelegate {
+    func hotelorMarketChange(isChange: Bool) {
+        self.isHotelorMarketChanged = isChange
     }
 }
 

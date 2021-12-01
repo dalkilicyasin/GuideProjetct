@@ -31,6 +31,7 @@ extension UIColor {
     class var mainViewColor :                   UIColor { return UIColor(hexString: "#333333").withAlphaComponent(0.9) }
     class var grayColor :                       UIColor { return UIColor(hexString: "#333333") }
     class var greenColor :                      UIColor { return UIColor(hexString: "##5AA427") }
+    class var tableViewColor :                  UIColor { return UIColor(hexString: "#1C1C1D") }
     
     convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
