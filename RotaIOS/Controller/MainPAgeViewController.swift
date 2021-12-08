@@ -24,7 +24,6 @@ class MainPAgeViewController: BaseViewController {
             
             if response.id != nil {
                 print("info recived - \(response.id ?? "")")
-                
                 userDefaultsData.saveUserId(languageId: response.id ?? "default")
                 userDefaultsData.saveGuideId(languageId: response.guideId!)
                 userDefaultsData.saveSaleDate(saleDate: dateString)

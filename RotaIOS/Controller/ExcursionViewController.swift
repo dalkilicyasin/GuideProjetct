@@ -59,22 +59,40 @@ class ExcursionViewController: UIViewController {
     }
     
     @objc func tappedOfflinedataButton() {
-        let getOfflineDataRequestModel = GetTourSearchCacheRequestModel.init(guideId: String(userDefaultsData.getGuideId()), hotelIds: self.viewExcSearchCustomView?.hotelIdStringType ?? "")
-        NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSearchCache, method: .get, parameters: getOfflineDataRequestModel.requestPathString()) { (response : [GetSearchTourResponseModel]) in
-            if response.count > 0 {
-                print(response[0])
-                userDefaultsData.saveSearchTourOffline(id: response)
-            }else{
-                print("data has not recived")
+        let alert = UIAlertController.init(title: "Notice", message: "Are You Sure to Continue", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction.init(title: "Yes", style: UIAlertAction.Style.default, handler: { alert in
+            print("yes")
+            let getOfflineDataRequestModel = GetTourSearchCacheRequestModel.init(guideId: String(userDefaultsData.getGuideId()), hotelIds: self.viewExcSearchCustomView?.hotelIdStringType ?? "")
+            NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSearchCache, method: .get, parameters: getOfflineDataRequestModel.requestPathString()) { (response : [GetSearchTourResponseModel]) in
+                if response.count > 0 {
+                    userDefaultsData.saveSearchTourOffline(tour: response )
+                    let alert = UIAlertController.init(title: "Success", message: "Offline data was updated", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }else{
+                    print("data has not recived")
+                }
             }
-        }
-       print("tapped")
-        
+           print("tapped")
+        }))
+        alert.addAction(UIAlertAction.init(title: "No", style: UIAlertAction.Style.default, handler: { alert in
+            print("No")
+            return
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }
 
 extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappedDelegate {
+  
     func continueButtonTappedDelegate(tapped: Int) {
+        if Connectivity.isConnectedToInternet {
+             print("Connected")
+            self.isConnectedInternet = true
+         } else {
+             print("No Internet")
+            self.isConnectedInternet = false
+        }
         self.viewAppointMentBarCutomView.collectionView(viewAppointMentBarCutomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
         self.viewFooterViewCustomView.counter = tapped
         if tapped == 0 {
@@ -106,17 +124,22 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(guide: String(userDefaultsData.getGuideId()), market: self.viewExcSearchCustomView?.marketIdStringType ?? "", hotel: self.viewExcSearchCustomView?.hotelIdStringType ?? "", area: self.viewExcSearchCustomView?.areaIdStringType ?? "", tourdatestart: self.viewExcSearchCustomView?.beginDateString ??  "", tourdateend: self.viewExcSearchCustomView?.endDateString ?? "", saledate: userDefaultsData.getSaleDate())
             
-            NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
-                if response.count > 0 {
-                    self.tourList = response
-                    print(self.tourList[0])
-                }else{
-                    let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+            if  self.isConnectedInternet == true {
+                NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
+                    if response.count > 0 {
+                        self.tourList = response
+                        print(self.tourList[0])
+                        self.viewExcSelectCustomView?.excursionList = self.tourList
+                        self.viewExcSelectCustomView?.tableView.reloadData()
+                    }else{
+                        let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
                 }
+            }else{
+              
             }
-           
            // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             self.viewExcSearchCustomView?.excurSearchDelegate = self
             if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
@@ -129,6 +152,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcSelectCustomView = ExcSelectCustomView()
                    // self.paxPageCustomView?.paxesListDelegate = self
+                   
                     self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
                     self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in

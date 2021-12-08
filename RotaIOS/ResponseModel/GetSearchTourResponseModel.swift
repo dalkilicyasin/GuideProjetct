@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-struct GetSearchTourResponseModel : Mappable {
+public class GetSearchTourResponseModel : Mappable, Decodable, Encodable{
     var id : String?
     var matchId : Int?
     var marketId : Int?
@@ -46,7 +46,7 @@ struct GetSearchTourResponseModel : Mappable {
     var childAge2 : Double?
     var pickUpTime : String?
     var transfers : [Transfers]?
-    var extras : [String]?
+    var extras : [Extras]?
     var detractAdult : Bool?
     var detractChild : Bool?
     var detractKid : Bool?
@@ -63,11 +63,11 @@ struct GetSearchTourResponseModel : Mappable {
     var cREATEDDATE : String?
     var mODIFIEDDATE : String?
 
-    init?(map: Map) {
+    required public init?(map: Map) {
 
     }
-
-    mutating func mapping(map: Map) {
+    
+    public func mapping(map: Map) {
         id <- map["id"]
         matchId <- map["MatchId"]
         marketId <- map["MarketId"]
@@ -124,7 +124,7 @@ struct GetSearchTourResponseModel : Mappable {
     }
 }
 
-struct Transfers : Mappable {
+struct Transfers : Mappable, Decodable, Encodable {
     var id : String?
     var matchId : Int?
     var gID : String?
@@ -222,7 +222,7 @@ struct Transfers : Mappable {
     }
 }
 
-struct Extras : Mappable {
+struct Extras : Mappable, Decodable, Encodable {
     var id : String?
     var matchId : Int?
     var gID : String?

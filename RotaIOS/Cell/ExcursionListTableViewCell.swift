@@ -1,0 +1,37 @@
+//
+//  ExcursionListTableViewCell.swift
+//  RotaIOS
+//
+//  Created by Yasin Dalkilic on 3.12.2021.
+//
+
+import UIKit
+
+class ExcursionListTableViewCell: BaseTableViewCell {
+    @IBOutlet weak var viewCheckBoxView: CheckBoxView!
+    @IBOutlet weak var labelExcursion: UILabel!
+    @IBOutlet weak var labelTourdate: UILabel!
+    @IBOutlet weak var labelPickupTime: UILabel!
+    @IBOutlet weak var labelSeat: UILabel!
+    @IBOutlet weak var labelPriceType: UILabel!
+    @IBOutlet weak var labelCurrency: UILabel!
+    @IBOutlet weak var labelAdultPrice: UILabel!
+    @IBOutlet weak var labelChildPrice: UILabel!
+    @IBOutlet weak var labelInfantPrice: UILabel!
+    @IBOutlet weak var labelToodlePrice: UILabel!
+    @IBOutlet weak var labelMinPrice: UILabel!
+    @IBOutlet weak var labelMinPax: UILabel!
+    @IBOutlet weak var labelTotalPrice: UILabel!
+    @IBOutlet weak var labelFlatPricw: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }   
+}

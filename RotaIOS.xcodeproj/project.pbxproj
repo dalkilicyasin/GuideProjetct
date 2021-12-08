@@ -180,6 +180,8 @@
 		D968A88326BDAC94000FB00A /* MyTourStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A88226BDAC94000FB00A /* MyTourStatusView.swift */; };
 		D968A88526BDADE7000FB00A /* MyTourStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D968A88426BDADE7000FB00A /* MyTourStatusView.xib */; };
 		D968ABF626E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */; };
+		D97E4F4527598B4A0049648A /* ExcursionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */; };
+		D97E4F4627598B4A0049648A /* ExcursionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */; };
 		D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */; };
 		D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */; };
 		D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */; };
@@ -452,6 +454,8 @@
 		D968A88226BDAC94000FB00A /* MyTourStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusView.swift; sourceTree = "<group>"; };
 		D968A88426BDADE7000FB00A /* MyTourStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusView.xib; sourceTree = "<group>"; };
 		D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSaleCancelMobileRequestModel.swift; sourceTree = "<group>"; };
+		D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionListTableViewCell.swift; sourceTree = "<group>"; };
+		D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcursionListTableViewCell.xib; sourceTree = "<group>"; };
 		D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusTableViewCell.swift; sourceTree = "<group>"; };
 		D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusTableViewCell.xib; sourceTree = "<group>"; };
 		D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourSaleDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -899,6 +903,8 @@
 				D900407A271738DD00DDE088 /* DailyReportTableViewCell.xib */,
 				D9FD6501273C1F7B009B6619 /* HotelsandFlightsTableViewCell.swift */,
 				D9FD6502273C1F7B009B6619 /* HotelsandFlightsTableViewCell.xib */,
+				D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */,
+				D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1069,6 +1075,7 @@
 				D931574F26FA2257000C91AD /* ZReportDetailViewController.xib in Resources */,
 				D994FBD4274530B6003564F3 /* ExcSearchCustomView.xib in Resources */,
 				BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */,
+				D97E4F4627598B4A0049648A /* ExcursionListTableViewCell.xib in Resources */,
 				BF44C9CF2640022600238035 /* StepsPageTableViewCell.xib in Resources */,
 				D900407C271738DD00DDE088 /* DailyReportTableViewCell.xib in Resources */,
 				D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */,
@@ -1337,6 +1344,7 @@
 				D931575726FA5E88000C91AD /* ZReportMoreDetailView.swift in Sources */,
 				D9561A4C26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift in Sources */,
 				D9A48D0226B1895500D28A0A /* DocumentsTableViewCell.swift in Sources */,
+				D97E4F4527598B4A0049648A /* ExcursionListTableViewCell.swift in Sources */,
 				D9FD64ED2738182A009B6619 /* GetCreateZReportRequestModel.swift in Sources */,
 				D95C203526F2010C007D1506 /* SpeakingHoursDetailViewController.swift in Sources */,
 				D931575E26FB58A3000C91AD /* ZReportPriviewTableViewCell.swift in Sources */,

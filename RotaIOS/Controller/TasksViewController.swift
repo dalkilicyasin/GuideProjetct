@@ -11,6 +11,7 @@ class TasksViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,7 +47,7 @@ extension TasksViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier) as! TaskTableViewCell
         
-        cell.labelNAme.text = "Deneme"
+        cell.labelNAme.text = "Tests"
         return cell
     }
     

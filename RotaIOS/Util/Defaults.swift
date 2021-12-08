@@ -63,19 +63,24 @@ public class Defaults{
     
     //SearchTourOfflineData
     
-    func saveSearchTourOffline(id:[GetSearchTourResponseModel]){
+    func saveSearchTourOffline(tour:[GetSearchTourResponseModel]){
         let preferences = UserDefaults.standard
-        preferences.set( id , forKey:getIdentifier(type: .UserName))
-        preferences.synchronize()
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .SearchTourOfflineData))
+            preferences.synchronize()
+        }
     }
     
-    func getSearchTourOffline() -> [GetSearchTourResponseModel]! {
+    func getSearchTourOffline() -> [GetSearchTourResponseModel]? {
         let preferences = UserDefaults.standard
-        if preferences.object(forKey: getIdentifier(type: .UserName)) == nil {
-            return nil
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .SearchTourOfflineData)) as? Data {
+            if let loadedTourList = try? decoder.decode([GetSearchTourResponseModel].self, from: savedTourList){
+                return loadedTourList
+            }
         }
-        let data:[GetSearchTourResponseModel] = preferences.value(forKey: getIdentifier(type: .SearchTourOfflineData)) as! [GetSearchTourResponseModel]
-        return data
+        return []
     }
     
     

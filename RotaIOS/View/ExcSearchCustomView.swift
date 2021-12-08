@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import DropDown
+import Alamofire
 
 protocol ExcSearchDelegate {
     func hotelorMarketChange( isChange : Bool)
@@ -93,111 +94,121 @@ class ExcSearchCustomView : UIView {
         self.createbeginDatePicker()
         self.createEndDatePicker()
         
-        let getMarketRequestModel = GetGuideMarketRequestModel.init(userId: userDefaultsData.getGuideId())
-        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetGuideMarkets, method: .get, parameters: getMarketRequestModel.requestPathString()) { (response : [GetGuideMarketResponseModel] ) in
-            if response.count > 0 {
-                self.marketList = response
-                for listOfArray in self.marketList {
-                    self.marketMenu.dataSource.append(listOfArray.text ?? "")
-                }
-                self.marketMenu.dataSource.insert("", at: 0)
-                self.marketMenu.backgroundColor = UIColor.grayColor
-                self.marketMenu.separatorColor = UIColor.gray
-                self.marketMenu.textColor = .white
-                self.marketMenu.anchorView = self.viewMarketList
-            }else{
-                print("data has not recived")
-            }
-        }
-        
-        // Burda bunu çağırmamın sebebi; Güliz, rotam-20 de, eğer rehbere atanmış bir otel yok ise checkbox seçili gelsin ve oteller otomatik listelensin demesinden dolayıdır. Rehbere atanmış otelin olup olmadığını öğrenmek içim  ise guidehotel in 1 olması şartı var.
-        
-        let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
-            if response.count > 0 {
-                //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                self.hotelList = response
-                self.tempHotelMenu.removeAll()
-                let filtered = response.filter({return ($0.guideHotel != 0)})
-                print("\(filtered)")
-                if response[0].guideHotel != 0 {
-                    self.viewChecBoxView.imageCheck.isHidden = true
-                    self.viewChecBoxView.isCheckRemember = false
-                    self.hotelList = filtered
-                    for listofArray in self.hotelList {
-                        self.tempHotelMenu.append(listofArray.text ?? "")
+        if Connectivity.isConnectedToInternet {
+             print("Connected")
+            let getMarketRequestModel = GetGuideMarketRequestModel.init(userId: userDefaultsData.getGuideId())
+            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetGuideMarkets, method: .get, parameters: getMarketRequestModel.requestPathString()) { (response : [GetGuideMarketResponseModel] ) in
+                if response.count > 0 {
+                    self.marketList = response
+                    for listOfArray in self.marketList {
+                        self.marketMenu.dataSource.append(listOfArray.text ?? "")
                     }
-                    self.hotelMenu.dataSource = self.tempHotelMenu
-                    self.hotelMenu.dataSource.insert("", at: 0)
-                    self.hotelMenu.backgroundColor = UIColor.grayColor
-                    self.hotelMenu.separatorColor = UIColor.gray
-                    self.hotelMenu.textColor = .white
-                    self.hotelMenu.anchorView = self.viewHotelList
-                    self.hotelMenu.topOffset = CGPoint(x: 0, y:-(self.hotelMenu.anchorView?.plainView.bounds.height)!)
+                    self.marketMenu.dataSource.insert("", at: 0)
+                    self.marketMenu.backgroundColor = UIColor.grayColor
+                    self.marketMenu.separatorColor = UIColor.gray
+                    self.marketMenu.textColor = .white
+                    self.marketMenu.anchorView = self.viewMarketList
                 }else{
-                    self.viewChecBoxView.imageCheck.isHidden = false
-                    self.viewChecBoxView.isCheckRemember = true
-                    for listofArray in self.hotelList {
-                        self.tempHotelMenu.append(listofArray.text ?? "")
-                    }
-                    self.hotelMenu.dataSource = self.tempHotelMenu
-                    self.hotelMenu.dataSource.insert("", at: 0)
-                    self.hotelMenu.backgroundColor = UIColor.grayColor
-                    self.hotelMenu.separatorColor = UIColor.gray
-                    self.hotelMenu.textColor = .white
-                    self.hotelMenu.anchorView = self.viewHotelList
-                    self.hotelMenu.topOffset = CGPoint(x: 0, y:-(self.hotelMenu.anchorView?.plainView.bounds.height)!)
+                    print("data has not recived")
                 }
-            }else{
-                print("data has not recived")
             }
-        }
-        self.searchBar.setImage(UIImage(), for: .search, state: .normal)
-        self.searchBar.layer.cornerRadius = 10
-        self.searchBar.compatibleSearchTextField.textColor = UIColor.white
-        self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
-        self.searchBar.delegate = self
-        let gestureMarket = UITapGestureRecognizer(target: self, action: #selector(didTapMarketMenu))
-        gestureMarket.numberOfTouchesRequired = 1
-        let gestureHotel = UITapGestureRecognizer(target: self, action: #selector(didTapHotelMenu))
-        gestureHotel.numberOfTouchesRequired = 1
-        self.viewMarketList.addGestureRecognizer(gestureMarket)
-        self.viewHotelList.addGestureRecognizer(gestureHotel)
-        self.marketMenu.topOffset = CGPoint(x: 0, y:-(self.marketMenu.anchorView?.plainView.bounds.height ?? 200))
+            
+            // Burda bunu çağırmamın sebebi; Güliz, rotam-20 de, eğer rehbere atanmış bir otel yok ise checkbox seçili gelsin ve oteller otomatik listelensin demesinden dolayıdır. Rehbere atanmış otelin olup olmadığını öğrenmek içim  ise guidehotel in 1 olması şartı var.
+            
+            let getHotelsMobileRequestModel = GetHotelsMobileRequestModel.init(userId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetHotelsMobie, method: .get, parameters: getHotelsMobileRequestModel.requestPathString()) { (response : [GetHotelsMobileResponseModel] ) in
+                if response.count > 0 {
+                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                    self.hotelList = response
+                    self.tempHotelMenu.removeAll()
+                    let filtered = response.filter({return ($0.guideHotel != 0)})
+                    print("\(filtered)")
+                    if response[0].guideHotel != 0 {
+                        self.viewChecBoxView.imageCheck.isHidden = true
+                        self.viewChecBoxView.isCheckRemember = false
+                        self.hotelList = filtered
+                        for listofArray in self.hotelList {
+                            self.tempHotelMenu.append(listofArray.text ?? "")
+                        }
+                        self.hotelMenu.dataSource = self.tempHotelMenu
+                        self.hotelMenu.dataSource.insert("", at: 0)
+                        self.hotelMenu.backgroundColor = UIColor.grayColor
+                        self.hotelMenu.separatorColor = UIColor.gray
+                        self.hotelMenu.textColor = .white
+                        self.hotelMenu.anchorView = self.viewHotelList
+                        self.hotelMenu.topOffset = CGPoint(x: 0, y:-(self.hotelMenu.anchorView?.plainView.bounds.height)!)
+                    }else{
+                        self.viewChecBoxView.imageCheck.isHidden = false
+                        self.viewChecBoxView.isCheckRemember = true
+                        for listofArray in self.hotelList {
+                            self.tempHotelMenu.append(listofArray.text ?? "")
+                        }
+                        self.hotelMenu.dataSource = self.tempHotelMenu
+                        self.hotelMenu.dataSource.insert("", at: 0)
+                        self.hotelMenu.backgroundColor = UIColor.grayColor
+                        self.hotelMenu.separatorColor = UIColor.gray
+                        self.hotelMenu.textColor = .white
+                        self.hotelMenu.anchorView = self.viewHotelList
+                        self.hotelMenu.topOffset = CGPoint(x: 0, y:-(self.hotelMenu.anchorView?.plainView.bounds.height)!)
+                    }
+                }else{
+                    print("data has not recived")
+                }
+            }
+            self.searchBar.setImage(UIImage(), for: .search, state: .normal)
+            self.searchBar.layer.cornerRadius = 10
+            self.searchBar.compatibleSearchTextField.textColor = UIColor.white
+            self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
+            self.searchBar.delegate = self
+            let gestureMarket = UITapGestureRecognizer(target: self, action: #selector(didTapMarketMenu))
+            gestureMarket.numberOfTouchesRequired = 1
+            let gestureHotel = UITapGestureRecognizer(target: self, action: #selector(didTapHotelMenu))
+            gestureHotel.numberOfTouchesRequired = 1
+            self.viewMarketList.addGestureRecognizer(gestureMarket)
+            self.viewHotelList.addGestureRecognizer(gestureHotel)
+            self.marketMenu.topOffset = CGPoint(x: 0, y:-(self.marketMenu.anchorView?.plainView.bounds.height ?? 200))
+            
+            self.marketMenu.selectionAction = { index, title in
+                if title != self.viewMarketList.mainLabel.text {
+                    self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
+                }
+                self.viewMarketList.mainLabel.text = title
+                let filtered = self.marketList.filter{($0.text?.contains(title) ?? false)}
+                self.filteredMarketList = filtered
+                for listofarray in self.filteredMarketList {
+                    userDefaultsData.saveMarketId(marketId: listofarray.value ?? 0)
+                    self.marketIdStringType = String(listofarray.value ?? 0)
+                    //   userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "") // silinecek
+                }
+            }
+            
+            self.hotelMenu.selectionAction = { index, title in
+                if title != self.viewHotelList.mainLabel.text {
+                    self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
+                }
+                self.viewHotelList.mainLabel.text = title
+                let filtered = self.hotelList.filter{($0.text?.contains(title) ?? false)}
+                self.filteredHotelList = filtered
+                for listofArray in self.filteredHotelList {
+                    userDefaultsData.saveHotelId(hotelId: listofArray.value ?? 0)
+                    userDefaultsData.saveHotelArea(hotelAreaId: listofArray.area ?? 0)
+                    self.hotelIdStringType = String(listofArray.value ?? 0)
+                    self.areaIdStringType = String(listofArray.area ?? 0)
+                }
+            }
+            self.viewMarketList.headerLAbel.text = "Market"
+            self.viewHotelList.headerLAbel.text = "Hotel"
+            self.viewChecBoxView.checkBoxViewDelegate = self
+            self.viewChecBoxView.imageCheck.isHidden = false
+            print("tarih=\(userDefaultsData.getSaleDate() ?? "")")
         
-        self.marketMenu.selectionAction = { index, title in
-            if title != self.viewMarketList.mainLabel.text {
-                self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
-            }
-            self.viewMarketList.mainLabel.text = title
-            let filtered = self.marketList.filter{($0.text?.contains(title) ?? false)}
-            self.filteredMarketList = filtered
-            for listofarray in self.filteredMarketList {
-                userDefaultsData.saveMarketId(marketId: listofarray.value ?? 0)
-                self.marketIdStringType = String(listofarray.value ?? 0)
-                //   userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "") // silinecek
+         } else {
+            if let topVC = UIApplication.getTopViewController() {
+                let alert = UIAlertController.init(title: "Notice", message: "There Is No Internet Connection", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                topVC.present(alert, animated: true, completion: nil)
             }
         }
-        
-        self.hotelMenu.selectionAction = { index, title in
-            if title != self.viewHotelList.mainLabel.text {
-                self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
-            }
-            self.viewHotelList.mainLabel.text = title
-            let filtered = self.hotelList.filter{($0.text?.contains(title) ?? false)}
-            self.filteredHotelList = filtered
-            for listofArray in self.filteredHotelList {
-                userDefaultsData.saveHotelId(hotelId: listofArray.value ?? 0)
-                userDefaultsData.saveHotelArea(hotelAreaId: listofArray.area ?? 0)
-                self.hotelIdStringType = String(listofArray.value ?? 0)
-                self.areaIdStringType = String(listofArray.area ?? 0)
-            }
-        }
-        self.viewMarketList.headerLAbel.text = "Market"
-        self.viewHotelList.headerLAbel.text = "Hotel"
-        self.viewChecBoxView.checkBoxViewDelegate = self
-        self.viewChecBoxView.imageCheck.isHidden = false
-        print("tarih=\(userDefaultsData.getSaleDate() ?? "")")
     }
     
     @objc func didTapMarketMenu() {
