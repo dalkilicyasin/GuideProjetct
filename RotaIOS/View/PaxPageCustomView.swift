@@ -217,7 +217,6 @@ extension PaxPageCustomView : UISearchBarDelegate {
                     }
                 }
             }
-           
         }
         if self.checkFilteredList.count == self.checkList.count {
          self.checkList = self.checkFilteredList

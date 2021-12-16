@@ -18,6 +18,14 @@ final class ExcursionView : UIView {
         self.viewHeaderDetailView.labelHeaderDetailView.text = "Excursion Sale"
     }
     
+    func buttonAddButtonChange(){
+        self.viewFooterCustomView.buttonAddButton.isHidden = false
+        self.viewFooterCustomView.buttonAddButton.setTitle("SAVE", for: .normal)
+        self.viewFooterCustomView.buttonAddButton.backgroundColor = UIColor.clear
+        self.viewFooterCustomView.buttonAddButton.layer.borderWidth = 1
+        self.viewFooterCustomView.buttonAddButton.layer.borderColor = UIColor.greenColor.cgColor
+    }
+    
     required init(customParamArg: String) {
         super.init(frame: .zero)
     }

@@ -52,7 +52,10 @@
                     <rect key="frame" x="50" y="50" width="290" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Tourist Added" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8of-n1-1hM">
-                            <rect key="frame" x="10" y="15" width="109" height="21"/>
+                            <rect key="frame" x="10" y="15" width="120" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="oW6-ng-AgS"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>

@@ -9,6 +9,7 @@ import Foundation
 import ObjectMapper
 
 public class GetSearchTourResponseModel : Mappable, Decodable, Encodable{
+    var isTapped : Bool?
     var id : String?
     var matchId : Int?
     var marketId : Int?
@@ -125,6 +126,7 @@ public class GetSearchTourResponseModel : Mappable, Decodable, Encodable{
 }
 
 struct Transfers : Mappable, Decodable, Encodable {
+    var isTapped : Bool?
     var id : String?
     var matchId : Int?
     var gID : String?
@@ -223,6 +225,7 @@ struct Transfers : Mappable, Decodable, Encodable {
 }
 
 struct Extras : Mappable, Decodable, Encodable {
+    var isTapped : Bool?
     var id : String?
     var matchId : Int?
     var gID : String?

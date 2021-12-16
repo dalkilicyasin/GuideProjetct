@@ -18,6 +18,9 @@ class FooterCustomView: UIView {
     @IBOutlet var viewHeader: UIView!
     @IBOutlet weak var buttonView: UIButton!
     @IBOutlet weak var printButton: UIButton!
+    @IBOutlet weak var buttonAddButton: UIButton!
+    @IBOutlet weak var buttonSaveButton: UIButton!
+    @IBOutlet weak var labelAmount: UILabel!
     var continueButtonTappedDelegate : ContinueButtonTappedDelegate?
     var counter = 0
 
@@ -43,6 +46,16 @@ class FooterCustomView: UIView {
         self.buttonGetOfflineData.isHidden = true
         self.buttonGetOfflineData.isEnabled = false
        
+        self.buttonAddButton.isHidden = true
+        self.buttonAddButton.layer.cornerRadius = 10
+        self.buttonAddButton.backgroundColor = UIColor.greenColor
+        
+        self.buttonSaveButton.isHidden = true
+        self.buttonSaveButton.layer.cornerRadius = 10
+        self.buttonSaveButton.backgroundColor = UIColor.clear
+        self.buttonSaveButton.layer.borderWidth = 1
+        self.buttonSaveButton.layer.borderColor = UIColor.greenColor.cgColor
+        
         self.printButton.layer.borderWidth = 1
         self.printButton.layer.borderColor = UIColor.green.cgColor
         self.printButton.layer.cornerRadius = 10
@@ -52,6 +65,11 @@ class FooterCustomView: UIView {
         self.buttonGetOfflineData.layer.borderWidth = 1
         self.buttonGetOfflineData.layer.cornerRadius = 10
         self.buttonGetOfflineData.layer.borderColor = UIColor.green.cgColor
+        
+        self.labelAmount.isHidden = true
+        self.labelAmount.layer.masksToBounds = true
+        self.labelAmount.layer.cornerRadius = 10
+        self.labelAmount.text = "Amount"
     }
     
     @IBAction func countinueButtonClicked(_ sender: Any) {

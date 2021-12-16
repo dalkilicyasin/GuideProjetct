@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-public class Paxes : Mappable {
+public class Paxes : Mappable, Encodable, Decodable {
     
     public var action = 1 // 1
     public var iD = 0 // 0

@@ -5,13 +5,17 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterCustomView" customModule="RotaIOS" customModuleProvider="target">
             <connections>
+                <outlet property="buttonAddButton" destination="m6g-H6-72I" id="CSQ-Mo-rFN"/>
                 <outlet property="buttonGetOfflineData" destination="qpj-uy-4n7" id="aFI-Do-dbE"/>
+                <outlet property="buttonSaveButton" destination="qwe-EG-Ew8" id="hfR-5E-vne"/>
                 <outlet property="buttonView" destination="8lq-i2-d6K" id="tV6-cx-6GP"/>
+                <outlet property="labelAmount" destination="4R1-2R-r1O" id="oyh-Ct-jSR"/>
                 <outlet property="printButton" destination="dtg-Wp-KL4" id="kxU-qo-j5S"/>
                 <outlet property="viewHeader" destination="iN0-l3-epB" id="Sgr-fW-eLF"/>
             </connections>
@@ -57,22 +61,68 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6g-H6-72I">
+                    <rect key="frame" x="40" y="20" width="140" height="50"/>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="140" id="abv-Kq-n06"/>
+                        <constraint firstAttribute="height" constant="50" id="lX6-hu-Lpx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="ADD">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4R1-2R-r1O">
+                    <rect key="frame" x="40" y="20" width="343" height="50"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70927055308360931" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="Qhl-JT-tD5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qwe-EG-Ew8">
+                    <rect key="frame" x="40" y="80" width="140" height="50"/>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="G9a-ts-ctV"/>
+                        <constraint firstAttribute="width" constant="140" id="YdQ-1M-933"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="SAVE">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="4R1-2R-r1O" secondAttribute="trailing" constant="40" id="1Ef-nP-0IE"/>
                 <constraint firstItem="8lq-i2-d6K" firstAttribute="top" secondItem="qpj-uy-4n7" secondAttribute="bottom" constant="20" id="1oz-dV-d9L"/>
                 <constraint firstAttribute="trailing" secondItem="8lq-i2-d6K" secondAttribute="trailing" constant="30" id="7hD-tS-0aN"/>
+                <constraint firstItem="m6g-H6-72I" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="HOh-ji-mJ3"/>
                 <constraint firstItem="dtg-Wp-KL4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="Hcc-98-Jho"/>
+                <constraint firstItem="qwe-EG-Ew8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="JXT-gU-q1X"/>
                 <constraint firstItem="8lq-i2-d6K" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="KXP-Vl-THH"/>
+                <constraint firstItem="m6g-H6-72I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="ORW-RS-HgI"/>
                 <constraint firstAttribute="trailing" secondItem="qpj-uy-4n7" secondAttribute="trailing" constant="30" id="OpQ-WH-SJM"/>
                 <constraint firstItem="qpj-uy-4n7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="aMQ-YL-tX0"/>
                 <constraint firstItem="qpj-uy-4n7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="aY5-YC-rkK"/>
+                <constraint firstItem="4R1-2R-r1O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="b3s-BV-xCp"/>
+                <constraint firstItem="qwe-EG-Ew8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="f3M-8z-mGd"/>
                 <constraint firstAttribute="trailing" secondItem="dtg-Wp-KL4" secondAttribute="trailing" constant="30" id="jFO-I3-3gL"/>
                 <constraint firstItem="dtg-Wp-KL4" firstAttribute="top" secondItem="qpj-uy-4n7" secondAttribute="bottom" constant="20" id="l5P-9C-iqB"/>
+                <constraint firstItem="4R1-2R-r1O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="zzD-7n-xhO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-190.57971014492756" y="-137.27678571428569"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

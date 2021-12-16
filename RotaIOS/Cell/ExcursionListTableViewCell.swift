@@ -7,8 +7,12 @@
 
 import UIKit
 
+protocol ExcursionListTableViewCellDelegate {
+    func checkBoxTapped(checkCounter : Bool, tourid : Int, tempPaxes : GetSearchTourResponseModel)
+}
+
 class ExcursionListTableViewCell: BaseTableViewCell {
-    @IBOutlet weak var viewCheckBoxView: CheckBoxView!
+    @IBOutlet weak var imageCheckBox: UIImageView!
     @IBOutlet weak var labelExcursion: UILabel!
     @IBOutlet weak var labelTourdate: UILabel!
     @IBOutlet weak var labelPickupTime: UILabel!
@@ -23,15 +27,33 @@ class ExcursionListTableViewCell: BaseTableViewCell {
     @IBOutlet weak var labelMinPax: UILabel!
     @IBOutlet weak var labelTotalPrice: UILabel!
     @IBOutlet weak var labelFlatPricw: UILabel!
+    var excursionListInCell : GetSearchTourResponseModel?
+    var excursionListTableViewCellDelegate : ExcursionListTableViewCellDelegate?
+    var isTappedCheck = false
+    var tourid = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.selectionStyle = .none
+        self.imageCheckBox.image = UIImage(named: "square")
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedChecBox))
+        self.imageCheckBox.isUserInteractionEnabled = true
+         self.imageCheckBox.addGestureRecognizer(gesture)
+    }
+    
+    @objc func tappedChecBox(){
+        self.isTappedCheck = !self.isTappedCheck
+        self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tempPaxes: self.excursionListInCell!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }   
+        if self.isTappedCheck == true {
+            print(tourid)
+            self.imageCheckBox.image = UIImage(named: "check")
+        }else {
+            self.imageCheckBox.image = UIImage(named: "square")
+        }
+    }
 }

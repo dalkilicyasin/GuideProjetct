@@ -182,6 +182,16 @@
 		D968ABF626E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */; };
 		D97E4F4527598B4A0049648A /* ExcursionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */; };
 		D97E4F4627598B4A0049648A /* ExcursionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */; };
+		D97E4F4C2760B4B90049648A /* ExcPaxCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F4B2760B4B90049648A /* ExcPaxCustomView.swift */; };
+		D97E4F4E2760B4C70049648A /* ExcPaxCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E4F4D2760B4C70049648A /* ExcPaxCustomView.xib */; };
+		D97E4F5127624D640049648A /* ExcPaxPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F4F27624D640049648A /* ExcPaxPageTableViewCell.swift */; };
+		D97E4F5227624D640049648A /* ExcPaxPageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E4F5027624D640049648A /* ExcPaxPageTableViewCell.xib */; };
+		D97E4F54276725640049648A /* ExcAddCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F53276725640049648A /* ExcAddCustomView.swift */; };
+		D97E4F56276725760049648A /* ExcAddCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E4F55276725760049648A /* ExcAddCustomView.xib */; };
+		D97E4F5927672E590049648A /* AddMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F5727672E590049648A /* AddMenuTableViewCell.swift */; };
+		D97E4F5A27672E590049648A /* AddMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E4F5827672E590049648A /* AddMenuTableViewCell.xib */; };
+		D97EE00D276ABFA600683E66 /* ExcProceedCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE00C276ABFA600683E66 /* ExcProceedCustomView.swift */; };
+		D97EE00F276ABFB700683E66 /* ExcProceedCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97EE00E276ABFB700683E66 /* ExcProceedCustomView.xib */; };
 		D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */; };
 		D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */; };
 		D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */; };
@@ -456,6 +466,16 @@
 		D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSaleCancelMobileRequestModel.swift; sourceTree = "<group>"; };
 		D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionListTableViewCell.swift; sourceTree = "<group>"; };
 		D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcursionListTableViewCell.xib; sourceTree = "<group>"; };
+		D97E4F4B2760B4B90049648A /* ExcPaxCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcPaxCustomView.swift; sourceTree = "<group>"; };
+		D97E4F4D2760B4C70049648A /* ExcPaxCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcPaxCustomView.xib; sourceTree = "<group>"; };
+		D97E4F4F27624D640049648A /* ExcPaxPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcPaxPageTableViewCell.swift; sourceTree = "<group>"; };
+		D97E4F5027624D640049648A /* ExcPaxPageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcPaxPageTableViewCell.xib; sourceTree = "<group>"; };
+		D97E4F53276725640049648A /* ExcAddCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcAddCustomView.swift; sourceTree = "<group>"; };
+		D97E4F55276725760049648A /* ExcAddCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcAddCustomView.xib; sourceTree = "<group>"; };
+		D97E4F5727672E590049648A /* AddMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuTableViewCell.swift; sourceTree = "<group>"; };
+		D97E4F5827672E590049648A /* AddMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMenuTableViewCell.xib; sourceTree = "<group>"; };
+		D97EE00C276ABFA600683E66 /* ExcProceedCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcProceedCustomView.swift; sourceTree = "<group>"; };
+		D97EE00E276ABFB700683E66 /* ExcProceedCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcProceedCustomView.xib; sourceTree = "<group>"; };
 		D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusTableViewCell.swift; sourceTree = "<group>"; };
 		D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusTableViewCell.xib; sourceTree = "<group>"; };
 		D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourSaleDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -854,6 +874,12 @@
 				D994FBD3274530B6003564F3 /* ExcSearchCustomView.xib */,
 				D994FBDB2756377F003564F3 /* ExcSelectCustomView.swift */,
 				D994FBDD27563796003564F3 /* ExcSelectCustomView.xib */,
+				D97E4F4B2760B4B90049648A /* ExcPaxCustomView.swift */,
+				D97E4F4D2760B4C70049648A /* ExcPaxCustomView.xib */,
+				D97E4F53276725640049648A /* ExcAddCustomView.swift */,
+				D97E4F55276725760049648A /* ExcAddCustomView.xib */,
+				D97EE00C276ABFA600683E66 /* ExcProceedCustomView.swift */,
+				D97EE00E276ABFB700683E66 /* ExcProceedCustomView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -905,6 +931,10 @@
 				D9FD6502273C1F7B009B6619 /* HotelsandFlightsTableViewCell.xib */,
 				D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */,
 				D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */,
+				D97E4F4F27624D640049648A /* ExcPaxPageTableViewCell.swift */,
+				D97E4F5027624D640049648A /* ExcPaxPageTableViewCell.xib */,
+				D97E4F5727672E590049648A /* AddMenuTableViewCell.swift */,
+				D97E4F5827672E590049648A /* AddMenuTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1043,6 +1073,7 @@
 				D931573D26F8C183000C91AD /* ZReportViewController.xib in Resources */,
 				BF44C9D62640022F00238035 /* AddStepCustomView.xib in Resources */,
 				D994FBDE27563796003564F3 /* ExcSelectCustomView.xib in Resources */,
+				D97E4F5227624D640049648A /* ExcPaxPageTableViewCell.xib in Resources */,
 				D97FB5A926C685E90099F28B /* MyShoppingSaleViewController.xib in Resources */,
 				BF44C93C2640016500238035 /* ShopAppointmentViewController.xib in Resources */,
 				D9FD64E927381280009B6619 /* ZReportLoginViewController.xib in Resources */,
@@ -1054,11 +1085,13 @@
 				BF44C95C2640018B00238035 /* OfflineSalesViewController.xib in Resources */,
 				D97FB5B526C6ABC10099F28B /* MyShoppinSaleDetailViewController.xib in Resources */,
 				D991469326D68B620010E74F /* CancelVoucherViewController.xib in Resources */,
+				D97EE00F276ABFB700683E66 /* ExcProceedCustomView.xib in Resources */,
 				BF44C884263FF80100238035 /* Assets.xcassets in Resources */,
 				BF44C984264001B000238035 /* MainTextCustomView.xib in Resources */,
 				BF44C9A6264001CE00238035 /* CheckBoxView.xib in Resources */,
 				D9FD64DD27355EFF009B6619 /* ZReportPreviewViewController.xib in Resources */,
 				BF44C9512640018400238035 /* VoucherViewController.xib in Resources */,
+				D97E4F5A27672E590049648A /* AddMenuTableViewCell.xib in Resources */,
 				D9FD6504273C1F7B009B6619 /* HotelsandFlightsTableViewCell.xib in Resources */,
 				D994FBCE27451851003564F3 /* ExcursionViewController.xib in Resources */,
 				BF44C9432640017600238035 /* TasksViewController.xib in Resources */,
@@ -1073,11 +1106,13 @@
 				BF44C9702640019F00238035 /* AppointmentBarCustomView.xib in Resources */,
 				BF44C9AD264001D400238035 /* HeaderDetailCustomView.xib in Resources */,
 				D931574F26FA2257000C91AD /* ZReportDetailViewController.xib in Resources */,
+				D97E4F56276725760049648A /* ExcAddCustomView.xib in Resources */,
 				D994FBD4274530B6003564F3 /* ExcSearchCustomView.xib in Resources */,
 				BF44C9E42640023800238035 /* ProceedPageCustomView.xib in Resources */,
 				D97E4F4627598B4A0049648A /* ExcursionListTableViewCell.xib in Resources */,
 				BF44C9CF2640022600238035 /* StepsPageTableViewCell.xib in Resources */,
 				D900407C271738DD00DDE088 /* DailyReportTableViewCell.xib in Resources */,
+				D97E4F4E2760B4C70049648A /* ExcPaxCustomView.xib in Resources */,
 				D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */,
 				D95C203626F2010C007D1506 /* SpeakingHoursDetailViewController.xib in Resources */,
 				D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */,
@@ -1244,6 +1279,8 @@
 				D9561A4826A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift in Sources */,
 				D97FB59726C15F5D0099F28B /* MyTourSalesDetailPageTableViewCell.swift in Sources */,
 				D93F8883264AAAE500397283 /* GetInHouseListRequestModel.swift in Sources */,
+				D97E4F5927672E590049648A /* AddMenuTableViewCell.swift in Sources */,
+				D97E4F5127624D640049648A /* ExcPaxPageTableViewCell.swift in Sources */,
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
 				D95C203A26F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift in Sources */,
 				D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */,
@@ -1291,6 +1328,7 @@
 				D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */,
 				D9A48CFA26B1405D00D28A0A /* DocumentsViewController.swift in Sources */,
 				D97FB5BA26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift in Sources */,
+				D97E4F54276725640049648A /* ExcAddCustomView.swift in Sources */,
 				BF44C87F263FF80000238035 /* ViewController.swift in Sources */,
 				D968A88326BDAC94000FB00A /* MyTourStatusView.swift in Sources */,
 				BF44C91B2640013B00238035 /* LoginViewController.swift in Sources */,
@@ -1338,6 +1376,7 @@
 				D9FD64DC27355EFF009B6619 /* ZReportPreviewViewController.swift in Sources */,
 				BF44C93B2640016500238035 /* ShopAppointmentView.swift in Sources */,
 				D9FD64E827381280009B6619 /* ZReportLoginViewController.swift in Sources */,
+				D97EE00D276ABFA600683E66 /* ExcProceedCustomView.swift in Sources */,
 				BF44C8E6264000E200238035 /* ExtensionUIApplication.swift in Sources */,
 				D931574326F8DF49000C91AD /* GetZReportRequestModel.swift in Sources */,
 				D931575426FA5E72000C91AD /* ZReportMoreDetailViewController.swift in Sources */,
@@ -1392,6 +1431,7 @@
 				D9DCB1A026BBECE50064A040 /* MyTourSaleView.swift in Sources */,
 				D994FBD22745307F003564F3 /* ExcSearchCustomView.swift in Sources */,
 				D9FD64EB273813D9009B6619 /* ZReportLoginView.swift in Sources */,
+				D97E4F4C2760B4B90049648A /* ExcPaxCustomView.swift in Sources */,
 				D991469226D68B620010E74F /* CancelVoucherViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

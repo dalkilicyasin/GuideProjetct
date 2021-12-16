@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct GetInHoseListResponseModel : Mappable {
+struct GetInHoseListResponseModel : Mappable, Decodable, Encodable {
     var isTapped : Bool?
     var id : String?
     var value : Int?
@@ -34,5 +34,4 @@ struct GetInHoseListResponseModel : Mappable {
         marketId <- map["MarketId"]
         mrkGrp <- map["mrkGrp"]
     }
-
 }

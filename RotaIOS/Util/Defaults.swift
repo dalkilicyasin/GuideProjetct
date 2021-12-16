@@ -26,6 +26,11 @@ public class Defaults{
         case Favorite
         case SearchTourOfflineData
         case Password
+        case TourList
+        case PaxesList
+        case ExtrasList
+        case TransferList
+        case ManuelandHousePaxesList
     }
     
    public init(){}
@@ -83,6 +88,115 @@ public class Defaults{
         return []
     }
     
+    // Save ManuelandHousePaxesList
+    func saveManuelandHousePaxesList(tour:[Paxes]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .TourList))
+            preferences.synchronize()
+        }
+    }
+    
+    func getManuelandHousePaxesList() -> [Paxes]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .TourList)) as? Data {
+            if let loadedTourList = try? decoder.decode([Paxes].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
+    }
+    
+    //Tour and Paxes List saving
+    //Tour
+    func saveTourList(tour:[GetSearchTourResponseModel]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .TourList))
+            preferences.synchronize()
+        }
+    }
+    
+    func getTourList() -> [GetSearchTourResponseModel]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .TourList)) as? Data {
+            if let loadedTourList = try? decoder.decode([GetSearchTourResponseModel].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
+    }
+    
+    //Paxes
+    
+    func savePaxesList(tour:[GetInHoseListResponseModel]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .PaxesList))
+            preferences.synchronize()
+        }
+    }
+    
+    func getPaxesList() -> [GetInHoseListResponseModel]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .TourList)) as? Data {
+            if let loadedTourList = try? decoder.decode([GetInHoseListResponseModel].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
+    }
+    
+    
+    //Extras and Transfer List saving
+    //Extras
+    func saveExtrasList(tour:[Extras]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .ExtrasList))
+            preferences.synchronize()
+        }
+    }
+    
+    func getExtrasList() -> [Extras]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .ExtrasList)) as? Data {
+            if let loadedTourList = try? decoder.decode([Extras].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
+    }
+    
+    //Transfers
+    
+    func saveTransfersList(tour:[Transfers]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .TransferList))
+            preferences.synchronize()
+        }
+    }
+    
+    func getTransfersList() -> [Transfers]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .TransferList)) as? Data {
+            if let loadedTourList = try? decoder.decode([Transfers].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
+    }
     
     //LanguageID
     public func saveLanguageId(languageId:Int){
@@ -297,6 +411,16 @@ public class Defaults{
             return "SearchTourOfflineData"
         case .Password:
             return "Password"
+        case .TourList:
+            return "TourList"
+        case .PaxesList:
+            return "PaxesList"
+        case .ExtrasList:
+            return "ExtrasList"
+        case .TransferList:
+            return "TransferList"
+        case .ManuelandHousePaxesList:
+            return "ManuelandHousePaxesList"
         }
     }
 }

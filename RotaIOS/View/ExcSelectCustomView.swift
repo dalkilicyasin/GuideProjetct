@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol ExcSelectDelegate {
+    func exSelectDelegateInf(paxButtonTapped: Bool?)
+}
+
 class ExcSelectCustomView : UIView {
     @IBOutlet var viewMainView: UIView!
     @IBOutlet weak var buttonTour: UIButton!
@@ -18,6 +22,16 @@ class ExcSelectCustomView : UIView {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var labelExcursion: UILabel!
     var excursionList : [GetSearchTourResponseModel] = []
+    var viewPaxCustomView : ExcPaxCustomView?
+    var excSelectDelegate : ExcSelectDelegate?
+    var paxSelected = false
+    var checkFilteredList : [Bool] = []
+    var filteredData : [GetSearchTourResponseModel] = []
+    var filteredList : [GetSearchTourResponseModel] = []
+    var tempFilteredList : [GetSearchTourResponseModel] = []
+    var isFiltered = false
+    var checkList : [Bool] = []
+    var savesTourList : [GetSearchTourResponseModel] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,6 +49,7 @@ class ExcSelectCustomView : UIView {
          } else {
             self.excursionList = userDefaultsData.getSearchTourOffline() ?? [GetSearchTourResponseModel]()
         }
+        
         Bundle.main.loadNibNamed(String(describing: ExcSelectCustomView.self), owner: self, options: nil)
         self.viewMainView.addCustomContainerView(self)
         self.buttonTour.clipsToBounds = true
@@ -60,36 +75,163 @@ class ExcSelectCustomView : UIView {
         self.buttonPaxes.layer.borderColor = UIColor.greenColor.cgColor
         self.tableView.backgroundColor = UIColor.tableViewColor
         self.labelExcursion.addLine(position: .bottom, color: .lightGray, width: 1.0)
-        
+        print( self.excursionList.count)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(ExcursionListTableViewCell.nib, forCellReuseIdentifier: ExcursionListTableViewCell.identifier)
+        
+        self.searchBar.setImage(UIImage(), for: .search, state: .normal)
+        self.searchBar.layer.cornerRadius = 10
+        self.searchBar.compatibleSearchTextField.textColor = UIColor.white
+        self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
+        self.searchBar.delegate = self
+    }
+    
+    @IBAction func tourButtonTapped(_ sender: Any) {
+        self.paxSelected = false
+        self.excSelectDelegate?.exSelectDelegateInf(paxButtonTapped: self.paxSelected)
+    }
+    
+    @IBAction func paxButtonTapped(_ sender: Any) {
+        self.paxSelected = true
+        self.excSelectDelegate?.exSelectDelegateInf(paxButtonTapped: self.paxSelected)
     }
 }
 
 extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.excursionList.count
+        if isFiltered == true {
+            return self.filteredData.count
+        }else{
+            return self.excursionList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExcursionListTableViewCell.identifier) as! ExcursionListTableViewCell
-        cell.labelExcursion.text = self.excursionList[indexPath.row].tourName
-        cell.labelPickupTime.text = self.excursionList[indexPath.row].pickUpTime
-       // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
-        cell.labelPriceType.text = String(self.excursionList[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
-        cell.labelCurrency.text = self.excursionList[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
-        cell.labelAdultPrice.text = String(self.excursionList[indexPath.row].adultPrice ?? 0)
-        cell.labelChildPrice.text = String(self.excursionList[indexPath.row].childPrice ?? 0)
-        cell.labelInfantPrice.text = String(self.excursionList[indexPath.row].infantPrice ?? 0)
-        cell.labelToodlePrice.text = String(self.excursionList[indexPath.row].toodlePrice ?? 0)
-        cell.labelMinPrice.text = String(self.excursionList[indexPath.row].minPrice ?? 0)
-        cell.labelMinPax.text = String(self.excursionList[indexPath.row].minPax ?? 0)
-        cell.labelTotalPrice.text = String(self.excursionList[indexPath.row].totalPrice ?? 0)
-        cell.labelFlatPricw.text = String(self.excursionList[indexPath.row].flatPrice ?? 0)
+        cell.excursionListTableViewCellDelegate = self
+        if self.isFiltered == true {
+            cell.labelExcursion.text = self.filteredData[indexPath.row].tourName
+            cell.labelPickupTime.text = self.filteredData[indexPath.row].pickUpTime
+           // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
+            cell.labelPriceType.text = String(self.filteredData[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
+            cell.labelCurrency.text = self.filteredData[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
+            cell.labelAdultPrice.text = String(self.filteredData[indexPath.row].adultPrice ?? 0)
+            cell.labelChildPrice.text = String(self.filteredData[indexPath.row].childPrice ?? 0)
+            cell.labelInfantPrice.text = String(self.filteredData[indexPath.row].infantPrice ?? 0)
+            cell.labelToodlePrice.text = String(self.filteredData[indexPath.row].toodlePrice ?? 0)
+            cell.labelMinPrice.text = String(self.filteredData[indexPath.row].minPrice ?? 0)
+            cell.labelMinPax.text = String(self.filteredData[indexPath.row].minPax ?? 0)
+            cell.labelTotalPrice.text = String(self.filteredData[indexPath.row].totalPrice ?? 0)
+            cell.labelFlatPricw.text = String(self.filteredData[indexPath.row].flatPrice ?? 0)
+            cell.excursionListInCell = self.filteredData[indexPath.row]
+            cell.isTappedCheck = self.checkFilteredList[indexPath.row]
+            cell.tourid = self.filteredData[indexPath.row].tourId ?? 0
+        }else {
+            cell.labelExcursion.text = self.excursionList[indexPath.row].tourName
+            cell.labelPickupTime.text = self.excursionList[indexPath.row].pickUpTime
+           // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
+            cell.labelPriceType.text = String(self.excursionList[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
+            cell.labelCurrency.text = self.excursionList[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
+            cell.labelAdultPrice.text = String(self.excursionList[indexPath.row].adultPrice ?? 0)
+            cell.labelChildPrice.text = String(self.excursionList[indexPath.row].childPrice ?? 0)
+            cell.labelInfantPrice.text = String(self.excursionList[indexPath.row].infantPrice ?? 0)
+            cell.labelToodlePrice.text = String(self.excursionList[indexPath.row].toodlePrice ?? 0)
+            cell.labelMinPrice.text = String(self.excursionList[indexPath.row].minPrice ?? 0)
+            cell.labelMinPax.text = String(self.excursionList[indexPath.row].minPax ?? 0)
+            cell.labelTotalPrice.text = String(self.excursionList[indexPath.row].totalPrice ?? 0)
+            cell.labelFlatPricw.text = String(self.excursionList[indexPath.row].flatPrice ?? 0)
+            cell.excursionListInCell = self.excursionList[indexPath.row]
+            cell.isTappedCheck = self.checkList[indexPath.row]
+            cell.tourid = self.excursionList[indexPath.row].tourId  ?? 0
+        }
         return cell
     }
 }
+
+extension ExcSelectCustomView : UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.filteredData = []
+        self.checkFilteredList = []
+        self.filteredList  = []
+
+        if searchText.elementsEqual(""){
+            self.isFiltered = false
+            //  self.paxesNameList = self.tempPaxesNameList
+            self.filteredData = self.excursionList
+        }else {
+            self.isFiltered = true
+            for data in self.excursionList{
+                if data.tourName!.lowercased().contains(searchText.lowercased()){
+                    self.filteredData.append(data)
+                    //   self.paxesNameList = self.filteredData
+                }
+            }
+        }
+        
+        if filteredData.count > 0 {
+            for index in 0...self.filteredData.count - 1 {
+                let filter = self.excursionList.filter{($0.tourName?.contains(self.filteredData[index].tourName ?? "") ?? false)}
+                if filter.count > 0 {
+                    self.filteredList.append(filter[0])
+                }
+            }
+            for index in 0...self.filteredList.count - 1 {
+                self.checkFilteredList.append(self.filteredList[index].isTapped ?? false)
+                //   self.checkList.append(self.paxesNameList[index].isTapped ?? false)
+                let filter = self.tempFilteredList.filter{($0.tourName?.contains(self.filteredList[index].tourName ?? "") ?? false)}
+                if filter.count > 0 {
+                    if let insideIndex = self.filteredList.firstIndex(where: {$0.tourName == filter[0].tourName}){
+                        self.filteredList[insideIndex].isTapped = filter[0].isTapped ?? false
+                        self.checkFilteredList[insideIndex] = filter[0].isTapped ?? false
+                     /*   if  self.tempFilteredList.count > 0 {
+                            self.tempFilteredList[insideIndex].isTapped = filter[0].isTapped ?? false
+                        } */
+                    }
+                }
+            }
+        }
+        
+        if self.checkFilteredList.count == self.checkList.count {
+         self.checkList = self.checkFilteredList
+         }
+        self.tableView.reloadData()
+    }
+}
+
+extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
+    func checkBoxTapped(checkCounter: Bool, tourid: Int, tempPaxes: GetSearchTourResponseModel) {
+        self.tempFilteredList = []
+        if isFiltered == true {
+            if let index = self.filteredData.firstIndex(where: {$0.tourId == tourid} ){
+                self.filteredList[index].isTapped = checkCounter
+                self.checkFilteredList[index] = checkCounter
+                self.tempFilteredList = self.filteredList
+            }
+        }else{
+            if let index = self.excursionList.firstIndex(where: {$0.tourId == tourid}){
+                self.excursionList[index].isTapped = checkCounter
+                self.checkList[index] = checkCounter
+            }
+        }
+        self.tableView.reloadData()
+        
+        if checkCounter == true {
+            let filter = excursionList.filter{ $0.tourId == tourid}
+           // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
+            for index in filter {
+                self.savesTourList.append(index)
+            }
+        }else{
+           // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
+            let filter = excursionList.filter{ $0.tourId == tourid}
+            if let insideIndex = self.savesTourList.firstIndex(where: {$0.tourId == filter[0].tourId}){
+                self.savesTourList.remove(at: insideIndex)
+            }
+        }
+        userDefaultsData.saveTourList(tour: self.savesTourList)
+    }
+}
+
 
 

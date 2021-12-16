@@ -110,12 +110,12 @@ class HotelPageCustomView : UIView {
         self.searchBar.delegate = self
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTappedItem))
         gesture.numberOfTouchesRequired = 1
-        gesture.numberOfTouchesRequired = 1
+        self.viewMarketListView.addGestureRecognizer(gesture)
+        
         let secondGesture = UITapGestureRecognizer(target: self, action: #selector(didSecondItemTapped))
         secondGesture.numberOfTouchesRequired = 1
-        secondGesture.numberOfTouchesRequired = 1
-        self.viewMarketListView.addGestureRecognizer(gesture)
         self.viewHotelListView.addGestureRecognizer(secondGesture)
+        
         self.marketMenu.topOffset = CGPoint(x: 0, y:-(self.marketMenu.anchorView?.plainView.bounds.height ?? 200))
         self.marketMenu.selectionAction = { index, title in
             if title != self.viewMarketListView.mainLabel.text {

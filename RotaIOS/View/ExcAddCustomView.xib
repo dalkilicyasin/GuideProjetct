@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExcAddCustomView" customModule="RotaIOS" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonExtras" destination="8Wt-Ad-PuT" id="EUo-oV-EiM"/>
+                <outlet property="buttonTransfers" destination="ovO-4o-05n" id="0xa-ql-m2M"/>
+                <outlet property="labelExtorTransf" destination="bdm-Rz-3uV" id="ZSn-3F-ZxI"/>
+                <outlet property="tableView" destination="XjT-rA-rDK" id="eGH-R6-e3K"/>
+                <outlet property="viewExcursions" destination="69k-Mr-eRX" id="MuV-MO-Lbg"/>
+                <outlet property="viewMainView" destination="iN0-l3-epB" id="rIi-Dv-74c"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="379" height="771"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-Ad-PuT">
+                    <rect key="frame" x="40" y="50" width="148" height="50"/>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="5Ld-cF-IFw"/>
+                        <constraint firstAttribute="width" constant="148" id="XL0-p0-uZp"/>
+                    </constraints>
+                    <state key="normal" title="EXTRAS">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="extrasButtonTapped:" destination="-1" eventType="touchUpInside" id="szJ-7I-1hm"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovO-4o-05n">
+                    <rect key="frame" x="188" y="50" width="151" height="50"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="RHX-Jn-hpM"/>
+                    </constraints>
+                    <state key="normal" title="TRANSFERS">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="transfersButtonTapped:" destination="-1" eventType="touchUpInside" id="IZC-ya-MPJ"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69k-Mr-eRX" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
+                    <rect key="frame" x="40" y="130" width="299" height="90"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="b71-Bl-7zJ"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XjT-rA-rDK">
+                    <rect key="frame" x="0.0" y="270" width="379" height="501"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transfers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdm-Rz-3uV">
+                    <rect key="frame" x="0.0" y="230" width="379" height="40"/>
+                    <color key="backgroundColor" red="0.090196078431372548" green="0.090196078431372548" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="dXu-qF-20N"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="ovO-4o-05n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="8uc-o9-elh"/>
+                <constraint firstItem="XjT-rA-rDK" firstAttribute="top" secondItem="bdm-Rz-3uV" secondAttribute="bottom" id="A4d-w7-fX1"/>
+                <constraint firstAttribute="bottom" secondItem="XjT-rA-rDK" secondAttribute="bottom" id="HTx-KB-I5f"/>
+                <constraint firstItem="bdm-Rz-3uV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Lco-D4-yuA"/>
+                <constraint firstAttribute="trailing" secondItem="69k-Mr-eRX" secondAttribute="trailing" constant="40" id="dWE-pW-6e8"/>
+                <constraint firstItem="69k-Mr-eRX" firstAttribute="top" secondItem="8Wt-Ad-PuT" secondAttribute="bottom" constant="30" id="gxq-8d-C2p"/>
+                <constraint firstItem="8Wt-Ad-PuT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="hYH-iM-NgV"/>
+                <constraint firstItem="69k-Mr-eRX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="ihz-VS-mgj"/>
+                <constraint firstAttribute="trailing" secondItem="XjT-rA-rDK" secondAttribute="trailing" id="k17-83-IiT"/>
+                <constraint firstAttribute="trailing" secondItem="ovO-4o-05n" secondAttribute="trailing" constant="40" id="nTh-o2-0zz"/>
+                <constraint firstItem="bdm-Rz-3uV" firstAttribute="top" secondItem="69k-Mr-eRX" secondAttribute="bottom" constant="10" id="oZS-gf-Qu1"/>
+                <constraint firstItem="8Wt-Ad-PuT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="p2f-vr-Yxf"/>
+                <constraint firstAttribute="trailing" secondItem="bdm-Rz-3uV" secondAttribute="trailing" id="uol-HM-wZg"/>
+                <constraint firstItem="ovO-4o-05n" firstAttribute="leading" secondItem="8Wt-Ad-PuT" secondAttribute="trailing" id="vfd-Xz-OEW"/>
+                <constraint firstItem="XjT-rA-rDK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="w1y-l7-QvQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-181.8840579710145" y="113.50446428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -55,7 +55,6 @@ class PaxPageTableViewCell: BaseTableViewCell{
 extension PaxPageTableViewCell : CheckBoxViewDelegate {
     func checkBoxTapped(isremember: Bool) {
         print(isremember)
-        
     }
 }
 

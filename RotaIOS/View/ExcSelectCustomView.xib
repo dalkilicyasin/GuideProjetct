@@ -37,6 +37,9 @@
                     <state key="normal" title="TOUR">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="tourButtonTapped:" destination="-1" eventType="touchUpInside" id="0aU-8g-j9O"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mmv-Gv-RXP">
                     <rect key="frame" x="188" y="50" width="972" height="50"/>
@@ -48,6 +51,9 @@
                     <state key="normal" title="PAX">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="paxButtonTapped:" destination="-1" eventType="touchUpInside" id="Z9d-d1-rTa"/>
+                    </connections>
                 </button>
                 <searchBar contentMode="redraw" placeholder="Hotel Name Filter" translatesAutoresizingMaskIntoConstraints="NO" id="JWp-sQ-Av5">
                     <rect key="frame" x="45" y="120" width="1110" height="60"/>
