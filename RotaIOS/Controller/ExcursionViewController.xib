@@ -19,7 +19,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="ExcursionView" customModule="RotaIOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="1300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIR-95-TT9" customClass="HeaderDetailCustomView" customModule="RotaIOS" customModuleProvider="target">
@@ -30,13 +30,13 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="if8-LS-RiW">
-                    <rect key="frame" x="0.0" y="130" width="414" height="766"/>
+                    <rect key="frame" x="0.0" y="130" width="414" height="1170"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2v-CF-ThT">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="800"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1170"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="800" id="4Pc-M7-dKW"/>
+                                <constraint firstAttribute="height" constant="1170" id="4Pc-M7-dKW"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -55,7 +55,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rax-Co-yw1" customClass="FooterCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="746" width="414" height="150"/>
+                    <rect key="frame" x="0.0" y="1150" width="414" height="150"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="OS9-1h-5yE"/>
@@ -80,6 +80,7 @@
                 <constraint firstItem="yZk-8o-J4S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="wDm-7U-RzF"/>
                 <constraint firstItem="yZk-8o-J4S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ycL-Ot-iL2"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="viewAppointmentView" destination="yZk-8o-J4S" id="B86-kO-COB"/>
                 <outlet property="viewContentView" destination="p2v-CF-ThT" id="sJ3-8O-uAm"/>

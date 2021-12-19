@@ -22,6 +22,7 @@ class ExcursionViewController: UIViewController {
     var viewExcSearchCustomView : ExcSearchCustomView?
     var viewExcSelectCustomView : ExcSelectCustomView?
     var viewExcAddCustomView : ExcAddCustomView?
+    var viewExcProceedCustomView : ExcProceedCustomView?
     var beginDateStringType = ""
     var endDateStringType = ""
     var tourList : [GetSearchTourResponseModel] = []
@@ -38,8 +39,16 @@ class ExcursionViewController: UIViewController {
     var constraintonAdd = [NSLayoutConstraint]()
     var changeNumber = 0
     var isTourChange = false
-    
     var totalAmount = 0
+    var changeTransferNumber = 0
+    var changeExcNumber = 0
+    var isExcOrTransChange = false
+    var tourListSaved : [GetSearchTourResponseModel] = []
+    var paxesListSaved : [GetInHoseListResponseModel] = []
+    var ageGroup = ""
+    var totalPrice = 0.00
+    var minPerson = 0
+    var minPriceTotal = 0.00
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +81,27 @@ class ExcursionViewController: UIViewController {
             self.isConnectedInternet = false
         }
     }
+    
+    func showToast(message : String){
+        let toastLabel = UILabel(frame: CGRect(x: self.viewExcursionView.frame.size.width/2 - 50, y: self.viewExcursionView.frame.size.height - 200, width: 250, height: 55))
+           toastLabel.numberOfLines = 0
+           toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+           toastLabel.textColor = UIColor.white
+           toastLabel.textAlignment = .center;
+           toastLabel.text = message
+           toastLabel.alpha = 1.0
+           toastLabel.layer.cornerRadius = 10;
+           toastLabel.clipsToBounds  =  true
+           toastLabel.sizeToFit()
+           toastLabel.frame = CGRect( x: toastLabel.frame.minX, y: toastLabel.frame.minY, width:toastLabel.frame.width + 20, height: toastLabel.frame.height + 8)
+
+           self.view.addSubview(toastLabel)
+           UIView.animate(withDuration: 4.0, delay: 0.2, options: .curveEaseOut, animations: {
+               toastLabel.alpha = 0.0
+           }, completion: {(isCompleted) in
+               toastLabel.removeFromSuperview()
+           })
+        }
     
     func constraintOnSelectfunc(){
         self.viewFooterViewCustomView.viewHeader.addSubview( self.viewFooterViewCustomView.buttonView)
@@ -139,9 +169,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.isTourChange = true
             self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
         }
-        self.viewFooterViewCustomView.buttonAddButton.isHidden = true
-        self.viewFooterViewCustomView.labelAmount.isHidden = true
-        self.viewFooterViewCustomView.buttonSaveButton.isHidden = true
+        
         self.viewPaxCustomView?.isHidden = true
         if Connectivity.isConnectedToInternet {
             print("Connected")
@@ -155,6 +183,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
         if tapped == 0 {
             self.viewFooterViewCustomView.commonInit()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = false
+            self.viewFooterViewCustomView.printButton.isHidden = true
+            
             //  self.viewFooterViewCustomView.buttonHiding(hidePrintbutton: true, hideButton: false)
             if self.viewExcSearchCustomView == nil {
                 // self.lastUIView.removeFromSuperview()
@@ -167,12 +197,14 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSearchCustomView?.isHidden = false
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
                 // self.stepsPageCustomView?.isHidden = true
                 //self.proceedPageCustomView?.isHidden = true
             }
         }else if tapped == 1 {
             self.constraintOnSelectfunc()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
+            self.viewFooterViewCustomView.printButton.isHidden = true
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(guide: String(userDefaultsData.getGuideId()), market: self.viewExcSearchCustomView?.marketIdStringType ?? "", hotel: self.viewExcSearchCustomView?.hotelIdStringType ?? "", area: self.viewExcSearchCustomView?.areaIdStringType ?? "", tourdatestart: self.viewExcSearchCustomView?.beginDateString ??  "", tourdateend: self.viewExcSearchCustomView?.endDateString ?? "", saledate: userDefaultsData.getSaleDate())
             
             let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: String(userDefaultsData.getHotelId()), marketId: String(userDefaultsData.getMarketId()))
@@ -216,6 +248,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 //  self.animatedCustomView(customView: PaxPageCustomView())
                 self.viewExcSearchCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
@@ -236,10 +269,12 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSelectCustomView?.isHidden = false
                 self.viewExcSearchCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
             }
         }else if tapped == 2 {
+            self.viewFooterViewCustomView.printButton.isHidden = true
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.labelAmount.isHidden = false
             self.viewFooterViewCustomView.buttonSaveButton.isHidden = false
@@ -253,11 +288,13 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 //  self.animatedCustomView(customView: PaxPageCustomView())
                 self.viewExcSearchCustomView?.isHidden = true
                 self.viewExcSelectCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-                    UIView.animate(withDuration: 0, animations: { [self] in
+                UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcAddCustomView = ExcAddCustomView()
+                    self.viewExcAddCustomView?.excAddCustomViewDelegate = self
                     //self.viewExcSelectCustomView?.excSelectDelegate = self
                     // self.viewExcAddCustomView?.extrasList = self.tourList
                     //  self.viewExcAddCustomView?.tableView.reloadData()
@@ -274,74 +311,131 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcAddCustomView?.isHidden = false
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcSearchCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
             }
-            /*  self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-             if stepsPageCustomView == nil || self.isPaxesListChange == true {
-             self.paxPageCustomView?.isHidden = true
-             self.hotelPageCustomView?.isHidden = true
-             self.proceedPageCustomView?.isHidden = true
-             //self.lastUIView.removeFromSuperview()
-             UIView.animate(withDuration: 0, animations: { [self] in
-             self.stepsPageCustomView = StepsPageCustomView()
-             self.stepsPageCustomView?.adlCount = self.adultCount
-             self.stepsPageCustomView?.chldCount = self.childCount
-             self.stepsPageCustomView?.infCount = self.infantCount
-             self.stepsPageCustomView?.stepsPageListDelegate = self
-             self.contentView.addSubview(stepsPageCustomView!)
-             stepsPageCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.contentView.frame.size.height)
-             }, completion: { (finished) in
-             if finished{
-             
-             }
-             })
-             
-             self.isPaxesListChange = false
-             }else {
-             self.stepsPageCustomView?.isHidden = false
-             self.paxPageCustomView?.isHidden = true
-             self.hotelPageCustomView?.isHidden = true
-             self.proceedPageCustomView?.isHidden = true
-             }
-             */
+            
+            self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
+            self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
+            if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
+                for i in 0...self.tourListSaved.count - 1{
+                    // Per Person Price calculation
+                    if self.tourListSaved[i].priceType == 35 {
+                        // Özgeye sor getinforesponse mu yoksa direk gethouselisten dönen agegrup mu alınacak
+                        /*   let getTouristInfoModel = GetTouristInfoRequestModel.init(touristId: self.paxesListSaved[i].value ?? 0, resNo: self.paxesListSaved[i].resNo ?? "")
+                         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getTouristInfoModel.requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                         if response.count > 0 {
+                         
+                         }
+                         }*/
+                        /*
+                         if self.tourListSaved[i].infantAge1 ?? 0.00 <= self.tourListSaved[i].infantAge2 ?? 0.00 {
+                         self.ageGroup = "INF"
+                         }else if self.tourListSaved[i].toodleAge1 ?? 0.00 <= self.tourListSaved[i].toodleAge2 ?? 0.00 {
+                         self.ageGroup = "TDL"
+                         }else if self.tourListSaved[i].childAge1 ?? 0.00 <= self.tourListSaved[i].childAge1 ?? 0.00 {
+                         self.ageGroup = "CHD"
+                         }else{
+                         self.ageGroup = "ADL"
+                         }*/
+                        for index in 0...paxesListSaved.count - 1 {
+                            switch self.paxesListSaved[index].ageGroup {
+                            case "INF":
+                                self.totalPrice += self.tourListSaved[i].infantPrice ?? 0.00
+                            case "TDL":
+                                self.totalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
+                            case "CHD":
+                                self.totalPrice += self.tourListSaved[i].childPrice ?? 0.00
+                            default:
+                                self.totalPrice += self.tourListSaved[i].adultPrice ?? 0.00
+                            }
+                        }
+                    }
+                    //Flat Price calculation
+                    else if self.tourListSaved[i].priceType == 36{
+                        self.totalPrice += self.tourListSaved[i].flatPrice ?? 0.00
+                    }
+                    
+                    else if self.tourListSaved[i].priceType == 37{
+                        self.minPerson = Int(self.tourListSaved[i].minPax ?? 0.00)
+                        if self.minPerson > 0 {
+                            for index in 0...self.paxesListSaved.count - 1{
+                                if  self.paxesListSaved[index].ageGroup == "ADL" {
+                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                    self.minPerson -= 1
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
+                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                    self.minPerson -= 1
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
+                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                    self.minPerson -= 1
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
+                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                    self.minPerson -= 1
+                                }
+                            }
+                        }else {
+                            for index in 0...self.paxesListSaved.count - 1{
+                                if  self.paxesListSaved[index].ageGroup == "ADL" {
+                                    self.totalPrice += tourListSaved[i].adultPrice ?? 0.00
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
+                                    self.totalPrice += tourListSaved[i].childPrice ?? 0.00
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
+                                    self.totalPrice += tourListSaved[i].toodlePrice ?? 0.00
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
+                                    self.totalPrice += tourListSaved[i].infantPrice ?? 0.00
+                                }
+                            }
+                        }
+                        self.totalPrice += self.minPriceTotal
+                        self.tourListSaved.removeAll()
+                        self.paxesListSaved.removeAll()
+                    }
+                }
+            }
+            self.showToast(message: "\(self.totalPrice)")
         }else if tapped == 3 {
+            self.viewFooterViewCustomView.labelAmount.isHidden = true
+            self.viewFooterViewCustomView.buttonSaveButton.isHidden = true
+            self.viewFooterViewCustomView.buttonView.isHidden = true
+            self.viewFooterViewCustomView.printButton.isHidden = false
+            if let transferNumber = userDefaultsData.getTransfersList()?.count {
+                if  self.changeTransferNumber != transferNumber {
+                    self.isExcOrTransChange = true
+                    self.changeTransferNumber = transferNumber
+                }else{
+                    self.isExcOrTransChange = false
+                }
+            }
             
-            /*  self.footerView.buttonHiding(hidePrintbutton: false, hideButton: true)
-             if proceedPageCustomView == nil || self.isPaxesListChange == true || self.isStepListChange == true {
-             // self.lastUIView.removeFromSuperview()
-             //  self.animatedCustomView(customView: ProceedPageCustomView())
-             
-             // self.lastUIView.removeFromSuperview()
-             self.paxPageCustomView?.isHidden = true
-             self.hotelPageCustomView?.isHidden = true
-             self.stepsPageCustomView?.isHidden = true
-             self.footerView.buttonHiding(hidePrintbutton: false, hideButton: true)
-             UIView.animate(withDuration: 0, animations: { [self] in
-             self.proceedPageCustomView = ProceedPageCustomView()
-             self.proceedPageCustomView?.paxListinProceedPage = self.paxesListinShopView
-             self.proceedPageCustomView?.paxListinProceedPage = self.paxesListinShopView
-             self.proceedPageCustomView?.stepsListinProceedPage = self.stepsListinShopView
-             self.proceedPageCustomView?.adultCountinProceedPage = self.adultCount // procced page de değer doğru geliyormu görmek için koydum
-             self.proceedPageCustomView?.childCountinProceedPage = self.childCount
-             self.proceedPageCustomView?.infantCountinProceedPage = self.infantCount
-             self.proceedPageCustomView?.proceedPageDelegate = self
-             self.contentView.addSubview(proceedPageCustomView!)
-             proceedPageCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.contentView.frame.size.height)
-             }, completion: { (finished) in
-             if finished{
-             
-             }
-             })
-             // self.lastUIView = self.proceedPageCustomView!
-             self.isPaxesListChange = false
-             }else {
-             self.proceedPageCustomView?.isHidden = false
-             self.paxPageCustomView?.isHidden = true
-             self.stepsPageCustomView?.isHidden = true
-             self.hotelPageCustomView?.isHidden = true
-             }*/
-            
+            if let extraNumber = userDefaultsData.getTransfersList()?.count {
+                if  self.changeExcNumber != extraNumber {
+                    self.isExcOrTransChange = true
+                    self.changeExcNumber = extraNumber
+                }else{
+                    self.isExcOrTransChange = false
+                }
+            }
+            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil {
+                self.viewExcAddCustomView?.isHidden = true
+                self.viewExcSelectCustomView?.isHidden = true
+                self.viewExcSearchCustomView?.isHidden = true
+                UIView.animate(withDuration: 0, animations: { [self] in
+                    self.viewExcProceedCustomView = ExcProceedCustomView()
+                    self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
+                    self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
+                }, completion: { (finished) in
+                    if finished{
+                        
+                    }
+                })
+            }else{
+                self.viewExcProceedCustomView?.isHidden = false
+                self.viewExcAddCustomView?.isHidden = true
+                self.viewExcSelectCustomView?.isHidden = true
+                self.viewExcSearchCustomView?.isHidden = true
+            }
         }
         else{
             
@@ -354,9 +448,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.isTourChange = true
             self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
         }
-        self.viewFooterViewCustomView.buttonAddButton.isHidden = true
-        self.viewFooterViewCustomView.labelAmount.isHidden = true
-        self.viewFooterViewCustomView.buttonSaveButton.isHidden = true
+        
         self.viewPaxCustomView?.isHidden = true
         if Connectivity.isConnectedToInternet {
             print("Connected")
@@ -372,13 +464,16 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
         self.viewFooterViewCustomView.counter = ischosen
         
         if ischosen == 0 {
+            self.buttonhide()
             self.viewFooterViewCustomView.commonInit()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = false
+            self.viewFooterViewCustomView.printButton.isHidden = true
             //  self.viewFooterViewCustomView.buttonHiding(hidePrintbutton: true, hideButton: false)
             if self.viewExcSearchCustomView == nil {
                 // self.lastUIView.removeFromSuperview()
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
                 // self.stepsPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
                 self.animatedCustomView(customView: ExcSearchCustomView())
@@ -386,12 +481,14 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSearchCustomView?.isHidden = false
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
                 // self.stepsPageCustomView?.isHidden = true
                 //self.proceedPageCustomView?.isHidden = true
             }
             
         }
         else if ischosen == 1 {
+            self.buttonhide()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.constraintOnSelectfunc()
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(guide: String(userDefaultsData.getGuideId()), market: self.viewExcSearchCustomView?.marketIdStringType ?? "", hotel: self.viewExcSearchCustomView?.hotelIdStringType ?? "", area: self.viewExcSearchCustomView?.areaIdStringType ?? "", tourdatestart: self.viewExcSearchCustomView?.beginDateString ??  "", tourdateend: self.viewExcSearchCustomView?.endDateString ?? "", saledate: userDefaultsData.getSaleDate())
@@ -420,7 +517,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     if response.count > 0 {
                         //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                         self.paxesList = response
-                       
+                        
                         userDefaultsData.saveHotelId(hotelId: 0)
                         userDefaultsData.saveMarketId(marketId: 0)
                     }else{
@@ -432,18 +529,17 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             self.viewExcSearchCustomView?.excurSearchDelegate = self
             if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
-                
-                //  self.lastUIView.removeFromSuperview()
-                //  self.animatedCustomView(customView: PaxPageCustomView())
                 self.viewExcSearchCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
+                //  self.lastUIView.removeFromSuperview()
+                //  self.animatedCustomView(customView: PaxPageCustomView())
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
                 UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcSelectCustomView = ExcSelectCustomView()
                     self.viewExcSelectCustomView?.excSelectDelegate = self
-                    
                     self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
                     self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in
@@ -457,30 +553,28 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSelectCustomView?.isHidden = false
                 self.viewExcSearchCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
             }
-        }else if ischosen == 2 {
-            //total amount counting
             
+        }else if ischosen == 2 {
+            self.buttonhide()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.labelAmount.isHidden = false
             self.viewFooterViewCustomView.buttonSaveButton.isHidden = false
-            self.viewFooterViewCustomView.buttonView.removeFromSuperview()
-            self.constraintOnAddFunc()
-            self.viewExcSelectCustomView?.excSelectDelegate = self
+        
             if self.viewExcAddCustomView == nil || self.isTourChange == true{
-                
-                //  self.lastUIView.removeFromSuperview()
-                //  self.animatedCustomView(customView: PaxPageCustomView())
+                self.viewFooterViewCustomView.buttonView.removeFromSuperview()
+                self.constraintOnAddFunc()
+                self.viewExcSelectCustomView?.excSelectDelegate = self
                 self.viewExcSearchCustomView?.isHidden = true
                 self.viewExcSelectCustomView?.isHidden = true
-                // self.hotelPageCustomView?.isHidden = true
-                // self.proceedPageCustomView?.isHidden = true
-                // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                self.viewExcProceedCustomView?.isHidden = true
+                
                 UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcAddCustomView = ExcAddCustomView()
-                    //self.viewExcSelectCustomView?.excSelectDelegate = self
+                    self.viewExcAddCustomView?.excAddCustomViewDelegate = self
                     // self.viewExcAddCustomView?.extrasList = self.tourList
                     //  self.viewExcAddCustomView?.tableView.reloadData()
                     self.viewExcursionView.viewContentView.addSubview(viewExcAddCustomView!)
@@ -496,45 +590,134 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcAddCustomView?.isHidden = false
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcSearchCustomView?.isHidden = true
+                self.viewExcProceedCustomView?.isHidden = true
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
             }
+            
+            //total amount counting
+            self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
+            self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
+            if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
+                for i in 0...self.tourListSaved.count - 1{
+                    // Per Person Price calculation
+                    if self.tourListSaved[i].priceType == 35 {
+                        // Özgeye sor getinforesponse mu yoksa direk gethouselisten dönen agegrup mu alınacak
+                        /*   let getTouristInfoModel = GetTouristInfoRequestModel.init(touristId: self.paxesListSaved[i].value ?? 0, resNo: self.paxesListSaved[i].resNo ?? "")
+                         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getTouristInfoModel.requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                         if response.count > 0 {
+                         
+                         }
+                         }*/
+                        /*
+                         if self.tourListSaved[i].infantAge1 ?? 0.00 <= self.tourListSaved[i].infantAge2 ?? 0.00 {
+                         self.ageGroup = "INF"
+                         }else if self.tourListSaved[i].toodleAge1 ?? 0.00 <= self.tourListSaved[i].toodleAge2 ?? 0.00 {
+                         self.ageGroup = "TDL"
+                         }else if self.tourListSaved[i].childAge1 ?? 0.00 <= self.tourListSaved[i].childAge1 ?? 0.00 {
+                         self.ageGroup = "CHD"
+                         }else{
+                         self.ageGroup = "ADL"
+                         }*/
+                        for index in 0...paxesListSaved.count - 1 {
+                            switch self.paxesListSaved[index].ageGroup {
+                            case "INF":
+                                self.totalPrice += self.tourListSaved[i].infantPrice ?? 0.00
+                            case "TDL":
+                                self.totalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
+                            case "CHD":
+                                self.totalPrice += self.tourListSaved[i].childPrice ?? 0.00
+                            default:
+                                self.totalPrice += self.tourListSaved[i].adultPrice ?? 0.00
+                            }
+                        }
+                    }
+                    //Flat Price calculation
+                    else if self.tourListSaved[i].priceType == 36{
+                        self.totalPrice += self.tourListSaved[i].flatPrice ?? 0.00
+                    }
+                    
+                    else if self.tourListSaved[i].priceType == 37{
+                        self.minPerson = Int(self.tourListSaved[i].minPax ?? 0.00)
+                        if self.minPerson > 0 {
+                            for index in 0...self.paxesListSaved.count - 1{
+                                if  self.paxesListSaved[index].ageGroup == "ADL" {
+                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                    self.minPerson -= 1
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
+                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                    self.minPerson -= 1
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
+                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                    self.minPerson -= 1
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
+                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                    self.minPerson -= 1
+                                }
+                            }
+                        }else {
+                            for index in 0...self.paxesListSaved.count - 1{
+                                if  self.paxesListSaved[index].ageGroup == "ADL" {
+                                    self.totalPrice += tourListSaved[i].adultPrice ?? 0.00
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
+                                    self.totalPrice += tourListSaved[i].childPrice ?? 0.00
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
+                                    self.totalPrice += tourListSaved[i].toodlePrice ?? 0.00
+                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
+                                    self.totalPrice += tourListSaved[i].infantPrice ?? 0.00
+                                }
+                            }
+                        }
+                        self.totalPrice += self.minPriceTotal
+                        self.tourListSaved.removeAll()
+                        self.paxesListSaved.removeAll()
+                    }
+                }
+            }
+            self.showToast(message: "\(self.totalPrice)")
         }else if ischosen == 3 {
-            /*  self.footerView.buttonHiding(hidePrintbutton: false, hideButton: true)
-             
-             if self.proceedPageCustomView == nil || self.isPaxesListChange == true || self.isStepListChange == true {
-             self.paxPageCustomView?.isHidden = true
-             self.stepsPageCustomView?.isHidden = true
-             self.hotelPageCustomView?.isHidden = true
-             //self.lastUIView.removeFromSuperview()
-             UIView.animate(withDuration: 0, animations: { [self] in
-             self.proceedPageCustomView = ProceedPageCustomView()
-             self.proceedPageCustomView?.paxListinProceedPage = self.paxesListinShopView
-             self.proceedPageCustomView?.stepsListinProceedPage = self.stepsListinShopView
-             self.proceedPageCustomView?.adultCountinProceedPage = self.adultCount // procced page de değer doğru geliyormu görmek için koydum
-             self.proceedPageCustomView?.childCountinProceedPage = self.childCount
-             self.proceedPageCustomView?.infantCountinProceedPage = self.infantCount
-             self.proceedPageCustomView?.proceedPageDelegate = self
-             self.contentView.addSubview(proceedPageCustomView!)
-             self.proceedPageCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.contentView.frame.size.height)
-             }, completion: { (finished) in
-             if finished{
-             
-             }
-             })
-             // self.lastUIView = self.proceedPageCustomView!
-             self.isPaxesListChange = false
-             self.isStepListChange = false
-             }else {
-             self.proceedPageCustomView?.isHidden = false
-             self.paxPageCustomView?.isHidden = true
-             self.stepsPageCustomView?.isHidden = true
-             self.hotelPageCustomView?.isHidden = true
-             }
-             // self.animatedCustomView(customView: ProceedPageCustomView()) */
+            self.buttonhide()
+            self.viewFooterViewCustomView.buttonView.isHidden = true
+            self.viewFooterViewCustomView.printButton.isHidden = false
+            if let transferNumber = userDefaultsData.getTransfersList()?.count {
+                if  self.changeTransferNumber != transferNumber {
+                    self.isExcOrTransChange = true
+                    self.changeTransferNumber = transferNumber
+                }else{
+                    self.isExcOrTransChange = false
+                }
+            }
+            
+            if let extraNumber = userDefaultsData.getExtrasList()?.count {
+                if  self.changeExcNumber != extraNumber {
+                    self.isExcOrTransChange = true
+                    self.changeExcNumber = extraNumber
+                }else{
+                    self.isExcOrTransChange = false
+                }
+            }
+            
+            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil {
+                self.viewExcAddCustomView?.isHidden = true
+                self.viewExcSelectCustomView?.isHidden = true
+                self.viewExcSearchCustomView?.isHidden = true
+                UIView.animate(withDuration: 0, animations: { [self] in
+                    self.viewExcProceedCustomView = ExcProceedCustomView()
+                    self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
+                    self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
+                }, completion: { (finished) in
+                    if finished{
+                        
+                    }
+                })
+            }else{
+                self.viewExcProceedCustomView?.isHidden = false
+                self.viewExcAddCustomView?.isHidden = true
+                self.viewExcSelectCustomView?.isHidden = true
+                self.viewExcSearchCustomView?.isHidden = true
+            }
         }
         else{
-            
             print("default")
         }
     }
@@ -551,6 +734,15 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
         })
         self.lastUIView = customView
+    }
+    
+    func buttonhide(){
+        self.viewFooterViewCustomView.buttonAddButton.isHidden = true
+        self.viewFooterViewCustomView.labelAmount.isHidden = true
+        self.viewFooterViewCustomView.buttonSaveButton.isHidden = true
+        self.viewFooterViewCustomView.printButton.isHidden = true
+        self.viewFooterViewCustomView.buttonView.isHidden = false
+        self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
     }
 }
 
@@ -575,9 +767,11 @@ extension ExcursionViewController : ExcSelectDelegate {
                 self.viewPaxCustomView = ExcPaxCustomView()
                 self.viewPaxCustomView?.excPaxPageDelegate = self
                 self.viewPaxCustomView?.paxesList = self.paxesList
-                for index in 0...self.paxesList.count - 1 {
-                    self.paxesList[index].isTapped = false
-                    self.viewPaxCustomView?.checkList.append(self.paxesList[index].isTapped ?? false)
+                if self.paxesList.count > 0 {
+                    for index in 0...self.paxesList.count - 1 {
+                        self.paxesList[index].isTapped = false
+                        self.viewPaxCustomView?.checkList.append(self.paxesList[index].isTapped ?? false)
+                    }
                 }
                 self.viewPaxCustomView?.tableView.reloadData()
                 self.viewExcursionView.viewContentView.addSubview(self.viewPaxCustomView!)
@@ -635,19 +829,6 @@ extension ExcursionViewController : ExcPaxPageDelegate {
             // self.constraintOnSelectfunc()
             self.viewFooterViewCustomView.buttonAddButton.isHidden = true
             self.viewFooterViewCustomView.buttonView.isHidden = false
-            /*  self.viewFooterViewCustomView.buttonAddButton.isHidden = true
-             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
-             
-             
-             self.viewFooterViewCustomView.addSubview(self.viewFooterViewCustomView.buttonView)
-             self.viewFooterViewCustomView.buttonView.translatesAutoresizingMaskIntoConstraints = false
-             
-             self.constraint.append(self.viewFooterViewCustomView.buttonView.leadingAnchor.constraint(equalTo: self.viewFooterViewCustomView.viewHeader.leadingAnchor, constant: 20))
-             self.constraint.append(self.viewFooterViewCustomView.buttonView.topAnchor.constraint(equalTo: self.viewFooterViewCustomView.viewHeader.topAnchor, constant: 20))
-             self.constraint.append(self.viewFooterViewCustomView.buttonView.widthAnchor.constraint(equalToConstant: 300))
-             self.constraint.append(self.viewFooterViewCustomView.buttonView.heightAnchor.constraint(equalToConstant: 50))
-             
-             NSLayoutConstraint.activate( self.constraint) */
             self.viewPaxCustomView?.isHidden = true
             UIView.animate(withDuration: 0, animations: { [self] in
                 self.viewExcSelectCustomView = ExcSelectCustomView()
@@ -660,6 +841,13 @@ extension ExcursionViewController : ExcPaxPageDelegate {
                 }
             })
         }
+    }
+}
+
+extension ExcursionViewController : ExcAddCustomViewDelegate {
+    func excurAddCustomDelegate(changeTransferNumber: Int, changeExtraNumber: Int) {
+        self.changeExcNumber = changeExtraNumber
+        self.changeTransferNumber = changeTransferNumber
     }
 }
 

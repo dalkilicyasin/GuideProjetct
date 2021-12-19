@@ -127,6 +127,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.excursionListInCell = self.filteredData[indexPath.row]
             cell.isTappedCheck = self.checkFilteredList[indexPath.row]
             cell.tourid = self.filteredData[indexPath.row].tourId ?? 0
+            cell.priceTypeDesc = filteredData[indexPath.row].priceType ?? 0
         }else {
             cell.labelExcursion.text = self.excursionList[indexPath.row].tourName
             cell.labelPickupTime.text = self.excursionList[indexPath.row].pickUpTime
@@ -144,6 +145,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.excursionListInCell = self.excursionList[indexPath.row]
             cell.isTappedCheck = self.checkList[indexPath.row]
             cell.tourid = self.excursionList[indexPath.row].tourId  ?? 0
+            cell.priceTypeDesc = excursionList[indexPath.row].priceType ?? 0
         }
         return cell
     }
@@ -200,7 +202,7 @@ extension ExcSelectCustomView : UISearchBarDelegate {
 }
 
 extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
-    func checkBoxTapped(checkCounter: Bool, tourid: Int, tempPaxes: GetSearchTourResponseModel) {
+    func checkBoxTapped(checkCounter: Bool, tourid: Int, tempPaxes: GetSearchTourResponseModel, priceTypeDesc : Int) {
         self.tempFilteredList = []
         if isFiltered == true {
             if let index = self.filteredData.firstIndex(where: {$0.tourId == tourid} ){

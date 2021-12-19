@@ -145,7 +145,7 @@ public class Defaults{
     func getPaxesList() -> [GetInHoseListResponseModel]? {
         let preferences = UserDefaults.standard
         let decoder = JSONDecoder()
-        if let savedTourList = preferences.object(forKey: getIdentifier(type: .TourList)) as? Data {
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .PaxesList)) as? Data {
             if let loadedTourList = try? decoder.decode([GetInHoseListResponseModel].self, from: savedTourList){
                 return loadedTourList
             }

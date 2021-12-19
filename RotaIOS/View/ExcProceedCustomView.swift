@@ -21,6 +21,7 @@ class ExcProceedCustomView: UIView{
     @IBOutlet weak var viewBalanced: MainTextCustomView!
     @IBOutlet weak var viewDicountCalculate: MainTextCustomView!
     @IBOutlet weak var viewTotalAmount: MainTextCustomView!
+    @IBOutlet weak var viewCurrencyConvert: MainTextCustomView!
     @IBOutlet weak var buttonApplyDiscount: UIButton!
     @IBOutlet weak var buttonAddPayment: UIButton!
     @IBOutlet weak var buttonConvert: UIButton!
@@ -50,7 +51,24 @@ func commonInit() {
     self.viewBalanced.headerLAbel.text = "Balanced"
     self.viewDicountCalculate.headerLAbel.text = "Discount"
     self.viewTotalAmount.headerLAbel.text = "TotalAmount"
-    
-    
+    self.viewAmount.mainText.isHidden = false
+    self.viewAmount.mainLabel.isHidden = true
+    self.viewNotes.mainText.isHidden = false
+    self.viewNotes.mainLabel.isHidden = true
+    self.viewDiscount.mainText.isHidden = false
+    self.viewDiscount.mainLabel.isHidden = true
+    self.viewPaid.mainLabel.isHidden = true
+    self.viewPaid.mainText.isHidden = false
+    self.viewBalanced.mainLabel.isHidden = true
+    self.viewBalanced.mainText.isHidden = false
+    self.viewDicountCalculate.mainLabel.isHidden = true
+    self.viewDicountCalculate.mainText.isHidden = false
+    self.viewTotalAmount.mainLabel.isHidden = true
+    self.viewTotalAmount.mainText.isHidden = false
+    self.viewCurrencyConvert.mainLabel.isHidden = true
+    self.viewCurrencyConvert.mainText.isHidden = false
+    self.viewAmount.imageMainText.isHidden = true
+    self.viewNotes.imageMainText.isHidden = true
+    self.viewDiscount.imageMainText.isHidden = true
    }
 }

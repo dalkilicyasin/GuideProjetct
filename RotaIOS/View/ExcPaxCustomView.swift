@@ -34,8 +34,8 @@ class ExcPaxCustomView : UIView {
     var tempTouristAddView : TempTouristAddCustomView?
     //var tempTouristAddView : TempTouristAddCustomView?
     var remember = true
-  //  var isFiltered = false
-   // var filteredData : [GetInHoseListResponseModel] = []
+    //  var isFiltered = false
+    // var filteredData : [GetInHoseListResponseModel] = []
     var paxesListDelegate : PaxesListDelegate?
     var counter = 0
     var tempPaxesNameList : [GetInHoseListResponseModel] = [] // servis geldikten sonra denenip silinecek
@@ -58,12 +58,12 @@ class ExcPaxCustomView : UIView {
     var name : [String] = []
     var sendingListofPaxes : [Paxes] = []
     var tempSendingListofPaxes : [Paxes] = []
-   // var paxesList : [Paxes] = []
+    // var paxesList : [Paxes] = []
     var equalableFilteredPaxList : [String] = []
     var tempValue = 0
-   // var checkList : [Bool] = []
-   // var checkFilteredList : [Bool] = []
-   // var tempFilteredList : [GetInHoseListResponseModel] = []
+    // var checkList : [Bool] = []
+    // var checkFilteredList : [Bool] = []
+    // var tempFilteredList : [GetInHoseListResponseModel] = []
     var tempList : [GetInHoseListResponseModel] = []
     //var filteredList : [GetInHoseListResponseModel] = []
     var savePaxesList : [GetInHoseListResponseModel] = []
@@ -160,6 +160,7 @@ extension ExcPaxCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.isTappedCheck = self.checkFilteredList[indexPath.row]
         }else{
             cell.labelPaxName.text = self.paxesList[indexPath.row].text
+            cell.marketGroup = self.paxesList[indexPath.row].mrkGrp ?? 0
             cell.paxesListInCell = self.paxesList[indexPath.row]
             cell.isTappedCheck = self.checkList[indexPath.row]
         }
@@ -172,7 +173,7 @@ extension ExcPaxCustomView : UISearchBarDelegate {
         self.filteredData = []
         self.checkFilteredList = []
         self.filteredList  = []
-
+        
         if searchText.elementsEqual(""){
             self.isFiltered = false
             //  self.paxesNameList = self.tempPaxesNameList
@@ -202,16 +203,16 @@ extension ExcPaxCustomView : UISearchBarDelegate {
                     if let insideIndex = self.filteredList.firstIndex(where: {$0.text == filter[0].text}){
                         self.filteredList[insideIndex].isTapped = filter[0].isTapped ?? false
                         self.checkFilteredList[insideIndex] = filter[0].isTapped ?? false
-                     /*   if  self.tempFilteredList.count > 0 {
-                            self.tempFilteredList[insideIndex].isTapped = filter[0].isTapped ?? false
-                        } */
+                        /*   if  self.tempFilteredList.count > 0 {
+                         self.tempFilteredList[insideIndex].isTapped = filter[0].isTapped ?? false
+                         } */
                     }
                 }
             }
         }
         if self.checkFilteredList.count == self.checkList.count {
-         self.checkList = self.checkFilteredList
-         }
+            self.checkList = self.checkFilteredList
+        }
         self.tableView.reloadData()
     }
 }
@@ -223,28 +224,30 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
             self.sendingListofPaxes = listofpaxes
             userDefaultsData.saveManuelandHousePaxesList(tour: self.sendingListofPaxes)
             self.labelTouristAdded.text = "\(self.totalPaxesCount + self.tempValue) Tourist Added"
-           // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
+            // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
             return
         }else {
             self.paxesListinPaxPage.removeAll()
             self.sendingListofPaxes = listofpaxes
-           // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: false)
+            // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: false)
             self.tempValue = changeValue
         }
     }
 }
 
 extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
-    func checkBoxTapped(checkCounter: Bool, touristName: String, tempPaxes: GetInHoseListResponseModel) {
+    
+    func checkBoxTapped(checkCounter: Bool, touristName: String, marketGroup: Int, tempPaxes: GetInHoseListResponseModel) {
         self.tempFilteredList = []
+        
         if isFiltered == true {
-            if let index = self.filteredData.firstIndex(where: {$0.text == touristName} ){
+            if let index = self.filteredData.firstIndex(where: {$0 === tempPaxes}){
                 self.filteredList[index].isTapped = checkCounter
                 self.checkFilteredList[index] = checkCounter
                 self.tempFilteredList = self.filteredList
             }
         }else{
-            if let index = self.paxesList.firstIndex(where: {$0.text == touristName}){
+            if let index = self.paxesList.firstIndex(where: {$0 === tempPaxes}){
                 self.paxesList[index].isTapped = checkCounter
                 self.checkList[index] = checkCounter
                 self.tempList = self.paxesNameList
@@ -252,21 +255,24 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
         }
         self.tableView.reloadData()
         if checkCounter == true {
-            let filter = paxesNameList.filter{ $0.text == touristName}
-           // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
-            for index in filter {
-                self.savePaxesList.append(index)
-            }
+            let filter = paxesList.filter{ $0 === tempPaxes}
+            // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
+            self.savePaxesList.append(filter[0])
         }else{
-           // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
-            let filter = savePaxesList.filter{ $0.text == touristName}
-            if let insideIndex = self.savePaxesList.firstIndex(where: {$0.text == filter[0].text}){
+            // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
+         
+            if let insideIndex = self.savePaxesList.firstIndex(where: {$0 === tempPaxes}){
                 self.savePaxesList.remove(at: insideIndex)
             }
         }
-        
         self.totalPaxesCount = self.savePaxesList.count
         self.labelTouristAdded.text = "\(self.totalPaxesCount +  self.tempValue) Tourist Added"
         userDefaultsData.savePaxesList(tour: self.savePaxesList)
     }
 }
+/*
+extension GetInHoseListResponseModel : Equatable {
+    static func == (lhs: GetInHoseListResponseModel, rhs: GetInHoseListResponseModel) -> Bool {
+        return true
+    }
+}*/

@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct GetInHoseListResponseModel : Mappable, Decodable, Encodable {
+class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
     var isTapped : Bool?
     var id : String?
     var value : Int?
@@ -20,11 +20,11 @@ struct GetInHoseListResponseModel : Mappable, Decodable, Encodable {
     var mrkGrp : Int?
     var isSelected : Bool?
 
-    init?(map: Map) {
+    required init?(map: Map) {
 
     }
 
-    mutating func mapping(map: Map) {
+    func mapping(map: Map) {
 
         id <- map["$id"]
         value <- map["Value"]

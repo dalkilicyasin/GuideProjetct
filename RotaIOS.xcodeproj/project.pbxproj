@@ -192,6 +192,8 @@
 		D97E4F5A27672E590049648A /* AddMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E4F5827672E590049648A /* AddMenuTableViewCell.xib */; };
 		D97EE00D276ABFA600683E66 /* ExcProceedCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE00C276ABFA600683E66 /* ExcProceedCustomView.swift */; };
 		D97EE00F276ABFB700683E66 /* ExcProceedCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97EE00E276ABFB700683E66 /* ExcProceedCustomView.xib */; };
+		D97EE012276B952B00683E66 /* AddMenuPaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE010276B952B00683E66 /* AddMenuPaxTableViewCell.swift */; };
+		D97EE013276B952B00683E66 /* AddMenuPaxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97EE011276B952B00683E66 /* AddMenuPaxTableViewCell.xib */; };
 		D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */; };
 		D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */; };
 		D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */; };
@@ -476,6 +478,8 @@
 		D97E4F5827672E590049648A /* AddMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMenuTableViewCell.xib; sourceTree = "<group>"; };
 		D97EE00C276ABFA600683E66 /* ExcProceedCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcProceedCustomView.swift; sourceTree = "<group>"; };
 		D97EE00E276ABFB700683E66 /* ExcProceedCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcProceedCustomView.xib; sourceTree = "<group>"; };
+		D97EE010276B952B00683E66 /* AddMenuPaxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuPaxTableViewCell.swift; sourceTree = "<group>"; };
+		D97EE011276B952B00683E66 /* AddMenuPaxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMenuPaxTableViewCell.xib; sourceTree = "<group>"; };
 		D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusTableViewCell.swift; sourceTree = "<group>"; };
 		D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusTableViewCell.xib; sourceTree = "<group>"; };
 		D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourSaleDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -935,6 +939,8 @@
 				D97E4F5027624D640049648A /* ExcPaxPageTableViewCell.xib */,
 				D97E4F5727672E590049648A /* AddMenuTableViewCell.swift */,
 				D97E4F5827672E590049648A /* AddMenuTableViewCell.xib */,
+				D97EE010276B952B00683E66 /* AddMenuPaxTableViewCell.swift */,
+				D97EE011276B952B00683E66 /* AddMenuPaxTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1063,6 +1069,7 @@
 				D931577727033A54000C91AD /* ZReportPaymentViewController.xib in Resources */,
 				D95C203226F0CA70007D1506 /* SpeakingHoursViewController.xib in Resources */,
 				D9A48D0326B1895500D28A0A /* DocumentsTableViewCell.xib in Resources */,
+				D97EE013276B952B00683E66 /* AddMenuPaxTableViewCell.xib in Resources */,
 				BF44C9242640014800238035 /* MainPAgeViewController.xib in Resources */,
 				BF44C9DD2640023400238035 /* AddStepTableViewCell.xib in Resources */,
 				BF44C9692640019900238035 /* ApponintmentBarCollectionViewCell.xib in Resources */,
@@ -1325,6 +1332,7 @@
 				D93157712700AD55000C91AD /* ZReportLongClickMenu.swift in Sources */,
 				BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */,
 				D9561A3E269DF31A00AA75E5 /* AnnoucmentsView.swift in Sources */,
+				D97EE012276B952B00683E66 /* AddMenuPaxTableViewCell.swift in Sources */,
 				D94C40A926692D4C00EBC7CD /* TaskTableViewCell.swift in Sources */,
 				D9A48CFA26B1405D00D28A0A /* DocumentsViewController.swift in Sources */,
 				D97FB5BA26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift in Sources */,
