@@ -20,7 +20,6 @@
                 <outlet property="viewCurrencyType" destination="GJB-QZ-y2T" id="409-K9-rpc"/>
                 <outlet property="viewDicountCalculate" destination="zGP-Ir-qCD" id="y8t-Oz-lN7"/>
                 <outlet property="viewDiscount" destination="bdd-EB-KnD" id="l87-bc-Bzj"/>
-                <outlet property="viewKupon" destination="tzq-Zh-P4T" id="dj1-DK-bG7"/>
                 <outlet property="viewMainView" destination="iN0-l3-epB" id="EC2-mz-KDS"/>
                 <outlet property="viewNotes" destination="vDQ-lp-40A" id="9k2-kb-GKN"/>
                 <outlet property="viewPaid" destination="qvR-9y-kRk" id="g4F-QK-GoX"/>
@@ -35,56 +34,49 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0a-Ld-9bo" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="43" y="20" width="328" height="90"/>
+                    <rect key="frame" x="43" y="50" width="328" height="90"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="8Rb-Vx-wbe"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJB-QZ-y2T" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="43" y="120" width="328" height="90"/>
+                    <rect key="frame" x="43" y="150" width="328" height="90"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="lji-g1-RUF"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGi-HZ-tMK" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="43" y="220" width="328" height="90"/>
+                    <rect key="frame" x="43" y="250" width="328" height="90"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="BFQ-lI-GoF"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Hb-oM-mcM" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="43" y="320" width="328" height="90"/>
+                    <rect key="frame" x="43" y="350" width="328" height="90"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="DYB-W1-5MP"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzq-Zh-P4T" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="43" y="420" width="328" height="90"/>
-                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="90" id="A9W-RM-IkI"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdd-EB-KnD" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="43" y="520" width="328" height="90"/>
+                    <rect key="frame" x="43" y="450" width="328" height="90"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="LRg-fD-FME"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vDQ-lp-40A" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="43" y="620" width="328" height="90"/>
+                    <rect key="frame" x="43" y="550" width="328" height="90"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="XKu-jt-JkB"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8L1-X7-93K">
-                    <rect key="frame" x="40" y="730" width="130" height="50"/>
+                    <rect key="frame" x="40" y="660" width="130" height="50"/>
                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="130" id="ib9-YC-WLB"/>
@@ -94,9 +86,12 @@
                     <state key="normal" title="Apply Discount">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="applyDiscountButtonTapped:" destination="-1" eventType="touchUpInside" id="Id3-A9-Kj0"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qim-EL-clO">
-                    <rect key="frame" x="190" y="730" width="181" height="50"/>
+                    <rect key="frame" x="190" y="660" width="181" height="50"/>
                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="9Jt-YG-NQv"/>
@@ -105,9 +100,12 @@
                     <state key="normal" title="Add Payment">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="addPaymentButtonTapped:" destination="-1" eventType="touchUpInside" id="uOw-Rk-O5k"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qvR-9y-kRk" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="40" y="800" width="130" height="70"/>
+                    <rect key="frame" x="40" y="730" width="130" height="70"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="2TE-us-km7"/>
@@ -115,14 +113,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHf-SS-UPf" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="190" y="800" width="181" height="70"/>
+                    <rect key="frame" x="190" y="730" width="181" height="70"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="GD4-6D-cgR"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGP-Ir-qCD" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="40" y="880" width="130" height="70"/>
+                    <rect key="frame" x="40" y="810" width="130" height="70"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="130" id="1FN-B3-sTL"/>
@@ -130,14 +128,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MgZ-hy-1f4" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="190" y="880" width="181" height="70"/>
+                    <rect key="frame" x="190" y="810" width="181" height="70"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="70" id="idu-Ss-yjL"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGp-xj-srj" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
-                    <rect key="frame" x="40" y="960" width="130" height="70"/>
+                    <rect key="frame" x="40" y="890" width="130" height="70"/>
                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="130" id="BKu-y6-Vww"/>
@@ -145,7 +143,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZe-XW-O3Z">
-                    <rect key="frame" x="190" y="980" width="181" height="50"/>
+                    <rect key="frame" x="190" y="910" width="181" height="50"/>
                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="fl9-oU-44l"/>
@@ -154,20 +152,21 @@
                     <state key="normal" title="CONVERT">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="convertButtonTapped:" destination="-1" eventType="touchUpInside" id="P8O-ui-WL2"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="bdd-EB-KnD" firstAttribute="top" secondItem="tzq-Zh-P4T" secondAttribute="bottom" constant="10" id="1qZ-YM-HtO"/>
-                <constraint firstAttribute="trailing" secondItem="tzq-Zh-P4T" secondAttribute="trailing" constant="43" id="2Bk-hv-MCx"/>
                 <constraint firstItem="yZe-XW-O3Z" firstAttribute="leading" secondItem="mGp-xj-srj" secondAttribute="trailing" constant="20" id="3Xf-4R-dik"/>
                 <constraint firstItem="G0a-Ld-9bo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="43" id="3rc-jt-1Y5"/>
                 <constraint firstItem="DGi-HZ-tMK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="43" id="40r-rk-OyB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Hb-oM-mcM" secondAttribute="trailing" constant="43" id="4dj-dA-Twv"/>
                 <constraint firstItem="qim-EL-clO" firstAttribute="top" secondItem="vDQ-lp-40A" secondAttribute="bottom" constant="20" id="56n-4G-btB"/>
                 <constraint firstAttribute="trailing" secondItem="vDQ-lp-40A" secondAttribute="trailing" constant="43" id="6NI-qT-rmA"/>
-                <constraint firstItem="G0a-Ld-9bo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="6sL-Y9-GE0"/>
+                <constraint firstItem="G0a-Ld-9bo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="6sL-Y9-GE0"/>
                 <constraint firstItem="qvR-9y-kRk" firstAttribute="top" secondItem="8L1-X7-93K" secondAttribute="bottom" constant="20" id="7sb-mE-QFq"/>
                 <constraint firstAttribute="trailing" secondItem="DGi-HZ-tMK" secondAttribute="trailing" constant="43" id="Bgi-TE-MIf"/>
                 <constraint firstAttribute="trailing" secondItem="qim-EL-clO" secondAttribute="trailing" constant="43" id="Boj-1m-f1c"/>
@@ -178,6 +177,7 @@
                 <constraint firstItem="vDQ-lp-40A" firstAttribute="top" secondItem="bdd-EB-KnD" secondAttribute="bottom" constant="10" id="Lbc-dl-ln8"/>
                 <constraint firstItem="vDQ-lp-40A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="43" id="Ltf-sb-AH8"/>
                 <constraint firstItem="GJB-QZ-y2T" firstAttribute="top" secondItem="G0a-Ld-9bo" secondAttribute="bottom" constant="10" id="M07-9n-YKk"/>
+                <constraint firstItem="bdd-EB-KnD" firstAttribute="top" secondItem="8Hb-oM-mcM" secondAttribute="bottom" constant="10" id="My6-2N-6ig"/>
                 <constraint firstItem="zGP-Ir-qCD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="Nmb-0d-5aA"/>
                 <constraint firstItem="mGp-xj-srj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="PPo-ZU-e2g"/>
                 <constraint firstItem="8Hb-oM-mcM" firstAttribute="top" secondItem="DGi-HZ-tMK" secondAttribute="bottom" constant="10" id="PYR-LQ-Ptw"/>
@@ -185,7 +185,6 @@
                 <constraint firstItem="DGi-HZ-tMK" firstAttribute="top" secondItem="GJB-QZ-y2T" secondAttribute="bottom" constant="10" id="Ua4-m0-dDT"/>
                 <constraint firstItem="GJB-QZ-y2T" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="43" id="Ww9-yi-IhR"/>
                 <constraint firstItem="8L1-X7-93K" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="X4u-u9-1df"/>
-                <constraint firstItem="tzq-Zh-P4T" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="43" id="Xlj-wk-Zvo"/>
                 <constraint firstItem="YHf-SS-UPf" firstAttribute="top" secondItem="qim-EL-clO" secondAttribute="bottom" constant="20" id="brs-62-PsG"/>
                 <constraint firstAttribute="trailing" secondItem="MgZ-hy-1f4" secondAttribute="trailing" constant="43" id="buW-by-I69"/>
                 <constraint firstItem="YHf-SS-UPf" firstAttribute="leading" secondItem="qvR-9y-kRk" secondAttribute="trailing" constant="20" id="dEb-56-o29"/>
@@ -199,7 +198,6 @@
                 <constraint firstItem="qim-EL-clO" firstAttribute="leading" secondItem="8L1-X7-93K" secondAttribute="trailing" constant="20" id="mBc-cZ-y7A"/>
                 <constraint firstItem="zGP-Ir-qCD" firstAttribute="top" secondItem="qvR-9y-kRk" secondAttribute="bottom" constant="10" id="mUA-Qd-5eD"/>
                 <constraint firstItem="8L1-X7-93K" firstAttribute="top" secondItem="vDQ-lp-40A" secondAttribute="bottom" constant="20" id="oaX-Ww-CRg"/>
-                <constraint firstItem="tzq-Zh-P4T" firstAttribute="top" secondItem="8Hb-oM-mcM" secondAttribute="bottom" constant="10" id="uaC-p0-GAf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="137.68115942028987" y="212.94642857142856"/>

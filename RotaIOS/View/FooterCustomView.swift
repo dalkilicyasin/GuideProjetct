@@ -13,6 +13,10 @@ protocol ContinueButtonTappedDelegate {
     func continueButtonTappedDelegate(tapped : Int)
 }
 
+protocol SaveButtonTappedDelegate {
+    func totalPrice(isSaveButtonTapped : Bool?)
+}
+
 class FooterCustomView: UIView {
     @IBOutlet weak var buttonGetOfflineData: UIButton!
     @IBOutlet var viewHeader: UIView!
@@ -23,6 +27,8 @@ class FooterCustomView: UIView {
     @IBOutlet weak var labelAmount: UILabel!
     var continueButtonTappedDelegate : ContinueButtonTappedDelegate?
     var counter = 0
+    var totalPriceIsSaved = false
+    var saveButtonTappedDelegate : SaveButtonTappedDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,6 +76,10 @@ class FooterCustomView: UIView {
         self.labelAmount.layer.masksToBounds = true
         self.labelAmount.layer.cornerRadius = 10
         self.labelAmount.text = "Amount"
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        self.saveButtonTappedDelegate?.totalPrice(isSaveButtonTapped: true)
     }
     
     @IBAction func countinueButtonClicked(_ sender: Any) {

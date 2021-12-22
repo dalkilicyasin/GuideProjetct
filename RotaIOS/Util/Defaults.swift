@@ -31,9 +31,29 @@ public class Defaults{
         case ExtrasList
         case TransferList
         case ManuelandHousePaxesList
+        case TotalPrice
     }
     
    public init(){}
+    
+    // Save Total Price
+    public func saveTotalPrice(totalPrice: Double){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .TotalPrice)
+        preferences.set(totalPrice, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getTotalPrice() -> Double{
+        let preferences = UserDefaults.standard
+        let totalPrice = getIdentifier(type: .TotalPrice)
+        if preferences.object(forKey: totalPrice) == nil {
+            return -1
+        } else {
+            return preferences.double(forKey: totalPrice)
+        }
+    }
+    
     // UserName and Password
     public func saveUserName(id:String){
         let preferences = UserDefaults.standard
@@ -421,6 +441,8 @@ public class Defaults{
             return "TransferList"
         case .ManuelandHousePaxesList:
             return "ManuelandHousePaxesList"
+        case .TotalPrice:
+            return "TotalPrice"
         }
     }
 }

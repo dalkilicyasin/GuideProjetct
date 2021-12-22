@@ -194,6 +194,7 @@
 		D97EE00F276ABFB700683E66 /* ExcProceedCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97EE00E276ABFB700683E66 /* ExcProceedCustomView.xib */; };
 		D97EE012276B952B00683E66 /* AddMenuPaxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE010276B952B00683E66 /* AddMenuPaxTableViewCell.swift */; };
 		D97EE013276B952B00683E66 /* AddMenuPaxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97EE011276B952B00683E66 /* AddMenuPaxTableViewCell.xib */; };
+		D97EE01B2771F4B200683E66 /* ExtensionUIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE01A2771F4B200683E66 /* ExtensionUIAlertController.swift */; };
 		D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */; };
 		D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */; };
 		D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */; };
@@ -480,6 +481,7 @@
 		D97EE00E276ABFB700683E66 /* ExcProceedCustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcProceedCustomView.xib; sourceTree = "<group>"; };
 		D97EE010276B952B00683E66 /* AddMenuPaxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMenuPaxTableViewCell.swift; sourceTree = "<group>"; };
 		D97EE011276B952B00683E66 /* AddMenuPaxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMenuPaxTableViewCell.xib; sourceTree = "<group>"; };
+		D97EE01A2771F4B200683E66 /* ExtensionUIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIAlertController.swift; sourceTree = "<group>"; };
 		D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusTableViewCell.swift; sourceTree = "<group>"; };
 		D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusTableViewCell.xib; sourceTree = "<group>"; };
 		D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourSaleDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 				BF44C8E4264000E200238035 /* ExtensionUIDevice.swift */,
 				BF44C8E0264000E100238035 /* ExtensionUIView.swift */,
 				BF44C8E3264000E100238035 /* ExtensionUIViewController.swift */,
+				D97EE01A2771F4B200683E66 /* ExtensionUIAlertController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1282,6 +1285,7 @@
 				D93F889F264EFF7800397283 /* GetSaveForMobileRequestList.swift in Sources */,
 				D9956C0226D7DFAD006CFC6D /* CancelVoucherDetailView.swift in Sources */,
 				BF44C9332640015A00238035 /* MainPageTableViewCell.swift in Sources */,
+				D97EE01B2771F4B200683E66 /* ExtensionUIAlertController.swift in Sources */,
 				D94C4075265BE35100EBC7CD /* FavoriteCustomView.swift in Sources */,
 				D9561A4826A1B3E400AA75E5 /* GetGuideAnnouncementsRequestModel.swift in Sources */,
 				D97FB59726C15F5D0099F28B /* MyTourSalesDetailPageTableViewCell.swift in Sources */,

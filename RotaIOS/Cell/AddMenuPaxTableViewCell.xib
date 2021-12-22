@@ -61,6 +61,7 @@
                 <outlet property="imageCheck" destination="OJa-ed-w1P" id="bp5-PM-N5t"/>
                 <outlet property="labelPaxName" destination="9BK-34-YiN" id="aa3-97-6qk"/>
                 <outlet property="labelRoomName" destination="xYs-3j-cwC" id="hWW-b4-AVY"/>
+                <outlet property="viewContentView" destination="H2p-sc-9uM" id="mrk-du-B5Y"/>
             </connections>
             <point key="canvasLocation" x="289.13043478260875" y="105.46875"/>
         </tableViewCell>

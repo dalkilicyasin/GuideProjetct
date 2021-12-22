@@ -39,7 +39,8 @@ class ExcursionViewController: UIViewController {
     var constraintonAdd = [NSLayoutConstraint]()
     var changeNumber = 0
     var isTourChange = false
-    var totalAmount = 0
+    var totalExtrasAmount = 0
+    var totalTransfersAmount = 0
     var changeTransferNumber = 0
     var changeExcNumber = 0
     var isExcOrTransChange = false
@@ -49,11 +50,13 @@ class ExcursionViewController: UIViewController {
     var totalPrice = 0.00
     var minPerson = 0
     var minPriceTotal = 0.00
+    var extraAndTransTotalPrice = 0.00
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewAppointMentBarCutomView.homePageTappedDelegate = self
         self.viewFooterViewCustomView.continueButtonTappedDelegate = self
+        self.viewFooterViewCustomView.saveButtonTappedDelegate = self
         UIView.animate(withDuration: 0, animations: { [self] in
             self.viewExcSearchCustomView = ExcSearchCustomView()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = false
@@ -112,7 +115,6 @@ class ExcursionViewController: UIViewController {
         self.constraintOnSelect.append(self.viewFooterViewCustomView.buttonView.bottomAnchor.constraint(equalTo: self.viewFooterViewCustomView.viewHeader.bottomAnchor, constant: -80))
         self.viewFooterViewCustomView.buttonView.setTitle("CONTINUE", for: .normal)
         NSLayoutConstraint.activate( self.constraintOnSelect)
-        
     }
     
     func constraintOnPaxFunc(){
@@ -163,7 +165,11 @@ class ExcursionViewController: UIViewController {
     }
 }
 
-extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappedDelegate {
+extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappedDelegate, SaveButtonTappedDelegate {
+    func totalPrice(isSaveButtonTapped: Bool?) {
+        self.totalPrice += self.extraAndTransTotalPrice
+    }
+    
     func continueButtonTappedDelegate(tapped: Int) {
         if self.changeNumber != userDefaultsData.getTourList()?.count {
             self.isTourChange = true
@@ -278,6 +284,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.labelAmount.isHidden = false
             self.viewFooterViewCustomView.buttonSaveButton.isHidden = false
+            self.viewFooterViewCustomView.buttonAddButton.isHidden = true
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
             self.constraintOnAddFunc()
             
@@ -318,6 +325,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
             self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
+            self.totalPrice = 0.00
             if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
                 for i in 0...self.tourListSaved.count - 1{
                     // Per Person Price calculation
@@ -352,11 +360,13 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             }
                         }
                     }
+                    
                     //Flat Price calculation
                     else if self.tourListSaved[i].priceType == 36{
                         self.totalPrice += self.tourListSaved[i].flatPrice ?? 0.00
                     }
                     
+                    //Min Price
                     else if self.tourListSaved[i].priceType == 37{
                         self.minPerson = Int(self.tourListSaved[i].minPax ?? 0.00)
                         if self.minPerson > 0 {
@@ -423,6 +433,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSearchCustomView?.isHidden = true
                 UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcProceedCustomView = ExcProceedCustomView()
+                    self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in
@@ -598,6 +611,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             //total amount counting
             self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
             self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
+            self.totalPrice = 0.00
             if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
                 for i in 0...self.tourListSaved.count - 1{
                     // Per Person Price calculation
@@ -675,6 +689,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }
             }
             self.showToast(message: "\(self.totalPrice)")
+            
         }else if ischosen == 3 {
             self.buttonhide()
             self.viewFooterViewCustomView.buttonView.isHidden = true
@@ -703,6 +718,10 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSearchCustomView?.isHidden = true
                 UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcProceedCustomView = ExcProceedCustomView()
+                    self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.totalAmount = self.totalPrice
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in
@@ -754,7 +773,6 @@ extension ExcursionViewController : ExcSearchDelegate {
 
 extension ExcursionViewController : ExcSelectDelegate {
     func exSelectDelegateInf(paxButtonTapped: Bool?) {
-        
         if paxButtonTapped == true {
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
             self.constraintOnPaxFunc()
@@ -845,9 +863,21 @@ extension ExcursionViewController : ExcPaxPageDelegate {
 }
 
 extension ExcursionViewController : ExcAddCustomViewDelegate {
-    func excurAddCustomDelegate(changeTransferNumber: Int, changeExtraNumber: Int) {
+    func excurAddCustomDelegate(changeTransferNumber: Int, changeExtraNumber: Int, extrasTotalPrice: Double, transfersTotalPrice: Double, extraButtonTapped: Bool) {
         self.changeExcNumber = changeExtraNumber
         self.changeTransferNumber = changeTransferNumber
+        if extraButtonTapped == true {
+            self.viewFooterViewCustomView.labelAmount.text = String(extrasTotalPrice)
+        }else{
+            self.viewFooterViewCustomView.labelAmount.text = String(transfersTotalPrice)
+        }
+        self.extraAndTransTotalPrice = extrasTotalPrice + transfersTotalPrice
+        
+        if  self.viewFooterViewCustomView.totalPriceIsSaved == true {
+            userDefaultsData.saveTotalPrice(totalPrice: self.totalPrice)
+        }else{
+            userDefaultsData.saveTotalPrice(totalPrice: 0.00)
+        }
     }
 }
 

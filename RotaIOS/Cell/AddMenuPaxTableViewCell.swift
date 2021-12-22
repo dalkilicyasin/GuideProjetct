@@ -15,6 +15,7 @@ class AddMenuPaxTableViewCell: BaseTableViewCell {
     @IBOutlet weak var imageCheck: UIImageView!
     @IBOutlet weak var labelPaxName: UILabel!
     @IBOutlet weak var labelRoomName: UILabel!
+    @IBOutlet weak var viewContentView: UIView!
     var isTappedCheck = false
     var paxesListInCell : GetInHoseListResponseModel?
     var addMenuPaxTableViewCellDelegate : AddMenuPaxTableViewCellDelegate?
@@ -26,6 +27,7 @@ class AddMenuPaxTableViewCell: BaseTableViewCell {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedChecBox))
         self.imageCheck.isUserInteractionEnabled = true
         self.imageCheck.addGestureRecognizer(gesture)
+        self.imageCheck.image = UIImage(named: "square")
     }
     
     @objc func tappedChecBox(){
