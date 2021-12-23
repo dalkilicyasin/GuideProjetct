@@ -15,12 +15,9 @@ protocol SaveManuelListProtocol {
 }
 
 class AddManuelTouristCustomView : UIView {
-    
-    
     @IBOutlet weak var scrollView: UIScrollView!
     var genderMenu = DropDown()
     var genderList = ["MR.","MS."]
-    
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var viewSlideUp: UIView!
@@ -33,6 +30,7 @@ class AddManuelTouristCustomView : UIView {
     @IBOutlet weak var viewPhone: MainTextCustomView!
     @IBOutlet weak var viewCheckOut: MainTextCustomView!
     @IBOutlet weak var buttonAdd: UIButton!
+    var paxName = ""
     var tempTouristAddCustomView : TempTouristAddCustomView?
     var tempSaveManuelList : [String] = []
     var saveMAnuelListDelegate : SaveManuelListProtocol?
@@ -80,14 +78,12 @@ class AddManuelTouristCustomView : UIView {
             self.viewGender.mainLabel.text = title
             
         }
-        
         self.contentView.backgroundColor = UIColor.grayColor
         self.contentView.layer.cornerRadius = 10
         self.scrollView.layer.cornerRadius = 10
         self.buttonAdd.layer.cornerRadius = 10
         self.buttonAdd.layer.masksToBounds = true
         self.buttonAdd.backgroundColor = UIColor.greenColor
-        
         self.viewGender.headerLAbel.text = "Gender"
         self.viewName.headerLAbel.text = "Name"
         self.viewBirthDay.headerLAbel.text = "BirthDate"
@@ -95,8 +91,6 @@ class AddManuelTouristCustomView : UIView {
         self.viewRoom.headerLAbel.text = "Room"
         self.viewPhone.headerLAbel.text = "Phone"
         self.viewCheckOut.headerLAbel.text = "Check Out Date"
-        
-        
         self.viewName.mainLabel.isHidden = true
         self.viewName.mainText.isHidden = false
         self.viewName.imageMainText.isHidden = true
@@ -121,7 +115,6 @@ class AddManuelTouristCustomView : UIView {
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
         self.viewSlideUp.addGestureRecognizer(tappedSlideUp)
         self.viewSlideUp.isUserInteractionEnabled = true
-        
         self.createCurrentDatePicker()
     }
     
@@ -147,7 +140,6 @@ class AddManuelTouristCustomView : UIView {
         self.viewBirthDay.endEditing(true)
     }
 
-    
     @objc func didTappedItem() {
         self.genderMenu.show()
         
@@ -157,32 +149,28 @@ class AddManuelTouristCustomView : UIView {
         self.removeFromSuperview()
     }
     
-    
-    
     @IBAction func addManuelButton(_ sender: Any) {
-        
-        if self.viewGender.mainLabel.text != "" && self.viewName.mainText.text != "" {
+        if viewName.mainText.text?.count ?? 0 > 2 {
+            self.paxName = viewName.mainText.text ?? ""
+        }else{
+            let alert = UIAlertController.init(title: "Warning", message: "Please fill Name section more then 2 words", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            if let VC = UIApplication.getTopViewController() {
+                VC.present(alert, animated: true, completion: nil)
+            }
+            return
+        }
+        if self.viewGender.mainLabel.text != "" && self.viewName.mainText.text != "" && self.birtDate != "" && self.paxName != ""{
             self.buttonAdd.isEnabled = true
-            
-            
-            let manuelAddPaxName = Paxes.init(pAX_CHECKOUT_DATE: self.viewCheckOut.mainText.text ?? "", pAX_OPRID: 0, pAX_OPRNAME: "", pAX_PHONE: self.viewPhone.mainText.text ?? "", hotelname: "", pAX_GENDER: self.viewGender.mainLabel.text ?? "" , pAX_AGEGROUP: "", pAX_NAME: self.viewName.mainText.text ?? "", pAX_BIRTHDAY: self.viewBirthDay.mainText.text ?? "", pAX_RESNO: "", pAX_PASSPORT: "", pAX_ROOM: self.viewRoom.mainText.text ?? "", pAX_TOURISTREF: 0, pAX_STATUS: 1)
-            
+            let manuelAddPaxName = Paxes.init(pAX_CHECKOUT_DATE: self.viewCheckOut.mainText.text ?? "", pAX_OPRID: 0, pAX_OPRNAME: "", pAX_PHONE: self.viewPhone.mainText.text ?? "", hotelname: "", pAX_GENDER: self.viewGender.mainLabel.text ?? "" , pAX_AGEGROUP: "", pAX_NAME: self.paxName , pAX_BIRTHDAY: self.viewBirthDay.mainText.text ?? "", pAX_RESNO: "", pAX_PASSPORT: "", pAX_ROOM: self.viewRoom.mainText.text ?? "", pAX_TOURISTREF: 0, pAX_STATUS: 1)
             self.saveMAnuelListDelegate?.saveManuelList(manuelList: manuelAddPaxName)
-            
-        
             self.removeFromSuperview()
         }else{
-          
-            
             if let topVC = UIApplication.getTopViewController() {
-                
-                let alert = UIAlertController(title: "Error", message: "Plese Select Title and fill Name section", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Error", message: "Plese Select Gender, fill Name section and Birtdate", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                
                 topVC.present(alert, animated: true, completion: nil)
             }
-            
-        
         }
     }
 }

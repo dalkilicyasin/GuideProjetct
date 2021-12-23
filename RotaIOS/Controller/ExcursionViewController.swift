@@ -54,6 +54,8 @@ class ExcursionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userDefaultsData.saveTourList(tour: [])
+        userDefaultsData.savePaxesList(tour: [])
         self.viewAppointMentBarCutomView.homePageTappedDelegate = self
         self.viewFooterViewCustomView.continueButtonTappedDelegate = self
         self.viewFooterViewCustomView.saveButtonTappedDelegate = self
@@ -174,6 +176,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
         if self.changeNumber != userDefaultsData.getTourList()?.count {
             self.isTourChange = true
             self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
+        }else{
+            self.isTourChange = false
         }
         
         self.viewPaxCustomView?.isHidden = true
@@ -193,6 +197,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             //  self.viewFooterViewCustomView.buttonHiding(hidePrintbutton: true, hideButton: false)
             if self.viewExcSearchCustomView == nil {
+
                 // self.lastUIView.removeFromSuperview()
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
@@ -249,7 +254,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             self.viewExcSearchCustomView?.excurSearchDelegate = self
             if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
-                
+                userDefaultsData.saveTourList(tour: [])
+                userDefaultsData.savePaxesList(tour: [])
                 //  self.lastUIView.removeFromSuperview()
                 //  self.animatedCustomView(customView: PaxPageCustomView())
                 self.viewExcSearchCustomView?.isHidden = true
@@ -290,7 +296,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             self.viewExcSelectCustomView?.excSelectDelegate = self
             if self.viewExcAddCustomView == nil || self.isTourChange == true{
-                
                 //  self.lastUIView.removeFromSuperview()
                 //  self.animatedCustomView(customView: PaxPageCustomView())
                 self.viewExcSearchCustomView?.isHidden = true
@@ -322,7 +327,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
             }
-            
             self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
             self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
             self.totalPrice = 0.00
@@ -460,6 +464,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
         if self.changeNumber != userDefaultsData.getTourList()?.count {
             self.isTourChange = true
             self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
+        }else{
+            self.isTourChange = false
         }
         
         self.viewPaxCustomView?.isHidden = true
@@ -542,6 +548,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
             self.viewExcSearchCustomView?.excurSearchDelegate = self
             if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
+                userDefaultsData.saveTourList(tour: [])
+                userDefaultsData.savePaxesList(tour: [])
                 self.viewExcSearchCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
                 self.viewExcProceedCustomView?.isHidden = true
@@ -572,15 +580,15 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
             
         }else if ischosen == 2 {
-            self.buttonhide()
+            self.viewFooterViewCustomView.printButton.isHidden = true
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.labelAmount.isHidden = false
             self.viewFooterViewCustomView.buttonSaveButton.isHidden = false
-        
+            self.viewFooterViewCustomView.buttonAddButton.isHidden = true
+            self.viewFooterViewCustomView.buttonView.removeFromSuperview()
+            self.constraintOnAddFunc()
+            self.viewExcSelectCustomView?.excSelectDelegate = self
             if self.viewExcAddCustomView == nil || self.isTourChange == true{
-                self.viewFooterViewCustomView.buttonView.removeFromSuperview()
-                self.constraintOnAddFunc()
-                self.viewExcSelectCustomView?.excSelectDelegate = self
                 self.viewExcSearchCustomView?.isHidden = true
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcProceedCustomView?.isHidden = true
@@ -777,28 +785,31 @@ extension ExcursionViewController : ExcSelectDelegate {
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
             self.constraintOnPaxFunc()
             self.viewExcSelectCustomView?.isHidden = true
-            
             self.viewFooterViewCustomView.buttonAddButton.isHidden = false
             // self.viewFooterViewCustomView.buttonView.isHidden = false
-            
-            UIView.animate(withDuration: 0, animations: { [self] in
-                self.viewPaxCustomView = ExcPaxCustomView()
-                self.viewPaxCustomView?.excPaxPageDelegate = self
-                self.viewPaxCustomView?.paxesList = self.paxesList
-                if self.paxesList.count > 0 {
-                    for index in 0...self.paxesList.count - 1 {
-                        self.paxesList[index].isTapped = false
-                        self.viewPaxCustomView?.checkList.append(self.paxesList[index].isTapped ?? false)
+            if viewPaxCustomView == nil {
+                UIView.animate(withDuration: 0, animations: { [self] in
+                    self.viewPaxCustomView = ExcPaxCustomView()
+                    self.viewPaxCustomView?.excPaxPageDelegate = self
+                    self.viewPaxCustomView?.paxesList = self.paxesList
+                    if self.paxesList.count > 0 {
+                        for index in 0...self.paxesList.count - 1 {
+                            self.paxesList[index].isTapped = false
+                            self.viewPaxCustomView?.checkList.append(self.paxesList[index].isTapped ?? false)
+                        }
                     }
-                }
-                self.viewPaxCustomView?.tableView.reloadData()
-                self.viewExcursionView.viewContentView.addSubview(self.viewPaxCustomView!)
-                self.viewPaxCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.bounds.size.height)
-            }, completion: { (finished) in
-                if finished{
-                    
-                }
-            })
+                    self.viewPaxCustomView?.tableView.reloadData()
+                    self.viewExcursionView.viewContentView.addSubview(self.viewPaxCustomView!)
+                    self.viewPaxCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.bounds.size.height)
+                }, completion: { (finished) in
+                    if finished{
+                        
+                    }
+                })
+            }else{
+                self.viewPaxCustomView?.isHidden = false
+                self.viewExcSelectCustomView?.isHidden = true
+            }
             
         }else {
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
@@ -817,7 +828,8 @@ extension ExcursionViewController : ExcSelectDelegate {
                     }
                 })
             }else{
-                return
+                self.viewExcSelectCustomView?.isHidden = false
+                self.viewPaxCustomView?.isHidden = true
             }
         }
     }
@@ -828,9 +840,9 @@ extension ExcursionViewController : ExcPaxPageDelegate {
         if tourButtonTapped == false {
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
             self.constraintOnPaxFunc()
+            self.viewExcSelectCustomView?.isHidden = true
             if viewPaxCustomView == nil {
                 UIView.animate(withDuration: 0, animations: { [self] in
-                    self.viewExcSelectCustomView?.isHidden = true
                     self.viewPaxCustomView = ExcPaxCustomView()
                     self.viewExcursionView.viewContentView.addSubview(self.viewPaxCustomView!)
                     self.viewPaxCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.bounds.size.height)
@@ -839,7 +851,8 @@ extension ExcursionViewController : ExcPaxPageDelegate {
                     }
                 })
             }else{
-                return
+                self.viewPaxCustomView?.isHidden = false
+                self.viewExcSelectCustomView?.isHidden = true
             }
         }else {
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
@@ -848,6 +861,7 @@ extension ExcursionViewController : ExcPaxPageDelegate {
             self.viewFooterViewCustomView.buttonAddButton.isHidden = true
             self.viewFooterViewCustomView.buttonView.isHidden = false
             self.viewPaxCustomView?.isHidden = true
+            if viewExcSelectCustomView == nil{
             UIView.animate(withDuration: 0, animations: { [self] in
                 self.viewExcSelectCustomView = ExcSelectCustomView()
                 self.viewExcSelectCustomView?.excSelectDelegate = self
@@ -858,6 +872,11 @@ extension ExcursionViewController : ExcPaxPageDelegate {
                     
                 }
             })
+            }else{
+                self.viewExcSelectCustomView?.isHidden = false
+                self.viewPaxCustomView?.isHidden = true
+                
+            }
         }
     }
 }

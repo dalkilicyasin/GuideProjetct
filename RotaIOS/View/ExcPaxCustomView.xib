@@ -75,7 +75,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jHZ-4D-Sa4">
-                    <rect key="frame" x="0.0" y="280" width="395" height="612"/>
+                    <rect key="frame" x="0.0" y="280" width="395" height="462"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdp-dc-Dcb">
@@ -103,7 +103,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="eM9-4q-17A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5CA-mN-iUL"/>
-                <constraint firstAttribute="bottom" secondItem="jHZ-4D-Sa4" secondAttribute="bottom" id="AMS-Px-3OM"/>
+                <constraint firstAttribute="bottom" secondItem="jHZ-4D-Sa4" secondAttribute="bottom" constant="150" id="AMS-Px-3OM"/>
                 <constraint firstAttribute="trailing" secondItem="tdp-dc-Dcb" secondAttribute="trailing" constant="40" id="BIv-4d-U8t"/>
                 <constraint firstItem="jHZ-4D-Sa4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DBu-nV-YZM"/>
                 <constraint firstItem="4wX-ao-7bC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="El0-Vd-xX3"/>

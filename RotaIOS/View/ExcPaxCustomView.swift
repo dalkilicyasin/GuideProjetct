@@ -68,6 +68,9 @@ class ExcPaxCustomView : UIView {
     //var filteredList : [GetInHoseListResponseModel] = []
     var savePaxesList : [GetInHoseListResponseModel] = []
     var totalPaxesCount = 0
+    var manuelAddedPaxesList : [GetInHoseListResponseModel] = []
+    var manuelPaxAgeGroup = ""
+    var manuelPaxAge = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -110,6 +113,7 @@ class ExcPaxCustomView : UIView {
         self.searchBar.layer.cornerRadius = 10
         self.searchBar.compatibleSearchTextField.textColor = UIColor.white
         self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
+        self.searchBar.placeholder = "Pax Name Filter"
         self.searchBar.delegate = self
     }
     
@@ -219,11 +223,37 @@ extension ExcPaxCustomView : UISearchBarDelegate {
 
 extension ExcPaxCustomView : TempAddPaxesListDelegate {
     func tempAddList(listofpaxes: [Paxes], manuellist: [String], changeValue: Int) {
+        self.manuelAddedPaxesList.removeAll()
         if self.tempValue != changeValue {
             self.tempValue = changeValue
             self.sendingListofPaxes = listofpaxes
             userDefaultsData.saveManuelandHousePaxesList(tour: self.sendingListofPaxes)
-            self.labelTouristAdded.text = "\(self.totalPaxesCount + self.tempValue) Tourist Added"
+            if self.sendingListofPaxes.count > 0 {
+                for i in 0...self.sendingListofPaxes.count - 1 {
+                    if let birtdate =  Int(self.sendingListofPaxes[i].pAX_BIRTHDAY) {
+                        self.manuelPaxAge = birtdate
+                        if self.manuelPaxAge > 0 &&  self.manuelPaxAge < 2{
+                            self.manuelPaxAgeGroup = "INF"
+                        }else if self.manuelPaxAge > 2 &&  self.manuelPaxAge < 6{
+                            self.manuelPaxAgeGroup = "TDL"
+                        }else if self.manuelPaxAge > 6 &&  self.manuelPaxAge < 11{
+                            self.manuelPaxAgeGroup = "CHL"
+                        }else{
+                            self.manuelPaxAgeGroup = "ADL"
+                        }
+                    }
+                    self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text: self.sendingListofPaxes[i].pAX_NAME, ageGroup:  self.sendingListofPaxes[i].pAX_AGEGROUP, gender:  self.sendingListofPaxes[i].pAX_GENDER, room:  self.sendingListofPaxes[i].pAX_ROOM, birtDate:  self.sendingListofPaxes[i].pAX_BIRTHDAY))
+                }
+            }
+            if self.manuelAddedPaxesList.count > 0 {
+                for i in 0...self.manuelAddedPaxesList.count - 1 {
+                    self.paxesList.append(self.manuelAddedPaxesList[i])
+                    self.checkList.append(false)
+                }
+            }
+           
+            self.tableView.reloadData()
+           // self.labelTouristAdded.text = "\(self.totalPaxesCount + self.tempValue) Tourist Added" ind. shop sayfası ile burdaki farklı çeşitte daha sonra değerlendirilmesi
             // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
             return
         }else {
@@ -232,11 +262,34 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
             // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: false)
             self.tempValue = changeValue
         }
+        if sendingListofPaxes.count > 0 {
+            for i in 0...self.sendingListofPaxes.count {
+                if let birtdate =  Int(self.sendingListofPaxes[i].pAX_BIRTHDAY) {
+                    self.manuelPaxAge = birtdate
+                    if self.manuelPaxAge > 0 &&  self.manuelPaxAge < 2{
+                        self.manuelPaxAgeGroup = "INF"
+                    }else if self.manuelPaxAge > 2 &&  self.manuelPaxAge < 6{
+                        self.manuelPaxAgeGroup = "TDL"
+                    }else if self.manuelPaxAge > 6 &&  self.manuelPaxAge < 11{
+                        self.manuelPaxAgeGroup = "CHL"
+                    }else{
+                        self.manuelPaxAgeGroup = "ADL"
+                    }
+                }
+                self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text: self.sendingListofPaxes[i].pAX_NAME, ageGroup:  self.sendingListofPaxes[i].pAX_AGEGROUP, gender:  self.sendingListofPaxes[i].pAX_GENDER, room:  self.sendingListofPaxes[i].pAX_ROOM, birtDate:  self.sendingListofPaxes[i].pAX_BIRTHDAY))
+            }
+        }
+        if self.manuelAddedPaxesList.count > 0 {
+            for i in 0...self.manuelAddedPaxesList.count - 1 {
+                self.paxesList.append(self.manuelAddedPaxesList[i])
+                self.checkList.append(false)
+            }
+        }
+        self.tableView.reloadData()
     }
 }
 
 extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
-    
     func checkBoxTapped(checkCounter: Bool, touristName: String, marketGroup: Int, tempPaxes: GetInHoseListResponseModel) {
         self.tempFilteredList = []
         

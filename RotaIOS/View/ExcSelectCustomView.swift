@@ -21,6 +21,8 @@ class ExcSelectCustomView : UIView {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var labelExcursion: UILabel!
+    @IBOutlet weak var viewTourDetailHeader: UIView!
+    @IBOutlet weak var labelPickUpTime: UILabel!
     var excursionList : [GetSearchTourResponseModel] = []
     var viewPaxCustomView : ExcPaxCustomView?
     var excSelectDelegate : ExcSelectDelegate?
@@ -32,6 +34,9 @@ class ExcSelectCustomView : UIView {
     var isFiltered = false
     var checkList : [Bool] = []
     var savesTourList : [GetSearchTourResponseModel] = []
+    var currentTime = Date()
+    var pickUpTimeList : [String] = []
+    var pickUpTime = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,8 +50,8 @@ class ExcSelectCustomView : UIView {
     
     func commonInit() {
         if Connectivity.isConnectedToInternet {
-           print("connect")
-         } else {
+            print("connect")
+        } else {
             self.excursionList = userDefaultsData.getSearchTourOffline() ?? [GetSearchTourResponseModel]()
         }
         
@@ -87,6 +92,7 @@ class ExcSelectCustomView : UIView {
         self.searchBar.delegate = self
     }
     
+    
     @IBAction func tourButtonTapped(_ sender: Any) {
         self.paxSelected = false
         self.excSelectDelegate?.exSelectDelegateInf(paxButtonTapped: self.paxSelected)
@@ -112,8 +118,13 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
         cell.excursionListTableViewCellDelegate = self
         if self.isFiltered == true {
             cell.labelExcursion.text = self.filteredData[indexPath.row].tourName
-            cell.labelPickupTime.text = self.filteredData[indexPath.row].pickUpTime
-           // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
+            cell.labelTourdate.text = self.filteredData[indexPath.row].tourDate
+            if pickUpTimeList.count == 0 {
+                cell.labelPickUpTime.text = self.filteredData[indexPath.row].pickUpTime
+            }else if pickUpTimeList.count > 0{
+                cell.labelPickUpTime.text = self.pickUpTimeList[indexPath.row]
+            }
+            // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
             cell.labelPriceType.text = String(self.filteredData[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
             cell.labelCurrency.text = self.filteredData[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
             cell.labelAdultPrice.text = String(self.filteredData[indexPath.row].adultPrice ?? 0)
@@ -128,10 +139,15 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.isTappedCheck = self.checkFilteredList[indexPath.row]
             cell.tourid = self.filteredData[indexPath.row].tourId ?? 0
             cell.priceTypeDesc = filteredData[indexPath.row].priceType ?? 0
+            cell.pickuptime = filteredData[indexPath.row].pickUpTime ?? ""
         }else {
             cell.labelExcursion.text = self.excursionList[indexPath.row].tourName
-            cell.labelPickupTime.text = self.excursionList[indexPath.row].pickUpTime
-           // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
+            if pickUpTimeList.count == 0 {
+                cell.labelPickUpTime.text = self.excursionList[indexPath.row].pickUpTime
+            }else if pickUpTimeList.count > 0{
+                cell.labelPickUpTime.text = self.pickUpTimeList[indexPath.row]
+            }
+            // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
             cell.labelPriceType.text = String(self.excursionList[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
             cell.labelCurrency.text = self.excursionList[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
             cell.labelAdultPrice.text = String(self.excursionList[indexPath.row].adultPrice ?? 0)
@@ -146,6 +162,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.isTappedCheck = self.checkList[indexPath.row]
             cell.tourid = self.excursionList[indexPath.row].tourId  ?? 0
             cell.priceTypeDesc = excursionList[indexPath.row].priceType ?? 0
+            cell.pickuptime = excursionList[indexPath.row].pickUpTime ?? ""
         }
         return cell
     }
@@ -156,7 +173,7 @@ extension ExcSelectCustomView : UISearchBarDelegate {
         self.filteredData = []
         self.checkFilteredList = []
         self.filteredList  = []
-
+        
         if searchText.elementsEqual(""){
             self.isFiltered = false
             //  self.paxesNameList = self.tempPaxesNameList
@@ -186,23 +203,23 @@ extension ExcSelectCustomView : UISearchBarDelegate {
                     if let insideIndex = self.filteredList.firstIndex(where: {$0.tourName == filter[0].tourName}){
                         self.filteredList[insideIndex].isTapped = filter[0].isTapped ?? false
                         self.checkFilteredList[insideIndex] = filter[0].isTapped ?? false
-                     /*   if  self.tempFilteredList.count > 0 {
-                            self.tempFilteredList[insideIndex].isTapped = filter[0].isTapped ?? false
-                        } */
+                        /*   if  self.tempFilteredList.count > 0 {
+                         self.tempFilteredList[insideIndex].isTapped = filter[0].isTapped ?? false
+                         } */
                     }
                 }
             }
         }
         
         if self.checkFilteredList.count == self.checkList.count {
-         self.checkList = self.checkFilteredList
-         }
+            self.checkList = self.checkFilteredList
+        }
         self.tableView.reloadData()
     }
 }
 
 extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
-    func checkBoxTapped(checkCounter: Bool, tourid: Int, tempPaxes: GetSearchTourResponseModel, priceTypeDesc : Int) {
+    func checkBoxTapped(checkCounter: Bool, tourid: Int, tempPaxes: GetSearchTourResponseModel, priceTypeDesc : Int, pickUpTime: String) {
         self.tempFilteredList = []
         if isFiltered == true {
             if let index = self.filteredData.firstIndex(where: {$0.tourId == tourid} ){
@@ -219,13 +236,44 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
         self.tableView.reloadData()
         
         if checkCounter == true {
+            if pickUpTime == "" {
+                for i in 0...self.excursionList.count - 1 {
+                    self.pickUpTimeList.append(excursionList[i].pickUpTime ?? "")
+                }
+                let alert = UIAlertController(title: "Pick Up Time", message: "Please insert Pick Up Time", preferredStyle: .alert)
+                alert.addTextField {
+                    $0.placeholder = "Pick Up Time"
+                    $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
+                   }
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                  let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
+                      guard let flatamount = alert.textFields?[0].text
+                       
+                          else { return } // Should never happen
+                    
+                    self.pickUpTime = "\(flatamount):00"
+                    
+                    if let index = self.excursionList.firstIndex(where: {$0 === tempPaxes}){
+                        self.pickUpTimeList[index] = self.pickUpTime
+                    }
+                    self.tableView.reloadData()
+                  }
+                
+              //  flatAmountAction.isEnabled = false
+                alert.addAction(flatAmountAction)
+                
+                if let topVC = UIApplication.getTopViewController() {
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+                
+            }
             let filter = excursionList.filter{ $0.tourId == tourid}
-           // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
+            // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
             for index in filter {
                 self.savesTourList.append(index)
             }
         }else{
-           // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
+            // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
             let filter = excursionList.filter{ $0.tourId == tourid}
             if let insideIndex = self.savesTourList.firstIndex(where: {$0.tourId == filter[0].tourId}){
                 self.savesTourList.remove(at: insideIndex)

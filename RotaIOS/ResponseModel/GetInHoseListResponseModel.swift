@@ -19,11 +19,23 @@ class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
     var marketId : Int?
     var mrkGrp : Int?
     var isSelected : Bool?
+    var gender : String?
+    var room : String?
+    var birtDate : String?
 
     required init?(map: Map) {
-
+            
     }
-
+        
+    public init( text : String, ageGroup : String, gender : String, room : String, birtDate : String ) {
+        self.text = text
+        self.ageGroup = ageGroup
+        self.gender = gender
+        self.room = room
+        self.birtDate = birtDate
+    }
+    
+    
     func mapping(map: Map) {
 
         id <- map["$id"]

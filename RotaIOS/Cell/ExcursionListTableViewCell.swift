@@ -8,14 +8,14 @@
 import UIKit
 
 protocol ExcursionListTableViewCellDelegate {
-    func checkBoxTapped(checkCounter : Bool, tourid : Int, tempPaxes : GetSearchTourResponseModel, priceTypeDesc : Int)
+    func checkBoxTapped(checkCounter : Bool, tourid : Int, tempPaxes : GetSearchTourResponseModel, priceTypeDesc : Int, pickUpTime : String)
 }
 
 class ExcursionListTableViewCell: BaseTableViewCell {
+    @IBOutlet weak var viewContentView: UIView!
     @IBOutlet weak var imageCheckBox: UIImageView!
     @IBOutlet weak var labelExcursion: UILabel!
     @IBOutlet weak var labelTourdate: UILabel!
-    @IBOutlet weak var labelPickupTime: UILabel!
     @IBOutlet weak var labelSeat: UILabel!
     @IBOutlet weak var labelPriceType: UILabel!
     @IBOutlet weak var labelCurrency: UILabel!
@@ -27,11 +27,13 @@ class ExcursionListTableViewCell: BaseTableViewCell {
     @IBOutlet weak var labelMinPax: UILabel!
     @IBOutlet weak var labelTotalPrice: UILabel!
     @IBOutlet weak var labelFlatPricw: UILabel!
+    @IBOutlet weak var labelPickUpTime: UILabel!
     var excursionListInCell : GetSearchTourResponseModel?
     var excursionListTableViewCellDelegate : ExcursionListTableViewCellDelegate?
     var isTappedCheck = false
     var tourid = 0
     var priceTypeDesc = 0
+    var pickuptime = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,12 +42,12 @@ class ExcursionListTableViewCell: BaseTableViewCell {
         self.imageCheckBox.image = UIImage(named: "square")
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedChecBox))
         self.imageCheckBox.isUserInteractionEnabled = true
-         self.imageCheckBox.addGestureRecognizer(gesture)
+        self.imageCheckBox.addGestureRecognizer(gesture)
     }
     
     @objc func tappedChecBox(){
         self.isTappedCheck = !self.isTappedCheck
-        self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc)
+        self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.pickuptime)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
