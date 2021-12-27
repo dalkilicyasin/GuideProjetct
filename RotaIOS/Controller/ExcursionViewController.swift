@@ -51,9 +51,19 @@ class ExcursionViewController: UIViewController {
     var minPerson = 0
     var minPriceTotal = 0.00
     var extraAndTransTotalPrice = 0.00
+    var maxVoucherNo = 0
+    var createVoucher = ""
+    var counter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+        NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
+            if response != 0 {
+                print(response)
+            }
+        }
+        
         userDefaultsData.saveTourList(tour: [])
         userDefaultsData.savePaxesList(tour: [])
         self.viewAppointMentBarCutomView.homePageTappedDelegate = self
@@ -85,6 +95,10 @@ class ExcursionViewController: UIViewController {
             print("No Internet")
             self.isConnectedInternet = false
         }
+    }
+    
+    @objc func viewSendTapped() {
+        print("tapped")
     }
     
     func showToast(message : String){
@@ -173,6 +187,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
     }
     
     func continueButtonTappedDelegate(tapped: Int) {
+        self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
         if self.changeNumber != userDefaultsData.getTourList()?.count {
             self.isTourChange = true
             self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
@@ -410,6 +425,42 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
             self.showToast(message: "\(self.totalPrice)")
         }else if tapped == 3 {
+            self.viewFooterViewCustomView.viewSendVoucher.isHidden = false
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(viewSendTapped))
+            self.viewFooterViewCustomView.viewSendVoucher.isUserInteractionEnabled = true
+            self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
+            
+            //Max Voucher
+   /*
+            // Create VOucher
+            let year =  Calendar.current.component(.year, from: Date())
+            let month = Calendar.current.component(.month, from: Date())
+            let day = Calendar.current.component(.day, from: Date())
+            let hour = Calendar.current.component(.hour, from: Date())
+            let minute = Calendar.current.component(.minute, from: Date())
+            
+            let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+            NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
+                
+                if response != 0 {
+                    print(response)
+                    self.maxVoucherNo = response
+                         if userDefaultsData.getDay() != day {
+                        self.counter = 0
+                        self.createVoucher = "\(userDefaultsData.getGuideId())\(year)\(month)\(day)\(hour)\(minute)\(self.maxVoucherNo + self.counter)"
+                        userDefaultsData.saveDay(day: day)
+                    }else if userDefaultsData.getDay() == day {
+                        self.counter = 1
+                        self.createVoucher = "\(userDefaultsData.getGuideId())\(year)\(month)\(day)\(hour)\(minute)\(self.maxVoucherNo + self.counter)"
+                        userDefaultsData.saveDay(day: day)
+                    }
+                    print(self.createVoucher)
+                }else {
+                    print("error")
+                }
+            }*/
+ 
+            ///
             self.viewFooterViewCustomView.labelAmount.isHidden = true
             self.viewFooterViewCustomView.buttonSaveButton.isHidden = true
             self.viewFooterViewCustomView.buttonView.isHidden = true
@@ -440,6 +491,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.totalAmount = self.totalPrice
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in
@@ -461,6 +513,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
     }
     
     func homePageTapped(ischosen: Int) {
+        self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
         if self.changeNumber != userDefaultsData.getTourList()?.count {
             self.isTourChange = true
             self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
@@ -699,6 +752,39 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.showToast(message: "\(self.totalPrice)")
             
         }else if ischosen == 3 {
+            self.viewFooterViewCustomView.viewSendVoucher.isHidden = false
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(viewSendTapped))
+            self.viewFooterViewCustomView.viewSendVoucher.isUserInteractionEnabled = true
+            self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
+            /*
+           // Create Voucher
+            let year =  Calendar.current.component(.year, from: Date())
+            let month = Calendar.current.component(.month, from: Date())
+            let day = Calendar.current.component(.day, from: Date())
+            let hour = Calendar.current.component(.hour, from: Date())
+            let minute = Calendar.current.component(.minute, from: Date())
+            
+            //get max voucher
+        let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+            NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
+                if response != 0 {
+                    print(response)
+                    self.maxVoucherNo = response
+                    if userDefaultsData.getDay() != day {
+                        self.counter = 0
+                        self.createVoucher = "\(userDefaultsData.getGuideId())\(year)\(month)\(day)\(hour)\(minute)\(self.maxVoucherNo + self.counter)"
+                        userDefaultsData.saveDay(day: day)
+                    }else if userDefaultsData.getDay() == day {
+                        self.counter = 1
+                        self.createVoucher = "\(userDefaultsData.getGuideId())\(year)\(month)\(day)\(hour)\(minute)\(self.maxVoucherNo + self.counter)"
+                        userDefaultsData.saveDay(day: day)
+                    }
+                }else {
+                    print("error")
+                }
+            }*/
+            
+            print(createVoucher)
             self.buttonhide()
             self.viewFooterViewCustomView.buttonView.isHidden = true
             self.viewFooterViewCustomView.printButton.isHidden = false

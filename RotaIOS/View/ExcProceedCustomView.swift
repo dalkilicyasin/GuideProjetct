@@ -50,6 +50,14 @@ class ExcProceedCustomView: UIView{
     var typeList = ["CASH","CARD"]
     var paymentTypeList : [PaymentType] = []
     var typeMenu = DropDown()
+    //ExchangeMenu
+    var exchangeList : [GetExhangeRatesResponseModel] = []
+    var exchangeMenu = DropDown()
+    var selectedExchange : [GetExhangeRatesResponseModel] = []
+    var exchangeListStringType : [String] = []
+    var valueforDivided = 0.00
+    var convertedCurrency = 0.00
+    var convertedCurrencyTitle = ""
     
 override init(frame: CGRect) {
     super.init(frame: frame)
@@ -67,6 +75,8 @@ func commonInit() {
     self.tableView.dataSource = self
     self.tableView.register(ProceedPaxTableViewCell.nib, forCellReuseIdentifier: ProceedPaxTableViewCell.identifier)
     self.tableView.backgroundColor = UIColor.tableViewColor
+    
+    self.touristList = userDefaultsData.getPaxesList() ?? self.touristList
     
     self.viewMainView.addCustomContainerView(self)
     self.viewMainView.backgroundColor = UIColor.grayColor
@@ -95,8 +105,8 @@ func commonInit() {
     self.viewDicountCalculate.mainText.isHidden = false
     self.viewTotalAmount.mainLabel.isHidden = true
     self.viewTotalAmount.mainText.isHidden = false
-    self.viewCurrencyConvert.mainLabel.isHidden = true
-    self.viewCurrencyConvert.mainText.isHidden = false
+    self.viewCurrencyConvert.mainLabel.isHidden = false
+    self.viewCurrencyConvert.mainText.isHidden = true
     self.viewAmount.imageMainText.isHidden = true
     self.viewNotes.imageMainText.isHidden = true
     self.viewDiscount.imageMainText.isHidden = true
@@ -112,7 +122,40 @@ func commonInit() {
     self.buttonAddPayment.layer.cornerRadius = 10
     self.buttonAddPayment.backgroundColor = UIColor.greenColor
     
-    self.touristList = userDefaultsData.getPaxesList() ?? self.touristList
+    // Exchange Menu
+    let exchangeRequestModel = GetExhangeRatesRequestModel.init(date: "12-21-2021") // burda aynı günün değeri alınmalı fakat özgeyle konuş aynı gün değer dönmüyor
+    NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetExhangeRates, method: .get, parameters: exchangeRequestModel.requestPathString()) { ( response : [GetExhangeRatesResponseModel]) in
+        if response.count > 0 {
+            self.exchangeList = response
+            
+            for listofArray in self.exchangeList {
+                self.exchangeListStringType.append(listofArray.sHORTCODE ?? "")
+            }
+            self.exchangeMenu.dataSource = self.exchangeListStringType
+            self.exchangeMenu.dataSource.insert("", at: 0)
+            self.exchangeMenu.backgroundColor = UIColor.grayColor
+            self.exchangeMenu.separatorColor = UIColor.gray
+            self.exchangeMenu.textColor = .white
+            self.exchangeMenu.anchorView = self.viewCurrencyConvert
+            self.exchangeMenu.topOffset = CGPoint(x: 0, y:-(self.exchangeMenu.anchorView?.plainView.bounds.height)!)
+        }
+    }
+    
+    let gestureTourist = UITapGestureRecognizer(target: self, action: #selector(didTappedExchangeMenu))
+    gestureTourist.numberOfTouchesRequired = 1
+    self.viewCurrencyConvert.addGestureRecognizer(gestureTourist)
+    
+    self.exchangeMenu.selectionAction = { index, title in
+        self.viewCurrencyConvert.mainLabel.text = title
+        self.convertedCurrencyTitle = title
+       
+       let filtered = self.exchangeList.filter{($0.sHORTCODE?.contains(title) ?? false)}
+        self.selectedExchange = filtered
+        for listofArray in self.selectedExchange {
+            self.valueforDivided = listofArray.eUROCROSS ?? 0.00
+        }
+    }
+    
     // TouristMenu
     for listofArray in self.touristList {
         self.tempTouristMenu.append(listofArray.text ?? "")
@@ -125,9 +168,9 @@ func commonInit() {
     self.touristMenu.anchorView = self.viewTouristView
     self.touristMenu.topOffset = CGPoint(x: 0, y:-(self.touristMenu.anchorView?.plainView.bounds.height)!)
     
-    let gestureTourist = UITapGestureRecognizer(target: self, action: #selector(didTappedToristListMenu))
-    gestureTourist.numberOfTouchesRequired = 1
-    self.viewTouristView.addGestureRecognizer(gestureTourist)
+    let gestureExchange = UITapGestureRecognizer(target: self, action: #selector(didTappedToristListMenu))
+    gestureExchange.numberOfTouchesRequired = 1
+    self.viewTouristView.addGestureRecognizer(gestureExchange)
     
     self.touristMenu.selectionAction = { index, title in
         self.viewTouristView.mainLabel.text = title
@@ -198,6 +241,9 @@ func commonInit() {
         }*/
     }
 }
+    @objc func didTappedExchangeMenu() {
+        self.exchangeMenu.show()
+    }
     
     @objc func didTappedItem() {
         self.currencyMenu.show()
@@ -247,7 +293,14 @@ func commonInit() {
     }
     
     @IBAction func convertButtonTapped(_ sender: Any) {
+        self.convertedCurrency = self.totalAmount / self.valueforDivided
         
+        let alert = UIAlertController.init(title: "Message", message: "Converted balance  for \(self.totalAmount) EUR is \(self.convertedCurrency)\(self.convertedCurrencyTitle)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        if let topVC = UIApplication.getTopViewController() {
+            topVC.present(alert, animated: true, completion: nil)
+        }
+        self.balanceAmount = self.convertedCurrency
     }
 }
 

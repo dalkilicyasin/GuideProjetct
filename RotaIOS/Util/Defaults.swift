@@ -32,9 +32,31 @@ public class Defaults{
         case TransferList
         case ManuelandHousePaxesList
         case TotalPrice
+        case SaveDay
     }
     
    public init(){}
+    
+    //VoucherNodatecheck
+    
+    public func saveDay(day:Int){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .SaveDay)
+        preferences.set(day, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getDay() -> Int{
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .SaveDay)
+        if preferences.object(forKey: currentLanguageKey) == nil {
+            return -1
+        } else {
+            return preferences.integer(forKey: currentLanguageKey)
+        }
+    }
+    
+    
     
     // Save Total Price
     public func saveTotalPrice(totalPrice: Double){
@@ -443,6 +465,8 @@ public class Defaults{
             return "ManuelandHousePaxesList"
         case .TotalPrice:
             return "TotalPrice"
+        case .SaveDay:
+            return "SaveDay"
         }
     }
 }

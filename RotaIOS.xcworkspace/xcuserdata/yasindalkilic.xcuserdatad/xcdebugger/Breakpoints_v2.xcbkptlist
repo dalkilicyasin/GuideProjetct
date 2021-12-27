@@ -7,54 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "89940394-64A3-463E-AC4E-827B5CEC0B14"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/Controller/ExcursionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "continueButtonTappedDelegate(tapped:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3D3C0B42-35D9-4F91-8255-500870009773"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/Controller/ExcursionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "totalPrice(isSaveButtonTapped:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D76C7C75-9E46-4DEA-B534-5EDB5B786B13"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/Controller/ExcursionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "totalPrice(isSaveButtonTapped:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "897E9298-47CC-452B-8948-4C500702CC69"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -103,32 +55,256 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E08214FF-B9ED-46E1-92D5-5240EC7A21E8"
+            uuid = "65CD5016-FE65-46CF-B5D4-0A923E8FEB3E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RotaIOS/Controller/ExcursionViewController.swift"
+            filePath = "RotaIOS/Networking/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
-            landmarkName = "continueButtonTappedDelegate(tapped:)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "sendGetRequestInt(url:endPoint:method:parameters:indicatorEnabled:completion:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "65CD5016-FE65-46CF-B5D4-0A923E8FEB3E - 61e26cbd013e42e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 4 of static RotaIOS.NetworkManager.sendGetRequestInt(url: Swift.String, endPoint: RotaIOS.ServiceEndPoint, method: Alamofire.HTTPMethod, parameters: Swift.String, indicatorEnabled: Swift.Bool, completion: (Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "RotaIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/Networking/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "6">
+               </Location>
+               <Location
+                  uuid = "65CD5016-FE65-46CF-B5D4-0A923E8FEB3E - 91fd9c305298f02d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static RotaIOS.NetworkManager.sendGetRequestInt(url: Swift.String, endPoint: RotaIOS.ServiceEndPoint, method: Alamofire.HTTPMethod, parameters: Swift.String, indicatorEnabled: Swift.Bool, completion: (Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "RotaIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/Networking/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "571">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0AB677BD-6403-4A05-ADAE-65E276A1E8A4"
+            uuid = "4A6D3D44-DA99-42CA-A636-6FA15CAED214"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "addPaymentButtonTapped(_:)"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "commonInit()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "83F9D083-CA3F-4E23-8B7D-0E7F76A4D17C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/View/ExcProceedCustomView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "commonInit()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "83F9D083-CA3F-4E23-8B7D-0E7F76A4D17C - 602cefdc57e20a65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RotaIOS.ExcProceedCustomView.commonInit() -&gt; ()"
+                  moduleName = "RotaIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/View/ExcProceedCustomView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "24871">
+               </Location>
+               <Location
+                  uuid = "83F9D083-CA3F-4E23-8B7D-0E7F76A4D17C - e4cabdbc766c45ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Array&lt;RotaIOS.GetCurrencyResponeModel&gt;) -&gt; () in RotaIOS.ExcProceedCustomView.commonInit() -&gt; ()"
+                  moduleName = "RotaIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/View/ExcProceedCustomView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "756A4C36-84CB-4616-B7B1-520DDD5478A0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Networking/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "sendGetRequestInt(url:endPoint:method:parameters:indicatorEnabled:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E4E3CC77-6C13-45CC-A4FF-90E963494345"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Networking/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "sendGetRequestInt(url:endPoint:method:parameters:indicatorEnabled:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D762277-371D-404C-959B-6279FED83E17"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Networking/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "sendGetRequestInt(url:endPoint:method:parameters:indicatorEnabled:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9D762277-371D-404C-959B-6279FED83E17 - 91fd9c305298ff66"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static RotaIOS.NetworkManager.sendGetRequestInt(url: Swift.String, endPoint: RotaIOS.ServiceEndPoint, method: Alamofire.HTTPMethod, parameters: Swift.String, indicatorEnabled: Swift.Bool, completion: (Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "RotaIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/Networking/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "3118">
+               </Location>
+               <Location
+                  uuid = "9D762277-371D-404C-959B-6279FED83E17 - 7681a44c3a1d543a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in static RotaIOS.NetworkManager.sendGetRequestInt(url: Swift.String, endPoint: RotaIOS.ServiceEndPoint, method: Alamofire.HTTPMethod, parameters: Swift.String, indicatorEnabled: Swift.Bool, completion: (Swift.Int) -&gt; ()) -&gt; ()"
+                  moduleName = "RotaIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/Networking/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "125">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F10F71D-4043-428C-A044-EBD2E1E209CA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Networking/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "sendGetRequestInt(url:endPoint:method:parameters:indicatorEnabled:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EA0074DA-2CB3-48F2-9573-26A658F66A61"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Networking/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "sendGetRequestInt(url:endPoint:method:parameters:indicatorEnabled:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "934F45A1-3ADB-4786-801E-E776CB78AFCD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Controller/ExcursionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "754716AA-BB96-45BC-8482-1793B4E35B6A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Controller/ExcursionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

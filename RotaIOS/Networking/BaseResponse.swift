@@ -29,8 +29,6 @@ public class BaseResponse<T:Mappable >:Mappable{
         dataArray <- map["Data"]
         
     }
-    
-    
 }
 
 

@@ -25,6 +25,7 @@ class FooterCustomView: UIView {
     @IBOutlet weak var buttonAddButton: UIButton!
     @IBOutlet weak var buttonSaveButton: UIButton!
     @IBOutlet weak var labelAmount: UILabel!
+    @IBOutlet weak var viewSendVoucher: UIView!
     var continueButtonTappedDelegate : ContinueButtonTappedDelegate?
     var counter = 0
     var totalPriceIsSaved = false
@@ -76,6 +77,10 @@ class FooterCustomView: UIView {
         self.labelAmount.layer.masksToBounds = true
         self.labelAmount.layer.cornerRadius = 10
         self.labelAmount.text = "Amount"
+        
+        self.viewSendVoucher.layer.cornerRadius = 10
+        self.viewSendVoucher.backgroundColor = UIColor.greenColor
+        self.viewSendVoucher.isHidden = true
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {

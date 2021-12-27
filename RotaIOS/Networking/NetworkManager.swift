@@ -50,6 +50,71 @@ public class NetworkManager {
         }
     }
     
+    public static func sendRequestInt(endPoint: ServiceEndPoint, method: HTTPMethod = .get, requestModel: Mappable, indicatorEnabled: Bool = true,
+                                            completion: @escaping(Int) -> ()) {
+           
+           if !networkConnectionEnabled {
+               return
+           }
+           
+        guard let request = prepareRequest(url : "https://rota-uat.odeontours.com" ,endPoint: endPoint, method: method, requestModel: requestModel),
+               let viewController = UIApplication.getTopViewController()
+               else { return }
+           
+           if indicatorEnabled {
+            viewController.showIndicator(tag: String(describing: request.self))
+           }
+           
+           Alamofire.request(request).responseJSON {(response) in
+               if response.response?.statusCode == 200 {
+                   print ("pass")
+               }else{
+                   print ("fail")
+               }
+            completion((response.response?.statusCode)!)
+
+           }
+       }
+      
+    public static func sendGetRequestInt(url:String, endPoint: ServiceEndPoint, method: HTTPMethod, parameters: String, indicatorEnabled: Bool = true,
+                                                completion: @escaping(Int) -> ()) {
+            
+            if !networkConnectionEnabled {
+                return
+            }
+            
+            var urlPath = url + endPoint.rawValue
+            if !parameters.elementsEqual("") {
+                urlPath.append(parameters)
+            }
+            urlPath = urlPath.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            
+            var requestModel = URLRequest(url: URL(string: urlPath)!)
+            requestModel.timeoutInterval = TIMEOUT_INTERVAL
+            requestModel.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            requestModel.setValue("bearer \(baseData.getTokenResponse?.access_token ?? "")", forHTTPHeaderField: "Authorization")
+            requestModel.httpMethod = method.rawValue
+
+            
+            let request = requestModel
+            let viewController = UIApplication.getTopViewController()
+            
+            
+            if indicatorEnabled {
+                viewController!.showIndicator(tag: String(describing: request.self))
+            }
+        
+              Alamofire.request(request).responseJSON {(response) in
+                    if response.response?.statusCode == 200 {
+                        print ("pass")
+                    }else{
+                        print ("fail")
+                    }
+                completion((response.value) as! Int)
+
+                }
+        }
+    
     public static func sendRequestArray<T: Mappable>(url: String,endPoint: ServiceEndPoint, method: HTTPMethod = .post, requestModel: Mappable, indicatorEnabled: Bool = true,
                                          completion: @escaping([T]) -> ()) {
         
