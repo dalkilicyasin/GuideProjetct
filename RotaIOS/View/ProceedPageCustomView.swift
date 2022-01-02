@@ -97,7 +97,7 @@ class ProceedPageCustomView : UIView {
         print(stepsListinProceedPage)
         
         let saveForMobileRequestModel = GetSaveForMobileRequestList.init(iND_CHLMAXAGE: NSNull() , iND_NOTE: self.viewNotesMainTextView.mainText.text ?? NSNull(), iND_VOUCHER: NSNull(), iND_SHOPDATE: self.dateString , iND_GUIDEREF: userDefaultsData.getGuideId() , iND_MARKETGROUPREF: userDefaultsData.getMarketGruopId() , iND_MARKETREF: userDefaultsData.getMarketId() , iND_AREAREF: userDefaultsData.getHotelArea() , iND_HOTELREF: userDefaultsData.getHotelId() , iND_SHOPPICKUPTIME: self.timeString,  strPaxes: self.paxListinProceedPage.toJSONString(prettyPrint: true) ?? "" , strSteps: self.stepsListinProceedPage.toJSONString(prettyPrint: true) ?? "")
-        
+       
         if dateString.isEmpty == false && self.paxListinProceedPage.isEmpty == false && self.stepsListinProceedPage.isEmpty == false {
             NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveForMobile, requestModel: saveForMobileRequestModel ) { (response: GetSaveForMobileResponseList) in
                 if response.isSuccesful ?? false{

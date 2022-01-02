@@ -30,7 +30,6 @@ public class Paxes : Mappable, Encodable, Decodable {
     public  var pAX_ROOM : String!
     public var pAX_TOURISTREF : Int!
     public  var pAX_STATUS : Int!
-  
     public required init?(map: Map) {
         
     }

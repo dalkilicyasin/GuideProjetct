@@ -33,9 +33,32 @@ public class Defaults{
         case ManuelandHousePaxesList
         case TotalPrice
         case SaveDay
+        case TouristDetailInfoList
     }
     
    public init(){}
+    
+    //TouristDetailInfoList
+    
+    func saveTouristDetailInfoList(tour:[Paxes]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .TouristDetailInfoList))
+            preferences.synchronize()
+        }
+    }
+    
+    func getTouristDetailInfoList() -> [Paxes]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .TouristDetailInfoList)) as? Data {
+            if let loadedTourList = try? decoder.decode([Paxes].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
+    }
     
     //VoucherNodatecheck
     
@@ -467,6 +490,8 @@ public class Defaults{
             return "TotalPrice"
         case .SaveDay:
             return "SaveDay"
+        case .TouristDetailInfoList:
+            return "TouristDetailInfoList"
         }
     }
 }

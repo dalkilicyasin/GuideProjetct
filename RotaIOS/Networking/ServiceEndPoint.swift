@@ -42,6 +42,7 @@ public enum ServiceEndPoint: String {
     case GetCurrencySelectList = "/api/api/Currency/GetSelectList"
     case GetExhangeRates = "/api/api/Exchange/GetExhangeRates"
     case GetMaxGuideVoucherNumber = "/api/api/TourSale/GetMaxGuideVoucherNumber"
+    case GetSaveMobileSale = "/api/api/TourSale/SaveMobileSale"
 }
 
 

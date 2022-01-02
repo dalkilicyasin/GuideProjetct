@@ -105,6 +105,10 @@ public class NetworkManager {
             }
         
               Alamofire.request(request).responseJSON {(response) in
+                
+                if indicatorEnabled {
+                    viewController?.hideIndicator(tag: String(describing: request.self))
+                }
                     if response.response?.statusCode == 200 {
                         print ("pass")
                     }else{

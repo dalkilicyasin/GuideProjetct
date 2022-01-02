@@ -71,6 +71,9 @@ class ExcPaxCustomView : UIView {
     var manuelAddedPaxesList : [GetInHoseListResponseModel] = []
     var manuelPaxAgeGroup = ""
     var manuelPaxAge = 0
+    //touristDetailInfo
+    var touristDetailInfoList : [Paxes] = []
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -251,9 +254,9 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                     self.checkList.append(false)
                 }
             }
-           
+            
             self.tableView.reloadData()
-           // self.labelTouristAdded.text = "\(self.totalPaxesCount + self.tempValue) Tourist Added" ind. shop sayfası ile burdaki farklı çeşitte daha sonra değerlendirilmesi
+            // self.labelTouristAdded.text = "\(self.totalPaxesCount + self.tempValue) Tourist Added" ind. shop sayfası ile burdaki farklı çeşitte daha sonra değerlendirilmesi
             // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
             return
         }else {
@@ -311,9 +314,18 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             let filter = paxesList.filter{ $0 === tempPaxes}
             // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
             self.savePaxesList.append(filter[0])
+            
+            let getInTouristInfoRequestModelList = GetTouristInfoRequestModel(touristId: filter[0].value ?? 0, resNo: filter[0].resNo ?? "")
+            
+            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList.requestPathString() ) { (response : [GetTouristInfoResponseModel] ) in
+                if response.count > 0 {
+                    self.touristDetailInfoList.append(Paxes(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: "1453", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1))
+                    userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
+                }
+            }
         }else{
             // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
-         
+            
             if let insideIndex = self.savePaxesList.firstIndex(where: {$0 === tempPaxes}){
                 self.savePaxesList.remove(at: insideIndex)
             }
@@ -324,8 +336,8 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
     }
 }
 /*
-extension GetInHoseListResponseModel : Equatable {
-    static func == (lhs: GetInHoseListResponseModel, rhs: GetInHoseListResponseModel) -> Bool {
-        return true
-    }
-}*/
+ extension GetInHoseListResponseModel : Equatable {
+ static func == (lhs: GetInHoseListResponseModel, rhs: GetInHoseListResponseModel) -> Bool {
+ return true
+ }
+ }*/

@@ -57,13 +57,6 @@ class ExcursionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-        NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
-            if response != 0 {
-                print(response)
-            }
-        }
-        
         userDefaultsData.saveTourList(tour: [])
         userDefaultsData.savePaxesList(tour: [])
         self.viewAppointMentBarCutomView.homePageTappedDelegate = self
@@ -431,7 +424,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
             
             //Max Voucher
-   /*
+   
             // Create VOucher
             let year =  Calendar.current.component(.year, from: Date())
             let month = Calendar.current.component(.month, from: Date())
@@ -458,7 +451,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }else {
                     print("error")
                 }
-            }*/
+            }
  
             ///
             self.viewFooterViewCustomView.labelAmount.isHidden = true
@@ -638,6 +631,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.labelAmount.isHidden = false
             self.viewFooterViewCustomView.buttonSaveButton.isHidden = false
             self.viewFooterViewCustomView.buttonAddButton.isHidden = true
+            self.viewFooterViewCustomView.buttonView.isHidden = false
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
             self.constraintOnAddFunc()
             self.viewExcSelectCustomView?.excSelectDelegate = self
@@ -756,7 +750,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             let gesture = UITapGestureRecognizer(target: self, action: #selector(viewSendTapped))
             self.viewFooterViewCustomView.viewSendVoucher.isUserInteractionEnabled = true
             self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
-            /*
+            
            // Create Voucher
             let year =  Calendar.current.component(.year, from: Date())
             let month = Calendar.current.component(.month, from: Date())
@@ -782,7 +776,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }else {
                     print("error")
                 }
-            }*/
+            }
             
             print(createVoucher)
             self.buttonhide()

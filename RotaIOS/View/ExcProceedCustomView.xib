@@ -14,6 +14,7 @@
                 <outlet property="buttonAddPayment" destination="qim-EL-clO" id="0xh-ee-oW6"/>
                 <outlet property="buttonApplyDiscount" destination="8L1-X7-93K" id="kFd-Hq-r6L"/>
                 <outlet property="buttonConvert" destination="yZe-XW-O3Z" id="M9c-ov-Gsf"/>
+                <outlet property="buttonSend" destination="93C-fA-oJf" id="fOc-ih-qt7"/>
                 <outlet property="tableView" destination="WQf-0D-X5S" id="g32-kr-Bkg"/>
                 <outlet property="viewAmount" destination="8Hb-oM-mcM" id="EWY-vc-N9d"/>
                 <outlet property="viewBalanced" destination="YHf-SS-UPf" id="L0N-zA-bwU"/>
@@ -31,14 +32,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="1228"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRe-Xo-v3x">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="1228"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgY-fD-cHx">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1228"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1400"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0a-Ld-9bo" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
                                     <rect key="frame" x="43" y="50" width="328" height="90"/>
@@ -97,6 +98,21 @@
                                         <action selector="applyDiscountButtonTapped:" destination="-1" eventType="touchUpInside" id="Id3-A9-Kj0"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qim-EL-clO">
+                                    <rect key="frame" x="251" y="660" width="120" height="50"/>
+                                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="120" id="CWb-pQ-ZO3"/>
+                                        <constraint firstAttribute="height" constant="50" id="mAO-TW-8WJ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Add Payment">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="addPaymentButtonTapped:" destination="-1" eventType="touchUpInside" id="uOw-Rk-O5k"/>
+                                    </connections>
+                                </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qvR-9y-kRk" customClass="MainTextCustomView" customModule="RotaIOS" customModuleProvider="target">
                                     <rect key="frame" x="43" y="730" width="120" height="70"/>
                                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -153,25 +169,24 @@
                                     </connections>
                                 </button>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WQf-0D-X5S">
-                                    <rect key="frame" x="0.0" y="1000" width="414" height="230"/>
+                                    <rect key="frame" x="0.0" y="1000" width="414" height="130"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="230" id="xUr-Xg-TAE"/>
+                                        <constraint firstAttribute="height" constant="130" id="xUr-Xg-TAE"/>
                                     </constraints>
                                 </tableView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qim-EL-clO">
-                                    <rect key="frame" x="251" y="660" width="120" height="50"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="93C-fA-oJf">
+                                    <rect key="frame" x="40" y="1140" width="334" height="50"/>
                                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="120" id="CWb-pQ-ZO3"/>
-                                        <constraint firstAttribute="height" constant="50" id="mAO-TW-8WJ"/>
+                                        <constraint firstAttribute="height" constant="50" id="dCL-k8-9VG"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="Add Payment">
+                                    <state key="normal" title="SEND">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
-                                        <action selector="addPaymentButtonTapped:" destination="-1" eventType="touchUpInside" id="uOw-Rk-O5k"/>
+                                        <action selector="sendButtonTapped:" destination="-1" eventType="touchUpInside" id="OrT-7R-vyx"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -186,6 +201,7 @@
                                 <constraint firstAttribute="trailing" secondItem="yZe-XW-O3Z" secondAttribute="trailing" constant="43" id="ABy-Bs-Qhe"/>
                                 <constraint firstItem="mGp-xj-srj" firstAttribute="leading" secondItem="jgY-fD-cHx" secondAttribute="leading" constant="43" id="ACE-4w-wlf"/>
                                 <constraint firstItem="8Hb-oM-mcM" firstAttribute="top" secondItem="DGi-HZ-tMK" secondAttribute="bottom" constant="10" id="CAq-69-RsE"/>
+                                <constraint firstItem="93C-fA-oJf" firstAttribute="top" secondItem="WQf-0D-X5S" secondAttribute="bottom" constant="10" id="CID-Za-d5b"/>
                                 <constraint firstItem="8L1-X7-93K" firstAttribute="leading" secondItem="jgY-fD-cHx" secondAttribute="leading" constant="43" id="E7J-0z-jut"/>
                                 <constraint firstAttribute="trailing" secondItem="bdd-EB-KnD" secondAttribute="trailing" constant="43" id="GgN-rH-97Q"/>
                                 <constraint firstItem="zGP-Ir-qCD" firstAttribute="top" secondItem="qvR-9y-kRk" secondAttribute="bottom" constant="20" id="Gnr-Af-hy1"/>
@@ -193,10 +209,11 @@
                                 <constraint firstItem="vDQ-lp-40A" firstAttribute="leading" secondItem="jgY-fD-cHx" secondAttribute="leading" constant="43" id="Kqh-bs-VHx"/>
                                 <constraint firstAttribute="trailing" secondItem="8Hb-oM-mcM" secondAttribute="trailing" constant="43" id="NCK-4M-JfP"/>
                                 <constraint firstItem="mGp-xj-srj" firstAttribute="top" secondItem="zGP-Ir-qCD" secondAttribute="bottom" constant="20" id="NrV-mu-rym"/>
+                                <constraint firstItem="93C-fA-oJf" firstAttribute="leading" secondItem="jgY-fD-cHx" secondAttribute="leading" constant="40" id="Nsc-kY-S4f"/>
                                 <constraint firstItem="vDQ-lp-40A" firstAttribute="top" secondItem="bdd-EB-KnD" secondAttribute="bottom" constant="10" id="O4i-QS-AhZ"/>
                                 <constraint firstItem="zGP-Ir-qCD" firstAttribute="leading" secondItem="jgY-fD-cHx" secondAttribute="leading" constant="43" id="Q5o-di-oeI"/>
                                 <constraint firstAttribute="trailing" secondItem="qim-EL-clO" secondAttribute="trailing" constant="43" id="SLv-VT-uNA"/>
-                                <constraint firstAttribute="height" constant="1228" id="Ttp-Is-lNg"/>
+                                <constraint firstAttribute="height" constant="1400" id="Ttp-Is-lNg"/>
                                 <constraint firstAttribute="trailing" secondItem="YHf-SS-UPf" secondAttribute="trailing" constant="43" id="UKu-L2-MQy"/>
                                 <constraint firstItem="DGi-HZ-tMK" firstAttribute="leading" secondItem="jgY-fD-cHx" secondAttribute="leading" constant="43" id="USd-Bk-5sG"/>
                                 <constraint firstItem="qim-EL-clO" firstAttribute="top" secondItem="vDQ-lp-40A" secondAttribute="bottom" constant="20" id="WBA-nE-1HC"/>
@@ -210,6 +227,7 @@
                                 <constraint firstItem="8L1-X7-93K" firstAttribute="top" secondItem="vDQ-lp-40A" secondAttribute="bottom" constant="20" id="j8Z-WJ-b7U"/>
                                 <constraint firstItem="YHf-SS-UPf" firstAttribute="top" secondItem="qim-EL-clO" secondAttribute="bottom" constant="20" id="kQW-Rb-o5e"/>
                                 <constraint firstAttribute="trailing" secondItem="G0a-Ld-9bo" secondAttribute="trailing" constant="43" id="oUA-gP-ZKk"/>
+                                <constraint firstAttribute="trailing" secondItem="93C-fA-oJf" secondAttribute="trailing" constant="40" id="uwh-u8-hwR"/>
                                 <constraint firstItem="GJB-QZ-y2T" firstAttribute="leading" secondItem="jgY-fD-cHx" secondAttribute="leading" constant="43" id="v4H-ut-1nL"/>
                                 <constraint firstItem="yZe-XW-O3Z" firstAttribute="top" secondItem="MgZ-hy-1f4" secondAttribute="bottom" constant="40" id="vYc-BP-shb"/>
                                 <constraint firstItem="DGi-HZ-tMK" firstAttribute="top" secondItem="GJB-QZ-y2T" secondAttribute="bottom" constant="10" id="vqJ-lO-0gB"/>

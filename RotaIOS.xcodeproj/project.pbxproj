@@ -202,6 +202,8 @@
 		D97EE02527759B9500683E66 /* GetExhangeRatesRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE02427759B9500683E66 /* GetExhangeRatesRequestModel.swift */; };
 		D97EE0272779A6D100683E66 /* GetMaxGuideVoucherNumberResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE0262779A6D100683E66 /* GetMaxGuideVoucherNumberResponseModel.swift */; };
 		D97EE0292779ABCB00683E66 /* GetMaxGuideVoucherNumberRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE0282779ABCB00683E66 /* GetMaxGuideVoucherNumberRequestModel.swift */; };
+		D97EE02B277BC2CE00683E66 /* GetSaveMobileSaleResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE02A277BC2CE00683E66 /* GetSaveMobileSaleResponseModel.swift */; };
+		D97EE02D277DF1A900683E66 /* GetSaveMobileSaleRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97EE02C277DF1A900683E66 /* GetSaveMobileSaleRequestModel.swift */; };
 		D97FB58226C00F2D0099F28B /* MyTourStatusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */; };
 		D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */; };
 		D97FB58626C075940099F28B /* MyTourSaleDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */; };
@@ -496,6 +498,8 @@
 		D97EE02427759B9500683E66 /* GetExhangeRatesRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExhangeRatesRequestModel.swift; sourceTree = "<group>"; };
 		D97EE0262779A6D100683E66 /* GetMaxGuideVoucherNumberResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMaxGuideVoucherNumberResponseModel.swift; sourceTree = "<group>"; };
 		D97EE0282779ABCB00683E66 /* GetMaxGuideVoucherNumberRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMaxGuideVoucherNumberRequestModel.swift; sourceTree = "<group>"; };
+		D97EE02A277BC2CE00683E66 /* GetSaveMobileSaleResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSaveMobileSaleResponseModel.swift; sourceTree = "<group>"; };
+		D97EE02C277DF1A900683E66 /* GetSaveMobileSaleRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSaveMobileSaleRequestModel.swift; sourceTree = "<group>"; };
 		D97FB58026C00F2D0099F28B /* MyTourStatusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusTableViewCell.swift; sourceTree = "<group>"; };
 		D97FB58126C00F2D0099F28B /* MyTourStatusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusTableViewCell.xib; sourceTree = "<group>"; };
 		D97FB58426C075940099F28B /* MyTourSaleDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourSaleDetailPageViewController.swift; sourceTree = "<group>"; };
@@ -778,6 +782,7 @@
 				D994FBD92753A8D9003564F3 /* GetTourSearchCacheRequestModel.swift */,
 				D97EE02427759B9500683E66 /* GetExhangeRatesRequestModel.swift */,
 				D97EE0282779ABCB00683E66 /* GetMaxGuideVoucherNumberRequestModel.swift */,
+				D97EE02C277DF1A900683E66 /* GetSaveMobileSaleRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -818,6 +823,7 @@
 				D97EE01C2773D4F200683E66 /* GetCurrencyResponeModel.swift */,
 				D97EE02227759ADE00683E66 /* GetExhangeRatesResponseModel.swift */,
 				D97EE0262779A6D100683E66 /* GetMaxGuideVoucherNumberResponseModel.swift */,
+				D97EE02A277BC2CE00683E66 /* GetSaveMobileSaleResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -1351,6 +1357,7 @@
 				BF44C8E5264000E200238035 /* ExtensionUIView.swift in Sources */,
 				D97EE02327759ADE00683E66 /* GetExhangeRatesResponseModel.swift in Sources */,
 				D94C406C2659313000EBC7CD /* GetSaveForMobileResponseList.swift in Sources */,
+				D97EE02D277DF1A900683E66 /* GetSaveMobileSaleRequestModel.swift in Sources */,
 				BF44C8F2264000E900238035 /* GetTokenResponseModel.swift in Sources */,
 				D9FD64E32737F8EA009B6619 /* GetZReportPreviewRequestModel.swift in Sources */,
 				D9561A45269E110A00AA75E5 /* AnnoucmentsDetailTableViewCell.swift in Sources */,
@@ -1467,6 +1474,7 @@
 				D991469526D68CBF0010E74F /* CancelVoucherView.swift in Sources */,
 				D931578D27049614000C91AD /* GetZreportRefundResponseModel.swift in Sources */,
 				D93F88A92651AB1000397283 /* GetTouristInfoResponseModel.swift in Sources */,
+				D97EE02B277BC2CE00683E66 /* GetSaveMobileSaleResponseModel.swift in Sources */,
 				D994FBCD27451851003564F3 /* ExcursionViewController.swift in Sources */,
 				D9DCB1A026BBECE50064A040 /* MyTourSaleView.swift in Sources */,
 				D994FBD22745307F003564F3 /* ExcSearchCustomView.swift in Sources */,

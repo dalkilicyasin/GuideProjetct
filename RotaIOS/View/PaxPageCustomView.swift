@@ -267,7 +267,7 @@ extension PaxPageCustomView : PaxPageTableViewCellDelegate {
                 self.tempFilteredList = self.filteredList
             }
         }else{
-            if let index = self.paxesNameList.firstIndex(where: {$0.text == touristName}){
+            if let index = self.paxesNameList.firstIndex(where: {$0 === tempPaxes}){
                 self.paxesNameList[index].isTapped = checkCounter
                 self.checkList[index] = checkCounter
                 self.tempList = self.paxesNameList
@@ -396,7 +396,7 @@ extension PaxPageCustomView : PaxPageTableViewCellDelegate {
                         self.tempSendingListofPaxes = self.sendingListofPaxes
                         if self.tempSendingListofPaxes.count > 0 {
                             for i in 0...self.sendingListofPaxes.count - 1 {
-                                if self.paxesListinPaxPage[0].pAX_NAME == self.sendingListofPaxes[i].pAX_NAME {
+                                if self.paxesListinPaxPage[0] === self.sendingListofPaxes[i]{
                                     self.tempSendingListofPaxes.remove(at: i)
                                 }
                             }
