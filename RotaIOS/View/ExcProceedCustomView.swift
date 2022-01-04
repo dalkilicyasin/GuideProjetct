@@ -321,6 +321,11 @@ class ExcProceedCustomView: UIView{
         var tourList : [TourList] = []
         let extras : [Extras] = []
         let transfers : [Transfers] = []
+        var adultCount = 0
+        var childCount = 0
+        var toodleCount = 0
+        var infantCount = 0
+      
         if self.tourList.count > 0 {
             for i in 0...self.tourList.count - 1{
                 for index in 0...self.touristList.count - 1 {
@@ -328,15 +333,27 @@ class ExcProceedCustomView: UIView{
                     paxTourList.append(paxesTour)
                 }
             }
+            for i in 0...self.touristList.count - 1{
+                if self.touristList[i].ageGroup == "ADL" {
+                    adultCount += 1
+                }else if self.touristList[i].ageGroup == "CHD" {
+                    childCount += 1
+                }else if self.touristList[i].ageGroup == "TDL" {
+                    toodleCount += 1
+                }else if self.touristList[i].ageGroup == "INF" {
+                    infantCount += 1
+                }
+            }
         }
         
         for i in 0...self.tourList.count - 1 {
-            tourList.append(TourList(id: 2,AdultAmount:20,AdultCount:2,AdultPrice:2,ChildAmount:2,ChildCount:2,ChildPrice:2,InfantAmount:2, InfantCount:2,InfantPrice:2,ToodleAmount:2,ToodleCount:2,ToodlePrice:2,MatchId:2,MarketId:2,PromotionId:2,PoolType:2,PriceId:2,PlanId:2,TourType:2,TourName:"12421",TourId:2,Currency:2,CurrencyDesc:"1242",TourDateStr:"1414",TourDateShort:"214214",AllotmenStatus:2,RemainingAllotment:0,PriceType:2,MinPax:0.00,TotalPrice:0.00,FlatPrice:0.00,MinPrice:0.00,InfantAge1:0.00,InfantAge2:0.00,ToodleAge1:0.00,ToodleAge2:0.00,ChildAge1:0.00,ChildAge2:0.00,PickUpTime:"2142",DetractAdult:false,DetractChild:false,DetractKid:false,DetractInfant:false,AskSell:false,MeetingPointId:2,Paref:2,TourCode:"141",ID:0, CREATEDDATE:"0001-01-01T00:00:00",RefundCondition:"",TicketCount:2,TourAmount:2,VoucherNo:"367821-00005",ExtraTourist:extras,TransferTourist:transfers))
+            tourList.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:2, Currency:2, CurrencyDesc:"1242", TourDateStr:"", TourDate:"", AllotmenStatus:2, RemainingAllotment:0, PriceType:2, MinPax:0.00, TotalPrice:0.00, FlatPrice:0.00, MinPrice:0.00, InfantAge1:0.00, InfantAge2:0.00, ToodleAge1:0.00, ToodleAge2:0.00, ChildAge1:0.00, ChildAge2:0.00, PickUpTime:"2142", DetractAdult:false, DetractChild:false, DetractKid:false, DetractInfant:false, AskSell:false, MeetingPointId:2, Paref:"",TourCode:"", ID:0, CREATEDDATE:"0001-01-01T00:00:00",RefundCondition:"", TicketCount:2, TourAmount:2, VoucherNo:"", ExtraTourist: extras, TransferTourist:transfers))
         }
+        
         
         paxes = userDefaultsData.getTouristDetailInfoList() ?? paxes
         
-    let tourSalePost = TourSalePost(Multisale:multisale,PaxTourLists:paxTourList,Payments:self.payments,Paxes:paxes,isOffline:"0",AllowDublicatePax:"0",TourList:tourList )
+        let tourSalePost = TourSalePost(Multisale:multisale,PaxTourLists:paxTourList,Payments:self.payments,Paxes:paxes,IsOffline:"0",AllowDublicatePax:"0",TourList:tourList )
         
         self.data = "\(tourSalePost.toJSONString(prettyPrint: true) ?? "")"
         print(data)

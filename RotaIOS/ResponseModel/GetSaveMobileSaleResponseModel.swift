@@ -30,17 +30,17 @@ class TourSalePost : Mappable {
     var PaxTourLists : [PaxTourList]?
     var Payments : [Payment]?
     var Paxes : [Paxes]?
-    var isOffline : String?
+    var IsOffline : String?
     var AllowDublicatePax : String?
     var TourList : [TourList]?
     
     
-    public init(Multisale : Multisale,  PaxTourLists : [PaxTourList], Payments : [Payment], Paxes : [Paxes], isOffline : String, AllowDublicatePax : String,TourList : [TourList]) {
+    public init(Multisale : Multisale,  PaxTourLists : [PaxTourList], Payments : [Payment], Paxes : [Paxes], IsOffline : String, AllowDublicatePax : String,TourList : [TourList]) {
         self.Multisale = Multisale
         self.TourList = TourList
         self.Payments = Payments
         self.Paxes = Paxes
-        self.isOffline = isOffline
+        self.IsOffline = IsOffline
         self.AllowDublicatePax = AllowDublicatePax
         self.PaxTourLists = PaxTourLists
     }
@@ -53,7 +53,7 @@ class TourSalePost : Mappable {
         PaxTourLists <- map["PaxTourLists"]
         Payments <- map["Payments"]
         Paxes <- map["Paxes"]
-        isOffline <- map["isOffline"]
+        IsOffline <- map["IsOffline"]
         AllowDublicatePax <- map["AllowDublicatePax"]
         TourList <- map["TourList"]
     } 
@@ -192,18 +192,18 @@ public class Payment : Mappable {
 
 public class TourList : Mappable {
     var id : Int?
-    var AdultAmount : Int?
+    var AdultAmount : Double?
     var AdultCount : Int?
-    var AdultPrice : Int?
-    var ChildAmount : Int?
+    var AdultPrice : Double?
+    var ChildAmount : Double?
     var ChildCount : Int?
-    var ChildPrice : Int?
-    var InfantAmount : Int?
+    var ChildPrice : Double?
+    var InfantAmount : Double?
     var InfantCount : Int?
-    var InfantPrice : Int?
-    var ToodleAmount : Int?
+    var InfantPrice : Double?
+    var ToodleAmount : Double?
     var ToodleCount : Int?
-    var ToodlePrice : Int?
+    var ToodlePrice : Double?
     var PromotionId : Int?
     var PoolType : Int?
     var PriceId : Int?
@@ -214,7 +214,7 @@ public class TourList : Mappable {
     var Currency : Int?
     var CurrencyDesc : String?
     var TourDateStr : String?
-    var TourDateShort : String?
+    var TourDate : String?
     var AllotmenStatus : Int?
     var RemainingAllotment : Int?
     var PriceType : Int?
@@ -235,7 +235,7 @@ public class TourList : Mappable {
     var DetractInfant : Bool?
     var AskSell : Bool?
     var MeetingPointId : Int?
-    var Paref : Int?
+    var Paref : String?
     var TourCode : String?
     var ID : Int?
     var CREATEDDATE : String?
@@ -247,7 +247,7 @@ public class TourList : Mappable {
     var VoucherNo : String?
     
     
-    public init( id : Int, AdultAmount : Int, AdultCount : Int, AdultPrice : Int, ChildAmount : Int, ChildCount : Int, ChildPrice : Int, InfantAmount : Int, InfantCount : Int, InfantPrice : Int, ToodleAmount : Int, ToodleCount : Int, ToodlePrice : Int, MatchId : Int, MarketId : Int, PromotionId : Int, PoolType : Int, PriceId : Int, PlanId : Int, TourType : Int, TourName : String, TourId : Int, Currency : Int, CurrencyDesc : String, TourDateStr : String, TourDateShort : String, AllotmenStatus : Int, RemainingAllotment : Int, PriceType : Int, MinPax : Double, TotalPrice : Double, FlatPrice : Double, MinPrice : Double, InfantAge1 : Double, InfantAge2 : Double, ToodleAge1 : Double, ToodleAge2 : Double, ChildAge1 : Double, ChildAge2 : Double, PickUpTime : String, DetractAdult : Bool, DetractChild : Bool, DetractKid : Bool, DetractInfant : Bool, AskSell : Bool, MeetingPointId : Int, Paref : Int, TourCode : String, ID : Int, CREATEDDATE : String, RefundCondition : String,TicketCount : Int, TourAmount : Int, VoucherNo : String, ExtraTourist : [Extras], TransferTourist : [Transfers]) {
+    public init( id : Int, AdultAmount : Double, AdultCount : Int, AdultPrice : Double, ChildAmount : Double, ChildCount : Int, ChildPrice : Double, InfantAmount : Double, InfantCount : Int, InfantPrice : Double, ToodleAmount : Double, ToodleCount : Int, ToodlePrice : Double, MatchId : Int, MarketId : Int, PromotionId : Int, PoolType : Int, PriceId : Int, PlanId : Int, TourType : Int, TourName : String, TourId : Int, Currency : Int, CurrencyDesc : String, TourDateStr : String, TourDate : String, AllotmenStatus : Int, RemainingAllotment : Int, PriceType : Int, MinPax : Double, TotalPrice : Double, FlatPrice : Double, MinPrice : Double, InfantAge1 : Double, InfantAge2 : Double, ToodleAge1 : Double, ToodleAge2 : Double, ChildAge1 : Double, ChildAge2 : Double, PickUpTime : String, DetractAdult : Bool, DetractChild : Bool, DetractKid : Bool, DetractInfant : Bool, AskSell : Bool, MeetingPointId : Int, Paref : String, TourCode : String, ID : Int, CREATEDDATE : String, RefundCondition : String,TicketCount : Int, TourAmount : Int, VoucherNo : String, ExtraTourist : [Extras], TransferTourist : [Transfers]) {
         
         self.id = id
         self.AdultAmount = AdultAmount
@@ -272,7 +272,7 @@ public class TourList : Mappable {
         self.Currency = Currency
         self.CurrencyDesc = CurrencyDesc
         self.TourDateStr = TourDateStr
-        self.TourDateShort = TourDateShort
+        self.TourDate = TourDate
         self.AllotmenStatus = AllotmenStatus
         self.RemainingAllotment = RemainingAllotment
         self.PriceType = PriceType
@@ -333,7 +333,7 @@ public class TourList : Mappable {
         Currency <- map["Currency"]
         CurrencyDesc <- map["CurrencyDesc"]
         TourDateStr <- map["TourDateStr"]
-        TourDateShort <- map["TourDateShort"]
+        TourDate <- map["TourDate"]
         AllotmenStatus <- map["AllotmenStatus"]
         RemainingAllotment <- map["RemainingAllotment"]
         PriceType <- map["PriceType"]
@@ -363,6 +363,7 @@ public class TourList : Mappable {
         TourAmount <- map["TourAmount"]
         VoucherNo <- map["VoucherNo"]
         TransferTourist <- map["TransferTourist"]
+        ExtraTourist <- map["ExtraTourist"]
     }
 }
 
