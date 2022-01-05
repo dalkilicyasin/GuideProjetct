@@ -64,6 +64,14 @@ class ExcProceedCustomView: UIView{
     var convertedCurrency = 0.00
     var convertedCurrencyTitle = ""
     var payments : [Payment] = []
+    var minPerson = 0
+    var minPriceTotal = 0.0
+    var currencyId = 0
+    var hotelId = 0
+    var marketId = 0
+    let date = Date()
+    var currentDate = ""
+    var voucherNo = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,6 +92,10 @@ class ExcProceedCustomView: UIView{
         
         self.touristList = userDefaultsData.getPaxesList() ?? self.touristList
         self.tourList = userDefaultsData.getTourList() ?? self.tourList
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        self.currentDate = dateFormatter.string(from: date)
         
         self.viewMainView.addCustomContainerView(self)
         self.viewMainView.backgroundColor = UIColor.grayColor
@@ -184,6 +196,7 @@ class ExcProceedCustomView: UIView{
         self.touristMenu.selectionAction = { index, title in
             self.viewTouristView.mainLabel.text = title
             self.selectedTouristName = title
+          
             /*  let filtered = self.hotelList.filter{($0.text?.contains(title) ?? false)}
              self.filteredHotelList = filtered
              for listofArray in self.filteredHotelList {
@@ -242,6 +255,9 @@ class ExcProceedCustomView: UIView{
         self.currencyMenu.selectionAction = { index, title in
             self.viewCurrencyType.mainLabel.text = title
             self.selectedCurrencyType = title
+            if let index = self.currencyList.firstIndex(where: {$0.text == self.selectedCurrencyType} ){
+                self.currencyId = self.currencyList[index].value ?? 0
+            }
             /*  let filtered = self.hotelList.filter{($0.text?.contains(title) ?? false)}
              self.filteredHotelList = filtered
              for listofArray in self.filteredHotelList {
@@ -300,7 +316,7 @@ class ExcProceedCustomView: UIView{
                 topVC.present(alert, animated: true, completion: nil)
             }
         }
-        self.payments.append(Payment(ByDesc:"aaa",ById:"0",ConvertedCurrency:"USD",ConvertedPaymentAmount:73,Currency:"USD",CurrencyId:"147",PaymentAmount:73,PaymentType:"CASH",TargetAmount:0,TypeId:"CASH"))
+        self.payments.append(Payment(ByDesc:"aaa", ById:"0", ConvertedCurrency:"USD", ConvertedPaymentAmount:73, Currency:"USD", CurrencyId:"147", PaymentAmount:73, PaymentType:"CASH", TargetAmount:0, TypeId:"CASH"))
     }
     
     @IBAction func convertButtonTapped(_ sender: Any) {
@@ -315,21 +331,22 @@ class ExcProceedCustomView: UIView{
     }
     
     @IBAction func sendButtonTapped(_ sender: Any) {
-        let multisale = Multisale.init(CouponAmount:0,CouponId:0,CurrencyId:147,GuideId:205,HotelId:1423,ID:0,IsMobile:1,IsOfficeSale:false,ManualDiscount:0,MarketId:2,Note: "",PaidAmount:73,PromotionId:13,SaleDate:"12-31-2021",TotalAmount:86)
+        let multisale = Multisale.init(CouponAmount:0, CouponId:0, CurrencyId: self.currencyId, GuideId: userDefaultsData.getGuideId(), HotelId: userDefaultsData.getHotelId(), ID:0, IsMobile:1, IsOfficeSale: false, ManualDiscount:0, MarketId: userDefaultsData.getMarketId(), Note: "", PaidAmount: Int(self.savedTotalAmount), PromotionId: 0, SaleDate: self.currentDate , TotalAmount: Int(self.totalAmount))
         var paxTourList : [PaxTourList] = []
         var paxes : [Paxes] = []
-        var tourList : [TourList] = []
+        var tourListIndata : [TourList] = []
         let extras : [Extras] = []
         let transfers : [Transfers] = []
         var adultCount = 0
         var childCount = 0
         var toodleCount = 0
         var infantCount = 0
+        var totalPricePerTour = 0.0
       
         if self.tourList.count > 0 {
             for i in 0...self.tourList.count - 1{
                 for index in 0...self.touristList.count - 1 {
-                    let paxesTour = PaxTourList(AgeGroup:self.touristList[index].ageGroup ?? "", Gender:self.touristList[index].gender ?? "",ID:String(self.tourList[i].iD ?? 0), PlanId:self.tourList[i].planId ?? 0)
+                    let paxesTour = PaxTourList(AgeGroup:self.touristList[index].ageGroup ?? "", Gender:self.touristList[index].gender ?? "",ID:String(self.tourList[i].ID ?? 0), PlanId:self.tourList[i].planId ?? 0)
                     paxTourList.append(paxesTour)
                 }
             }
@@ -347,13 +364,67 @@ class ExcProceedCustomView: UIView{
         }
         
         for i in 0...self.tourList.count - 1 {
-            tourList.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:2, Currency:2, CurrencyDesc:"1242", TourDateStr:"", TourDate:"", AllotmenStatus:2, RemainingAllotment:0, PriceType:2, MinPax:0.00, TotalPrice:0.00, FlatPrice:0.00, MinPrice:0.00, InfantAge1:0.00, InfantAge2:0.00, ToodleAge1:0.00, ToodleAge2:0.00, ChildAge1:0.00, ChildAge2:0.00, PickUpTime:"2142", DetractAdult:false, DetractChild:false, DetractKid:false, DetractInfant:false, AskSell:false, MeetingPointId:2, Paref:"",TourCode:"", ID:0, CREATEDDATE:"0001-01-01T00:00:00",RefundCondition:"", TicketCount:2, TourAmount:2, VoucherNo:"", ExtraTourist: extras, TransferTourist:transfers))
+            if self.tourList[i].priceType == 35 {
+                
+                for index in 0...self.touristList.count - 1 {
+                    switch self.touristList[index].ageGroup {
+                    case "INF":
+                        totalPricePerTour += self.tourList[i].infantPrice ?? 0.00
+                    case "TDL":
+                        totalPricePerTour += self.tourList[i].toodlePrice ?? 0.00
+                    case "CHD":
+                        totalPricePerTour += self.tourList[i].childPrice ?? 0.00
+                    default:
+                        totalPricePerTour += self.tourList[i].adultPrice ?? 0.00
+                    }
+                }
+            }
+            
+            //Flat Price calculation
+            else if self.tourList[i].priceType == 36{
+                totalPricePerTour += self.tourList[i].flatPrice ?? 0.00
+            }
+            
+            //Min Price
+            else if self.tourList[i].priceType == 37{
+                self.minPerson = Int(self.tourList[i].minPax ?? 0.00)
+                if self.minPerson > 0 {
+                    for index in 0...self.touristList.count - 1{
+                        if  self.touristList[index].ageGroup == "ADL" {
+                            self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
+                            self.minPerson -= 1
+                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "CHD" {
+                            self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
+                            self.minPerson -= 1
+                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "TDL" {
+                            self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
+                            self.minPerson -= 1
+                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "INF" {
+                            self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
+                            self.minPerson -= 1
+                        }
+                    }
+                }else {
+                    for index in 0...self.touristList.count - 1{
+                        if  self.touristList[index].ageGroup == "ADL" {
+                            totalPricePerTour += self.tourList[i].adultPrice  ?? 0.00
+                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "CHD" {
+                            totalPricePerTour += tourList[i].childPrice ?? 0.00
+                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "TDL" {
+                            totalPricePerTour += tourList[i].toodlePrice ?? 0.00
+                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "INF" {
+                            totalPricePerTour += tourList[i].infantPrice ?? 0.00
+                        }
+                    }
+                }
+                 totalPricePerTour += self.minPriceTotal
+            }
+            tourListIndata.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:  self.tourList[i].tourId ?? 0, Currency: self.tourList[i].currency ?? 0 , CurrencyDesc: self.tourList[i].currencyDesc ?? "", TourDateStr:self.tourList[i].tourDateStr ?? "", TourDate:self.tourList[i].tourDate ?? ""  , AllotmenStatus: self.tourList[i].allotmenStatus ?? 0, RemainingAllotment: self.tourList[i].remainingAllotment ?? 0, PriceType: self.tourList[i].priceType ?? 0, MinPax:self.tourList[i].minPax ?? 0.0, TotalPrice: totalPricePerTour, FlatPrice: self.tourList[i].flatPrice ?? 0.0, MinPrice: self.tourList[i].minPrice ?? 0.0, InfantAge1: self.tourList[i].infantAge1 ?? 0.0, InfantAge2: self.tourList[i].infantAge2 ?? 0.0, ToodleAge1: self.tourList[i].toodleAge1 ?? 0.0, ToodleAge2: self.tourList[i].toodleAge2 ?? 0.0, ChildAge1: self.tourList[i].childAge1 ?? 0.0, ChildAge2: self.tourList[i].childAge2 ?? 0.0, PickUpTime:"02:00:00", DetractAdult: self.tourList[i].detractAdult ?? false, DetractChild: self.tourList[i].detractChild ?? false, DetractKid: self.tourList[i].detractKid ?? false, DetractInfant: self.tourList[i].detractInfant ?? false, AskSell: self.tourList[i].askSell ?? false, MeetingPointId: self.tourList[i].meetingPointId ?? 0, Paref: String(self.tourList[i].paref ?? 0) ,TourCode: self.tourList[i].tourCode ?? "", ID: self.tourList[i].ID ?? 0, CREATEDDATE: self.tourList[i].cREATEDDATE ?? "", RefundCondition:"", TicketCount: 0, TourAmount: totalPricePerTour, VoucherNo: self.voucherNo, ExtraTourist: extras, TransferTourist:transfers))
         }
-        
         
         paxes = userDefaultsData.getTouristDetailInfoList() ?? paxes
         
-        let tourSalePost = TourSalePost(Multisale:multisale,PaxTourLists:paxTourList,Payments:self.payments,Paxes:paxes,IsOffline:"0",AllowDublicatePax:"0",TourList:tourList )
+        let tourSalePost = TourSalePost(Multisale:multisale, PaxTourLists:paxTourList, Payments: self.payments, Paxes:paxes, IsOffline:"0", AllowDublicatePax:"0",TourList:tourListIndata )
         
         self.data = "\(tourSalePost.toJSONString(prettyPrint: true) ?? "")"
         print(data)
@@ -362,9 +433,20 @@ class ExcProceedCustomView: UIView{
         
         NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveMobileSale, requestModel: toursaleRequestModel ) { (response: GetSaveMobileSaleResponseModel) in
             
-            if response.Message != "" {
+            if response.IsSuccesful == true {
                 print(response)
+                let alert = UIAlertController(title: "SUCCSESS", message: response.Message ?? "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                if let topVC = UIApplication.getTopViewController() {
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+                
             }else {
+                let alert = UIAlertController(title: "FAILED", message: response.Message ?? "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                if let topVC = UIApplication.getTopViewController() {
+                    topVC.present(alert, animated: true, completion: nil)
+                }
                 
             }
         }

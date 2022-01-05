@@ -51,7 +51,7 @@ class ExcursionViewController: UIViewController {
     var minPerson = 0
     var minPriceTotal = 0.00
     var extraAndTransTotalPrice = 0.00
-    var maxVoucherNo = 0
+    var maxVoucherNo = ""
     var createVoucher = ""
     var counter = 0
     
@@ -96,24 +96,24 @@ class ExcursionViewController: UIViewController {
     
     func showToast(message : String){
         let toastLabel = UILabel(frame: CGRect(x: self.viewExcursionView.frame.size.width/2 - 50, y: self.viewExcursionView.frame.size.height - 200, width: 250, height: 55))
-           toastLabel.numberOfLines = 0
-           toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-           toastLabel.textColor = UIColor.white
-           toastLabel.textAlignment = .center;
-           toastLabel.text = message
-           toastLabel.alpha = 1.0
-           toastLabel.layer.cornerRadius = 10;
-           toastLabel.clipsToBounds  =  true
-           toastLabel.sizeToFit()
-           toastLabel.frame = CGRect( x: toastLabel.frame.minX, y: toastLabel.frame.minY, width:toastLabel.frame.width + 20, height: toastLabel.frame.height + 8)
-
-           self.view.addSubview(toastLabel)
-           UIView.animate(withDuration: 4.0, delay: 0.2, options: .curveEaseOut, animations: {
-               toastLabel.alpha = 0.0
-           }, completion: {(isCompleted) in
-               toastLabel.removeFromSuperview()
-           })
-        }
+        toastLabel.numberOfLines = 0
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds  =  true
+        toastLabel.sizeToFit()
+        toastLabel.frame = CGRect( x: toastLabel.frame.minX, y: toastLabel.frame.minY, width:toastLabel.frame.width + 20, height: toastLabel.frame.height + 8)
+        
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 4.0, delay: 0.2, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {(isCompleted) in
+            toastLabel.removeFromSuperview()
+        })
+    }
     
     func constraintOnSelectfunc(){
         self.viewFooterViewCustomView.viewHeader.addSubview( self.viewFooterViewCustomView.buttonView)
@@ -205,7 +205,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             //  self.viewFooterViewCustomView.buttonHiding(hidePrintbutton: true, hideButton: false)
             if self.viewExcSearchCustomView == nil {
-
+                
                 // self.lastUIView.removeFromSuperview()
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcAddCustomView?.isHidden = true
@@ -251,8 +251,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     if response.count > 0 {
                         //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                         self.paxesList = response
-                        userDefaultsData.saveHotelId(hotelId: 0)
-                        userDefaultsData.saveMarketId(marketId: 0)
+                        /* userDefaultsData.saveHotelId(hotelId: 0)
+                         userDefaultsData.saveMarketId(marketId: 0)*/
                     }else{
                         print("data has not recived")
                     }
@@ -424,27 +424,44 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
             
             //Max Voucher
-   
+            
             // Create VOucher
+            var shortyear = ""
             let year =  Calendar.current.component(.year, from: Date())
+            shortyear = String(year)
+            shortyear = shortyear.replacingOccurrences(of: "20", with: "", options: String.CompareOptions.literal, range: nil)
+            print(shortyear)
             let month = Calendar.current.component(.month, from: Date())
             let day = Calendar.current.component(.day, from: Date())
             let hour = Calendar.current.component(.hour, from: Date())
             let minute = Calendar.current.component(.minute, from: Date())
             
+            let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+            print(mergeDate)
+            
             let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
             NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
                 
                 if response != 0 {
+                    self.counter = 0
                     print(response)
-                    self.maxVoucherNo = response
-                         if userDefaultsData.getDay() != day {
-                        self.counter = 0
-                        self.createVoucher = "\(userDefaultsData.getGuideId())\(year)\(month)\(day)\(hour)\(minute)\(self.maxVoucherNo + self.counter)"
+                    self.maxVoucherNo = String(response)
+                    let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                    let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                    self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                    print(self.maxVoucherNo)
+                    if let maxVoucherInt = Int(self.maxVoucherNo) {
+                        print(maxVoucherInt)
+                        self.counter = maxVoucherInt
+                        self.counter += 1
+                    }
+                    let addedVoucher = String(format: "%02d", self.counter)
+                    if userDefaultsData.getDay() != day {
+                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(addedVoucher)"
                         userDefaultsData.saveDay(day: day)
                     }else if userDefaultsData.getDay() == day {
                         self.counter = 1
-                        self.createVoucher = "\(userDefaultsData.getGuideId())\(year)\(month)\(day)\(hour)\(minute)\(self.maxVoucherNo + self.counter)"
+                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(addedVoucher)"
                         userDefaultsData.saveDay(day: day)
                     }
                     print(self.createVoucher)
@@ -452,7 +469,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     print("error")
                 }
             }
- 
+            
             ///
             self.viewFooterViewCustomView.labelAmount.isHidden = true
             self.viewFooterViewCustomView.buttonSaveButton.isHidden = true
@@ -484,6 +501,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.voucherNo = self.createVoucher
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
@@ -583,8 +601,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                         self.paxesList = response
                         
-                        userDefaultsData.saveHotelId(hotelId: 0)
-                        userDefaultsData.saveMarketId(marketId: 0)
+                        /* userDefaultsData.saveHotelId(hotelId: 0)
+                         userDefaultsData.saveMarketId(marketId: 0)*/
                     }else{
                         print("data has not recived")
                     }
@@ -751,34 +769,52 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.viewSendVoucher.isUserInteractionEnabled = true
             self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
             
-           // Create Voucher
+            // Create Voucher
+            
+            // Create VOucher
+            var shortyear = ""
             let year =  Calendar.current.component(.year, from: Date())
+            shortyear = String(year)
+            shortyear = shortyear.replacingOccurrences(of: "20", with: "", options: String.CompareOptions.literal, range: nil)
+            print(shortyear)
             let month = Calendar.current.component(.month, from: Date())
             let day = Calendar.current.component(.day, from: Date())
             let hour = Calendar.current.component(.hour, from: Date())
             let minute = Calendar.current.component(.minute, from: Date())
             
-            //get max voucher
-        let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+            let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+            print(mergeDate)
+            
+            let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
             NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
+                
                 if response != 0 {
+                    self.counter = 0
                     print(response)
-                    self.maxVoucherNo = response
+                    self.maxVoucherNo = String(response)
+                    let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                    let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                    self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                    print(self.maxVoucherNo)
+                    if let maxVoucherInt = Int(self.maxVoucherNo) {
+                        print(maxVoucherInt)
+                        self.counter = maxVoucherInt
+                        self.counter += 1
+                    }
+                    let addedVoucher = String(format: "%02d", self.counter)
                     if userDefaultsData.getDay() != day {
-                        self.counter = 0
-                        self.createVoucher = "\(userDefaultsData.getGuideId())\(year)\(month)\(day)\(hour)\(minute)\(self.maxVoucherNo + self.counter)"
+                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(addedVoucher)"
                         userDefaultsData.saveDay(day: day)
                     }else if userDefaultsData.getDay() == day {
                         self.counter = 1
-                        self.createVoucher = "\(userDefaultsData.getGuideId())\(year)\(month)\(day)\(hour)\(minute)\(self.maxVoucherNo + self.counter)"
+                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(addedVoucher)"
                         userDefaultsData.saveDay(day: day)
                     }
+                    print(self.createVoucher)
                 }else {
                     print("error")
                 }
             }
-            
-            print(createVoucher)
             self.buttonhide()
             self.viewFooterViewCustomView.buttonView.isHidden = true
             self.viewFooterViewCustomView.printButton.isHidden = false
@@ -810,6 +846,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice
+                    self.viewExcProceedCustomView?.voucherNo = self.createVoucher
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in
@@ -942,16 +979,16 @@ extension ExcursionViewController : ExcPaxPageDelegate {
             self.viewFooterViewCustomView.buttonView.isHidden = false
             self.viewPaxCustomView?.isHidden = true
             if viewExcSelectCustomView == nil{
-            UIView.animate(withDuration: 0, animations: { [self] in
-                self.viewExcSelectCustomView = ExcSelectCustomView()
-                self.viewExcSelectCustomView?.excSelectDelegate = self
-                self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
-                self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
-            }, completion: { (finished) in
-                if finished{
-                    
-                }
-            })
+                UIView.animate(withDuration: 0, animations: { [self] in
+                    self.viewExcSelectCustomView = ExcSelectCustomView()
+                    self.viewExcSelectCustomView?.excSelectDelegate = self
+                    self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
+                    self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
+                }, completion: { (finished) in
+                    if finished{
+                        
+                    }
+                })
             }else{
                 self.viewExcSelectCustomView?.isHidden = false
                 self.viewPaxCustomView?.isHidden = true

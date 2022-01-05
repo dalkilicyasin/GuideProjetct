@@ -243,11 +243,11 @@ public class TourList : Mappable {
     var TransferTourist : [Transfers]?
     var RefundCondition : String?
     var TicketCount : Int?
-    var TourAmount : Int?
+    var TourAmount : Double?
     var VoucherNo : String?
     
     
-    public init( id : Int, AdultAmount : Double, AdultCount : Int, AdultPrice : Double, ChildAmount : Double, ChildCount : Int, ChildPrice : Double, InfantAmount : Double, InfantCount : Int, InfantPrice : Double, ToodleAmount : Double, ToodleCount : Int, ToodlePrice : Double, MatchId : Int, MarketId : Int, PromotionId : Int, PoolType : Int, PriceId : Int, PlanId : Int, TourType : Int, TourName : String, TourId : Int, Currency : Int, CurrencyDesc : String, TourDateStr : String, TourDate : String, AllotmenStatus : Int, RemainingAllotment : Int, PriceType : Int, MinPax : Double, TotalPrice : Double, FlatPrice : Double, MinPrice : Double, InfantAge1 : Double, InfantAge2 : Double, ToodleAge1 : Double, ToodleAge2 : Double, ChildAge1 : Double, ChildAge2 : Double, PickUpTime : String, DetractAdult : Bool, DetractChild : Bool, DetractKid : Bool, DetractInfant : Bool, AskSell : Bool, MeetingPointId : Int, Paref : String, TourCode : String, ID : Int, CREATEDDATE : String, RefundCondition : String,TicketCount : Int, TourAmount : Int, VoucherNo : String, ExtraTourist : [Extras], TransferTourist : [Transfers]) {
+    public init( id : Int, AdultAmount : Double, AdultCount : Int, AdultPrice : Double, ChildAmount : Double, ChildCount : Int, ChildPrice : Double, InfantAmount : Double, InfantCount : Int, InfantPrice : Double, ToodleAmount : Double, ToodleCount : Int, ToodlePrice : Double, MatchId : Int, MarketId : Int, PromotionId : Int, PoolType : Int, PriceId : Int, PlanId : Int, TourType : Int, TourName : String, TourId : Int, Currency : Int, CurrencyDesc : String, TourDateStr : String, TourDate : String, AllotmenStatus : Int, RemainingAllotment : Int, PriceType : Int, MinPax : Double, TotalPrice : Double, FlatPrice : Double, MinPrice : Double, InfantAge1 : Double, InfantAge2 : Double, ToodleAge1 : Double, ToodleAge2 : Double, ChildAge1 : Double, ChildAge2 : Double, PickUpTime : String, DetractAdult : Bool, DetractChild : Bool, DetractKid : Bool, DetractInfant : Bool, AskSell : Bool, MeetingPointId : Int, Paref : String, TourCode : String, ID : Int, CREATEDDATE : String, RefundCondition : String,TicketCount : Int, TourAmount : Double, VoucherNo : String, ExtraTourist : [Extras], TransferTourist : [Transfers]) {
         
         self.id = id
         self.AdultAmount = AdultAmount

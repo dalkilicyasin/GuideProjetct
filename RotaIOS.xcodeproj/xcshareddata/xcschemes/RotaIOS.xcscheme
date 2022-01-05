@@ -20,6 +20,20 @@
                ReferencedContainer = "container:RotaIOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BF44C88C263FF80200238035"
+               BuildableName = "RotaIOSTests.xctest"
+               BlueprintName = "RotaIOSTests"
+               ReferencedContainer = "container:RotaIOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

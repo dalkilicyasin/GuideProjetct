@@ -265,7 +265,6 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                 if let topVC = UIApplication.getTopViewController() {
                     topVC.present(alert, animated: true, completion: nil)
                 }
-                
             }
             let filter = excursionList.filter{ $0.tourId == tourid}
             // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}

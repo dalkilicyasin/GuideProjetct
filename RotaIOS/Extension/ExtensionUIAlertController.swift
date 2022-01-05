@@ -17,7 +17,7 @@ extension UIAlertController {
     }
 */
     func isValidFlatAMount(_ password: String) -> Bool {
-        return password.count > 0 && password.rangeOfCharacter(from: .whitespacesAndNewlines) == nil
+        return password.count >= 1 && password.rangeOfCharacter(from: .whitespacesAndNewlines) == nil
     }
 
     @objc func textDidChangeInLoginAlert() {

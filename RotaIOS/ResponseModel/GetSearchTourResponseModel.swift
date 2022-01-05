@@ -28,7 +28,7 @@ public class GetSearchTourResponseModel : Mappable, Decodable, Encodable{
     var tourDateStr : String?
     var tourDateShort : String?
     var allotmenStatus : Int?
-    var remainingAllotment : String?
+    var remainingAllotment : Int?
     var priceType : Int?
     var priceTypeDesc : String?
     var adultPrice : Double?
@@ -59,7 +59,7 @@ public class GetSearchTourResponseModel : Mappable, Decodable, Encodable{
     var paref : Int?
     var tourCode : String?
     var saleChannel : String?
-    var iD : Int?
+    var ID : Int?
     var title : String?
     var cREATEDDATE : String?
     var mODIFIEDDATE : String?
@@ -118,7 +118,7 @@ public class GetSearchTourResponseModel : Mappable, Decodable, Encodable{
         paref <- map["Paref"]
         tourCode <- map["TourCode"]
         saleChannel <- map["SaleChannel"]
-        iD <- map["ID"]
+        ID <- map["ID"]
         title <- map["Title"]
         cREATEDDATE <- map["CREATEDDATE"]
         mODIFIEDDATE <- map["MODIFIEDDATE"]
