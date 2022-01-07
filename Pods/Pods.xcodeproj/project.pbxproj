@@ -4191,6 +4191,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0.1;
 				MODULEMAP_FILE = "Target Support Files/Pods-RotaIOSTests/Pods-RotaIOSTests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -4420,6 +4421,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
+				MARKETING_VERSION = 1.0.1;
 				MODULEMAP_FILE = "Target Support Files/Pods-RotaIOSTests/Pods-RotaIOSTests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";

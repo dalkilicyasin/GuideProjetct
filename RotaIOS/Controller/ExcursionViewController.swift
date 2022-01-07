@@ -57,6 +57,7 @@ class ExcursionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         userDefaultsData.saveTourList(tour: [])
         userDefaultsData.savePaxesList(tour: [])
         self.viewAppointMentBarCutomView.homePageTappedDelegate = self
