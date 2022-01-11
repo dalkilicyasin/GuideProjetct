@@ -72,7 +72,7 @@ class ExcProceedCustomView: UIView{
     let date = Date()
     var currentDate = ""
     var voucherNo = ""
-    
+    var pickUpTimeProceedView = ""
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()

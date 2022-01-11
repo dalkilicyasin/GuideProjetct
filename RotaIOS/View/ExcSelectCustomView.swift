@@ -244,22 +244,25 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                 alert.addTextField {
                     $0.placeholder = "Pick Up Time"
                     $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
-                   }
+                }
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-                  let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
-                      guard let flatamount = alert.textFields?[0].text
-                       
-                          else { return } // Should never happen
+                let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
+                    guard let flatamount = alert.textFields?[0].text
+                            
+                    else { return } // Should never happen
                     
                     self.pickUpTime = "\(flatamount):00"
                     
                     if let index = self.excursionList.firstIndex(where: {$0 === tempPaxes}){
                         self.pickUpTimeList[index] = self.pickUpTime
                     }
+                    if let indexSaveTourList = self.savesTourList.firstIndex(where: { $0 === tempPaxes}) {
+                        self.savesTourList[indexSaveTourList].pickUpTime = self.pickUpTime
+                    }
                     self.tableView.reloadData()
-                  }
+                }
                 
-              //  flatAmountAction.isEnabled = false
+                //  flatAmountAction.isEnabled = false
                 alert.addAction(flatAmountAction)
                 
                 if let topVC = UIApplication.getTopViewController() {

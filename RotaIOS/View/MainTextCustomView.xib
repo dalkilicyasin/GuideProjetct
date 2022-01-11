@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -55,9 +55,9 @@
                         <constraint firstItem="yif-Gl-p73" firstAttribute="top" secondItem="d0R-ja-l3R" secondAttribute="top" constant="20" id="2Dc-Jo-0Sk"/>
                         <constraint firstItem="JuH-VT-Rfg" firstAttribute="top" secondItem="d0R-ja-l3R" secondAttribute="top" id="KVW-Yb-NOu"/>
                         <constraint firstAttribute="bottom" secondItem="HUK-0q-wHc" secondAttribute="bottom" id="MKg-ev-SYf"/>
-                        <constraint firstItem="yif-Gl-p73" firstAttribute="leading" secondItem="JuH-VT-Rfg" secondAttribute="trailing" priority="252" constant="10" id="Maj-nD-tKy"/>
+                        <constraint firstItem="yif-Gl-p73" firstAttribute="leading" secondItem="JuH-VT-Rfg" secondAttribute="trailing" constant="10" id="Maj-nD-tKy"/>
                         <constraint firstItem="HUK-0q-wHc" firstAttribute="leading" secondItem="d0R-ja-l3R" secondAttribute="leading" constant="5" id="SVa-BO-cqf"/>
-                        <constraint firstAttribute="bottom" secondItem="JuH-VT-Rfg" secondAttribute="bottom" id="sev-ev-gJW"/>
+                        <constraint firstAttribute="bottom" secondItem="JuH-VT-Rfg" secondAttribute="bottom" priority="252" id="sev-ev-gJW"/>
                         <constraint firstAttribute="trailing" secondItem="HUK-0q-wHc" secondAttribute="trailing" id="viX-xJ-kHu"/>
                         <constraint firstItem="JuH-VT-Rfg" firstAttribute="leading" secondItem="d0R-ja-l3R" secondAttribute="leading" constant="10" id="wSe-TC-M6z"/>
                         <constraint firstItem="HUK-0q-wHc" firstAttribute="top" secondItem="d0R-ja-l3R" secondAttribute="top" id="yYJ-gb-5Uo"/>
