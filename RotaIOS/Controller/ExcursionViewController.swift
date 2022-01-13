@@ -54,6 +54,7 @@ class ExcursionViewController: UIViewController {
     var maxVoucherNo = ""
     var createVoucher = ""
     var counter = 0
+    var addedVoucher = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -441,35 +442,38 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             print(mergeDate)
             
             let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-            NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
-                
-                if response != 0 {
-                    self.counter = 0
-                    print(response)
-                    self.maxVoucherNo = String(response)
-                    let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
-                    let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
-                    self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
-                    print(self.maxVoucherNo)
-                    if let maxVoucherInt = Int(self.maxVoucherNo) {
-                        print(maxVoucherInt)
-                        self.counter = maxVoucherInt
-                        self.counter += 1
+         
+                NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
+                    if response != 0 {
+                        self.counter = 0
+                        print(response)
+                        self.maxVoucherNo = String(response)
+                        let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                        let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                        self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                        print(self.maxVoucherNo)
+                        if let maxVoucherInt = Int(self.maxVoucherNo) {
+                            print(maxVoucherInt)
+                            self.counter = maxVoucherInt
+                            self.counter += 1
+                        }
+                        self.addedVoucher = String(format: "%02d", self.counter)
+                        if userDefaultsData.getDay() != day {
+                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                            userDefaultsData.saveDay(day: day)
+                        }else if userDefaultsData.getDay() == day {
+                            self.counter = 1
+                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                            userDefaultsData.saveDay(day: day)
+                        }
+                        print(self.createVoucher)
+                        self.viewExcProceedCustomView?.voucherNo = self.createVoucher
+                        userDefaultsData.saveMaxVoucher(voucher: self.createVoucher)
+                       
+                    }else {
+                        print("error")
                     }
-                    let addedVoucher = String(format: "%02d", self.counter)
-                    if userDefaultsData.getDay() != day {
-                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(addedVoucher)"
-                        userDefaultsData.saveDay(day: day)
-                    }else if userDefaultsData.getDay() == day {
-                        self.counter = 1
-                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(addedVoucher)"
-                        userDefaultsData.saveDay(day: day)
-                    }
-                    print(self.createVoucher)
-                }else {
-                    print("error")
                 }
-            }
             
             ///
             self.viewFooterViewCustomView.labelAmount.isHidden = true
@@ -501,6 +505,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView = ExcProceedCustomView()
                     self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.voucherNo = self.createVoucher
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice
@@ -770,8 +775,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.viewSendVoucher.isUserInteractionEnabled = true
             self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
             
-            // Create Voucher
-            
             // Create VOucher
             var shortyear = ""
             let year =  Calendar.current.component(.year, from: Date())
@@ -787,35 +790,40 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             print(mergeDate)
             
             let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-            NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
-                
-                if response != 0 {
-                    self.counter = 0
-                    print(response)
-                    self.maxVoucherNo = String(response)
-                    let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
-                    let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
-                    self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
-                    print(self.maxVoucherNo)
-                    if let maxVoucherInt = Int(self.maxVoucherNo) {
-                        print(maxVoucherInt)
-                        self.counter = maxVoucherInt
-                        self.counter += 1
+         
+                NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
+                    if response != 0 {
+                        self.counter = 0
+                        print(response)
+                        self.maxVoucherNo = String(response)
+                        let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                        let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                        self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                        print(self.maxVoucherNo)
+                        if let maxVoucherInt = Int(self.maxVoucherNo) {
+                            print(maxVoucherInt)
+                            self.counter = maxVoucherInt
+                            self.counter += 1
+                        }
+                        self.addedVoucher = String(format: "%02d", self.counter)
+                        if userDefaultsData.getDay() != day {
+                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                            userDefaultsData.saveDay(day: day)
+                        }else if userDefaultsData.getDay() == day {
+                            self.counter = 1
+                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                            userDefaultsData.saveDay(day: day)
+                        }
+                        print(self.createVoucher)
+                        self.viewExcProceedCustomView?.voucherNo = self.createVoucher
+                        userDefaultsData.saveMaxVoucher(voucher: self.createVoucher)
+                       
+                    }else {
+                        print("error")
                     }
-                    let addedVoucher = String(format: "%02d", self.counter)
-                    if userDefaultsData.getDay() != day {
-                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(addedVoucher)"
-                        userDefaultsData.saveDay(day: day)
-                    }else if userDefaultsData.getDay() == day {
-                        self.counter = 1
-                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(addedVoucher)"
-                        userDefaultsData.saveDay(day: day)
-                    }
-                    print(self.createVoucher)
-                }else {
-                    print("error")
                 }
-            }
+            
+            ///
             self.buttonhide()
             self.viewFooterViewCustomView.buttonView.isHidden = true
             self.viewFooterViewCustomView.printButton.isHidden = false
@@ -846,8 +854,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice)
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice
-                    self.viewExcProceedCustomView?.voucherNo = self.createVoucher
+                   
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in

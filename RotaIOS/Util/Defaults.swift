@@ -34,9 +34,66 @@ public class Defaults{
         case TotalPrice
         case SaveDay
         case TouristDetailInfoList
+        case Data
+        case MaxVoucher
+        case TourSalePost
     }
     
    public init(){}
+    //saveMaxVoucher
+    public func saveDay(day:Int){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .SaveDay)
+        preferences.set(day, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getDay() -> Int{
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .SaveDay)
+        if preferences.object(forKey: currentLanguageKey) == nil {
+            return -1
+        } else {
+            return preferences.integer(forKey: currentLanguageKey)
+        }
+    }
+    
+    // TourSaleSave
+    func saveTourSalePost(tour:[TourSalePost]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .TourSalePost))
+            preferences.synchronize()
+        }
+    }
+    
+    func getTourSalePost() -> [TourSalePost]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .TourSalePost)) as? Data {
+            if let loadedTourList = try? decoder.decode([TourSalePost].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
+    }
+    
+    //SaveData
+    public func saveData(id:[String]){
+        let preferences = UserDefaults.standard
+        preferences.set( id , forKey:getIdentifier(type: .Data))
+        preferences.synchronize()
+    }
+    
+    public func getData() -> [String]! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .Data)) == nil {
+            return nil
+        }
+        let data: [String] = preferences.value(forKey: getIdentifier(type: .Data)) as! [String]
+        return data
+    }
     
     //TouristDetailInfoList
     
@@ -62,24 +119,21 @@ public class Defaults{
     
     //VoucherNodatecheck
     
-    public func saveDay(day:Int){
+    public func saveMaxVoucher(voucher:String){
         let preferences = UserDefaults.standard
-        let currentLanguageKey = getIdentifier(type: .SaveDay)
-        preferences.set(day, forKey: currentLanguageKey)
+        let currentLanguageKey = getIdentifier(type: .MaxVoucher)
+        preferences.set(voucher, forKey: currentLanguageKey)
         preferences.synchronize()
     }
     
-    public func getDay() -> Int{
+    public func getMaxVoucher() -> String! {
         let preferences = UserDefaults.standard
-        let currentLanguageKey = getIdentifier(type: .SaveDay)
-        if preferences.object(forKey: currentLanguageKey) == nil {
-            return -1
-        } else {
-            return preferences.integer(forKey: currentLanguageKey)
+        if preferences.object(forKey: getIdentifier(type: .MaxVoucher)) == nil {
+            return nil
         }
+        let data:String = preferences.value(forKey: getIdentifier(type: .MaxVoucher)) as! String
+        return data
     }
-    
-    
     
     // Save Total Price
     public func saveTotalPrice(totalPrice: Double){
@@ -492,6 +546,12 @@ public class Defaults{
             return "SaveDay"
         case .TouristDetailInfoList:
             return "TouristDetailInfoList"
+        case .Data:
+            return "Data"
+        case .MaxVoucher:
+            return "MaxVoucher"
+        case .TourSalePost:
+            return "TourSalePost"
         }
     }
 }

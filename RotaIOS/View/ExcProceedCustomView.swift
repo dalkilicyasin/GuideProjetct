@@ -41,6 +41,7 @@ class ExcProceedCustomView: UIView{
     var selectedCurrencyType = ""
     var selectedPaymentType = ""
     var data = ""
+    var offlineDataList : [TourSalePost] = []
     // TourList
     var tourList : [GetSearchTourResponseModel] = []
     //currencyMenu
@@ -287,6 +288,8 @@ class ExcProceedCustomView: UIView{
             self.discount = discount
         }
         self.viewDicountCalculate.mainText.text = String(self.discount)
+        self.balanceAmount = self.balanceAmount - self.discount
+        self.viewBalanced.mainText.text = String(self.balanceAmount)
     }
     
     @IBAction func addPaymentButtonTapped(_ sender: Any) {
@@ -303,7 +306,7 @@ class ExcProceedCustomView: UIView{
             if self.savedTotalAmount < 0 {
                 self.savedTotalAmount = -self.savedTotalAmount
             }
-            self.balanceAmount = self.totalAmount - self.savedTotalAmount - self.discount
+            self.balanceAmount = self.totalAmount - self.savedTotalAmount
             self.totalAmount = self.balanceAmount
             if self.balanceAmount < 0 {
                 self.balanceAmount = 0.00
@@ -419,36 +422,47 @@ class ExcProceedCustomView: UIView{
                 }
                  totalPricePerTour += self.minPriceTotal
             }
+            
             tourListIndata.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:  self.tourList[i].tourId ?? 0, Currency: self.tourList[i].currency ?? 0 , CurrencyDesc: self.tourList[i].currencyDesc ?? "", TourDateStr:self.tourList[i].tourDateStr ?? "", TourDate:self.tourList[i].tourDate ?? ""  , AllotmenStatus: self.tourList[i].allotmenStatus ?? 0, RemainingAllotment: self.tourList[i].remainingAllotment ?? 0, PriceType: self.tourList[i].priceType ?? 0, MinPax:self.tourList[i].minPax ?? 0.0, TotalPrice: totalPricePerTour, FlatPrice: self.tourList[i].flatPrice ?? 0.0, MinPrice: self.tourList[i].minPrice ?? 0.0, InfantAge1: self.tourList[i].infantAge1 ?? 0.0, InfantAge2: self.tourList[i].infantAge2 ?? 0.0, ToodleAge1: self.tourList[i].toodleAge1 ?? 0.0, ToodleAge2: self.tourList[i].toodleAge2 ?? 0.0, ChildAge1: self.tourList[i].childAge1 ?? 0.0, ChildAge2: self.tourList[i].childAge2 ?? 0.0, PickUpTime:"02:00:00", DetractAdult: self.tourList[i].detractAdult ?? false, DetractChild: self.tourList[i].detractChild ?? false, DetractKid: self.tourList[i].detractKid ?? false, DetractInfant: self.tourList[i].detractInfant ?? false, AskSell: self.tourList[i].askSell ?? false, MeetingPointId: self.tourList[i].meetingPointId ?? 0, Paref: String(self.tourList[i].paref ?? 0) ,TourCode: self.tourList[i].tourCode ?? "", ID: self.tourList[i].ID ?? 0, CREATEDDATE: self.tourList[i].cREATEDDATE ?? "", RefundCondition:"", TicketCount: 0, TourAmount: totalPricePerTour, VoucherNo: self.voucherNo, ExtraTourist: extras, TransferTourist:transfers))
         }
         
         paxes = userDefaultsData.getTouristDetailInfoList() ?? paxes
         
-        let tourSalePost = TourSalePost(Multisale:multisale, PaxTourLists:paxTourList, Payments: self.payments, Paxes:paxes, IsOffline:"0", AllowDublicatePax:"0",TourList:tourListIndata )
+        print(self.data)
         
-        self.data = "\(tourSalePost.toJSONString(prettyPrint: true) ?? "")"
-        print(data)
-        
-        let toursaleRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
-        
-        NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveMobileSale, requestModel: toursaleRequestModel ) { (response: GetSaveMobileSaleResponseModel) in
+        if Connectivity.isConnectedToInternet {
+            print("connect")
             
-            if response.IsSuccesful == true {
-                print(response)
-                let alert = UIAlertController(title: "SUCCSESS", message: response.Message ?? "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                if let topVC = UIApplication.getTopViewController() {
-                    topVC.present(alert, animated: true, completion: nil)
+            let tourSalePost = TourSalePost(Multisale:multisale, PaxTourLists:paxTourList, Payments: self.payments, Paxes:paxes, IsOffline:"0", AllowDublicatePax:"0",TourList:tourListIndata )
+            
+            self.data = "\(tourSalePost.toJSONString(prettyPrint: true) ?? "")"
+          
+            let toursaleRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
+            NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveMobileSale, requestModel: toursaleRequestModel ) { (response: GetSaveMobileSaleResponseModel) in
+                if response.IsSuccesful == true {
+                    print(response)
+                    let alert = UIAlertController(title: "SUCCSESS", message: response.Message ?? "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    if let topVC = UIApplication.getTopViewController() {
+                        topVC.present(alert, animated: true, completion: nil)
+                    }
+                    
+                }else {
+                    let alert = UIAlertController(title: "FAILED", message: response.Message ?? "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    if let topVC = UIApplication.getTopViewController() {
+                        topVC.present(alert, animated: true, completion: nil)
+                    }
                 }
-                
-            }else {
-                let alert = UIAlertController(title: "FAILED", message: response.Message ?? "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                if let topVC = UIApplication.getTopViewController() {
-                    topVC.present(alert, animated: true, completion: nil)
-                }
-                
             }
+            
+        } else {
+            
+            let tourSalePost = TourSalePost(Multisale:multisale, PaxTourLists:paxTourList, Payments: self.payments, Paxes:paxes, IsOffline:"1", AllowDublicatePax:"0",TourList:tourListIndata )
+            
+            self.offlineDataList.append(tourSalePost)
+            userDefaultsData.saveTourSalePost(tour: self.offlineDataList)
+            
         }
     }
 }

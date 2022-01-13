@@ -25,7 +25,7 @@ struct GetSaveMobileSaleResponseModel : Mappable {
     }
 }
 
-class TourSalePost : Mappable {
+class TourSalePost : Mappable, Decodable, Encodable {
     var Multisale : Multisale?
     var PaxTourLists : [PaxTourList]?
     var Payments : [Payment]?
@@ -63,7 +63,7 @@ class TourSalePost : Mappable {
 
 // TourSave classes
 
-public class Multisale : Mappable {
+public class Multisale : Mappable, Decodable, Encodable {
     var CouponAmount : Int?
     var CouponId : Int?
     var CurrencyId : Int?
@@ -121,7 +121,7 @@ public class Multisale : Mappable {
     }
 }
 
-public class PaxTourList : Mappable {
+public class PaxTourList : Mappable, Decodable, Encodable {
     var AgeGroup : String?
     var Gender :  String?
     var ID :  String?
@@ -146,7 +146,7 @@ public class PaxTourList : Mappable {
     }
 }
 
-public class Payment : Mappable {
+public class Payment : Mappable, Decodable, Encodable {
     var ByDesc : String?
     var ById :  String?
     var ConvertedCurrency :  String?
@@ -190,7 +190,7 @@ public class Payment : Mappable {
     }
 }
 
-public class TourList : Mappable {
+public class TourList : Mappable, Decodable, Encodable {
     var id : Int?
     var AdultAmount : Double?
     var AdultCount : Int?

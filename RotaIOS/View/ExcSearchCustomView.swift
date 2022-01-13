@@ -96,6 +96,14 @@ class ExcSearchCustomView : UIView {
         
         if Connectivity.isConnectedToInternet {
              print("Connected")
+            if userDefaultsData.getData() != nil {
+                let alert = UIAlertController.init(title: "Warning", message: "Please send Offline Sales first", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                if let topVC = UIApplication.getTopViewController() {
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+                return
+            }
             let getMarketRequestModel = GetGuideMarketRequestModel.init(userId: userDefaultsData.getGuideId())
             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetGuideMarkets, method: .get, parameters: getMarketRequestModel.requestPathString()) { (response : [GetGuideMarketResponseModel] ) in
                 if response.count > 0 {

@@ -17,6 +17,13 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
     let nameList = ["Operations","Views", "Reports"]
     let mainPageList = [["Tasks","Excursion Sale","Ind. Shop Appoinment","Cancel Voucher","Send Offline Sales"],["My Tour Sale","My Shopping Sales","Birthday","Speaking Hours","Documents","Announcement"],["Z Report","Daily Sale/Refund Report","Z Report Preview"]]
     var sectionData : [Int : [String]] = [:]
+    var oflineDataList : [String] = []
+    var counter = 0
+    var maxVoucherNo = ""
+    var addedVoucher = ""
+    var createVoucher = ""
+    var offlineTourSalePostList : [TourSalePost] = []
+    var tourList : [TourList] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,7 +73,94 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 case 3 :
                     viewController = CancelVoucherViewController()
                 case 4 :
-                    viewController = OfflineSalesViewController()
+                    // Create VOucher
+                    self.offlineTourSalePostList = userDefaultsData.getTourSalePost() ?? self.offlineTourSalePostList
+                    var shortyear = ""
+                    let year =  Calendar.current.component(.year, from: Date())
+                    shortyear = String(year)
+                    shortyear = shortyear.replacingOccurrences(of: "20", with: "", options: String.CompareOptions.literal, range: nil)
+                    print(shortyear)
+                    let month = Calendar.current.component(.month, from: Date())
+                    let day = Calendar.current.component(.day, from: Date())
+                    let hour = Calendar.current.component(.hour, from: Date())
+                    let minute = Calendar.current.component(.minute, from: Date())
+                    
+                    let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+                    print(mergeDate)
+                    
+                    let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+                 
+                        NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
+                            if response != 0 {
+                                self.counter = 0
+                                print(response)
+                                self.maxVoucherNo = String(response)
+                                let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                                let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                                self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                                print(self.maxVoucherNo)
+                                if let maxVoucherInt = Int(self.maxVoucherNo) {
+                                    print(maxVoucherInt)
+                                    self.counter = maxVoucherInt
+                                }
+                                
+                                for i in 0...self.offlineTourSalePostList.count - 1 {
+                                    self.counter += 1
+                                    self.addedVoucher = String(format: "%02d", self.counter)
+                                    if userDefaultsData.getDay() != day {
+                                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                                        userDefaultsData.saveDay(day: day)
+                                    }else if userDefaultsData.getDay() == day {
+                                        self.counter = 1
+                                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                                        userDefaultsData.saveDay(day: day)
+                                    }
+                                    print(self.createVoucher)
+                                    
+                                    self.tourList = self.offlineTourSalePostList[i].TourList ?? self.tourList
+                                    
+                                    for i in 0...self.tourList.count {
+                                        self.tourList[i].VoucherNo = self.createVoucher
+                                    }
+                                    self.offlineTourSalePostList[i].TourList = self.tourList
+                                }
+                                
+                                for i in 0...self.offlineTourSalePostList.count - 1{
+                                    let data = "\(self.offlineTourSalePostList[i].toJSONString(prettyPrint: true) ?? "")"
+                                    self.oflineDataList.append(data)
+                                }
+                                
+                                if self.oflineDataList.count > 0 {
+                                    for i in 0...self.oflineDataList.count - 1 {
+                                        let toursaleRequestModel = GetSaveMobileSaleRequestModel.init(data: self.oflineDataList[i])
+                                        NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveMobileSale, requestModel: toursaleRequestModel ) { (response: GetSaveMobileSaleResponseModel) in
+                                            if response.IsSuccesful == true {
+                                                print(response)
+                                                let alert = UIAlertController(title: "SUCCSESS", message: response.Message ?? "", preferredStyle: .alert)
+                                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                                if let topVC = UIApplication.getTopViewController() {
+                                                    topVC.present(alert, animated: true, completion: nil)
+                                                }
+                                                
+                                            }else {
+                                                let alert = UIAlertController(title: "FAILED", message: response.Message ?? "", preferredStyle: .alert)
+                                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                                if let topVC = UIApplication.getTopViewController() {
+                                                    topVC.present(alert, animated: true, completion: nil)
+                                                }
+                                                
+                                            }
+                                        }
+                                    }
+                                    self.oflineDataList.removeAll()
+                                    userDefaultsData.saveTourSalePost(tour: [])
+                                }
+                               
+                            }else {
+                                print("error")
+                            }
+                        }
+                    //
                 default :
                     print("selected")
                 }
@@ -113,8 +207,7 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                 case 5 :
                     viewController = MyTourSaleViewController()
                 default :
-                    print("selected")
-                    
+                    print("selected") 
                 }
                 topVC.otiPushViewController(viewController: viewController)
             }
