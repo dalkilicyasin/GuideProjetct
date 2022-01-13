@@ -96,7 +96,7 @@ class ExcSearchCustomView : UIView {
         
         if Connectivity.isConnectedToInternet {
              print("Connected")
-            if userDefaultsData.getData() != nil {
+            if userDefaultsData.getTourSalePost() != nil {
                 let alert = UIAlertController.init(title: "Warning", message: "Please send Offline Sales first", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 if let topVC = UIApplication.getTopViewController() {
