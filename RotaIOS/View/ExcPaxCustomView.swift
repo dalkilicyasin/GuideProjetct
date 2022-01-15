@@ -227,25 +227,28 @@ extension ExcPaxCustomView : UISearchBarDelegate {
 extension ExcPaxCustomView : TempAddPaxesListDelegate {
     func tempAddList(listofpaxes: [Paxes], manuellist: [String], changeValue: Int) {
         self.manuelAddedPaxesList.removeAll()
+        let currentYear =  Calendar.current.component(.year, from: Date())
         if self.tempValue != changeValue {
             self.tempValue = changeValue
             self.sendingListofPaxes = listofpaxes
             userDefaultsData.saveManuelandHousePaxesList(tour: self.sendingListofPaxes)
             if self.sendingListofPaxes.count > 0 {
                 for i in 0...self.sendingListofPaxes.count - 1 {
-                    if let birtdate =  Int(self.sendingListofPaxes[i].pAX_BIRTHDAY) {
-                        self.manuelPaxAge = birtdate
-                        if self.manuelPaxAge > 0 &&  self.manuelPaxAge < 2{
+                    if let birtdate =  self.sendingListofPaxes[i].pAX_BIRTHDAY {
+                        let year = Int(birtdate.suffix(4))
+                        self.manuelPaxAge = currentYear - (year ?? 0)
+                        if self.manuelPaxAge >= 0 &&  self.manuelPaxAge < 2 {
                             self.manuelPaxAgeGroup = "INF"
-                        }else if self.manuelPaxAge > 2 &&  self.manuelPaxAge < 6{
+                        }else if self.manuelPaxAge >= 2 &&  self.manuelPaxAge < 6{
                             self.manuelPaxAgeGroup = "TDL"
-                        }else if self.manuelPaxAge > 6 &&  self.manuelPaxAge < 11{
+                        }else if self.manuelPaxAge >= 6 &&  self.manuelPaxAge < 11{
                             self.manuelPaxAgeGroup = "CHL"
                         }else{
                             self.manuelPaxAgeGroup = "ADL"
                         }
                     }
-                    self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text: self.sendingListofPaxes[i].pAX_NAME, ageGroup:  self.sendingListofPaxes[i].pAX_AGEGROUP, gender:  self.sendingListofPaxes[i].pAX_GENDER, room:  self.sendingListofPaxes[i].pAX_ROOM, birtDate:  self.sendingListofPaxes[i].pAX_BIRTHDAY))
+                    
+                    self.manuelAddedPaxesList.append(GetInHoseListResponseModel(text: self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender:self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY))
                 }
             }
             if self.manuelAddedPaxesList.count > 0 {
@@ -266,7 +269,7 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
             self.tempValue = changeValue
         }
         if sendingListofPaxes.count > 0 {
-            for i in 0...self.sendingListofPaxes.count {
+            for i in 0...self.sendingListofPaxes.count - 1 {
                 if let birtdate =  Int(self.sendingListofPaxes[i].pAX_BIRTHDAY) {
                     self.manuelPaxAge = birtdate
                     if self.manuelPaxAge > 0 &&  self.manuelPaxAge < 2{
@@ -315,14 +318,27 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
             self.savePaxesList.append(filter[0])
             
+            // manuelPaxes added
+            let filterManuelPax = self.manuelAddedPaxesList.filter{ $0 === tempPaxes}
+            var manuelPaxList : [Paxes] = []
+            for i in 0...self.sendingListofPaxes.count - 1 {
+                if filterManuelPax[0].text ==  self.sendingListofPaxes[i].pAX_NAME {
+                    manuelPaxList.append(self.sendingListofPaxes[i])
+                }
+            }
+            
+            self.touristDetailInfoList.append(manuelPaxList[0])
+           //
+            
             let getInTouristInfoRequestModelList = GetTouristInfoRequestModel(touristId: filter[0].value ?? 0, resNo: filter[0].resNo ?? "")
             
             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList.requestPathString() ) { (response : [GetTouristInfoResponseModel] ) in
                 if response.count > 0 {
                     self.touristDetailInfoList.append(Paxes(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: "1453", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1))
-                    userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
+                   // userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
                 }
             }
+            userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
         }else{
             // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
             

@@ -41,9 +41,13 @@ class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
         id <- map["$id"]
         value <- map["Value"]
         text <- map["Text"]
-        resNo <- map["ResNo"]
+        resNo <- map["resNo"]
         ageGroup <- map["AgeGroup"]
         marketId <- map["MarketId"]
         mrkGrp <- map["mrkGrp"]
+        isSelected <- map["isSelected"]
+        gender <- map["gender"]
+        room <- map["room"]
+        birtDate <- map["birtDate"]
     }
 }

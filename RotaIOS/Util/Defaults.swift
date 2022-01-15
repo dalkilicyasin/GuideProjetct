@@ -212,7 +212,7 @@ public class Defaults{
         let preferences = UserDefaults.standard
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(tour){
-            preferences.set(encoded, forKey: getIdentifier(type: .TourList))
+            preferences.set(encoded, forKey: getIdentifier(type: .ManuelandHousePaxesList))
             preferences.synchronize()
         }
     }
@@ -220,7 +220,7 @@ public class Defaults{
     func getManuelandHousePaxesList() -> [Paxes]? {
         let preferences = UserDefaults.standard
         let decoder = JSONDecoder()
-        if let savedTourList = preferences.object(forKey: getIdentifier(type: .TourList)) as? Data {
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .ManuelandHousePaxesList)) as? Data {
             if let loadedTourList = try? decoder.decode([Paxes].self, from: savedTourList){
                 return loadedTourList
             }

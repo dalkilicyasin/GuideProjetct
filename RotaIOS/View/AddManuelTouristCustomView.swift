@@ -35,6 +35,7 @@ class AddManuelTouristCustomView : UIView {
     var tempSaveManuelList : [String] = []
     var saveMAnuelListDelegate : SaveManuelListProtocol?
     var birtDate = ""
+    var paxBirthDate = ""
     let birtDateToolBar = UIToolbar()
     var birtDatePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
@@ -137,6 +138,8 @@ class AddManuelTouristCustomView : UIView {
         self.birtDate = formatter.string(from: self.birtDatePicker.date)
         formatter.dateFormat = "dd-MM-yyy"
         self.viewBirthDay.mainText.text = "\(formatter.string(from: self.birtDatePicker.date))"
+        formatter.dateFormat = "yyyy-MM-dd"
+        self.paxBirthDate = formatter.string(from: self.birtDatePicker.date)
         self.viewBirthDay.endEditing(true)
     }
 
@@ -162,7 +165,7 @@ class AddManuelTouristCustomView : UIView {
         }
         if self.viewGender.mainLabel.text != "" && self.viewName.mainText.text != "" && self.birtDate != "" && self.paxName != ""{
             self.buttonAdd.isEnabled = true
-            let manuelAddPaxName = Paxes.init(pAX_CHECKOUT_DATE: self.viewCheckOut.mainText.text ?? "", pAX_OPRID: 0, pAX_OPRNAME: "", pAX_PHONE: self.viewPhone.mainText.text ?? "", hotelname: "", pAX_GENDER: self.viewGender.mainLabel.text ?? "" , pAX_AGEGROUP: "", pAX_NAME: self.paxName , pAX_BIRTHDAY: self.viewBirthDay.mainText.text ?? "", pAX_RESNO: "", pAX_PASSPORT: "", pAX_ROOM: self.viewRoom.mainText.text ?? "", pAX_TOURISTREF: 0, pAX_STATUS: 1)
+            let manuelAddPaxName = Paxes.init(pAX_CHECKOUT_DATE: self.viewCheckOut.mainText.text ?? "", pAX_OPRID: 0, pAX_OPRNAME: "", pAX_PHONE: self.viewPhone.mainText.text ?? "", hotelname: "", pAX_GENDER: self.viewGender.mainLabel.text ?? "" , pAX_AGEGROUP: "", pAX_NAME: self.paxName , pAX_BIRTHDAY: self.paxBirthDate, pAX_RESNO: "", pAX_PASSPORT: "", pAX_ROOM: self.viewRoom.mainText.text ?? "", pAX_TOURISTREF: 0, pAX_STATUS: 1)
             self.saveMAnuelListDelegate?.saveManuelList(manuelList: manuelAddPaxName)
             self.removeFromSuperview()
         }else{

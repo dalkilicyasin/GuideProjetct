@@ -92,7 +92,6 @@ class ExcSelectCustomView : UIView {
         self.searchBar.delegate = self
     }
     
-    
     @IBAction func tourButtonTapped(_ sender: Any) {
         self.paxSelected = false
         self.excSelectDelegate?.exSelectDelegateInf(paxButtonTapped: self.paxSelected)
@@ -220,6 +219,7 @@ extension ExcSelectCustomView : UISearchBarDelegate {
 
 extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
     func checkBoxTapped(checkCounter: Bool, tourid: Int, tempPaxes: GetSearchTourResponseModel, priceTypeDesc : Int, pickUpTime: String) {
+        
         self.tempFilteredList = []
         if isFiltered == true {
             if let index = self.filteredData.firstIndex(where: {$0.tourId == tourid} ){
@@ -259,6 +259,12 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                     if let indexSaveTourList = self.savesTourList.firstIndex(where: { $0 === tempPaxes}) {
                         self.savesTourList[indexSaveTourList].pickUpTime = self.pickUpTime
                     }
+               
+                   // self.savesTourList.uniqued()
+                    
+                   
+                  
+                    userDefaultsData.saveTourList(tour: self.savesTourList)
                     self.tableView.reloadData()
                 }
                 
@@ -271,9 +277,11 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
             }
             let filter = excursionList.filter{ $0.tourId == tourid}
             // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
-            for index in filter {
+            // düzeltilecek
+            self.savesTourList.append(filter[0])
+           /* for index in filter {
                 self.savesTourList.append(index)
-            }
+            }*/
         }else{
             // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
             let filter = excursionList.filter{ $0.tourId == tourid}
@@ -285,5 +293,9 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
     }
 }
 
-
-
+extension Sequence where Element: Hashable {
+    func uniqued() -> [Element] {
+        var set = Set<Element>()
+        return filter { set.insert($0).inserted }
+    }
+}

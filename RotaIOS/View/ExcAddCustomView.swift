@@ -63,13 +63,12 @@ class ExcAddCustomView : UIView {
         Bundle.main.loadNibNamed(String(describing: ExcAddCustomView.self), owner: self, options: nil)
         self.viewMainView.addCustomContainerView(self)
         
-        self.excursionListInAddMenu = userDefaultsData.getTourList() ?? self.excursionListInAddMenu
-        
-        if let paxesList = userDefaultsData.getPaxesList(){
-            self.extrasPaxesList = paxesList
-            self.transferPaxesList = paxesList
-        }
-        
+            self.excursionListInAddMenu = userDefaultsData.getTourList() ?? self.excursionListInAddMenu
+            if let paxesList = userDefaultsData.getPaxesList(){
+                self.extrasPaxesList = paxesList
+                self.transferPaxesList = paxesList
+            }
+         
         self.labelExtorTransf.addLine(position: .bottom, color: .lightGray, width: 1.0)
         self.tableView.backgroundColor = UIColor.tableViewColor
         self.tableViewPax.backgroundColor = UIColor.tableViewColor
@@ -375,7 +374,6 @@ extension ExcAddCustomView : UITableViewDelegate, UITableViewDataSource {
 
 extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCellDelegate {
     func addMenuPaxcheckBoxTapped(checkCounter: Bool, touristName: String, tempPaxes: GetInHoseListResponseModel) {
-       
         self.saveExtrasPaxesList.removeAll()
         self.tempaxeslist.removeAll()
         if let index = self.extrasPaxesList.firstIndex(where: {$0 === tempPaxes}){
@@ -396,7 +394,7 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
         }
     }
     
-    func checkBoxTapped(checkCounter: Bool, transExtrDesc : String, priceTypeDesc : Int, extras : Extras?, transfers : Transfers?) {
+   func checkBoxTapped(checkCounter: Bool, transExtrDesc : String, priceTypeDesc : Int, extras : Extras?, transfers : Transfers?) {
         if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc}){
             self.extrasList[index].isTapped = checkCounter
             self.extrasChecklist[index] = checkCounter

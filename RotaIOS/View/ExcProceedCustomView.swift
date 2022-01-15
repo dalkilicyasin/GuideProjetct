@@ -74,6 +74,7 @@ class ExcProceedCustomView: UIView{
     var currentDate = ""
     var voucherNo = ""
     var pickUpTimeProceedView = ""
+    var internetConnection = true
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -144,24 +145,33 @@ class ExcProceedCustomView: UIView{
         self.buttonSend.layer.cornerRadius = 10
         self.buttonSend.backgroundColor = UIColor.greenColor
         
-        // Exchange Menu
-        let exchangeRequestModel = GetExhangeRatesRequestModel.init(date: "12-21-2021") // burda aynı günün değeri alınmalı fakat özgeyle konuş aynı gün değer dönmüyor
-        NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetExhangeRates, method: .get, parameters: exchangeRequestModel.requestPathString()) { ( response : [GetExhangeRatesResponseModel]) in
-            if response.count > 0 {
-                self.exchangeList = response
-                
-                for listofArray in self.exchangeList {
-                    self.exchangeListStringType.append(listofArray.sHORTCODE ?? "")
+        if Connectivity.isConnectedToInternet {
+            print("connect")
+            self.internetConnection = true
+        } else {
+            self.internetConnection = false
+        }
+        if self.internetConnection == true {
+            // Exchange Menu
+            let exchangeRequestModel = GetExhangeRatesRequestModel.init(date: "12-21-2021") // burda aynı günün değeri alınmalı fakat özgeyle konuş aynı gün değer dönmüyor
+            NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetExhangeRates, method: .get, parameters: exchangeRequestModel.requestPathString()) { ( response : [GetExhangeRatesResponseModel]) in
+                if response.count > 0 {
+                    self.exchangeList = response
+                    
+                    for listofArray in self.exchangeList {
+                        self.exchangeListStringType.append(listofArray.sHORTCODE ?? "")
+                    }
+                    self.exchangeMenu.dataSource = self.exchangeListStringType
+                    self.exchangeMenu.dataSource.insert("", at: 0)
+                    self.exchangeMenu.backgroundColor = UIColor.grayColor
+                    self.exchangeMenu.separatorColor = UIColor.gray
+                    self.exchangeMenu.textColor = .white
+                    self.exchangeMenu.anchorView = self.viewCurrencyConvert
+                    self.exchangeMenu.topOffset = CGPoint(x: 0, y:-(self.exchangeMenu.anchorView?.plainView.bounds.height)!)
                 }
-                self.exchangeMenu.dataSource = self.exchangeListStringType
-                self.exchangeMenu.dataSource.insert("", at: 0)
-                self.exchangeMenu.backgroundColor = UIColor.grayColor
-                self.exchangeMenu.separatorColor = UIColor.gray
-                self.exchangeMenu.textColor = .white
-                self.exchangeMenu.anchorView = self.viewCurrencyConvert
-                self.exchangeMenu.topOffset = CGPoint(x: 0, y:-(self.exchangeMenu.anchorView?.plainView.bounds.height)!)
             }
         }
+      
         
         let gestureTourist = UITapGestureRecognizer(target: self, action: #selector(didTappedExchangeMenu))
         gestureTourist.numberOfTouchesRequired = 1
@@ -230,22 +240,24 @@ class ExcProceedCustomView: UIView{
              }*/
         }
         
-        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetCurrencySelectList, method: .get, parameters: "") { (response : [GetCurrencyResponeModel] ) in
-            if response.count > 0 {
-                self.currencyList = response
-                
-                for listofArray in self.currencyList {
-                    self.tempCurrencyMenu.append(listofArray.text ?? "")
+       if self.internetConnection == true {
+            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetCurrencySelectList, method: .get, parameters: "") { (response : [GetCurrencyResponeModel] ) in
+                if response.count > 0 {
+                    self.currencyList = response
+                    
+                    for listofArray in self.currencyList {
+                        self.tempCurrencyMenu.append(listofArray.text ?? "")
+                    }
+                    self.currencyMenu.dataSource = self.tempCurrencyMenu
+                    self.currencyMenu.dataSource.insert("", at: 0)
+                    self.currencyMenu.backgroundColor = UIColor.grayColor
+                    self.currencyMenu.separatorColor = UIColor.gray
+                    self.currencyMenu.textColor = .white
+                    self.currencyMenu.anchorView = self.viewCurrencyType
+                    self.currencyMenu.topOffset = CGPoint(x: 0, y:-(self.currencyMenu.anchorView?.plainView.bounds.height)!)
+                }else{
+                    print("data has not recived")
                 }
-                self.currencyMenu.dataSource = self.tempCurrencyMenu
-                self.currencyMenu.dataSource.insert("", at: 0)
-                self.currencyMenu.backgroundColor = UIColor.grayColor
-                self.currencyMenu.separatorColor = UIColor.gray
-                self.currencyMenu.textColor = .white
-                self.currencyMenu.anchorView = self.viewCurrencyType
-                self.currencyMenu.topOffset = CGPoint(x: 0, y:-(self.currencyMenu.anchorView?.plainView.bounds.height)!)
-            }else{
-                print("data has not recived")
             }
         }
         
@@ -422,8 +434,9 @@ class ExcProceedCustomView: UIView{
                 }
                  totalPricePerTour += self.minPriceTotal
             }
-            
-            tourListIndata.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:  self.tourList[i].tourId ?? 0, Currency: self.tourList[i].currency ?? 0 , CurrencyDesc: self.tourList[i].currencyDesc ?? "", TourDateStr:self.tourList[i].tourDateStr ?? "", TourDate:self.tourList[i].tourDate ?? ""  , AllotmenStatus: self.tourList[i].allotmenStatus ?? 0, RemainingAllotment: self.tourList[i].remainingAllotment ?? 0, PriceType: self.tourList[i].priceType ?? 0, MinPax:self.tourList[i].minPax ?? 0.0, TotalPrice: totalPricePerTour, FlatPrice: self.tourList[i].flatPrice ?? 0.0, MinPrice: self.tourList[i].minPrice ?? 0.0, InfantAge1: self.tourList[i].infantAge1 ?? 0.0, InfantAge2: self.tourList[i].infantAge2 ?? 0.0, ToodleAge1: self.tourList[i].toodleAge1 ?? 0.0, ToodleAge2: self.tourList[i].toodleAge2 ?? 0.0, ChildAge1: self.tourList[i].childAge1 ?? 0.0, ChildAge2: self.tourList[i].childAge2 ?? 0.0, PickUpTime:"02:00:00", DetractAdult: self.tourList[i].detractAdult ?? false, DetractChild: self.tourList[i].detractChild ?? false, DetractKid: self.tourList[i].detractKid ?? false, DetractInfant: self.tourList[i].detractInfant ?? false, AskSell: self.tourList[i].askSell ?? false, MeetingPointId: self.tourList[i].meetingPointId ?? 0, Paref: String(self.tourList[i].paref ?? 0) ,TourCode: self.tourList[i].tourCode ?? "", ID: self.tourList[i].ID ?? 0, CREATEDDATE: self.tourList[i].cREATEDDATE ?? "", RefundCondition:"", TicketCount: 0, TourAmount: totalPricePerTour, VoucherNo: self.voucherNo, ExtraTourist: extras, TransferTourist:transfers))
+            // Önemli, özgeye sor tour date offline tourdan geldiği için tarih geride kalıyor ve offline satışta sale date tourdate ten ileri olamaz hatası veriyor nasıl çözeceğiz
+           
+            tourListIndata.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:  self.tourList[i].tourId ?? 0, Currency: self.tourList[i].currency ?? 0 , CurrencyDesc: self.tourList[i].currencyDesc ?? "", TourDateStr:self.tourList[i].tourDateStr ?? "", TourDate: "2022/01/20", AllotmenStatus: self.tourList[i].allotmenStatus ?? 0, RemainingAllotment: self.tourList[i].remainingAllotment ?? 0, PriceType: self.tourList[i].priceType ?? 0, MinPax:self.tourList[i].minPax ?? 0.0, TotalPrice: totalPricePerTour, FlatPrice: self.tourList[i].flatPrice ?? 0.0, MinPrice: self.tourList[i].minPrice ?? 0.0, InfantAge1: self.tourList[i].infantAge1 ?? 0.0, InfantAge2: self.tourList[i].infantAge2 ?? 0.0, ToodleAge1: self.tourList[i].toodleAge1 ?? 0.0, ToodleAge2: self.tourList[i].toodleAge2 ?? 0.0, ChildAge1: self.tourList[i].childAge1 ?? 0.0, ChildAge2: self.tourList[i].childAge2 ?? 0.0, PickUpTime:"02:00:00", DetractAdult: self.tourList[i].detractAdult ?? false, DetractChild: self.tourList[i].detractChild ?? false, DetractKid: self.tourList[i].detractKid ?? false, DetractInfant: self.tourList[i].detractInfant ?? false, AskSell: self.tourList[i].askSell ?? false, MeetingPointId: self.tourList[i].meetingPointId ?? 0, Paref: String(self.tourList[i].paref ?? 0) ,TourCode: self.tourList[i].tourCode ?? "", ID: self.tourList[i].ID ?? 0, CREATEDDATE: self.tourList[i].cREATEDDATE ?? "", RefundCondition:"", TicketCount: 0, TourAmount: totalPricePerTour, VoucherNo: self.voucherNo, ExtraTourist: extras, TransferTourist:transfers))
         }
         
         paxes = userDefaultsData.getTouristDetailInfoList() ?? paxes
@@ -457,12 +470,14 @@ class ExcProceedCustomView: UIView{
             }
             
         } else {
-            
             let tourSalePost = TourSalePost(Multisale:multisale, PaxTourLists:paxTourList, Payments: self.payments, Paxes:paxes, IsOffline:"1", AllowDublicatePax:"0",TourList:tourListIndata )
-            
             self.offlineDataList.append(tourSalePost)
             userDefaultsData.saveTourSalePost(tour: self.offlineDataList)
-            
+            let alert = UIAlertController.init(title: "Message", message: "Data has been saved", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            if let topVC = UIApplication.getTopViewController() {
+                topVC.present(alert, animated: true, completion: nil)
+            }
         }
     }
 }

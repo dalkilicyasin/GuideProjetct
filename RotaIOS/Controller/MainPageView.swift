@@ -119,7 +119,7 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                                     
                                     self.tourList = self.offlineTourSalePostList[i].TourList ?? self.tourList
                                     
-                                    for i in 0...self.tourList.count {
+                                    for i in 0...self.tourList.count - 1 {
                                         self.tourList[i].VoucherNo = self.createVoucher
                                     }
                                     self.offlineTourSalePostList[i].TourList = self.tourList
@@ -140,6 +140,8 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                                                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                                                 if let topVC = UIApplication.getTopViewController() {
                                                     topVC.present(alert, animated: true, completion: nil)
+                                                    self.offlineTourSalePostList.remove(at: i)
+                                                    userDefaultsData.saveTourSalePost(tour: self.offlineTourSalePostList)
                                                 }
                                                 
                                             }else {
@@ -153,13 +155,14 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                                         }
                                     }
                                     self.oflineDataList.removeAll()
-                                    userDefaultsData.saveTourSalePost(tour: [])
                                 }
                                
                             }else {
                                 print("error")
                             }
                         }
+                    
+                    return
                     //
                 default :
                     print("selected")

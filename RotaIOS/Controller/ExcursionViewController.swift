@@ -259,42 +259,85 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         print("data has not recived")
                     }
                 }
-            }else{
-            }
-            // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-            self.viewExcSearchCustomView?.excurSearchDelegate = self
-            if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
-                userDefaultsData.saveTourList(tour: [])
-                userDefaultsData.savePaxesList(tour: [])
-                //  self.lastUIView.removeFromSuperview()
-                //  self.animatedCustomView(customView: PaxPageCustomView())
-                self.viewExcSearchCustomView?.isHidden = true
-                self.viewExcAddCustomView?.isHidden = true
-                self.viewExcProceedCustomView?.isHidden = true
-                // self.hotelPageCustomView?.isHidden = true
-                // self.proceedPageCustomView?.isHidden = true
+                ///
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-                UIView.animate(withDuration: 0, animations: { [self] in
-                    self.viewExcSelectCustomView = ExcSelectCustomView()
-                    self.viewExcSelectCustomView?.excSelectDelegate = self
-                    
-                    self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
-                    self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
-                }, completion: { (finished) in
-                    if finished{
+                self.viewExcSearchCustomView?.excurSearchDelegate = self
+                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
+                    userDefaultsData.saveTourList(tour: [])
+                    userDefaultsData.savePaxesList(tour: [])
+                    //  self.lastUIView.removeFromSuperview()
+                    //  self.animatedCustomView(customView: PaxPageCustomView())
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                    // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                    UIView.animate(withDuration: 0, animations: { [self] in
+                        self.viewExcSelectCustomView = ExcSelectCustomView()
+                        self.viewExcSelectCustomView?.excSelectDelegate = self
                         
-                    }
-                })
-                // self.lastUIView = self.paxPageCustomView!
-                self.isHotelorMarketChanged = false
-            }else {
-                self.viewExcSelectCustomView?.isHidden = false
-                self.viewExcSearchCustomView?.isHidden = true
-                self.viewExcAddCustomView?.isHidden = true
-                self.viewExcProceedCustomView?.isHidden = true
-                // self.hotelPageCustomView?.isHidden = true
-                // self.proceedPageCustomView?.isHidden = true
+                        self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
+                        self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
+                    }, completion: { (finished) in
+                        if finished{
+                            
+                        }
+                    })
+                    // self.lastUIView = self.paxPageCustomView!
+                    self.isHotelorMarketChanged = false
+                }else {
+                    self.viewExcSelectCustomView?.isHidden = false
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                }
+                ///
+            }else{
+                // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                self.viewExcSearchCustomView?.excurSearchDelegate = self
+                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
+                    userDefaultsData.saveTourList(tour: [])
+                    userDefaultsData.savePaxesList(tour: [])
+                    //  self.lastUIView.removeFromSuperview()
+                    //  self.animatedCustomView(customView: PaxPageCustomView())
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                    // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                    UIView.animate(withDuration: 0, animations: { [self] in
+                        self.viewExcSelectCustomView = ExcSelectCustomView()
+                        self.viewExcSelectCustomView?.excSelectDelegate = self
+                        
+                        self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
+                        self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
+                    }, completion: { (finished) in
+                        if finished{
+                            
+                        }
+                    })
+                    // self.lastUIView = self.paxPageCustomView!
+                    self.isHotelorMarketChanged = false
+                }else {
+                    self.viewExcSelectCustomView?.isHidden = false
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                }
+                self.tourList = userDefaultsData.getSearchTourOffline() ?? self.tourList
+                for index in 0...self.tourList.count - 1 {
+                    self.viewExcSelectCustomView?.excursionList[index].isTapped = false
+                    self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                }
+                self.viewExcSelectCustomView?.tableView.reloadData()
             }
+           
         }else if tapped == 2 {
             self.viewFooterViewCustomView.printButton.isHidden = true
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
@@ -303,7 +346,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.buttonAddButton.isHidden = true
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
             self.constraintOnAddFunc()
-            
             self.viewExcSelectCustomView?.excSelectDelegate = self
             if self.viewExcAddCustomView == nil || self.isTourChange == true{
                 //  self.lastUIView.removeFromSuperview()
@@ -442,7 +484,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             print(mergeDate)
             
             let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-         
+            if self.isConnectedInternet == true {
                 NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
                     if response != 0 {
                         self.counter = 0
@@ -474,6 +516,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         print("error")
                     }
                 }
+            }
             
             ///
             self.viewFooterViewCustomView.labelAmount.isHidden = true
@@ -613,40 +656,83 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         print("data has not recived")
                     }
                 }
-            }else{
-            }
-            // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-            self.viewExcSearchCustomView?.excurSearchDelegate = self
-            if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
-                userDefaultsData.saveTourList(tour: [])
-                userDefaultsData.savePaxesList(tour: [])
-                self.viewExcSearchCustomView?.isHidden = true
-                self.viewExcAddCustomView?.isHidden = true
-                self.viewExcProceedCustomView?.isHidden = true
-                //  self.lastUIView.removeFromSuperview()
-                //  self.animatedCustomView(customView: PaxPageCustomView())
-                // self.hotelPageCustomView?.isHidden = true
-                // self.proceedPageCustomView?.isHidden = true
+                ///
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-                UIView.animate(withDuration: 0, animations: { [self] in
-                    self.viewExcSelectCustomView = ExcSelectCustomView()
-                    self.viewExcSelectCustomView?.excSelectDelegate = self
-                    self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
-                    self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
-                }, completion: { (finished) in
-                    if finished{
-                        
-                    }
-                })
-                // self.lastUIView = self.paxPageCustomView!
-                self.isHotelorMarketChanged = false
-            }else {
-                self.viewExcSelectCustomView?.isHidden = false
-                self.viewExcSearchCustomView?.isHidden = true
-                self.viewExcAddCustomView?.isHidden = true
-                self.viewExcProceedCustomView?.isHidden = true
-                // self.hotelPageCustomView?.isHidden = true
-                // self.proceedPageCustomView?.isHidden = true
+                self.viewExcSearchCustomView?.excurSearchDelegate = self
+                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
+                    userDefaultsData.saveTourList(tour: [])
+                    userDefaultsData.savePaxesList(tour: [])
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    //  self.lastUIView.removeFromSuperview()
+                    //  self.animatedCustomView(customView: PaxPageCustomView())
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                    // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                    UIView.animate(withDuration: 0, animations: { [self] in
+                        self.viewExcSelectCustomView = ExcSelectCustomView()
+                        self.viewExcSelectCustomView?.excSelectDelegate = self
+                        self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
+                        self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
+                    }, completion: { (finished) in
+                        if finished{
+                            
+                        }
+                    })
+                    // self.lastUIView = self.paxPageCustomView!
+                    self.isHotelorMarketChanged = false
+                }else {
+                    self.viewExcSelectCustomView?.isHidden = false
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                }
+                ////
+            }else{
+                ///
+                self.viewExcSearchCustomView?.excurSearchDelegate = self
+                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
+                    userDefaultsData.saveTourList(tour: [])
+                    userDefaultsData.savePaxesList(tour: [])
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    //  self.lastUIView.removeFromSuperview()
+                    //  self.animatedCustomView(customView: PaxPageCustomView())
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                    // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                    UIView.animate(withDuration: 0, animations: { [self] in
+                        self.viewExcSelectCustomView = ExcSelectCustomView()
+                        self.viewExcSelectCustomView?.excSelectDelegate = self
+                        self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
+                        self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
+                    }, completion: { (finished) in
+                        if finished{
+                            
+                        }
+                    })
+                    // self.lastUIView = self.paxPageCustomView!
+                    self.isHotelorMarketChanged = false
+                }else {
+                    self.viewExcSelectCustomView?.isHidden = false
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                }
+                ///
+            
+                self.tourList = userDefaultsData.getSearchTourOffline() ?? self.tourList
+                for index in 0...self.tourList.count - 1 {
+                    self.viewExcSelectCustomView?.excursionList[index].isTapped = false
+                    self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                }
+                self.viewExcSelectCustomView?.tableView.reloadData()
             }
             
         }else if ischosen == 2 {
@@ -790,7 +876,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             print(mergeDate)
             
             let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-         
+            if self.isConnectedInternet == true {
                 NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
                     if response != 0 {
                         self.counter = 0
@@ -822,7 +908,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         print("error")
                     }
                 }
-            
+            }
+                
             ///
             self.buttonhide()
             self.viewFooterViewCustomView.buttonView.isHidden = true
