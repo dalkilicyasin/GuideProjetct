@@ -22,10 +22,12 @@ class ExcSearchCustomView : UIView {
     @IBOutlet weak var viewHotelList: MainTextCustomView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var viewChecBoxView: CheckBoxView!
+    @IBOutlet weak var viewPromotionMenu: MainTextCustomView!
     var isFilteredTextEmpty = true
     var filteredData : [String] = []
     var marketMenu = DropDown()
     var hotelMenu = DropDown()
+    var promotionMenu = DropDown()
     var hotelList : [GetHotelsMobileResponseModel] = []
     var marketList : [GetGuideMarketResponseModel] = []
     var filteredMarketList : [GetGuideMarketResponseModel] = []
@@ -59,6 +61,11 @@ class ExcSearchCustomView : UIView {
     var marketIdStringType = ""
     var hotelIdStringType = ""
     var areaIdStringType = ""
+    var promotionid = 0
+    var promotionIdStringType = ""
+    var promotionList : [GetPromotionResponseModel] = []
+    var filteredPromotionList  : [GetPromotionResponseModel] = []
+    var tempPromotionMenu : [String] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,6 +86,7 @@ class ExcSearchCustomView : UIView {
         self.viewTourEndDate.headerLAbel.text = "Tour End Date"
         self.viewMarketList.headerLAbel.text = "Market"
         self.viewHotelList.headerLAbel.text = "Hotels"
+        self.viewPromotionMenu.headerLAbel.text = "Promotion"
         self.viewChecBoxView.imageCheck.isHidden = false
         
         self.searchBar.setImage(UIImage(), for: .search, state: .normal)
@@ -172,10 +180,14 @@ class ExcSearchCustomView : UIView {
             gestureMarket.numberOfTouchesRequired = 1
             let gestureHotel = UITapGestureRecognizer(target: self, action: #selector(didTapHotelMenu))
             gestureHotel.numberOfTouchesRequired = 1
+            let gesturePromotion = UITapGestureRecognizer(target: self, action: #selector(didTapPromotionMenu))
+            gestureHotel.numberOfTouchesRequired = 1
             self.viewMarketList.addGestureRecognizer(gestureMarket)
             self.viewHotelList.addGestureRecognizer(gestureHotel)
-            self.marketMenu.topOffset = CGPoint(x: 0, y:-(self.marketMenu.anchorView?.plainView.bounds.height ?? 200))
+            self.viewPromotionMenu.addGestureRecognizer(gesturePromotion)
             
+            
+            self.marketMenu.topOffset = CGPoint(x: 0, y:-(self.marketMenu.anchorView?.plainView.bounds.height ?? 200))
             self.marketMenu.selectionAction = { index, title in
                 if title != self.viewMarketList.mainLabel.text {
                     self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
@@ -203,7 +215,41 @@ class ExcSearchCustomView : UIView {
                     self.hotelIdStringType = String(listofArray.value ?? 0)
                     self.areaIdStringType = String(listofArray.area ?? 0)
                 }
+                let getPromotionRequestModel = GetPromotionRequestModel.init(hotelId: userDefaultsData.getHotelId() , marketId: userDefaultsData.getMarketId(), tourSaleDate: userDefaultsData.getSaleDate() ?? "", tourStartDate: self.beginDateString, tourEndDate: self.endDateString)
+                
+                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTourSalePromotions, method: .get, parameters: getPromotionRequestModel.requestPathString()) { (response : [GetPromotionResponseModel] ) in
+                    if response.count > 0 {
+                        //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                        self.promotionList = response
+                        for listOfArray in self.promotionList {
+                            self.promotionMenu.dataSource.append(listOfArray.text ?? "")
+                        }
+                        self.promotionMenu.dataSource.insert("", at: 0)
+                        self.promotionMenu.backgroundColor = UIColor.grayColor
+                        self.promotionMenu.separatorColor = UIColor.gray
+                        self.promotionMenu.textColor = .white
+                        self.promotionMenu.anchorView = self.viewPromotionMenu
+                        self.promotionMenu.topOffset = CGPoint(x: 0, y:-(self.promotionMenu.anchorView?.plainView.bounds.height)!)
+                    }else{
+                        print("data has not recived")
+                    }
+                }
+                
+                self.promotionMenu.selectionAction = { index, title in
+                    if title != self.viewPromotionMenu.mainLabel.text {
+                        self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
+                    }
+                    self.viewPromotionMenu.mainLabel.text = title
+                    let filtered = self.promotionList.filter{($0.text?.contains(title) ?? false)}
+                    self.filteredPromotionList = filtered
+                    for listofArray in self.filteredPromotionList {
+                        userDefaultsData.savePromotionId(promotionId: listofArray.value ?? 0)
+                        self.promotionid = listofArray.value ?? 0
+                        self.promotionIdStringType = String(listofArray.value ?? 0)
+                    }
+                }
             }
+            
             self.viewMarketList.headerLAbel.text = "Market"
             self.viewHotelList.headerLAbel.text = "Hotel"
             self.viewChecBoxView.checkBoxViewDelegate = self
@@ -226,6 +272,11 @@ class ExcSearchCustomView : UIView {
     @objc func didTapHotelMenu() {
         self.hotelMenu.show()
         self.hotelMenu.direction = .top
+    }
+    
+    @objc func didTapPromotionMenu() {
+        self.promotionMenu.show()
+        self.promotionMenu.direction = .bottom
     }
     
     func createbeginDatePicker() {

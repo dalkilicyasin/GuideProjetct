@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ExcursionListTableViewCellDelegate {
-    func checkBoxTapped(checkCounter : Bool, tourid : Int, tempPaxes : GetSearchTourResponseModel, priceTypeDesc : Int, pickUpTime : String)
+    func checkBoxTapped(checkCounter : Bool, tourid : Int, tourDate : String, tempPaxes : GetSearchTourResponseModel, priceTypeDesc : Int, pickUpTime : String)
 }
 
 class ExcursionListTableViewCell: BaseTableViewCell {
@@ -34,6 +34,7 @@ class ExcursionListTableViewCell: BaseTableViewCell {
     var tourid = 0
     var priceTypeDesc = 0
     var pickuptime = ""
+    var tourDate = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,7 +48,7 @@ class ExcursionListTableViewCell: BaseTableViewCell {
     
     @objc func tappedChecBox(){
         self.isTappedCheck = !self.isTappedCheck
-        self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.pickuptime)
+        self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tourDate: self.tourDate, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.pickuptime)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -166,8 +166,8 @@ class ExcAddCustomView : UIView {
       if  self.buttonExtraTapped == false {
         self.buttonExtraTapped = true
         self.excAddCustomViewDelegate?.excurAddCustomDelegate(changeTransferNumber: self.transfersList.count, changeExtraNumber: self.saveExtrasList.count, extrasTotalPrice: self.extrasTotalPrice, transfersTotalPrice: self.transfersTotalPrice, extraButtonTapped: self.buttonExtraTapped)
-       
         }
+        
         self.buttonExtras.backgroundColor = UIColor.greenColor
         self.buttonTransfers.layer.borderWidth = 1
         self.buttonTransfers.backgroundColor = UIColor.clear

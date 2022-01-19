@@ -37,6 +37,7 @@ public class Defaults{
         case Data
         case MaxVoucher
         case TourSalePost
+        case PromotionId
     }
     
    public init(){}
@@ -461,11 +462,26 @@ public class Defaults{
             return preferences.integer(forKey: currentLanguageKey)
         }
     }
-
+        
+    // PromotionIdSave
+    public func savePromotionId(promotionId:Int){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .PromotionId)
+        preferences.set(promotionId, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getPromotionId() -> Int{
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .PromotionId)
+        if preferences.object(forKey: currentLanguageKey) == nil {
+            return -1
+        } else {
+            return preferences.integer(forKey: currentLanguageKey)
+        }
+    }
     
     // HotelID(value değeri olan)
-    
-    
     public func saveHotelId(hotelId:Int){
         let preferences = UserDefaults.standard
         let currentLanguageKey = getIdentifier(type: .HotelId)
@@ -552,6 +568,8 @@ public class Defaults{
             return "MaxVoucher"
         case .TourSalePost:
             return "TourSalePost"
+        case .PromotionId:
+            return "PromotionId"
         }
     }
 }

@@ -96,6 +96,8 @@
 		D900407827172F1C00DDE088 /* GetDailyReportRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D900407727172F1C00DDE088 /* GetDailyReportRequestModel.swift */; };
 		D900407B271738DD00DDE088 /* DailyReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9004079271738DD00DDE088 /* DailyReportTableViewCell.swift */; };
 		D900407C271738DD00DDE088 /* DailyReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D900407A271738DD00DDE088 /* DailyReportTableViewCell.xib */; };
+		D90E39012796B8760081ECB7 /* GetPromotionRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E39002796B8760081ECB7 /* GetPromotionRequestModel.swift */; };
+		D90E39032796BC090081ECB7 /* GetPromotionResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E39022796BC090081ECB7 /* GetPromotionResponseModel.swift */; };
 		D931573926F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931573826F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift */; };
 		D931573C26F8C183000C91AD /* ZReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D931573A26F8C183000C91AD /* ZReportViewController.swift */; };
 		D931573D26F8C183000C91AD /* ZReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D931573B26F8C183000C91AD /* ZReportViewController.xib */; };
@@ -180,6 +182,8 @@
 		D968A88326BDAC94000FB00A /* MyTourStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968A88226BDAC94000FB00A /* MyTourStatusView.swift */; };
 		D968A88526BDADE7000FB00A /* MyTourStatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D968A88426BDADE7000FB00A /* MyTourStatusView.xib */; };
 		D968ABF626E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */; };
+		D96E4509279757A400F8DC49 /* GetApplyPromotionMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E4508279757A400F8DC49 /* GetApplyPromotionMobileResponseModel.swift */; };
+		D96E450B27975AC700F8DC49 /* GetApplyPromotionMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E450A27975AC700F8DC49 /* GetApplyPromotionMobileRequestModel.swift */; };
 		D97E4F4527598B4A0049648A /* ExcursionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */; };
 		D97E4F4627598B4A0049648A /* ExcursionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */; };
 		D97E4F4C2760B4B90049648A /* ExcPaxCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F4B2760B4B90049648A /* ExcPaxCustomView.swift */; };
@@ -392,6 +396,8 @@
 		D900407727172F1C00DDE088 /* GetDailyReportRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDailyReportRequestModel.swift; sourceTree = "<group>"; };
 		D9004079271738DD00DDE088 /* DailyReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReportTableViewCell.swift; sourceTree = "<group>"; };
 		D900407A271738DD00DDE088 /* DailyReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyReportTableViewCell.xib; sourceTree = "<group>"; };
+		D90E39002796B8760081ECB7 /* GetPromotionRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPromotionRequestModel.swift; sourceTree = "<group>"; };
+		D90E39022796BC090081ECB7 /* GetPromotionResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPromotionResponseModel.swift; sourceTree = "<group>"; };
 		D931573826F4B6DD000C91AD /* GetTourSaleCancelMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSaleCancelMobileResponseModel.swift; sourceTree = "<group>"; };
 		D931573A26F8C183000C91AD /* ZReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZReportViewController.swift; sourceTree = "<group>"; };
 		D931573B26F8C183000C91AD /* ZReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZReportViewController.xib; sourceTree = "<group>"; };
@@ -476,6 +482,8 @@
 		D968A88226BDAC94000FB00A /* MyTourStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTourStatusView.swift; sourceTree = "<group>"; };
 		D968A88426BDADE7000FB00A /* MyTourStatusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTourStatusView.xib; sourceTree = "<group>"; };
 		D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSaleCancelMobileRequestModel.swift; sourceTree = "<group>"; };
+		D96E4508279757A400F8DC49 /* GetApplyPromotionMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApplyPromotionMobileResponseModel.swift; sourceTree = "<group>"; };
+		D96E450A27975AC700F8DC49 /* GetApplyPromotionMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApplyPromotionMobileRequestModel.swift; sourceTree = "<group>"; };
 		D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionListTableViewCell.swift; sourceTree = "<group>"; };
 		D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcursionListTableViewCell.xib; sourceTree = "<group>"; };
 		D97E4F4B2760B4B90049648A /* ExcPaxCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcPaxCustomView.swift; sourceTree = "<group>"; };
@@ -783,6 +791,8 @@
 				D97EE02427759B9500683E66 /* GetExhangeRatesRequestModel.swift */,
 				D97EE0282779ABCB00683E66 /* GetMaxGuideVoucherNumberRequestModel.swift */,
 				D97EE02C277DF1A900683E66 /* GetSaveMobileSaleRequestModel.swift */,
+				D90E39002796B8760081ECB7 /* GetPromotionRequestModel.swift */,
+				D96E450A27975AC700F8DC49 /* GetApplyPromotionMobileRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -824,6 +834,8 @@
 				D97EE02227759ADE00683E66 /* GetExhangeRatesResponseModel.swift */,
 				D97EE0262779A6D100683E66 /* GetMaxGuideVoucherNumberResponseModel.swift */,
 				D97EE02A277BC2CE00683E66 /* GetSaveMobileSaleResponseModel.swift */,
+				D90E39022796BC090081ECB7 /* GetPromotionResponseModel.swift */,
+				D96E4508279757A400F8DC49 /* GetApplyPromotionMobileResponseModel.swift */,
 			);
 			path = ResponseModel;
 			sourceTree = "<group>";
@@ -1322,6 +1334,7 @@
 				D97E4F5927672E590049648A /* AddMenuTableViewCell.swift in Sources */,
 				D97E4F5127624D640049648A /* ExcPaxPageTableViewCell.swift in Sources */,
 				BF44C9232640014800238035 /* MainPageView.swift in Sources */,
+				D96E4509279757A400F8DC49 /* GetApplyPromotionMobileResponseModel.swift in Sources */,
 				D95C203A26F202FF007D1506 /* GetSpeakTimeForMobileResponseModel.swift in Sources */,
 				D94C40622655D56E00EBC7CD /* GetGuideInfoRequestModel.swift in Sources */,
 				D931574126F8DF17000C91AD /* GetZReportResponseModel.swift in Sources */,
@@ -1335,6 +1348,7 @@
 				BF44C97D264001AA00238035 /* FooterCustomView.swift in Sources */,
 				BF44C906264000FA00238035 /* ServiceEndPoint.swift in Sources */,
 				D9FD64DF27355F42009B6619 /* ZReportPreviewViewView.swift in Sources */,
+				D96E450B27975AC700F8DC49 /* GetApplyPromotionMobileRequestModel.swift in Sources */,
 				BF44C9A0264001C900238035 /* PaxPageTableViewCell.swift in Sources */,
 				D931577927033A99000C91AD /* ZReportPaymentView.swift in Sources */,
 				D97FB59126C147880099F28B /* GetTourDetailForMobileRequestModel.swift in Sources */,
@@ -1428,6 +1442,7 @@
 				D931575426FA5E72000C91AD /* ZReportMoreDetailViewController.swift in Sources */,
 				D931575726FA5E88000C91AD /* ZReportMoreDetailView.swift in Sources */,
 				D9561A4C26A1B71700AA75E5 /* GetGuideAnnouncementsAndDocumentsResponseModel.swift in Sources */,
+				D90E39032796BC090081ECB7 /* GetPromotionResponseModel.swift in Sources */,
 				D9A48D0226B1895500D28A0A /* DocumentsTableViewCell.swift in Sources */,
 				D97E4F4527598B4A0049648A /* ExcursionListTableViewCell.swift in Sources */,
 				D9FD64ED2738182A009B6619 /* GetCreateZReportRequestModel.swift in Sources */,
@@ -1439,6 +1454,7 @@
 				BF44C976264001A400238035 /* BaseCollectionViewCell.swift in Sources */,
 				BF44C905264000FA00238035 /* BaseApiRequestBody.swift in Sources */,
 				D93F887B264AAA4B00397283 /* GetInHoseListResponseModel.swift in Sources */,
+				D90E39012796B8760081ECB7 /* GetPromotionRequestModel.swift in Sources */,
 				BF44C8F3264000E900238035 /* GetMyInfoResponseModel.swift in Sources */,
 				D93F886E26471B4D00397283 /* TempTouristAddCustomView.swift in Sources */,
 				D93F88A42651AAE300397283 /* GetTouristInfoRequestModel.swift in Sources */,
@@ -1650,7 +1666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.2;
+				CURRENT_PROJECT_VERSION = 4.4;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1672,7 +1688,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4.2;
+				CURRENT_PROJECT_VERSION = 4.4;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

@@ -321,13 +321,15 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             // manuelPaxes added
             let filterManuelPax = self.manuelAddedPaxesList.filter{ $0 === tempPaxes}
             var manuelPaxList : [Paxes] = []
-            for i in 0...self.sendingListofPaxes.count - 1 {
-                if filterManuelPax[0].text ==  self.sendingListofPaxes[i].pAX_NAME {
-                    manuelPaxList.append(self.sendingListofPaxes[i])
+            if sendingListofPaxes.count > 0 {
+                for i in 0...self.sendingListofPaxes.count - 1 {
+                    if filterManuelPax[0].text ==  self.sendingListofPaxes[i].pAX_NAME {
+                        manuelPaxList.append(self.sendingListofPaxes[i])
+                    }
                 }
+                self.touristDetailInfoList.append(manuelPaxList[0])
             }
             
-            self.touristDetailInfoList.append(manuelPaxList[0])
            //
             
             let getInTouristInfoRequestModelList = GetTouristInfoRequestModel(touristId: filter[0].value ?? 0, resNo: filter[0].resNo ?? "")

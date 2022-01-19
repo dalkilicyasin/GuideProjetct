@@ -75,6 +75,8 @@ class ExcProceedCustomView: UIView{
     var voucherNo = ""
     var pickUpTimeProceedView = ""
     var internetConnection = true
+    var promotionTourList : [Tours] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -95,6 +97,57 @@ class ExcProceedCustomView: UIView{
         self.touristList = userDefaultsData.getPaxesList() ?? self.touristList
         self.tourList = userDefaultsData.getTourList() ?? self.tourList
         
+     /*   var adultCount = 0
+        var childCount = 0
+        var toodleCount = 0
+        var infantCount = 0
+        
+        var tours : [TourRequestModel] = []
+        
+        if self.tourList.count > 0 {
+            for i in 0...self.touristList.count - 1{
+                if self.touristList[i].ageGroup == "ADL" {
+                    adultCount += 1
+                }else if self.touristList[i].ageGroup == "CHD" {
+                    childCount += 1
+                }else if self.touristList[i].ageGroup == "TDL" {
+                    toodleCount += 1
+                }else if self.touristList[i].ageGroup == "INF" {
+                    infantCount += 1
+                }
+            }
+        }
+        
+        for i in 0...self.tourList.count - 1 {
+            tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourList[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourList[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourList[i].infantPrice ?? 0.0, PaxTotalAmount: self.totalAmount, PlanId: self.tourList[i].planId ?? 0, PriceType: self.tourList[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourList[i].toodlePrice ?? 0.0, TotalAmount: self.tourList[i].totalPrice ?? 0.0, TourAmount: self.totalAmount, TourDate: self.tourList[i].tourDate ?? "", TourId: self.tourList[i].tourId ?? 0))
+        }
+       
+        let tourPromotionPostRequestModel = TourPromotionPost(PromotionDiscount: 0, PromotionId: 35, tours: tours)
+        
+        self.data = "\(tourPromotionPostRequestModel.toJSONString(prettyPrint: true) ?? "")"
+        
+        let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
+        NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
+            if response.isSuccesful == true {
+                print(response)
+                let alert = UIAlertController(title: "SUCCSESS", message: response.message ?? "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                if let topVC = UIApplication.getTopViewController() {
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+                self.promotionTourList = response.record?.tours ?? self.promotionTourList
+                for i in 0...self.promotionTourList.count - 1 {
+                    self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
+                }
+            }else {
+                let alert = UIAlertController(title: "FAILED", message: response.message ?? "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                if let topVC = UIApplication.getTopViewController() {
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+        */
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         self.currentDate = dateFormatter.string(from: date)
@@ -144,7 +197,7 @@ class ExcProceedCustomView: UIView{
         self.buttonAddPayment.backgroundColor = UIColor.greenColor
         self.buttonSend.layer.cornerRadius = 10
         self.buttonSend.backgroundColor = UIColor.greenColor
-        
+        self.viewDicountCalculate.mainText.text = String(self.discount)
         if Connectivity.isConnectedToInternet {
             print("connect")
             self.internetConnection = true

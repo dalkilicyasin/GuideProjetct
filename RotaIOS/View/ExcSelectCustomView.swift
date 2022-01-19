@@ -37,6 +37,9 @@ class ExcSelectCustomView : UIView {
     var currentTime = Date()
     var pickUpTimeList : [String] = []
     var pickUpTime = ""
+    var promotionList : [GetSearchTourResponseModel] = []
+    var promotionButtonTapped = false
+    var checkPromotionList : [Bool] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,6 +94,23 @@ class ExcSelectCustomView : UIView {
         self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
         self.searchBar.delegate = self
     }
+    @IBAction func toursButtonTapped(_ sender: Any) {
+        self.promotionButtonTapped = false
+        self.buttonPromotion.backgroundColor = UIColor.clear
+        self.buttonDefault.backgroundColor = UIColor.greenColor
+        self.buttonPromotion.layer.borderWidth = 1
+        self.buttonPromotion.layer.borderColor = UIColor.greenColor.cgColor
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func promotionButtonTapped(_ sender: Any) {
+        self.promotionButtonTapped = true
+        self.buttonPromotion.backgroundColor = UIColor.greenColor
+        self.buttonDefault.backgroundColor = UIColor.clear
+        self.buttonDefault.layer.borderWidth = 1
+        self.buttonDefault.layer.borderColor = UIColor.greenColor.cgColor
+        self.tableView.reloadData()
+    }
     
     @IBAction func tourButtonTapped(_ sender: Any) {
         self.paxSelected = false
@@ -108,7 +128,11 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
         if isFiltered == true {
             return self.filteredData.count
         }else{
-            return self.excursionList.count
+            if self.promotionButtonTapped == true {
+                return self.promotionList.count
+            }else{
+                return self.excursionList.count
+            }
         }
     }
     
@@ -140,28 +164,55 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.priceTypeDesc = filteredData[indexPath.row].priceType ?? 0
             cell.pickuptime = filteredData[indexPath.row].pickUpTime ?? ""
         }else {
-            cell.labelExcursion.text = self.excursionList[indexPath.row].tourName
-            if pickUpTimeList.count == 0 {
-                cell.labelPickUpTime.text = self.excursionList[indexPath.row].pickUpTime
-            }else if pickUpTimeList.count > 0{
-                cell.labelPickUpTime.text = self.pickUpTimeList[indexPath.row]
+            if self.promotionButtonTapped == true {
+                cell.labelExcursion.text = self.promotionList[indexPath.row].tourName
+                if pickUpTimeList.count == 0 {
+                    cell.labelPickUpTime.text = self.promotionList[indexPath.row].pickUpTime
+                }else if pickUpTimeList.count > 0{
+                    cell.labelPickUpTime.text = self.pickUpTimeList[indexPath.row]
+                }
+                // cell.labelSeat.text = self.promotionList[indexPath.row] // yok
+                cell.labelPriceType.text = String(self.promotionList[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
+                cell.labelCurrency.text = self.promotionList[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
+                cell.labelAdultPrice.text = String(self.promotionList[indexPath.row].adultPrice ?? 0)
+                cell.labelChildPrice.text = String(self.promotionList[indexPath.row].childPrice ?? 0)
+                cell.labelInfantPrice.text = String(self.promotionList[indexPath.row].infantPrice ?? 0)
+                cell.labelToodlePrice.text = String(self.promotionList[indexPath.row].toodlePrice ?? 0)
+                cell.labelMinPrice.text = String(self.promotionList[indexPath.row].minPrice ?? 0)
+                cell.labelMinPax.text = String(self.promotionList[indexPath.row].minPax ?? 0)
+                cell.labelTotalPrice.text = String(self.promotionList[indexPath.row].totalPrice ?? 0)
+                cell.labelFlatPricw.text = String(self.promotionList[indexPath.row].flatPrice ?? 0)
+                cell.tourDate = self.promotionList[indexPath.row].tourDate ?? ""
+                cell.excursionListInCell = self.promotionList[indexPath.row]
+                cell.isTappedCheck = self.checkPromotionList[indexPath.row]
+                cell.tourid = self.promotionList[indexPath.row].tourId  ?? 0
+                cell.priceTypeDesc = promotionList[indexPath.row].priceType ?? 0
+                cell.pickuptime = promotionList[indexPath.row].pickUpTime ?? ""
+            }else{
+                cell.labelExcursion.text = self.excursionList[indexPath.row].tourName
+                if pickUpTimeList.count == 0 {
+                    cell.labelPickUpTime.text = self.excursionList[indexPath.row].pickUpTime
+                }else if pickUpTimeList.count > 0{
+                    cell.labelPickUpTime.text = self.pickUpTimeList[indexPath.row]
+                }
+                // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
+                cell.labelPriceType.text = String(self.excursionList[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
+                cell.labelCurrency.text = self.excursionList[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
+                cell.labelAdultPrice.text = String(self.excursionList[indexPath.row].adultPrice ?? 0)
+                cell.labelChildPrice.text = String(self.excursionList[indexPath.row].childPrice ?? 0)
+                cell.labelInfantPrice.text = String(self.excursionList[indexPath.row].infantPrice ?? 0)
+                cell.labelToodlePrice.text = String(self.excursionList[indexPath.row].toodlePrice ?? 0)
+                cell.labelMinPrice.text = String(self.excursionList[indexPath.row].minPrice ?? 0)
+                cell.labelMinPax.text = String(self.excursionList[indexPath.row].minPax ?? 0)
+                cell.labelTotalPrice.text = String(self.excursionList[indexPath.row].totalPrice ?? 0)
+                cell.labelFlatPricw.text = String(self.excursionList[indexPath.row].flatPrice ?? 0)
+                cell.tourDate = self.excursionList[indexPath.row].tourDate ?? ""
+                cell.excursionListInCell = self.excursionList[indexPath.row]
+                cell.isTappedCheck = self.checkList[indexPath.row]
+                cell.tourid = self.excursionList[indexPath.row].tourId  ?? 0
+                cell.priceTypeDesc = excursionList[indexPath.row].priceType ?? 0
+                cell.pickuptime = excursionList[indexPath.row].pickUpTime ?? ""
             }
-            // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
-            cell.labelPriceType.text = String(self.excursionList[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
-            cell.labelCurrency.text = self.excursionList[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
-            cell.labelAdultPrice.text = String(self.excursionList[indexPath.row].adultPrice ?? 0)
-            cell.labelChildPrice.text = String(self.excursionList[indexPath.row].childPrice ?? 0)
-            cell.labelInfantPrice.text = String(self.excursionList[indexPath.row].infantPrice ?? 0)
-            cell.labelToodlePrice.text = String(self.excursionList[indexPath.row].toodlePrice ?? 0)
-            cell.labelMinPrice.text = String(self.excursionList[indexPath.row].minPrice ?? 0)
-            cell.labelMinPax.text = String(self.excursionList[indexPath.row].minPax ?? 0)
-            cell.labelTotalPrice.text = String(self.excursionList[indexPath.row].totalPrice ?? 0)
-            cell.labelFlatPricw.text = String(self.excursionList[indexPath.row].flatPrice ?? 0)
-            cell.excursionListInCell = self.excursionList[indexPath.row]
-            cell.isTappedCheck = self.checkList[indexPath.row]
-            cell.tourid = self.excursionList[indexPath.row].tourId  ?? 0
-            cell.priceTypeDesc = excursionList[indexPath.row].priceType ?? 0
-            cell.pickuptime = excursionList[indexPath.row].pickUpTime ?? ""
         }
         return cell
     }
@@ -218,7 +269,7 @@ extension ExcSelectCustomView : UISearchBarDelegate {
 }
 
 extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
-    func checkBoxTapped(checkCounter: Bool, tourid: Int, tempPaxes: GetSearchTourResponseModel, priceTypeDesc : Int, pickUpTime: String) {
+    func checkBoxTapped(checkCounter: Bool, tourid: Int, tourDate: String, tempPaxes: GetSearchTourResponseModel, priceTypeDesc : Int, pickUpTime: String) {
         
         self.tempFilteredList = []
         if isFiltered == true {
@@ -228,6 +279,12 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                 self.tempFilteredList = self.filteredList
             }
         }else{
+            if self.promotionButtonTapped == true {
+                if let index = self.promotionList.firstIndex(where: {$0.tourId == tourid}){
+                    self.promotionList[index].isTapped = checkCounter
+                    self.checkPromotionList[index] = checkCounter
+                }
+            }
             if let index = self.excursionList.firstIndex(where: {$0.tourId == tourid}){
                 self.excursionList[index].isTapped = checkCounter
                 self.checkList[index] = checkCounter
@@ -237,52 +294,104 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
         
         if checkCounter == true {
             if pickUpTime == "" {
-                for i in 0...self.excursionList.count - 1 {
-                    self.pickUpTimeList.append(excursionList[i].pickUpTime ?? "")
-                }
-                let alert = UIAlertController(title: "Pick Up Time", message: "Please insert Pick Up Time", preferredStyle: .alert)
-                alert.addTextField {
-                    $0.placeholder = "Pick Up Time"
-                    $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
-                }
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-                let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
-                    guard let flatamount = alert.textFields?[0].text
-                            
-                    else { return } // Should never happen
-                    
-                    self.pickUpTime = "\(flatamount):00"
-                    
-                    if let index = self.excursionList.firstIndex(where: {$0 === tempPaxes}){
-                        self.pickUpTimeList[index] = self.pickUpTime
+                if promotionButtonTapped == true {
+                    for i in 0...self.promotionList.count - 1 {
+                        self.pickUpTimeList.append(promotionList[i].pickUpTime ?? "")
                     }
-                    if let indexSaveTourList = self.savesTourList.firstIndex(where: { $0 === tempPaxes}) {
-                        self.savesTourList[indexSaveTourList].pickUpTime = self.pickUpTime
+                    let alert = UIAlertController(title: "Pick Up Time", message: "Please insert Pick Up Time", preferredStyle: .alert)
+                    alert.addTextField {
+                        $0.placeholder = "Pick Up Time"
+                        $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
                     }
-               
-                   // self.savesTourList.uniqued()
-                    
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                    let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
+                        guard let flatamount = alert.textFields?[0].text
+                                
+                        else { return } // Should never happen
+                        
+                        self.pickUpTime = "\(flatamount):00"
+                        
+                        if let index = self.promotionList.firstIndex(where: {$0 === tempPaxes}){
+                            self.pickUpTimeList[index] = self.pickUpTime
+                        }
+                        if let indexSaveTourList = self.savesTourList.firstIndex(where: { $0 === tempPaxes}) {
+                            self.savesTourList[indexSaveTourList].pickUpTime = self.pickUpTime
+                        }
                    
-                  
-                    userDefaultsData.saveTourList(tour: self.savesTourList)
-                    self.tableView.reloadData()
-                }
-                
-                //  flatAmountAction.isEnabled = false
-                alert.addAction(flatAmountAction)
-                
-                if let topVC = UIApplication.getTopViewController() {
-                    topVC.present(alert, animated: true, completion: nil)
+                       // self.savesTourList.uniqued()
+                        
+                        userDefaultsData.saveTourList(tour: self.savesTourList)
+                        self.tableView.reloadData()
+                    }
+                    
+                    //  flatAmountAction.isEnabled = false
+                    alert.addAction(flatAmountAction)
+                    
+                    if let topVC = UIApplication.getTopViewController() {
+                        topVC.present(alert, animated: true, completion: nil)
+                    }
+                }else {
+                    
+                    for i in 0...self.excursionList.count - 1 {
+                        self.pickUpTimeList.append(excursionList[i].pickUpTime ?? "")
+                    }
+                    let alert = UIAlertController(title: "Pick Up Time", message: "Please insert Pick Up Time", preferredStyle: .alert)
+                    alert.addTextField {
+                        $0.placeholder = "Pick Up Time"
+                        $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
+                    }
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                    let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
+                        guard let flatamount = alert.textFields?[0].text
+                                
+                        else { return } // Should never happen
+                        
+                        self.pickUpTime = "\(flatamount):00"
+                        
+                        if let index = self.excursionList.firstIndex(where: {$0 === tempPaxes}){
+                            self.pickUpTimeList[index] = self.pickUpTime
+                        }
+                        if let indexSaveTourList = self.savesTourList.firstIndex(where: { $0 === tempPaxes}) {
+                            self.savesTourList[indexSaveTourList].pickUpTime = self.pickUpTime
+                        }
+                   
+                       // self.savesTourList.uniqued()
+                        
+                        userDefaultsData.saveTourList(tour: self.savesTourList)
+                        self.tableView.reloadData()
+                    }
+                    
+                    //  flatAmountAction.isEnabled = false
+                    alert.addAction(flatAmountAction)
+                    
+                    if let topVC = UIApplication.getTopViewController() {
+                        topVC.present(alert, animated: true, completion: nil)
+                    }
                 }
             }
-            let filter = excursionList.filter{ $0.tourId == tourid}
+            let filterExcursionTourId = self.excursionList.filter{ $0.tourId == tourid}
+            let filterExcursionTourDate = filterExcursionTourId.filter{ $0.tourDate == tourDate}
+            let filterPromotionId = self.promotionList.filter{ $0.tourId == tourid}
+            let filterPromotionDate = filterPromotionId.filter{ $0.tourDate == tourDate}
             // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
-            // düzeltilecek
-            self.savesTourList.append(filter[0])
-           /* for index in filter {
+            // Özgeyle konuş burda offline salede tourid ye göre filtreleme yaptığında 24 tane aynı tur geliyor. oyüzden filter[0] yapıldı. düzeltilecek
+          /* self.savesTourList.append(filterExcursionTourDate[0])
+           self.savesTourList.append(filterPromotionDate[0]) */
+            for index in filterExcursionTourDate {
                 self.savesTourList.append(index)
-            }*/
+            }
+            
+            for index in filterPromotionDate {
+                self.savesTourList.append(index)
+            }
+            
         }else{
+            if self.promotionButtonTapped == true {
+                let filter = self.promotionList.filter{ $0.tourId == tourid}
+                if let insideIndex = self.savesTourList.firstIndex(where: {$0.tourId == filter[0].tourId}){
+                    self.savesTourList.remove(at: insideIndex)
+                }
+            }
             // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
             let filter = excursionList.filter{ $0.tourId == tourid}
             if let insideIndex = self.savesTourList.firstIndex(where: {$0.tourId == filter[0].tourId}){

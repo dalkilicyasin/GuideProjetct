@@ -10,47 +10,44 @@ import UIKit
 import ObjectMapper
 
 public class  GetTourSearchRequestModel : Mappable{
- 
-    
-    public var guide : String!
-    public var market : String!
-    public var hotel : String!
-    public var area : String!
-    public var tourdatestart : String!
-    public var tourdateend : String!
-    public var saledate : String!
-    public var tourtype = "0"
-    public var isofficesale = true
-    public var promotionid = "0"
-    public var tourid = "0"
+    public var Guide : Int!
+    public var Market : Int!
+    public var Hotel : Int!
+    public var Area : Int!
+    public var TourDateStart : String!
+    public var TourDateEnd : String!
+    public var SaleDate : String!
+    public var TourType = "0"
+    public var IsofficeSale = true
+    public var PromotionId : Int!
+    public var TourId = 0
    
     public required init?(map: Map) {
         
     }
     
-    public init( guide : String, market : String, hotel : String, area : String, tourdatestart : String, tourdateend : String, saledate : String) {
-        self.guide = guide
-        self.market = market
-        self.hotel = hotel
-        self.area = area
-        self.tourdatestart = tourdatestart
-        self.tourdateend = tourdateend
-        self.saledate = saledate
+    public init( Guide : Int, Market : Int, Hotel : Int, Area : Int, TourDateStart : String, TourDateEnd : String, SaleDate : String, PromotionId : Int) {
+        self.Guide = Guide
+        self.Market = Market
+        self.Hotel = Hotel
+        self.Area = Area
+        self.TourDateStart = TourDateStart
+        self.TourDateEnd = TourDateEnd
+        self.SaleDate = SaleDate
+        self.PromotionId = PromotionId
     }
     
     public func mapping(map: Map) {
-        guide <- map["guide"]
-        market <- map["market"]
-        hotel <- map["hotel"]
-        area <- map["area"]
-        tourdatestart <- map["tourdatestart"]
-        tourdateend <- map["tourdateend"]
-        saledate <- map["saledate"]
-        tourtype <- map["tourtype"]
-        isofficesale <- map["isofficesale"]
-        promotionid <- map["promotionid"]
-        promotionid <- map["promotionid"]
-        tourid <- map["tourid"]
+        Guide <- map["Guide"]
+        Market <- map["Market"]
+        Hotel <- map["Hotel"]
+        Area <- map["Area"]
+        TourDateStart <- map["TourDateStart"]
+        TourDateEnd <- map["TourDateEnd"]
+        SaleDate <- map["SaleDate"]
+        TourType <- map["TourType"]
+        IsofficeSale <- map["IsofficeSale"]
+        PromotionId <- map["PromotionId"]
+        TourId <- map["TourId"]
     }
-
 }
