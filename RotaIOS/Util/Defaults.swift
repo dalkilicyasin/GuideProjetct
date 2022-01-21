@@ -41,7 +41,6 @@ public class Defaults{
     }
     
    public init(){}
-    //saveMaxVoucher
     public func saveDay(day:Int){
         let preferences = UserDefaults.standard
         let currentLanguageKey = getIdentifier(type: .SaveDay)
@@ -120,19 +119,19 @@ public class Defaults{
     
     //VoucherNodatecheck
     
-    public func saveMaxVoucher(voucher:String){
+    public func saveMaxVoucher(voucher:[String]){
         let preferences = UserDefaults.standard
         let currentLanguageKey = getIdentifier(type: .MaxVoucher)
         preferences.set(voucher, forKey: currentLanguageKey)
         preferences.synchronize()
     }
     
-    public func getMaxVoucher() -> String! {
+    public func getMaxVoucher() -> [String]! {
         let preferences = UserDefaults.standard
         if preferences.object(forKey: getIdentifier(type: .MaxVoucher)) == nil {
             return nil
         }
-        let data:String = preferences.value(forKey: getIdentifier(type: .MaxVoucher)) as! String
+        let data:[String] = preferences.value(forKey: getIdentifier(type: .MaxVoucher)) as! [String]
         return data
     }
     

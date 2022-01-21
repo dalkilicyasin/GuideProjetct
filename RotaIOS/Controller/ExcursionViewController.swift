@@ -64,10 +64,15 @@ class ExcursionViewController: UIViewController {
     var paxTotalAmount = 0.0
     var tourAmount = 0.0
     var tours : [TourRequestModel] = []
+    var voucherList : [String] = []
+    var maxVoucherIntAdeed = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        userDefaultsData.saveHotelId(hotelId: 0)
+        userDefaultsData.saveMarketId(marketId: 0)
+        userDefaultsData.saveHotelArea(hotelAreaId: 0 )
         userDefaultsData.saveTourList(tour: [])
         userDefaultsData.savePaxesList(tour: [])
         self.viewAppointMentBarCutomView.homePageTappedDelegate = self
@@ -320,9 +325,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     })
                     // self.lastUIView = self.paxPageCustomView!
                     self.isHotelorMarketChanged = false
-                    userDefaultsData.saveHotelId(hotelId: 0)
+                   /* userDefaultsData.saveHotelId(hotelId: 0)
                     userDefaultsData.saveMarketId(marketId: 0)
-                    userDefaultsData.saveHotelArea(hotelAreaId: 0)
+                    userDefaultsData.saveHotelArea(hotelAreaId: 0)*/
                 }else {
                     self.viewExcSelectCustomView?.isHidden = false
                     self.viewExcSearchCustomView?.isHidden = true
@@ -376,6 +381,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
            
         }else if tapped == 2 {
+            self.tourList = userDefaultsData.getTourList() ?? self.tourList
             self.viewFooterViewCustomView.printButton.isHidden = true
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.labelAmount.isHidden = false
@@ -554,30 +560,33 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             if self.isConnectedInternet == true {
                 NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
                     if response != 0 {
-                        self.counter = 0
-                        print(response)
-                        self.maxVoucherNo = String(response)
-                        let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
-                        let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
-                        self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
-                        print(self.maxVoucherNo)
-                        if let maxVoucherInt = Int(self.maxVoucherNo) {
-                            print(maxVoucherInt)
-                            self.counter = maxVoucherInt
-                            self.counter += 1
+                        for i in 0...self.tourList.count - 1 {
+                            self.counter = i + 1
+                            print(response)
+                            self.maxVoucherNo = String(response)
+                            let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                            let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                            self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                            print(self.maxVoucherNo)
+                            if let maxVoucherInt = Int(self.maxVoucherNo) {
+                                print(maxVoucherInt)
+                                self.maxVoucherIntAdeed = maxVoucherInt
+                                self.maxVoucherIntAdeed += self.counter
+                            }
+                            self.addedVoucher = String(format: "%02d", self.maxVoucherIntAdeed)
+                            if userDefaultsData.getDay() != day {
+                                self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                                userDefaultsData.saveDay(day: day)
+                            }else if userDefaultsData.getDay() == day {
+                                self.counter = 1
+                                self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                                userDefaultsData.saveDay(day: day)
+                            }
+                            self.voucherList.append(self.createVoucher)
                         }
-                        self.addedVoucher = String(format: "%02d", self.counter)
-                        if userDefaultsData.getDay() != day {
-                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
-                            userDefaultsData.saveDay(day: day)
-                        }else if userDefaultsData.getDay() == day {
-                            self.counter = 1
-                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
-                            userDefaultsData.saveDay(day: day)
-                        }
-                        print(self.createVoucher)
-                        self.viewExcProceedCustomView?.voucherNo = self.createVoucher
-                        userDefaultsData.saveMaxVoucher(voucher: self.createVoucher)
+                        print(self.voucherList)
+                        self.viewExcProceedCustomView?.voucherNo = self.voucherList
+                        userDefaultsData.saveMaxVoucher(voucher: self.voucherList)
                        
                     }else {
                         print("error")
@@ -614,7 +623,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 
                 let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
                 NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
-                    if response.isSuccesful == true {
+                    if response.isSuccesful == true && response.record?.tours?.count ?? 0 > 0 {
                         print(response)
                         self.promotionTourList = response.record?.tours ?? self.promotionTourList
                         for i in 0...self.promotionTourList.count - 1 {
@@ -638,7 +647,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
                    
-                    self.viewExcProceedCustomView?.voucherNo = self.createVoucher
+                    self.viewExcProceedCustomView?.voucherNo = self.voucherList
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
@@ -794,9 +803,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             
                         }
                     })
-                    userDefaultsData.saveHotelId(hotelId: 0)
+                   /* userDefaultsData.saveHotelId(hotelId: 0)
                     userDefaultsData.saveMarketId(marketId: 0)
-                    userDefaultsData.saveHotelArea(hotelAreaId: 0)
+                    userDefaultsData.saveHotelArea(hotelAreaId: 0)*/
                     // self.lastUIView = self.paxPageCustomView!
                     self.isHotelorMarketChanged = false
                 }else {
@@ -853,6 +862,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
             
         }else if ischosen == 2 {
+            self.tourList = userDefaultsData.getTourList() ?? self.tourList
             self.viewFooterViewCustomView.printButton.isHidden = true
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.labelAmount.isHidden = false
@@ -1023,30 +1033,33 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             if self.isConnectedInternet == true {
                 NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
                     if response != 0 {
-                        self.counter = 0
-                        print(response)
-                        self.maxVoucherNo = String(response)
-                        let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
-                        let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
-                        self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
-                        print(self.maxVoucherNo)
-                        if let maxVoucherInt = Int(self.maxVoucherNo) {
-                            print(maxVoucherInt)
-                            self.counter = maxVoucherInt
-                            self.counter += 1
+                        for i in 0...self.tourList.count - 1 {
+                            self.counter = i
+                            print(response)
+                            self.maxVoucherNo = String(response)
+                            let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                            let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                            self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                            print(self.maxVoucherNo)
+                            if let maxVoucherInt = Int(self.maxVoucherNo) {
+                                print(maxVoucherInt)
+                                self.maxVoucherIntAdeed = maxVoucherInt
+                                self.maxVoucherIntAdeed += self.counter
+                            }
+                            self.addedVoucher = String(format: "%02d", self.maxVoucherIntAdeed)
+                            if userDefaultsData.getDay() != day {
+                                self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                                userDefaultsData.saveDay(day: day)
+                            }else if userDefaultsData.getDay() == day {
+                                self.counter = 1
+                                self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                                userDefaultsData.saveDay(day: day)
+                            }
+                            self.voucherList.append(self.createVoucher)
                         }
-                        self.addedVoucher = String(format: "%02d", self.counter)
-                        if userDefaultsData.getDay() != day {
-                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
-                            userDefaultsData.saveDay(day: day)
-                        }else if userDefaultsData.getDay() == day {
-                            self.counter = 1
-                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
-                            userDefaultsData.saveDay(day: day)
-                        }
-                        print(self.createVoucher)
-                        self.viewExcProceedCustomView?.voucherNo = self.createVoucher
-                        userDefaultsData.saveMaxVoucher(voucher: self.createVoucher)
+                        print(self.voucherList)
+                        self.viewExcProceedCustomView?.voucherNo = self.voucherList
+                        userDefaultsData.saveMaxVoucher(voucher: self.voucherList)
                        
                     }else {
                         print("error")
