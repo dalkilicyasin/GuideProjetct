@@ -61,6 +61,7 @@ class ExcPaxCustomView : UIView {
     // var paxesList : [Paxes] = []
     var equalableFilteredPaxList : [String] = []
     var tempValue = 0
+    var tempListofPaxes : [Paxes] = []
     // var checkList : [Bool] = []
     // var checkFilteredList : [Bool] = []
     // var tempFilteredList : [GetInHoseListResponseModel] = []
@@ -226,72 +227,102 @@ extension ExcPaxCustomView : UISearchBarDelegate {
 
 extension ExcPaxCustomView : TempAddPaxesListDelegate {
     func tempAddList(listofpaxes: [Paxes], manuellist: [String], changeValue: Int) {
-        self.manuelAddedPaxesList.removeAll()
-        let currentYear =  Calendar.current.component(.year, from: Date())
-        if self.tempValue != changeValue {
-            self.tempValue = changeValue
-            self.sendingListofPaxes = listofpaxes
-            userDefaultsData.saveManuelandHousePaxesList(tour: self.sendingListofPaxes)
-            if self.sendingListofPaxes.count > 0 {
+        if  self.tempListofPaxes.count != listofpaxes.count {
+            self.tempListofPaxes = listofpaxes
+            self.manuelAddedPaxesList.removeAll()
+            let currentYear =  Calendar.current.component(.year, from: Date())
+            if self.tempValue != changeValue {
+                self.tempValue = changeValue
+                self.sendingListofPaxes = listofpaxes
+                userDefaultsData.saveManuelandHousePaxesList(tour: self.sendingListofPaxes)
+                if self.sendingListofPaxes.count > 0 {
+                    for i in 0...self.sendingListofPaxes.count - 1 {
+                        if let birtdate =  self.sendingListofPaxes[i].pAX_BIRTHDAY {
+                            let year = Int(birtdate.suffix(4))
+                            self.manuelPaxAge = currentYear - (year ?? 0)
+                            if self.manuelPaxAge >= 0 &&  self.manuelPaxAge < 2 {
+                                self.manuelPaxAgeGroup = "INF"
+                            }else if self.manuelPaxAge >= 2 &&  self.manuelPaxAge < 6{
+                                self.manuelPaxAgeGroup = "TDL"
+                            }else if self.manuelPaxAge >= 6 &&  self.manuelPaxAge < 11{
+                                self.manuelPaxAgeGroup = "CHL"
+                            }else{
+                                self.manuelPaxAgeGroup = "ADL"
+                            }
+                        }
+                        
+                        self.manuelAddedPaxesList.append(GetInHoseListResponseModel(text: self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender:self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY))
+                    }
+                }
+                if self.manuelAddedPaxesList.count > 0 && self.paxesList.count > 0 {
+                    if self.paxesList.count > self.manuelAddedPaxesList.count {
+                        for i in 0...self.paxesList.count - 1 {
+                            for index in 0...self.manuelAddedPaxesList.count - 1 {
+                                if self.manuelAddedPaxesList[index].text != self.paxesList[i].text {
+                                    self.paxesList.append(self.manuelAddedPaxesList[i])
+                                    self.checkList.append(false)
+                                }
+                            }
+                        }
+                    }else {
+                        for i in 0...self.manuelAddedPaxesList.count - 1 {
+                            for index in 0...self.paxesList.count - 1 {
+                                if self.manuelAddedPaxesList[i].text != self.paxesList[index].text {
+                                    self.paxesList.append(self.manuelAddedPaxesList[i])
+                                    self.checkList.append(false)
+                                }
+                            }
+                        }
+                    }
+                   
+                }else {
+                    for i in 0...self.manuelAddedPaxesList.count - 1 {
+                            self.paxesList.append(self.manuelAddedPaxesList[i])
+                            self.checkList.append(false)
+                    }
+                }
+                
+                self.tableView.reloadData()
+                // self.labelTouristAdded.text = "\(self.totalPaxesCount + self.tempValue) Tourist Added" ind. shop sayfası ile burdaki farklı çeşitte daha sonra değerlendirilmesi
+                // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
+                return
+            }else {
+                self.paxesListinPaxPage.removeAll()
+                self.sendingListofPaxes = listofpaxes
+                // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: false)
+                self.tempValue = changeValue
+            }
+            if sendingListofPaxes.count > 0 {
                 for i in 0...self.sendingListofPaxes.count - 1 {
-                    if let birtdate =  self.sendingListofPaxes[i].pAX_BIRTHDAY {
-                        let year = Int(birtdate.suffix(4))
-                        self.manuelPaxAge = currentYear - (year ?? 0)
-                        if self.manuelPaxAge >= 0 &&  self.manuelPaxAge < 2 {
+                    if let birtdate =  Int(self.sendingListofPaxes[i].pAX_BIRTHDAY) {
+                        self.manuelPaxAge = birtdate
+                        if self.manuelPaxAge > 0 &&  self.manuelPaxAge < 2{
                             self.manuelPaxAgeGroup = "INF"
-                        }else if self.manuelPaxAge >= 2 &&  self.manuelPaxAge < 6{
+                        }else if self.manuelPaxAge > 2 &&  self.manuelPaxAge < 6{
                             self.manuelPaxAgeGroup = "TDL"
-                        }else if self.manuelPaxAge >= 6 &&  self.manuelPaxAge < 11{
+                        }else if self.manuelPaxAge > 6 &&  self.manuelPaxAge < 11{
                             self.manuelPaxAgeGroup = "CHL"
                         }else{
                             self.manuelPaxAgeGroup = "ADL"
                         }
                     }
-                    
-                    self.manuelAddedPaxesList.append(GetInHoseListResponseModel(text: self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender:self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY))
+                    self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text: self.sendingListofPaxes[i].pAX_NAME, ageGroup:  self.sendingListofPaxes[i].pAX_AGEGROUP, gender:  self.sendingListofPaxes[i].pAX_GENDER, room:  self.sendingListofPaxes[i].pAX_ROOM, birtDate:  self.sendingListofPaxes[i].pAX_BIRTHDAY))
                 }
             }
             if self.manuelAddedPaxesList.count > 0 {
-                for i in 0...self.manuelAddedPaxesList.count - 1 {
-                    self.paxesList.append(self.manuelAddedPaxesList[i])
-                    self.checkList.append(false)
-                }
-            }
-            
-            self.tableView.reloadData()
-            // self.labelTouristAdded.text = "\(self.totalPaxesCount + self.tempValue) Tourist Added" ind. shop sayfası ile burdaki farklı çeşitte daha sonra değerlendirilmesi
-            // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
-            return
-        }else {
-            self.paxesListinPaxPage.removeAll()
-            self.sendingListofPaxes = listofpaxes
-            // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: false)
-            self.tempValue = changeValue
-        }
-        if sendingListofPaxes.count > 0 {
-            for i in 0...self.sendingListofPaxes.count - 1 {
-                if let birtdate =  Int(self.sendingListofPaxes[i].pAX_BIRTHDAY) {
-                    self.manuelPaxAge = birtdate
-                    if self.manuelPaxAge > 0 &&  self.manuelPaxAge < 2{
-                        self.manuelPaxAgeGroup = "INF"
-                    }else if self.manuelPaxAge > 2 &&  self.manuelPaxAge < 6{
-                        self.manuelPaxAgeGroup = "TDL"
-                    }else if self.manuelPaxAge > 6 &&  self.manuelPaxAge < 11{
-                        self.manuelPaxAgeGroup = "CHL"
-                    }else{
-                        self.manuelPaxAgeGroup = "ADL"
+                for i in 0...self.paxesList.count - 1 {
+                    for index in 0...self.manuelAddedPaxesList.count - 1 {
+                        if self.manuelAddedPaxesList[index].text != self.paxesList[i].text {
+                            self.paxesList.append(self.manuelAddedPaxesList[i])
+                            self.checkList.append(false)
+                        }
                     }
                 }
-                self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text: self.sendingListofPaxes[i].pAX_NAME, ageGroup:  self.sendingListofPaxes[i].pAX_AGEGROUP, gender:  self.sendingListofPaxes[i].pAX_GENDER, room:  self.sendingListofPaxes[i].pAX_ROOM, birtDate:  self.sendingListofPaxes[i].pAX_BIRTHDAY))
             }
+            self.tableView.reloadData()
+        }else{
+            return
         }
-        if self.manuelAddedPaxesList.count > 0 {
-            for i in 0...self.manuelAddedPaxesList.count - 1 {
-                self.paxesList.append(self.manuelAddedPaxesList[i])
-                self.checkList.append(false)
-            }
-        }
-        self.tableView.reloadData()
     }
 }
 
@@ -349,7 +380,7 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             }
         }
         self.totalPaxesCount = self.savePaxesList.count
-        self.labelTouristAdded.text = "\(self.totalPaxesCount +  self.tempValue) Tourist Added"
+        self.labelTouristAdded.text = "\(self.totalPaxesCount) Tourist Added"
         userDefaultsData.savePaxesList(tour: self.savePaxesList)
     }
 }

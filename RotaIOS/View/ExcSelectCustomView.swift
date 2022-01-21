@@ -141,7 +141,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
         cell.excursionListTableViewCellDelegate = self
         if self.isFiltered == true {
             cell.labelExcursion.text = self.filteredData[indexPath.row].tourName
-            cell.labelTourdate.text = self.filteredData[indexPath.row].tourDate
+            cell.labelTourdate.text = self.filteredData[indexPath.row].tourDateStr
             if pickUpTimeList.count == 0 {
                 cell.labelPickUpTime.text = self.filteredData[indexPath.row].pickUpTime
             }else if pickUpTimeList.count > 0{
@@ -158,6 +158,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.labelMinPax.text = String(self.filteredData[indexPath.row].minPax ?? 0)
             cell.labelTotalPrice.text = String(self.filteredData[indexPath.row].totalPrice ?? 0)
             cell.labelFlatPricw.text = String(self.filteredData[indexPath.row].flatPrice ?? 0)
+            cell.tourDate = self.filteredData[indexPath.row].tourDate ?? ""
             cell.excursionListInCell = self.filteredData[indexPath.row]
             cell.isTappedCheck = self.checkFilteredList[indexPath.row]
             cell.tourid = self.filteredData[indexPath.row].tourId ?? 0
@@ -183,6 +184,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
                 cell.labelTotalPrice.text = String(self.promotionList[indexPath.row].totalPrice ?? 0)
                 cell.labelFlatPricw.text = String(self.promotionList[indexPath.row].flatPrice ?? 0)
                 cell.tourDate = self.promotionList[indexPath.row].tourDate ?? ""
+                cell.labelTourdate.text = self.promotionList[indexPath.row].tourDateStr ?? ""
                 cell.excursionListInCell = self.promotionList[indexPath.row]
                 cell.isTappedCheck = self.checkPromotionList[indexPath.row]
                 cell.tourid = self.promotionList[indexPath.row].tourId  ?? 0
@@ -207,6 +209,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
                 cell.labelTotalPrice.text = String(self.excursionList[indexPath.row].totalPrice ?? 0)
                 cell.labelFlatPricw.text = String(self.excursionList[indexPath.row].flatPrice ?? 0)
                 cell.tourDate = self.excursionList[indexPath.row].tourDate ?? ""
+                cell.labelTourdate.text = self.excursionList[indexPath.row].tourDateStr ?? ""
                 cell.excursionListInCell = self.excursionList[indexPath.row]
                 cell.isTappedCheck = self.checkList[indexPath.row]
                 cell.tourid = self.excursionList[indexPath.row].tourId  ?? 0
@@ -273,19 +276,20 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
         
         self.tempFilteredList = []
         if isFiltered == true {
-            if let index = self.filteredData.firstIndex(where: {$0.tourId == tourid} ){
+            if let index = self.filteredData.firstIndex(where: {$0.tourId == tourid && $0.tourDate == tourDate} ){
                 self.filteredList[index].isTapped = checkCounter
                 self.checkFilteredList[index] = checkCounter
                 self.tempFilteredList = self.filteredList
             }
         }else{
+            
             if self.promotionButtonTapped == true {
-                if let index = self.promotionList.firstIndex(where: {$0.tourId == tourid}){
+                if let index = self.promotionList.firstIndex(where: {$0.tourId == tourid && $0.tourDate == tourDate}){
                     self.promotionList[index].isTapped = checkCounter
                     self.checkPromotionList[index] = checkCounter
                 }
             }
-            if let index = self.excursionList.firstIndex(where: {$0.tourId == tourid}){
+            if let index = self.excursionList.firstIndex(where: {$0.tourId == tourid && $0.tourDate == tourDate}){
                 self.excursionList[index].isTapped = checkCounter
                 self.checkList[index] = checkCounter
             }

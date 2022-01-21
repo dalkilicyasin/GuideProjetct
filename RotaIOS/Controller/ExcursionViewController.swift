@@ -48,6 +48,7 @@ class ExcursionViewController: UIViewController {
     var paxesListSaved : [GetInHoseListResponseModel] = []
     var ageGroup = ""
     var totalPrice = 0.00
+    var perTourTotalPrice = 0.0
     var minPerson = 0
     var minPriceTotal = 0.00
     var extraAndTransTotalPrice = 0.00
@@ -375,7 +376,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
            
         }else if tapped == 2 {
-            
             self.viewFooterViewCustomView.printButton.isHidden = true
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.labelAmount.isHidden = false
@@ -428,7 +428,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             var toodleCount = 0
             var infantCount = 0
             
-            if self.tourListSaved.count > 0 {
+            if self.tourListSaved.count > 0 && paxesListSaved.count > 0{
                 for i in 0...self.paxesListSaved.count - 1{
                     if self.paxesListSaved[i].ageGroup == "ADL" {
                         adultCount += 1
@@ -444,6 +444,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
                 for i in 0...self.tourListSaved.count - 1{
+                    self.perTourTotalPrice = 0.0
                     // Per Person Price calculation
                     if self.tourListSaved[i].priceType == 35 {
                         // Özgeye sor getinforesponse mu yoksa direk gethouselisten dönen agegrup mu alınacak
@@ -466,20 +467,20 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         for index in 0...paxesListSaved.count - 1 {
                             switch self.paxesListSaved[index].ageGroup {
                             case "INF":
-                                self.totalPrice += self.tourListSaved[i].infantPrice ?? 0.00
+                                self.perTourTotalPrice += self.tourListSaved[i].infantPrice ?? 0.00
                             case "TDL":
-                                self.totalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
+                                self.perTourTotalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
                             case "CHD":
-                                self.totalPrice += self.tourListSaved[i].childPrice ?? 0.00
+                                self.perTourTotalPrice += self.tourListSaved[i].childPrice ?? 0.00
                             default:
-                                self.totalPrice += self.tourListSaved[i].adultPrice ?? 0.00
+                                self.perTourTotalPrice += self.tourListSaved[i].adultPrice ?? 0.00
                             }
                         }
                     }
                     
                     //Flat Price calculation
                     else if self.tourListSaved[i].priceType == 36{
-                        self.totalPrice += self.tourListSaved[i].flatPrice ?? 0.00
+                        self.perTourTotalPrice += self.tourListSaved[i].flatPrice ?? 0.00
                     }
                     
                     //Min Price
@@ -504,22 +505,23 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         }else {
                             for index in 0...self.paxesListSaved.count - 1{
                                 if  self.paxesListSaved[index].ageGroup == "ADL" {
-                                    self.totalPrice += tourListSaved[i].adultPrice ?? 0.00
+                                    self.perTourTotalPrice += tourListSaved[i].adultPrice ?? 0.00
                                 }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
-                                    self.totalPrice += tourListSaved[i].childPrice ?? 0.00
+                                    self.perTourTotalPrice += tourListSaved[i].childPrice ?? 0.00
                                 }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
-                                    self.totalPrice += tourListSaved[i].toodlePrice ?? 0.00
+                                    self.perTourTotalPrice += tourListSaved[i].toodlePrice ?? 0.00
                                 }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
-                                    self.totalPrice += tourListSaved[i].infantPrice ?? 0.00
+                                    self.perTourTotalPrice += tourListSaved[i].infantPrice ?? 0.00
                                 }
                             }
                         }
-                        self.totalPrice += self.minPriceTotal
+                        self.perTourTotalPrice += self.minPriceTotal
                     }
-                    self.paxTotalAmount = self.totalPrice
-                    self.tourAmount = self.totalPrice
+                    self.totalPrice += self.perTourTotalPrice
+                    self.paxTotalAmount = self.perTourTotalPrice
+                    self.tourAmount = self.perTourTotalPrice
             
-                    self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.totalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
+                    self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.perTourTotalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
                 }
                 self.tourListSaved.removeAll()
                 self.paxesListSaved.removeAll()
@@ -614,11 +616,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
                     if response.isSuccesful == true {
                         print(response)
-                        let alert = UIAlertController(title: "SUCCSESS", message: response.message ?? "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        if let topVC = UIApplication.getTopViewController() {
-                            topVC.present(alert, animated: true, completion: nil)
-                        }
                         self.promotionTourList = response.record?.tours ?? self.promotionTourList
                         for i in 0...self.promotionTourList.count - 1 {
                             self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
@@ -626,11 +623,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         self.viewExcProceedCustomView?.discount = self.discount
                         self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
                     }else {
-                        let alert = UIAlertController(title: "FAILED", message: response.message ?? "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        if let topVC = UIApplication.getTopViewController() {
-                            topVC.present(alert, animated: true, completion: nil)
-                        }
+                        print("error")
                     }
                 }
                 
@@ -908,7 +901,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             var childCount = 0
             var toodleCount = 0
             var infantCount = 0
-            if self.tourListSaved.count > 0 {
+            if self.tourListSaved.count > 0 && paxesListSaved.count > 0{
                 for i in 0...self.paxesListSaved.count - 1{
                     if self.paxesListSaved[i].ageGroup == "ADL" {
                         adultCount += 1
@@ -924,6 +917,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
                 for i in 0...self.tourListSaved.count - 1{
+                    self.perTourTotalPrice = 0.0
                     // Per Person Price calculation
                     if self.tourListSaved[i].priceType == 35 {
                         // Özgeye sor getinforesponse mu yoksa direk gethouselisten dönen agegrup mu alınacak
@@ -946,19 +940,19 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         for index in 0...paxesListSaved.count - 1 {
                             switch self.paxesListSaved[index].ageGroup {
                             case "INF":
-                                self.totalPrice += self.tourListSaved[i].infantPrice ?? 0.00
+                                self.perTourTotalPrice += self.tourListSaved[i].infantPrice ?? 0.00
                             case "TDL":
-                                self.totalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
+                                self.perTourTotalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
                             case "CHD":
-                                self.totalPrice += self.tourListSaved[i].childPrice ?? 0.00
+                                self.perTourTotalPrice += self.tourListSaved[i].childPrice ?? 0.00
                             default:
-                                self.totalPrice += self.tourListSaved[i].adultPrice ?? 0.00
+                                self.perTourTotalPrice += self.tourListSaved[i].adultPrice ?? 0.00
                             }
                         }
                     }
                     //Flat Price calculation
                     else if self.tourListSaved[i].priceType == 36{
-                        self.totalPrice += self.tourListSaved[i].flatPrice ?? 0.00
+                        self.perTourTotalPrice += self.tourListSaved[i].flatPrice ?? 0.00
                     }
                     
                     else if self.tourListSaved[i].priceType == 37{
@@ -982,23 +976,24 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         }else {
                             for index in 0...self.paxesListSaved.count - 1{
                                 if  self.paxesListSaved[index].ageGroup == "ADL" {
-                                    self.totalPrice += tourListSaved[i].adultPrice ?? 0.00
+                                    self.perTourTotalPrice += tourListSaved[i].adultPrice ?? 0.00
                                 }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
-                                    self.totalPrice += tourListSaved[i].childPrice ?? 0.00
+                                    self.perTourTotalPrice += tourListSaved[i].childPrice ?? 0.00
                                 }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
-                                    self.totalPrice += tourListSaved[i].toodlePrice ?? 0.00
+                                    self.perTourTotalPrice += tourListSaved[i].toodlePrice ?? 0.00
                                 }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
-                                    self.totalPrice += tourListSaved[i].infantPrice ?? 0.00
+                                    self.perTourTotalPrice += tourListSaved[i].infantPrice ?? 0.00
                                 }
                             }
                         }
                        
-                        self.totalPrice += self.minPriceTotal
+                        self.perTourTotalPrice += self.minPriceTotal
                     }
-                    self.paxTotalAmount = self.totalPrice
-                    self.tourAmount = self.totalPrice
+                    self.totalPrice += self.perTourTotalPrice
+                    self.paxTotalAmount = self.perTourTotalPrice
+                    self.tourAmount = self.perTourTotalPrice
                     
-                    self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.totalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
+                    self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.perTourTotalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
                 }
                 self.tourListSaved.removeAll()
                 self.paxesListSaved.removeAll()
@@ -1091,11 +1086,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
                     if response.isSuccesful == true {
                         print(response)
-                        let alert = UIAlertController(title: "SUCCSESS", message: response.message ?? "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        if let topVC = UIApplication.getTopViewController() {
-                            topVC.present(alert, animated: true, completion: nil)
-                        }
                         self.promotionTourList = response.record?.tours ?? self.promotionTourList
                         for i in 0...self.promotionTourList.count - 1 {
                             self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
@@ -1103,11 +1093,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         self.viewExcProceedCustomView?.discount = self.discount
                         self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
                     }else {
-                        let alert = UIAlertController(title: "FAILED", message: response.message ?? "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        if let topVC = UIApplication.getTopViewController() {
-                            topVC.present(alert, animated: true, completion: nil)
-                        }
+                        print("error")
                     }
                 }
                 
