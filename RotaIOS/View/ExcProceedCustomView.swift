@@ -168,7 +168,7 @@ class ExcProceedCustomView: UIView{
         self.viewDicountCalculate.headerLAbel.text = "Discount"
         self.viewTotalAmount.headerLAbel.text = "TotalAmount"
         self.viewCurrencyConvert.headerLAbel.text = "Currency"
-        self.viewCurrencyType.mainText.text = "EUR"
+        self.viewCurrencyType.mainLabel.text = "EUR"
         self.viewAmount.mainText.isHidden = false
         self.viewAmount.mainLabel.isHidden = true
         self.viewNotes.mainText.isHidden = false

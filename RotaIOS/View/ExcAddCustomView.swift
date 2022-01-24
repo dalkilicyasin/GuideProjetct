@@ -335,6 +335,12 @@ extension ExcAddCustomView : UITableViewDelegate, UITableViewDataSource {
             if self.buttonExtraTapped == true {
                 cell.labelTransforExtraName.text = self.extrasList[indexPath.row].desc
                 cell.labelPriceType.text = self.extrasList[indexPath.row].priceTypeDesc
+                cell.labelAdultPrice.text = String(self.extrasList[indexPath.row].adultPrice ?? 0.0)
+                cell.labelChildPrice.text = String(self.extrasList[indexPath.row].childPrice ?? 0.0)
+                cell.labelInfantPrice.text = String(self.extrasList[indexPath.row].infantPrice ?? 0.0)
+                cell.labelToodlePrice.text = String(self.extrasList[indexPath.row].toodlePrice ?? 0.0)
+                cell.labelCurrency.text = self.extrasList[indexPath.row].currencyDesc
+                cell.labelFlatPrice.text = String(self.extrasList[indexPath.row].flatPrice ?? 0.0)
                 cell.extraListInAddMenuCell = self.extrasList[indexPath.row]
                 cell.priceTypeDesc = self.extrasList[indexPath.row].priceType ?? 0
                 cell.transExtrDesc = self.extrasList[indexPath.row].desc ?? ""
@@ -343,6 +349,12 @@ extension ExcAddCustomView : UITableViewDelegate, UITableViewDataSource {
             }else{
                 cell.labelTransforExtraName.text = self.transfersList[indexPath.row].desc
                 cell.labelPriceType.text = self.transfersList[indexPath.row].priceTypeDesc
+                cell.labelAdultPrice.text = String(self.transfersList[indexPath.row].adultPrice ?? 0.0)
+                cell.labelChildPrice.text = String(self.transfersList[indexPath.row].childPrice ?? 0.0)
+                cell.labelInfantPrice.text = String(self.transfersList[indexPath.row].infantPrice ?? 0.0)
+                cell.labelToodlePrice.text = String(self.transfersList[indexPath.row].toodlePrice ?? 0.0)
+                cell.labelCurrency.text = self.transfersList[indexPath.row].currencyDesc
+                cell.labelFlatPrice.text = String(self.transfersList[indexPath.row].flatPrice ?? 0.0)
                 cell.priceTypeDesc = self.transfersList[indexPath.row].priceType ?? 0
                 cell.transferListInAddMenuCell = self.transfersList[indexPath.row]
                 cell.transExtrDesc = self.transfersList[indexPath.row].desc ?? ""

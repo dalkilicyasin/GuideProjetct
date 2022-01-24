@@ -15,6 +15,15 @@ class AddMenuTableViewCell: BaseTableViewCell {
     @IBOutlet weak var imageCheck: UIImageView!
     @IBOutlet weak var labelTransforExtraName: UILabel!
     @IBOutlet weak var labelPriceType: UILabel!
+    @IBOutlet weak var labelAdultPrice: UILabel!
+    @IBOutlet weak var labelChildPrice: UILabel!
+    @IBOutlet weak var labelInfantPrice: UILabel!
+    @IBOutlet weak var labelToodlePrice: UILabel!
+    @IBOutlet weak var labelCurrency: UILabel!
+    @IBOutlet weak var labelFlatPrice: UILabel!
+    
+    
+    
     var isTappedCheck = false
     var extraListInAddMenuCell : Extras?
     var transferListInAddMenuCell : Transfers?
