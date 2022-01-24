@@ -11,7 +11,7 @@ import ObjectMapper
 public class Paxes : Mappable, Encodable, Decodable {
     
     public var action = 1 // 1
-    public var iD = 0 // 0
+    public var ID : Int! // 0
     public var pAX_CHECKOUT_DATE : String!
     public var pAX_ID = 0 // 0
     public var pAX_OPRID : Int!
@@ -34,7 +34,7 @@ public class Paxes : Mappable, Encodable, Decodable {
         
     }
     
-    public init(  pAX_CHECKOUT_DATE : String, pAX_OPRID : Int, pAX_OPRNAME : String, pAX_PHONE : String, hotelname : String?, pAX_GENDER : String, pAX_AGEGROUP : String, pAX_NAME : String,pAX_BIRTHDAY : String,pAX_RESNO : String,pAX_PASSPORT : String, pAX_ROOM : String, pAX_TOURISTREF : Int, pAX_STATUS : Int) {
+    public init(  pAX_CHECKOUT_DATE : String, pAX_OPRID : Int, pAX_OPRNAME : String, pAX_PHONE : String, hotelname : String?, pAX_GENDER : String, pAX_AGEGROUP : String, pAX_NAME : String,pAX_BIRTHDAY : String,pAX_RESNO : String,pAX_PASSPORT : String, pAX_ROOM : String, pAX_TOURISTREF : Int, pAX_STATUS : Int, ID : Int) {
         
         self.pAX_AGEGROUP = pAX_AGEGROUP
         self.pAX_BIRTHDAY = pAX_BIRTHDAY
@@ -50,6 +50,7 @@ public class Paxes : Mappable, Encodable, Decodable {
         self.pAX_STATUS = pAX_STATUS
         self.pAX_TOURISTREF = pAX_TOURISTREF
         self.hotelname = hotelname
+        self.ID = ID
         
     }
     
@@ -57,7 +58,7 @@ public class Paxes : Mappable, Encodable, Decodable {
     public func mapping(map: Map) {
         
         action <- map["Action"]
-        iD <- map["ID"]
+        ID <- map["ID"]
         pAX_AGEGROUP <- map["PAX_AGEGROUP"]
         pAX_BIRTHDAY <- map["PAX_BIRTHDAY"]
         pAX_CHECKOUT_DATE <- map["PAX_CHECKOUT_DATE"]

@@ -78,6 +78,7 @@ class ExcProceedCustomView: UIView{
     var promotionTourList : [Tours] = []
     var tourTotalAmount = 0.0
     var totalPricePerTour = 0.0
+    var deletedAmount = 0.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,57 +100,57 @@ class ExcProceedCustomView: UIView{
         self.touristList = userDefaultsData.getPaxesList() ?? self.touristList
         self.tourList = userDefaultsData.getTourList() ?? self.tourList
         
-     /*   var adultCount = 0
-        var childCount = 0
-        var toodleCount = 0
-        var infantCount = 0
-        
-        var tours : [TourRequestModel] = []
-        
-        if self.tourList.count > 0 {
-            for i in 0...self.touristList.count - 1{
-                if self.touristList[i].ageGroup == "ADL" {
-                    adultCount += 1
-                }else if self.touristList[i].ageGroup == "CHD" {
-                    childCount += 1
-                }else if self.touristList[i].ageGroup == "TDL" {
-                    toodleCount += 1
-                }else if self.touristList[i].ageGroup == "INF" {
-                    infantCount += 1
-                }
-            }
-        }
-        
-        for i in 0...self.tourList.count - 1 {
-            tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourList[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourList[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourList[i].infantPrice ?? 0.0, PaxTotalAmount: self.totalAmount, PlanId: self.tourList[i].planId ?? 0, PriceType: self.tourList[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourList[i].toodlePrice ?? 0.0, TotalAmount: self.tourList[i].totalPrice ?? 0.0, TourAmount: self.totalAmount, TourDate: self.tourList[i].tourDate ?? "", TourId: self.tourList[i].tourId ?? 0))
-        }
-       
-        let tourPromotionPostRequestModel = TourPromotionPost(PromotionDiscount: 0, PromotionId: 35, tours: tours)
-        
-        self.data = "\(tourPromotionPostRequestModel.toJSONString(prettyPrint: true) ?? "")"
-        
-        let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
-        NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
-            if response.isSuccesful == true {
-                print(response)
-                let alert = UIAlertController(title: "SUCCSESS", message: response.message ?? "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                if let topVC = UIApplication.getTopViewController() {
-                    topVC.present(alert, animated: true, completion: nil)
-                }
-                self.promotionTourList = response.record?.tours ?? self.promotionTourList
-                for i in 0...self.promotionTourList.count - 1 {
-                    self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
-                }
-            }else {
-                let alert = UIAlertController(title: "FAILED", message: response.message ?? "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                if let topVC = UIApplication.getTopViewController() {
-                    topVC.present(alert, animated: true, completion: nil)
-                }
-            }
-        }
-        */
+        /*   var adultCount = 0
+         var childCount = 0
+         var toodleCount = 0
+         var infantCount = 0
+         
+         var tours : [TourRequestModel] = []
+         
+         if self.tourList.count > 0 {
+         for i in 0...self.touristList.count - 1{
+         if self.touristList[i].ageGroup == "ADL" {
+         adultCount += 1
+         }else if self.touristList[i].ageGroup == "CHD" {
+         childCount += 1
+         }else if self.touristList[i].ageGroup == "TDL" {
+         toodleCount += 1
+         }else if self.touristList[i].ageGroup == "INF" {
+         infantCount += 1
+         }
+         }
+         }
+         
+         for i in 0...self.tourList.count - 1 {
+         tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourList[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourList[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourList[i].infantPrice ?? 0.0, PaxTotalAmount: self.totalAmount, PlanId: self.tourList[i].planId ?? 0, PriceType: self.tourList[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourList[i].toodlePrice ?? 0.0, TotalAmount: self.tourList[i].totalPrice ?? 0.0, TourAmount: self.totalAmount, TourDate: self.tourList[i].tourDate ?? "", TourId: self.tourList[i].tourId ?? 0))
+         }
+         
+         let tourPromotionPostRequestModel = TourPromotionPost(PromotionDiscount: 0, PromotionId: 35, tours: tours)
+         
+         self.data = "\(tourPromotionPostRequestModel.toJSONString(prettyPrint: true) ?? "")"
+         
+         let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
+         NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
+         if response.isSuccesful == true {
+         print(response)
+         let alert = UIAlertController(title: "SUCCSESS", message: response.message ?? "", preferredStyle: .alert)
+         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+         if let topVC = UIApplication.getTopViewController() {
+         topVC.present(alert, animated: true, completion: nil)
+         }
+         self.promotionTourList = response.record?.tours ?? self.promotionTourList
+         for i in 0...self.promotionTourList.count - 1 {
+         self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
+         }
+         }else {
+         let alert = UIAlertController(title: "FAILED", message: response.message ?? "", preferredStyle: .alert)
+         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+         if let topVC = UIApplication.getTopViewController() {
+         topVC.present(alert, animated: true, completion: nil)
+         }
+         }
+         }
+         */
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         self.currentDate = dateFormatter.string(from: date)
@@ -167,6 +168,7 @@ class ExcProceedCustomView: UIView{
         self.viewDicountCalculate.headerLAbel.text = "Discount"
         self.viewTotalAmount.headerLAbel.text = "TotalAmount"
         self.viewCurrencyConvert.headerLAbel.text = "Currency"
+        self.viewCurrencyType.mainText.text = "EUR"
         self.viewAmount.mainText.isHidden = false
         self.viewAmount.mainLabel.isHidden = true
         self.viewNotes.mainText.isHidden = false
@@ -226,7 +228,7 @@ class ExcProceedCustomView: UIView{
                 }
             }
         }
-      
+        
         
         let gestureTourist = UITapGestureRecognizer(target: self, action: #selector(didTappedExchangeMenu))
         gestureTourist.numberOfTouchesRequired = 1
@@ -262,7 +264,7 @@ class ExcProceedCustomView: UIView{
         self.touristMenu.selectionAction = { index, title in
             self.viewTouristView.mainLabel.text = title
             self.selectedTouristName = title
-          
+            
             /*  let filtered = self.hotelList.filter{($0.text?.contains(title) ?? false)}
              self.filteredHotelList = filtered
              for listofArray in self.filteredHotelList {
@@ -295,7 +297,7 @@ class ExcProceedCustomView: UIView{
              }*/
         }
         
-       if self.internetConnection == true {
+        if self.internetConnection == true {
             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetCurrencySelectList, method: .get, parameters: "") { (response : [GetCurrencyResponeModel] ) in
                 if response.count > 0 {
                     self.currencyList = response
@@ -357,16 +359,19 @@ class ExcProceedCustomView: UIView{
         self.viewDicountCalculate.mainText.text = String(self.discount)
         self.balanceAmount = self.balanceAmount - self.discount
         self.viewBalanced.mainText.text = String(self.balanceAmount)
+        self.totalAmount = self.totalAmount - self.discount
+        self.viewTotalAmount.mainText.text = String(self.totalAmount)
     }
     
     @IBAction func addPaymentButtonTapped(_ sender: Any) {
         
         if self.selectedTouristName != "" && self.selectedPaymentType != "" && self.selectedCurrencyType != "" {
             self.paymentTypeList.append(PaymentType(paymentype: self.selectedPaymentType, paymentAmount: Double(self.viewAmount.mainText.text ?? "") ?? 0.00))
+            
             self.tableView.reloadData()
             
             if let total = Double(self.viewAmount.mainText.text ?? ""){
-                self.savedTotalAmount = total
+                self.savedTotalAmount += total
             }
             self.viewPaid.mainText.text = String(self.savedTotalAmount)
             
@@ -374,7 +379,7 @@ class ExcProceedCustomView: UIView{
                 self.savedTotalAmount = -self.savedTotalAmount
             }
             self.balanceAmount = self.totalAmount - self.savedTotalAmount
-            self.totalAmount = self.balanceAmount
+            //self.totalAmount = self.balanceAmount
             if self.balanceAmount < 0 {
                 self.balanceAmount = 0.00
             }
@@ -386,7 +391,8 @@ class ExcProceedCustomView: UIView{
                 topVC.present(alert, animated: true, completion: nil)
             }
         }
-        self.payments.append(Payment(ByDesc:"aaa", ById:"0", ConvertedCurrency:"USD", ConvertedPaymentAmount:73, Currency:"USD", CurrencyId:"147", PaymentAmount:73, PaymentType:"CASH", TargetAmount:0, TypeId:"CASH"))
+        
+        self.payments.append(Payment(ByDesc: self.selectedTouristName , ById:"0", ConvertedCurrency: self.convertedCurrencyTitle, ConvertedPaymentAmount:  Int(self.totalAmount), Currency: self.selectedCurrencyType, CurrencyId: String(self.currencyId), PaymentAmount: Double(self.viewAmount.mainText.text ?? "") ?? 0.00, PaymentType: self.selectedPaymentType, TargetAmount:0, TypeId: self.selectedPaymentType))
     }
     
     @IBAction func convertButtonTapped(_ sender: Any) {
@@ -401,139 +407,148 @@ class ExcProceedCustomView: UIView{
     }
     
     @IBAction func sendButtonTapped(_ sender: Any) {
-        let multisale = Multisale.init(CouponAmount:0, CouponId:0, CurrencyId: self.currencyId, GuideId: userDefaultsData.getGuideId(), HotelId: userDefaultsData.getHotelId(), ID:0, IsMobile:1, IsOfficeSale: false, ManualDiscount:0, MarketId: userDefaultsData.getMarketId(), Note: "", PaidAmount: Int(self.savedTotalAmount), PromotionId: 0, SaleDate: self.currentDate , TotalAmount: Int(self.totalAmount))
-        var paxTourList : [PaxTourList] = []
-        var paxes : [Paxes] = []
-        var tourListIndata : [TourList] = []
-        let extras : [Extras] = []
-        let transfers : [Transfers] = []
-        var adultCount = 0
-        var childCount = 0
-        var toodleCount = 0
-        var infantCount = 0
-        self.tourTotalAmount = 0.0
-        if self.tourList.count > 0 && self.touristList.count > 0{
-            for i in 0...self.tourList.count - 1{
-                for index in 0...self.touristList.count - 1 {
-                    let paxesTour = PaxTourList(AgeGroup:self.touristList[index].ageGroup ?? "", Gender:self.touristList[index].gender ?? "",ID:String(self.tourList[i].ID ?? 0), PlanId:self.tourList[i].planId ?? 0)
-                    paxTourList.append(paxesTour)
+        if self.balanceAmount == 0.0 {
+            let multisale = Multisale.init(CouponAmount:0, CouponId:0, CurrencyId: self.currencyId, GuideId: userDefaultsData.getGuideId(), HotelId: userDefaultsData.getHotelId(), ID:0, IsMobile:1, IsOfficeSale: false, ManualDiscount:0, MarketId: userDefaultsData.getMarketId(), Note: "", PaidAmount: Int(self.savedTotalAmount), PromotionId: 0, SaleDate: self.currentDate , TotalAmount: Int(self.totalAmount))
+            var paxTourList : [PaxTourList] = []
+            var paxes : [Paxes] = []
+            var tourListIndata : [TourList] = []
+            let extras : [Extras] = []
+            let transfers : [Transfers] = []
+            var adultCount = 0
+            var childCount = 0
+            var toodleCount = 0
+            var infantCount = 0
+            self.tourTotalAmount = 0.0
+            if self.tourList.count > 0 && self.touristList.count > 0{
+                for i in 0...self.tourList.count - 1{
+                    for index in 0...self.touristList.count - 1 {
+                        let paxesTour = PaxTourList(AgeGroup:self.touristList[index].ageGroup ?? "", Gender:self.touristList[index].gender ?? "",ID:String(self.touristList[index].value ?? 0), PlanId:self.tourList[i].planId ?? 0)
+                        paxTourList.append(paxesTour)
+                    }
                 }
-            }
-            for i in 0...self.touristList.count - 1{
-                if self.touristList[i].ageGroup == "ADL" {
-                    adultCount += 1
-                }else if self.touristList[i].ageGroup == "CHD" {
-                    childCount += 1
-                }else if self.touristList[i].ageGroup == "TDL" {
-                    toodleCount += 1
-                }else if self.touristList[i].ageGroup == "INF" {
-                    infantCount += 1
-                }
-            }
-        }
-        
-        for i in 0...self.tourList.count - 1 {
-            self.totalPricePerTour = 0.0
-            if self.tourList[i].priceType == 35 {
-                
-                for index in 0...self.touristList.count - 1 {
-                    switch self.touristList[index].ageGroup {
-                    case "INF":
-                        self.totalPricePerTour += self.tourList[i].infantPrice ?? 0.00
-                    case "TDL":
-                        self.totalPricePerTour += self.tourList[i].toodlePrice ?? 0.00
-                    case "CHD":
-                        self.totalPricePerTour += self.tourList[i].childPrice ?? 0.00
-                    default:
-                        self.totalPricePerTour += self.tourList[i].adultPrice ?? 0.00
+                for i in 0...self.touristList.count - 1{
+                    if self.touristList[i].ageGroup == "ADL" {
+                        adultCount += 1
+                    }else if self.touristList[i].ageGroup == "CHD" {
+                        childCount += 1
+                    }else if self.touristList[i].ageGroup == "TDL" {
+                        toodleCount += 1
+                    }else if self.touristList[i].ageGroup == "INF" {
+                        infantCount += 1
                     }
                 }
             }
             
-            //Flat Price calculation
-            else if self.tourList[i].priceType == 36{
-                self.totalPricePerTour += self.tourList[i].flatPrice ?? 0.00
-            }
-            
-            //Min Price
-            else if self.tourList[i].priceType == 37{
-                self.minPerson = Int(self.tourList[i].minPax ?? 0.00)
-                if self.minPerson > 0 {
-                    for index in 0...self.touristList.count - 1{
-                        if  self.touristList[index].ageGroup == "ADL" {
-                            self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
-                            self.minPerson -= 1
-                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "CHD" {
-                            self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
-                            self.minPerson -= 1
-                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "TDL" {
-                            self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
-                            self.minPerson -= 1
-                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "INF" {
-                            self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
-                            self.minPerson -= 1
-                        }
-                    }
-                }else {
-                    for index in 0...self.touristList.count - 1{
-                        if  self.touristList[index].ageGroup == "ADL" {
-                            self.totalPricePerTour += self.tourList[i].adultPrice  ?? 0.00
-                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "CHD" {
-                            self.totalPricePerTour += tourList[i].childPrice ?? 0.00
-                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "TDL" {
-                            self.totalPricePerTour += tourList[i].toodlePrice ?? 0.00
-                        }else if self.minPerson > 0 && self.touristList[index].ageGroup == "INF" {
-                            self.totalPricePerTour += tourList[i].infantPrice ?? 0.00
-                        }
-                    }
-                }
-                self.totalPricePerTour += self.minPriceTotal
-            }
-            // Önemli, özgeye sor tour date offline tourdan geldiği için tarih geride kalıyor ve offline satışta sale date tourdate ten ileri olamaz hatası veriyor nasıl çözeceğiz
-            self.tourTotalAmount += self.totalPricePerTour
-            
-            tourListIndata.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:  self.tourList[i].tourId ?? 0, Currency: self.tourList[i].currency ?? 0 , CurrencyDesc: self.tourList[i].currencyDesc ?? "", TourDateStr:self.tourList[i].tourDateStr ?? "", TourDate: "2022/01/28", AllotmenStatus: self.tourList[i].allotmenStatus ?? 0, RemainingAllotment: self.tourList[i].remainingAllotment ?? 0, PriceType: self.tourList[i].priceType ?? 0, MinPax:self.tourList[i].minPax ?? 0.0, TotalPrice: self.totalPricePerTour, FlatPrice: self.tourList[i].flatPrice ?? 0.0, MinPrice: self.tourList[i].minPrice ?? 0.0, InfantAge1: self.tourList[i].infantAge1 ?? 0.0, InfantAge2: self.tourList[i].infantAge2 ?? 0.0, ToodleAge1: self.tourList[i].toodleAge1 ?? 0.0, ToodleAge2: self.tourList[i].toodleAge2 ?? 0.0, ChildAge1: self.tourList[i].childAge1 ?? 0.0, ChildAge2: self.tourList[i].childAge2 ?? 0.0, PickUpTime:"02:00:00", DetractAdult: self.tourList[i].detractAdult ?? false, DetractChild: self.tourList[i].detractChild ?? false, DetractKid: self.tourList[i].detractKid ?? false, DetractInfant: self.tourList[i].detractInfant ?? false, AskSell: self.tourList[i].askSell ?? false, MeetingPointId: self.tourList[i].meetingPointId ?? 0, Paref: String(self.tourList[i].paref ?? 0) ,TourCode: self.tourList[i].tourCode ?? "", ID: self.tourList[i].ID ?? 0, CREATEDDATE: self.tourList[i].cREATEDDATE ?? "", RefundCondition:"", TicketCount: 0, TourAmount: self.totalPricePerTour, VoucherNo: self.voucherNo[i], ExtraTourist: extras, TransferTourist:transfers))
-        }
-        
-        paxes = userDefaultsData.getTouristDetailInfoList() ?? paxes
-        
-        print(self.data)
-        
-        if Connectivity.isConnectedToInternet {
-            print("connect")
-            
-            let tourSalePost = TourSalePost(Multisale:multisale, PaxTourLists:paxTourList, Payments: self.payments, Paxes:paxes, IsOffline:"0", AllowDublicatePax:"0",TourList:tourListIndata )
-            
-            self.data = "\(tourSalePost.toJSONString(prettyPrint: true) ?? "")"
-          
-            let toursaleRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
-            NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveMobileSale, requestModel: toursaleRequestModel ) { (response: GetSaveMobileSaleResponseModel) in
-                if response.IsSuccesful == true {
-                    print(response)
-                    let alert = UIAlertController(title: "SUCCSESS", message: response.Message ?? "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    if let topVC = UIApplication.getTopViewController() {
-                        topVC.present(alert, animated: true, completion: nil)
-                    }
+            for i in 0...self.tourList.count - 1 {
+                self.totalPricePerTour = 0.0
+                if self.tourList[i].priceType == 35 {
                     
-                }else {
-                    let alert = UIAlertController(title: "FAILED", message: response.Message ?? "", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    if let topVC = UIApplication.getTopViewController() {
-                        topVC.present(alert, animated: true, completion: nil)
+                    for index in 0...self.touristList.count - 1 {
+                        switch self.touristList[index].ageGroup {
+                        case "INF":
+                            self.totalPricePerTour += self.tourList[i].infantPrice ?? 0.00
+                        case "TDL":
+                            self.totalPricePerTour += self.tourList[i].toodlePrice ?? 0.00
+                        case "CHD":
+                            self.totalPricePerTour += self.tourList[i].childPrice ?? 0.00
+                        default:
+                            self.totalPricePerTour += self.tourList[i].adultPrice ?? 0.00
+                        }
                     }
                 }
+                
+                //Flat Price calculation
+                else if self.tourList[i].priceType == 36{
+                    self.totalPricePerTour += self.tourList[i].flatPrice ?? 0.00
+                }
+                
+                //Min Price
+                else if self.tourList[i].priceType == 37{
+                    self.minPerson = Int(self.tourList[i].minPax ?? 0.00)
+                    if self.minPerson > 0 {
+                        for index in 0...self.touristList.count - 1{
+                            if  self.touristList[index].ageGroup == "ADL" {
+                                self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
+                                self.minPerson -= 1
+                            }else if self.minPerson > 0 && self.touristList[index].ageGroup == "CHD" {
+                                self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
+                                self.minPerson -= 1
+                            }else if self.minPerson > 0 && self.touristList[index].ageGroup == "TDL" {
+                                self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
+                                self.minPerson -= 1
+                            }else if self.minPerson > 0 && self.touristList[index].ageGroup == "INF" {
+                                self.minPriceTotal = self.tourList[i].minPrice ?? 0.00
+                                self.minPerson -= 1
+                            }
+                        }
+                    }else {
+                        for index in 0...self.touristList.count - 1{
+                            if  self.touristList[index].ageGroup == "ADL" {
+                                self.totalPricePerTour += self.tourList[i].adultPrice  ?? 0.00
+                            }else if self.minPerson > 0 && self.touristList[index].ageGroup == "CHD" {
+                                self.totalPricePerTour += tourList[i].childPrice ?? 0.00
+                            }else if self.minPerson > 0 && self.touristList[index].ageGroup == "TDL" {
+                                self.totalPricePerTour += tourList[i].toodlePrice ?? 0.00
+                            }else if self.minPerson > 0 && self.touristList[index].ageGroup == "INF" {
+                                self.totalPricePerTour += tourList[i].infantPrice ?? 0.00
+                            }
+                        }
+                    }
+                    self.totalPricePerTour += self.minPriceTotal
+                }
+                // Önemli, özgeye sor tour date offline tourdan geldiği için tarih geride kalıyor ve offline satışta sale date tourdate ten ileri olamaz hatası veriyor nasıl çözeceğiz
+                self.tourTotalAmount += self.totalPricePerTour
+                
+                tourListIndata.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].childPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:  self.tourList[i].tourId ?? 0, Currency: self.tourList[i].currency ?? 0 , CurrencyDesc: self.tourList[i].currencyDesc ?? "", TourDateStr:self.tourList[i].tourDateStr ?? "", TourDate: self.tourList[i].tourDate ?? "", AllotmenStatus: self.tourList[i].allotmenStatus ?? 0, RemainingAllotment: self.tourList[i].remainingAllotment ?? 0, PriceType: self.tourList[i].priceType ?? 0, MinPax:self.tourList[i].minPax ?? 0.0, TotalPrice: self.totalPricePerTour, FlatPrice: self.tourList[i].flatPrice ?? 0.0, MinPrice: self.tourList[i].minPrice ?? 0.0, InfantAge1: self.tourList[i].infantAge1 ?? 0.0, InfantAge2: self.tourList[i].infantAge2 ?? 0.0, ToodleAge1: self.tourList[i].toodleAge1 ?? 0.0, ToodleAge2: self.tourList[i].toodleAge2 ?? 0.0, ChildAge1: self.tourList[i].childAge1 ?? 0.0, ChildAge2: self.tourList[i].childAge2 ?? 0.0, PickUpTime:"02:00:00", DetractAdult: self.tourList[i].detractAdult ?? false, DetractChild: self.tourList[i].detractChild ?? false, DetractKid: self.tourList[i].detractKid ?? false, DetractInfant: self.tourList[i].detractInfant ?? false, AskSell: self.tourList[i].askSell ?? false, MeetingPointId: self.tourList[i].meetingPointId ?? 0, Paref: String(self.tourList[i].paref ?? 0) ,TourCode: self.tourList[i].tourCode ?? "", ID: self.tourList[i].ID ?? 0, CREATEDDATE: self.tourList[i].cREATEDDATE ?? "", RefundCondition:"", TicketCount: 0, TourAmount: self.totalPricePerTour, VoucherNo: self.voucherNo[i], ExtraTourist: extras, TransferTourist:transfers))
             }
             
-        } else {
-            let tourSalePost = TourSalePost(Multisale:multisale, PaxTourLists:paxTourList, Payments: self.payments, Paxes:paxes, IsOffline:"1", AllowDublicatePax:"0",TourList:tourListIndata )
-            self.offlineDataList.append(tourSalePost)
-            userDefaultsData.saveTourSalePost(tour: self.offlineDataList)
-            let alert = UIAlertController.init(title: "Message", message: "Data has been saved", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            paxes = userDefaultsData.getTouristDetailInfoList() ?? paxes
+            
+            print(self.data)
+            
+            if Connectivity.isConnectedToInternet {
+                print("connect")
+                
+                let tourSalePost = TourSalePost(Multisale:multisale, PaxTourLists:paxTourList, Payments: self.payments, Paxes:paxes, IsOffline:"0", AllowDublicatePax:"0",TourList:tourListIndata )
+                
+                self.data = "\(tourSalePost.toJSONString(prettyPrint: true) ?? "")"
+                
+                let toursaleRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
+                NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveMobileSale, requestModel: toursaleRequestModel ) { (response: GetSaveMobileSaleResponseModel) in
+                    if response.IsSuccesful == true {
+                        print(response)
+                        let alert = UIAlertController(title: "SUCCSESS", message: response.Message ?? "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        if let topVC = UIApplication.getTopViewController() {
+                            topVC.present(alert, animated: true, completion: nil)
+                        }
+                        
+                    }else {
+                        let alert = UIAlertController(title: "FAILED", message: response.Message ?? "", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        if let topVC = UIApplication.getTopViewController() {
+                            topVC.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                }
+                
+            } else {
+                let tourSalePost = TourSalePost(Multisale:multisale, PaxTourLists:paxTourList, Payments: self.payments, Paxes:paxes, IsOffline:"1", AllowDublicatePax:"0",TourList:tourListIndata )
+                self.offlineDataList.append(tourSalePost)
+                userDefaultsData.saveTourSalePost(tour: self.offlineDataList)
+                let alert = UIAlertController.init(title: "Message", message: "Data has been saved", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                if let topVC = UIApplication.getTopViewController() {
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+            }
+        }else {
+            let alert = UIAlertController.init(title: "WARNING", message: "Balance amount is not 0.0. Please be sure balance amount is 0.0", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             if let topVC = UIApplication.getTopViewController() {
                 topVC.present(alert, animated: true, completion: nil)
             }
+            return
         }
     }
 }
@@ -553,6 +568,11 @@ extension ExcProceedCustomView : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("Deleted")
+            self.deletedAmount = 0.0
+            self.deletedAmount = self.paymentTypeList[indexPath.row].paymentAmount ?? 0.00
+            self.savedTotalAmount -= self.deletedAmount
+            self.viewPaid.mainText.text = String(self.savedTotalAmount)
+            self.balanceAmount = self.totalAmount - self.savedTotalAmount
             self.paymentTypeList.remove(at: indexPath.row)
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)

@@ -1033,29 +1033,31 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             if self.isConnectedInternet == true {
                 NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
                     if response != 0 {
-                        for i in 0...self.tourList.count - 1 {
-                            self.counter = i
-                            print(response)
-                            self.maxVoucherNo = String(response)
-                            let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
-                            let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
-                            self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
-                            print(self.maxVoucherNo)
-                            if let maxVoucherInt = Int(self.maxVoucherNo) {
-                                print(maxVoucherInt)
-                                self.maxVoucherIntAdeed = maxVoucherInt
-                                self.maxVoucherIntAdeed += self.counter
+                        if self.tourList.count > 0 {
+                            for i in 0...self.tourList.count - 1 {
+                                self.counter = i
+                                print(response)
+                                self.maxVoucherNo = String(response)
+                                let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                                let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                                self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                                print(self.maxVoucherNo)
+                                if let maxVoucherInt = Int(self.maxVoucherNo) {
+                                    print(maxVoucherInt)
+                                    self.maxVoucherIntAdeed = maxVoucherInt
+                                    self.maxVoucherIntAdeed += self.counter
+                                }
+                                self.addedVoucher = String(format: "%02d", self.maxVoucherIntAdeed)
+                                if userDefaultsData.getDay() != day {
+                                    self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                                    userDefaultsData.saveDay(day: day)
+                                }else if userDefaultsData.getDay() == day {
+                                    self.counter = 1
+                                    self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                                    userDefaultsData.saveDay(day: day)
+                                }
+                                self.voucherList.append(self.createVoucher)
                             }
-                            self.addedVoucher = String(format: "%02d", self.maxVoucherIntAdeed)
-                            if userDefaultsData.getDay() != day {
-                                self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
-                                userDefaultsData.saveDay(day: day)
-                            }else if userDefaultsData.getDay() == day {
-                                self.counter = 1
-                                self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
-                                userDefaultsData.saveDay(day: day)
-                            }
-                            self.voucherList.append(self.createVoucher)
                         }
                         print(self.voucherList)
                         self.viewExcProceedCustomView?.voucherNo = self.voucherList

@@ -146,10 +146,20 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flq-Ps-C3X">
-                                            <rect key="frame" x="900" y="10" width="150" height="21"/>
+                                            <rect key="frame" x="900" y="10" width="100" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="B8V-IS-Efc"/>
-                                                <constraint firstAttribute="width" constant="150" id="KM8-cf-KWC"/>
+                                                <constraint firstAttribute="width" constant="100" id="KM8-cf-KWC"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flat Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbJ-WT-LJL">
+                                            <rect key="frame" x="1010" y="10" width="150" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="150" id="4sG-6N-cH3"/>
+                                                <constraint firstAttribute="height" constant="21" id="R33-PC-Yvy"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -164,8 +174,10 @@
                                         <constraint firstItem="g6T-Zu-TqO" firstAttribute="leading" secondItem="R3Z-gW-wep" secondAttribute="trailing" constant="30" id="Cab-yt-zZ2"/>
                                         <constraint firstItem="UDj-GA-o7Z" firstAttribute="top" secondItem="Hgg-lX-GBe" secondAttribute="top" constant="10" id="DFf-mM-rER"/>
                                         <constraint firstItem="flq-Ps-C3X" firstAttribute="leading" secondItem="trp-cG-9Ni" secondAttribute="trailing" constant="30" id="EjO-Ua-jeA"/>
+                                        <constraint firstItem="tbJ-WT-LJL" firstAttribute="top" secondItem="Hgg-lX-GBe" secondAttribute="top" constant="10" id="JdW-ve-m9q"/>
                                         <constraint firstItem="R3Z-gW-wep" firstAttribute="leading" secondItem="Hgg-lX-GBe" secondAttribute="leading" constant="100" id="KkU-iz-7IL"/>
                                         <constraint firstItem="fLF-Z6-shm" firstAttribute="leading" secondItem="UDj-GA-o7Z" secondAttribute="trailing" constant="30" id="QWL-6a-71i"/>
+                                        <constraint firstItem="tbJ-WT-LJL" firstAttribute="leading" secondItem="flq-Ps-C3X" secondAttribute="trailing" constant="10" id="ROm-Lr-SXo"/>
                                         <constraint firstItem="R3Z-gW-wep" firstAttribute="top" secondItem="Hgg-lX-GBe" secondAttribute="top" constant="10" id="Rsx-6j-wTS"/>
                                         <constraint firstAttribute="height" constant="40" id="WjV-9m-ell"/>
                                         <constraint firstItem="Lva-vc-Fbi" firstAttribute="leading" secondItem="g6T-Zu-TqO" secondAttribute="trailing" constant="30" id="Yh7-m8-JdO"/>
@@ -238,7 +250,7 @@
                 <constraint firstItem="uFn-AE-yPT" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.325551" id="yof-t1-Lza"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-182.60869565217394" y="272.20982142857139"/>
+            <point key="canvasLocation" x="-182.60869565217394" y="271.54017857142856"/>
         </view>
     </objects>
     <resources>

@@ -103,32 +103,34 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                                     print(maxVoucherInt)
                                     self.counter = maxVoucherInt
                                 }
-                                
-                                for i in 0...self.offlineTourSalePostList.count - 1 {
-                                    self.counter += 1
-                                    self.addedVoucher = String(format: "%02d", self.counter)
-                                    if userDefaultsData.getDay() != day {
-                                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
-                                        userDefaultsData.saveDay(day: day)
-                                    }else if userDefaultsData.getDay() == day {
-                                        self.counter = 1
-                                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
-                                        userDefaultsData.saveDay(day: day)
+                                if self.offlineTourSalePostList.count > 0 {
+                                    for i in 0...self.offlineTourSalePostList.count - 1 {
+                                        self.counter += 1
+                                        self.addedVoucher = String(format: "%02d", self.counter)
+                                        if userDefaultsData.getDay() != day {
+                                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                                            userDefaultsData.saveDay(day: day)
+                                        }else if userDefaultsData.getDay() == day {
+                                            self.counter = 1
+                                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                                            userDefaultsData.saveDay(day: day)
+                                        }
+                                        print(self.createVoucher)
+                                        
+                                        self.tourList = self.offlineTourSalePostList[i].TourList ?? self.tourList
+                                        
+                                        for i in 0...self.tourList.count - 1 {
+                                            self.tourList[i].VoucherNo = self.createVoucher
+                                        }
+                                        self.offlineTourSalePostList[i].TourList = self.tourList
                                     }
-                                    print(self.createVoucher)
                                     
-                                    self.tourList = self.offlineTourSalePostList[i].TourList ?? self.tourList
-                                    
-                                    for i in 0...self.tourList.count - 1 {
-                                        self.tourList[i].VoucherNo = self.createVoucher
+                                    for i in 0...self.offlineTourSalePostList.count - 1{
+                                        let data = "\(self.offlineTourSalePostList[i].toJSONString(prettyPrint: true) ?? "")"
+                                        self.oflineDataList.append(data)
                                     }
-                                    self.offlineTourSalePostList[i].TourList = self.tourList
                                 }
-                                
-                                for i in 0...self.offlineTourSalePostList.count - 1{
-                                    let data = "\(self.offlineTourSalePostList[i].toJSONString(prettyPrint: true) ?? "")"
-                                    self.oflineDataList.append(data)
-                                }
+                               
                                 
                                 if self.oflineDataList.count > 0 {
                                     for i in 0...self.oflineDataList.count - 1 {

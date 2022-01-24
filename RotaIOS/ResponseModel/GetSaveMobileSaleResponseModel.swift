@@ -153,12 +153,12 @@ public class Payment : Mappable, Decodable, Encodable {
     var ConvertedPaymentAmount :  Int?
     var Currency : String?
     var CurrencyId :  String?
-    var PaymentAmount :  Int?
+    var PaymentAmount :  Double?
     var PaymentType :  String?
     var TargetAmount : Int?
     var TypeId :  String?
     
-    public init(ByDesc : String, ById : String, ConvertedCurrency : String, ConvertedPaymentAmount : Int, Currency : String, CurrencyId : String, PaymentAmount : Int, PaymentType : String, TargetAmount : Int, TypeId : String) {
+    public init(ByDesc : String, ById : String, ConvertedCurrency : String, ConvertedPaymentAmount : Int, Currency : String, CurrencyId : String, PaymentAmount : Double, PaymentType : String, TargetAmount : Int, TypeId : String) {
         
         self.ByDesc = ByDesc
         self.ById = ById

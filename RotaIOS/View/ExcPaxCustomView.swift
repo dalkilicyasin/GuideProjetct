@@ -367,11 +367,14 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             
             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList.requestPathString() ) { (response : [GetTouristInfoResponseModel] ) in
                 if response.count > 0 {
-                    self.touristDetailInfoList.append(Paxes(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: "1453", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1))
-                   // userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
+                    
+                   /* self.touristDetailInfoList.append(Paxes(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: "1453", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1))*/
+                    
+                    self.touristDetailInfoList.append(Paxes.init(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: response[0].hotelName ?? "", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1, ID: response[0].touristIdRef ?? 0 ))
+                   userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
                 }
             }
-            userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
+         //   userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
         }else{
             // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
             

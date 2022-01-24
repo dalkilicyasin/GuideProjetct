@@ -173,7 +173,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
                     cell.labelExcursion.text = self.promotionList[indexPath.row].tourName
                     if pickUpTimeList.count == 0 {
                         cell.labelPickUpTime.text = self.promotionList[indexPath.row].pickUpTime
-                    }else if pickUpTimeList.count > 0{
+                    }else if promotionPickupTimeList.count > 0{
                         cell.labelPickUpTime.text = self.promotionPickupTimeList[indexPath.row]
                     }
                     // cell.labelSeat.text = self.promotionList[indexPath.row] // yok
@@ -314,7 +314,7 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                     if Connectivity.isConnectedToInternet {
                         print("connect")
                         for i in 0...self.promotionList.count - 1 {
-                            self.pickUpTimeList.append(promotionList[i].pickUpTime ?? "")
+                            self.promotionPickupTimeList.append(promotionList[i].pickUpTime ?? "")
                         }
                         let alert = UIAlertController(title: "Pick Up Time", message: "Please insert Pick Up Time", preferredStyle: .alert)
                         alert.addTextField {
