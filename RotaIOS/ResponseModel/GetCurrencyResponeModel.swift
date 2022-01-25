@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-struct GetCurrencyResponeModel : Mappable {
+struct GetCurrencyResponeModel : Mappable, Decodable, Encodable {
     var id : String?
     var value : Int?
     var text : String?

@@ -163,11 +163,11 @@ extension ExcPaxCustomView : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ExcPaxPageTableViewCell.identifier) as! ExcPaxPageTableViewCell
         cell.excPaxPageTableViewCellDelegate = self
         if self.isFiltered == true {
-            cell.labelPaxName.text = self.filteredData[indexPath.row].text
+            cell.labelPaxName.text = self.filteredData[indexPath.row].name
             cell.paxesListInCell = self.filteredData[indexPath.row]
             cell.isTappedCheck = self.checkFilteredList[indexPath.row]
         }else{
-            cell.labelPaxName.text = self.paxesList[indexPath.row].text
+            cell.labelPaxName.text = self.paxesList[indexPath.row].name
             cell.marketGroup = self.paxesList[indexPath.row].mrkGrp ?? 0
             cell.paxesListInCell = self.paxesList[indexPath.row]
             cell.isTappedCheck = self.checkList[indexPath.row]
@@ -189,7 +189,7 @@ extension ExcPaxCustomView : UISearchBarDelegate {
         }else {
             self.isFiltered = true
             for data in self.paxesList{
-                if data.text!.lowercased().contains(searchText.lowercased()){
+                if data.name!.lowercased().contains(searchText.lowercased()){
                     self.filteredData.append(data)
                     //   self.paxesNameList = self.filteredData
                 }
@@ -198,7 +198,7 @@ extension ExcPaxCustomView : UISearchBarDelegate {
         
         if filteredData.count > 0 {
             for index in 0...self.filteredData.count - 1 {
-                let filter = self.paxesList.filter{($0.text?.contains(self.filteredData[index].text ?? "") ?? false)}
+                let filter = self.paxesList.filter{($0.name?.contains(self.filteredData[index].name ?? "") ?? false)}
                 if filter.count > 0 {
                     self.filteredList.append(filter[0])
                 }
@@ -206,9 +206,9 @@ extension ExcPaxCustomView : UISearchBarDelegate {
             for index in 0...self.filteredList.count - 1 {
                 self.checkFilteredList.append(self.filteredList[index].isTapped ?? false)
                 //   self.checkList.append(self.paxesNameList[index].isTapped ?? false)
-                let filter = self.tempFilteredList.filter{($0.text?.contains(self.filteredList[index].text ?? "") ?? false)}
+                let filter = self.tempFilteredList.filter{($0.name?.contains(self.filteredList[index].name ?? "") ?? false)}
                 if filter.count > 0 {
-                    if let insideIndex = self.filteredList.firstIndex(where: {$0.text == filter[0].text}){
+                    if let insideIndex = self.filteredList.firstIndex(where: {$0.name == filter[0].name}){
                         self.filteredList[insideIndex].isTapped = filter[0].isTapped ?? false
                         self.checkFilteredList[insideIndex] = filter[0].isTapped ?? false
                         /*   if  self.tempFilteredList.count > 0 {
@@ -251,14 +251,14 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                             }
                         }
                         
-                        self.manuelAddedPaxesList.append(GetInHoseListResponseModel(text: self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender:self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY))
+                        self.manuelAddedPaxesList.append(GetInHoseListResponseModel(text: self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender:self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? ""))
                     }
                 }
                 if self.manuelAddedPaxesList.count > 0 && self.paxesList.count > 0 {
                     if self.paxesList.count > self.manuelAddedPaxesList.count {
                         for i in 0...self.paxesList.count - 1 {
                             for index in 0...self.manuelAddedPaxesList.count - 1 {
-                                if self.manuelAddedPaxesList[index].text != self.paxesList[i].text {
+                                if self.manuelAddedPaxesList[index].name != self.paxesList[i].name {
                                     self.paxesList.append(self.manuelAddedPaxesList[i])
                                     self.checkList.append(false)
                                 }
@@ -267,7 +267,7 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                     }else {
                         for i in 0...self.manuelAddedPaxesList.count - 1 {
                             for index in 0...self.paxesList.count - 1 {
-                                if self.manuelAddedPaxesList[i].text != self.paxesList[index].text {
+                                if self.manuelAddedPaxesList[i].name != self.paxesList[index].name {
                                     self.paxesList.append(self.manuelAddedPaxesList[i])
                                     self.checkList.append(false)
                                 }
@@ -306,13 +306,13 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                             self.manuelPaxAgeGroup = "ADL"
                         }
                     }
-                    self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text: self.sendingListofPaxes[i].pAX_NAME, ageGroup:  self.sendingListofPaxes[i].pAX_AGEGROUP, gender:  self.sendingListofPaxes[i].pAX_GENDER, room:  self.sendingListofPaxes[i].pAX_ROOM, birtDate:  self.sendingListofPaxes[i].pAX_BIRTHDAY))
+                    self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text: self.sendingListofPaxes[i].pAX_NAME, ageGroup:  self.sendingListofPaxes[i].pAX_AGEGROUP, gender:  self.sendingListofPaxes[i].pAX_GENDER, room:  self.sendingListofPaxes[i].pAX_ROOM, birtDate:  self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? ""))
                 }
             }
             if self.manuelAddedPaxesList.count > 0 {
                 for i in 0...self.paxesList.count - 1 {
                     for index in 0...self.manuelAddedPaxesList.count - 1 {
-                        if self.manuelAddedPaxesList[index].text != self.paxesList[i].text {
+                        if self.manuelAddedPaxesList[index].name != self.paxesList[i].name {
                             self.paxesList.append(self.manuelAddedPaxesList[i])
                             self.checkList.append(false)
                         }
@@ -354,7 +354,7 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             var manuelPaxList : [Paxes] = []
             if sendingListofPaxes.count > 0 {
                 for i in 0...self.sendingListofPaxes.count - 1 {
-                    if filterManuelPax[0].text ==  self.sendingListofPaxes[i].pAX_NAME {
+                    if filterManuelPax[0].name ==  self.sendingListofPaxes[i].pAX_NAME {
                         manuelPaxList.append(self.sendingListofPaxes[i])
                     }
                 }
@@ -362,18 +362,22 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             }
             
            //
-            
-            let getInTouristInfoRequestModelList = GetTouristInfoRequestModel(touristId: filter[0].value ?? 0, resNo: filter[0].resNo ?? "")
-            
-            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList.requestPathString() ) { (response : [GetTouristInfoResponseModel] ) in
-                if response.count > 0 {
-                    
-                   /* self.touristDetailInfoList.append(Paxes(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: "1453", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1))*/
-                    
-                    self.touristDetailInfoList.append(Paxes.init(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: response[0].hotelName ?? "", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1, ID: response[0].touristIdRef ?? 0 ))
-                   userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
+            if Connectivity.isConnectedToInternet == true {
+                let getInTouristInfoRequestModelList = GetTouristInfoRequestModel(touristId: filter[0].ID ?? 0, resNo: filter[0].resNo ?? "")
+                
+                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList.requestPathString() ) { (response : [GetTouristInfoResponseModel] ) in
+                    if response.count > 0 {
+                        
+                       /* self.touristDetailInfoList.append(Paxes(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: "1453", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1))*/
+                        
+                        self.touristDetailInfoList.append(Paxes.init(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: response[0].hotelName ?? "", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1, ID: response[0].touristIdRef ?? 0 ))
+                       userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
+                    }
                 }
+            }else{
+                userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
             }
+           
          //   userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
         }else{
             // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}

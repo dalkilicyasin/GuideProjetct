@@ -184,6 +184,7 @@
 		D968ABF626E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */; };
 		D96E4509279757A400F8DC49 /* GetApplyPromotionMobileResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E4508279757A400F8DC49 /* GetApplyPromotionMobileResponseModel.swift */; };
 		D96E450B27975AC700F8DC49 /* GetApplyPromotionMobileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E450A27975AC700F8DC49 /* GetApplyPromotionMobileRequestModel.swift */; };
+		D97C905F279FFC4B00A57C11 /* GetInHouseListTourSaleRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97C905E279FFC4B00A57C11 /* GetInHouseListTourSaleRequestModel.swift */; };
 		D97E4F4527598B4A0049648A /* ExcursionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */; };
 		D97E4F4627598B4A0049648A /* ExcursionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */; };
 		D97E4F4C2760B4B90049648A /* ExcPaxCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97E4F4B2760B4B90049648A /* ExcPaxCustomView.swift */; };
@@ -484,6 +485,7 @@
 		D968ABF526E91A260046761E /* GetTourSaleCancelMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTourSaleCancelMobileRequestModel.swift; sourceTree = "<group>"; };
 		D96E4508279757A400F8DC49 /* GetApplyPromotionMobileResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApplyPromotionMobileResponseModel.swift; sourceTree = "<group>"; };
 		D96E450A27975AC700F8DC49 /* GetApplyPromotionMobileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApplyPromotionMobileRequestModel.swift; sourceTree = "<group>"; };
+		D97C905E279FFC4B00A57C11 /* GetInHouseListTourSaleRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInHouseListTourSaleRequestModel.swift; sourceTree = "<group>"; };
 		D97E4F4327598B4A0049648A /* ExcursionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcursionListTableViewCell.swift; sourceTree = "<group>"; };
 		D97E4F4427598B4A0049648A /* ExcursionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExcursionListTableViewCell.xib; sourceTree = "<group>"; };
 		D97E4F4B2760B4B90049648A /* ExcPaxCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcPaxCustomView.swift; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 				D97EE02C277DF1A900683E66 /* GetSaveMobileSaleRequestModel.swift */,
 				D90E39002796B8760081ECB7 /* GetPromotionRequestModel.swift */,
 				D96E450A27975AC700F8DC49 /* GetApplyPromotionMobileRequestModel.swift */,
+				D97C905E279FFC4B00A57C11 /* GetInHouseListTourSaleRequestModel.swift */,
 			);
 			path = RequestModel;
 			sourceTree = "<group>";
@@ -1462,6 +1465,7 @@
 				BF44C8FA264000F000238035 /* GetUserRequestModel.swift in Sources */,
 				D9956C0426DC01E7006CFC6D /* GetCancelRulesResponseModel.swift in Sources */,
 				D9956C0A26DE3584006CFC6D /* GetCalculateCancelFeeRequestModel.swift in Sources */,
+				D97C905F279FFC4B00A57C11 /* GetInHouseListTourSaleRequestModel.swift in Sources */,
 				D94C40672655D5FA00EBC7CD /* GetGuideInfoResponseModel.swift in Sources */,
 				D97FB5AD26C69B6B0099F28B /* GetShoppingSaleResponseModel.swift in Sources */,
 				BF44C8E7264000E200238035 /* ExtensionUIColor.swift in Sources */,

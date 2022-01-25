@@ -66,6 +66,7 @@ class ExcursionViewController: UIViewController {
     var tours : [TourRequestModel] = []
     var voucherList : [String] = []
     var maxVoucherIntAdeed = 0
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,6 +174,8 @@ class ExcursionViewController: UIViewController {
             NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSearchCache, method: .get, parameters: getOfflineDataRequestModel.requestPathString()) { (response : [GetSearchTourResponseModel]) in
                 if response.count > 0 {
                     userDefaultsData.saveSearchTourOffline(tour: response )
+                    userDefaultsData.saveOfflineHotelId(hotelId: userDefaultsData.getHotelId())
+                    userDefaultsData.saveOfflineMarketId(marketId: userDefaultsData.getMarketId())
                     let alert = UIAlertController.init(title: "Success", message: "Offline data was updated", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
@@ -243,7 +246,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
        
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(Guide: userDefaultsData.getGuideId(), Market: userDefaultsData.getMarketId(), Hotel: userDefaultsData.getHotelId(), Area: userDefaultsData.getHotelArea(), TourDateStart: self.viewExcSearchCustomView?.beginDateString ??  "", TourDateEnd: self.viewExcSearchCustomView?.endDateString ?? "", SaleDate: userDefaultsData.getSaleDate(), PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0)
             
-            let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: String(userDefaultsData.getHotelId()), marketId: String(userDefaultsData.getMarketId()))
+           
             
             if  self.isConnectedInternet == true {
                 if self.viewExcSearchCustomView?.promotionid == 0 {
@@ -251,6 +254,18 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         if response.count > 0 {
                             self.tourList = response
                             print(self.tourList[0])
+                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
+                            
+                            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+                                if response.count > 0 {
+                                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                                    self.paxesList = response
+                                    /* userDefaultsData.saveHotelId(hotelId: 0)
+                                     userDefaultsData.saveMarketId(marketId: 0)*/
+                                }else{
+                                    print("data has not recived")
+                                }
+                            }
                             self.viewExcSelectCustomView?.excursionList = self.tourList
                             for index in 0...self.tourList.count - 1 {
                                 self.viewExcSelectCustomView?.excursionList[index].isTapped = false
@@ -267,6 +282,19 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : GetSearchTourPromotionResponseModel) in
                         if response.Havuz1?.count ?? 0 > 0 {
                             self.tourList = response.Havuz1 ?? self.tourList
+                            
+                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
+                            
+                            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+                                if response.count > 0 {
+                                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                                    self.paxesList = response
+                                    /* userDefaultsData.saveHotelId(hotelId: 0)
+                                     userDefaultsData.saveMarketId(marketId: 0)*/
+                                }else{
+                                    print("data has not recived")
+                                }
+                            }
                             self.viewExcSelectCustomView?.excursionList = self.tourList
                             for index in 0...self.tourList.count - 1 {
                                 self.viewExcSelectCustomView?.excursionList[index].isTapped = false
@@ -288,16 +316,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     }
                 }
                 
-                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseList, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
-                    if response.count > 0 {
-                        //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                        self.paxesList = response
-                        /* userDefaultsData.saveHotelId(hotelId: 0)
-                         userDefaultsData.saveMarketId(marketId: 0)*/
-                    }else{
-                        print("data has not recived")
-                    }
-                }
+               
                 ///
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
                 self.viewExcSearchCustomView?.excurSearchDelegate = self
@@ -557,6 +576,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             print(mergeDate)
             
             let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+            
             if self.isConnectedInternet == true {
                 NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
                     if response != 0 {
@@ -590,6 +610,13 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                        
                     }else {
                         print("error")
+                    }
+                }
+            }else {
+                self.viewExcProceedCustomView = ExcProceedCustomView.init()
+                if self.tourList.count > 0 {
+                    for _ in 0...self.tourList.count - 1 {
+                        self.viewExcProceedCustomView?.voucherNo.append("")
                     }
                 }
             }
@@ -647,7 +674,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
                    
-                    self.viewExcProceedCustomView?.voucherNo = self.voucherList
+                   // self.viewExcProceedCustomView?.voucherNo = self.voucherList
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
@@ -722,14 +749,24 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(Guide: userDefaultsData.getGuideId(), Market: userDefaultsData.getMarketId(), Hotel: userDefaultsData.getHotelId(), Area: userDefaultsData.getHotelArea(), TourDateStart: self.viewExcSearchCustomView?.beginDateString ??  "", TourDateEnd: self.viewExcSearchCustomView?.endDateString ?? "", SaleDate: userDefaultsData.getSaleDate(), PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0)
             
-            let getInHouseListRequestModel = GetInHouseListRequestModel(hotelId: String(userDefaultsData.getHotelId()), marketId: String(userDefaultsData.getMarketId()))
-            
             if  self.isConnectedInternet == true {
                 if self.viewExcSearchCustomView?.promotionid == 0 {
                     NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
                         if response.count > 0 {
                             self.tourList = response
                             print(self.tourList[0])
+                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
+                            
+                            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+                                if response.count > 0 {
+                                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                                    self.paxesList = response
+                                    /* userDefaultsData.saveHotelId(hotelId: 0)
+                                     userDefaultsData.saveMarketId(marketId: 0)*/
+                                }else{
+                                    print("data has not recived")
+                                }
+                            }
                             self.viewExcSelectCustomView?.excursionList = self.tourList
                             for index in 0...self.tourList.count - 1 {
                                 self.viewExcSelectCustomView?.excursionList[index].isTapped = false
@@ -746,6 +783,18 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : GetSearchTourPromotionResponseModel) in
                         if response.Havuz1?.count ?? 0 > 0 {
                             print(self.tourList[0])
+                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
+                            
+                            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+                                if response.count > 0 {
+                                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                                    self.paxesList = response
+                                    /* userDefaultsData.saveHotelId(hotelId: 0)
+                                     userDefaultsData.saveMarketId(marketId: 0)*/
+                                }else{
+                                    print("data has not recived")
+                                }
+                            }
                             self.tourList = response.Havuz1 ?? self.tourList
                             self.viewExcSelectCustomView?.excursionList = self.tourList
                             for index in 0...self.tourList.count - 1 {
@@ -765,18 +814,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
                         }
-                    }
-                }
-                
-                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseList, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
-                    if response.count > 0 {
-                        //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                        self.paxesList = response
-                        
-                        /* userDefaultsData.saveHotelId(hotelId: 0)
-                         userDefaultsData.saveMarketId(marketId: 0)*/
-                    }else{
-                        print("data has not recived")
                     }
                 }
                 ///
@@ -1065,6 +1102,13 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                        
                     }else {
                         print("error")
+                    }
+                }
+            }else {
+                self.viewExcProceedCustomView = ExcProceedCustomView.init()
+                if self.tourList.count > 0 {
+                    for _ in 0...self.tourList.count - 1 {
+                        self.viewExcProceedCustomView?.voucherNo.append("1")
                     }
                 }
             }

@@ -38,6 +38,10 @@ public class Defaults{
         case MaxVoucher
         case TourSalePost
         case PromotionId
+        case CurrencyList
+        case ExchangeRates
+        case OfflineHotelId
+        case OfflineMarketId
     }
     
    public init(){}
@@ -56,6 +60,47 @@ public class Defaults{
         } else {
             return preferences.integer(forKey: currentLanguageKey)
         }
+    }
+    // CurrencyList
+    func saveCurrencyList(tour:[GetCurrencyResponeModel]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .CurrencyList))
+            preferences.synchronize()
+        }
+    }
+    
+    func getCurrencyList() -> [GetCurrencyResponeModel]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .CurrencyList)) as? Data {
+            if let loadedTourList = try? decoder.decode([GetCurrencyResponeModel].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
+    }
+    
+    // ExchangeRates
+    func saveExchangeRates(tour:[GetExhangeRatesResponseModel]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(tour){
+            preferences.set(encoded, forKey: getIdentifier(type: .ExchangeRates))
+            preferences.synchronize()
+        }
+    }
+    
+    func getExchangeRates() -> [GetExhangeRatesResponseModel]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .ExchangeRates)) as? Data {
+            if let loadedTourList = try? decoder.decode([GetExhangeRatesResponseModel].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
     }
     
     // TourSaleSave
@@ -480,6 +525,44 @@ public class Defaults{
         }
     }
     
+    
+    // MarketID( value değeri olan)
+    
+    public func saveOfflineMarketId(marketId:Int){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .OfflineMarketId)
+        preferences.set(marketId, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getOfflineMarketId() -> Int{
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .OfflineMarketId)
+        if preferences.object(forKey: currentLanguageKey) == nil {
+            return -1
+        } else {
+            return preferences.integer(forKey: currentLanguageKey)
+        }
+    }
+    
+    //offlinehotelID
+    public func saveOfflineHotelId(hotelId:Int){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .OfflineHotelId)
+        preferences.set(hotelId, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getOfflineHotelId() -> Int{
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .OfflineHotelId)
+        if preferences.object(forKey: currentLanguageKey) == nil {
+            return -1
+        } else {
+            return preferences.integer(forKey: currentLanguageKey)
+        }
+    }
+    
     // HotelID(value değeri olan)
     public func saveHotelId(hotelId:Int){
         let preferences = UserDefaults.standard
@@ -569,6 +652,14 @@ public class Defaults{
             return "TourSalePost"
         case .PromotionId:
             return "PromotionId"
+        case .CurrencyList:
+           return "CurrencyList"
+        case .ExchangeRates:
+            return "ExchangeRates"
+        case .OfflineHotelId:
+            return "OfflineHotelId"
+        case .OfflineMarketId:
+            return "OfflineMarketId"
         }
     }
 }

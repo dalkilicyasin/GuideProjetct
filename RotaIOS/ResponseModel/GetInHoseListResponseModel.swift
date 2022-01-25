@@ -11,7 +11,8 @@ import ObjectMapper
 
 class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
     var isTapped : Bool?
-    var id : String?
+    var name : String?
+    var ID : Int?
     var value : Int?
     var text : String?
     var resNo : String?
@@ -22,23 +23,28 @@ class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
     var gender : String?
     var room : String?
     var birtDate : String?
+    var checkIn : String?
+    var checkOut : String?
+    var phone : String?
+    var passPort : String?
 
     required init?(map: Map) {
             
     }
         
-    public init( text : String, ageGroup : String, gender : String, room : String, birtDate : String ) {
+    public init( text : String, ageGroup : String, gender : String, room : String, birtDate : String, name : String ) {
         self.text = text
         self.ageGroup = ageGroup
         self.gender = gender
         self.room = room
         self.birtDate = birtDate
+        self.name = name
     }
     
     
     func mapping(map: Map) {
-
-        id <- map["$id"]
+        name <- map["Name"]
+        ID <- map["ID"]
         value <- map["Value"]
         text <- map["Text"]
         resNo <- map["resNo"]
@@ -49,5 +55,9 @@ class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
         gender <- map["gender"]
         room <- map["room"]
         birtDate <- map["birtDate"]
+        phone <- map["Phone"]
+        checkIn <- map["CheckIn"]
+        checkOut <- map["CheckOut"]
+        passPort <- map["PassPort"]
     }
 }

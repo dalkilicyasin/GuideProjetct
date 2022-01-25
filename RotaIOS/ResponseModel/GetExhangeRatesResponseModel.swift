@@ -7,7 +7,7 @@
 import Foundation
 import ObjectMapper
 
-struct GetExhangeRatesResponseModel : Mappable {
+struct GetExhangeRatesResponseModel : Mappable, Decodable, Encodable {
     var id : String?
     var bEGINDATE : String?
     var eNDDATE : String?

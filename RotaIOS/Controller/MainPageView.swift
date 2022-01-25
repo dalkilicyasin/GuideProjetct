@@ -24,6 +24,8 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
     var createVoucher = ""
     var offlineTourSalePostList : [TourSalePost] = []
     var tourList : [TourList] = []
+    var maxVoucherIntAdeed = 0
+    var voucherList : [String] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -98,28 +100,32 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                                 let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
                                 let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
                                 self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
-                                print(self.maxVoucherNo)
-                                if let maxVoucherInt = Int(self.maxVoucherNo) {
-                                    print(maxVoucherInt)
-                                    self.counter = maxVoucherInt
-                                }
+                               
                                 if self.offlineTourSalePostList.count > 0 {
                                     for i in 0...self.offlineTourSalePostList.count - 1 {
-                                        self.counter += 1
-                                        self.addedVoucher = String(format: "%02d", self.counter)
-                                        if userDefaultsData.getDay() != day {
-                                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
-                                            userDefaultsData.saveDay(day: day)
-                                        }else if userDefaultsData.getDay() == day {
-                                            self.counter = 1
-                                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
-                                            userDefaultsData.saveDay(day: day)
-                                        }
-                                        print(self.createVoucher)
-                                        
+                            
                                         self.tourList = self.offlineTourSalePostList[i].TourList ?? self.tourList
                                         
                                         for i in 0...self.tourList.count - 1 {
+                                            self.createVoucher = ""
+                                            self.counter = i + 1
+                                            print(self.maxVoucherNo)
+                                            if let maxVoucherInt = Int(self.maxVoucherNo) {
+                                                self.maxVoucherIntAdeed = maxVoucherInt
+                                                self.maxVoucherIntAdeed += self.counter
+                                            }
+                                            self.addedVoucher = String(format: "%02d", self.maxVoucherIntAdeed)
+                                            if userDefaultsData.getDay() != day {
+                                                self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                                                userDefaultsData.saveDay(day: day)
+                                            }else if userDefaultsData.getDay() == day {
+                                                self.counter = 1
+                                                self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                                                userDefaultsData.saveDay(day: day)
+                                            }
+                                            self.voucherList.append(self.createVoucher) // deneme için yapıldı silinecek
+                                            print(self.voucherList) //
+                                            
                                             self.tourList[i].VoucherNo = self.createVoucher
                                         }
                                         self.offlineTourSalePostList[i].TourList = self.tourList
@@ -151,6 +157,8 @@ final class MainPageView : UIView, UITableViewDelegate, UITableViewDataSource {
                                                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                                                 if let topVC = UIApplication.getTopViewController() {
                                                     topVC.present(alert, animated: true, completion: nil)
+                                                    self.offlineTourSalePostList.remove(at: i)
+                                                    userDefaultsData.saveTourSalePost(tour: self.offlineTourSalePostList)
                                                 }
                                                 
                                             }
