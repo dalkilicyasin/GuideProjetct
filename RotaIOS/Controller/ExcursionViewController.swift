@@ -66,7 +66,7 @@ class ExcursionViewController: UIViewController {
     var tours : [TourRequestModel] = []
     var voucherList : [String] = []
     var maxVoucherIntAdeed = 0
- 
+    var offlineTourList : [GetSearchTourResponseModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,30 +167,41 @@ class ExcursionViewController: UIViewController {
     }
     
     @objc func tappedOfflinedataButton() {
-        let alert = UIAlertController.init(title: "Notice", message: "Are You Sure to Continue", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction.init(title: "Yes", style: UIAlertAction.Style.default, handler: { alert in
-            print("yes")
-            let getOfflineDataRequestModel = GetTourSearchCacheRequestModel.init(guideId: String(userDefaultsData.getGuideId()), hotelIds: self.viewExcSearchCustomView?.hotelIdStringType ?? "")
-            NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSearchCache, method: .get, parameters: getOfflineDataRequestModel.requestPathString()) { (response : [GetSearchTourResponseModel]) in
-                if response.count > 0 {
-                    userDefaultsData.saveSearchTourOffline(tour: response )
-                    userDefaultsData.saveOfflineHotelId(hotelId: userDefaultsData.getHotelId())
-                    userDefaultsData.saveOfflineMarketId(marketId: userDefaultsData.getMarketId())
-                    let alert = UIAlertController.init(title: "Success", message: "Offline data was updated", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }else{
-                    print("data has not recived")
+        if self.viewExcSearchCustomView?.hotelIdStringType != "" && self.viewExcSearchCustomView?.marketIdStringType != "" {
+            
+            let alert = UIAlertController.init(title: "Notice", message: "Are You Sure to Continue", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction.init(title: "Yes", style: UIAlertAction.Style.default, handler: { alert in
+                print("yes")
+                let getOfflineDataRequestModel = GetTourSearchCacheRequestModel.init(guideId: String(userDefaultsData.getGuideId()), hotelIds: self.viewExcSearchCustomView?.hotelIdStringType ?? "")
+                NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSearchCache, method: .get, parameters: getOfflineDataRequestModel.requestPathString()) { (response : [GetSearchTourResponseModel]) in
+                    if response.count > 0 {
+                        self.offlineTourList = response
+                        let filteredOfflineList = self.offlineTourList.filter{$0.marketId == userDefaultsData.getMarketId()}
+                        self.offlineTourList = filteredOfflineList
+                        userDefaultsData.saveSearchTourOffline(tour: self.offlineTourList )
+                        userDefaultsData.saveOfflineHotelId(hotelId: userDefaultsData.getHotelId())
+                        userDefaultsData.saveOfflineMarketId(marketId: userDefaultsData.getMarketId())
+                        let alert = UIAlertController.init(title: "Success", message: "Offline data was updated", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }else{
+                        print("data has not recived")
+                    }
                 }
-            }
-            print("tapped")
-        }))
-        alert.addAction(UIAlertAction.init(title: "No", style: UIAlertAction.Style.default, handler: { alert in
-            print("No")
-            return
-        }))
-        present(alert, animated: true, completion: nil)
+                print("tapped")
+            }))
+            alert.addAction(UIAlertAction.init(title: "No", style: UIAlertAction.Style.default, handler: { alert in
+                print("No")
+                return
+            }))
+            present(alert, animated: true, completion: nil)
+        }else {
+            let alert = UIAlertController.init(title: "WARNING", message: "Please select market and hotel", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
+    
 }
 
 extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappedDelegate, SaveButtonTappedDelegate {
@@ -243,10 +254,10 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.constraintOnSelectfunc()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.printButton.isHidden = true
-       
+            
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(Guide: userDefaultsData.getGuideId(), Market: userDefaultsData.getMarketId(), Hotel: userDefaultsData.getHotelId(), Area: userDefaultsData.getHotelArea(), TourDateStart: self.viewExcSearchCustomView?.beginDateString ??  "", TourDateEnd: self.viewExcSearchCustomView?.endDateString ?? "", SaleDate: userDefaultsData.getSaleDate(), PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0)
             
-           
+            
             
             if  self.isConnectedInternet == true {
                 if self.viewExcSearchCustomView?.promotionid == 0 {
@@ -316,7 +327,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     }
                 }
                 
-               
+                
                 ///
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
                 self.viewExcSearchCustomView?.excurSearchDelegate = self
@@ -344,9 +355,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     })
                     // self.lastUIView = self.paxPageCustomView!
                     self.isHotelorMarketChanged = false
-                   /* userDefaultsData.saveHotelId(hotelId: 0)
-                    userDefaultsData.saveMarketId(marketId: 0)
-                    userDefaultsData.saveHotelArea(hotelAreaId: 0)*/
+                    /* userDefaultsData.saveHotelId(hotelId: 0)
+                     userDefaultsData.saveMarketId(marketId: 0)
+                     userDefaultsData.saveHotelArea(hotelAreaId: 0)*/
                 }else {
                     self.viewExcSelectCustomView?.isHidden = false
                     self.viewExcSearchCustomView?.isHidden = true
@@ -398,7 +409,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }
                 self.viewExcSelectCustomView?.tableView.reloadData()
             }
-           
+            
         }else if tapped == 2 {
             self.tourList = userDefaultsData.getTourList() ?? self.tourList
             self.viewFooterViewCustomView.printButton.isHidden = true
@@ -442,7 +453,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 // self.proceedPageCustomView?.isHidden = true
             }
             
-         
+            
             
             self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
             self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
@@ -545,7 +556,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.totalPrice += self.perTourTotalPrice
                     self.paxTotalAmount = self.perTourTotalPrice
                     self.tourAmount = self.perTourTotalPrice
-            
+                    
                     self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.perTourTotalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
                 }
                 self.tourListSaved.removeAll()
@@ -607,7 +618,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         print(self.voucherList)
                         self.viewExcProceedCustomView?.voucherNo = self.voucherList
                         userDefaultsData.saveMaxVoucher(voucher: self.voucherList)
-                       
+                        
                     }else {
                         print("error")
                     }
@@ -673,8 +684,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
-                   
-                   // self.viewExcProceedCustomView?.voucherNo = self.voucherList
+                    
+                    // self.viewExcProceedCustomView?.voucherNo = self.voucherList
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
@@ -840,9 +851,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             
                         }
                     })
-                   /* userDefaultsData.saveHotelId(hotelId: 0)
-                    userDefaultsData.saveMarketId(marketId: 0)
-                    userDefaultsData.saveHotelArea(hotelAreaId: 0)*/
+                    /* userDefaultsData.saveHotelId(hotelId: 0)
+                     userDefaultsData.saveMarketId(marketId: 0)
+                     userDefaultsData.saveHotelArea(hotelAreaId: 0)*/
                     // self.lastUIView = self.paxPageCustomView!
                     self.isHotelorMarketChanged = false
                 }else {
@@ -889,7 +900,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     // self.proceedPageCustomView?.isHidden = true
                 }
                 ///
-            
+                
                 self.tourList = userDefaultsData.getSearchTourOffline() ?? self.tourList
                 for index in 0...self.tourList.count - 1 {
                     self.viewExcSelectCustomView?.excursionList[index].isTapped = false
@@ -936,8 +947,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
             }
-     
-         
+            
+            
             //total amount counting
             self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
             self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
@@ -1033,7 +1044,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                                 }
                             }
                         }
-                       
+                        
                         self.perTourTotalPrice += self.minPriceTotal
                     }
                     self.totalPrice += self.perTourTotalPrice
@@ -1099,7 +1110,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         print(self.voucherList)
                         self.viewExcProceedCustomView?.voucherNo = self.voucherList
                         userDefaultsData.saveMaxVoucher(voucher: self.voucherList)
-                       
+                        
                     }else {
                         print("error")
                     }
@@ -1112,7 +1123,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     }
                 }
             }
-                
+            
             ///
             self.buttonhide()
             self.viewFooterViewCustomView.buttonView.isHidden = true
@@ -1186,7 +1197,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             print("default")
         }
     }
-
+    
     
     func animatedCustomView( customView : UIView ){
         //  self.lastUIView.removeFromSuperview()
@@ -1313,7 +1324,7 @@ extension ExcursionViewController : ExcPaxPageDelegate {
                 })
             }else{
                 self.viewExcSelectCustomView?.isHidden = false
-                self.viewPaxCustomView?.isHidden = true       
+                self.viewPaxCustomView?.isHidden = true
             }
         }
     }
