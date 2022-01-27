@@ -200,6 +200,7 @@ class ExcSearchCustomView : UIView {
                     self.marketIdStringType = String(listofarray.value ?? 0)
                     //   userDefaultsData.saveMarketGroupId(marketId: listofarray.id ?? "") // silinecek
                 }
+                self.promotionMenuCall()
             }
             
             self.hotelMenu.selectionAction = { index, title in
@@ -215,40 +216,7 @@ class ExcSearchCustomView : UIView {
                     self.hotelIdStringType = String(listofArray.value ?? 0)
                     self.areaIdStringType = String(listofArray.area ?? 0)
                 }
-                let getPromotionRequestModel = GetPromotionRequestModel.init(hotelId: userDefaultsData.getHotelId() , marketId: userDefaultsData.getMarketId(), tourSaleDate: userDefaultsData.getSaleDate() ?? "", tourStartDate: self.beginDateString, tourEndDate: self.endDateString)
-                
-                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTourSalePromotions, method: .get, parameters: getPromotionRequestModel.requestPathString()) { (response : [GetPromotionResponseModel] ) in
-                    if response.count > 0 {
-                        //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                        self.promotionList = response
-                        for listOfArray in self.promotionList {
-                            self.promotionMenu.dataSource.append(listOfArray.text ?? "")
-                        }
-                        self.promotionMenu.dataSource.insert("", at: 0)
-                        self.promotionMenu.backgroundColor = UIColor.grayColor
-                        self.promotionMenu.separatorColor = UIColor.gray
-                        self.promotionMenu.textColor = .white
-                        self.promotionMenu.anchorView = self.viewPromotionMenu
-                        self.promotionMenu.topOffset = CGPoint(x: 0, y:-(self.promotionMenu.anchorView?.plainView.bounds.height)!)
-                    }else{
-                        print("data has not recived")
-                    }
-                }
-                
-                self.promotionMenu.selectionAction = { index, title in
-                    if title != self.viewPromotionMenu.mainLabel.text {
-                        self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
-                    }
-                    self.viewPromotionMenu.mainLabel.text = title
-                    let filtered = self.promotionList.filter{($0.text?.contains(title) ?? false)}
-                    self.filteredPromotionList = filtered
-                    for listofArray in self.filteredPromotionList {
-                        userDefaultsData.savePromotionId(promotionId: listofArray.value ?? 0)
-                        self.promotionid = listofArray.value ?? 0
-                        self.promotionIdStringType = String(listofArray.value ?? 0)
-                    }
-                }
-            }
+                self.promotionMenuCall()            }
             
             self.viewMarketList.headerLAbel.text = "Market"
             self.viewHotelList.headerLAbel.text = "Hotel"
@@ -261,6 +229,43 @@ class ExcSearchCustomView : UIView {
                 let alert = UIAlertController.init(title: "Notice", message: "There Is No Internet Connection", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 topVC.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func promotionMenuCall(){
+        let getPromotionRequestModel = GetPromotionRequestModel.init(hotelId: userDefaultsData.getHotelId() , marketId: userDefaultsData.getMarketId(), tourSaleDate: userDefaultsData.getSaleDate() ?? "", tourStartDate: self.beginDateString, tourEndDate: self.endDateString)
+        
+        NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTourSalePromotions, method: .get, parameters: getPromotionRequestModel.requestPathString()) { (response : [GetPromotionResponseModel] ) in
+            if response.count > 0 {
+                //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                self.promotionMenu.dataSource = []
+                self.promotionList = response
+                for listOfArray in self.promotionList {
+                    self.promotionMenu.dataSource.append(listOfArray.text ?? "")
+                }
+                self.promotionMenu.dataSource.insert("", at: 0)
+                self.promotionMenu.backgroundColor = UIColor.grayColor
+                self.promotionMenu.separatorColor = UIColor.gray
+                self.promotionMenu.textColor = .white
+                self.promotionMenu.anchorView = self.viewPromotionMenu
+                self.promotionMenu.topOffset = CGPoint(x: 0, y:-(self.promotionMenu.anchorView?.plainView.bounds.height)!)
+            }else{
+                print("data has not recived")
+            }
+        }
+        
+        self.promotionMenu.selectionAction = { index, title in
+            if title != self.viewPromotionMenu.mainLabel.text {
+                self.excurSearchDelegate?.hotelorMarketChange(isChange: true)
+            }
+            self.viewPromotionMenu.mainLabel.text = title
+            let filtered = self.promotionList.filter{($0.text?.contains(title) ?? false)}
+            self.filteredPromotionList = filtered
+            for listofArray in self.filteredPromotionList {
+                userDefaultsData.savePromotionId(promotionId: listofArray.value ?? 0)
+                self.promotionid = listofArray.value ?? 0
+                self.promotionIdStringType = String(listofArray.value ?? 0)
             }
         }
     }

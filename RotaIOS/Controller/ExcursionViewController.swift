@@ -674,7 +674,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
                         }
                         self.viewExcProceedCustomView?.discount = self.discount
-                        self.viewExcProceedCustomView?.viewDiscount.mainText.text = String(self.discount)
+                        self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
                     }else {
                         print("error")
                     }
@@ -686,13 +686,13 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSearchCustomView?.isHidden = true
                 UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcProceedCustomView = ExcProceedCustomView()
-                    self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
-                    self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
-                    self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice)
-                    self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
+                    self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice )
+                    self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
+                    self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
+                    self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
                     
                     // self.viewExcProceedCustomView?.voucherNo = self.voucherList
-                    self.viewExcProceedCustomView?.totalAmount = self.totalPrice
+                    self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in
@@ -1167,7 +1167,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
                         }
                         self.viewExcProceedCustomView?.discount = self.discount
-                        self.viewExcProceedCustomView?.viewDiscount.mainText.text = String(self.discount)
+                        self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
         
                     }else {
                         print("error")
@@ -1181,10 +1181,10 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcProceedCustomView = ExcProceedCustomView()
                     self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
-                    self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice)
-                    self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice)
-                    self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice)
-                    self.viewExcProceedCustomView?.totalAmount = self.totalPrice
+                    self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
+                    self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
+                    self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
+                    self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                     self.viewExcProceedCustomView?.discount = self.discount
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
