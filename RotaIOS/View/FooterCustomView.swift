@@ -57,6 +57,7 @@ class FooterCustomView: UIView {
         self.buttonAddButton.layer.cornerRadius = 10
         self.buttonAddButton.backgroundColor = UIColor.greenColor
         
+        self.buttonSaveButton.isEnabled = true
         self.buttonSaveButton.isHidden = true
         self.buttonSaveButton.layer.cornerRadius = 10
         self.buttonSaveButton.backgroundColor = UIColor.clear
@@ -85,6 +86,12 @@ class FooterCustomView: UIView {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         self.saveButtonTappedDelegate?.totalPrice(isSaveButtonTapped: true)
+        self.buttonSaveButton.isEnabled = false
+        let alert = UIAlertController.init(title: "SUCCESS", message: "Price has ben saved", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        if let topVC = UIApplication.getTopViewController() {
+            topVC.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func countinueButtonClicked(_ sender: Any) {

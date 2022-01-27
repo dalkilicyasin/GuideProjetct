@@ -111,6 +111,8 @@ class AddManuelTouristCustomView : UIView {
         self.viewCheckOut.imageMainText.isHidden = true
         self.viewCheckOut.mainLabel.isHidden = true
         self.viewCheckOut.mainText.isHidden = false
+        
+        self.viewName.mainText.delegate = self
     
         self.viewRemoveView.roundCorners(.allCorners, radius: 10)
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
@@ -152,9 +154,12 @@ class AddManuelTouristCustomView : UIView {
         self.removeFromSuperview()
     }
     
+    
+    
     @IBAction func addManuelButton(_ sender: Any) {
-        if viewName.mainText.text?.count ?? 0 > 2 {
-            self.paxName = viewName.mainText.text ?? ""
+        if self.viewName.mainText.text?.count ?? 0 > 2 {
+            self.paxName = self.viewName.mainText.text ?? ""
+       
         }else{
             let alert = UIAlertController.init(title: "Warning", message: "Please fill Name section more then 2 words", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -179,14 +184,20 @@ class AddManuelTouristCustomView : UIView {
 }
 
 extension AddManuelTouristCustomView : UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let isNumber = CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string))
-        let withDecimal = (
-            string == NumberFormatter().decimalSeparator &&
-            textField.text?.contains(string) == false
-        )
-        return isNumber || withDecimal
-    }
+        if textField == self.viewName.mainText {
+                    let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                    let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
+                    let typedCharacterSet = CharacterSet(charactersIn: string)
+                    let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
+                    return alphabet
+
+
+          } else {
+            return false
+        }
+      }
 }
 
 

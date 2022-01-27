@@ -16,7 +16,6 @@ class ExcursionListTableViewCell: BaseTableViewCell {
     @IBOutlet weak var imageCheckBox: UIImageView!
     @IBOutlet weak var labelExcursion: UILabel!
     @IBOutlet weak var labelTourdate: UILabel!
-    @IBOutlet weak var labelSeat: UILabel!
     @IBOutlet weak var labelPriceType: UILabel!
     @IBOutlet weak var labelCurrency: UILabel!
     @IBOutlet weak var labelAdultPrice: UILabel!

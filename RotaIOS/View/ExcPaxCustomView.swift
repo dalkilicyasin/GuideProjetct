@@ -226,9 +226,13 @@ extension ExcPaxCustomView : UISearchBarDelegate {
 }
 
 extension ExcPaxCustomView : TempAddPaxesListDelegate {
+    
     func tempAddList(listofpaxes: [Paxes], manuellist: [String], changeValue: Int) {
+        
         if  self.tempListofPaxes.count != listofpaxes.count {
+        //  let  filter = self.paxesList.filter{ $0.name == lastAddedPax.pAX_NAME}
             self.tempListofPaxes = listofpaxes
+            var lastIndex = 0
             self.manuelAddedPaxesList.removeAll()
             let currentYear =  Calendar.current.component(.year, from: Date())
             if self.tempValue != changeValue {
@@ -237,6 +241,7 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                 userDefaultsData.saveManuelandHousePaxesList(tour: self.sendingListofPaxes)
                 if self.sendingListofPaxes.count > 0 {
                     for i in 0...self.sendingListofPaxes.count - 1 {
+                        lastIndex += i
                         if let birtdate =  self.sendingListofPaxes[i].pAX_BIRTHDAY {
                             let year = Int(birtdate.suffix(4))
                             self.manuelPaxAge = currentYear - (year ?? 0)
@@ -252,17 +257,32 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                         }
                         
                         self.manuelAddedPaxesList.append(GetInHoseListResponseModel(text: self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender:self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? ""))
+                        
                     }
                 }
-                if self.manuelAddedPaxesList.count > 0 && self.paxesList.count > 0 {
-                    if self.paxesList.count > self.manuelAddedPaxesList.count {
-                        for i in 0...self.paxesList.count - 1 {
+               
+               /* if self.manuelAddedPaxesList.count > 0 && self.paxesList.count > 0 {
+                  /*  if self.paxesList.count > self.manuelAddedPaxesList.count {
+                      /* for i in 0...self.paxesList.count - 1 {
                             for index in 0...self.manuelAddedPaxesList.count - 1 {
                                 if self.manuelAddedPaxesList[index].name != self.paxesList[i].name {
-                                    self.paxesList.append(self.manuelAddedPaxesList[i])
+                                    self.paxesList.append(self.manuelAddedPaxesList[index])
                                     self.checkList.append(false)
                                 }
                             }
+                        } */
+                        var filter : [GetInHoseListResponseModel] = []
+                        for i in 0...self.manuelAddedPaxesList.count - 1 {
+                            if self.manuelAddedPaxesList[i].name != sendingListofPaxes[i].pAX_NAME{
+                                filter = self.paxesList.filter{ $0.name == self.manuelAddedPaxesList[i].name}
+                            }
+                        }
+                        
+                        if filter.count == 0 {
+                            return
+                        }else{
+                            self.paxesList.append(self.manuelAddedPaxesList[0])
+                            self.checkList.append(false)
                         }
                     }else {
                         for i in 0...self.manuelAddedPaxesList.count - 1 {
@@ -273,15 +293,25 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                                 }
                             }
                         }
+                    } */
+                    
+                    if filter.count == 0 {
+                        self.paxesList.append(filter[0])
+                    }else{
+                        self.paxesList.append(filter[0])
+                        self.checkList.append(false)
                     }
-                   
+                    
+                    
+                    
                 }else {
-                    for i in 0...self.manuelAddedPaxesList.count - 1 {
-                            self.paxesList.append(self.manuelAddedPaxesList[i])
+                   
+                            self.paxesList.append(self.manuelAddedPaxesList[0])
                             self.checkList.append(false)
-                    }
-                }
-                
+                    
+                }*/
+                self.paxesList.append(self.manuelAddedPaxesList[lastIndex])
+                self.checkList.append(false)
                 self.tableView.reloadData()
                 // self.labelTouristAdded.text = "\(self.totalPaxesCount + self.tempValue) Tourist Added" ind. shop sayfası ile burdaki farklı çeşitte daha sonra değerlendirilmesi
                 // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)

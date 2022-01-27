@@ -44,6 +44,7 @@ class TempTouristAddCustomView : UIView{
     var getInTouristInfoRequestModel : [GetTouristInfoRequestModel] = []
     var temppAddPaxesListDelegate : TempAddPaxesListDelegate?
     var changeCounterValue = 0
+    var lastAddedPax : Paxes?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -138,6 +139,7 @@ extension TempTouristAddCustomView : SaveManuelListProtocol {
     func saveManuelList(manuelList: Paxes) {
         self.changeCounterValue += 1
         self.tempPaxesList.append( manuelList)
+        self.lastAddedPax = manuelList
         self.paxnameFromaddManuelList.append(manuelList.pAX_NAME)
        // self.nameListed.append(manuelList.pAX_NAME)
         self.tableView.reloadData()

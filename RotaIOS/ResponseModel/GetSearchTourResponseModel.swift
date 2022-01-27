@@ -130,6 +130,7 @@ public class GetSearchTourResponseModel : Mappable, Decodable, Encodable{
 }
 
 public struct Transfers : Mappable, Decodable, Encodable{
+    var savedAmount : Double?
     var isTapped : Bool?
     var id : String?
     var matchId : Int?
@@ -181,6 +182,7 @@ public struct Transfers : Mappable, Decodable, Encodable{
     }
 
    public  mutating func mapping(map: Map) {
+       savedAmount <- map["savedAmount"]
         id <- map["id"]
         matchId <- map["MatchId"]
         gID <- map["GID"]
@@ -229,7 +231,8 @@ public struct Transfers : Mappable, Decodable, Encodable{
 }
 
 public struct Extras : Mappable, Decodable, Encodable{
- 
+    
+    var savedAmount : Double?
     var isTapped : Bool?
     var id : String?
     var matchId : Int?
@@ -281,6 +284,7 @@ public struct Extras : Mappable, Decodable, Encodable{
     }
 
    public mutating func mapping(map: Map) {
+       savedAmount <- map["savedAmount"]
         id <- map["id"]
         matchId <- map["MatchId"]
         gID <- map["GID"]

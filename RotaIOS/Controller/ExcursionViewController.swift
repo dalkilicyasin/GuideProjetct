@@ -101,9 +101,12 @@ class ExcursionViewController: UIViewController {
         if Connectivity.isConnectedToInternet {
             print("Connected")
             self.isConnectedInternet = true
+            self.viewExcursionView.labelOfflineToursale.isHidden = true
+          
         } else {
             print("No Internet")
             self.isConnectedInternet = false
+            self.viewExcursionView.labelOfflineToursale.isHidden = false
         }
     }
     
@@ -206,7 +209,10 @@ class ExcursionViewController: UIViewController {
 
 extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappedDelegate, SaveButtonTappedDelegate {
     func totalPrice(isSaveButtonTapped: Bool?) {
-        self.totalPrice += self.extraAndTransTotalPrice
+        if isSaveButtonTapped == true {
+            self.totalPrice += self.extraAndTransTotalPrice
+            
+        }
     }
     
     func continueButtonTappedDelegate(tapped: Int) {
@@ -668,7 +674,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
                         }
                         self.viewExcProceedCustomView?.discount = self.discount
-                        self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
+                        self.viewExcProceedCustomView?.viewDiscount.mainText.text = String(self.discount)
                     }else {
                         print("error")
                     }
@@ -1161,7 +1167,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
                         }
                         self.viewExcProceedCustomView?.discount = self.discount
-                        self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
+                        self.viewExcProceedCustomView?.viewDiscount.mainText.text = String(self.discount)
+        
                     }else {
                         print("error")
                     }

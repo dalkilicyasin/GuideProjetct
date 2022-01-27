@@ -61,6 +61,16 @@
                         <constraint firstAttribute="height" constant="150" id="OS9-1h-5yE"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OFFLINE TOUR SALE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvY-dn-IZj">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
+                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="qx4-1V-KO1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -68,20 +78,24 @@
                 <constraint firstAttribute="bottom" secondItem="Rax-Co-yw1" secondAttribute="bottom" id="9Rj-vy-ZbE"/>
                 <constraint firstItem="fIR-95-TT9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EKg-Ss-1PA"/>
                 <constraint firstItem="if8-LS-RiW" firstAttribute="top" secondItem="fIR-95-TT9" secondAttribute="bottom" id="FrE-HN-acF"/>
+                <constraint firstItem="uvY-dn-IZj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Kia-7g-Tx6"/>
                 <constraint firstAttribute="bottom" secondItem="if8-LS-RiW" secondAttribute="bottom" constant="-130" id="OmL-w3-6l7"/>
                 <constraint firstItem="Rax-Co-yw1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UDy-0l-DnT"/>
                 <constraint firstAttribute="trailing" secondItem="if8-LS-RiW" secondAttribute="trailing" id="W58-1Y-44b"/>
                 <constraint firstAttribute="trailing" secondItem="fIR-95-TT9" secondAttribute="trailing" id="bUK-6u-kP9"/>
                 <constraint firstItem="p2v-CF-ThT" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="des-j2-yKR"/>
+                <constraint firstItem="uvY-dn-IZj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="irp-dC-a5f"/>
                 <constraint firstAttribute="trailing" secondItem="yZk-8o-J4S" secondAttribute="trailing" id="oUe-5O-Zbo"/>
                 <constraint firstItem="fIR-95-TT9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qtv-iI-1bf"/>
                 <constraint firstAttribute="trailing" secondItem="Rax-Co-yw1" secondAttribute="trailing" id="rZ5-oy-EgS"/>
                 <constraint firstItem="if8-LS-RiW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="sIj-5S-Yjl"/>
+                <constraint firstAttribute="trailing" secondItem="uvY-dn-IZj" secondAttribute="trailing" id="vLC-Wx-TXG"/>
                 <constraint firstItem="yZk-8o-J4S" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="wDm-7U-RzF"/>
                 <constraint firstItem="yZk-8o-J4S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ycL-Ot-iL2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="labelOfflineToursale" destination="uvY-dn-IZj" id="Fmy-0N-8xM"/>
                 <outlet property="viewAppointmentView" destination="yZk-8o-J4S" id="B86-kO-COB"/>
                 <outlet property="viewContentView" destination="p2v-CF-ThT" id="sJ3-8O-uAm"/>
                 <outlet property="viewFooterCustomView" destination="Rax-Co-yw1" id="ASK-yR-Bfk"/>
@@ -93,6 +107,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

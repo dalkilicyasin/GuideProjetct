@@ -327,6 +327,10 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                                     
                             else { return } // Should never happen
                             
+                            if flatamount == "" {
+                                return
+                            }
+                            
                             self.pickUpTime = "\(flatamount):00"
                             
                             if let index = self.promotionList.firstIndex(where: {$0 === tempPaxes}){
@@ -360,12 +364,23 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                     alert.addTextField {
                         $0.placeholder = "Pick Up Time"
                         $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
+                     
                     }
                     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                  
                     let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
                         guard let flatamount = alert.textFields?[0].text
                                 
                         else { return } // Should never happen
+                        
+                      /*  if flatamount == "" {
+                            let alert = UIAlertController(title: "WARNING", message: "Please fiil Pick Up Time", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            if let topVC = UIApplication.getTopViewController() {
+                                topVC.present(alert, animated: true, completion: nil)
+                            }
+                        }*/
+                        
                         
                         self.pickUpTime = "\(flatamount):00"
                         
@@ -382,8 +397,9 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                         self.tableView.reloadData()
                     }
                     
-                    //  flatAmountAction.isEnabled = false
+                    flatAmountAction.isEnabled = false
                     alert.addAction(flatAmountAction)
+                    
                     
                     if let topVC = UIApplication.getTopViewController() {
                         topVC.present(alert, animated: true, completion: nil)

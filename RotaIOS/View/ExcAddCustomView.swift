@@ -456,8 +456,18 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
                         self.extrasTotalPrice += Double(self.flatAmount) * (extras?.flatPrice ?? 0.00)
                         self.transfersTotalPrice += Double(self.flatAmount) * (transfers?.flatPrice ?? 0.00)
                           // Perform login action
+                          if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc}){
+                              self.extrasList[index].savedAmount = self.extrasTotalPrice
+                              
+                          }
+                          
+                          if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc}){
+                              self.transfersList[index].savedAmount = self.transfersTotalPrice
+                              
+                          }
                         self.excAddCustomViewDelegate?.excurAddCustomDelegate(changeTransferNumber: self.transfersList.count, changeExtraNumber: self.saveExtrasList.count, extrasTotalPrice: self.extrasTotalPrice, transfersTotalPrice: self.transfersTotalPrice, extraButtonTapped: self.buttonExtraTapped)
                       }
+               
                     
                   //  flatAmountAction.isEnabled = false
                     alert.addAction(flatAmountAction)
@@ -556,21 +566,24 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
             }
             // reduce price
           if priceTypeDesc == 36 {
-                    let alert = UIAlertController(title: "Flat Price", message: "Please insert Flat amount", preferredStyle: .alert)
-                    alert.addTextField {
-                        $0.placeholder = "Flat Amount"
-                        $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
-                       }
+                    let alert = UIAlertController(title: "WARNING", message: "Are you sure delete Transfer/Extra price?", preferredStyle: .alert)
+                   
                     
                     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 
-                      let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
-                          guard let flatamount = alert.textFields?[0].text
-                           
-                              else { return } // Should never happen
-                        self.flatAmount = Int(flatamount) ?? 0
-                        self.extrasTotalPrice -= Double(self.flatAmount) * (extras?.flatPrice ?? 0.00)
-                        self.transfersTotalPrice -= Double(self.flatAmount) * (transfers?.flatPrice ?? 0.00)
+                      let flatAmountAction = UIAlertAction(title: "Yes", style: .default) { [unowned self] _ in
+                       
+                          
+                          if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc}){
+                              self.extrasTotalPrice -=  self.extrasList[index].savedAmount ?? 0.0
+                          }
+                          
+                          if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc}){
+                              self.transfersTotalPrice -=  self.transfersList[index].savedAmount ?? 0.0
+                          }
+                          
+                       /* self.extrasTotalPrice -= Double(self.flatAmount) * (extras?.flatPrice ?? 0.00)
+                        self.transfersTotalPrice -= Double(self.flatAmount) * (transfers?.flatPrice ?? 0.00) */
                           // Perform login action
                         self.excAddCustomViewDelegate?.excurAddCustomDelegate(changeTransferNumber: self.transfersList.count, changeExtraNumber: self.saveExtrasList.count, extrasTotalPrice: self.extrasTotalPrice, transfersTotalPrice: self.transfersTotalPrice, extraButtonTapped: self.buttonExtraTapped)
                       }

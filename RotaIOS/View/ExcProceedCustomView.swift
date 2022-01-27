@@ -203,6 +203,9 @@ class ExcProceedCustomView: UIView{
         self.buttonSend.layer.cornerRadius = 10
         self.buttonSend.backgroundColor = UIColor.greenColor
         self.viewDicountCalculate.mainText.text = String(self.discount)
+        self.viewTotalAmount.mainText.text = String(self.totalAmount - self.discount)
+        self.viewBalanced.mainText.text = String(self.balanceAmount - self.discount)
+        
         if Connectivity.isConnectedToInternet {
             print("connect")
             self.internetConnection = true
@@ -380,7 +383,7 @@ class ExcProceedCustomView: UIView{
     
     @IBAction func applyDiscountButtonTapped(_ sender: Any) {
         if let discount = Double(self.viewDiscount.mainText.text ?? ""){
-            self.discount = discount
+            self.discount += discount
         }
         self.viewDicountCalculate.mainText.text = String(self.discount)
         self.balanceAmount = self.balanceAmount - self.discount
@@ -406,9 +409,7 @@ class ExcProceedCustomView: UIView{
             }
             self.balanceAmount = self.totalAmount - self.savedTotalAmount
             //self.totalAmount = self.balanceAmount
-            if self.balanceAmount < 0 {
-                self.balanceAmount = 0.00
-            }
+          
             self.viewBalanced.mainText.text = String(self.balanceAmount)
         }else {
             let alert = UIAlertController.init(title: "Error", message: "Please Insert CurrencyType, Pax and PaymentType", preferredStyle: UIAlertController.Style.alert)
