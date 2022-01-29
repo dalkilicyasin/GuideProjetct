@@ -27,18 +27,22 @@ class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
     var checkOut : String?
     var phone : String?
     var passPort : String?
+    var operatorName : String?
 
     required init?(map: Map) {
             
     }
         
-    public init( text : String, ageGroup : String, gender : String, room : String, birtDate : String, name : String ) {
+    public init( text : String, ageGroup : String, gender : String, room : String, birtDate : String, name : String, checkOut : String, phone : String, operatorName : String ) {
         self.text = text
         self.ageGroup = ageGroup
         self.gender = gender
         self.room = room
         self.birtDate = birtDate
         self.name = name
+        self.checkOut = checkOut
+        self.phone = phone
+        self.operatorName = operatorName
     }
     
     
@@ -59,5 +63,6 @@ class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
         checkIn <- map["CheckIn"]
         checkOut <- map["CheckOut"]
         passPort <- map["PassPort"]
+        operatorName <- map["operatorName"]
     }
 }

@@ -387,6 +387,7 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                         if let index = self.excursionList.firstIndex(where: {$0 === tempPaxes}){
                             self.pickUpTimeList[index] = self.pickUpTime
                         }
+                        
                         if let indexSaveTourList = self.savesTourList.firstIndex(where: { $0 === tempPaxes}) {
                             self.savesTourList[indexSaveTourList].pickUpTime = self.pickUpTime
                         }

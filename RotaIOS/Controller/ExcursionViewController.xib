@@ -96,6 +96,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="labelOfflineToursale" destination="uvY-dn-IZj" id="Fmy-0N-8xM"/>
+                <outlet property="scrollView" destination="if8-LS-RiW" id="36Q-4T-8Ki"/>
                 <outlet property="viewAppointmentView" destination="yZk-8o-J4S" id="B86-kO-COB"/>
                 <outlet property="viewContentView" destination="p2v-CF-ThT" id="sJ3-8O-uAm"/>
                 <outlet property="viewFooterCustomView" destination="Rax-Co-yw1" id="ASK-yR-Bfk"/>

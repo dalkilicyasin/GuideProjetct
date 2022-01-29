@@ -48,6 +48,8 @@ class ExcAddCustomView : UIView {
     var transfersMinPrice = 0.00
     var transfersMinPerson = 0
     var tempaxeslist : [GetInHoseListResponseModel] = []
+    var savedExcursionList : [GetSearchTourResponseModel] = []
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,6 +66,7 @@ class ExcAddCustomView : UIView {
         self.viewMainView.addCustomContainerView(self)
         
             self.excursionListInAddMenu = userDefaultsData.getTourList() ?? self.excursionListInAddMenu
+          //  self.savedExcursionList = self.excursionListInAddMenu
             if let paxesList = userDefaultsData.getPaxesList(){
                 self.extrasPaxesList = paxesList
                 self.transferPaxesList = paxesList
@@ -119,8 +122,10 @@ class ExcAddCustomView : UIView {
             if title != self.viewExcursions.mainLabel.text {
             }
             self.viewExcursions.mainLabel.text = title
+            
             let filtered = self.excursionListInAddMenu.filter{($0.tourName?.contains(title) ?? false)}
             self.filteredExcursionList = filtered
+            
             for listofArray in self.filteredExcursionList {
                 self.extrasList = listofArray.extras ?? self.extrasList
                 self.transfersList = listofArray.transfers ?? self.transfersList
@@ -128,14 +133,14 @@ class ExcAddCustomView : UIView {
             
             if self.extrasList.count > 0 {
                 for index in 0...self.extrasList.count - 1 {
-                    self.extrasList[index].isTapped = false
+                   // self.extrasList[index].isTapped = false
                     self.extrasChecklist.append(self.extrasList[index].isTapped ?? false)
                 }
             }
             
             if self.transfersList.count > 0  {
                 for index in 0...self.transfersList.count - 1 {
-                    self.transfersList[index].isTapped = false
+                   // self.transfersList[index].isTapped = false
                     self.transferChecklist.append(self.transfersList[index].isTapped ?? false)
                 }
             }
@@ -163,6 +168,8 @@ class ExcAddCustomView : UIView {
     }
     
     @IBAction func extrasButtonTapped(_ sender: Any) {
+   
+        
       if  self.buttonExtraTapped == false {
         self.buttonExtraTapped = true
         self.excAddCustomViewDelegate?.excurAddCustomDelegate(changeTransferNumber: self.transfersList.count, changeExtraNumber: self.saveExtrasList.count, extrasTotalPrice: self.extrasTotalPrice, transfersTotalPrice: self.transfersTotalPrice, extraButtonTapped: self.buttonExtraTapped)
@@ -410,12 +417,19 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
         if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc}){
             self.extrasList[index].isTapped = checkCounter
             self.extrasChecklist[index] = checkCounter
+            
         }
         
         if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc}){
             self.transfersList[index].isTapped = checkCounter
             self.transferChecklist[index] = checkCounter
         }
+       
+       self.filteredExcursionList[0].extras = self.extrasList
+     
+     //  let filter = self.savedExcursionList.filter{ $0 === self.filteredExcursionList[0]}
+      
+       
        
         self.tableView.reloadData()
         
@@ -462,13 +476,19 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
                           // Perform login action
                           if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc}){
                               self.extrasList[index].savedAmount = self.extrasTotalPrice
-                              
                           }
                           
                           if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc}){
                               self.transfersList[index].savedAmount = self.transfersTotalPrice
-                              
                           }
+                          
+                          self.filteredExcursionList[0].extras = self.extrasList
+                          self.filteredExcursionList[0].transfers = self.transfersList
+                          if let insideIndex = self.excursionListInAddMenu.firstIndex(where: {$0.tourName == self.filteredExcursionList[0].tourName}){
+                              self.excursionListInAddMenu.remove(at: insideIndex)
+                              self.excursionListInAddMenu.insert(self.filteredExcursionList[0], at: insideIndex)
+                          }
+                          
                         self.excAddCustomViewDelegate?.excurAddCustomDelegate(changeTransferNumber: self.transfersList.count, changeExtraNumber: self.saveExtrasList.count, extrasTotalPrice: self.extrasTotalPrice, transfersTotalPrice: self.transfersTotalPrice, extraButtonTapped: self.buttonExtraTapped)
                       }
                
@@ -586,6 +606,13 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
                               self.transfersTotalPrice -=  self.transfersList[index].savedAmount ?? 0.0
                           }
                           
+                          self.filteredExcursionList[0].extras = self.extrasList
+                          self.filteredExcursionList[0].transfers = self.transfersList
+                          if let insideIndex = self.excursionListInAddMenu.firstIndex(where: {$0.tourName == self.filteredExcursionList[0].tourName}){
+                              self.excursionListInAddMenu.remove(at: insideIndex)
+                              self.excursionListInAddMenu.insert(self.filteredExcursionList[0], at: insideIndex)
+                          }
+                          
                        /* self.extrasTotalPrice -= Double(self.flatAmount) * (extras?.flatPrice ?? 0.00)
                         self.transfersTotalPrice -= Double(self.flatAmount) * (transfers?.flatPrice ?? 0.00) */
                           // Perform login action
@@ -685,6 +712,7 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
         self.excAddCustomViewDelegate?.excurAddCustomDelegate(changeTransferNumber: self.transfersList.count, changeExtraNumber: self.saveExtrasList.count, extrasTotalPrice: self.extrasTotalPrice, transfersTotalPrice: self.transfersTotalPrice, extraButtonTapped: self.buttonExtraTapped)
         userDefaultsData.saveExtrasList(tour: self.saveExtrasList)
         userDefaultsData.saveTransfersList(tour: self.transfersList)
+      
       }
   }
 

@@ -13,6 +13,7 @@ final class ExcursionView : UIView {
     @IBOutlet weak var viewContentView: UIView!
     @IBOutlet weak var viewFooterCustomView: FooterCustomView!
     @IBOutlet weak var labelOfflineToursale: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func awakeFromNib() {
         self.viewAppointmentView.collectionList = ["Search","Select","Add","Proceed" ]

@@ -256,7 +256,8 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                             }
                         }
                         
-                        self.manuelAddedPaxesList.append(GetInHoseListResponseModel(text: self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender:self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? ""))
+                      /*  self.manuelAddedPaxesList.append(GetInHoseListResponseModel(text: self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender:self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? ""))*/
+                        self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text:  self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender: self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? "", checkOut: self.sendingListofPaxes[i].pAX_CHECKOUT_DATE ?? "", phone: self.sendingListofPaxes[i].pAX_PHONE, operatorName: self.sendingListofPaxes[i].pAX_OPRNAME))
                         
                     }
                 }
@@ -336,7 +337,7 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                             self.manuelPaxAgeGroup = "ADL"
                         }
                     }
-                    self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text: self.sendingListofPaxes[i].pAX_NAME, ageGroup:  self.sendingListofPaxes[i].pAX_AGEGROUP, gender:  self.sendingListofPaxes[i].pAX_GENDER, room:  self.sendingListofPaxes[i].pAX_ROOM, birtDate:  self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? ""))
+                    self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text:  self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender: self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? "", checkOut: self.sendingListofPaxes[i].pAX_CHECKOUT_DATE ?? "", phone: self.sendingListofPaxes[i].pAX_PHONE, operatorName: self.sendingListofPaxes[i].pAX_OPRNAME))
                 }
             }
             if self.manuelAddedPaxesList.count > 0 {
