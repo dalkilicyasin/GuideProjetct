@@ -571,7 +571,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.showToast(message: "\(self.totalPrice)")
         }else if tapped == 3 {
             
-            self.viewFooterViewCustomView.viewSendVoucher.isHidden = false
+            self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
             let gesture = UITapGestureRecognizer(target: self, action: #selector(viewSendTapped))
             self.viewFooterViewCustomView.viewSendVoucher.isUserInteractionEnabled = true
             self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
@@ -675,6 +675,13 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         }
                         self.viewExcProceedCustomView?.discount = self.discount
                         self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
+                        self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice )
+                        self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
+                        self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
+                        self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
+                        
+                        // self.viewExcProceedCustomView?.voucherNo = self.voucherList
+                        self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                     }else {
                         print("error")
                     }
@@ -686,12 +693,12 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSearchCustomView?.isHidden = true
                 UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcProceedCustomView = ExcProceedCustomView()
+                    self.viewExcProceedCustomView?.discount = self.discount
+                    self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
                     self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice )
                     self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
                     self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
-                    
-                    // self.viewExcProceedCustomView?.voucherNo = self.voucherList
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
@@ -1064,7 +1071,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
             self.showToast(message: "\(self.totalPrice)")
         }else if ischosen == 3 {
-            self.viewFooterViewCustomView.viewSendVoucher.isHidden = false
+            self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
             let gesture = UITapGestureRecognizer(target: self, action: #selector(viewSendTapped))
             self.viewFooterViewCustomView.viewSendVoucher.isUserInteractionEnabled = true
             self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
@@ -1168,6 +1175,12 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         }
                         self.viewExcProceedCustomView?.discount = self.discount
                         self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
+                        self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
+                        self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
+                        self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
+                        self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
+                        self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
+                       
         
                     }else {
                         print("error")
@@ -1180,12 +1193,13 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSearchCustomView?.isHidden = true
                 UIView.animate(withDuration: 0, animations: { [self] in
                     self.viewExcProceedCustomView = ExcProceedCustomView()
+                    self.viewExcProceedCustomView?.discount = self.discount
+                    self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
                     self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
                     self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
                     self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
-                    self.viewExcProceedCustomView?.discount = self.discount
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                 }, completion: { (finished) in

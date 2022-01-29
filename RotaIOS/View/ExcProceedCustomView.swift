@@ -13,6 +13,7 @@ import ObjectMapper
 struct PaymentType {
     var paymentype : String?
     var paymentAmount : Double?
+    var currencyTpye : String?
 }
 
 class ExcProceedCustomView: UIView{
@@ -61,7 +62,7 @@ class ExcProceedCustomView: UIView{
     var exchangeMenu = DropDown()
     var selectedExchange : [GetExhangeRatesResponseModel] = []
     var exchangeListStringType : [String] = []
-    var valueforDivided = 0.00
+    var valueforDivided = 1.0
     var convertedCurrency = 0.00
     var convertedCurrencyTitle = ""
     var payments : [Payment] = []
@@ -387,16 +388,22 @@ class ExcProceedCustomView: UIView{
     }
     
     @IBAction func addPaymentButtonTapped(_ sender: Any) {
-        
+        var roundedPaymentAmount = 0.0
+        var roundedPaymentAmountChosenCurrency = 0.0
         let filter = self.exchangeList.filter{ $0.sHORTCODE == self.selectedCurrencyType}
         var paymentAmount = Double(self.viewAmount.mainText.text ?? "")
+             roundedPaymentAmountChosenCurrency = paymentAmount ?? 0.0
+            roundedPaymentAmountChosenCurrency = Double(round(100 * roundedPaymentAmountChosenCurrency) / 100 )
         if filter.count > 0 {
             paymentAmount = (paymentAmount ?? 0.0) * (filter[0].eUROCROSS ?? 0.0)
         }
+        roundedPaymentAmount = paymentAmount ?? 0.00
+        roundedPaymentAmount = Double(round(100 * roundedPaymentAmount) / 100 )
         
         if self.selectedTouristName != "" && self.selectedPaymentType != "" && self.viewCurrencyType.mainLabel.text != "" {
-            self.paymentTypeList.append(PaymentType(paymentype: self.selectedPaymentType, paymentAmount: Double(self.viewAmount.mainText.text ?? "") ?? 0.00))
             
+           /* self.paymentTypeList.append(PaymentType(paymentype: self.selectedPaymentType, paymentAmount: Double(self.viewAmount.mainText.text ?? "") ?? 0.00), currencyTpye : self.selectedCurrencyType)*/
+            self.paymentTypeList.append(PaymentType.init(paymentype:self.selectedPaymentType, paymentAmount: roundedPaymentAmountChosenCurrency, currencyTpye:  self.selectedCurrencyType))
             
             self.tableView.reloadData()
             
@@ -427,17 +434,18 @@ class ExcProceedCustomView: UIView{
     }
     
     @IBAction func convertButtonTapped(_ sender: Any) {
-        self.convertedCurrency = self.totalAmount / self.valueforDivided
+        self.convertedCurrency = self.balanceAmount / self.valueforDivided
         let roundedValue = Double(round(100 * self.convertedCurrency) / 100 )
-        let alert = UIAlertController.init(title: "Message", message: "Converted balance  for \(self.totalAmount) EUR is \(roundedValue)\(self.convertedCurrencyTitle)", preferredStyle: .alert)
+        let alert = UIAlertController.init(title: "Message", message: "Converted balance  for \(self.balanceAmount) EUR is \(roundedValue)\(self.convertedCurrencyTitle)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         if let topVC = UIApplication.getTopViewController() {
             topVC.present(alert, animated: true, completion: nil)
         }
-        self.balanceAmount = self.convertedCurrency
+      //  self.balanceAmount = self.convertedCurrency
     }
     
     @IBAction func sendButtonTapped(_ sender: Any) {
+        self.payments = []
         if self.balanceAmount == 0.0 {
             if Connectivity.isConnectedToInternet == true {
                 self.hotelId = userDefaultsData.getHotelId()
@@ -562,7 +570,7 @@ class ExcProceedCustomView: UIView{
                 NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetSaveMobileSale, requestModel: toursaleRequestModel ) { (response: GetSaveMobileSaleResponseModel) in
                     if response.IsSuccesful == true {
                         print(response)
-                        let alert = UIAlertController(title: "SUCCSESS", message: response.Message ?? "", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "SUCCSESS", message: "\(response.Message ?? "")\(self.voucherNo)", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         if let topVC = UIApplication.getTopViewController() {
                             topVC.present(alert, animated: true, completion: nil)
@@ -595,6 +603,7 @@ class ExcProceedCustomView: UIView{
             }
             return
         }
+        userDefaultsData.saveTouristDetailInfoList(tour: [])
     }
 }
 
@@ -607,17 +616,47 @@ extension ExcProceedCustomView : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProceedPaxTableViewCell.identifier) as! ProceedPaxTableViewCell
         cell.labelPaymentType.text = paymentTypeList[indexPath.row].paymentype
         cell.labelPaymentPrice.text = "\(Double(paymentTypeList[indexPath.row].paymentAmount ?? 0.00 ))"
+        cell.labelPaymentCurrency.text = paymentTypeList[indexPath.row].currencyTpye
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("Deleted")
-            self.deletedAmount = 0.0
+            let chosenCrossType = self.paymentTypeList[indexPath.row].currencyTpye
+            let baseCrossType = "EUR"
+            var baseCrossValue = 1.0
+            var roundedSavedValue = 0.0
+            
+            for i in 0...self.exchangeList.count - 1 {
+                if chosenCrossType == exchangeList[i].sHORTCODE {
+                    if baseCrossType == "EUR" {
+                        baseCrossValue = exchangeList[i].eUROCROSS ?? 1.0
+                    }else if baseCrossType == "USD" {
+                        baseCrossValue = exchangeList[i].uSDCROSS ?? 1.0
+                    }else if baseCrossType == "RUB" {
+                        baseCrossValue = exchangeList[i].rUBCROSS ?? 1.0
+                    }else {
+                        baseCrossValue = exchangeList[i].eUROCROSS ?? 1.0
+                    }
+                }
+            }
+            
             self.deletedAmount = self.paymentTypeList[indexPath.row].paymentAmount ?? 0.00
-            self.savedTotalAmount -= self.deletedAmount
-            self.viewPaid.mainText.text = String(self.savedTotalAmount)
-            self.balanceAmount = self.totalAmount - self.savedTotalAmount
+            self.deletedAmount = self.deletedAmount * baseCrossValue
+            let roundedDeletedValue = Double(round(100 * self.deletedAmount) / 100 )
+            self.savedTotalAmount -= roundedDeletedValue
+            roundedSavedValue = Double(round(100 * self.savedTotalAmount) / 100 )
+            if roundedSavedValue == -0.0 {
+                roundedSavedValue = 0.0
+            }
+            self.viewPaid.mainText.text = String(roundedSavedValue)
+            self.balanceAmount = self.totalAmount - roundedSavedValue
+            self.viewBalanced.mainText.text = String(self.balanceAmount)
+            if let index = self.payments.firstIndex(where: {$0.PaymentAmount ==  self.paymentTypeList[indexPath.row].paymentAmount ?? 0.00} ){
+                self.payments.remove(at: index)
+            }
+            
             self.paymentTypeList.remove(at: indexPath.row)
             self.tableView.beginUpdates()
             self.tableView.deleteRows(at: [indexPath], with: .automatic)

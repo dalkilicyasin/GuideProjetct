@@ -416,6 +416,7 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
             self.transfersList[index].isTapped = checkCounter
             self.transferChecklist[index] = checkCounter
         }
+       
         self.tableView.reloadData()
         
         if checkCounter == true {
@@ -423,12 +424,15 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
                 self.extrasPaxesList = paxesList
                 self.transferPaxesList = paxesList
             }
+            
             if priceTypeDesc == 35 {
+                print(priceTypeDesc)
                 if self.extrasPaxesList.count > 0 {
                     for index in 0...self.extrasPaxesList.count - 1 {
                         self.extrasPaxesList[index].isTapped = false
                         self.extrasPaxCheckList.append(self.extrasPaxesList[index].isTapped ?? false)
                     }
+                    
                 }
                 if self.transferPaxesList.count > 0  {
                     for index in 0...self.transferPaxesList.count - 1 {

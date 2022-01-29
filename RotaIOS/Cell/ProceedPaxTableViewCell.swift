@@ -10,6 +10,7 @@ import UIKit
 class ProceedPaxTableViewCell: BaseTableViewCell {
     @IBOutlet weak var labelPaymentType: UILabel!
     @IBOutlet weak var labelPaymentPrice: UILabel!
+    @IBOutlet weak var labelPaymentCurrency: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

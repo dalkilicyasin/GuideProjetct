@@ -359,7 +359,6 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
 extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
     func checkBoxTapped(checkCounter: Bool, touristName: String, marketGroup: Int, tempPaxes: GetInHoseListResponseModel) {
         self.tempFilteredList = []
-        
         if isFiltered == true {
             if let index = self.filteredData.firstIndex(where: {$0 === tempPaxes}){
                 self.filteredList[index].isTapped = checkCounter
@@ -403,6 +402,7 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
                         self.touristDetailInfoList.append(Paxes.init(pAX_CHECKOUT_DATE: "", pAX_OPRID: response[0].oprId ?? 0, pAX_OPRNAME: response[0].operatorName ?? "", pAX_PHONE: "", hotelname: response[0].hotelName ?? "", pAX_GENDER: response[0].gender ?? "", pAX_AGEGROUP: response[0].ageGroup ?? "", pAX_NAME: response[0].name ?? "", pAX_BIRTHDAY: response[0].birthDay ?? "", pAX_RESNO: response[0].resNo ?? "", pAX_PASSPORT: response[0].passport ?? "", pAX_ROOM: response[0].room ?? "", pAX_TOURISTREF: response[0].touristIdRef ?? 0, pAX_STATUS: 1, ID: response[0].touristIdRef ?? 0 ))
                        userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
                     }
+                    userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
                 }
             }else{
                 userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
@@ -415,6 +415,11 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             if let insideIndex = self.savePaxesList.firstIndex(where: {$0 === tempPaxes}){
                 self.savePaxesList.remove(at: insideIndex)
             }
+            
+            if let insideIndex = self.touristDetailInfoList.firstIndex(where: {$0 === tempPaxes}){
+                self.touristDetailInfoList.remove(at: insideIndex)
+            }
+            userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
         }
         self.totalPaxesCount = self.savePaxesList.count
         self.labelTouristAdded.text = "\(self.totalPaxesCount) Tourist Added"

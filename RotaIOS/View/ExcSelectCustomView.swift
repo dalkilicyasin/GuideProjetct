@@ -177,7 +177,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
                         cell.labelPickUpTime.text = self.promotionPickupTimeList[indexPath.row]
                     }
                     // cell.labelSeat.text = self.promotionList[indexPath.row] // yok
-                    cell.labelPriceType.text = String(self.promotionList[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
+                    cell.labelPriceType.text = String(self.promotionList[indexPath.row].priceTypeDesc ?? "") // pricetypedesc mi yoksa pricetype mı?
                     cell.labelCurrency.text = self.promotionList[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
                     cell.labelAdultPrice.text = String(self.promotionList[indexPath.row].adultPrice ?? 0)
                     cell.labelChildPrice.text = String(self.promotionList[indexPath.row].childPrice ?? 0)
@@ -205,7 +205,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
                     cell.labelPickUpTime.text = self.pickUpTimeList[indexPath.row]
                 }
                 // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
-                cell.labelPriceType.text = String(self.excursionList[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
+                cell.labelPriceType.text = String(self.excursionList[indexPath.row].priceTypeDesc ?? "") // pricetypedesc mi yoksa pricetype mı?
                 cell.labelCurrency.text = self.excursionList[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?
                 cell.labelAdultPrice.text = String(self.excursionList[indexPath.row].adultPrice ?? 0)
                 cell.labelChildPrice.text = String(self.excursionList[indexPath.row].childPrice ?? 0)

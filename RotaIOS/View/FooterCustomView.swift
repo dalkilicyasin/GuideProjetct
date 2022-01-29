@@ -86,7 +86,7 @@ class FooterCustomView: UIView {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         self.saveButtonTappedDelegate?.totalPrice(isSaveButtonTapped: true)
-        self.buttonSaveButton.isEnabled = false
+        self.buttonSaveButton.isEnabled = true
         let alert = UIAlertController.init(title: "SUCCESS", message: "Price has ben saved", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         if let topVC = UIApplication.getTopViewController() {
