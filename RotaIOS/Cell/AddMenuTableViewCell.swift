@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AddMenuTableViewCellDelegate {
-    func checkBoxTapped(checkCounter : Bool, transExtrDesc : String, priceTypeDesc : Int, extras : Extras?, transfers : Transfers?)
+    func checkBoxTapped(checkCounter : Bool, transExtrDesc : String, priceTypeDesc : Int, extras : Extras?, transfers : Transfers?, tourdate : String)
 }
 
 class AddMenuTableViewCell: BaseTableViewCell {
@@ -32,6 +32,7 @@ class AddMenuTableViewCell: BaseTableViewCell {
     var transExtrDesc = ""
     var extrasDesc = ""
     var priceTypeDesc = 0
+    var tourDate = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,7 +48,7 @@ class AddMenuTableViewCell: BaseTableViewCell {
     
     @objc func tappedChecBox(){
         self.isTappedCheck = !self.isTappedCheck
-        self.addMenuTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, transExtrDesc : self.transExtrDesc, priceTypeDesc: self.priceTypeDesc, extras : self.extraListInAddMenuCell, transfers : self.transferListInAddMenuCell )
+        self.addMenuTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, transExtrDesc : self.transExtrDesc, priceTypeDesc: self.priceTypeDesc, extras : self.extraListInAddMenuCell, transfers : self.transferListInAddMenuCell, tourdate: self.tourDate )
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

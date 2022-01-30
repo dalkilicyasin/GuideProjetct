@@ -226,7 +226,7 @@ extension AddManuelTouristCustomView : UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == self.viewName.mainText {
-            let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzçıüğöşİĞÜÖŞÇ"
+            let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzçıüğöşİĞÜÖŞÇ "
             let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
             let typedCharacterSet = CharacterSet(charactersIn: string)
             let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)

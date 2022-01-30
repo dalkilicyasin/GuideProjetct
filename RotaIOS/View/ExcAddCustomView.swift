@@ -352,6 +352,7 @@ extension ExcAddCustomView : UITableViewDelegate, UITableViewDataSource {
                 cell.priceTypeDesc = self.extrasList[indexPath.row].priceType ?? 0
                 cell.transExtrDesc = self.extrasList[indexPath.row].desc ?? ""
                 cell.isTappedCheck = self.extrasList[indexPath.row].isTapped ?? false
+                cell.tourDate = self.extrasList[indexPath.row].tourDate ?? ""
                 return cell
             }else{
                 cell.labelTransforExtraName.text = self.transfersList[indexPath.row].desc
@@ -366,6 +367,7 @@ extension ExcAddCustomView : UITableViewDelegate, UITableViewDataSource {
                 cell.transferListInAddMenuCell = self.transfersList[indexPath.row]
                 cell.transExtrDesc = self.transfersList[indexPath.row].desc ?? ""
                 cell.isTappedCheck = self.transfersList[indexPath.row].isTapped ?? false
+                cell.tourDate = self.transfersList[indexPath.row].tourDate ?? ""
                 return cell
             }
         }else if tableView == self.tableViewPax {
@@ -392,6 +394,7 @@ extension ExcAddCustomView : UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCellDelegate {
+ 
     func addMenuPaxcheckBoxTapped(checkCounter: Bool, touristName: String, tempPaxes: GetInHoseListResponseModel) {
         self.saveExtrasPaxesList.removeAll()
         self.tempaxeslist.removeAll()
@@ -413,24 +416,22 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
         }
     }
     
-   func checkBoxTapped(checkCounter: Bool, transExtrDesc : String, priceTypeDesc : Int, extras : Extras?, transfers : Transfers?) {
-        if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc}){
+   func checkBoxTapped(checkCounter: Bool, transExtrDesc : String, priceTypeDesc : Int, extras : Extras?, transfers : Transfers?, tourdate: String) {
+        if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc && $0.tourDate == tourdate }){
             self.extrasList[index].isTapped = checkCounter
             self.extrasChecklist[index] = checkCounter
-            
         }
         
-        if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc}){
+        if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc && $0.tourDate == tourdate}){
             self.transfersList[index].isTapped = checkCounter
             self.transferChecklist[index] = checkCounter
         }
        
        self.filteredExcursionList[0].extras = self.extrasList
+       self.filteredExcursionList[0].transfers = self.transfersList
      
      //  let filter = self.savedExcursionList.filter{ $0 === self.filteredExcursionList[0]}
       
-       
-       
         self.tableView.reloadData()
         
         if checkCounter == true {
@@ -474,17 +475,17 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
                         self.extrasTotalPrice += Double(self.flatAmount) * (extras?.flatPrice ?? 0.00)
                         self.transfersTotalPrice += Double(self.flatAmount) * (transfers?.flatPrice ?? 0.00)
                           // Perform login action
-                          if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc}){
+                          if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc && $0.tourDate == tourdate}){
                               self.extrasList[index].savedAmount = self.extrasTotalPrice
                           }
                           
-                          if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc}){
+                          if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc && $0.tourDate == tourdate}){
                               self.transfersList[index].savedAmount = self.transfersTotalPrice
                           }
                           
                           self.filteredExcursionList[0].extras = self.extrasList
                           self.filteredExcursionList[0].transfers = self.transfersList
-                          if let insideIndex = self.excursionListInAddMenu.firstIndex(where: {$0.tourName == self.filteredExcursionList[0].tourName}){
+                          if let insideIndex = self.excursionListInAddMenu.firstIndex(where: {$0.tourName == self.filteredExcursionList[0].tourName && $0.tourDate == self.filteredExcursionList[0].tourDate}){
                               self.excursionListInAddMenu.remove(at: insideIndex)
                               self.excursionListInAddMenu.insert(self.filteredExcursionList[0], at: insideIndex)
                           }
@@ -598,17 +599,17 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
                       let flatAmountAction = UIAlertAction(title: "Yes", style: .default) { [unowned self] _ in
                        
                           
-                          if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc}){
+                          if let index = self.extrasList.firstIndex(where: {$0.desc == transExtrDesc && $0.tourDate == tourdate}){
                               self.extrasTotalPrice -=  self.extrasList[index].savedAmount ?? 0.0
                           }
                           
-                          if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc}){
+                          if let index = self.transfersList.firstIndex(where: {$0.desc == transExtrDesc && $0.tourDate == tourdate}){
                               self.transfersTotalPrice -=  self.transfersList[index].savedAmount ?? 0.0
                           }
                           
                           self.filteredExcursionList[0].extras = self.extrasList
                           self.filteredExcursionList[0].transfers = self.transfersList
-                          if let insideIndex = self.excursionListInAddMenu.firstIndex(where: {$0.tourName == self.filteredExcursionList[0].tourName}){
+                          if let insideIndex = self.excursionListInAddMenu.firstIndex(where: {$0.tourName == self.filteredExcursionList[0].tourName && $0.tourDate == self.filteredExcursionList[0].tourDate}){
                               self.excursionListInAddMenu.remove(at: insideIndex)
                               self.excursionListInAddMenu.insert(self.filteredExcursionList[0], at: insideIndex)
                           }
@@ -694,15 +695,15 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
             }
             
            // let filter = self.excursionList.filter{($0.tourName?.elementsEqual(tourid) ?? false)}
-            let filterExtras = extrasList.filter{ $0.desc == transExtrDesc}
-            let filterTransfers = transfersList.filter{ $0.desc == transExtrDesc}
+            let filterExtras = extrasList.filter{ $0.desc == transExtrDesc && $0.tourDate == tourdate}
+            let filterTransfers = transfersList.filter{ $0.desc == transExtrDesc && $0.tourDate == tourdate}
             
             if filterExtras.count > 0 {
-                if let insideIndex = self.saveExtrasList.firstIndex(where: {$0.desc == filterExtras[0].desc}){
+                if let insideIndex = self.saveExtrasList.firstIndex(where: {$0.desc == filterExtras[0].desc && $0.tourDate == self.filteredExcursionList[0].tourDate}){
                     self.saveExtrasList.remove(at: insideIndex)
                 }
             }else if filterTransfers.count > 0 {
-                if let insideIndex = self.saveTransferList.firstIndex(where: {$0.desc == filterTransfers[0].desc}){
+                if let insideIndex = self.saveTransferList.firstIndex(where: {$0.desc == filterTransfers[0].desc && $0.tourDate == self.filteredExcursionList[0].tourDate}){
                     self.saveTransferList.remove(at: insideIndex)
                 }
             }else{

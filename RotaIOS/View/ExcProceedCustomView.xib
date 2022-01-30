@@ -14,6 +14,7 @@
                 <outlet property="buttonAddPayment" destination="qim-EL-clO" id="0xh-ee-oW6"/>
                 <outlet property="buttonApplyDiscount" destination="8L1-X7-93K" id="kFd-Hq-r6L"/>
                 <outlet property="buttonConvert" destination="yZe-XW-O3Z" id="M9c-ov-Gsf"/>
+                <outlet property="buttonPrintVoucher" destination="eUJ-ty-caW" id="gkb-iT-UUu"/>
                 <outlet property="buttonSend" destination="93C-fA-oJf" id="fOc-ih-qt7"/>
                 <outlet property="tableView" destination="WQf-0D-X5S" id="g32-kr-Bkg"/>
                 <outlet property="viewAmount" destination="8Hb-oM-mcM" id="EWY-vc-N9d"/>
@@ -189,6 +190,17 @@
                                         <action selector="sendButtonTapped:" destination="-1" eventType="touchUpInside" id="OrT-7R-vyx"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUJ-ty-caW">
+                                    <rect key="frame" x="40" y="1210" width="334" height="50"/>
+                                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="tJH-bY-SYq"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="PRINT VOUCHER">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -216,7 +228,10 @@
                                 <constraint firstAttribute="height" constant="1400" id="Ttp-Is-lNg"/>
                                 <constraint firstAttribute="trailing" secondItem="YHf-SS-UPf" secondAttribute="trailing" constant="43" id="UKu-L2-MQy"/>
                                 <constraint firstItem="DGi-HZ-tMK" firstAttribute="leading" secondItem="jgY-fD-cHx" secondAttribute="leading" constant="43" id="USd-Bk-5sG"/>
+                                <constraint firstItem="eUJ-ty-caW" firstAttribute="leading" secondItem="jgY-fD-cHx" secondAttribute="leading" constant="40" id="W28-Nu-Jin"/>
                                 <constraint firstItem="qim-EL-clO" firstAttribute="top" secondItem="vDQ-lp-40A" secondAttribute="bottom" constant="20" id="WBA-nE-1HC"/>
+                                <constraint firstAttribute="trailing" secondItem="eUJ-ty-caW" secondAttribute="trailing" constant="40" id="Y0L-UC-wjb"/>
+                                <constraint firstItem="eUJ-ty-caW" firstAttribute="top" secondItem="93C-fA-oJf" secondAttribute="bottom" constant="20" id="YJZ-y1-7ur"/>
                                 <constraint firstItem="MgZ-hy-1f4" firstAttribute="top" secondItem="YHf-SS-UPf" secondAttribute="bottom" constant="20" id="cHb-kN-pzC"/>
                                 <constraint firstItem="G0a-Ld-9bo" firstAttribute="top" secondItem="jgY-fD-cHx" secondAttribute="top" constant="50" id="d8M-lm-a0x"/>
                                 <constraint firstAttribute="trailing" secondItem="vDQ-lp-40A" secondAttribute="trailing" constant="43" id="dDw-73-QVA"/>

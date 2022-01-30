@@ -74,6 +74,7 @@ class ExcPaxCustomView : UIView {
     var manuelPaxAge = 0
     //touristDetailInfo
     var touristDetailInfoList : [Paxes] = []
+    var filteredArray : [Paxes] = []
     
     
     override init(frame: CGRect) {
@@ -119,6 +120,28 @@ class ExcPaxCustomView : UIView {
         self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
         self.searchBar.placeholder = "Pax Name Filter"
         self.searchBar.delegate = self
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
+        tableView.addGestureRecognizer(longPress)
+    }
+    
+    @objc private func handleLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            let touchPoint = sender.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                // your code here, get the row for the indexPath or do whatever you want
+                print("longpressed")
+                
+                let filter = self.paxesList.filter{$0.resNo == self.paxesList[indexPath.row].resNo}
+                print(filter)
+                if filter.count > 0 {
+                    self.paxesList = filter
+                    self.tableView.reloadData()
+                }else{
+                    return
+                }  
+            }
+        }
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -174,6 +197,7 @@ extension ExcPaxCustomView : UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
+
 }
 
 extension ExcPaxCustomView : UISearchBarDelegate {
@@ -237,12 +261,24 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
             let currentYear =  Calendar.current.component(.year, from: Date())
             if self.tempValue != changeValue {
                 self.tempValue = changeValue
-                self.sendingListofPaxes = listofpaxes
+              
+                   
+                    self.filteredArray = self.tempListofPaxes.filter{ !self.sendingListofPaxes.contains($0) }
+                    
+                    print(filteredArray)
+                    
+                    if filteredArray.count > 0 {
+                        for i in 0...filteredArray.count - 1 {
+                            self.sendingListofPaxes.append(filteredArray[i])
+                        }
+                    }
+                
+                
                 userDefaultsData.saveManuelandHousePaxesList(tour: self.sendingListofPaxes)
-                if self.sendingListofPaxes.count > 0 {
-                    for i in 0...self.sendingListofPaxes.count - 1 {
+                if self.filteredArray.count > 0 {
+                    for i in 0...self.filteredArray.count - 1 {
                         lastIndex += i
-                        if let birtdate =  self.sendingListofPaxes[i].pAX_BIRTHDAY {
+                        if let birtdate =  self.filteredArray[i].pAX_BIRTHDAY {
                             let year = Int(birtdate.suffix(4))
                             self.manuelPaxAge = currentYear - (year ?? 0)
                             if self.manuelPaxAge >= 0 &&  self.manuelPaxAge < 2 {
@@ -257,8 +293,8 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                         }
                         
                       /*  self.manuelAddedPaxesList.append(GetInHoseListResponseModel(text: self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender:self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? ""))*/
-                        self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text:  self.sendingListofPaxes[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender: self.sendingListofPaxes[i].pAX_GENDER, room: self.sendingListofPaxes[i].pAX_ROOM, birtDate: self.sendingListofPaxes[i].pAX_BIRTHDAY, name: self.sendingListofPaxes[i].pAX_NAME ?? "", checkOut: self.sendingListofPaxes[i].pAX_CHECKOUT_DATE ?? "", phone: self.sendingListofPaxes[i].pAX_PHONE, operatorName: self.sendingListofPaxes[i].pAX_OPRNAME))
-                        
+                        self.manuelAddedPaxesList.append(GetInHoseListResponseModel.init(text:  self.filteredArray[i].pAX_NAME ?? "", ageGroup:  self.manuelPaxAgeGroup, gender: self.filteredArray[i].pAX_GENDER, room: self.filteredArray[i].pAX_ROOM, birtDate: self.filteredArray[i].pAX_BIRTHDAY, name: self.filteredArray[i].pAX_NAME ?? "", checkOut: self.filteredArray[i].pAX_CHECKOUT_DATE ?? "", phone: self.filteredArray[i].pAX_PHONE, operatorName: self.filteredArray[i].pAX_OPRNAME))
+                
                     }
                 }
                
@@ -311,11 +347,16 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                             self.checkList.append(false)
                     
                 }*/
-                self.paxesList.append(self.manuelAddedPaxesList[lastIndex])
-                self.checkList.append(false)
-                self.tableView.reloadData()
+               
                 // self.labelTouristAdded.text = "\(self.totalPaxesCount + self.tempValue) Tourist Added" ind. shop sayfası ile burdaki farklı çeşitte daha sonra değerlendirilmesi
                 // self.paxesListDelegate?.paxesList(ischosen: false, sendingPaxesLis: self.sendingListofPaxes, isChange: true)
+                if manuelAddedPaxesList.count > 0 {
+                    for i in 0...manuelAddedPaxesList.count - 1 {
+                        self.paxesList.append(self.manuelAddedPaxesList[i])
+                        self.checkList.append(false)
+                    }
+                }
+                self.tableView.reloadData()
                 return
             }else {
                 self.paxesListinPaxPage.removeAll()
@@ -433,3 +474,10 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
  return true
  }
  }*/
+
+extension Paxes: Equatable {
+    public static func ==(lhs: Paxes, rhs: Paxes) -> Bool {
+        // Using "identifier" property for comparison
+        return lhs.pAX_NAME == rhs.pAX_NAME
+    }
+}
