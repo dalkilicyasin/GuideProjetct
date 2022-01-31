@@ -181,14 +181,14 @@ public class Defaults{
     }
     
     // Save Total Price
-    public func saveTotalPrice(totalPrice: Double){
+    public func saveExtrasandTransfersTotalPrice(totalPrice: Double){
         let preferences = UserDefaults.standard
         let currentLanguageKey = getIdentifier(type: .TotalPrice)
         preferences.set(totalPrice, forKey: currentLanguageKey)
         preferences.synchronize()
     }
     
-    public func getTotalPrice() -> Double{
+    public func getExtrasandTransfersTotalPrice() -> Double{
         let preferences = UserDefaults.standard
         let totalPrice = getIdentifier(type: .TotalPrice)
         if preferences.object(forKey: totalPrice) == nil {

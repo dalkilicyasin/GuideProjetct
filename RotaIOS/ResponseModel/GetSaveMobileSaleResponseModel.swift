@@ -72,15 +72,15 @@ public class Multisale : Mappable, Decodable, Encodable {
     var ID : Int?
     var IsMobile : Int?
     var IsOfficeSale : Bool?
-    var ManualDiscount : Int?
+    var ManualDiscount : Double?
     var MarketId    : Int?
     var Note : String?
-    var PaidAmount : Int?
+    var PaidAmount : Double?
     var PromotionId : Int?
     var SaleDate : String?
-    var TotalAmount : Int?
+    var TotalAmount : Double?
     
-    public init(CouponAmount : Int, CouponId : Int, CurrencyId : Int, GuideId : Int, HotelId : Int, ID : Int, IsMobile : Int, IsOfficeSale : Bool, ManualDiscount : Int, MarketId : Int, Note : String, PaidAmount : Int, PromotionId : Int, SaleDate : String, TotalAmount : Int) {
+    public init(CouponAmount : Int, CouponId : Int, CurrencyId : Int, GuideId : Int, HotelId : Int, ID : Int, IsMobile : Int, IsOfficeSale : Bool, ManualDiscount : Double, MarketId : Int, Note : String, PaidAmount : Double, PromotionId : Int, SaleDate : String, TotalAmount : Double) {
         self.CouponAmount = CouponAmount
         self.CouponId = CouponId
         self.CurrencyId = CurrencyId
