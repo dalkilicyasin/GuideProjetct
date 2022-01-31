@@ -266,8 +266,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(Guide: userDefaultsData.getGuideId(), Market: userDefaultsData.getMarketId(), Hotel: userDefaultsData.getHotelId(), Area: userDefaultsData.getHotelArea(), TourDateStart: self.viewExcSearchCustomView?.beginDateString ??  "", TourDateEnd: self.viewExcSearchCustomView?.endDateString ?? "", SaleDate: userDefaultsData.getSaleDate(), PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0)
             
-            
-            
             if  self.isConnectedInternet == true {
                 if self.viewExcSearchCustomView?.promotionid == 0 {
                     NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
@@ -305,6 +303,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             
                             let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
                             
+                            self.viewExcSelectCustomView?.excursionList = self.tourList
+                            
                             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
                                 if response.count > 0 {
                                     //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
@@ -321,11 +321,13 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                                 self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
                             }
                             self.promotionList = response.PromosyonHavuzu ?? self.promotionList
-                            print(self.promotionList[0])
-                            self.viewExcSelectCustomView?.promotionList = self.promotionList
-                            for index in 0...self.promotionList.count - 1 {
-                                self.viewExcSelectCustomView?.promotionList[index].isTapped = false
-                                self.viewExcSelectCustomView?.checkPromotionList.append(self.viewExcSelectCustomView?.promotionList[index].isTapped ?? false)
+                            if self.promotionList.count > 0 {
+                                print(self.promotionList[0])
+                                self.viewExcSelectCustomView?.promotionList = self.promotionList
+                                for index in 0...self.promotionList.count - 1 {
+                                    self.viewExcSelectCustomView?.promotionList[index].isTapped = false
+                                    self.viewExcSelectCustomView?.checkPromotionList.append(self.viewExcSelectCustomView?.promotionList[index].isTapped ?? false)
+                                }
                             }
                             self.viewExcSelectCustomView?.tableView.reloadData()
                         }else {
@@ -823,7 +825,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }else {
                     NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : GetSearchTourPromotionResponseModel) in
                         if response.Havuz1?.count ?? 0 > 0 {
-                            print(self.tourList[0])
+                         //   print(self.tourList[0])
+                            self.tourList = response.Havuz1 ?? self.tourList
+                            self.viewExcSelectCustomView?.excursionList = self.tourList
                             let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
                             
                             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
@@ -836,18 +840,19 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                                     print("data has not recived")
                                 }
                             }
-                            self.tourList = response.Havuz1 ?? self.tourList
-                            self.viewExcSelectCustomView?.excursionList = self.tourList
+                          
                             for index in 0...self.tourList.count - 1 {
                                 self.viewExcSelectCustomView?.excursionList[index].isTapped = false
                                 self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
                             }
                             self.promotionList = response.PromosyonHavuzu ?? self.promotionList
-                            print(self.promotionList[0])
-                            self.viewExcSelectCustomView?.promotionList = self.promotionList
-                            for index in 0...self.promotionList.count - 1 {
-                                self.viewExcSelectCustomView?.promotionList[index].isTapped = false
-                                self.viewExcSelectCustomView?.checkPromotionList.append(self.viewExcSelectCustomView?.promotionList[index].isTapped ?? false)
+                            if self.promotionList.count > 0 {
+                                print(self.promotionList[0])
+                                self.viewExcSelectCustomView?.promotionList = self.promotionList
+                                for index in 0...self.promotionList.count - 1 {
+                                    self.viewExcSelectCustomView?.promotionList[index].isTapped = false
+                                    self.viewExcSelectCustomView?.checkPromotionList.append(self.viewExcSelectCustomView?.promotionList[index].isTapped ?? false)
+                                }
                             }
                             self.viewExcSelectCustomView?.tableView.reloadData()
                         }else {

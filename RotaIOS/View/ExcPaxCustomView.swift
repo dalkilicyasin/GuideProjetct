@@ -75,6 +75,7 @@ class ExcPaxCustomView : UIView {
     //touristDetailInfo
     var touristDetailInfoList : [Paxes] = []
     var filteredArray : [Paxes] = []
+    var paxRoom = ""
     
     
     override init(frame: CGRect) {
@@ -139,7 +140,7 @@ class ExcPaxCustomView : UIView {
                     self.tableView.reloadData()
                 }else{
                     return
-                }  
+                }
             }
         }
     }
@@ -189,11 +190,17 @@ extension ExcPaxCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.labelPaxName.text = self.filteredData[indexPath.row].name
             cell.paxesListInCell = self.filteredData[indexPath.row]
             cell.isTappedCheck = self.checkFilteredList[indexPath.row]
+            cell.labelRoomName.text = self.filteredData[indexPath.row].room ?? "-"
+            cell.labelAgeGroup.text = self.filteredData[indexPath.row].ageGroup ?? "-"
+            cell.paxRoom = self.filteredData[indexPath.row].room ?? ""
         }else{
             cell.labelPaxName.text = self.paxesList[indexPath.row].name
             cell.marketGroup = self.paxesList[indexPath.row].mrkGrp ?? 0
             cell.paxesListInCell = self.paxesList[indexPath.row]
             cell.isTappedCheck = self.checkList[indexPath.row]
+            cell.paxRoom = self.paxesList[indexPath.row].room ?? ""
+            cell.labelRoomName.text = self.paxesList[indexPath.row].room ?? "-"
+            cell.labelAgeGroup.text = self.paxesList[indexPath.row].ageGroup ?? "-"
         }
         return cell
     }
@@ -399,7 +406,8 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
 }
 
 extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
-    func checkBoxTapped(checkCounter: Bool, touristName: String, marketGroup: Int, tempPaxes: GetInHoseListResponseModel) {
+    
+    func checkBoxTapped(checkCounter: Bool, touristName: String, marketGroup: Int, tempPaxes: GetInHoseListResponseModel, paxRoom: String) {
         self.tempFilteredList = []
         if isFiltered == true {
             if let index = self.filteredData.firstIndex(where: {$0 === tempPaxes}){
@@ -418,6 +426,40 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
         if checkCounter == true {
             let filter = paxesList.filter{ $0 === tempPaxes}
             // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
+            if filter[0].room == nil {
+                let alert = UIAlertController(title: "Room Number", message: "Please insert Room Number", preferredStyle: .alert)
+                alert.addTextField {
+                    $0.placeholder = "Room Number"
+                    $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
+                }
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
+                    guard let flatamount = alert.textFields?[0].text
+                            
+                    else { return } // Should never happen
+                    
+                    if flatamount == "" {
+                        return
+                    }
+                    
+                    self.paxRoom = "\(flatamount)"
+                    
+                    if let index = self.paxesList.firstIndex(where: {$0 === tempPaxes}){
+                        self.paxesList[index].room = self.paxRoom
+                    }
+               
+                   // self.savesTourList.uniqued()
+                    userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
+                    self.tableView.reloadData()
+                }
+                
+                //  flatAmountAction.isEnabled = false
+                alert.addAction(flatAmountAction)
+                
+                if let topVC = UIApplication.getTopViewController() {
+                    topVC.present(alert, animated: true, completion: nil)
+                }
+            }
             self.savePaxesList.append(filter[0])
             
             // manuelPaxes added

@@ -7,17 +7,19 @@
 
 import UIKit
 protocol ExcPaxPageTableViewCellDelegate {
-    func checkBoxTapped(checkCounter : Bool, touristName : String,  marketGroup : Int, tempPaxes : GetInHoseListResponseModel)
+    func checkBoxTapped(checkCounter : Bool, touristName : String,  marketGroup : Int, tempPaxes : GetInHoseListResponseModel, paxRoom : String)
 }
 
 class ExcPaxPageTableViewCell: BaseTableViewCell {
     @IBOutlet weak var imageCheck: UIImageView!
     @IBOutlet weak var labelPaxName: UILabel!
     @IBOutlet weak var labelRoomName: UILabel!
+    @IBOutlet weak var labelAgeGroup: UILabel!
     var isTappedCheck = false
     var paxesListInCell : GetInHoseListResponseModel?
     var excPaxPageTableViewCellDelegate : ExcPaxPageTableViewCellDelegate?
     var marketGroup = 0
+    var paxRoom = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,7 +34,7 @@ class ExcPaxPageTableViewCell: BaseTableViewCell {
     
     @objc func tappedChecBox(){
         self.isTappedCheck = !self.isTappedCheck
-        self.excPaxPageTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, touristName: self.labelPaxName.text ?? "", marketGroup: self.marketGroup, tempPaxes: self.paxesListInCell!)
+        self.excPaxPageTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, touristName: self.labelPaxName.text ?? "", marketGroup: self.marketGroup, tempPaxes: self.paxesListInCell!, paxRoom: self.paxRoom)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
