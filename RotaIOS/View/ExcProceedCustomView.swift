@@ -84,6 +84,9 @@ class ExcProceedCustomView: UIView{
     var sendedTotalAmount = 0.0
     var extras : [Extras] = []
     var transfers : [Transfers] = []
+    var multisaleCurrencyId = 0
+    var extrasTotalPrice = 0.0
+    var transfersTotalPrice = 0.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -108,7 +111,7 @@ class ExcProceedCustomView: UIView{
         self.extras = userDefaultsData.getExtrasList() ?? self.extras
         self.transfers = userDefaultsData.getTransfersList() ?? self.transfers
         
-        
+       
         self.voucherNo = userDefaultsData.getMaxVoucher()
         self.buttonSend.isEnabled = true
         
@@ -444,6 +447,12 @@ class ExcProceedCustomView: UIView{
             }
             self.viewBalanced.mainText.text = String(roundedBalanceValue)
             
+            if self.currencyId == 0 {
+                if let index = self.currencyList.firstIndex(where: {$0.text == self.viewCurrencyType.mainLabel.text} ){
+                        self.currencyId = self.currencyList[index].value ?? 0
+                    }
+            }
+            
             self.payments.append(Payment(ByDesc: self.selectedTouristName , ById:"0", ConvertedCurrency: self.convertedCurrencyTitle, ConvertedPaymentAmount:  Int(self.totalAmount), Currency: self.selectedCurrencyType, CurrencyId: String(self.currencyId), PaymentAmount: Double(self.viewAmount.mainText.text ?? "") ?? 0.00, PaymentType: self.selectedPaymentType, TargetAmount:0, TypeId: self.selectedPaymentType))
             
         }else {
@@ -469,7 +478,7 @@ class ExcProceedCustomView: UIView{
     
     @IBAction func sendButtonTapped(_ sender: Any) {
         
-        if self.balanceAmount == 0.0 {
+        if self.balanceAmount == 0.0{
             if Connectivity.isConnectedToInternet == true {
                 self.hotelId = userDefaultsData.getHotelId()
                 self.marketId = userDefaultsData.getMarketId()
@@ -482,6 +491,11 @@ class ExcProceedCustomView: UIView{
                     }
                 }
             }
+            
+            if let index = self.currencyList.firstIndex(where: {$0.text == "EUR"} ){
+                    self.currencyId = self.currencyList[index].value ?? 0
+                }
+            
             let multisale = Multisale.init(CouponAmount:0, CouponId:0, CurrencyId: self.currencyId, GuideId: userDefaultsData.getGuideId(), HotelId: self.hotelId, ID:0, IsMobile:1, IsOfficeSale: false, ManualDiscount: self.discount, MarketId: self.marketId, Note: "", PaidAmount: self.savedTotalAmount, PromotionId: 0, SaleDate: self.currentDate , TotalAmount: self.sendedTotalAmount)
             var paxTourList : [PaxTourList] = []
             var paxes : [Paxes] = []
@@ -491,7 +505,7 @@ class ExcProceedCustomView: UIView{
             var toodleCount = 0
             var infantCount = 0
             self.tourTotalAmount = 0.0
-            if self.tourList.count > 0 && self.touristList.count > 0{
+            if self.tourList.count > 0 && self.touristList.count > 0 && self.voucherNo.count > 0{
                 for i in 0...self.tourList.count - 1{
                     for index in 0...self.touristList.count - 1 {
                         let paxesTour = PaxTourList(AgeGroup:self.touristList[index].ageGroup ?? "", Gender:self.touristList[index].gender ?? "",ID:String(self.touristList[index].ID ?? 0), PlanId:self.tourList[i].planId ?? 0)
@@ -569,10 +583,25 @@ class ExcProceedCustomView: UIView{
                         self.totalPricePerTour += self.minPriceTotal
                     }
                     // Önemli, özgeye sor tour date offline tourdan geldiği için tarih geride kalıyor ve offline satışta sale date tourdate ten ileri olamaz hatası veriyor nasıl çözeceğiz
-                    self.tourTotalAmount += self.totalPricePerTour
+                   // self.totalPricePerTour += userDefaultsData.getExtrasandTransfersTotalPrice()
+                    self.tourTotalAmount = self.totalPricePerTour + userDefaultsData.getExtrasandTransfersTotalPrice()
                     self.pickUpTimeProceedView = tourList[i].pickUpTime ?? ""
                     
-                    tourListIndata.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].childPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:  self.tourList[i].tourId ?? 0, Currency: self.tourList[i].currency ?? 0 , CurrencyDesc: self.tourList[i].currencyDesc ?? "", TourDateStr:self.tourList[i].tourDateStr ?? "", TourDate: self.tourList[i].tourDate ?? "", AllotmenStatus: self.tourList[i].allotmenStatus ?? 0, RemainingAllotment: self.tourList[i].remainingAllotment ?? 0, PriceType: self.tourList[i].priceType ?? 0, MinPax:self.tourList[i].minPax ?? 0.0, TotalPrice: self.totalPricePerTour, FlatPrice: self.tourList[i].flatPrice ?? 0.0, MinPrice: self.tourList[i].minPrice ?? 0.0, InfantAge1: self.tourList[i].infantAge1 ?? 0.0, InfantAge2: self.tourList[i].infantAge2 ?? 0.0, ToodleAge1: self.tourList[i].toodleAge1 ?? 0.0, ToodleAge2: self.tourList[i].toodleAge2 ?? 0.0, ChildAge1: self.tourList[i].childAge1 ?? 0.0, ChildAge2: self.tourList[i].childAge2 ?? 0.0, PickUpTime:  self.pickUpTimeProceedView, DetractAdult: self.tourList[i].detractAdult ?? false, DetractChild: self.tourList[i].detractChild ?? false, DetractKid: self.tourList[i].detractKid ?? false, DetractInfant: self.tourList[i].detractInfant ?? false, AskSell: self.tourList[i].askSell ?? false, MeetingPointId: self.tourList[i].meetingPointId ?? 0, Paref: String(self.tourList[i].paref ?? 0) ,TourCode: self.tourList[i].tourCode ?? "", ID: self.tourList[i].ID ?? 0, CREATEDDATE: self.tourList[i].cREATEDDATE ?? "", RefundCondition:"", TicketCount: 0, TourAmount: self.totalPricePerTour, VoucherNo: self.voucherNo[i], ExtraTourist: self.extras, TransferTourist:self.transfers))
+                    if self.extras.count > 0 {
+                        for i in 0...self.extras.count - 1 {
+                            self.extras[i].TotalPrice = self.extrasTotalPrice
+                            self.extras[i].totalAmount = self.extrasTotalPrice
+                        }
+                    }
+                    
+                    if self.transfers.count > 0 {
+                        for i in 0...self.transfers.count - 1 {
+                            self.transfers[i].TotalPrice = self.transfersTotalPrice
+                            self.transfers[i].totalAmount = self.transfersTotalPrice
+                        }
+                    }
+                    
+                    tourListIndata.append(TourList(id: Int(self.tourList[i].id ?? "") ?? 0, AdultAmount:(self.tourList[i].adultPrice ?? 0.0)*Double(adultCount), AdultCount:adultCount, AdultPrice:self.tourList[i].adultPrice ?? 0.00,ChildAmount:(self.tourList[i].childPrice ?? 0.0)*Double(childCount), ChildCount:childCount, ChildPrice:self.tourList[i].childPrice ?? 0.00, InfantAmount: (self.tourList[i].infantPrice ?? 0.0)*Double(infantCount), InfantCount:infantCount, InfantPrice: self.tourList[i].infantPrice ?? 0.00, ToodleAmount:  (self.tourList[i].toodlePrice ?? 0.0)*Double(toodleCount), ToodleCount:toodleCount, ToodlePrice: self.tourList[i].toodlePrice ?? 0.00, MatchId: self.tourList[i].matchId ?? 0, MarketId: self.tourList[i].marketId ?? 0, PromotionId: self.tourList[i].promotionId ?? 0, PoolType: self.tourList[i].poolType ?? 0, PriceId: self.tourList[i].priceId ?? 0, PlanId: self.tourList[i].planId ?? 0, TourType: self.tourList[i].tourType ?? 0, TourName: self.tourList[i].tourName ?? "", TourId:  self.tourList[i].tourId ?? 0, Currency: self.tourList[i].currency ?? 0 , CurrencyDesc: self.tourList[i].currencyDesc ?? "", TourDateStr:self.tourList[i].tourDateStr ?? "", TourDate: self.tourList[i].tourDate ?? "", AllotmenStatus: self.tourList[i].allotmenStatus ?? 0, RemainingAllotment: self.tourList[i].remainingAllotment ?? 0, PriceType: self.tourList[i].priceType ?? 0, MinPax:self.tourList[i].minPax ?? 0.0, TotalPrice: self.tourTotalAmount, FlatPrice: self.tourList[i].flatPrice ?? 0.0, MinPrice: self.tourList[i].minPrice ?? 0.0, InfantAge1: self.tourList[i].infantAge1 ?? 0.0, InfantAge2: self.tourList[i].infantAge2 ?? 0.0, ToodleAge1: self.tourList[i].toodleAge1 ?? 0.0, ToodleAge2: self.tourList[i].toodleAge2 ?? 0.0, ChildAge1: self.tourList[i].childAge1 ?? 0.0, ChildAge2: self.tourList[i].childAge2 ?? 0.0, PickUpTime:  self.pickUpTimeProceedView, DetractAdult: self.tourList[i].detractAdult ?? false, DetractChild: self.tourList[i].detractChild ?? false, DetractKid: self.tourList[i].detractKid ?? false, DetractInfant: self.tourList[i].detractInfant ?? false, AskSell: self.tourList[i].askSell ?? false, MeetingPointId: self.tourList[i].meetingPointId ?? 0, Paref: String(self.tourList[i].paref ?? 0) ,TourCode: self.tourList[i].tourCode ?? "", ID: self.tourList[i].ID ?? 0, CREATEDDATE: self.tourList[i].cREATEDDATE ?? "", RefundCondition:"", TicketCount: 0, TourAmount: self.totalPricePerTour, VoucherNo: self.voucherNo[i], ExtraTourist: self.extras, TransferTourist:self.transfers))
                 }
             }
             paxes = userDefaultsData.getTouristDetailInfoList() ?? paxes
@@ -600,6 +629,7 @@ class ExcProceedCustomView: UIView{
                         userDefaultsData.saveExtrasList(tour: [])
                         userDefaultsData.saveTransfersList(tour: [])
                         userDefaultsData.saveExtrasandTransfersTotalPrice(totalPrice: 0.0)
+                        userDefaultsData.saveTourList(tour: [])
                         self.buttonSend.isEnabled = false
                     }else {
                         let alert = UIAlertController(title: "FAILED", message: response.Message ?? "", preferredStyle: .alert)

@@ -394,8 +394,11 @@ extension ExcAddCustomView : UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCellDelegate {
- 
     func addMenuPaxcheckBoxTapped(checkCounter: Bool, touristName: String, tempPaxes: GetInHoseListResponseModel) {
+        var adlCount = 0
+        var chdCount = 0
+        var tdlCount = 0
+        var infCount = 0
         self.saveExtrasPaxesList.removeAll()
         self.tempaxeslist.removeAll()
         if let index = self.extrasPaxesList.firstIndex(where: {$0 === tempPaxes}){
@@ -409,8 +412,26 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
         }
         self.tableViewPax.reloadData()
         self.tempaxeslist.append(tempPaxes)
+        if self.tempaxeslist[0].ageGroup == "ADL"{
+            adlCount += 1
+        }else if self.tempaxeslist[0].ageGroup == "CHD"{
+            chdCount += 1
+        }else if self.tempaxeslist[0].ageGroup == "TDL"{
+            tdlCount += 1
+        }else{
+            infCount += 1
+        }
+        
         if checkCounter == true {
             self.extrapriceAddCalculation(self.tempaxeslist)
+            if self.extrasList.count > 0 {
+                for i in 0...self.extrasList.count - 1 {
+                    self.extrasList[i].adultCount = adlCount
+                    self.extrasList[i].childCount = chdCount
+                    self.extrasList[i].toodleCount = tdlCount
+                    self.extrasList[i].infantCount = infCount
+                }
+            }
         }else {
             self.extrapriceReduceCalculation(self.tempaxeslist)
         }
@@ -571,8 +592,8 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
                 self.transfersTotalPrice += self.transfersMinPrice
             }
             
-            let filterExtras = extrasList.filter{ $0.desc == transExtrDesc}
-            let filterTransfers = transfersList.filter{ $0.desc == transExtrDesc}
+            let filterExtras = extrasList.filter{ $0.desc == transExtrDesc && $0.tourDate == tourdate}
+            let filterTransfers = transfersList.filter{ $0.desc == transExtrDesc && $0.tourDate == tourdate}
            // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
             for index in filterExtras {
                 self.saveExtrasList.append(index)
@@ -712,7 +733,7 @@ extension ExcAddCustomView : AddMenuTableViewCellDelegate, AddMenuPaxTableViewCe
         }
         self.excAddCustomViewDelegate?.excurAddCustomDelegate(changeTransferNumber: self.transfersList.count, changeExtraNumber: self.saveExtrasList.count, extrasTotalPrice: self.extrasTotalPrice, transfersTotalPrice: self.transfersTotalPrice, extraButtonTapped: self.buttonExtraTapped)
         userDefaultsData.saveExtrasList(tour: self.saveExtrasList)
-        userDefaultsData.saveTransfersList(tour: self.transfersList)
+        userDefaultsData.saveTransfersList(tour: self.saveTransferList)
       
       }
   }

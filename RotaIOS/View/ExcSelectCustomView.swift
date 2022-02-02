@@ -408,13 +408,15 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                 }
             }
             let filterExcursionTourId = self.excursionList.filter{ $0.tourId == tourid}
-            let filterExcursionTourDate = filterExcursionTourId.filter{ $0.tourDate == tourDate}
+            var filterExcursionTourDate = filterExcursionTourId.filter{ $0.tourDate == tourDate}
             let filterPromotionId = self.promotionList.filter{ $0.tourId == tourid}
-            let filterPromotionDate = filterPromotionId.filter{ $0.tourDate == tourDate}
+            var filterPromotionDate = filterPromotionId.filter{ $0.tourDate == tourDate}
             // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
             // Özgeyle konuş burda offline salede tourid ye göre filtreleme yaptığında 24 tane aynı tur geliyor. oyüzden filter[0] yapıldı. düzeltilecek
           /* self.savesTourList.append(filterExcursionTourDate[0])
            self.savesTourList.append(filterPromotionDate[0]) */
+            filterExcursionTourDate = filterExcursionTourDate.filterDuplicate{($0.tourName,$0.tourDate)}
+            filterPromotionDate = filterPromotionDate.filterDuplicate{($0.tourName,$0.tourDate)}
             for index in filterExcursionTourDate {
                 self.savesTourList.append(index)
             }
@@ -445,4 +447,13 @@ extension Sequence where Element: Hashable {
         var set = Set<Element>()
         return filter { set.insert($0).inserted }
     }
+}
+
+extension Array
+{
+   func filterDuplicate<T>(_ keyValue:(Element)->T) -> [Element]
+   {
+      var uniqueKeys = Set<String>()
+      return filter{uniqueKeys.insert("\(keyValue($0))").inserted}
+   }
 }

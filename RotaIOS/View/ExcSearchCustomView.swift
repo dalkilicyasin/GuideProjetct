@@ -102,6 +102,7 @@ class ExcSearchCustomView : UIView {
         self.createbeginDatePicker()
         self.createEndDatePicker()
         
+      
         if Connectivity.isConnectedToInternet {
              print("Connected")
             if userDefaultsData.getTourSalePost()?.count ?? 0 > 0 {
@@ -185,7 +186,6 @@ class ExcSearchCustomView : UIView {
             self.viewMarketList.addGestureRecognizer(gestureMarket)
             self.viewHotelList.addGestureRecognizer(gestureHotel)
             self.viewPromotionMenu.addGestureRecognizer(gesturePromotion)
-            
             
             self.marketMenu.topOffset = CGPoint(x: 0, y:-(self.marketMenu.anchorView?.plainView.bounds.height ?? 200))
             self.marketMenu.selectionAction = { index, title in

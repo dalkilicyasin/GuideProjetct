@@ -38,12 +38,14 @@ class ExcursionViewController: UIViewController {
     var constraintOnPax = [NSLayoutConstraint]()
     var constraintonAdd = [NSLayoutConstraint]()
     var changeNumber = 0
-    var isTourChange = false
+    var paxesListChangeNumber = 0
+    var isTourChange = true
+    var isPAxesListChange = true
     var totalExtrasAmount = 0
     var totalTransfersAmount = 0
     var changeTransferNumber = 0
     var changeExcNumber = 0
-    var isExcOrTransChange = false
+    var isExcOrTransChange = true
     var tourListSaved : [GetSearchTourResponseModel] = []
     var paxesListSaved : [GetInHoseListResponseModel] = []
     var ageGroup = ""
@@ -67,6 +69,10 @@ class ExcursionViewController: UIViewController {
     var voucherList : [String] = []
     var maxVoucherIntAdeed = 0
     var offlineTourList : [GetSearchTourResponseModel] = []
+    var saveButtonTappet = false
+    var extrasTotalPrice = 0.0
+    var transfersTotalPrice = 0.0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +83,9 @@ class ExcursionViewController: UIViewController {
         userDefaultsData.saveHotelArea(hotelAreaId: 0 )
         userDefaultsData.saveTourList(tour: [])
         userDefaultsData.savePaxesList(tour: [])
+        userDefaultsData.saveTransfersList(tour: [])
+        userDefaultsData.saveExtrasList(tour: [])
+        userDefaultsData.saveExtrasandTransfersTotalPrice(totalPrice: 0.0)
         self.viewAppointMentBarCutomView.homePageTappedDelegate = self
         self.viewFooterViewCustomView.continueButtonTappedDelegate = self
         self.viewFooterViewCustomView.saveButtonTappedDelegate = self
@@ -211,6 +220,7 @@ class ExcursionViewController: UIViewController {
 extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappedDelegate, SaveButtonTappedDelegate {
     func totalPrice(isSaveButtonTapped: Bool?) {
         if isSaveButtonTapped == true {
+            self.saveButtonTappet = true
             userDefaultsData.saveExtrasandTransfersTotalPrice(totalPrice: self.extraAndTransTotalPrice)
         }
     }
@@ -219,12 +229,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
         self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
         self.viewFooterViewCustomView.isHidden = false
         self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
-        if self.changeNumber != userDefaultsData.getTourList()?.count {
-            self.isTourChange = true
-            self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
-        }else{
-            self.isTourChange = false
-        }
+        
         
         self.viewPaxCustomView?.isHidden = true
         if Connectivity.isConnectedToInternet {
@@ -263,7 +268,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.constraintOnSelectfunc()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.printButton.isHidden = true
-            
+            if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true {
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(Guide: userDefaultsData.getGuideId(), Market: userDefaultsData.getMarketId(), Hotel: userDefaultsData.getHotelId(), Area: userDefaultsData.getHotelArea(), TourDateStart: self.viewExcSearchCustomView?.beginDateString ??  "", TourDateEnd: self.viewExcSearchCustomView?.endDateString ?? "", SaleDate: userDefaultsData.getSaleDate(), PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0)
             
             if  self.isConnectedInternet == true {
@@ -337,12 +342,10 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         }
                     }
                 }
-                
-                
                 ///
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
                 self.viewExcSearchCustomView?.excurSearchDelegate = self
-                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
+           
                     userDefaultsData.saveTourList(tour: [])
                     userDefaultsData.savePaxesList(tour: [])
                     //  self.lastUIView.removeFromSuperview()
@@ -422,7 +425,21 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
             
         }else if tapped == 2 {
+            self.saveButtonTappet = false
           //  self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            if self.changeNumber != userDefaultsData.getTourList()?.count {
+                self.isTourChange = true
+                self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
+            }else{
+                self.isTourChange = false
+            }
+            
+            if self.paxesListChangeNumber != userDefaultsData.getPaxesList()?.count {
+                self.isPAxesListChange = true
+                self.paxesListChangeNumber = userDefaultsData.getPaxesList()?.count ?? 0
+            }else{
+                self.isPAxesListChange = false
+            }
             self.tourList = userDefaultsData.getTourList() ?? self.tourList
             self.viewFooterViewCustomView.printButton.isHidden = true
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
@@ -432,72 +449,73 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
             self.constraintOnAddFunc()
             self.viewExcSelectCustomView?.excSelectDelegate = self
-            if self.viewExcAddCustomView == nil || self.isTourChange == true{
-                //Max Voucher
-                // Create VOucher
-                var shortyear = ""
-                let year =  Calendar.current.component(.year, from: Date())
-                shortyear = String(year)
-                shortyear = shortyear.replacingOccurrences(of: "20", with: "", options: String.CompareOptions.literal, range: nil)
-                print(shortyear)
-                let month = Calendar.current.component(.month, from: Date())
-                let day = Calendar.current.component(.day, from: Date())
-                let hour = Calendar.current.component(.hour, from: Date())
-                let minute = Calendar.current.component(.minute, from: Date())
-                
-                let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
-                print(mergeDate)
-                
-                let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-                
-                if self.isConnectedInternet == true {
-                    NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
-                        if response != 0 {
-                            if self.tourList.count > 0 {
-                                for i in 0...self.tourList.count - 1 {
-                                    self.counter = i + 1
-                                    print(response)
-                                    self.maxVoucherNo = String(response)
-                                    let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
-                                    let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
-                                    self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
-                                    print(self.maxVoucherNo)
-                                    if let maxVoucherInt = Int(self.maxVoucherNo) {
-                                        print(maxVoucherInt)
-                                        self.maxVoucherIntAdeed = maxVoucherInt
-                                        self.maxVoucherIntAdeed += self.counter
+            if self.viewExcAddCustomView == nil || self.isTourChange == true || self.isPAxesListChange == true{
+                if self.isTourChange == true {
+                    //Max Voucher
+                    // Create VOucher
+                    var shortyear = ""
+                    let year =  Calendar.current.component(.year, from: Date())
+                    shortyear = String(year)
+                    shortyear = shortyear.replacingOccurrences(of: "20", with: "", options: String.CompareOptions.literal, range: nil)
+                    print(shortyear)
+                    let month = Calendar.current.component(.month, from: Date())
+                    let day = Calendar.current.component(.day, from: Date())
+                    let hour = Calendar.current.component(.hour, from: Date())
+                    let minute = Calendar.current.component(.minute, from: Date())
+                    
+                    let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+                    print(mergeDate)
+                    
+                    let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+                    
+                    if self.isConnectedInternet == true {
+                        NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
+                            if response != 0 {
+                                if self.tourList.count > 0 {
+                                    for i in 0...self.tourList.count - 1 {
+                                        self.counter = i + 1
+                                        print(response)
+                                        self.maxVoucherNo = String(response)
+                                        let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                                        let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                                        self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                                        print(self.maxVoucherNo)
+                                        if let maxVoucherInt = Int(self.maxVoucherNo) {
+                                            print(maxVoucherInt)
+                                            self.maxVoucherIntAdeed = maxVoucherInt
+                                            self.maxVoucherIntAdeed += self.counter
+                                        }
+                                        self.addedVoucher = String(format: "%02d", self.maxVoucherIntAdeed)
+                                        if userDefaultsData.getDay() != day {
+                                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                                            userDefaultsData.saveDay(day: day)
+                                        }else if userDefaultsData.getDay() == day {
+                                            self.counter = 1
+                                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                                            userDefaultsData.saveDay(day: day)
+                                        }
+                                        self.voucherList.append(self.createVoucher)
                                     }
-                                    self.addedVoucher = String(format: "%02d", self.maxVoucherIntAdeed)
-                                    if userDefaultsData.getDay() != day {
-                                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
-                                        userDefaultsData.saveDay(day: day)
-                                    }else if userDefaultsData.getDay() == day {
-                                        self.counter = 1
-                                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
-                                        userDefaultsData.saveDay(day: day)
-                                    }
-                                    self.voucherList.append(self.createVoucher)
                                 }
+                              
+                                print(self.voucherList)
+                                self.viewExcProceedCustomView?.voucherNo = self.voucherList
+                                userDefaultsData.saveMaxVoucher(voucher: self.voucherList)
+                                
+                            }else {
+                                print("error")
                             }
-                          
-                            print(self.voucherList)
-                            self.viewExcProceedCustomView?.voucherNo = self.voucherList
-                            userDefaultsData.saveMaxVoucher(voucher: self.voucherList)
-                            
-                        }else {
-                            print("error")
+                        }
+                    }else {
+                        self.viewExcProceedCustomView = ExcProceedCustomView.init()
+                        if self.tourList.count > 0 {
+                            for _ in 0...self.tourList.count - 1 {
+                                self.viewExcProceedCustomView?.voucherNo.append("")
+                            }
                         }
                     }
-                }else {
-                    self.viewExcProceedCustomView = ExcProceedCustomView.init()
-                    if self.tourList.count > 0 {
-                        for _ in 0...self.tourList.count - 1 {
-                            self.viewExcProceedCustomView?.voucherNo.append("")
-                        }
-                    }
+                    ///
                 }
-                ///
-                ///
                 //  self.lastUIView.removeFromSuperview()
                 //  self.animatedCustomView(customView: PaxPageCustomView())
                 self.viewExcSearchCustomView?.isHidden = true
@@ -520,6 +538,114 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     }
                 })
                 // self.lastUIView = self.paxPageCustomView!
+                
+                self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
+                self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
+                self.totalPrice = 0.00
+                // promotion amount counting
+                var adultCount = 0
+                var childCount = 0
+                var toodleCount = 0
+                var infantCount = 0
+                
+                if self.tourListSaved.count > 0 && paxesListSaved.count > 0{
+                    for i in 0...self.paxesListSaved.count - 1{
+                        if self.paxesListSaved[i].ageGroup == "ADL" {
+                            adultCount += 1
+                        }else if self.paxesListSaved[i].ageGroup == "CHD" {
+                            childCount += 1
+                        }else if self.paxesListSaved[i].ageGroup == "TDL" {
+                            toodleCount += 1
+                        }else if self.paxesListSaved[i].ageGroup == "INF" {
+                            infantCount += 1
+                        }
+                    }
+                }
+                
+                if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
+                    for i in 0...self.tourListSaved.count - 1{
+                        self.perTourTotalPrice = 0.0
+                        // Per Person Price calculation
+                        if self.tourListSaved[i].priceType == 35 {
+                            // Özgeye sor getinforesponse mu yoksa direk gethouselisten dönen agegrup mu alınacak
+                            /*   let getTouristInfoModel = GetTouristInfoRequestModel.init(touristId: self.paxesListSaved[i].value ?? 0, resNo: self.paxesListSaved[i].resNo ?? "")
+                             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getTouristInfoModel.requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                             if response.count > 0 {
+                             
+                             }
+                             }*/
+                            /*
+                             if self.tourListSaved[i].infantAge1 ?? 0.00 <= self.tourListSaved[i].infantAge2 ?? 0.00 {
+                             self.ageGroup = "INF"
+                             }else if self.tourListSaved[i].toodleAge1 ?? 0.00 <= self.tourListSaved[i].toodleAge2 ?? 0.00 {
+                             self.ageGroup = "TDL"
+                             }else if self.tourListSaved[i].childAge1 ?? 0.00 <= self.tourListSaved[i].childAge1 ?? 0.00 {
+                             self.ageGroup = "CHD"
+                             }else{
+                             self.ageGroup = "ADL"
+                             }*/
+                            for index in 0...paxesListSaved.count - 1 {
+                                switch self.paxesListSaved[index].ageGroup {
+                                case "INF":
+                                    self.perTourTotalPrice += self.tourListSaved[i].infantPrice ?? 0.00
+                                case "TDL":
+                                    self.perTourTotalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
+                                case "CHD":
+                                    self.perTourTotalPrice += self.tourListSaved[i].childPrice ?? 0.00
+                                default:
+                                    self.perTourTotalPrice += self.tourListSaved[i].adultPrice ?? 0.00
+                                }
+                            }
+                        }
+                        
+                        //Flat Price calculation
+                        else if self.tourListSaved[i].priceType == 36{
+                            self.perTourTotalPrice += self.tourListSaved[i].flatPrice ?? 0.00
+                        }
+                        
+                        //Min Price
+                        else if self.tourListSaved[i].priceType == 37{
+                            self.minPerson = Int(self.tourListSaved[i].minPax ?? 0.00)
+                            if self.minPerson > 0 {
+                                for index in 0...self.paxesListSaved.count - 1{
+                                    if  self.paxesListSaved[index].ageGroup == "ADL" {
+                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                        self.minPerson -= 1
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
+                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                        self.minPerson -= 1
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
+                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                        self.minPerson -= 1
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
+                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                        self.minPerson -= 1
+                                    }
+                                }
+                            }else {
+                                for index in 0...self.paxesListSaved.count - 1{
+                                    if  self.paxesListSaved[index].ageGroup == "ADL" {
+                                        self.perTourTotalPrice += tourListSaved[i].adultPrice ?? 0.00
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
+                                        self.perTourTotalPrice += tourListSaved[i].childPrice ?? 0.00
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
+                                        self.perTourTotalPrice += tourListSaved[i].toodlePrice ?? 0.00
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
+                                        self.perTourTotalPrice += tourListSaved[i].infantPrice ?? 0.00
+                                    }
+                                }
+                            }
+                            self.perTourTotalPrice += self.minPriceTotal
+                        }
+                        self.totalPrice += self.perTourTotalPrice
+                        self.paxTotalAmount = self.perTourTotalPrice
+                        self.tourAmount = self.perTourTotalPrice
+                        
+                        self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.perTourTotalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
+                    }
+                    self.tourListSaved.removeAll()
+                    self.paxesListSaved.removeAll()
+                }
                 self.isHotelorMarketChanged = false
             }else {
                 self.viewExcAddCustomView?.isHidden = false
@@ -529,117 +655,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
             }
-            
-            
-            
-            self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
-            self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
-            self.totalPrice = 0.00
-            // promotion amount counting
-            var adultCount = 0
-            var childCount = 0
-            var toodleCount = 0
-            var infantCount = 0
-            
-            if self.tourListSaved.count > 0 && paxesListSaved.count > 0{
-                for i in 0...self.paxesListSaved.count - 1{
-                    if self.paxesListSaved[i].ageGroup == "ADL" {
-                        adultCount += 1
-                    }else if self.paxesListSaved[i].ageGroup == "CHD" {
-                        childCount += 1
-                    }else if self.paxesListSaved[i].ageGroup == "TDL" {
-                        toodleCount += 1
-                    }else if self.paxesListSaved[i].ageGroup == "INF" {
-                        infantCount += 1
-                    }
-                }
-            }
-            
-            if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
-                for i in 0...self.tourListSaved.count - 1{
-                    self.perTourTotalPrice = 0.0
-                    // Per Person Price calculation
-                    if self.tourListSaved[i].priceType == 35 {
-                        // Özgeye sor getinforesponse mu yoksa direk gethouselisten dönen agegrup mu alınacak
-                        /*   let getTouristInfoModel = GetTouristInfoRequestModel.init(touristId: self.paxesListSaved[i].value ?? 0, resNo: self.paxesListSaved[i].resNo ?? "")
-                         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getTouristInfoModel.requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
-                         if response.count > 0 {
-                         
-                         }
-                         }*/
-                        /*
-                         if self.tourListSaved[i].infantAge1 ?? 0.00 <= self.tourListSaved[i].infantAge2 ?? 0.00 {
-                         self.ageGroup = "INF"
-                         }else if self.tourListSaved[i].toodleAge1 ?? 0.00 <= self.tourListSaved[i].toodleAge2 ?? 0.00 {
-                         self.ageGroup = "TDL"
-                         }else if self.tourListSaved[i].childAge1 ?? 0.00 <= self.tourListSaved[i].childAge1 ?? 0.00 {
-                         self.ageGroup = "CHD"
-                         }else{
-                         self.ageGroup = "ADL"
-                         }*/
-                        for index in 0...paxesListSaved.count - 1 {
-                            switch self.paxesListSaved[index].ageGroup {
-                            case "INF":
-                                self.perTourTotalPrice += self.tourListSaved[i].infantPrice ?? 0.00
-                            case "TDL":
-                                self.perTourTotalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
-                            case "CHD":
-                                self.perTourTotalPrice += self.tourListSaved[i].childPrice ?? 0.00
-                            default:
-                                self.perTourTotalPrice += self.tourListSaved[i].adultPrice ?? 0.00
-                            }
-                        }
-                    }
-                    
-                    //Flat Price calculation
-                    else if self.tourListSaved[i].priceType == 36{
-                        self.perTourTotalPrice += self.tourListSaved[i].flatPrice ?? 0.00
-                    }
-                    
-                    //Min Price
-                    else if self.tourListSaved[i].priceType == 37{
-                        self.minPerson = Int(self.tourListSaved[i].minPax ?? 0.00)
-                        if self.minPerson > 0 {
-                            for index in 0...self.paxesListSaved.count - 1{
-                                if  self.paxesListSaved[index].ageGroup == "ADL" {
-                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                    self.minPerson -= 1
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
-                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                    self.minPerson -= 1
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
-                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                    self.minPerson -= 1
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
-                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                    self.minPerson -= 1
-                                }
-                            }
-                        }else {
-                            for index in 0...self.paxesListSaved.count - 1{
-                                if  self.paxesListSaved[index].ageGroup == "ADL" {
-                                    self.perTourTotalPrice += tourListSaved[i].adultPrice ?? 0.00
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
-                                    self.perTourTotalPrice += tourListSaved[i].childPrice ?? 0.00
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
-                                    self.perTourTotalPrice += tourListSaved[i].toodlePrice ?? 0.00
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
-                                    self.perTourTotalPrice += tourListSaved[i].infantPrice ?? 0.00
-                                }
-                            }
-                        }
-                        self.perTourTotalPrice += self.minPriceTotal
-                    }
-                    self.totalPrice += self.perTourTotalPrice
-                    self.paxTotalAmount = self.perTourTotalPrice
-                    self.tourAmount = self.perTourTotalPrice
-                    
-                    self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.perTourTotalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
-                }
-                self.tourListSaved.removeAll()
-                self.paxesListSaved.removeAll()
-            }
             self.showToast(message: "\(self.totalPrice)")
+            
         }else if tapped == 3 {
             
             self.viewFooterViewCustomView.isHidden = true
@@ -652,6 +669,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.buttonSaveButton.isHidden = true
             self.viewFooterViewCustomView.buttonView.isHidden = true
             self.viewFooterViewCustomView.printButton.isHidden = false
+          
             if let transferNumber = userDefaultsData.getTransfersList()?.count {
                 if  self.changeTransferNumber != transferNumber {
                     self.isExcOrTransChange = true
@@ -669,7 +687,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.isExcOrTransChange = false
                 }
             }
-            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil {
+            
+            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil || self.saveButtonTappet == true{
+                
                 self.totalPrice = self.totalPrice + userDefaultsData.getExtrasandTransfersTotalPrice()
                 
                 // TourPromotionDiscount service
@@ -693,6 +713,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
                         self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
                         self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                        self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
+                        self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
                         // self.viewExcProceedCustomView?.voucherNo = self.voucherList
                         self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                     }else {
@@ -714,6 +736,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                     self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                    self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
+                    self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
                     
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
@@ -728,9 +752,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcSearchCustomView?.isHidden = true
             }
-        }
-        else{
-            
+        }else{
             print("default")
         }
     }
@@ -739,13 +761,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
         self.viewFooterViewCustomView.isHidden = false
         self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
         self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
-        if self.changeNumber != userDefaultsData.getTourList()?.count {
-            self.isTourChange = true
-            self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
-        }else{
-            self.isTourChange = false
-        }
-        
+       
         self.viewPaxCustomView?.isHidden = true
         if Connectivity.isConnectedToInternet {
             print("Connected")
@@ -793,6 +809,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(Guide: userDefaultsData.getGuideId(), Market: userDefaultsData.getMarketId(), Hotel: userDefaultsData.getHotelId(), Area: userDefaultsData.getHotelArea(), TourDateStart: self.viewExcSearchCustomView?.beginDateString ??  "", TourDateEnd: self.viewExcSearchCustomView?.endDateString ?? "", SaleDate: userDefaultsData.getSaleDate(), PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0)
             
             if  self.isConnectedInternet == true {
+                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
                 if self.viewExcSearchCustomView?.promotionid == 0 {
                     NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
                         if response.count > 0 {
@@ -865,7 +882,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 ///
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
                 self.viewExcSearchCustomView?.excurSearchDelegate = self
-                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
                     userDefaultsData.saveTourList(tour: [])
                     userDefaultsData.savePaxesList(tour: [])
                     self.viewExcSearchCustomView?.isHidden = true
@@ -902,8 +918,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 ////
             }else{
                 ///
-                self.viewExcSearchCustomView?.excurSearchDelegate = self
                 if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
+                self.viewExcSearchCustomView?.excurSearchDelegate = self
+               
                     userDefaultsData.saveTourList(tour: [])
                     userDefaultsData.savePaxesList(tour: [])
                     self.viewExcSearchCustomView?.isHidden = true
@@ -945,6 +962,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
             
         }else if ischosen == 2 {
+            self.saveButtonTappet = false
            // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.tourList = userDefaultsData.getTourList() ?? self.tourList
             self.viewFooterViewCustomView.printButton.isHidden = true
@@ -956,69 +974,86 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.buttonView.removeFromSuperview()
             self.constraintOnAddFunc()
             self.viewExcSelectCustomView?.excSelectDelegate = self
-            if self.viewExcAddCustomView == nil || self.isTourChange == true{
-                // Create VOucher
-                var shortyear = ""
-                let year =  Calendar.current.component(.year, from: Date())
-                shortyear = String(year)
-                shortyear = shortyear.replacingOccurrences(of: "20", with: "", options: String.CompareOptions.literal, range: nil)
-                print(shortyear)
-                let month = Calendar.current.component(.month, from: Date())
-                let day = Calendar.current.component(.day, from: Date())
-                let hour = Calendar.current.component(.hour, from: Date())
-                let minute = Calendar.current.component(.minute, from: Date())
-                
-                let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
-                print(mergeDate)
-                // dikkatt her tur için ayrı voucher no oluşturulacak
-                let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
-                if self.isConnectedInternet == true {
-                    NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
-                        if response != 0 {
-                            if self.tourList.count > 0 {
-                                for i in 0...self.tourList.count - 1 {
-                                    self.counter = i
-                                    print(response)
-                                    self.maxVoucherNo = String(response)
-                                    let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
-                                    let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
-                                    self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
-                                    print(self.maxVoucherNo)
-                                    if let maxVoucherInt = Int(self.maxVoucherNo) {
-                                        print(maxVoucherInt)
-                                        self.maxVoucherIntAdeed = maxVoucherInt
-                                        self.maxVoucherIntAdeed += self.counter
+            
+            if self.changeNumber != userDefaultsData.getTourList()?.count {
+                self.isTourChange = true
+                self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
+            }else{
+                self.isTourChange = false
+            }
+            
+            if self.paxesListChangeNumber != userDefaultsData.getPaxesList()?.count {
+                self.isPAxesListChange = true
+                self.paxesListChangeNumber = userDefaultsData.getPaxesList()?.count ?? 0
+            }else{
+                self.isPAxesListChange = false
+            }
+            
+            if self.viewExcAddCustomView == nil || self.isTourChange == true || self.isPAxesListChange == true{
+                if self.isTourChange == true {
+                    // Create VOucher
+                    var shortyear = ""
+                    let year =  Calendar.current.component(.year, from: Date())
+                    shortyear = String(year)
+                    shortyear = shortyear.replacingOccurrences(of: "20", with: "", options: String.CompareOptions.literal, range: nil)
+                    print(shortyear)
+                    let month = Calendar.current.component(.month, from: Date())
+                    let day = Calendar.current.component(.day, from: Date())
+                    let hour = Calendar.current.component(.hour, from: Date())
+                    let minute = Calendar.current.component(.minute, from: Date())
+                    
+                    let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+                    print(mergeDate)
+                    // dikkatt her tur için ayrı voucher no oluşturulacak
+                    let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
+                    if self.isConnectedInternet == true {
+                        NetworkManager.sendGetRequestInt(url: NetworkManager.BASEURL, endPoint: .GetMaxGuideVoucherNumber, method: .get, parameters: getMaxVoucherRequestModel.requestPathString()) { (response : Int) in
+                            if response != 0 {
+                                if self.tourList.count > 0 {
+                                    for i in 0...self.tourList.count - 1 {
+                                        self.counter = i
+                                        print(response)
+                                        self.maxVoucherNo = String(response)
+                                        let startIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 3)
+                                        let endIndex = self.maxVoucherNo.index(self.maxVoucherNo.startIndex, offsetBy: 4)
+                                        self.maxVoucherNo = String(self.maxVoucherNo[startIndex...endIndex])
+                                        print(self.maxVoucherNo)
+                                        if let maxVoucherInt = Int(self.maxVoucherNo) {
+                                            print(maxVoucherInt)
+                                            self.maxVoucherIntAdeed = maxVoucherInt
+                                            self.maxVoucherIntAdeed += self.counter
+                                        }
+                                        self.addedVoucher = String(format: "%02d", self.maxVoucherIntAdeed)
+                                        if userDefaultsData.getDay() != day {
+                                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
+                                            userDefaultsData.saveDay(day: day)
+                                        }else if userDefaultsData.getDay() == day {
+                                            self.counter = 1
+                                            self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
+                                            userDefaultsData.saveDay(day: day)
+                                        }
+                                        self.voucherList.append(self.createVoucher)
                                     }
-                                    self.addedVoucher = String(format: "%02d", self.maxVoucherIntAdeed)
-                                    if userDefaultsData.getDay() != day {
-                                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(month)\(day)\(hour)\(minute)\(self.addedVoucher)"
-                                        userDefaultsData.saveDay(day: day)
-                                    }else if userDefaultsData.getDay() == day {
-                                        self.counter = 1
-                                        self.createVoucher = "\(userDefaultsData.geUserNAme() ?? "")\(shortyear)\(mergeDate)\(self.addedVoucher)"
-                                        userDefaultsData.saveDay(day: day)
-                                    }
-                                    self.voucherList.append(self.createVoucher)
                                 }
+                                print(self.voucherList)
+                                self.viewExcProceedCustomView?.voucherNo = self.voucherList
+                                userDefaultsData.saveMaxVoucher(voucher: self.voucherList)
+                                
+                            }else {
+                                print("error")
                             }
-                            print(self.voucherList)
-                            self.viewExcProceedCustomView?.voucherNo = self.voucherList
-                            userDefaultsData.saveMaxVoucher(voucher: self.voucherList)
-                            
-                        }else {
-                            print("error")
+                        }
+                    }else {
+                        self.viewExcProceedCustomView = ExcProceedCustomView.init()
+                        if self.tourList.count > 0 {
+                            for _ in 0...self.tourList.count - 1 {
+                                self.viewExcProceedCustomView?.voucherNo.append("1")
+                            }
                         }
                     }
-                }else {
-                    self.viewExcProceedCustomView = ExcProceedCustomView.init()
-                    if self.tourList.count > 0 {
-                        for _ in 0...self.tourList.count - 1 {
-                            self.viewExcProceedCustomView?.voucherNo.append("1")
-                        }
-                    }
+                    
+                    ///
                 }
-                
-                ///
                 self.viewExcSearchCustomView?.isHidden = true
                 self.viewExcSelectCustomView?.isHidden = true
                 self.viewExcProceedCustomView?.isHidden = true
@@ -1036,6 +1071,114 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     }
                 })
                 // self.lastUIView = self.paxPageCustomView!
+                
+                //total amount counting
+                self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
+                self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
+                self.totalPrice = 0.00
+                
+                // promotion amount counting
+                var adultCount = 0
+                var childCount = 0
+                var toodleCount = 0
+                var infantCount = 0
+                if self.tourListSaved.count > 0 && paxesListSaved.count > 0{
+                    for i in 0...self.paxesListSaved.count - 1{
+                        if self.paxesListSaved[i].ageGroup == "ADL" {
+                            adultCount += 1
+                        }else if self.paxesListSaved[i].ageGroup == "CHD" {
+                            childCount += 1
+                        }else if self.paxesListSaved[i].ageGroup == "TDL" {
+                            toodleCount += 1
+                        }else if self.paxesListSaved[i].ageGroup == "INF" {
+                            infantCount += 1
+                        }
+                    }
+                }
+                
+                if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
+                    for i in 0...self.tourListSaved.count - 1{
+                        self.perTourTotalPrice = 0.0
+                        // Per Person Price calculation
+                        if self.tourListSaved[i].priceType == 35 {
+                            // Özgeye sor getinforesponse mu yoksa direk gethouselisten dönen agegrup mu alınacak
+                            /*   let getTouristInfoModel = GetTouristInfoRequestModel.init(touristId: self.paxesListSaved[i].value ?? 0, resNo: self.paxesListSaved[i].resNo ?? "")
+                             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getTouristInfoModel.requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
+                             if response.count > 0 {
+                             
+                             }
+                             }*/
+                            /*
+                             if self.tourListSaved[i].infantAge1 ?? 0.00 <= self.tourListSaved[i].infantAge2 ?? 0.00 {
+                             self.ageGroup = "INF"
+                             }else if self.tourListSaved[i].toodleAge1 ?? 0.00 <= self.tourListSaved[i].toodleAge2 ?? 0.00 {
+                             self.ageGroup = "TDL"
+                             }else if self.tourListSaved[i].childAge1 ?? 0.00 <= self.tourListSaved[i].childAge1 ?? 0.00 {
+                             self.ageGroup = "CHD"
+                             }else{
+                             self.ageGroup = "ADL"
+                             }*/
+                            for index in 0...paxesListSaved.count - 1 {
+                                switch self.paxesListSaved[index].ageGroup {
+                                case "INF":
+                                    self.perTourTotalPrice += self.tourListSaved[i].infantPrice ?? 0.00
+                                case "TDL":
+                                    self.perTourTotalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
+                                case "CHD":
+                                    self.perTourTotalPrice += self.tourListSaved[i].childPrice ?? 0.00
+                                default:
+                                    self.perTourTotalPrice += self.tourListSaved[i].adultPrice ?? 0.00
+                                }
+                            }
+                        }
+                        //Flat Price calculation
+                        else if self.tourListSaved[i].priceType == 36{
+                            self.perTourTotalPrice += self.tourListSaved[i].flatPrice ?? 0.00
+                        }
+                        
+                        else if self.tourListSaved[i].priceType == 37{
+                            self.minPerson = Int(self.tourListSaved[i].minPax ?? 0.00)
+                            if self.minPerson > 0 {
+                                for index in 0...self.paxesListSaved.count - 1{
+                                    if  self.paxesListSaved[index].ageGroup == "ADL" {
+                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                        self.minPerson -= 1
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
+                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                        self.minPerson -= 1
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
+                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                        self.minPerson -= 1
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
+                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
+                                        self.minPerson -= 1
+                                    }
+                                }
+                            }else {
+                                for index in 0...self.paxesListSaved.count - 1{
+                                    if  self.paxesListSaved[index].ageGroup == "ADL" {
+                                        self.perTourTotalPrice += tourListSaved[i].adultPrice ?? 0.00
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
+                                        self.perTourTotalPrice += tourListSaved[i].childPrice ?? 0.00
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
+                                        self.perTourTotalPrice += tourListSaved[i].toodlePrice ?? 0.00
+                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
+                                        self.perTourTotalPrice += tourListSaved[i].infantPrice ?? 0.00
+                                    }
+                                }
+                            }
+                            
+                            self.perTourTotalPrice += self.minPriceTotal
+                        }
+                        self.totalPrice += self.perTourTotalPrice
+                        self.paxTotalAmount = self.perTourTotalPrice
+                        self.tourAmount = self.perTourTotalPrice
+                        
+                        self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.perTourTotalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
+                    }
+                    self.tourListSaved.removeAll()
+                    self.paxesListSaved.removeAll()
+                }
                 self.isHotelorMarketChanged = false
             }else {
                 self.viewExcAddCustomView?.isHidden = false
@@ -1046,119 +1189,12 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 // self.proceedPageCustomView?.isHidden = true
             }
             
-            
-            //total amount counting
-            self.tourListSaved = userDefaultsData.getTourList() ?? self.tourListSaved
-            self.paxesListSaved = userDefaultsData.getPaxesList() ?? self.paxesListSaved
-            self.totalPrice = 0.00
-            
-            // promotion amount counting
-            var adultCount = 0
-            var childCount = 0
-            var toodleCount = 0
-            var infantCount = 0
-            if self.tourListSaved.count > 0 && paxesListSaved.count > 0{
-                for i in 0...self.paxesListSaved.count - 1{
-                    if self.paxesListSaved[i].ageGroup == "ADL" {
-                        adultCount += 1
-                    }else if self.paxesListSaved[i].ageGroup == "CHD" {
-                        childCount += 1
-                    }else if self.paxesListSaved[i].ageGroup == "TDL" {
-                        toodleCount += 1
-                    }else if self.paxesListSaved[i].ageGroup == "INF" {
-                        infantCount += 1
-                    }
-                }
-            }
-            
-            if self.tourListSaved.count > 0 &&  self.paxesListSaved.count > 0 {
-                for i in 0...self.tourListSaved.count - 1{
-                    self.perTourTotalPrice = 0.0
-                    // Per Person Price calculation
-                    if self.tourListSaved[i].priceType == 35 {
-                        // Özgeye sor getinforesponse mu yoksa direk gethouselisten dönen agegrup mu alınacak
-                        /*   let getTouristInfoModel = GetTouristInfoRequestModel.init(touristId: self.paxesListSaved[i].value ?? 0, resNo: self.paxesListSaved[i].resNo ?? "")
-                         NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getTouristInfoModel.requestPathString()) { (response : [GetTouristInfoResponseModel] ) in
-                         if response.count > 0 {
-                         
-                         }
-                         }*/
-                        /*
-                         if self.tourListSaved[i].infantAge1 ?? 0.00 <= self.tourListSaved[i].infantAge2 ?? 0.00 {
-                         self.ageGroup = "INF"
-                         }else if self.tourListSaved[i].toodleAge1 ?? 0.00 <= self.tourListSaved[i].toodleAge2 ?? 0.00 {
-                         self.ageGroup = "TDL"
-                         }else if self.tourListSaved[i].childAge1 ?? 0.00 <= self.tourListSaved[i].childAge1 ?? 0.00 {
-                         self.ageGroup = "CHD"
-                         }else{
-                         self.ageGroup = "ADL"
-                         }*/
-                        for index in 0...paxesListSaved.count - 1 {
-                            switch self.paxesListSaved[index].ageGroup {
-                            case "INF":
-                                self.perTourTotalPrice += self.tourListSaved[i].infantPrice ?? 0.00
-                            case "TDL":
-                                self.perTourTotalPrice += self.tourListSaved[i].toodlePrice ?? 0.00
-                            case "CHD":
-                                self.perTourTotalPrice += self.tourListSaved[i].childPrice ?? 0.00
-                            default:
-                                self.perTourTotalPrice += self.tourListSaved[i].adultPrice ?? 0.00
-                            }
-                        }
-                    }
-                    //Flat Price calculation
-                    else if self.tourListSaved[i].priceType == 36{
-                        self.perTourTotalPrice += self.tourListSaved[i].flatPrice ?? 0.00
-                    }
-                    
-                    else if self.tourListSaved[i].priceType == 37{
-                        self.minPerson = Int(self.tourListSaved[i].minPax ?? 0.00)
-                        if self.minPerson > 0 {
-                            for index in 0...self.paxesListSaved.count - 1{
-                                if  self.paxesListSaved[index].ageGroup == "ADL" {
-                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                    self.minPerson -= 1
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
-                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                    self.minPerson -= 1
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
-                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                    self.minPerson -= 1
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
-                                    self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                    self.minPerson -= 1
-                                }
-                            }
-                        }else {
-                            for index in 0...self.paxesListSaved.count - 1{
-                                if  self.paxesListSaved[index].ageGroup == "ADL" {
-                                    self.perTourTotalPrice += tourListSaved[i].adultPrice ?? 0.00
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
-                                    self.perTourTotalPrice += tourListSaved[i].childPrice ?? 0.00
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
-                                    self.perTourTotalPrice += tourListSaved[i].toodlePrice ?? 0.00
-                                }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
-                                    self.perTourTotalPrice += tourListSaved[i].infantPrice ?? 0.00
-                                }
-                            }
-                        }
-                        
-                        self.perTourTotalPrice += self.minPriceTotal
-                    }
-                    self.totalPrice += self.perTourTotalPrice
-                    self.paxTotalAmount = self.perTourTotalPrice
-                    self.tourAmount = self.perTourTotalPrice
-                    
-                    self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.perTourTotalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
-                }
-                self.tourListSaved.removeAll()
-                self.paxesListSaved.removeAll()
-            }
             self.showToast(message: "\(self.totalPrice)")
         }else if ischosen == 3 {
             self.viewFooterViewCustomView.isHidden = true
            // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
+            
             let gesture = UITapGestureRecognizer(target: self, action: #selector(viewSendTapped))
             self.viewFooterViewCustomView.viewSendVoucher.isUserInteractionEnabled = true
             self.viewFooterViewCustomView.viewSendVoucher.addGestureRecognizer(gesture)
@@ -1166,6 +1202,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.buttonhide()
             self.viewFooterViewCustomView.buttonView.isHidden = true
             self.viewFooterViewCustomView.printButton.isHidden = false
+           
             if let transferNumber = userDefaultsData.getTransfersList()?.count {
                 if  self.changeTransferNumber != transferNumber {
                     self.isExcOrTransChange = true
@@ -1184,7 +1221,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }
             }
             
-            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil {
+            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil || self.saveButtonTappet == true{
+                
                 self.totalPrice = self.totalPrice + userDefaultsData.getExtrasandTransfersTotalPrice()
                 // TourPromotionDiscount service
                 let tourPromotionPostRequestModel = TourPromotionPost(PromotionDiscount: 0, PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0, tours: self.tours)
@@ -1207,6 +1245,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
                         self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                         self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                        self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
+                        self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
         
                     }else {
                         print("error")
@@ -1227,6 +1267,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                     self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                    self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
+                    self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
                     
                     self.viewExcursionView.viewContentView.addSubview(viewExcProceedCustomView!)
                     self.viewExcProceedCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
@@ -1389,6 +1431,8 @@ extension ExcursionViewController : ExcAddCustomViewDelegate {
             self.viewFooterViewCustomView.labelAmount.text = String(transfersTotalPrice)
         }
         self.extraAndTransTotalPrice = extrasTotalPrice + transfersTotalPrice
+        self.extrasTotalPrice = extrasTotalPrice
+        self.transfersTotalPrice = transfersTotalPrice
         
         /*if  self.viewFooterViewCustomView.totalPriceIsSaved == true {
             userDefaultsData.saveTotalPrice(totalPrice: self.totalPrice)
