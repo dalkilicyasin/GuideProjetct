@@ -231,6 +231,8 @@
 		D97FB5B726C6AC550099F28B /* MyShoopingSaleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5B626C6AC550099F28B /* MyShoopingSaleDetailView.swift */; };
 		D97FB5BA26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FB5B826C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift */; };
 		D97FB5BB26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */; };
+		D986E5E327AC0DE80032D756 /* PrintManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986E5E227AC0DE80032D756 /* PrintManager.swift */; };
+		D986E5FC27AC0EEC0032D756 /* libZSDK_API.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D986E5FB27AC0EEC0032D756 /* libZSDK_API.a */; };
 		D991469226D68B620010E74F /* CancelVoucherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991469026D68B620010E74F /* CancelVoucherViewController.swift */; };
 		D991469326D68B620010E74F /* CancelVoucherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D991469126D68B620010E74F /* CancelVoucherViewController.xib */; };
 		D991469526D68CBF0010E74F /* CancelVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991469426D68CBF0010E74F /* CancelVoucherView.swift */; };
@@ -532,6 +534,30 @@
 		D97FB5B626C6AC550099F28B /* MyShoopingSaleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShoopingSaleDetailView.swift; sourceTree = "<group>"; };
 		D97FB5B826C6B5480099F28B /* MyShopingSalesDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShopingSalesDetailTableViewCell.swift; sourceTree = "<group>"; };
 		D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyShopingSalesDetailTableViewCell.xib; sourceTree = "<group>"; };
+		D986E5E227AC0DE80032D756 /* PrintManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintManager.swift; sourceTree = "<group>"; };
+		D986E5E627AC0EC30032D756 /* ZplPrintMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZplPrintMode.h; sourceTree = "<group>"; };
+		D986E5E727AC0EC30032D756 /* GraphicsUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphicsUtil.h; sourceTree = "<group>"; };
+		D986E5E827AC0EC30032D756 /* ToolsUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsUtil.h; sourceTree = "<group>"; };
+		D986E5E927AC0EC30032D756 /* MfiBtPrinterConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MfiBtPrinterConnection.h; sourceTree = "<group>"; };
+		D986E5EA27AC0EC30032D756 /* MagCardReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagCardReader.h; sourceTree = "<group>"; };
+		D986E5EB27AC0EC30032D756 /* NetworkDiscoverer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkDiscoverer.h; sourceTree = "<group>"; };
+		D986E5EC27AC0EC30032D756 /* ZebraPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraPrinter.h; sourceTree = "<group>"; };
+		D986E5ED27AC0EC30032D756 /* FieldDescriptionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDescriptionData.h; sourceTree = "<group>"; };
+		D986E5EE27AC0EC30032D756 /* FileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtil.h; sourceTree = "<group>"; };
+		D986E5EF27AC0EC30032D756 /* ZebraPrinterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraPrinterFactory.h; sourceTree = "<group>"; };
+		D986E5F027AC0EC30032D756 /* PrinterStatusMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinterStatusMessages.h; sourceTree = "<group>"; };
+		D986E5F127AC0EC30032D756 /* ResponseValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseValidator.h; sourceTree = "<group>"; };
+		D986E5F227AC0EC30032D756 /* DiscoveredPrinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveredPrinter.h; sourceTree = "<group>"; };
+		D986E5F327AC0EC30032D756 /* ZebraPrinterConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraPrinterConnection.h; sourceTree = "<group>"; };
+		D986E5F427AC0EC30032D756 /* SGD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGD.h; sourceTree = "<group>"; };
+		D986E5F527AC0EC30032D756 /* DiscoveredPrinterNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveredPrinterNetwork.h; sourceTree = "<group>"; };
+		D986E5F627AC0EC30032D756 /* ZebraErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZebraErrorCode.h; sourceTree = "<group>"; };
+		D986E5F727AC0EC30032D756 /* PrinterStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinterStatus.h; sourceTree = "<group>"; };
+		D986E5F827AC0EC30032D756 /* FormatUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatUtil.h; sourceTree = "<group>"; };
+		D986E5F927AC0EC30032D756 /* TcpPrinterConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TcpPrinterConnection.h; sourceTree = "<group>"; };
+		D986E5FA27AC0EC30032D756 /* SmartCardReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartCardReader.h; sourceTree = "<group>"; };
+		D986E5FB27AC0EEC0032D756 /* libZSDK_API.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZSDK_API.a; sourceTree = "<group>"; };
+		D986E5FD27AC0FDF0032D756 /* RotaIOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RotaIOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		D991469026D68B620010E74F /* CancelVoucherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherViewController.swift; sourceTree = "<group>"; };
 		D991469126D68B620010E74F /* CancelVoucherViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelVoucherViewController.xib; sourceTree = "<group>"; };
 		D991469426D68CBF0010E74F /* CancelVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherView.swift; sourceTree = "<group>"; };
@@ -582,6 +608,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D986E5FC27AC0EEC0032D756 /* libZSDK_API.a in Frameworks */,
 				D6432FFC98E3295B3B0EFF45 /* Pods_RotaIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -846,8 +873,12 @@
 		BF44C8D42640008300238035 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				D986E5E527AC0EC30032D756 /* ZebraSDK */,
 				BF44C9C0264001F800238035 /* PresentationController.swift */,
 				BF44C90E2640010200238035 /* Defaults.swift */,
+				D986E5E227AC0DE80032D756 /* PrintManager.swift */,
+				D986E5FB27AC0EEC0032D756 /* libZSDK_API.a */,
+				D986E5FD27AC0FDF0032D756 /* RotaIOS-Bridging-Header.h */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1001,6 +1032,34 @@
 				43C18E4CD65C45303319D0CD /* Pods-RotaIOSTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D986E5E527AC0EC30032D756 /* ZebraSDK */ = {
+			isa = PBXGroup;
+			children = (
+				D986E5E627AC0EC30032D756 /* ZplPrintMode.h */,
+				D986E5E727AC0EC30032D756 /* GraphicsUtil.h */,
+				D986E5E827AC0EC30032D756 /* ToolsUtil.h */,
+				D986E5E927AC0EC30032D756 /* MfiBtPrinterConnection.h */,
+				D986E5EA27AC0EC30032D756 /* MagCardReader.h */,
+				D986E5EB27AC0EC30032D756 /* NetworkDiscoverer.h */,
+				D986E5EC27AC0EC30032D756 /* ZebraPrinter.h */,
+				D986E5ED27AC0EC30032D756 /* FieldDescriptionData.h */,
+				D986E5EE27AC0EC30032D756 /* FileUtil.h */,
+				D986E5EF27AC0EC30032D756 /* ZebraPrinterFactory.h */,
+				D986E5F027AC0EC30032D756 /* PrinterStatusMessages.h */,
+				D986E5F127AC0EC30032D756 /* ResponseValidator.h */,
+				D986E5F227AC0EC30032D756 /* DiscoveredPrinter.h */,
+				D986E5F327AC0EC30032D756 /* ZebraPrinterConnection.h */,
+				D986E5F427AC0EC30032D756 /* SGD.h */,
+				D986E5F527AC0EC30032D756 /* DiscoveredPrinterNetwork.h */,
+				D986E5F627AC0EC30032D756 /* ZebraErrorCode.h */,
+				D986E5F727AC0EC30032D756 /* PrinterStatus.h */,
+				D986E5F827AC0EC30032D756 /* FormatUtil.h */,
+				D986E5F927AC0EC30032D756 /* TcpPrinterConnection.h */,
+				D986E5FA27AC0EC30032D756 /* SmartCardReader.h */,
+			);
+			path = ZebraSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1381,6 +1440,7 @@
 				D968A88126BC24F3000FB00A /* GetTourSelectListResponseModel.swift in Sources */,
 				BF75706D26753C2E002EA494 /* BaseViewController.swift in Sources */,
 				D931575126FA2277000C91AD /* ZReportDetailView.swift in Sources */,
+				D986E5E327AC0DE80032D756 /* PrintManager.swift in Sources */,
 				BF44C92C2640015400238035 /* MainPageCustomView.swift in Sources */,
 				D93157712700AD55000C91AD /* ZReportLongClickMenu.swift in Sources */,
 				BF44C8FB264000F000238035 /* CreateTokenRequestModel.swift in Sources */,
@@ -1678,8 +1738,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RotaIOS/Util",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oti.rotaIosMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/Util/RotaIOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1700,8 +1765,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RotaIOS/Util",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.oti.rotaIosMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/yasindalkilic/Desktop/RotaiOS/RotaIOS/Util/RotaIOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -270,7 +270,7 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                 self.tempValue = changeValue
               
                    
-                    self.filteredArray = self.tempListofPaxes.filter{ !self.sendingListofPaxes.contains($0) }
+                    self.filteredArray = self.tempListofPaxes.filter{!self.sendingListofPaxes.contains($0)}
                     
                     print(filteredArray)
                     

@@ -72,10 +72,17 @@ class ExcursionViewController: UIViewController {
     var saveButtonTappet = false
     var extrasTotalPrice = 0.0
     var transfersTotalPrice = 0.0
+   
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+      /*  if printManager.isConnected {
+            printerConnectionStatus.text = "Connected"
+        } else {
+            printerConnectionStatus.text = "Not Connected"
+        } */
         self.viewFooterViewCustomView.isHidden = false
         self.hideKeyboardWhenTappedAround()
         userDefaultsData.saveHotelId(hotelId: 0)
@@ -1441,6 +1448,9 @@ extension ExcursionViewController : ExcAddCustomViewDelegate {
         }*/
     }
 }
+
+
+
 
 
 
