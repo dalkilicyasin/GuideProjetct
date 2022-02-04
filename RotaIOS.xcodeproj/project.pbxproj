@@ -10,7 +10,7 @@
 		128E9E1B2D339F9FC22925D9 /* Pods_RotaIOS_RotaIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3789029EF1E7A0F02957FE77 /* Pods_RotaIOS_RotaIOSUITests.framework */; };
 		BF44C87B263FF80000238035 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C87A263FF80000238035 /* AppDelegate.swift */; };
 		BF44C87F263FF80000238035 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C87E263FF80000238035 /* ViewController.swift */; };
-		BF44C884263FF80100238035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF44C883263FF80100238035 /* Assets.xcassets */; };
+		BF44C884263FF80100238035 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = BF44C883263FF80100238035 /* Contents.json */; };
 		BF44C887263FF80100238035 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF44C885263FF80100238035 /* LaunchScreen.storyboard */; };
 		BF44C892263FF80200238035 /* RotaIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C891263FF80200238035 /* RotaIOSTests.swift */; };
 		BF44C89D263FF80200238035 /* RotaIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C89C263FF80200238035 /* RotaIOSUITests.swift */; };
@@ -233,6 +233,7 @@
 		D97FB5BB26C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97FB5B926C6B5480099F28B /* MyShopingSalesDetailTableViewCell.xib */; };
 		D986E5E327AC0DE80032D756 /* PrintManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986E5E227AC0DE80032D756 /* PrintManager.swift */; };
 		D986E5FC27AC0EEC0032D756 /* libZSDK_API.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D986E5FB27AC0EEC0032D756 /* libZSDK_API.a */; };
+		D986E5FF27AD371B0032D756 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D986E5FE27AD371B0032D756 /* Assets.xcassets */; };
 		D991469226D68B620010E74F /* CancelVoucherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991469026D68B620010E74F /* CancelVoucherViewController.swift */; };
 		D991469326D68B620010E74F /* CancelVoucherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D991469126D68B620010E74F /* CancelVoucherViewController.xib */; };
 		D991469526D68CBF0010E74F /* CancelVoucherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991469426D68CBF0010E74F /* CancelVoucherView.swift */; };
@@ -308,7 +309,7 @@
 		BF44C877263FF80000238035 /* RotaIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RotaIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF44C87A263FF80000238035 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF44C87E263FF80000238035 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BF44C883263FF80100238035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF44C883263FF80100238035 /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Contents.json; path = Assets.xcassets/AppIcon.appiconset/Contents.json; sourceTree = "<group>"; };
 		BF44C886263FF80100238035 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF44C888263FF80100238035 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF44C88D263FF80200238035 /* RotaIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RotaIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -558,6 +559,7 @@
 		D986E5FA27AC0EC30032D756 /* SmartCardReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartCardReader.h; sourceTree = "<group>"; };
 		D986E5FB27AC0EEC0032D756 /* libZSDK_API.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZSDK_API.a; sourceTree = "<group>"; };
 		D986E5FD27AC0FDF0032D756 /* RotaIOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RotaIOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		D986E5FE27AD371B0032D756 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D991469026D68B620010E74F /* CancelVoucherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherViewController.swift; sourceTree = "<group>"; };
 		D991469126D68B620010E74F /* CancelVoucherViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CancelVoucherViewController.xib; sourceTree = "<group>"; };
 		D991469426D68CBF0010E74F /* CancelVoucherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelVoucherView.swift; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 		BF44C879263FF80000238035 /* RotaIOS */ = {
 			isa = PBXGroup;
 			children = (
+				D986E5FE27AD371B0032D756 /* Assets.xcassets */,
 				BFB977EC26B6F25400F0DD6D /* GoogleService-Info.plist */,
 				BF44C9132640011100238035 /* Cell */,
 				BF44C8DF264000D900238035 /* View */,
@@ -679,7 +682,7 @@
 				BF44C87A263FF80000238035 /* AppDelegate.swift */,
 				BF44C87E263FF80000238035 /* ViewController.swift */,
 				BF44C8DA264000C700238035 /* Main.storyboard */,
-				BF44C883263FF80100238035 /* Assets.xcassets */,
+				BF44C883263FF80100238035 /* Contents.json */,
 				BF44C885263FF80100238035 /* LaunchScreen.storyboard */,
 				BF44C888263FF80100238035 /* Info.plist */,
 			);
@@ -1197,7 +1200,7 @@
 				D97FB5B526C6ABC10099F28B /* MyShoppinSaleDetailViewController.xib in Resources */,
 				D991469326D68B620010E74F /* CancelVoucherViewController.xib in Resources */,
 				D97EE00F276ABFB700683E66 /* ExcProceedCustomView.xib in Resources */,
-				BF44C884263FF80100238035 /* Assets.xcassets in Resources */,
+				BF44C884263FF80100238035 /* Contents.json in Resources */,
 				BF44C984264001B000238035 /* MainTextCustomView.xib in Resources */,
 				BF44C9A6264001CE00238035 /* CheckBoxView.xib in Resources */,
 				D9FD64DD27355EFF009B6619 /* ZReportPreviewViewController.xib in Resources */,
@@ -1226,6 +1229,7 @@
 				D97E4F4E2760B4C70049648A /* ExcPaxCustomView.xib in Resources */,
 				D93F887326471C1100397283 /* TempTouristAddCustomView.xib in Resources */,
 				D95C203626F2010C007D1506 /* SpeakingHoursDetailViewController.xib in Resources */,
+				D986E5FF27AD371B0032D756 /* Assets.xcassets in Resources */,
 				D97FB58326C00F2D0099F28B /* MyTourStatusTableViewCell.xib in Resources */,
 				D93F8895264B072200397283 /* AddManuelTouristCustomView.xib in Resources */,
 				BF44C98B264001B900238035 /* HotelPageCustomView.xib in Resources */,
@@ -1730,7 +1734,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.1;
+				CURRENT_PROJECT_VERSION = 6.2;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1757,7 +1761,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6.1;
+				CURRENT_PROJECT_VERSION = 6.2;
 				DEVELOPMENT_TEAM = X9CFQGNH8N;
 				INFOPLIST_FILE = RotaIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

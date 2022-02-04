@@ -42,9 +42,28 @@ public class Defaults{
         case ExchangeRates
         case OfflineHotelId
         case OfflineMarketId
+        case printString
     }
     
    public init(){}
+    
+    // Printer String
+    public func savePrintString(id:String){
+        let preferences = UserDefaults.standard
+        preferences.set( id , forKey:getIdentifier(type: .printString))
+        preferences.synchronize()
+    }
+    
+    public func getPrintString() -> String! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .printString)) == nil {
+            return nil
+        }
+        let data:String = preferences.value(forKey: getIdentifier(type: .printString)) as! String
+        return data
+    }
+    
+    
     public func saveDay(day:Int){
         let preferences = UserDefaults.standard
         let currentLanguageKey = getIdentifier(type: .SaveDay)
@@ -660,6 +679,8 @@ public class Defaults{
             return "OfflineHotelId"
         case .OfflineMarketId:
             return "OfflineMarketId"
+        case .printString:
+            return "printString"
         }
     }
 }

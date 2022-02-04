@@ -72,9 +72,9 @@ class ExcursionViewController: UIViewController {
     var saveButtonTappet = false
     var extrasTotalPrice = 0.0
     var transfersTotalPrice = 0.0
+    var savedExtrasList : [Extras] = []
+    var savedTransFerList : [Transfers] = []
    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -227,6 +227,8 @@ class ExcursionViewController: UIViewController {
 extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappedDelegate, SaveButtonTappedDelegate {
     func totalPrice(isSaveButtonTapped: Bool?) {
         if isSaveButtonTapped == true {
+            userDefaultsData.saveExtrasList(tour: self.savedExtrasList)
+            userDefaultsData.saveTransfersList(tour: self.savedTransFerList)
             self.saveButtonTappet = true
             userDefaultsData.saveExtrasandTransfersTotalPrice(totalPrice: self.extraAndTransTotalPrice)
         }
@@ -458,6 +460,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewExcSelectCustomView?.excSelectDelegate = self
             if self.viewExcAddCustomView == nil || self.isTourChange == true || self.isPAxesListChange == true{
                 if self.isTourChange == true {
+                    self.voucherList = []
                     //Max Voucher
                     // Create VOucher
                     var shortyear = ""
@@ -470,8 +473,40 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     let hour = Calendar.current.component(.hour, from: Date())
                     let minute = Calendar.current.component(.minute, from: Date())
                     
-                    let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+                    var convertDay = ""
+                    var convertMonth = ""
+                    var convertHour = ""
+                    var convertMinute = ""
+                    
+                   // let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+                   // print(mergeDate)
+                    if month < 10 {
+                        convertMonth = String("0\(month)")
+                    }else{
+                        convertMonth = String(month)
+                    }
+                    
+                    if day < 10 {
+                        convertDay = String("0\(day)")
+                    }else{
+                        convertDay = String(day)
+                    }
+                    
+                    if hour < 10 {
+                        convertHour = String("0\(hour)")
+                    }else{
+                        convertHour = String(hour)
+                    }
+                    
+                    if minute < 10 {
+                        convertMinute = String("0\(minute)")
+                    }else {
+                        convertMinute = String(minute)
+                    }
+                    
+                    let mergeDate = "\(convertMonth)\(convertDay)\(convertHour)\(convertMinute)"
                     print(mergeDate)
+                    
                     
                     let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
                     
@@ -713,7 +748,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         for i in 0...self.promotionTourList.count - 1 {
                             self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
                         }
-                        self.viewExcProceedCustomView?.discount = self.discount
+                        self.viewExcProceedCustomView?.promotionDiscount = self.discount
                         self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
                         self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice )
                         self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
@@ -724,6 +759,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
                         // self.viewExcProceedCustomView?.voucherNo = self.voucherList
                         self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
+                        self.viewExcProceedCustomView?.promotionId = self.viewExcSearchCustomView?.promotionid ?? 0
                     }else {
                         print("error")
                     }
@@ -998,6 +1034,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             if self.viewExcAddCustomView == nil || self.isTourChange == true || self.isPAxesListChange == true{
                 if self.isTourChange == true {
+                    self.voucherList = []
                     // Create VOucher
                     var shortyear = ""
                     let year =  Calendar.current.component(.year, from: Date())
@@ -1009,7 +1046,40 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     let hour = Calendar.current.component(.hour, from: Date())
                     let minute = Calendar.current.component(.minute, from: Date())
                     
-                    let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+//                    let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+//                    print(mergeDate)
+                    var convertDay = ""
+                    var convertMonth = ""
+                    var convertHour = ""
+                    var convertMinute = ""
+                    
+                   // let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+                   // print(mergeDate)
+                    if month < 10 {
+                        convertMonth = String("0\(month)")
+                    }else{
+                        convertMonth = String(month)
+                    }
+                    
+                    if day < 10 {
+                        convertDay = String("0\(day)")
+                    }else{
+                        convertDay = String(day)
+                    }
+                    
+                    if hour < 10 {
+                        convertHour = String("0\(hour)")
+                    }else{
+                        convertHour = String(hour)
+                    }
+                    
+                    if minute < 10 {
+                        convertMinute = String("0\(minute)")
+                    }else {
+                        convertMinute = String(minute)
+                    }
+                    
+                    let mergeDate = "\(convertMonth)\(convertDay)\(convertHour)\(convertMinute)"
                     print(mergeDate)
                     // dikkatt her tur için ayrı voucher no oluşturulacak
                     let getMaxVoucherRequestModel = GetMaxGuideVoucherNumberRequestModel(guideId: userDefaultsData.getGuideId(), saleDate: userDefaultsData.getSaleDate())
@@ -1244,7 +1314,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         for i in 0...self.promotionTourList.count - 1 {
                             self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
                         }
-                        self.viewExcProceedCustomView?.discount = self.discount
+                        self.viewExcProceedCustomView?.promotionDiscount = self.discount
                         self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
                         self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
                         self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
@@ -1254,6 +1324,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
                         self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
                         self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
+                        self.viewExcProceedCustomView?.promotionId = self.viewExcSearchCustomView?.promotionid ?? 0
         
                     }else {
                         print("error")
@@ -1429,10 +1500,12 @@ extension ExcursionViewController : ExcPaxPageDelegate {
 }
 
 extension ExcursionViewController : ExcAddCustomViewDelegate {
-    func excurAddCustomDelegate(changeTransferNumber: Int, changeExtraNumber: Int, extrasTotalPrice: Double, transfersTotalPrice: Double, extraButtonTapped: Bool) {
+    func excurAddCustomDelegate(changeTransferNumber: Int, changeExtraNumber: Int, extrasTotalPrice: Double, transfersTotalPrice: Double, extraButtonTapped: Bool, savedExtrasList: [Extras], savedTransferList: [Transfers]) {
         self.changeExcNumber = changeExtraNumber
         self.changeTransferNumber = changeTransferNumber
         if extraButtonTapped == true {
+            self.savedExtrasList = savedExtrasList
+            self.savedTransFerList = savedTransferList
             self.viewFooterViewCustomView.labelAmount.text = String(extrasTotalPrice)
         }else{
             self.viewFooterViewCustomView.labelAmount.text = String(transfersTotalPrice)

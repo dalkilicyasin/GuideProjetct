@@ -102,7 +102,32 @@ class ExcSearchCustomView : UIView {
         self.createbeginDatePicker()
         self.createEndDatePicker()
         
-      
+        // put one week to begin date
+        let formatterBeginDate = DateFormatter()
+        formatterBeginDate.dateStyle = .medium
+        formatterBeginDate.timeStyle = .none
+        formatterBeginDate.dateFormat = "MM-dd-yyyy"
+        print(formatterBeginDate.string(from: self.beginDatePicker.date))
+        self.beginDateString = formatterBeginDate.string(from: self.beginDatePicker.date)
+        formatterBeginDate.dateFormat = "dd-MM-yyyy"
+        self.viewTourBeginDate.mainText.text = "\(formatterBeginDate.string(from: self.beginDatePicker.date))"
+        
+        // put one week to end date
+        
+        let calendar = Calendar.current
+        let addOneWeekToCurrentDate = calendar.date(byAdding: .weekOfYear, value: 1, to: Date())
+        
+        let formatterEndDate = DateFormatter()
+        formatterEndDate.dateStyle = .medium
+        formatterEndDate.timeStyle = .none
+        formatterEndDate.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatterEndDate.dateFormat = "MM-dd-yyyy"
+        print(formatterEndDate.string(from: addOneWeekToCurrentDate!))
+        self.endDateString = formatterEndDate.string(from:  addOneWeekToCurrentDate!)
+        formatterEndDate.dateFormat = "dd-MM-yyyy"
+        self.viewTourEndDate.mainText.text = "\(formatterEndDate.string(from:  addOneWeekToCurrentDate!))"
+        ///
+        ///
         if Connectivity.isConnectedToInternet {
              print("Connected")
             if userDefaultsData.getTourSalePost()?.count ?? 0 > 0 {

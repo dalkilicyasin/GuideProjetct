@@ -32,10 +32,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
-    <key>UISupportedExternalAccessoryProtocols</key>
-        <array>
-            <string>com.zebra.rawport</string>
-        </array>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>com.zebra.rawport</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
