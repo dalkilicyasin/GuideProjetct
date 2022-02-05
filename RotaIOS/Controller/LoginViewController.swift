@@ -13,6 +13,7 @@ final class LoginViewController : BaseViewController {
     @IBOutlet var viewLogin: LoginView!
     var userName = ""
     var password = ""
+    var userNAmeList : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,8 @@ final class LoginViewController : BaseViewController {
         self.password = self.viewLogin.textPassword.text ?? ""
         userDefaultsData.savePassword(id: self.password)
         userDefaultsData.saveUserName(id: self.userName)
+        self.userNAmeList.append(self.userName)
+        userDefaultsData.saveUserNameList(nameList: self.userNAmeList )
         if Connectivity.isConnectedToInternet {
             print("connect")
             let createTokenRequestModel = CreateTokenRequestModel.init()

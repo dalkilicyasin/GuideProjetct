@@ -71,9 +71,11 @@ class ExcursionViewController: UIViewController {
     var offlineTourList : [GetSearchTourResponseModel] = []
     var saveButtonTappet = false
     var extrasTotalPrice = 0.0
+    var savedExtrasTotalPrice = 0.0
     var transfersTotalPrice = 0.0
     var savedExtrasList : [Extras] = []
     var savedTransFerList : [Transfers] = []
+    var totalPriceBeforExtrasandTransfersAded = 0.0
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -684,7 +686,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         self.totalPrice += self.perTourTotalPrice
                         self.paxTotalAmount = self.perTourTotalPrice
                         self.tourAmount = self.perTourTotalPrice
-                        
+                        self.totalPriceBeforExtrasandTransfersAded = self.totalPrice
                         self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.perTourTotalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
                     }
                     self.tourListSaved.removeAll()
@@ -699,7 +701,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 // self.hotelPageCustomView?.isHidden = true
                 // self.proceedPageCustomView?.isHidden = true
             }
-            self.showToast(message: "\(self.totalPrice)")
+            self.showToast(message: "\(self.totalPriceBeforExtrasandTransfersAded)")
             
         }else if tapped == 3 {
             
@@ -734,7 +736,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil || self.saveButtonTappet == true{
                 
-                self.totalPrice = self.totalPrice + userDefaultsData.getExtrasandTransfersTotalPrice()
+                self.totalPrice = self.totalPriceBeforExtrasandTransfersAded + userDefaultsData.getExtrasandTransfersTotalPrice()
                 
                 // TourPromotionDiscount service
                 let tourPromotionPostRequestModel = TourPromotionPost(PromotionDiscount: 0, PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0, tours: self.tours)
@@ -1254,7 +1256,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         self.totalPrice += self.perTourTotalPrice
                         self.paxTotalAmount = self.perTourTotalPrice
                         self.tourAmount = self.perTourTotalPrice
-                        
+                        self.totalPriceBeforExtrasandTransfersAded = self.totalPrice
                         self.tours.append(TourRequestModel(Adl: adultCount, AdultAmount: self.tourListSaved[i].adultPrice ?? 0.00, Chd: childCount, ChildAmount: self.tourListSaved[i].childPrice ?? 0.0, Inf: infantCount, InfantAmount: self.tourListSaved[i].infantPrice ?? 0.0, PaxTotalAmount: self.paxTotalAmount, PlanId: self.tourListSaved[i].planId ?? 0, PriceType: self.tourListSaved[i].priceType ?? 0, PromotionDiscount: 0.0, Tdl: toodleCount, ToodleAmount: self.tourListSaved[i].toodlePrice ?? 0.0, TotalAmount: self.perTourTotalPrice, TourAmount: self.tourAmount, TourDate: self.tourListSaved[i].tourDate ?? "", TourId: self.tourListSaved[i].tourId ?? 0))
                     }
                     self.tourListSaved.removeAll()
@@ -1270,7 +1272,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 // self.proceedPageCustomView?.isHidden = true
             }
             
-            self.showToast(message: "\(self.totalPrice)")
+            self.showToast(message: "\(self.totalPriceBeforExtrasandTransfersAded)")
         }else if ischosen == 3 {
             self.viewFooterViewCustomView.isHidden = true
            // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
@@ -1304,7 +1306,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil || self.saveButtonTappet == true{
                 
-                self.totalPrice = self.totalPrice + userDefaultsData.getExtrasandTransfersTotalPrice()
+                self.totalPrice = self.totalPriceBeforExtrasandTransfersAded + userDefaultsData.getExtrasandTransfersTotalPrice()
                 // TourPromotionDiscount service
                 let tourPromotionPostRequestModel = TourPromotionPost(PromotionDiscount: 0, PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0, tours: self.tours)
                 
@@ -1504,13 +1506,16 @@ extension ExcursionViewController : ExcPaxPageDelegate {
 }
 
 extension ExcursionViewController : ExcAddCustomViewDelegate {
-    func excurAddCustomDelegate(changeTransferNumber: Int, changeExtraNumber: Int, extrasTotalPrice: Double, transfersTotalPrice: Double, extraButtonTapped: Bool, savedExtrasList: [Extras], savedTransferList: [Transfers]) {
+  
+    func excurAddCustomDelegate(changeTransferNumber: Int, changeExtraNumber: Int, extrasTotalPrice: Double, transfersTotalPrice: Double, extraButtonTapped: Bool, savedExtrasList: [Extras], savedTransferList: [Transfers], currentExtrasTotalPrice: Double, currentTransfersTotalPirce: Double) {
+        self.extraAndTransTotalPrice = 0.0
         self.changeExcNumber = changeExtraNumber
         self.changeTransferNumber = changeTransferNumber
+        self.savedExtrasTotalPrice = extrasTotalPrice
         if extraButtonTapped == true {
             self.savedExtrasList = savedExtrasList
             self.savedTransFerList = savedTransferList
-            self.viewFooterViewCustomView.labelAmount.text = String(extrasTotalPrice)
+            self.viewFooterViewCustomView.labelAmount.text = String(self.savedExtrasTotalPrice)
         }else{
             self.viewFooterViewCustomView.labelAmount.text = String(transfersTotalPrice)
         }

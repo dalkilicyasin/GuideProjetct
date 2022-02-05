@@ -43,9 +43,26 @@ public class Defaults{
         case OfflineHotelId
         case OfflineMarketId
         case printString
+        case UserNameList
     }
     
    public init(){}
+    //LoginList
+    public func saveUserNameList(nameList:[String]){
+        let preferences = UserDefaults.standard
+        let currentLanguageKey = getIdentifier(type: .UserNameList)
+        preferences.set(nameList, forKey: currentLanguageKey)
+        preferences.synchronize()
+    }
+    
+    public func getUserNameList() -> [String]! {
+        let preferences = UserDefaults.standard
+        if preferences.object(forKey: getIdentifier(type: .UserNameList)) == nil {
+            return nil
+        }
+        let data:[String] = preferences.value(forKey: getIdentifier(type: .UserNameList)) as! [String]
+        return data
+    }
     
     // Printer String
     public func savePrintString(id:String){
@@ -681,6 +698,8 @@ public class Defaults{
             return "OfflineMarketId"
         case .printString:
             return "printString"
+        case .UserNameList:
+            return "UserNameList"
         }
     }
 }
