@@ -321,7 +321,7 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                             $0.placeholder = "Pick Up Time"
                             $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
                         }
-                        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                       // alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                         let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
                             guard let flatamount = alert.textFields?[0].text
                                     
@@ -366,7 +366,7 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                         $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
                      
                     }
-                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                   // alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                   
                     let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
                         guard let flatamount = alert.textFields?[0].text

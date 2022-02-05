@@ -15,7 +15,7 @@ class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
     var ID : Int?
     var value : Int?
     var text : String?
-    var resNo : String?
+    var ResNo : String?
     var ageGroup : String?
     var marketId : Int?
     var mrkGrp : Int?
@@ -51,7 +51,7 @@ class GetInHoseListResponseModel : Mappable, Decodable, Encodable {
         ID <- map["ID"]
         value <- map["Value"]
         text <- map["Text"]
-        resNo <- map["resNo"]
+        ResNo <- map["ResNo"]
         ageGroup <- map["AgeGroup"]
         marketId <- map["MarketId"]
         mrkGrp <- map["mrkGrp"]

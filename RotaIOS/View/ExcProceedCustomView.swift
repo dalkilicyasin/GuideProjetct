@@ -122,7 +122,7 @@ class ExcProceedCustomView: UIView{
         self.transfers = userDefaultsData.getTransfersList() ?? self.transfers
         
        
-        self.voucherNo = userDefaultsData.getMaxVoucher()
+        self.voucherNo = userDefaultsData.getMaxVoucher() ?? self.voucherNo
         self.buttonSend.isEnabled = true
         
         self.buttonPrintVoucher.backgroundColor = UIColor.clear

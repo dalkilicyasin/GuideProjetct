@@ -200,7 +200,7 @@ class ExcAddCustomView : UIView {
     
     func extrapriceReduceCalculation( _ extrasSavePaxesList : [GetInHoseListResponseModel] ){
         self.saveExtrasPaxesList = extrasSavePaxesList
-            self.extrasTotalPrice = 0.00
+           // self.extrasTotalPrice = 0.00
             if self.saveExtrasList.count > 0 && extrasSavePaxesList.count > 0 {
                 for i in 0...self.saveExtrasList.count - 1{
                     // Per Person Price calculation
@@ -229,7 +229,7 @@ class ExcAddCustomView : UIView {
     
     func extrapriceAddCalculation( _ extrasSavePaxesList : [GetInHoseListResponseModel] ){
         self.saveExtrasPaxesList = extrasSavePaxesList
-            self.extrasTotalPrice = 0.00
+           // self.extrasTotalPrice = 0.00
             if self.saveExtrasList.count > 0 && extrasSavePaxesList.count > 0 {
                 for i in 0...self.saveExtrasList.count - 1{
                     // Per Person Price calculation

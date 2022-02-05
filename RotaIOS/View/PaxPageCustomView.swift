@@ -289,7 +289,7 @@ extension PaxPageCustomView : PaxPageTableViewCellDelegate {
             if self.filteredPaxesList.count > 0 {
                 for listarray in self.filteredPaxesList {
                     touristId.append(listarray.value ?? 0)
-                    resNo.append(listarray.resNo ?? "")
+                    resNo.append(listarray.ResNo ?? "")
                 }
                 self.getInTouristInfoRequestModelList.removeAll()
                 
@@ -356,7 +356,7 @@ extension PaxPageCustomView : PaxPageTableViewCellDelegate {
             if self.filteredPaxesList.count > 0 {
                 for listarray in self.filteredPaxesList {
                     touristId.append(listarray.value ?? 0)
-                    resNo.append(listarray.resNo ?? "")
+                    resNo.append(listarray.ResNo ?? "")
                 }
                 getInTouristInfoRequestModelList.removeAll()
                 for i in 0...filteredPaxesList.count - 1 {

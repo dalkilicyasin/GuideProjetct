@@ -133,7 +133,7 @@ class ExcPaxCustomView : UIView {
                 // your code here, get the row for the indexPath or do whatever you want
                 print("longpressed")
                 
-                let filter = self.paxesList.filter{$0.resNo == self.paxesList[indexPath.row].resNo}
+                let filter = self.paxesList.filter{$0.ResNo == self.paxesList[indexPath.row].ResNo}
                 print(filter)
                 if filter.count > 0 {
                     self.paxesList = filter
@@ -476,7 +476,7 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             
            //
             if Connectivity.isConnectedToInternet == true {
-                let getInTouristInfoRequestModelList = GetTouristInfoRequestModel(touristId: filter[0].ID ?? 0, resNo: filter[0].resNo ?? "")
+                let getInTouristInfoRequestModelList = GetTouristInfoRequestModel(touristId: filter[0].ID ?? 0, resNo: filter[0].ResNo ?? "")
                 
                 NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetTouristInfo, method: .get, parameters: getInTouristInfoRequestModelList.requestPathString() ) { (response : [GetTouristInfoResponseModel] ) in
                     if response.count > 0 {

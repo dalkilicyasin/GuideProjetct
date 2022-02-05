@@ -277,10 +277,11 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.constraintOnSelectfunc()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.printButton.isHidden = true
-            if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true {
+            
             let getTourSearchRequestModel = GetTourSearchRequestModel.init(Guide: userDefaultsData.getGuideId(), Market: userDefaultsData.getMarketId(), Hotel: userDefaultsData.getHotelId(), Area: userDefaultsData.getHotelArea(), TourDateStart: self.viewExcSearchCustomView?.beginDateString ??  "", TourDateEnd: self.viewExcSearchCustomView?.endDateString ?? "", SaleDate: userDefaultsData.getSaleDate(), PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0)
             
             if  self.isConnectedInternet == true {
+                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
                 if self.viewExcSearchCustomView?.promotionid == 0 {
                     NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
                         if response.count > 0 {
@@ -313,11 +314,10 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }else {
                     NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : GetSearchTourPromotionResponseModel) in
                         if response.Havuz1?.count ?? 0 > 0 {
+                         //   print(self.tourList[0])
                             self.tourList = response.Havuz1 ?? self.tourList
-                            
-                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
-                            
                             self.viewExcSelectCustomView?.excursionList = self.tourList
+                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
                             
                             NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
                                 if response.count > 0 {
@@ -329,7 +329,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                                     print("data has not recived")
                                 }
                             }
-                            self.viewExcSelectCustomView?.excursionList = self.tourList
+                          
                             for index in 0...self.tourList.count - 1 {
                                 self.viewExcSelectCustomView?.excursionList[index].isTapped = false
                                 self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
@@ -354,21 +354,58 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 ///
                 // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
                 self.viewExcSearchCustomView?.excurSearchDelegate = self
-           
                     userDefaultsData.saveTourList(tour: [])
                     userDefaultsData.savePaxesList(tour: [])
-                    //  self.lastUIView.removeFromSuperview()
-                    //  self.animatedCustomView(customView: PaxPageCustomView())
                     self.viewExcSearchCustomView?.isHidden = true
                     self.viewExcAddCustomView?.isHidden = true
                     self.viewExcProceedCustomView?.isHidden = true
+                    //  self.lastUIView.removeFromSuperview()
+                    //  self.animatedCustomView(customView: PaxPageCustomView())
                     // self.hotelPageCustomView?.isHidden = true
                     // self.proceedPageCustomView?.isHidden = true
                     // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
                     UIView.animate(withDuration: 0, animations: { [self] in
                         self.viewExcSelectCustomView = ExcSelectCustomView()
                         self.viewExcSelectCustomView?.excSelectDelegate = self
-                        
+                        self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
+                        self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
+                    }, completion: { (finished) in
+                        if finished{
+                            
+                        }
+                    })
+                    /* userDefaultsData.saveHotelId(hotelId: 0)
+                     userDefaultsData.saveMarketId(marketId: 0)
+                     userDefaultsData.saveHotelArea(hotelAreaId: 0)*/
+                    // self.lastUIView = self.paxPageCustomView!
+                    self.isHotelorMarketChanged = false
+                }else {
+                    self.viewExcSelectCustomView?.isHidden = false
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                }
+                ////
+            }else{
+                ///
+                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
+                self.viewExcSearchCustomView?.excurSearchDelegate = self
+               
+                    userDefaultsData.saveTourList(tour: [])
+                    userDefaultsData.savePaxesList(tour: [])
+                    self.viewExcSearchCustomView?.isHidden = true
+                    self.viewExcAddCustomView?.isHidden = true
+                    self.viewExcProceedCustomView?.isHidden = true
+                    //  self.lastUIView.removeFromSuperview()
+                    //  self.animatedCustomView(customView: PaxPageCustomView())
+                    // self.hotelPageCustomView?.isHidden = true
+                    // self.proceedPageCustomView?.isHidden = true
+                    // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                    UIView.animate(withDuration: 0, animations: { [self] in
+                        self.viewExcSelectCustomView = ExcSelectCustomView()
+                        self.viewExcSelectCustomView?.excSelectDelegate = self
                         self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
                         self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
                     }, completion: { (finished) in
@@ -378,9 +415,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     })
                     // self.lastUIView = self.paxPageCustomView!
                     self.isHotelorMarketChanged = false
-                    /* userDefaultsData.saveHotelId(hotelId: 0)
-                     userDefaultsData.saveMarketId(marketId: 0)
-                     userDefaultsData.saveHotelArea(hotelAreaId: 0)*/
                 }else {
                     self.viewExcSelectCustomView?.isHidden = false
                     self.viewExcSearchCustomView?.isHidden = true
@@ -390,45 +424,13 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     // self.proceedPageCustomView?.isHidden = true
                 }
                 ///
-            }else{
-                // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-                self.viewExcSearchCustomView?.excurSearchDelegate = self
-                if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
-                    userDefaultsData.saveTourList(tour: [])
-                    userDefaultsData.savePaxesList(tour: [])
-                    //  self.lastUIView.removeFromSuperview()
-                    //  self.animatedCustomView(customView: PaxPageCustomView())
-                    self.viewExcSearchCustomView?.isHidden = true
-                    self.viewExcAddCustomView?.isHidden = true
-                    self.viewExcProceedCustomView?.isHidden = true
-                    // self.hotelPageCustomView?.isHidden = true
-                    // self.proceedPageCustomView?.isHidden = true
-                    // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-                    UIView.animate(withDuration: 0, animations: { [self] in
-                        self.viewExcSelectCustomView = ExcSelectCustomView()
-                        self.viewExcSelectCustomView?.excSelectDelegate = self
-                        
-                        self.viewExcursionView.viewContentView.addSubview(viewExcSelectCustomView!)
-                        self.viewExcSelectCustomView!.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.viewExcursionView.viewContentView.frame.size.height)
-                    }, completion: { (finished) in
-                        if finished{
-                            
-                        }
-                    })
-                    // self.lastUIView = self.paxPageCustomView!
-                    self.isHotelorMarketChanged = false
-                }else {
-                    self.viewExcSelectCustomView?.isHidden = false
-                    self.viewExcSearchCustomView?.isHidden = true
-                    self.viewExcAddCustomView?.isHidden = true
-                    self.viewExcProceedCustomView?.isHidden = true
-                    // self.hotelPageCustomView?.isHidden = true
-                    // self.proceedPageCustomView?.isHidden = true
-                }
+                
                 self.tourList = userDefaultsData.getSearchTourOffline() ?? self.tourList
-                for index in 0...self.tourList.count - 1 {
-                    self.viewExcSelectCustomView?.excursionList[index].isTapped = false
-                    self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                if self.tourList.count > 0 {
+                    for index in 0...self.tourList.count - 1 {
+                        self.viewExcSelectCustomView?.excursionList[index].isTapped = false
+                        self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                    }
                 }
                 self.viewExcSelectCustomView?.tableView.reloadData()
             }
@@ -738,33 +740,33 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 let tourPromotionPostRequestModel = TourPromotionPost(PromotionDiscount: 0, PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0, tours: self.tours)
                 
                 self.data = "\(tourPromotionPostRequestModel.toJSONString(prettyPrint: true) ?? "")"
-                
-                let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
-                NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
-                    if response.isSuccesful == true && response.record?.tours?.count ?? 0 > 0 {
-                        print(response)
-                        
-                        self.promotionTourList = response.record?.tours ?? self.promotionTourList
-                        for i in 0...self.promotionTourList.count - 1 {
-                            self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
+                if self.isConnectedInternet == true {
+                    let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
+                    NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
+                        if response.isSuccesful == true && response.record?.tours?.count ?? 0 > 0 {
+                            print(response)
+                            
+                            self.promotionTourList = response.record?.tours ?? self.promotionTourList
+                            for i in 0...self.promotionTourList.count - 1 {
+                                self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
+                            }
+                            self.viewExcProceedCustomView?.promotionDiscount = self.discount
+                            self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
+                            self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice )
+                            self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
+                            self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
+                            self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
+                            self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                            self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
+                            self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
+                            // self.viewExcProceedCustomView?.voucherNo = self.voucherList
+                            self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
+                            self.viewExcProceedCustomView?.promotionId = self.viewExcSearchCustomView?.promotionid ?? 0
+                        }else {
+                            print("error")
                         }
-                        self.viewExcProceedCustomView?.promotionDiscount = self.discount
-                        self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
-                        self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice )
-                        self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
-                        self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
-                        self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
-                        self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
-                        self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
-                        self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
-                        // self.viewExcProceedCustomView?.voucherNo = self.voucherList
-                        self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
-                        self.viewExcProceedCustomView?.promotionId = self.viewExcSearchCustomView?.promotionid ?? 0
-                    }else {
-                        print("error")
                     }
                 }
-                
                 ///
                 self.viewExcAddCustomView?.isHidden = true
                 self.viewExcSelectCustomView?.isHidden = true
@@ -997,9 +999,11 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 ///
                 
                 self.tourList = userDefaultsData.getSearchTourOffline() ?? self.tourList
-                for index in 0...self.tourList.count - 1 {
-                    self.viewExcSelectCustomView?.excursionList[index].isTapped = false
-                    self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                if self.tourList.count > 0 {
+                    for index in 0...self.tourList.count - 1 {
+                        self.viewExcSelectCustomView?.excursionList[index].isTapped = false
+                        self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                    }
                 }
                 self.viewExcSelectCustomView?.tableView.reloadData()
             }
@@ -1305,32 +1309,32 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 let tourPromotionPostRequestModel = TourPromotionPost(PromotionDiscount: 0, PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0, tours: self.tours)
                 
                 self.data = "\(tourPromotionPostRequestModel.toJSONString(prettyPrint: true) ?? "")"
-                
-                let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
-                NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
-                    if response.isSuccesful == true {
-                        print(response)
-                        self.promotionTourList = response.record?.tours ?? self.promotionTourList
-                        for i in 0...self.promotionTourList.count - 1 {
-                            self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
-                        }
-                        self.viewExcProceedCustomView?.promotionDiscount = self.discount
-                        self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
-                        self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
-                        self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
-                        self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
-                        self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
-                        self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
-                        self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
-                        self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
-                        self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
-                        self.viewExcProceedCustomView?.promotionId = self.viewExcSearchCustomView?.promotionid ?? 0
-        
-                    }else {
-                        print("error")
-                    }
+              if self.isConnectedInternet == true {
+                  let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
+                  NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
+                      if response.isSuccesful == true {
+                          print(response)
+                          self.promotionTourList = response.record?.tours ?? self.promotionTourList
+                          for i in 0...self.promotionTourList.count - 1 {
+                              self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
+                          }
+                          self.viewExcProceedCustomView?.promotionDiscount = self.discount
+                          self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
+                          self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
+                          self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
+                          self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
+                          self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
+                          self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
+                          self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                          self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
+                          self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
+                          self.viewExcProceedCustomView?.promotionId = self.viewExcSearchCustomView?.promotionid ?? 0
+          
+                      }else {
+                          print("error")
+                      }
+                  }
                 }
-                
                 ///
                 self.viewExcAddCustomView?.isHidden = true
                 self.viewExcSelectCustomView?.isHidden = true
