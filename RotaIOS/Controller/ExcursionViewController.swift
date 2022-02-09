@@ -734,7 +734,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }
             }
             
-            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil || self.saveButtonTappet == true{
+            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil || self.saveButtonTappet == true || self.isPAxesListChange == true{
                 
                 self.totalPrice = self.totalPriceBeforExtrasandTransfersAded + userDefaultsData.getExtrasandTransfersTotalPrice()
                 
@@ -1304,7 +1304,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 }
             }
             
-            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil || self.saveButtonTappet == true{
+            if self.isExcOrTransChange == true || self.viewExcProceedCustomView == nil || self.saveButtonTappet == true || self.isPAxesListChange == true{
                 
                 self.totalPrice = self.totalPriceBeforExtrasandTransfersAded + userDefaultsData.getExtrasandTransfersTotalPrice()
                 // TourPromotionDiscount service

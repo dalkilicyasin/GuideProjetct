@@ -44,9 +44,31 @@ public class Defaults{
         case OfflineMarketId
         case printString
         case UserNameList
+        case HotelList
     }
     
    public init(){}
+    // CurrencyList
+    func saveHotelList(hotelList:[GetHotelsMobileResponseModel]){
+        let preferences = UserDefaults.standard
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(hotelList){
+            preferences.set(encoded, forKey: getIdentifier(type: .HotelList))
+            preferences.synchronize()
+        }
+    }
+    
+    func getHotelList() -> [GetHotelsMobileResponseModel]? {
+        let preferences = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedTourList = preferences.object(forKey: getIdentifier(type: .HotelList)) as? Data {
+            if let loadedTourList = try? decoder.decode([GetHotelsMobileResponseModel].self, from: savedTourList){
+                return loadedTourList
+            }
+        }
+        return []
+    }
+    
     //LoginList
     public func saveUserNameList(nameList:[String]){
         let preferences = UserDefaults.standard
@@ -700,6 +722,8 @@ public class Defaults{
             return "printString"
         case .UserNameList:
             return "UserNameList"
+        case .HotelList:
+            return "HotelList"
         }
     }
 }

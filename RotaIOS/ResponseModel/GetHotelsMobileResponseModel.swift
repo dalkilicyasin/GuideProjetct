@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-struct GetHotelsMobileResponseModel : Mappable {
+struct GetHotelsMobileResponseModel : Mappable, Decodable, Encodable {
     var id : String?
     var guideHotel : Int?
     var value : Int?

@@ -286,7 +286,7 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                     for i in 0...self.filteredArray.count - 1 {
                         lastIndex += i
                         if let birtdate =  self.filteredArray[i].pAX_BIRTHDAY {
-                            let year = Int(birtdate.suffix(4))
+                            let year = Int(birtdate.prefix(4))
                             self.manuelPaxAge = currentYear - (year ?? 0)
                             if self.manuelPaxAge >= 0 &&  self.manuelPaxAge < 2 {
                                 self.manuelPaxAgeGroup = "INF"

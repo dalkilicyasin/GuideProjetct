@@ -162,6 +162,7 @@ class ExcSearchCustomView : UIView {
                 if response.count > 0 {
                     //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
                     self.hotelList = response
+                    userDefaultsData.saveHotelList(hotelList: self.hotelList)
                     self.tempHotelMenu.removeAll()
                     let filtered = response.filter({return ($0.guideHotel != 0)})
                     print("\(filtered)")
