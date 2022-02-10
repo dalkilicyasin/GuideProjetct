@@ -20,13 +20,11 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
     var message = ""
     var paymenTypeList : [String] = ["CASH","CARD"]
     var paymentType = ""
+    var cancelationFeeAmount = 0.0
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
-        
         let cancalRulesRequestModel = GetCancelRulesRequestModel.init(saleId: voucherDetailInCancelVoucherDetailPage?.saleId ?? 0)
         NetworkManager.sendGetRequestArray(url: NetworkManager.BASEURL, endPoint:.GetMobilCancelRules , method: .get, parameters: cancalRulesRequestModel.requestPathString()) { (response : [GetCancelRulesResponseModel]) in
             if response.count > 0 {
@@ -67,6 +65,7 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
             NetworkManager.sendGetRequest(url: NetworkManager.BASEURL, endPoint: .GetCalculateCancelFee, method: .get, parameters: cancalCalculateFeeRequestModel.requestPathString()) { (response : GetCalculateCancelFeeResponseModel) in
                 if response.amount != nil {
                     self.viewCancelVoucherDetailView.labelCancelationFee.text = "\(response.amount ?? 0) EUR"
+                    self.cancelationFeeAmount = response.amount ?? 0.0
                     self.viewCancelVoucherDetailView.labelRefundAmount.text = "\(response.refundAmount ?? 0) EUR"
                 }else{
                     let alert = UIAlertController(title: "Error", message: "Data has not recived", preferredStyle: UIAlertController.Style.alert)
@@ -99,8 +98,9 @@ class CancelVoucherDetailViewControllerViewController: UIViewController {
     @objc func tappedPaymentTypeListMenu() {
         self.paymentTypeMenu.show()
     }
+    
     @IBAction func cancelVoucherButtonClicked(_ sender: Any) {
-        let tourSaleRequestCancelMobile = GetTourSaleCancelMobileRequestModel.init(GuideId: String(userDefaultsData.getGuideId()) , CancelConditionId: String(self.cancelRuleId) , Note: "", ChangeVoucher: "", TourSaleId: String(self.viewCancelVoucherDetailView.saleId) , Amount: self.viewCancelVoucherDetailView.labelCancelationFee.text ?? "", CurrencyId: String(self.viewCancelVoucherDetailView.currencyId) , PaymentType: self.paymentType)
+        let tourSaleRequestCancelMobile = GetTourSaleCancelMobileRequestModel.init(GuideId: String(userDefaultsData.getGuideId()) , CancelConditionId: String(self.cancelRuleId) , Note: "", ChangeVoucher: "", TourSaleId: String(self.viewCancelVoucherDetailView.saleId) , Amount: String(self.cancelationFeeAmount ?? 0.0), CurrencyId: String(self.viewCancelVoucherDetailView.currencyId) , PaymentType: self.paymentType)
         NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleCancelMobile, requestModel: tourSaleRequestCancelMobile ) { (response: GetTourSaleCancelMobileResponseModel) in
             if response.IsSuccesful ?? false{
                 self.message = response.Message ?? ""

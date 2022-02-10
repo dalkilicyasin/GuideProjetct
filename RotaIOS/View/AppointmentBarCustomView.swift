@@ -74,6 +74,10 @@ extension AppointmentBarCustomView : UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected")
         self.selectedIndex = indexPath
+        
+        if self.selectedIndex.row == 2 && userDefaultsData.getPaxesList()?.count == 0 {
+            return
+        }
         switch(indexPath.row) {
         case 0 :
             self.homePageTappedDelegate?.homePageTapped(ischosen: 0)

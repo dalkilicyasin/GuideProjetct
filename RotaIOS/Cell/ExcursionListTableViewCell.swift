@@ -34,8 +34,24 @@ class ExcursionListTableViewCell: BaseTableViewCell {
     var priceTypeDesc = 0
     var pickuptime = ""
     var tourDate = ""
+    @IBOutlet weak var textPickUpTime: UITextField!
+    var timeString = ""
+    
+    var timePicker: UIDatePicker = {
+        let timePicker = UIDatePicker()
+        timePicker.datePickerMode = .time
+        if #available(iOS 13.4, *) {
+            timePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
+        return timePicker
+    }()
+    
+    let timeToolBar = UIToolbar()
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         // Initialization code
         self.selectionStyle = .none
@@ -43,6 +59,18 @@ class ExcursionListTableViewCell: BaseTableViewCell {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tappedChecBox))
         self.imageCheckBox.isUserInteractionEnabled = true
         self.imageCheckBox.addGestureRecognizer(gesture)
+        
+       let pickUpTimeGesture = UITapGestureRecognizer(target: self, action: #selector(pickUpTimeTapped))
+        self.textPickUpTime.isUserInteractionEnabled = true
+        self.textPickUpTime.addGestureRecognizer(pickUpTimeGesture)
+        
+        //self.createTimePicker()
+    }
+    
+    @objc func pickUpTimeTapped(){
+        self.labelPickUpTime.isHidden = true
+        self.pickuptime = self.textPickUpTime.text ?? "00:00"
+        self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tourDate: self.tourDate, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.pickuptime)
     }
     
     @objc func tappedChecBox(){
@@ -58,5 +86,28 @@ class ExcursionListTableViewCell: BaseTableViewCell {
         }else {
             self.imageCheckBox.image = UIImage(named: "square")
         }
+    }
+    
+    func createTimePicker() {
+        self.textPickUpTime.textAlignment = .left
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(timePickerDonePressed))
+        self.timeToolBar.setItems([doneButton], animated: true)
+        self.timeToolBar.sizeToFit()
+        self.textPickUpTime.inputAccessoryView = timeToolBar
+        self.textPickUpTime.inputView = timePicker
+        self.timePicker.datePickerMode = .time
+    }
+    
+    @objc func timePickerDonePressed() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        formatter.dateFormat = "HH:dd a"
+        self.textPickUpTime.text = "\(formatter.string(for: timePicker.date) ?? "00:00")"
+        self.textPickUpTime.endEditing(true)
+        print(formatter.string(from: timePicker.date))
+        self.timeString = formatter.string(from: self.timePicker.date)
+        self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tourDate: self.tourDate, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.timeString)
+        
     }
 }

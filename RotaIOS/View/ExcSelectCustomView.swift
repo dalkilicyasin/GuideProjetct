@@ -94,7 +94,9 @@ class ExcSelectCustomView : UIView {
         self.searchBar.compatibleSearchTextField.textColor = UIColor.white
         self.searchBar.compatibleSearchTextField.backgroundColor = UIColor.mainTextColor
         self.searchBar.delegate = self
+    
     }
+    
     @IBAction func toursButtonTapped(_ sender: Any) {
         self.promotionButtonTapped = false
         self.buttonPromotion.backgroundColor = UIColor.clear
@@ -287,6 +289,7 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                 self.filteredList[index].isTapped = checkCounter
                 self.checkFilteredList[index] = checkCounter
                 self.tempFilteredList = self.filteredList
+                self.tempFilteredList[index].pickUpTime = pickUpTime
             }
         }else{
             if self.promotionButtonTapped == true {
@@ -295,6 +298,7 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                     if let index = self.promotionList.firstIndex(where: {$0.tourId == tourid && $0.tourDate == tourDate}){
                         self.promotionList[index].isTapped = checkCounter
                         self.checkPromotionList[index] = checkCounter
+                        self.promotionList[index].pickUpTime = pickUpTime
                     }
                 } else {
                     return
@@ -304,6 +308,7 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
             if let index = self.excursionList.firstIndex(where: {$0.tourId == tourid && $0.tourDate == tourDate}){
                 self.excursionList[index].isTapped = checkCounter
                 self.checkList[index] = checkCounter
+                self.excursionList[index].pickUpTime = pickUpTime
             }
         }
         self.tableView.reloadData()
@@ -327,11 +332,25 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                                     
                             else { return } // Should never happen
                             
+                            self.savesTourList = self.savesTourList.filterDuplicate{($0.tourName,$0.tourDate)}
                             if flatamount == "" {
                                 return
                             }
                             
-                            self.pickUpTime = "\(flatamount):00"
+                            let pickUpTimeInt = Int(flatamount) ?? 0
+                            
+                            
+                            self.pickUpTime = "\(pickUpTimeInt)"
+                            
+                            if self.pickUpTime.count == 1 || self.pickUpTime == "0"{
+                                self.pickUpTime = "0\(self.pickUpTime)"
+                            }
+                            
+                            if self.pickUpTime.count == 2{
+                                self.pickUpTime = "\(self.pickUpTime)00"
+                            }
+                            
+                            self.pickUpTime.insert(":", at: self.pickUpTime.index(self.pickUpTime.startIndex, offsetBy: 2))
                             
                             if let index = self.promotionList.firstIndex(where: {$0 === tempPaxes}){
                                 self.promotionPickupTimeList[index] = self.pickUpTime
@@ -381,8 +400,24 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                             }
                         }*/
                         
+                        if flatamount == "" {
+                            return
+                        }
                         
-                        self.pickUpTime = "\(flatamount):00"
+                        let pickUpTimeInt = Int(flatamount) ?? 0
+                        
+                        
+                        self.pickUpTime = "\(pickUpTimeInt)"
+                        
+                        if self.pickUpTime.count == 1 || self.pickUpTime == "0"{
+                            self.pickUpTime = "0\(self.pickUpTime)"
+                        }
+                        
+                        if self.pickUpTime.count == 2{
+                            self.pickUpTime = "\(self.pickUpTime)00"
+                        }
+                        
+                        self.pickUpTime.insert(":", at: self.pickUpTime.index(self.pickUpTime.startIndex, offsetBy: 2))
                         
                         if let index = self.excursionList.firstIndex(where: {$0 === tempPaxes}){
                             self.pickUpTimeList[index] = self.pickUpTime
@@ -438,6 +473,7 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                 self.savesTourList.remove(at: insideIndex)
             }
         }
+        self.savesTourList = self.savesTourList.filterDuplicate{($0.tourName,$0.tourDate)}
         userDefaultsData.saveTourList(tour: self.savesTourList)
     }
 }
@@ -457,3 +493,5 @@ extension Array
       return filter{uniqueKeys.insert("\(keyValue($0))").inserted}
    }
 }
+
+

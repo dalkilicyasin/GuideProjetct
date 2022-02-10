@@ -76,15 +76,16 @@ class ExcursionViewController: UIViewController {
     var savedExtrasList : [Extras] = []
     var savedTransFerList : [Transfers] = []
     var totalPriceBeforExtrasandTransfersAded = 0.0
-   
+    var buttonTappedCount = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      /*  if printManager.isConnected {
-            printerConnectionStatus.text = "Connected"
-        } else {
-            printerConnectionStatus.text = "Not Connected"
-        } */
+        /*  if printManager.isConnected {
+         printerConnectionStatus.text = "Connected"
+         } else {
+         printerConnectionStatus.text = "Not Connected"
+         } */
         self.viewFooterViewCustomView.isHidden = false
         self.hideKeyboardWhenTappedAround()
         userDefaultsData.saveHotelId(hotelId: 0)
@@ -121,7 +122,7 @@ class ExcursionViewController: UIViewController {
             print("Connected")
             self.isConnectedInternet = true
             self.viewExcursionView.labelOfflineToursale.isHidden = true
-          
+            
         } else {
             print("No Internet")
             self.isConnectedInternet = false
@@ -237,6 +238,17 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
     }
     
     func continueButtonTappedDelegate(tapped: Int) {
+        self.buttonTappedCount = tapped
+        if self.buttonTappedCount == 2 || self.buttonTappedCount == 3{
+            //self.buttonTappedCount = 2
+            if userDefaultsData.getPaxesList()?.count == 0 {
+                self.viewFooterViewCustomView.counter = 1
+                let alert = UIAlertController.init(title: "WARNING", message: "Please select pax", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                present(alert, animated: true, completion: nil)
+                return
+            }
+        }
         self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
         self.viewFooterViewCustomView.isHidden = false
         self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
@@ -252,7 +264,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
         }
         self.viewAppointMentBarCutomView.collectionView(viewAppointMentBarCutomView.collectionView, didSelectItemAt: IndexPath.init(item: tapped, section: 0))
         self.viewFooterViewCustomView.counter = tapped
-        if tapped == 0 {
+        if self.buttonTappedCount == 0 {
             self.viewFooterViewCustomView.commonInit()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = false
             self.viewFooterViewCustomView.printButton.isHidden = true
@@ -274,8 +286,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 // self.stepsPageCustomView?.isHidden = true
                 //self.proceedPageCustomView?.isHidden = true
             }
-        }else if tapped == 1 {
-          //  self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        }else if self.buttonTappedCount == 1 {
+            self.viewFooterViewCustomView.buttonView.isEnabled = true
+            //  self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.constraintOnSelectfunc()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.viewFooterViewCustomView.printButton.isHidden = true
@@ -284,78 +297,78 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             if  self.isConnectedInternet == true {
                 if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
-                if self.viewExcSearchCustomView?.promotionid == 0 {
-                    NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
-                        if response.count > 0 {
-                            self.tourList = response
-                            print(self.tourList[0])
-                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
-                            
-                            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
-                                if response.count > 0 {
-                                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                                    self.paxesList = response
-                                    /* userDefaultsData.saveHotelId(hotelId: 0)
-                                     userDefaultsData.saveMarketId(marketId: 0)*/
-                                }else{
-                                    print("data has not recived")
+                    if self.viewExcSearchCustomView?.promotionid == 0 {
+                        NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
+                            if response.count > 0 {
+                                self.tourList = response
+                                print(self.tourList[0])
+                                let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
+                                
+                                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+                                    if response.count > 0 {
+                                        //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                                        self.paxesList = response
+                                        /* userDefaultsData.saveHotelId(hotelId: 0)
+                                         userDefaultsData.saveMarketId(marketId: 0)*/
+                                    }else{
+                                        print("data has not recived")
+                                    }
                                 }
+                                self.viewExcSelectCustomView?.excursionList = self.tourList
+                                for index in 0...self.tourList.count - 1 {
+                                    self.viewExcSelectCustomView?.excursionList[index].isTapped = false
+                                    self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                                }
+                                self.viewExcSelectCustomView?.tableView.reloadData()
+                            }else{
+                                let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
                             }
-                            self.viewExcSelectCustomView?.excursionList = self.tourList
-                            for index in 0...self.tourList.count - 1 {
-                                self.viewExcSelectCustomView?.excursionList[index].isTapped = false
-                                self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                        }
+                    }else {
+                        NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : GetSearchTourPromotionResponseModel) in
+                            if response.Havuz1?.count ?? 0 > 0 {
+                                //   print(self.tourList[0])
+                                self.tourList = response.Havuz1 ?? self.tourList
+                                self.viewExcSelectCustomView?.excursionList = self.tourList
+                                let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
+                                
+                                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+                                    if response.count > 0 {
+                                        //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                                        self.paxesList = response
+                                        /* userDefaultsData.saveHotelId(hotelId: 0)
+                                         userDefaultsData.saveMarketId(marketId: 0)*/
+                                    }else{
+                                        print("data has not recived")
+                                    }
+                                }
+                                
+                                for index in 0...self.tourList.count - 1 {
+                                    self.viewExcSelectCustomView?.excursionList[index].isTapped = false
+                                    self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                                }
+                                self.promotionList = response.PromosyonHavuzu ?? self.promotionList
+                                if self.promotionList.count > 0 {
+                                    print(self.promotionList[0])
+                                    self.viewExcSelectCustomView?.promotionList = self.promotionList
+                                    for index in 0...self.promotionList.count - 1 {
+                                        self.viewExcSelectCustomView?.promotionList[index].isTapped = false
+                                        self.viewExcSelectCustomView?.checkPromotionList.append(self.viewExcSelectCustomView?.promotionList[index].isTapped ?? false)
+                                    }
+                                }
+                                self.viewExcSelectCustomView?.tableView.reloadData()
+                            }else {
+                                let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
                             }
-                            self.viewExcSelectCustomView?.tableView.reloadData()
-                        }else{
-                            let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
-                            self.present(alert, animated: true, completion: nil)
                         }
                     }
-                }else {
-                    NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : GetSearchTourPromotionResponseModel) in
-                        if response.Havuz1?.count ?? 0 > 0 {
-                         //   print(self.tourList[0])
-                            self.tourList = response.Havuz1 ?? self.tourList
-                            self.viewExcSelectCustomView?.excursionList = self.tourList
-                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
-                            
-                            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
-                                if response.count > 0 {
-                                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                                    self.paxesList = response
-                                    /* userDefaultsData.saveHotelId(hotelId: 0)
-                                     userDefaultsData.saveMarketId(marketId: 0)*/
-                                }else{
-                                    print("data has not recived")
-                                }
-                            }
-                          
-                            for index in 0...self.tourList.count - 1 {
-                                self.viewExcSelectCustomView?.excursionList[index].isTapped = false
-                                self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
-                            }
-                            self.promotionList = response.PromosyonHavuzu ?? self.promotionList
-                            if self.promotionList.count > 0 {
-                                print(self.promotionList[0])
-                                self.viewExcSelectCustomView?.promotionList = self.promotionList
-                                for index in 0...self.promotionList.count - 1 {
-                                    self.viewExcSelectCustomView?.promotionList[index].isTapped = false
-                                    self.viewExcSelectCustomView?.checkPromotionList.append(self.viewExcSelectCustomView?.promotionList[index].isTapped ?? false)
-                                }
-                            }
-                            self.viewExcSelectCustomView?.tableView.reloadData()
-                        }else {
-                            let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
-                            self.present(alert, animated: true, completion: nil)
-                        }
-                    }
-                }
-                ///
-                // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-                self.viewExcSearchCustomView?.excurSearchDelegate = self
+                    ///
+                    // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                    self.viewExcSearchCustomView?.excurSearchDelegate = self
                     userDefaultsData.saveTourList(tour: [])
                     userDefaultsData.savePaxesList(tour: [])
                     self.viewExcSearchCustomView?.isHidden = true
@@ -393,8 +406,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }else{
                 ///
                 if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
-                self.viewExcSearchCustomView?.excurSearchDelegate = self
-               
+                    self.viewExcSearchCustomView?.excurSearchDelegate = self
+                    
                     userDefaultsData.saveTourList(tour: [])
                     userDefaultsData.savePaxesList(tour: [])
                     self.viewExcSearchCustomView?.isHidden = true
@@ -437,9 +450,10 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSelectCustomView?.tableView.reloadData()
             }
             
-        }else if tapped == 2 {
+        }else if self.buttonTappedCount == 2 {
+            
             self.saveButtonTappet = false
-          //  self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            //  self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             if self.changeNumber != userDefaultsData.getTourList()?.count {
                 self.isTourChange = true
                 self.changeNumber = userDefaultsData.getTourList()?.count ?? 0
@@ -482,8 +496,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     var convertHour = ""
                     var convertMinute = ""
                     
-                   // let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
-                   // print(mergeDate)
+                    // let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+                    // print(mergeDate)
                     if month < 10 {
                         convertMonth = String("0\(month)")
                     }else{
@@ -543,7 +557,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                                         self.voucherList.append(self.createVoucher)
                                     }
                                 }
-                              
+                                
                                 print(self.voucherList)
                                 self.viewExcProceedCustomView?.voucherNo = self.voucherList
                                 userDefaultsData.saveMaxVoucher(voucher: self.voucherList)
@@ -651,22 +665,120 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         
                         //Min Price
                         else if self.tourListSaved[i].priceType == 37{
+                            var adlCount = 0
+                            var chdCount = 0
+                            var tdlCount = 0
+                            var infCount = 0
+                            for i in 0...self.paxesListSaved.count - 1 {
+                                if self.paxesListSaved[i].ageGroup == "ADL"{
+                                    adlCount += 1
+                                }else if self.paxesListSaved[i].ageGroup == "CHD"{
+                                    chdCount += 1
+                                }else if self.paxesListSaved[i].ageGroup == "TDL"{
+                                    tdlCount += 1
+                                }else{
+                                    infCount += 1
+                                }
+                            }
                             self.minPerson = Int(self.tourListSaved[i].minPax ?? 0.00)
                             if self.minPerson > 0 {
-                                for index in 0...self.paxesListSaved.count - 1{
-                                    if  self.paxesListSaved[index].ageGroup == "ADL" {
-                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                        self.minPerson -= 1
-                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
-                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                        self.minPerson -= 1
-                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
-                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                        self.minPerson -= 1
-                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
-                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                        self.minPerson -= 1
+                                if adlCount > 0 || chdCount > 0 || tdlCount > 0 || infantCount > 0{
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "ADL" && adlCount > 0 && self.minPerson > 0{
+                                            self.minPriceTotal += tourListSaved[i].minPrice ?? 0.00
+                                            adlCount -= 1
+                                            self.minPerson -= 1
+                                            if adlCount == 0 {
+                                                break
+                                            }
+                                            if self.minPerson == 0 {
+                                                break
+                                            }
+                                        }
                                     }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "CHD" && chdCount > 0 && self.minPerson > 0{
+                                            self.minPriceTotal += tourListSaved[i].minPrice ?? 0.00
+                                            chdCount -= 1
+                                            self.minPerson -= 1
+                                            if chdCount == 0 {
+                                                break
+                                            }
+                                            if self.minPerson == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "TDL" && tdlCount > 0 && self.minPerson > 0{
+                                            self.minPriceTotal += tourListSaved[i].minPrice ?? 0.00
+                                            tdlCount -= 1
+                                            self.minPerson -= 1
+                                            if tdlCount == 0 {
+                                                break
+                                            }
+                                            if self.minPerson == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "INF" && infantCount > 0 && self.minPerson > 0{
+                                            self.minPriceTotal += tourListSaved[i].minPrice ?? 0.00
+                                            infantCount -= 1
+                                            self.minPerson -= 1
+                                            if infantCount == 0 {
+                                                break
+                                            }
+                                            if self.minPerson == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                            
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "ADL" && adlCount > 0{
+                                            self.perTourTotalPrice += tourListSaved[i].adultPrice ?? 0.00
+                                            adlCount -= 1
+                                            if adlCount == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "CHD" && chdCount > 0{
+                                            self.perTourTotalPrice += tourListSaved[i].childPrice ?? 0.00
+                                            chdCount -= 1
+                                            if chdCount == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "TDL" && tdlCount > 0{
+                                            self.perTourTotalPrice += tourListSaved[i].toodlePrice ?? 0.00
+                                            tdlCount -= 1
+                                            if tdlCount == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "INF" && infantCount > 0{
+                                            self.perTourTotalPrice += tourListSaved[i].infantPrice ?? 0.00
+                                            infantCount -= 1
+                                            if infantCount == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    self.perTourTotalPrice += self.minPriceTotal
                                 }
                             }else {
                                 for index in 0...self.paxesListSaved.count - 1{
@@ -703,10 +815,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
             self.showToast(message: "\(self.totalPriceBeforExtrasandTransfersAded)")
             
-        }else if tapped == 3 {
-            
-            self.viewFooterViewCustomView.isHidden = true
-          //  self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        }else if self.buttonTappedCount == 3 {
+            //  self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
             let gesture = UITapGestureRecognizer(target: self, action: #selector(viewSendTapped))
             self.viewFooterViewCustomView.viewSendVoucher.isUserInteractionEnabled = true
@@ -714,8 +824,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             self.viewFooterViewCustomView.labelAmount.isHidden = true
             self.viewFooterViewCustomView.buttonSaveButton.isHidden = true
             self.viewFooterViewCustomView.buttonView.isHidden = true
-            self.viewFooterViewCustomView.printButton.isHidden = false
-          
+            self.viewFooterViewCustomView.printButton.isHidden = true
+            self.viewFooterViewCustomView.isHidden = true
+            
             if let transferNumber = userDefaultsData.getTransfersList()?.count {
                 if  self.changeTransferNumber != transferNumber {
                     self.isExcOrTransChange = true
@@ -805,10 +916,21 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
     }
     
     func homePageTapped(ischosen: Int) {
+        self.buttonTappedCount = ischosen
+        if self.buttonTappedCount == 2 || self.buttonTappedCount == 3{
+          //  self.buttonTappedCount = 2
+            if userDefaultsData.getPaxesList()?.count == 0 {
+                self.viewAppointMentBarCutomView.selectedIndex.row = 1
+                let alert = UIAlertController.init(title: "WARNING", message: "Please select pax", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                present(alert, animated: true, completion: nil)
+                return
+            }
+        }
         self.viewFooterViewCustomView.isHidden = false
         self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
         self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
-       
+        
         self.viewPaxCustomView?.isHidden = true
         if Connectivity.isConnectedToInternet {
             print("Connected")
@@ -823,8 +945,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
         }
         self.viewFooterViewCustomView.counter = ischosen
         
-        if ischosen == 0 {
-           // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        if self.buttonTappedCount == 0 {
+            // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.buttonhide()
             self.viewFooterViewCustomView.commonInit()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = false
@@ -847,8 +969,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 //self.proceedPageCustomView?.isHidden = true
             }
         }
-        else if ischosen == 1 {
-           // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        else if self.buttonTappedCount == 1 {
+            // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.buttonhide()
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
             self.constraintOnSelectfunc()
@@ -857,78 +979,78 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             if  self.isConnectedInternet == true {
                 if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
-                if self.viewExcSearchCustomView?.promotionid == 0 {
-                    NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
-                        if response.count > 0 {
-                            self.tourList = response
-                            print(self.tourList[0])
-                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
-                            
-                            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
-                                if response.count > 0 {
-                                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                                    self.paxesList = response
-                                    /* userDefaultsData.saveHotelId(hotelId: 0)
-                                     userDefaultsData.saveMarketId(marketId: 0)*/
-                                }else{
-                                    print("data has not recived")
+                    if self.viewExcSearchCustomView?.promotionid == 0 {
+                        NetworkManager.sendRequestArray(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : [GetSearchTourResponseModel]) in
+                            if response.count > 0 {
+                                self.tourList = response
+                                print(self.tourList[0])
+                                let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
+                                
+                                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+                                    if response.count > 0 {
+                                        //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                                        self.paxesList = response
+                                        /* userDefaultsData.saveHotelId(hotelId: 0)
+                                         userDefaultsData.saveMarketId(marketId: 0)*/
+                                    }else{
+                                        print("data has not recived")
+                                    }
                                 }
+                                self.viewExcSelectCustomView?.excursionList = self.tourList
+                                for index in 0...self.tourList.count - 1 {
+                                    self.viewExcSelectCustomView?.excursionList[index].isTapped = false
+                                    self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                                }
+                                self.viewExcSelectCustomView?.tableView.reloadData()
+                            }else{
+                                let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
                             }
-                            self.viewExcSelectCustomView?.excursionList = self.tourList
-                            for index in 0...self.tourList.count - 1 {
-                                self.viewExcSelectCustomView?.excursionList[index].isTapped = false
-                                self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                        }
+                    }else {
+                        NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : GetSearchTourPromotionResponseModel) in
+                            if response.Havuz1?.count ?? 0 > 0 {
+                                //   print(self.tourList[0])
+                                self.tourList = response.Havuz1 ?? self.tourList
+                                self.viewExcSelectCustomView?.excursionList = self.tourList
+                                let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
+                                
+                                NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
+                                    if response.count > 0 {
+                                        //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
+                                        self.paxesList = response
+                                        /* userDefaultsData.saveHotelId(hotelId: 0)
+                                         userDefaultsData.saveMarketId(marketId: 0)*/
+                                    }else{
+                                        print("data has not recived")
+                                    }
+                                }
+                                
+                                for index in 0...self.tourList.count - 1 {
+                                    self.viewExcSelectCustomView?.excursionList[index].isTapped = false
+                                    self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
+                                }
+                                self.promotionList = response.PromosyonHavuzu ?? self.promotionList
+                                if self.promotionList.count > 0 {
+                                    print(self.promotionList[0])
+                                    self.viewExcSelectCustomView?.promotionList = self.promotionList
+                                    for index in 0...self.promotionList.count - 1 {
+                                        self.viewExcSelectCustomView?.promotionList[index].isTapped = false
+                                        self.viewExcSelectCustomView?.checkPromotionList.append(self.viewExcSelectCustomView?.promotionList[index].isTapped ?? false)
+                                    }
+                                }
+                                self.viewExcSelectCustomView?.tableView.reloadData()
+                            }else {
+                                let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
                             }
-                            self.viewExcSelectCustomView?.tableView.reloadData()
-                        }else{
-                            let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
-                            self.present(alert, animated: true, completion: nil)
                         }
                     }
-                }else {
-                    NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetTourSaleSearchTour, requestModel: getTourSearchRequestModel) { (response : GetSearchTourPromotionResponseModel) in
-                        if response.Havuz1?.count ?? 0 > 0 {
-                         //   print(self.tourList[0])
-                            self.tourList = response.Havuz1 ?? self.tourList
-                            self.viewExcSelectCustomView?.excursionList = self.tourList
-                            let getInHouseListRequestModel = GetInHouseListTourSaleRequestModel.init(hotelId: String(userDefaultsData.getHotelId()), saleDate: userDefaultsData.getSaleDate(), tourId: String(self.tourList[0].tourId ?? 65), market: String(userDefaultsData.getMarketId()))
-                            
-                            NetworkManager.sendGetRequestArray(url:NetworkManager.BASEURL, endPoint: .GetInHouseListForMobile, method: .get, parameters: getInHouseListRequestModel.requestPathString()) { (response : [GetInHoseListResponseModel] ) in
-                                if response.count > 0 {
-                                    //   let filter = response.filter{($0.text?.contains("ADONIS HOTEL ANTALYA") ?? false)}
-                                    self.paxesList = response
-                                    /* userDefaultsData.saveHotelId(hotelId: 0)
-                                     userDefaultsData.saveMarketId(marketId: 0)*/
-                                }else{
-                                    print("data has not recived")
-                                }
-                            }
-                          
-                            for index in 0...self.tourList.count - 1 {
-                                self.viewExcSelectCustomView?.excursionList[index].isTapped = false
-                                self.viewExcSelectCustomView?.checkList.append(self.viewExcSelectCustomView?.excursionList[index].isTapped ?? false)
-                            }
-                            self.promotionList = response.PromosyonHavuzu ?? self.promotionList
-                            if self.promotionList.count > 0 {
-                                print(self.promotionList[0])
-                                self.viewExcSelectCustomView?.promotionList = self.promotionList
-                                for index in 0...self.promotionList.count - 1 {
-                                    self.viewExcSelectCustomView?.promotionList[index].isTapped = false
-                                    self.viewExcSelectCustomView?.checkPromotionList.append(self.viewExcSelectCustomView?.promotionList[index].isTapped ?? false)
-                                }
-                            }
-                            self.viewExcSelectCustomView?.tableView.reloadData()
-                        }else {
-                            let alert = UIAlertController.init(title: "Error", message: "Tour Data has not Recived", preferredStyle: UIAlertController.Style.alert)
-                            alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: nil))
-                            self.present(alert, animated: true, completion: nil)
-                        }
-                    }
-                }
-                ///
-                // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
-                self.viewExcSearchCustomView?.excurSearchDelegate = self
+                    ///
+                    // self.footerView.buttonHiding(hidePrintbutton: true, hideButton: false)
+                    self.viewExcSearchCustomView?.excurSearchDelegate = self
                     userDefaultsData.saveTourList(tour: [])
                     userDefaultsData.savePaxesList(tour: [])
                     self.viewExcSearchCustomView?.isHidden = true
@@ -966,8 +1088,8 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }else{
                 ///
                 if self.viewExcSelectCustomView == nil || self.isHotelorMarketChanged == true{
-                self.viewExcSearchCustomView?.excurSearchDelegate = self
-               
+                    self.viewExcSearchCustomView?.excurSearchDelegate = self
+                    
                     userDefaultsData.saveTourList(tour: [])
                     userDefaultsData.savePaxesList(tour: [])
                     self.viewExcSearchCustomView?.isHidden = true
@@ -1010,9 +1132,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 self.viewExcSelectCustomView?.tableView.reloadData()
             }
             
-        }else if ischosen == 2 {
+        }else if self.buttonTappedCount == 2 {
             self.saveButtonTappet = false
-           // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.tourList = userDefaultsData.getTourList() ?? self.tourList
             self.viewFooterViewCustomView.printButton.isHidden = true
             self.viewFooterViewCustomView.buttonGetOfflineData.isHidden = true
@@ -1052,15 +1174,15 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     let hour = Calendar.current.component(.hour, from: Date())
                     let minute = Calendar.current.component(.minute, from: Date())
                     
-//                    let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
-//                    print(mergeDate)
+                    //                    let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+                    //                    print(mergeDate)
                     var convertDay = ""
                     var convertMonth = ""
                     var convertHour = ""
                     var convertMinute = ""
                     
-                   // let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
-                   // print(mergeDate)
+                    // let mergeDate = String(format: "%02d%02d%02d%02d", month, day, hour, minute)
+                    // print(mergeDate)
                     if month < 10 {
                         convertMonth = String("0\(month)")
                     }else{
@@ -1220,22 +1342,120 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                         }
                         
                         else if self.tourListSaved[i].priceType == 37{
+                            var adlCount = 0
+                            var chdCount = 0
+                            var tdlCount = 0
+                            var infCount = 0
+                            for i in 0...self.paxesListSaved.count - 1 {
+                                if self.paxesListSaved[i].ageGroup == "ADL"{
+                                    adlCount += 1
+                                }else if self.paxesListSaved[i].ageGroup == "CHD"{
+                                    chdCount += 1
+                                }else if self.paxesListSaved[i].ageGroup == "TDL"{
+                                    tdlCount += 1
+                                }else{
+                                    infCount += 1
+                                }
+                            }
                             self.minPerson = Int(self.tourListSaved[i].minPax ?? 0.00)
                             if self.minPerson > 0 {
-                                for index in 0...self.paxesListSaved.count - 1{
-                                    if  self.paxesListSaved[index].ageGroup == "ADL" {
-                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                        self.minPerson -= 1
-                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "CHD" {
-                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                        self.minPerson -= 1
-                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "TDL" {
-                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                        self.minPerson -= 1
-                                    }else if self.minPerson > 0 && self.paxesListSaved[index].ageGroup == "INF" {
-                                        self.minPriceTotal = self.tourListSaved[i].minPrice ?? 0.00
-                                        self.minPerson -= 1
+                                if adlCount > 0 || chdCount > 0 || tdlCount > 0 || infantCount > 0{
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "ADL" && adlCount > 0{
+                                            self.minPriceTotal += tourListSaved[i].minPrice ?? 0.00
+                                            adlCount -= 1
+                                            self.minPerson -= 1
+                                            if adlCount == 0 {
+                                                break
+                                            }
+                                            if self.minPerson == 0 {
+                                                break
+                                            }
+                                        }
                                     }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "CHD" && chdCount > 0{
+                                            self.minPriceTotal += tourListSaved[i].minPrice ?? 0.00
+                                            chdCount -= 1
+                                            self.minPerson -= 1
+                                            if chdCount == 0 {
+                                                break
+                                            }
+                                            if self.minPerson == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "TDL" && tdlCount > 0{
+                                            self.minPriceTotal += tourListSaved[i].minPrice ?? 0.00
+                                            tdlCount -= 1
+                                            self.minPerson -= 1
+                                            if tdlCount == 0 {
+                                                break
+                                            }
+                                            if self.minPerson == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "INF" && infantCount > 0{
+                                            self.minPriceTotal += tourListSaved[i].minPrice ?? 0.00
+                                            infantCount -= 1
+                                            self.minPerson -= 1
+                                            if infantCount == 0 {
+                                                break
+                                            }
+                                            if self.minPerson == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                            
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "ADL" && adlCount > 0{
+                                            self.perTourTotalPrice += tourListSaved[i].adultPrice ?? 0.00
+                                            adlCount -= 1
+                                            if adlCount == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "CHD" && chdCount > 0{
+                                            self.perTourTotalPrice += tourListSaved[i].childPrice ?? 0.00
+                                            chdCount -= 1
+                                            if chdCount == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "TDL" && tdlCount > 0{
+                                            self.perTourTotalPrice += tourListSaved[i].toodlePrice ?? 0.00
+                                            tdlCount -= 1
+                                            if tdlCount == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    for index in 0...self.paxesListSaved.count - 1{
+                                        if  self.paxesListSaved[index].ageGroup == "INF" && infantCount > 0{
+                                            self.perTourTotalPrice += tourListSaved[i].infantPrice ?? 0.00
+                                            infantCount -= 1
+                                            if infantCount == 0 {
+                                                break
+                                            }
+                                        }
+                                    }
+                                    self.perTourTotalPrice += self.minPriceTotal
                                 }
                             }else {
                                 for index in 0...self.paxesListSaved.count - 1{
@@ -1250,7 +1470,6 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                                     }
                                 }
                             }
-                            
                             self.perTourTotalPrice += self.minPriceTotal
                         }
                         self.totalPrice += self.perTourTotalPrice
@@ -1273,9 +1492,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             }
             
             self.showToast(message: "\(self.totalPriceBeforExtrasandTransfersAded)")
-        }else if ischosen == 3 {
+        }else if self.buttonTappedCount == 3 {
             self.viewFooterViewCustomView.isHidden = true
-           // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+            // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
             
             let gesture = UITapGestureRecognizer(target: self, action: #selector(viewSendTapped))
@@ -1284,8 +1503,9 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             self.buttonhide()
             self.viewFooterViewCustomView.buttonView.isHidden = true
-            self.viewFooterViewCustomView.printButton.isHidden = false
-           
+            self.viewFooterViewCustomView.printButton.isHidden = true
+            self.viewFooterViewCustomView.isHidden = true
+            
             if let transferNumber = userDefaultsData.getTransfersList()?.count {
                 if  self.changeTransferNumber != transferNumber {
                     self.isExcOrTransChange = true
@@ -1311,31 +1531,31 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 let tourPromotionPostRequestModel = TourPromotionPost(PromotionDiscount: 0, PromotionId: self.viewExcSearchCustomView?.promotionid ?? 0, tours: self.tours)
                 
                 self.data = "\(tourPromotionPostRequestModel.toJSONString(prettyPrint: true) ?? "")"
-              if self.isConnectedInternet == true {
-                  let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
-                  NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
-                      if response.isSuccesful == true {
-                          print(response)
-                          self.promotionTourList = response.record?.tours ?? self.promotionTourList
-                          for i in 0...self.promotionTourList.count - 1 {
-                              self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
-                          }
-                          self.viewExcProceedCustomView?.promotionDiscount = self.discount
-                          self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
-                          self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
-                          self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
-                          self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
-                          self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
-                          self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
-                          self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
-                          self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
-                          self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
-                          self.viewExcProceedCustomView?.promotionId = self.viewExcSearchCustomView?.promotionid ?? 0
-          
-                      }else {
-                          print("error")
-                      }
-                  }
+                if self.isConnectedInternet == true {
+                    let promotionRequestModel = GetSaveMobileSaleRequestModel.init(data: self.data)
+                    NetworkManager.sendRequest(url: NetworkManager.BASEURL, endPoint: .GetApplyPromotionMobile, requestModel: promotionRequestModel ) { (response: GetApplyPromotionMobileResponseModel) in
+                        if response.isSuccesful == true {
+                            print(response)
+                            self.promotionTourList = response.record?.tours ?? self.promotionTourList
+                            for i in 0...self.promotionTourList.count - 1 {
+                                self.discount += self.promotionTourList[i].promotionDiscount ?? 0.0
+                            }
+                            self.viewExcProceedCustomView?.promotionDiscount = self.discount
+                            self.viewExcProceedCustomView?.viewDicountCalculate.mainText.text = String(self.discount)
+                            self.viewExcProceedCustomView?.viewAmount.mainText.text = String(self.totalPrice)
+                            self.viewExcProceedCustomView?.viewBalanced.mainText.text = String(self.totalPrice - self.discount)
+                            self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
+                            self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
+                            self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
+                            self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                            self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
+                            self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
+                            self.viewExcProceedCustomView?.promotionId = self.viewExcSearchCustomView?.promotionid ?? 0
+                            
+                        }else {
+                            print("error")
+                        }
+                    }
                 }
                 ///
                 self.viewExcAddCustomView?.isHidden = true
@@ -1506,7 +1726,7 @@ extension ExcursionViewController : ExcPaxPageDelegate {
 }
 
 extension ExcursionViewController : ExcAddCustomViewDelegate {
-  
+    
     func excurAddCustomDelegate(changeTransferNumber: Int, changeExtraNumber: Int, extrasTotalPrice: Double, transfersTotalPrice: Double, extraButtonTapped: Bool, savedExtrasList: [Extras], savedTransferList: [Transfers], currentExtrasTotalPrice: Double, currentTransfersTotalPirce: Double) {
         self.extraAndTransTotalPrice = 0.0
         self.changeExcNumber = changeExtraNumber
@@ -1524,10 +1744,10 @@ extension ExcursionViewController : ExcAddCustomViewDelegate {
         self.transfersTotalPrice = transfersTotalPrice
         
         /*if  self.viewFooterViewCustomView.totalPriceIsSaved == true {
-            userDefaultsData.saveTotalPrice(totalPrice: self.totalPrice)
-        }else{
-            userDefaultsData.saveTotalPrice(totalPrice: 0.00)
-        }*/
+         userDefaultsData.saveTotalPrice(totalPrice: self.totalPrice)
+         }else{
+         userDefaultsData.saveTotalPrice(totalPrice: 0.00)
+         }*/
     }
 }
 

@@ -204,7 +204,6 @@ extension ExcPaxCustomView : UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-
 }
 
 extension ExcPaxCustomView : UISearchBarDelegate {
@@ -443,12 +442,18 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
                     }
                     
                     self.paxRoom = "\(flatamount)"
-                    
+                    var i = 0
                     if let index = self.paxesList.firstIndex(where: {$0 === tempPaxes}){
                         self.paxesList[index].room = self.paxRoom
+                        i = index
                     }
                
                    // self.savesTourList.uniqued()
+                    
+                    if let index = self.touristDetailInfoList.firstIndex(where: {$0.ID == self.paxesList[i].ID}){
+                        self.touristDetailInfoList[index].pAX_ROOM = self.paxRoom
+                    }
+                    
                     userDefaultsData.saveTouristDetailInfoList(tour: self.touristDetailInfoList)
                     self.tableView.reloadData()
                 }

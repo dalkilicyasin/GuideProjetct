@@ -95,6 +95,9 @@ class FooterCustomView: UIView {
     }
     
     @IBAction func countinueButtonClicked(_ sender: Any) {
+        if counter == 2 && userDefaultsData.getPaxesList()?.count == 0 {
+            return
+        }
         self.counter += 1
         if counter == 4 {
             self.counter = 0

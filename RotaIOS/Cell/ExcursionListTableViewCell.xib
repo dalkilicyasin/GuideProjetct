@@ -152,6 +152,16 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KBk-DF-iRq">
+                        <rect key="frame" x="267" y="10" width="97" height="21"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="tSp-8p-dMz"/>
+                        </constraints>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mjw-sM-S9g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="4R0-GA-vKf"/>
@@ -160,6 +170,7 @@
                     <constraint firstAttribute="bottom" secondItem="gDJ-Oz-QlU" secondAttribute="bottom" priority="252" constant="17" id="D9i-vM-fdM"/>
                     <constraint firstItem="020-DW-CHC" firstAttribute="leading" secondItem="Bkn-zf-5e9" secondAttribute="trailing" constant="10" id="Gzc-y1-cwx"/>
                     <constraint firstItem="l0s-72-Gcm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Jaa-PK-ppB"/>
+                    <constraint firstItem="KBk-DF-iRq" firstAttribute="leading" secondItem="gDJ-Oz-QlU" secondAttribute="trailing" constant="12" id="Qw8-iS-7gV"/>
                     <constraint firstItem="rbA-J3-vDw" firstAttribute="leading" secondItem="Duk-bt-vJi" secondAttribute="trailing" constant="10" id="RNt-tA-owk"/>
                     <constraint firstItem="l0s-72-Gcm" firstAttribute="leading" secondItem="gDJ-Oz-QlU" secondAttribute="trailing" constant="10" id="SQr-rx-c5L"/>
                     <constraint firstItem="fw3-sL-BtJ" firstAttribute="leading" secondItem="rbA-J3-vDw" secondAttribute="trailing" constant="10" id="Tod-bk-GzA"/>
@@ -178,12 +189,14 @@
                     <constraint firstItem="C1y-ZM-B69" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="nN6-Oz-8f1"/>
                     <constraint firstItem="YBK-Fs-4bu" firstAttribute="leading" secondItem="fw3-sL-BtJ" secondAttribute="trailing" constant="10" id="naf-FV-E8P"/>
                     <constraint firstItem="Fj5-zr-uhL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="oir-aU-gqL"/>
+                    <constraint firstItem="mjw-sM-S9g" firstAttribute="leading" secondItem="KBk-DF-iRq" secondAttribute="trailing" constant="11" id="ptz-aP-xMl"/>
                     <constraint firstItem="YBK-Fs-4bu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="sJa-Dc-Amc"/>
                     <constraint firstItem="fw3-sL-BtJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="tmq-IP-aig"/>
                     <constraint firstItem="C1y-ZM-B69" firstAttribute="leading" secondItem="YBK-Fs-4bu" secondAttribute="trailing" constant="10" id="udN-AE-4dt"/>
                     <constraint firstItem="hy9-cF-x6C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="uqg-JX-e7w"/>
                     <constraint firstItem="mjw-sM-S9g" firstAttribute="leading" secondItem="l0s-72-Gcm" secondAttribute="trailing" constant="10" id="vio-rc-Xva"/>
                     <constraint firstItem="dNY-Ml-k52" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="wFr-x5-cEf"/>
+                    <constraint firstItem="KBk-DF-iRq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="wuB-oS-ibp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -203,6 +216,7 @@
                 <outlet property="labelToodlePrice" destination="rbA-J3-vDw" id="Phg-Gu-Ve7"/>
                 <outlet property="labelTotalPrice" destination="C1y-ZM-B69" id="t4c-D2-a69"/>
                 <outlet property="labelTourdate" destination="gDJ-Oz-QlU" id="hEH-M2-iKv"/>
+                <outlet property="textPickUpTime" destination="KBk-DF-iRq" id="sSL-WR-bsz"/>
                 <outlet property="viewContentView" destination="H2p-sc-9uM" id="fhR-iB-RDB"/>
             </connections>
             <point key="canvasLocation" x="1389.1304347826087" y="97.767857142857139"/>
