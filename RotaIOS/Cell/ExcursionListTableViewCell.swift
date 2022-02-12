@@ -60,16 +60,18 @@ class ExcursionListTableViewCell: BaseTableViewCell {
         self.imageCheckBox.isUserInteractionEnabled = true
         self.imageCheckBox.addGestureRecognizer(gesture)
         
-       let pickUpTimeGesture = UITapGestureRecognizer(target: self, action: #selector(pickUpTimeTapped))
+      /* let pickUpTimeGesture = UITapGestureRecognizer(target: self, action: #selector(pickUpTimeTapped))
         self.textPickUpTime.isUserInteractionEnabled = true
-        self.textPickUpTime.addGestureRecognizer(pickUpTimeGesture)
-        
-        //self.createTimePicker()
+        self.textPickUpTime.addGestureRecognizer(pickUpTimeGesture) */
+        self.labelPickUpTime.isHidden = true
+
+        self.createTimePicker()
     }
     
     @objc func pickUpTimeTapped(){
-        self.labelPickUpTime.isHidden = true
-        self.pickuptime = self.textPickUpTime.text ?? "00:00"
+        //self.labelPickUpTime.isHidden = true
+       // self.pickuptime = self.textPickUpTime.text ?? "00:00"
+        self.createTimePicker()
         self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tourDate: self.tourDate, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.pickuptime)
     }
     
@@ -96,17 +98,19 @@ class ExcursionListTableViewCell: BaseTableViewCell {
         self.textPickUpTime.inputAccessoryView = timeToolBar
         self.textPickUpTime.inputView = timePicker
         self.timePicker.datePickerMode = .time
+        self.timePicker.locale = Locale.init(identifier: "en_GB")
     }
     
     @objc func timePickerDonePressed() {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .medium
-        formatter.dateFormat = "HH:dd a"
+        formatter.dateFormat = "HH:dd"
         self.textPickUpTime.text = "\(formatter.string(for: timePicker.date) ?? "00:00")"
         self.textPickUpTime.endEditing(true)
         print(formatter.string(from: timePicker.date))
         self.timeString = formatter.string(from: self.timePicker.date)
+        self.pickuptime = self.timeString
         self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tourDate: self.tourDate, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.timeString)
         
     }

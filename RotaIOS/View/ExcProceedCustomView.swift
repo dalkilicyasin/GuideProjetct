@@ -440,11 +440,11 @@ class ExcProceedCustomView: UIView{
     @IBAction func applyDiscountButtonTapped(_ sender: Any) {
         self.discount = 0.0
         if let discount = Double(self.viewDiscount.mainText.text ?? ""){
-            self.discount += discount
-            self.totalDiscount += discount
+            self.discount = discount
+           // self.totalDiscount = discount
         }
         self.viewDiscount.mainText.text = self.viewDiscount.mainText.text?.replacingOccurrences(of: ",", with: ".")
-        self.viewDicountCalculate.mainText.text = String(self.totalDiscount + self.promotionDiscount)
+        self.viewDicountCalculate.mainText.text = String(self.discount + self.promotionDiscount)
         self.balanceAmount = self.balanceAmount - self.discount
         self.viewBalanced.mainText.text = String(self.balanceAmount)
         self.totalAmount = self.totalAmount - self.discount
@@ -563,7 +563,7 @@ class ExcProceedCustomView: UIView{
                     self.currencyId = self.currencyList[index].value ?? 0
                 }
             
-            let multisale = Multisale.init(CouponAmount:0, CouponId:0, CurrencyId: self.currencyId, GuideId: userDefaultsData.getGuideId(), HotelId: self.hotelId, ID:0, IsMobile:1, IsOfficeSale: false, ManualDiscount: self.totalDiscount, MarketId: self.marketId, Note: "", PaidAmount: self.savedTotalAmount, PromotionId: self.promotionId, SaleDate: self.currentDate , TotalAmount: self.sendedTotalAmount)
+            let multisale = Multisale.init(CouponAmount:0, CouponId:0, CurrencyId: self.currencyId, GuideId: userDefaultsData.getGuideId(), HotelId: self.hotelId, ID:0, IsMobile:1, IsOfficeSale: false, ManualDiscount: self.discount, MarketId: self.marketId, Note: "", PaidAmount: self.savedTotalAmount, PromotionId: self.promotionId, SaleDate: self.currentDate , TotalAmount: self.sendedTotalAmount)
             var paxTourList : [PaxTourList] = []
             var paxes : [Paxes] = []
             var tourListIndata : [TourList] = []

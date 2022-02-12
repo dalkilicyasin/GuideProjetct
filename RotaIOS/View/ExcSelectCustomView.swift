@@ -146,9 +146,9 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.labelExcursion.text = self.filteredData[indexPath.row].tourName
             cell.labelTourdate.text = self.filteredData[indexPath.row].tourDateStr
             if pickUpTimeList.count == 0 {
-                cell.labelPickUpTime.text = self.filteredData[indexPath.row].pickUpTime
+                cell.textPickUpTime.text = self.filteredData[indexPath.row].pickUpTime
             }else if pickUpTimeList.count > 0{
-                cell.labelPickUpTime.text = self.pickUpTimeList[indexPath.row]
+                cell.textPickUpTime.text = self.pickUpTimeList[indexPath.row]
             }
             // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
             cell.labelPriceType.text = String(self.filteredData[indexPath.row].priceType ?? 0) // pricetypedesc mi yoksa pricetype mı?
@@ -174,9 +174,9 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
                     print("connect")
                     cell.labelExcursion.text = self.promotionList[indexPath.row].tourName
                     if pickUpTimeList.count == 0 {
-                        cell.labelPickUpTime.text = self.promotionList[indexPath.row].pickUpTime
+                        cell.textPickUpTime.text = self.promotionList[indexPath.row].pickUpTime
                     }else if promotionPickupTimeList.count > 0{
-                        cell.labelPickUpTime.text = self.promotionPickupTimeList[indexPath.row]
+                        cell.textPickUpTime.text = self.promotionPickupTimeList[indexPath.row]
                     }
                     // cell.labelSeat.text = self.promotionList[indexPath.row] // yok
                     cell.labelPriceType.text = String(self.promotionList[indexPath.row].priceTypeDesc ?? "") // pricetypedesc mi yoksa pricetype mı?
@@ -201,11 +201,12 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
                 }
             }else{
                 cell.labelExcursion.text = self.excursionList[indexPath.row].tourName
-                if pickUpTimeList.count == 0 {
-                    cell.labelPickUpTime.text = self.excursionList[indexPath.row].pickUpTime
+             /*   if pickUpTimeList.count == 0 {
+                    
                 }else if pickUpTimeList.count > 0{
-                    cell.labelPickUpTime.text = self.pickUpTimeList[indexPath.row]
-                }
+                    cell.textPickUpTime.text = self.pickUpTimeList[indexPath.row]
+                }*/
+                cell.textPickUpTime.text = self.excursionList[indexPath.row].pickUpTime
                 // cell.labelSeat.text = self.excursionList[indexPath.row] // yok
                 cell.labelPriceType.text = String(self.excursionList[indexPath.row].priceTypeDesc ?? "") // pricetypedesc mi yoksa pricetype mı?
                 cell.labelCurrency.text = self.excursionList[indexPath.row].currencyDesc // currencyy mi yoksa currencyDesc mi?

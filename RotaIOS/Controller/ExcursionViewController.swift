@@ -121,12 +121,12 @@ class ExcursionViewController: UIViewController {
         if Connectivity.isConnectedToInternet {
             print("Connected")
             self.isConnectedInternet = true
-            self.viewExcursionView.labelOfflineToursale.isHidden = true
+            self.viewExcursionView.viewOfflineLabel.isHidden = true
             
         } else {
             print("No Internet")
             self.isConnectedInternet = false
-            self.viewExcursionView.labelOfflineToursale.isHidden = false
+            self.viewExcursionView.viewOfflineLabel.isHidden = false
         }
     }
     
