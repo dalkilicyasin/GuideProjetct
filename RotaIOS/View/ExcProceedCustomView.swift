@@ -120,6 +120,7 @@ class ExcProceedCustomView: UIView{
     var printList : [SendDataPrint] = []
     var printListStringType : [String] = []
     var connectedAccessories : [EAAccessory] = []
+    var savedFirstValue = 0.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -438,6 +439,8 @@ class ExcProceedCustomView: UIView{
     }
     
     @IBAction func applyDiscountButtonTapped(_ sender: Any) {
+        self.totalAmount = self.savedFirstValue
+        self.balanceAmount = self.savedFirstValue
         self.discount = 0.0
         if let discount = Double(self.viewDiscount.mainText.text ?? ""){
             self.discount = discount
@@ -544,7 +547,6 @@ class ExcProceedCustomView: UIView{
     }
     
     @IBAction func sendButtonTapped(_ sender: Any) {
-        
         if self.balanceAmount == 0.0{
             if Connectivity.isConnectedToInternet == true {
                 self.hotelId = userDefaultsData.getHotelId()

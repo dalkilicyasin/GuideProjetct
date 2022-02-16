@@ -50,6 +50,20 @@ class ExcursionListTableViewCell: BaseTableViewCell {
     
     let timeToolBar = UIToolbar()
     
+    var timePickerToolBar: UIView = {
+            let toolBar = UIToolbar()
+            toolBar.barStyle = UIBarStyle.default
+            toolBar.isTranslucent = true
+            toolBar.tintColor = UIColor.black
+            toolBar.sizeToFit()
+            
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+            let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
+            toolBar.setItems([cancelButton, flexSpace, doneButton], animated: false)
+            return toolBar
+        }()
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
@@ -60,19 +74,89 @@ class ExcursionListTableViewCell: BaseTableViewCell {
         self.imageCheckBox.isUserInteractionEnabled = true
         self.imageCheckBox.addGestureRecognizer(gesture)
         
-      /* let pickUpTimeGesture = UITapGestureRecognizer(target: self, action: #selector(pickUpTimeTapped))
+       /*let pickUpTimeGesture = UITapGestureRecognizer(target: self, action: #selector(pickUpTimeTapped))
         self.textPickUpTime.isUserInteractionEnabled = true
-        self.textPickUpTime.addGestureRecognizer(pickUpTimeGesture) */
-        self.labelPickUpTime.isHidden = true
+        self.textPickUpTime.addGestureRecognizer(pickUpTimeGesture)
+        self.labelPickUpTime.isHidden = true*/
 
-        self.createTimePicker()
+       
     }
     
     @objc func pickUpTimeTapped(){
         //self.labelPickUpTime.isHidden = true
        // self.pickuptime = self.textPickUpTime.text ?? "00:00"
-        self.createTimePicker()
-        self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tourDate: self.tourDate, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.pickuptime)
+        
+        let alert = UIAlertController(title: "Pick Up Time", message: "Please insert Pick Up Time", preferredStyle: .alert)
+        alert.addTextField {
+            $0.placeholder = "Pick Up Time"
+            $0.keyboardType = .numberPad
+            $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
+         
+        }
+       // alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+      
+        let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
+            guard let flatamount = alert.textFields?[0].text
+                    
+            else { return } // Should never happen
+            
+            if flatamount == "" {
+                return
+            }
+            
+            let pickUpTimeInt = flatamount
+            
+            
+            self.pickuptime = "\(pickUpTimeInt)"
+            
+            if self.pickuptime.count == 0 {
+                self.pickuptime = "\(self.pickuptime)0000"
+            }
+            
+            if self.pickuptime.count == 1 {
+                self.pickuptime = "0\(self.pickuptime)00"
+            }
+       
+            if self.pickuptime.count == 2{
+                self.pickuptime = "\(self.pickuptime)00"
+            }
+            
+            if self.pickuptime.count == 3{
+                self.pickuptime = "\(self.pickuptime)0"
+            }
+            
+            self.pickuptime.insert(":", at: self.pickuptime.index(self.pickuptime.startIndex, offsetBy: 2))
+            
+            self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tourDate: self.tourDate, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.pickuptime)
+        
+        }
+        
+        flatAmountAction.isEnabled = false
+        alert.addAction(flatAmountAction)
+        
+        
+        if let topVC = UIApplication.getTopViewController() {
+            topVC.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func cancelButtonTapped(){
+        self.viewContentView.endEditing(true)
+    }
+    
+    @objc func doneButtonTapped(){
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        formatter.dateFormat = "HH:dd"
+        self.textPickUpTime.text = "\(formatter.string(for: timePicker.date) ?? "00:00")"
+        self.textPickUpTime.endEditing(true)
+        print(formatter.string(from: timePicker.date))
+        self.timeString = formatter.string(from: self.timePicker.date)
+        self.pickuptime = self.timeString
+        self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tourDate: self.tourDate, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.timeString)
+        self.viewContentView.endEditing(true)
+        
     }
     
     @objc func tappedChecBox(){
@@ -92,11 +176,9 @@ class ExcursionListTableViewCell: BaseTableViewCell {
     
     func createTimePicker() {
         self.textPickUpTime.textAlignment = .left
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(timePickerDonePressed))
-        self.timeToolBar.setItems([doneButton], animated: true)
-        self.timeToolBar.sizeToFit()
-        self.textPickUpTime.inputAccessoryView = timeToolBar
-        self.textPickUpTime.inputView = timePicker
+    
+        self.textPickUpTime.inputAccessoryView = self.timePickerToolBar
+        self.textPickUpTime.inputView = self.timePicker
         self.timePicker.datePickerMode = .time
         self.timePicker.locale = Locale.init(identifier: "en_GB")
     }
@@ -112,6 +194,6 @@ class ExcursionListTableViewCell: BaseTableViewCell {
         self.timeString = formatter.string(from: self.timePicker.date)
         self.pickuptime = self.timeString
         self.excursionListTableViewCellDelegate?.checkBoxTapped(checkCounter: self.isTappedCheck, tourid: self.tourid, tourDate: self.tourDate, tempPaxes: self.excursionListInCell!, priceTypeDesc : self.priceTypeDesc, pickUpTime: self.timeString)
-        
+        self.viewContentView.endEditing(true)
     }
 }

@@ -126,7 +126,8 @@ class AddManuelTouristCustomView : UIView {
         self.viewCheckOut.mainLabel.isHidden = true
         
         self.viewName.mainText.delegate = self
-        
+        self.viewPhone.mainText.keyboardType = .numberPad
+
         self.viewRemoveView.roundCorners(.allCorners, radius: 10)
         let tappedSlideUp = UITapGestureRecognizer(target: self, action: #selector(slideUpTapped))
         self.viewSlideUp.addGestureRecognizer(tappedSlideUp)

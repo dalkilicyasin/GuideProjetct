@@ -78,8 +78,8 @@
             filePath = "RotaIOS/View/ExcSelectCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
             landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "RotaIOS/View/ExcSelectCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
             landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -158,8 +158,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1565"
-            endingLineNumber = "1565"
+            startingLineNumber = "1591"
+            endingLineNumber = "1591"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +174,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "841"
-            endingLineNumber = "841"
+            startingLineNumber = "843"
+            endingLineNumber = "843"
             landmarkName = "tableView(_:commit:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "821"
-            endingLineNumber = "821"
+            startingLineNumber = "823"
+            endingLineNumber = "823"
             landmarkName = "tableView(_:commit:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,8 +206,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "813"
-            endingLineNumber = "813"
+            startingLineNumber = "815"
+            endingLineNumber = "815"
             landmarkName = "tableView(_:commit:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +222,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "749"
-            endingLineNumber = "749"
+            startingLineNumber = "751"
+            endingLineNumber = "751"
             landmarkName = "sendButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,8 +238,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "747"
-            endingLineNumber = "747"
+            startingLineNumber = "749"
+            endingLineNumber = "749"
             landmarkName = "sendButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "479"
-            endingLineNumber = "479"
+            startingLineNumber = "490"
+            endingLineNumber = "490"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1163"
-            endingLineNumber = "1163"
+            startingLineNumber = "1187"
+            endingLineNumber = "1187"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "RotaIOS/View/ExcSelectCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
             landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1509"
-            endingLineNumber = "1509"
+            startingLineNumber = "1534"
+            endingLineNumber = "1534"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -334,8 +334,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "981"
-            endingLineNumber = "981"
+            startingLineNumber = "1005"
+            endingLineNumber = "1005"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -350,8 +350,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "848"
-            endingLineNumber = "848"
+            startingLineNumber = "859"
+            endingLineNumber = "859"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -366,24 +366,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
-            landmarkName = "continueButtonTappedDelegate(tapped:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E0A1E984-198C-4EAB-A758-7E197C127B07"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/Controller/ExcursionViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,8 +382,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1135"
-            endingLineNumber = "1135"
+            startingLineNumber = "1159"
+            endingLineNumber = "1159"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +398,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "500"
-            endingLineNumber = "500"
+            startingLineNumber = "503"
+            endingLineNumber = "503"
             landmarkName = "addPaymentButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -462,8 +446,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
+            startingLineNumber = "446"
+            endingLineNumber = "446"
             landmarkName = "applyDiscountButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -478,8 +462,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "442"
-            endingLineNumber = "442"
+            startingLineNumber = "445"
+            endingLineNumber = "445"
             landmarkName = "applyDiscountButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,8 +478,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1011"
-            endingLineNumber = "1011"
+            startingLineNumber = "1035"
+            endingLineNumber = "1035"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -510,8 +494,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "457"
-            endingLineNumber = "457"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
             landmarkName = "addPaymentButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -606,8 +590,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1167"
-            endingLineNumber = "1167"
+            startingLineNumber = "1191"
+            endingLineNumber = "1191"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -622,8 +606,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "526"
-            endingLineNumber = "526"
+            startingLineNumber = "537"
+            endingLineNumber = "537"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -638,8 +622,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "484"
-            endingLineNumber = "484"
+            startingLineNumber = "495"
+            endingLineNumber = "495"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -654,8 +638,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "982"
-            endingLineNumber = "982"
+            startingLineNumber = "1006"
+            endingLineNumber = "1006"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -670,8 +654,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "983"
-            endingLineNumber = "983"
+            startingLineNumber = "1007"
+            endingLineNumber = "1007"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -686,8 +670,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "984"
-            endingLineNumber = "984"
+            startingLineNumber = "1008"
+            endingLineNumber = "1008"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -702,8 +686,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "986"
-            endingLineNumber = "986"
+            startingLineNumber = "1010"
+            endingLineNumber = "1010"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -718,8 +702,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "987"
-            endingLineNumber = "987"
+            startingLineNumber = "1011"
+            endingLineNumber = "1011"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -798,8 +782,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -814,8 +798,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "990"
-            endingLineNumber = "990"
+            startingLineNumber = "1014"
+            endingLineNumber = "1014"
             landmarkName = "homePageTapped(ischosen:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -894,8 +878,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1732"
-            endingLineNumber = "1732"
+            startingLineNumber = "1758"
+            endingLineNumber = "1758"
             landmarkName = "excurAddCustomDelegate(changeTransferNumber:changeExtraNumber:extrasTotalPrice:transfersTotalPrice:extraButtonTapped:savedExtrasList:savedTransferList:currentExtrasTotalPrice:currentTransfersTotalPirce:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -910,8 +894,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "850"
-            endingLineNumber = "850"
+            startingLineNumber = "861"
+            endingLineNumber = "861"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -958,8 +942,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "566"
-            endingLineNumber = "566"
+            startingLineNumber = "568"
+            endingLineNumber = "568"
             landmarkName = "sendButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -999,54 +983,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9870BC6B-7FC9-4618-8C04-33C636D50DB2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/View/ExcSelectCustomView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
-            landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "35008B1F-FF81-460F-8832-C8572C364379"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/View/ExcSelectCustomView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
-            landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "966E1690-8302-4DC3-B7AF-8926352252DE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/View/ExcSelectCustomView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
-            landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "885B85F0-3D58-44F6-88A7-43865015CAA3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1054,8 +990,8 @@
             filePath = "RotaIOS/View/ExcPaxCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
             landmarkName = "tempAddList(listofpaxes:manuellist:changeValue:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1070,8 +1006,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "commonInit()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1086,25 +1022,9 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "commonInit()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3818A148-4495-477E-8DE6-7333658423E4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/View/ExcSelectCustomView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
-            landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1134,8 +1054,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "521"
-            endingLineNumber = "521"
+            startingLineNumber = "524"
+            endingLineNumber = "524"
             landmarkName = "printButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1144,22 +1064,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "6DF8D40F-6655-4B94-8676-C4938460E6C1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/View/ExcProceedCustomView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "commonInit()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B3E450A5-44DE-4EDD-B413-E1CCCDFFF22F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1175,6 +1079,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "B3E450A5-44DE-4EDD-B413-E1CCCDFFF22F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/View/ExcProceedCustomView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "commonInit()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "36071962-74C2-43B6-83AD-BEAC06011A6D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1182,8 +1102,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "init?(coder:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1198,8 +1118,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "init(frame:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1342,8 +1262,8 @@
             filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "940"
-            endingLineNumber = "940"
+            startingLineNumber = "942"
+            endingLineNumber = "942"
             landmarkName = "sendZebraTestingString(connection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1358,8 +1278,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "611"
-            endingLineNumber = "611"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1374,8 +1294,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "625"
-            endingLineNumber = "625"
+            startingLineNumber = "636"
+            endingLineNumber = "636"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1390,8 +1310,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "662"
-            endingLineNumber = "662"
+            startingLineNumber = "673"
+            endingLineNumber = "673"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1406,8 +1326,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "683"
-            endingLineNumber = "683"
+            startingLineNumber = "694"
+            endingLineNumber = "694"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1422,8 +1342,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "742"
-            endingLineNumber = "742"
+            startingLineNumber = "753"
+            endingLineNumber = "753"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1438,8 +1358,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "781"
-            endingLineNumber = "781"
+            startingLineNumber = "792"
+            endingLineNumber = "792"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1502,25 +1422,9 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1735"
-            endingLineNumber = "1735"
+            startingLineNumber = "1761"
+            endingLineNumber = "1761"
             landmarkName = "excurAddCustomDelegate(changeTransferNumber:changeExtraNumber:extrasTotalPrice:transfersTotalPrice:extraButtonTapped:savedExtrasList:savedTransferList:currentExtrasTotalPrice:currentTransfersTotalPirce:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "75D310C3-160F-4B93-B28F-AD2F6C624E85"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/View/ExcSelectCustomView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
-            landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1534,24 +1438,8 @@
             filePath = "RotaIOS/View/ExcSelectCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
-            landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1004750F-EC5A-49CE-B04A-7532DCDE40FA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RotaIOS/View/ExcSelectCustomView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "342"
+            endingLineNumber = "342"
             landmarkName = "checkBoxTapped(checkCounter:tourid:tourDate:tempPaxes:priceTypeDesc:pickUpTime:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1566,8 +1454,8 @@
             filePath = "RotaIOS/Controller/ExcursionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
             landmarkName = "continueButtonTappedDelegate(tapped:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1582,9 +1470,9 @@
             filePath = "RotaIOS/View/ExcPaxCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "453"
-            endingLineNumber = "453"
-            landmarkName = "checkBoxTapped(checkCounter:touristName:marketGroup:tempPaxes:paxRoom:)"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
+            landmarkName = "checkBoxTapped(checkCounter:touristName:marketGroup:tempPaxes:paxRoom:paxNameLabelSelect:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1735,31 +1623,143 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "65C69D91-ACEA-44F4-AB5F-1C3B3129D6B9"
+            uuid = "DE25F4EF-4A76-4F92-A1FB-2A694704FD80"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RotaIOS/Cell/ExcursionListTableViewCell.swift"
+            filePath = "RotaIOS/View/ExcProceedCustomView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "pickUpTimeTapped()"
+            startingLineNumber = "755"
+            endingLineNumber = "755"
+            landmarkName = "sendButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "761D5418-1E9C-4521-86C4-E437D3025EC4"
+            uuid = "FBA135F7-E289-4C3B-A791-D57D690DF568"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/View/ExcSearchCustomView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "commonInit()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED927A90-6D51-4E53-A5C3-FCDDFAE280C7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/View/ExcPaxCustomView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
+            landmarkName = "checkBoxTapped(checkCounter:touristName:marketGroup:tempPaxes:paxRoom:paxNameLabelSelect:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BD6B4C7F-E1C8-4287-BC22-557D1FD49627"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/View/ExcPaxCustomView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "414"
+            endingLineNumber = "414"
+            landmarkName = "checkBoxTapped(checkCounter:touristName:marketGroup:tempPaxes:paxRoom:paxNameLabelSelect:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9DF09110-FD05-4ED8-B769-19BABDFA32AB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/View/ExcPaxCustomView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
+            landmarkName = "checkBoxTapped(checkCounter:touristName:marketGroup:tempPaxes:paxRoom:paxNameLabelSelect:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EEE52437-7ED7-4EC8-A917-326628296E14"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Cell/ExcPaxPageTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "awakeFromNib()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "729825AE-2ECD-4FC1-A7A8-DA4CBF08352A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Cell/ExcPaxPageTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "tappedChecBox()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DE5F263-36E6-4DC4-80D8-28C779EE2ECC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RotaIOS/Controller/ExcursionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "continueButtonTappedDelegate(tapped:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "111AB7E8-412C-40F1-8A28-6743FD29B029"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RotaIOS/Cell/ExcursionListTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "timePickerDonePressed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1767,16 +1767,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "84FDEF95-E2AB-4D69-8E1F-2B9AF3B0670C"
+            uuid = "08F52632-64DD-421B-9397-DFDAEEB18DC6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RotaIOS/View/ExcSelectCustomView.swift"
+            filePath = "RotaIOS/Cell/ExcursionListTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "createTimePicker()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

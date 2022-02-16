@@ -204,6 +204,7 @@ extension ExcPaxCustomView : UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
+    
 }
 
 extension ExcPaxCustomView : UISearchBarDelegate {
@@ -256,9 +257,7 @@ extension ExcPaxCustomView : UISearchBarDelegate {
 }
 
 extension ExcPaxCustomView : TempAddPaxesListDelegate {
-    
     func tempAddList(listofpaxes: [Paxes], manuellist: [String], changeValue: Int) {
-        
         if  self.tempListofPaxes.count != listofpaxes.count {
         //  let  filter = self.paxesList.filter{ $0.name == lastAddedPax.pAX_NAME}
             self.tempListofPaxes = listofpaxes
@@ -359,9 +358,12 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                 if manuelAddedPaxesList.count > 0 {
                     for i in 0...manuelAddedPaxesList.count - 1 {
                         self.paxesList.append(self.manuelAddedPaxesList[i])
-                        self.checkList.append(false)
+                        self.manuelAddedPaxesList[i].isTapped = true
+                        self.checkList.append(true)
+                        self.savePaxesList.append(self.manuelAddedPaxesList[i])
                     }
                 }
+                userDefaultsData.savePaxesList(tour: self.savePaxesList)
                 self.tableView.reloadData()
                 return
             }else {
@@ -393,10 +395,12 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
                         if self.manuelAddedPaxesList[index].name != self.paxesList[i].name {
                             self.paxesList.append(self.manuelAddedPaxesList[i])
                             self.checkList.append(false)
+                            
                         }
                     }
                 }
             }
+            userDefaultsData.savePaxesList(tour: self.savePaxesList)
             self.tableView.reloadData()
         }else{
             return
@@ -405,8 +409,8 @@ extension ExcPaxCustomView : TempAddPaxesListDelegate {
 }
 
 extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
-    
-    func checkBoxTapped(checkCounter: Bool, touristName: String, marketGroup: Int, tempPaxes: GetInHoseListResponseModel, paxRoom: String) {
+  
+    func checkBoxTapped(checkCounter: Bool, touristName: String, marketGroup: Int, tempPaxes: GetInHoseListResponseModel, paxRoom: String, paxNameLabelSelect: Bool) {
         self.tempFilteredList = []
         if isFiltered == true {
             if let index = self.filteredData.firstIndex(where: {$0 === tempPaxes}){
@@ -422,7 +426,7 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             }
         }
         self.tableView.reloadData()
-        if checkCounter == true {
+        if checkCounter == true || paxNameLabelSelect == true{
             let filter = paxesList.filter{ $0 === tempPaxes}
             // let filter = self.excursionList.filter{($0.tourId?.elementsEqual(tourid) ?? false)}
             if filter[0].room == nil {
@@ -445,6 +449,10 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
                     var i = 0
                     if let index = self.paxesList.firstIndex(where: {$0 === tempPaxes}){
                         self.paxesList[index].room = self.paxRoom
+                        let filter = self.paxesList.filter{$0.ResNo == self.paxesList[index].ResNo}
+                        for j in 0...filter.count - 1 {
+                            filter[j].room  = self.paxRoom
+                        }
                         i = index
                     }
                
@@ -470,7 +478,7 @@ extension ExcPaxCustomView : ExcPaxPageTableViewCellDelegate {
             // manuelPaxes added
             let filterManuelPax = self.manuelAddedPaxesList.filter{ $0 === tempPaxes}
             var manuelPaxList : [Paxes] = []
-            if sendingListofPaxes.count > 0 {
+            if self.sendingListofPaxes.count > 0 {
                 for i in 0...self.sendingListofPaxes.count - 1 {
                     if filterManuelPax[0].name ==  self.sendingListofPaxes[i].pAX_NAME {
                         manuelPaxList.append(self.sendingListofPaxes[i])

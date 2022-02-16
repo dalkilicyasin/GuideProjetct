@@ -249,6 +249,17 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                 return
             }
         }
+        
+        if self.buttonTappedCount == 3  && self.extraAndTransTotalPrice != 0.0{
+            //self.buttonTappedCount = 2
+            if self.saveButtonTappet == false{
+                self.viewFooterViewCustomView.counter = 2
+                let alert = UIAlertController.init(title: "WARNING", message: "Please Clicked Save Button", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                present(alert, animated: true, completion: nil)
+                return
+            }
+        }
         self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
         self.viewFooterViewCustomView.isHidden = false
         self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
@@ -870,6 +881,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
                             self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
                             self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                            self.viewExcProceedCustomView?.savedFirstValue = self.totalPrice
                             self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
                             self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
                             // self.viewExcProceedCustomView?.voucherNo = self.voucherList
@@ -894,6 +906,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                     self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                    self.viewExcProceedCustomView?.savedFirstValue = self.totalPrice
                     self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
                     self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
                     
@@ -922,6 +935,17 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             if userDefaultsData.getPaxesList()?.count == 0 {
                 self.viewAppointMentBarCutomView.selectedIndex.row = 1
                 let alert = UIAlertController.init(title: "WARNING", message: "Please select pax", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                present(alert, animated: true, completion: nil)
+                return
+            }
+        }
+        
+        if self.buttonTappedCount == 3{
+          //  self.buttonTappedCount = 2
+            if self.saveButtonTappet == false && self.extraAndTransTotalPrice != 0.0 {
+                self.viewAppointMentBarCutomView.selectedIndex.row = 2
+                let alert = UIAlertController.init(title: "WARNING", message: "Please Clicked Save Button", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 present(alert, animated: true, completion: nil)
                 return
@@ -1493,6 +1517,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
             
             self.showToast(message: "\(self.totalPriceBeforExtrasandTransfersAded)")
         }else if self.buttonTappedCount == 3 {
+            
             self.viewFooterViewCustomView.isHidden = true
             // self.viewExcursionView.scrollView.contentOffset = CGPoint(x: 0, y: 0)
             self.viewFooterViewCustomView.viewSendVoucher.isHidden = true
@@ -1547,6 +1572,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                             self.viewExcProceedCustomView?.viewTotalAmount.mainText.text = String(self.totalPrice - self.discount)
                             self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
                             self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
+                            self.viewExcProceedCustomView?.savedFirstValue = self.totalPrice
                             self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
                             self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
                             self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
@@ -1571,6 +1597,7 @@ extension ExcursionViewController : HomePageTappedDelegate , ContinueButtonTappe
                     self.viewExcProceedCustomView?.balanceAmount = Double(self.totalPrice - self.discount)
                     self.viewExcProceedCustomView?.totalAmount = self.totalPrice - self.discount
                     self.viewExcProceedCustomView?.sendedTotalAmount = self.totalPrice
+                    self.viewExcProceedCustomView?.savedFirstValue = self.totalPrice
                     self.viewExcProceedCustomView?.extrasTotalPrice = self.extrasTotalPrice
                     self.viewExcProceedCustomView?.transfersTotalPrice = self.transfersTotalPrice
                     
@@ -1726,7 +1753,6 @@ extension ExcursionViewController : ExcPaxPageDelegate {
 }
 
 extension ExcursionViewController : ExcAddCustomViewDelegate {
-    
     func excurAddCustomDelegate(changeTransferNumber: Int, changeExtraNumber: Int, extrasTotalPrice: Double, transfersTotalPrice: Double, extraButtonTapped: Bool, savedExtrasList: [Extras], savedTransferList: [Transfers], currentExtrasTotalPrice: Double, currentTransfersTotalPirce: Double) {
         self.extraAndTransTotalPrice = 0.0
         self.changeExcNumber = changeExtraNumber

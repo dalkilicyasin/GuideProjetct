@@ -41,7 +41,7 @@ class ExcSelectCustomView : UIView {
     var promotionList : [GetSearchTourResponseModel] = []
     var promotionButtonTapped = false
     var checkPromotionList : [Bool] = []
-    
+ 
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -167,6 +167,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
             cell.tourid = self.filteredData[indexPath.row].tourId ?? 0
             cell.priceTypeDesc = filteredData[indexPath.row].priceType ?? 0
             cell.pickuptime = filteredData[indexPath.row].pickUpTime ?? ""
+            cell.createTimePicker()
         }else {
             if self.promotionButtonTapped == true {
                 cell.pickuptime = ""
@@ -196,6 +197,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
                     cell.tourid = self.promotionList[indexPath.row].tourId  ?? 0
                     cell.priceTypeDesc = promotionList[indexPath.row].priceType ?? 0
                     cell.pickuptime = promotionList[indexPath.row].pickUpTime ?? ""
+                    cell.createTimePicker()
                 } else {
                     return cell
                 }
@@ -225,6 +227,7 @@ extension ExcSelectCustomView : UITableViewDelegate, UITableViewDataSource {
                 cell.tourid = self.excursionList[indexPath.row].tourId  ?? 0
                 cell.priceTypeDesc = excursionList[indexPath.row].priceType ?? 0
                 cell.pickuptime = excursionList[indexPath.row].pickUpTime ?? ""
+                cell.createTimePicker()
             }
         }
         return cell
@@ -325,31 +328,41 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                         let alert = UIAlertController(title: "Pick Up Time", message: "Please insert Pick Up Time", preferredStyle: .alert)
                         alert.addTextField {
                             $0.placeholder = "Pick Up Time"
+                            $0.keyboardType = .numberPad
                             $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
                         }
                        // alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
                         let flatAmountAction = UIAlertAction(title: "Submit", style: .default) { [unowned self] _ in
                             guard let flatamount = alert.textFields?[0].text
-                                    
+                                
                             else { return } // Should never happen
                             
                             self.savesTourList = self.savesTourList.filterDuplicate{($0.tourName,$0.tourDate)}
+                            
                             if flatamount == "" {
                                 return
                             }
                             
-                            let pickUpTimeInt = Int(flatamount) ?? 0
-                            
+                            let pickUpTimeInt = flatamount
                             
                             self.pickUpTime = "\(pickUpTimeInt)"
                             
-                            if self.pickUpTime.count == 1 || self.pickUpTime == "0"{
-                                self.pickUpTime = "0\(self.pickUpTime)"
+                            if self.pickUpTime.count == 0 {
+                                self.pickUpTime = "\(self.pickUpTime)0000"
                             }
                             
+                            if self.pickUpTime.count == 1 {
+                                self.pickUpTime = "0\(self.pickUpTime)00"
+                            }
+                       
                             if self.pickUpTime.count == 2{
                                 self.pickUpTime = "\(self.pickUpTime)00"
                             }
+                            
+                            if self.pickUpTime.count == 3{
+                                self.pickUpTime = "\(self.pickUpTime)0"
+                            }
+                            
                             
                             self.pickUpTime.insert(":", at: self.pickUpTime.index(self.pickUpTime.startIndex, offsetBy: 2))
                             
@@ -383,6 +396,7 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                     let alert = UIAlertController(title: "Pick Up Time", message: "Please insert Pick Up Time", preferredStyle: .alert)
                     alert.addTextField {
                         $0.placeholder = "Pick Up Time"
+                        $0.keyboardType = .numberPad
                         $0.addTarget(alert, action: #selector(alert.textDidChangeInLoginAlert), for: .editingChanged)
                      
                     }
@@ -393,29 +407,29 @@ extension ExcSelectCustomView : ExcursionListTableViewCellDelegate {
                                 
                         else { return } // Should never happen
                         
-                      /*  if flatamount == "" {
-                            let alert = UIAlertController(title: "WARNING", message: "Please fiil Pick Up Time", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                            if let topVC = UIApplication.getTopViewController() {
-                                topVC.present(alert, animated: true, completion: nil)
-                            }
-                        }*/
-                        
                         if flatamount == "" {
                             return
                         }
                         
-                        let pickUpTimeInt = Int(flatamount) ?? 0
+                        let pickUpTimeInt = flatamount
                         
                         
                         self.pickUpTime = "\(pickUpTimeInt)"
                         
-                        if self.pickUpTime.count == 1 || self.pickUpTime == "0"{
-                            self.pickUpTime = "0\(self.pickUpTime)"
+                        if self.pickUpTime.count == 0 {
+                            self.pickUpTime = "\(self.pickUpTime)0000"
                         }
                         
+                        if self.pickUpTime.count == 1 {
+                            self.pickUpTime = "0\(self.pickUpTime)00"
+                        }
+                   
                         if self.pickUpTime.count == 2{
                             self.pickUpTime = "\(self.pickUpTime)00"
+                        }
+                        
+                        if self.pickUpTime.count == 3{
+                            self.pickUpTime = "\(self.pickUpTime)0"
                         }
                         
                         self.pickUpTime.insert(":", at: self.pickUpTime.index(self.pickUpTime.startIndex, offsetBy: 2))

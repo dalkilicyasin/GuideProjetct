@@ -17,7 +17,11 @@ final class LoginViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.viewLogin.textUsername.delegate = self
+        self.viewLogin.textUsername.keyboardType = .numberPad
+        self.viewLogin.textPassword.keyboardType = .numberPad
     }
+    
     
     @IBAction func buttonClicked(_ sender: Any) {
         self.userName = self.viewLogin.textUsername.text ?? ""
@@ -51,3 +55,19 @@ final class LoginViewController : BaseViewController {
         }
     }
 }
+
+extension LoginViewController : UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == self.viewLogin.textUsername  ||  textField == self.viewLogin.textPassword {
+            let allowedCharacters = "0123456789"
+            let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
+            let typedCharacterSet = CharacterSet(charactersIn: string)
+            let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
+            return alphabet
+        } else {
+            return false
+        }
+    }
+}
+
